@@ -509,6 +509,7 @@ background-color: #807873;
   grid-column: outHeaderC-start / outHeaderC-end;
 }
 
+.header {padding: 0}
 .header-left {font-size: 1.1em; border-style: none; margin: 0; background-color: black; color: white; text-align: center}
 .header-centre {font-size: 1.5em; border-style: none; margin: 0; background-color: black; color: lime; text-align: right}
 .header-right {font-size: 1.1em; border-style: none; margin: 0; background-color: black; color: white; text-align: center}
@@ -558,9 +559,9 @@ background-color: #807873;
   <div id="instructions">
 	<button id="control-back" class="control control-tertiary"><code><strong>&lt;</strong></code></button>
 
-	<button id="instructions-header-A" class="header-left"><strong>Loose Fit</strong></button>
-	<button id="instructions-header-B" class="header-centre">&blacksquare;</button>
-	<button id="instructions-header-C" class="header-right">Instructions</button>
+	<button id="instructions-header-A" class="header header-left"><strong>Loose Fit</strong></button>
+	<button id="instructions-header-B" class="header header-centre">&blacksquare;</button>
+	<button id="instructions-header-C" class="header header-right">Instructions</button>
 	
     <div id="instructionPanel-1">Fit the words into the grid. A number of coloured squares will remain blank.</div>
   </div>
@@ -583,9 +584,9 @@ background-color: #807873;
     <div id="outBackground-left" class="outer"></div>
     <div id="outBackground-right" class="outer"></div>
 	
-	<button id="puzzle-header-A" class="header-left"><strong>Loose Fit</strong></button>
-<!--	<button id="puzzle-header-B" class="header-centre">&blacksquare;</button> -->
-	<button id="puzzle-header-C" class="header-right">Puzzle 001</button>
+	<button id="puzzle-header-A" class="header header-left"><strong>Loose Fit</strong></button>
+<!--	<button id="puzzle-header-B" class="header header-centre">&blacksquare;</button> -->
+	<button id="puzzle-header-C" class="header header-right">Puzzle 001</button>
 
 	<button id="control-instructions" class="control control-secondary">Instructions</button>
 	<button id="control-hint" class="control control-secondary">Hint</button>
