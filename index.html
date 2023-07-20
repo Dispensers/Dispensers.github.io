@@ -1,0 +1,1476 @@
+<!DOCTYPE HTML
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grid</title>
+  <style>
+body {
+	font-family: Montserrat, Arial, 'sans-serif';
+	/* font-size: min(calc(100vw / 20), calc(100vh / 36)); */
+	font-size: min(calc(90vw / 20), calc(90vh / 36));
+	margin: 0;
+	overflow: hidden;
+	background-color: black;
+}
+
+/* button { font-size: inherit; } */
+
+#instructions {
+  z-index: 1;
+  position: absolute;
+  height: 36em;
+  width: 20em;
+  background-color: #807873;
+  display: grid;
+  grid-template-columns:
+    1fr
+	[outBack-start panel-start]
+	1fr 1fr
+    [outBack-end outHeaderA-start]
+	repeat(6, 1fr) 
+	[outHeaderA-end outHeaderB-start]
+	1fr
+	[outHeaderB-end outHeaderC-start]
+	repeat(7, 1fr)
+	[outHeaderC-end]
+	1fr 1fr
+	[panel-end]
+	1fr;
+	
+  grid-template-rows:
+    1fr
+	[outBack outHeader]
+	1fr 1fr 1fr
+	[pane1Start-1]
+	3fr
+	[panelEnd-1]
+	repeat(29, 1fr);
+ }
+
+#control-back {
+  grid-column: outBack-start / outBack-end;
+  grid-row: outBack / span 2;
+}
+
+#instructions-header-A {
+  grid-row: outHeader / span 2;
+  grid-column: outHeaderA-start / outHeaderA-end;
+}
+
+#instructions-header-B {
+  grid-row: outHeader / span 2;
+  grid-column: outHeaderB-start / outHeaderB-end;
+}
+
+#instructions-header-C {
+  grid-row: outHeader / span 2;
+  grid-column: outHeaderC-start / outHeaderC-end;
+}
+
+#instructionPanel-1 {
+  grid-column: panel-start / panel-end;
+  grid-row: pane1Start-1 / panelEnd-1;
+  background-color: white;
+}
+
+#container {
+  z-index: 2;
+  height: 36em;
+  width: 20em;
+  display: grid;
+  grid-template-columns:
+	[out-start]
+	1fr
+	[outInstructions-start in-start outClear-start]
+	1fr
+	[inWord-left-start]
+	1fr
+	[outHeaderA-start inCell-1]
+	1fr
+	[outClear-end]
+	1fr
+	[inCell-2]
+	1fr
+	[outInstructions-end inWord-centre-start]
+	1fr
+	[inCell-3 outForward-start]
+	1fr
+	[outHint-start]
+	1fr
+	[outHeaderA-end outHeaderB-start inCell-4 inWord-left-end]
+	1fr
+	[outHeaderB-end outHeaderC-start]
+	1fr
+	[inCell-5 inWord-right-start]
+	1fr	
+	[outHint-end outForward-end]
+	1fr
+	[inCell-6]
+	1fr
+	[outSolution-start inWord-centre-end outBackward-start]
+	1fr
+	[inCell-7]
+	1fr
+	[outHeader-end]
+	1fr
+	[outHeaderC-end inCell-7-end]
+	1fr
+	[inWord-right-end]
+	1fr
+	[outSolution-end in-end outBackward-end]
+	1fr
+	[out-end]
+	;
+  grid-template-rows:
+	[out-start outRow-1]
+	1fr
+	[outRow-2 outHeader]
+	1fr
+	[outRow-3]
+	1fr
+	[outRow-4]
+	1fr
+	[outRow-5 outControl-top]
+	1fr
+	[outRow-6]
+	1fr
+	[outRow-7]
+	1fr
+	[outRow-8 inRow-1]
+	1fr
+	[outRow-9 inCell-1]
+	1fr
+	[outRow-10]
+	1fr
+	[outRow-11 inCell-2]
+	1fr
+	[outRow-12]
+	1fr
+	[outRow-13 inCell-3]
+	1fr
+	[outRow-14]
+	1fr
+	[outRow-15 inCell-4]
+	1fr
+	[outRow-16]
+	1fr
+	[outRow-17 inCell-5]
+	1fr
+	[outRow-18]
+	1fr
+	[outRow-19 inCell-6]
+	1fr
+	[outRow-20]
+	1fr
+	[outRow-21 inCell-7]
+	1fr
+	[outRow-22]
+	1fr
+	[outRow-23]
+	1fr
+	[outRow-24 inWord-1]
+	1fr
+	[outRow-25]
+	1fr
+	[outRow-26]
+	1fr
+	[outRow-27 inWord-2]
+	1fr
+	[outRow-28]
+	1fr
+	[outRow-29]
+	1fr
+	[outRow-30 inWord-3]
+	1fr
+	[outRow-31]
+	1fr
+	[outRow-32 inRow-25]
+	1fr
+	[outRow-33]
+	1fr
+	[outRow-34 outControl-bottom]
+	1fr
+	[outRow-35]
+	1fr
+	[outRow-36]
+	1fr
+	[outRow-end]
+	;
+  background-color: white;
+  position: absolute;
+}
+
+.outer {
+background-color: #807873;
+}
+
+#outBackground-1 {
+  grid-column: out-start / out-end;
+  grid-row: outRow-1 / span 1;
+}
+
+#outBackground-2a {
+  grid-column: out-start / outHeaderA-start;
+  grid-row: outHeader / span 2;
+}
+
+#outBackground-2b {
+  grid-column: outHeaderC-end / out-end;
+  grid-row: outHeader / span 2;
+}
+
+#outBackground-4 {
+  grid-column: out-start / out-end;
+  grid-row: outRow-4 / span 1;
+}
+
+#outBackground-5a {
+  grid-column: out-start / outInstructions-start;
+  grid-row: outRow-5 / span 2;
+}
+
+#outBackground-5b {
+  grid-column: outInstructions-end / outHint-start;
+  grid-row: outRow-5 / span 2;
+}
+
+#outBackground-5c {
+  grid-column: outHint-end / outSolution-start;
+  grid-row: outRow-5 / span 2;
+}
+
+#outBackground-5d {
+  grid-column: outSolution-end / out-end;
+  grid-row: outRow-5 / span 2;
+}
+ 
+#outBackground-7 {
+  grid-column: out-start / out-end;
+  grid-row: outRow-7 / span 1;
+}
+
+#outBackground-33 {
+  grid-column: out-start / out-end;
+  grid-row: outRow-33 / span 1;
+}
+
+#outBackground-34a {
+  grid-column: out-start / outClear-start;
+  grid-row: outRow-34 / span 2;
+}
+
+#outBackground-34b {
+  grid-column: outClear-end / outForward-start;
+  grid-row: outRow-34 / span 2;
+}
+
+#outBackground-34c {
+  grid-column: outForward-end / outBackward-start;
+  grid-row: outRow-34 / span 2;
+}
+
+#outBackground-34d {
+  grid-column: outBackward-end / out-end;
+  grid-row: outRow-34 / span 2;
+}
+
+#outBackground-36 {
+  grid-column: out-start / out-end;
+  grid-row: outRow-36 / span 1;
+}
+
+#outBackground-left {
+  grid-column: out-start / span 1;
+  grid-row: outRow-8 / outRow-33;
+}
+
+#outBackground-right {
+  grid-column: in-end / span 1;
+  grid-row: outRow-8 / outRow-33;
+}
+
+#cell-12 {
+  grid-row: inCell-1 / span 2;
+  grid-column: inCell-2 / span 2;
+}
+
+#cell-16 {
+  grid-row: inCell-1 / span 2;
+  grid-column: inCell-6 / span 2;
+}
+
+#cell-21 {
+  grid-row: inCell-2 / span 2;
+  grid-column: inCell-1 / span 2;
+}
+
+#cell-22 {
+  grid-row: inCell-2 / span 2;
+  grid-column: inCell-2 / span 2;
+}
+
+#cell-23 {
+  grid-row: inCell-2 / span 2;
+  grid-column: inCell-3 / span 2;
+}
+
+#cell-24 {
+  grid-row: inCell-2 / span 2;
+  grid-column: inCell-4 / span 2;
+}
+
+#cell-25 {
+  grid-row: inCell-2 / span 2;
+  grid-column: inCell-5 / span 2;
+}
+
+#cell-26 {
+  grid-row: inCell-2 / span 2;
+  grid-column: inCell-6 / span 2;
+}
+
+#cell-27 {
+  grid-row: inCell-2 / span 2;
+  grid-column: inCell-7 / span 2;
+}
+
+#cell-32 {
+  grid-row: inCell-3 / span 2;
+  grid-column: inCell-2 / span 2;
+}
+
+#cell-36 {
+  grid-row: inCell-3 / span 2;
+  grid-column: inCell-6 / span 2;
+}
+
+#hole-top {
+  grid-row: inCell-3 / span 2;
+  grid-column: inCell-3 / span 6;
+}
+
+#cell-41 {
+  grid-row: inCell-4 / span 2;
+  grid-column: inCell-1 / span 2;
+}
+
+#cell-42 {
+  grid-row: inCell-4 / span 2;
+  grid-column: inCell-2 / span 2;
+}
+
+#cell-43 {
+  grid-row: inCell-4 / span 2;
+  grid-column: inCell-3 / span 2;
+}
+
+#cell-44 {
+  grid-row: inCell-4 / span 2;
+  grid-column: inCell-4 / span 2;
+}
+
+#cell-45 {
+  grid-row: inCell-4 / span 2;
+  grid-column: inCell-5 / span 2;
+}
+
+#cell-46 {
+  grid-row: inCell-4 / span 2;
+  grid-column: inCell-6 / span 2;
+}
+
+#cell-47 {
+  grid-row: inCell-4 / span 2;
+  grid-column: inCell-7 / span 2;
+}
+
+#cell-52 {
+  grid-row: inCell-5 / span 2;
+  grid-column: inCell-2 / span 2;
+}
+
+#cell-56 {
+  grid-row: inCell-5 / span 2;
+  grid-column: inCell-6 / span 2;
+}
+
+#hole-bottom {
+  grid-row: inCell-5 / span 2;
+  grid-column: inCell-3 / span 6;
+}
+
+#cell-61 {
+  grid-row: inCell-6 / span 2;
+  grid-column: inCell-1 / span 2;
+}
+
+#cell-62 {
+  grid-row: inCell-6 / span 2;
+  grid-column: inCell-2 / span 2;
+}
+
+#cell-63 {
+  grid-row: inCell-6 / span 2;
+  grid-column: inCell-3 / span 2;
+}
+
+#cell-64 {
+  grid-row: inCell-6 / span 2;
+  grid-column: inCell-4 / span 2;
+}
+
+#cell-65 {
+  grid-row: inCell-6 / span 2;
+  grid-column: inCell-5 / span 2;
+}
+
+#cell-66 {
+  grid-row: inCell-6 / span 2;
+  grid-column: inCell-6 / span 2;
+}
+
+#cell-67 {
+  grid-row: inCell-6 / span 2;
+  grid-column: inCell-7 / span 2;
+}
+
+#cell-72 {
+  grid-row: inCell-7 / span 2;
+  grid-column: inCell-2 / span 2;
+}
+
+#cell-76 {
+  grid-row: inCell-7 / span 2;
+  grid-column: inCell-6 / span 2;
+}
+
+.limb {background-color: #96E6DA}
+.torso {background-color: #FAFAFA}
+.hole {background-color: black; border: none}
+.cell {font-size: inherit; border-color: black; border-style: solid; margin:0}
+.edge-top {border-top-width: 0.05em}
+.edge-bottom {border-bottom-width: 0.05em}
+.edge-left {border-left-width: 0.05em}
+.edge-right {border-right-width: 0.05em}
+.thin-top {border-top-width: 0.02em}
+.thin-bottom {border-bottom-width: 0.02em}
+.thin-left {border-left-width: 0.02em}
+.thin-right {border-right-width: 0.02em}
+.nothing-top {border-top-width: 0}
+.nothing-bottom {border-bottom-width: 0}
+.nothing-left {border-left-width: 0}
+.nothing-right {border-right-width: 0}
+
+
+#word-1 {
+  grid-row: inWord-1 / span 2;
+  grid-column: inWord-left-start / inWord-left-end;
+}
+
+#word-2 {
+  grid-row: inWord-1 / span 2;
+  grid-column: inWord-right-start / inWord-right-end;
+}
+
+#word-3 {
+  grid-row: inWord-2 / span 2;
+  grid-column: inWord-centre-start / inWord-centre-end;
+}
+
+#word-4 {
+  grid-row: inWord-3 / span 2;
+  grid-column: inWord-left-start / inWord-left-end;
+}
+
+#word-5 {
+  grid-row: inWord-3 / span 2;
+  grid-column: inWord-right-start / inWord-right-end;
+}
+
+.word {font-size: inherit; border-style: none; background-color: white}
+.word-left {text-align: left}
+.word-right {text-align: right}
+.word-centre {text-align: center}
+
+
+#puzzle-header-A {
+  grid-row: outHeader / span 2;
+  grid-column: outHeaderA-start / outHeaderA-end;
+}
+
+#puzzle-header-B {
+  grid-row: outHeader / span 2;
+  grid-column: outHeaderB-start / outHeaderB-end;
+}
+
+#puzzle-header-C {
+  grid-row: outHeader / span 2;
+  grid-column: outHeaderC-start / outHeaderC-end;
+}
+
+.header-left {font-size: 1.1em; border-style: none; margin: 0; background-color: black; color: white; text-align: center}
+.header-centre {font-size: 1.5em; border-style: none; margin: 0; background-color: black; color: lime; text-align: right}
+.header-right {font-size: 1.1em; border-style: none; margin: 0; background-color: black; color: white; text-align: center}
+
+
+
+#control-instructions {
+  grid-row: outControl-top / span 2;
+  grid-column: outInstructions-start / outInstructions-end;
+}
+
+#control-hint {
+  grid-row: outControl-top / span 2;
+  grid-column: outHint-start / outHint-end;
+}
+
+#control-solution {
+  grid-row: outControl-top / span 2;
+  grid-column: outSolution-start / outSolution-end;
+}
+
+#control-clear {
+  grid-row: outControl-bottom / span 2;
+  grid-column: outClear-start / outClear-end;
+}
+
+#control-forward {
+  grid-row: outControl-bottom / span 2;
+  grid-column: outForward-start / outForward-end;
+}
+
+#control-backward {
+  grid-row: outControl-bottom / span 2;
+  grid-column: outBackward-start / outBackward-end;
+}
+
+.control {margin: 0}
+.control-primary {text-align: center; border-style: solid; border-width: thin; border-color: black; background-color: #FFC34D; color: black}
+.control-secondary {text-align: center; border: none; background-color: rgb(25%,25%,25%); color: white}
+.control-tertiary {text-align: left; border: none; background-color: transparent; color: #FFC34D; font-size: 1.5em}
+
+
+  </style>
+</head>
+
+<body>
+  <div id="instructions">
+	<button id="control-back" class="control control-tertiary"><code><strong>&lt;</strong></code></button>
+
+	<button id="instructions-header-A" class="header-left"><strong>Loose Fit</strong></button>
+	<button id="instructions-header-B" class="header-centre">&blacksquare;</button>
+	<button id="instructions-header-C" class="header-right">Instructions</button>
+	
+    <div id="instructionPanel-1">Fit the words into the grid. A number of coloured squares will remain blank.</div>
+  </div>
+  <div id="container">
+    <div id="outBackground-1" class="outer"></div>
+    <div id="outBackground-2a" class="outer"></div>
+    <div id="outBackground-2b" class="outer"></div>
+    <div id="outBackground-4" class="outer"></div>
+    <div id="outBackground-5a" class="outer"></div>
+    <div id="outBackground-5b" class="outer"></div>
+    <div id="outBackground-5c" class="outer"></div>
+    <div id="outBackground-5d" class="outer"></div>
+    <div id="outBackground-7" class="outer"></div>
+    <div id="outBackground-33" class="outer"></div>
+    <div id="outBackground-34a" class="outer"></div>
+    <div id="outBackground-34b" class="outer"></div>
+    <div id="outBackground-34c" class="outer"></div>
+    <div id="outBackground-34d" class="outer"></div>
+    <div id="outBackground-36" class="outer"></div>
+    <div id="outBackground-left" class="outer"></div>
+    <div id="outBackground-right" class="outer"></div>
+	
+	<button id="puzzle-header-A" class="header-left"><strong>Loose Fit</strong></button>
+	<button id="puzzle-header-B" class="header-centre">&blacksquare;</button>
+	<button id="puzzle-header-C" class="header-right">Puzzle 001</button>
+
+	<button id="control-instructions" class="control control-secondary">Instructions</button>
+	<button id="control-hint" class="control control-secondary">Hint</button>
+	<button id="control-solution" class="control control-secondary">Solution</button>
+	
+	<button id="cell-12" class="cell limb edge-top nothing-bottom edge-left edge-right"></button>
+	<button id="cell-16" class="cell limb edge-top nothing-bottom edge-left edge-right"></button>
+
+	<button id="cell-21" class="cell limb edge-top edge-bottom edge-left nothing-right"></button>
+	<button id="cell-22" class="cell torso thin-top thin-bottom thin-left thin-right"></button>
+	<button id="cell-23" class="cell torso edge-top thin-bottom nothing-left thin-right"></button>
+	<button id="cell-24" class="cell torso edge-top thin-bottom nothing-left nothing-right"></button>
+	<button id="cell-25" class="cell torso edge-top thin-bottom thin-left nothing-right"></button>
+	<button id="cell-26" class="cell torso thin-top thin-bottom thin-left thin-right"></button>
+	<button id="cell-27" class="cell limb edge-top edge-bottom nothing-left edge-right"></button>
+
+	<button id="cell-32" class="cell torso nothing-top nothing-bottom edge-left thin-right"></button>
+	<button id="cell-36" class="cell torso nothing-top nothing-bottom thin-left edge-right"></button>
+    <div id="hole-top" class="hole"></div>
+
+	<button id="cell-41" class="cell limb edge-top edge-bottom edge-left nothing-right"></button>
+	<button id="cell-42" class="cell torso thin-top thin-bottom thin-left thin-right"></button>
+	<button id="cell-43" class="cell torso thin-top thin-bottom nothing-left thin-right"></button>
+	<button id="cell-44" class="cell torso thin-top thin-bottom nothing-left nothing-right"></button>
+	<button id="cell-45" class="cell torso thin-top thin-bottom thin-left nothing-right"></button>
+	<button id="cell-46" class="cell torso thin-top thin-bottom thin-left thin-right"></button>
+	<button id="cell-47" class="cell limb edge-top edge-bottom nothing-left edge-right"></button>
+	
+	<button id="cell-52" class="cell torso nothing-top nothing-bottom edge-left thin-right"></button>
+	<button id="cell-56" class="cell torso nothing-top nothing-bottom thin-left edge-right"></button>
+    <div id="hole-bottom" class="hole"></div>
+
+	<button id="cell-61" class="cell limb edge-top edge-bottom edge-left nothing-right"></button>
+	<button id="cell-62" class="cell torso thin-top thin-bottom thin-left thin-right"></button>
+	<button id="cell-63" class="cell torso thin-top edge-bottom nothing-left thin-right"></button>
+	<button id="cell-64" class="cell torso thin-top edge-bottom nothing-left nothing-right"></button>
+	<button id="cell-65" class="cell torso thin-top edge-bottom thin-left nothing-right"></button>
+	<button id="cell-66" class="cell torso thin-top thin-bottom thin-left thin-right"></button>
+	<button id="cell-67" class="cell limb edge-top edge-bottom nothing-left edge-right"></button>
+
+	<button id="cell-72" class="cell limb nothing-top edge-bottom edge-left edge-right"></button>
+	<button id="cell-76" class="cell limb nothing-top edge-bottom edge-left edge-right"></button>
+	
+	<button id="word-1" class="word word-left">WORD1</button>
+	<button id="word-2" class="word word-right">WORD2</button>
+	<button id="word-3" class="word word-centre">WORD3</button>
+	<button id="word-4" class="word word-left">WORD4</button>
+	<button id="word-5" class="word word-right">WORD5</button>
+	
+	<button id="control-clear" class="control control-secondary">Clear</button>
+	<button id="control-forward" class="control control-primary">FORWARD</button>
+	<button id="control-backward" class="control control-primary">BACKWARD</button>
+
+  </div>
+</body>
+</html>
+<script>
+console.log('Thank you');
+console.log(`${window.innerHeight}px`);
+console.log(`${window.innerWidth}px`);
+console.log(`${window.devicePixelRatio}`);
+// const styleSheet = document.styleSheets[0]
+// const edgeTopRule = [...styleSheet.cssRules].find((r) => r.selectorText === ".edge-top");
+// edgeTopRule.style.setProperty("border-top-width", "0.08em")
+function updateFontSize() {
+  console.log('updateFontSize called');
+  const numGridRows = 36;
+  const numGridColumns = 20;
+  
+  let innerDimension = 0
+  let gridDimension = 0
+  if ((window.innerHeight / numGridRows) <= (window.innerWidth / numGridColumns)) {
+    innerDimension = window.innerHeight;
+	gridDimension = numGridRows;
+	}
+  else {
+    innerDimension = window.innerWidth;
+	gridDimension = numGridColumns;
+	}
+	
+  const percent = innerDimension / 100;
+  console.log('percent');
+  console.log(percent);
+  let fontSize = 0;
+  let reducingInnerDimension = innerDimension + 1;
+  do {
+    reducingInnerDimension = reducingInnerDimension - 1
+    fontSize = Math.floor((reducingInnerDimension / gridDimension) * window.devicePixelRatio) / window.devicePixelRatio
+    console.log('fontSize');
+    console.log(fontSize);
+  } while ((innerDimension - (fontSize * gridDimension)) < (2 * percent));
+  console.log('final fontSize');
+  console.log(fontSize);
+  document.body.style.fontSize = `${fontSize}px`;
+  
+  let spareHeight = window.innerHeight - (fontSize * numGridRows);
+  console.log('spareHeight');
+  console.log(spareHeight);
+  let deviceSpareHeight = spareHeight * window.devicePixelRatio;
+  console.log('deviceSpareHeight');
+  console.log(deviceSpareHeight);
+  let roundedDeviceSpareHeight = Math.trunc(deviceSpareHeight / 2) * 2;
+  console.log('roundedDeviceSpareHeight');
+  console.log(roundedDeviceSpareHeight);
+  let roundedSpareHeight = roundedDeviceSpareHeight / window.devicePixelRatio;
+  console.log('roundedSpareHeight');
+  console.log(roundedSpareHeight);
+  let container = document.querySelector("#container");
+  let instructions = document.querySelector("#instructions");
+  container.style.top = `${roundedSpareHeight / 2}px`;
+  instructions.style.top = `${roundedSpareHeight / 2}px`;
+  
+  let spareWidth = window.innerWidth - (fontSize * numGridColumns);
+  console.log('spareWidth');
+  console.log(spareWidth);
+  let deviceSpareWidth = spareWidth * window.devicePixelRatio;
+  console.log('deviceSpareWidth');
+  console.log(deviceSpareWidth);
+  let roundedDeviceSpareWidth = Math.trunc(deviceSpareWidth / 2) * 2
+  console.log('roundedDeviceSpareWidth');
+  console.log(roundedDeviceSpareWidth);
+  let roundedSpareWidth = roundedDeviceSpareWidth / window.devicePixelRatio;
+  console.log('roundedSpareWidth');
+  console.log(roundedSpareWidth);
+  container.style.left = `${roundedSpareWidth / 2}px`;
+  instructions.style.left = `${roundedSpareWidth / 2}px`;
+  
+  return fontSize;
+}
+let fontSize = updateFontSize();
+
+function setBorderWidths(fontSize, internalFraction, externalFraction) {
+  let internalWidth = Math.floor(fontSize * internalFraction * window.devicePixelRatio);
+  if (internalWidth == 0) {
+    internalWidth = 1
+	}
+  console.log('internalWidth');
+  console.log(internalWidth);
+  const increment = 0.01;
+  let increasingExternalFraction = externalFraction - increment;
+  do {
+    increasingExternalFraction = increasingExternalFraction + increment;
+    console.log('increasingExternalFraction');
+	console.log(increasingExternalFraction);
+	increasingExternalWidth = Math.floor(fontSize * increasingExternalFraction * window.devicePixelRatio);
+    console.log('increasingExternalWidth');
+	console.log(increasingExternalWidth);
+  } while (increasingExternalWidth <= internalWidth);
+  
+  const styleSheet = document.styleSheets[0]
+  const thinTopRule = [...styleSheet.cssRules].find((r) => r.selectorText === ".thin-top");
+  thinTopRule.style.setProperty("border-top-width", `${internalFraction}em`);
+  const thinBottomRule = [...styleSheet.cssRules].find((r) => r.selectorText === ".thin-bottom");
+  thinBottomRule.style.setProperty("border-bottom-width", `${internalFraction}em`);
+  const thinLeftRule = [...styleSheet.cssRules].find((r) => r.selectorText === ".thin-left");
+  thinLeftRule.style.setProperty("border-left-width", `${internalFraction}em`);
+  const thinRightRule = [...styleSheet.cssRules].find((r) => r.selectorText === ".thin-right");
+  thinRightRule.style.setProperty("border-right-width", `${internalFraction}em`);
+
+  const edgeTopRule = [...styleSheet.cssRules].find((r) => r.selectorText === ".edge-top");
+  edgeTopRule.style.setProperty("border-top-width", `${increasingExternalFraction}em`);
+  const edgeBottomRule = [...styleSheet.cssRules].find((r) => r.selectorText === ".edge-bottom");
+  edgeBottomRule.style.setProperty("border-bottom-width", `${increasingExternalFraction}em`);
+  const edgeLeftRule = [...styleSheet.cssRules].find((r) => r.selectorText === ".edge-left");
+  edgeLeftRule.style.setProperty("border-left-width", `${increasingExternalFraction}em`);
+  const edgeRightRule = [...styleSheet.cssRules].find((r) => r.selectorText === ".edge-right");
+  edgeRightRule.style.setProperty("border-right-width", `${increasingExternalFraction}em`);
+}
+setBorderWidths(fontSize, 0.02, 0.05);
+
+function instructionsButtonClicked() {
+  console.log("Instructions button clicked");
+  const styleSheet = document.styleSheets[0]
+  const instructionsRule = [...styleSheet.cssRules].find((r) => r.selectorText === "#instructions");
+  instructionsRule.style.setProperty("z-index", `3`);
+}
+let instructionsButton = document.querySelector("#control-instructions");
+instructionsButton.onclick = function() {instructionsButtonClicked();}
+
+function backButtonClicked() {
+  console.log("Back button clicked");
+  const styleSheet = document.styleSheets[0]
+  const instructionsRule = [...styleSheet.cssRules].find((r) => r.selectorText === "#instructions");
+  instructionsRule.style.setProperty("z-index", `1`);
+}
+let backButton = document.querySelector("#control-back");
+backButton.onclick = function() {backButtonClicked();}
+
+//Raw data
+let puzzle = {
+	words:[],
+	hints: [],
+	solution: []
+};
+
+function initialisePuzzle(words, hints) {
+	puzzle.words = words;
+	puzzle.hints = hints;
+	puzzle.solution = solution;
+}
+
+//From JSON
+const words = [undefined, "ROWENA", "LEANNA", "RENATA", "ROSALEE", "RAMONA"];
+const hints = [["R", 4, 1], ["N", 2, 5]];
+const solution = [undefined, [4, 1], [2, 1], [5, 1], [1, 1], [3, 1]];
+initialisePuzzle(words, hints, solution);
+
+class RowColumn {
+	constructor(row, column) {
+		this.row = row;
+		this.column = column;
+	}
+}
+
+class LinePosition {
+	constructor(line, position) {
+		this.line = line;
+		this.position = position;
+	}
+}
+
+class Intersection {
+	constructor(self, other) {
+		this.self = self;
+		this.other = other;
+	}
+}
+	
+class Line {
+	constructor(num, matrixCoords, intersections) {
+		this.num = num;
+		this.matrixCoords = matrixCoords;
+		this.intersections = intersections;
+		this.isOccupied = false;
+		this.wordLetters = new Array(8);
+		this.hintLetters = [undefined, null, null, null, null, null, null, null]
+	}
+	
+	doesWordFit(word, wordStartPosition) {
+		if (this.isOccupied) return false;
+		for (let intersection of this.intersections) {
+			const otherLine = grid.lines[intersection.other.line];
+			if (!otherLine.isOccupied) continue;
+			const otherLetter = otherLine.wordLetters[intersection.other.position];
+			if (word[intersection.self.position - wordStartPosition] != otherLetter) return false;
+		}
+		for (let position = 1; position < 8; position++) {
+			if (this.hintLetters[position] != null) {
+				if (wordStartPosition > position) return false;
+				const wordEndPosition = wordStartPosition + word.length - 1;
+				if (wordEndPosition < position) return false;				
+				if (word[position - wordStartPosition] != this.hintLetters[position]) return false;
+			}
+		}
+		return true;
+	}
+	
+	whereDoesWordFit(word) {
+		if (this.isOccupied) { return [] };
+		if (word.length == 5) {
+			if (this.doesWordFit(word, 2)) return [new LinePosition(this.num, 2)]; else return [];
+		}
+		if (word.length == 7) {
+			if (this.doesWordFit(word, 1)) return [new LinePosition(this.num, 1)]; else return [];
+		}
+		let possibleFits = [];
+		if (this.doesWordFit(word, 1)) possibleFits.push(new LinePosition(this.num, 1));
+		if (this.doesWordFit(word, 2)) possibleFits.push(new LinePosition(this.num, 2));
+		return possibleFits;
+	}
+
+	setOccupied() {
+		this.isOccupied = true;
+	}
+
+	setUnoccupied() {
+		this.isOccupied = false;
+	}
+	
+	writeWord(word, wordStartPosition) {
+		for (let position = 1; position < 8; position++) {
+			this.wordLetters[position] = " ";
+		}
+		for (let position = wordStartPosition; position < wordStartPosition + word.length; position++) {
+			const letter = word[position - wordStartPosition];
+			this.wordLetters[position] = letter;
+			const matrixCoord = this.matrixCoords[position];
+			grid.elementMatrix[matrixCoord.row][matrixCoord.column].textContent = letter;
+		}
+	}
+	
+	writeHints() {
+		for (let position = 1; position < 8; position++) {
+			if (this.hintLetters[position] != null) {
+				const letter = this.hintLetters[position];
+				const content = "<strong>" + letter + "</strong>";
+				const matrixCoord = this.matrixCoords[position];
+				grid.elementMatrix[matrixCoord.row][matrixCoord.column].innerHTML = content;
+				if (!this.isOccupied) {
+					grid.styleMatrix[matrixCoord.row][matrixCoord.column].style.setProperty("color", gridColourHintAlone);
+				}
+			}
+		}
+	}
+	
+	clear() {
+		for (let position = 1; position < 8; position++) {
+			const matrixCoord = this.matrixCoords[position];
+			grid.elementMatrix[matrixCoord.row][matrixCoord.column].textContent = " ";
+		}
+	}
+	
+	setColour(colour) {
+		for (let position = 1; position < 8; position++) {
+			const matrixCoord = this.matrixCoords[position];
+			grid.styleMatrix[matrixCoord.row][matrixCoord.column].style.setProperty("color", colour);
+		}
+	}
+	
+	addHint(letter, position) {
+		this.hintLetters[position] = letter;
+	}
+	
+	removeHints() {
+		for (let position = 1; position < 8; position++) {
+			this.hintLetters[position] = null;
+		}
+	}
+}
+
+let grid = {
+	lines: [],
+	elementMatrix: [],
+	styleMatrix: [],
+	isComplete: false
+}
+
+function initialiseGrid() {
+	grid.lines[1] = new Line (
+						1,
+						[undefined,
+						 new RowColumn(2, 1),
+						 new RowColumn(2, 2),
+						 new RowColumn(2, 3),
+						 new RowColumn(2, 4),
+						 new RowColumn(2, 5),
+						 new RowColumn(2, 6),
+						 new RowColumn(2, 7)
+						],
+						[new Intersection(new LinePosition(0, 2), new LinePosition(4, 2)), 
+						 new Intersection(new LinePosition(0, 6), new LinePosition(5, 2))
+						]
+					);
+				
+	grid.lines[2] = new Line(
+						2,
+						[undefined,
+						 new RowColumn(4, 1),
+						 new RowColumn(4, 2),
+						 new RowColumn(4, 3),
+						 new RowColumn(4, 4),
+						 new RowColumn(4, 5),
+						 new RowColumn(4, 6),
+						 new RowColumn(4, 7)
+						],
+						[new Intersection(new LinePosition(0, 2), new LinePosition(4, 4)), 
+						 new Intersection(new LinePosition(0, 6), new LinePosition(5, 4))
+						]
+					);
+				
+	grid.lines[3] = new Line(
+						3,
+						[undefined,
+						 new RowColumn(6, 1),
+						 new RowColumn(6, 2),
+						 new RowColumn(6, 3),
+						 new RowColumn(6, 4),
+						 new RowColumn(6, 5),
+						 new RowColumn(6, 6),
+						 new RowColumn(6, 7)
+						],
+						[new Intersection(new LinePosition(0, 2), new LinePosition(4, 6)), 
+						 new Intersection(new LinePosition(0, 6), new LinePosition(5, 6))
+						]
+					);
+				
+	grid.lines[4] = new Line(
+						4,
+						[undefined,
+						 new RowColumn(1, 2),
+						 new RowColumn(2, 2),
+						 new RowColumn(3, 2),
+						 new RowColumn(4, 2),
+						 new RowColumn(5, 2),
+						 new RowColumn(6, 2),
+						 new RowColumn(7, 2)
+						],
+						[new Intersection(new LinePosition(0, 2), new LinePosition(1, 2)), 
+						 new Intersection(new LinePosition(0, 4), new LinePosition(2, 2)), 
+						 new Intersection(new LinePosition(0, 6), new LinePosition(3, 2))
+						]
+					);
+				
+	grid.lines[5] = new Line(
+						5,
+						[undefined,
+						 new RowColumn(1, 6),
+						 new RowColumn(2, 6),
+						 new RowColumn(3, 6),
+						 new RowColumn(4, 6),
+						 new RowColumn(5, 6),
+						 new RowColumn(6, 6),
+						 new RowColumn(7, 6)
+						],
+						[new Intersection(new LinePosition(0, 2), new LinePosition(1, 6)), 
+						 new Intersection(new LinePosition(0, 4), new LinePosition(2, 6)), 
+						 new Intersection(new LinePosition(0, 6), new LinePosition(3, 6))
+						]
+					);
+
+	for (let i = 1; i <= 7; i++) {
+		grid.elementMatrix[i] = new Array(8)
+	};
+
+	for (let i = 1; i <= 7; i++) {
+		grid.styleMatrix[i] = new Array(8)
+	};
+
+	const cellCoords = ["12", "16",
+						"21", "22", "23", "24", "25", "26", "27",
+						"32", "36",
+						"41", "42", "43", "44", "45", "46", "47",
+						"52", "56",
+						"61", "62", "63", "64", "65", "66", "67",
+						"72", "76"
+					   ];
+
+	for (let coord of cellCoords) {
+		cellId = "#cell-" + coord;
+		console.log(cellId);
+		const cellElement = document.querySelector(cellId);
+		const letters = [...coord];
+		const row = Number(letters[0]);
+		const column = Number(letters[1]);
+		console.log(row);
+		console.log(column);
+		grid.elementMatrix[row][column] = cellElement;
+	};
+				   
+	const styleSheet = document.styleSheets[0];
+	for (let coord of cellCoords) {
+		cellId = "#cell-" + coord;
+		console.log(cellId);
+		const cellRule = [...styleSheet.cssRules].find((r) => r.selectorText === cellId);
+		const letters = [...coord];
+		const row = Number(letters[0]);
+		const column = Number(letters[1]);
+		console.log(row);
+		console.log(column);
+		grid.styleMatrix[row][column] = cellRule;
+	};
+	
+	grid.isComplete = false;
+};
+initialiseGrid();
+
+function checkForCompleteness() {
+	let isComplete = true;
+	for (i = 1; i <= 5; i++) {
+		const word = solve.words[i];
+		if (!word.inGrid) {
+			isComplete = false;
+			break;
+		}
+	}
+	grid.isComplete = isComplete;
+}
+
+function removeWordsFromGrid() {
+	for (i = 1; i <= 5; i++) {
+		//grid.lines[i].clear();
+		grid.lines[i].setUnoccupied();
+	}
+	grid.isComplete = false;
+}
+
+function removeHintsFromGrid() {
+		for (i = 1; i <= 5; i++) {
+			grid.lines[i].removeHints();
+		}
+	}
+	
+function refreshGrid() {
+	for (i = 1; i <= 5; i++) {
+		grid.lines[i].clear();
+	}
+	if (grid.isComplete) {
+		for (i = 1; i <= 5; i++) {
+			const word = solve.words[i];
+			grid.lines[word.place.line].setColour(gridColourComplete);
+			grid.lines[word.place.line].writeWord(word.spelling, word.place.position);		
+		}
+	}
+	else {
+		for (i = 1; i <= 5; i++) {
+			const word = solve.words[i];
+			if (word.inGrid) {
+				grid.lines[word.place.line].setColour(gridColourNotSelected);
+				grid.lines[word.place.line].writeWord(word.spelling, word.place.position);		
+			}
+		}
+		if (solve.selectedWordNum != 0) {
+			grid.lines[solve.words[solve.selectedWordNum].place.line].setColour(gridColourSelected);
+		}
+	}
+	for (i = 1; i <= 5; i++) {
+		grid.lines[i].writeHints();
+	}
+}
+
+let offGrid = {
+	styleMatrix: [6]
+}
+
+function interleaveSpaces(word) {
+	modifiedWord = "";
+	for (i = 0; i < word.length - 1; i++) modifiedWord = modifiedWord + word[i] + " ";
+	return modifiedWord + word[word.length - 1];
+}
+
+function initialiseOffGrid() {
+	const word1Button = document.querySelector("#word-1");
+	word1Button.textContent = interleaveSpaces(puzzle.words[1]);
+	word1Button.onclick = function() {wordButtonClicked(1);}
+
+	const word2Button = document.querySelector("#word-2");
+	word2Button.textContent = interleaveSpaces(puzzle.words[2]);
+	word2Button.onclick = function() {wordButtonClicked(2);}
+	
+	const word3Button = document.querySelector("#word-3");
+	word3Button.textContent = interleaveSpaces(puzzle.words[3]);
+	word3Button.onclick = function() {wordButtonClicked(3);}
+	
+	const word4Button = document.querySelector("#word-4");
+	word4Button.textContent = interleaveSpaces(puzzle.words[4]);	
+	word4Button.onclick = function() {wordButtonClicked(4);}
+	
+	const word5Button = document.querySelector("#word-5");
+	word5Button.textContent = interleaveSpaces(puzzle.words[5]);	
+	word5Button.onclick = function() {wordButtonClicked(5);}
+	
+	const styleSheet = document.styleSheets[0];
+	for (i = 1; i <= 5; i++) {
+		const wordId = "#word-" + String(i);
+		const wordRule = [...styleSheet.cssRules].find((r) => r.selectorText === wordId);
+		offGrid.styleMatrix[i] = wordRule;
+	}
+}
+initialiseOffGrid();
+
+function offGridWordIndicateIn(wordNum) {
+	offGrid.styleMatrix[wordNum].style.setProperty("color", offGridColourInGrid);
+}
+
+function offGridWordIndicateOut(wordNum) {
+	offGrid.styleMatrix[wordNum].style.setProperty("color", offGridColourOffGrid);
+}
+
+function offGridIndicateAllWordsIn() {
+	for (i = 1; i <= 5; i++) {
+		offGridWordIndicateIn(i);
+	}}
+
+function offGridIndicateAllWordsOut() {
+	for (i = 1; i <= 5; i++) {
+		offGridWordIndicateOut(i);
+	}
+}
+
+const forwardTryCycles = [undefined,
+						  undefined,
+						  undefined,
+						  undefined,
+						  undefined,
+						  [new LinePosition(1, 2),
+						   new LinePosition(2, 2),
+						   new LinePosition(3, 2),
+						   new LinePosition(4, 2),
+						   new LinePosition(5, 2)
+						  ],
+						  [new LinePosition(1, 1),
+						   new LinePosition(1, 2),
+						   new LinePosition(2, 1),
+						   new LinePosition(2, 2),
+						   new LinePosition(3, 1),
+						   new LinePosition(3, 2),
+						   new LinePosition(4, 1),
+						   new LinePosition(4, 2),
+						   new LinePosition(5, 1),
+						   new LinePosition(5, 2)
+						  ],
+						  [new LinePosition(1, 1),
+						   new LinePosition(2, 1),
+						   new LinePosition(3, 1),
+						   new LinePosition(4, 1),
+						   new LinePosition(5, 1),
+						  ]
+						 ];
+
+const backwardTryCycles = [undefined,
+						   undefined,
+						   undefined,
+						   undefined,
+						   undefined,
+						   [new LinePosition(5, 2),
+						    new LinePosition(4, 2),
+						    new LinePosition(3, 2),
+						    new LinePosition(2, 2),
+						    new LinePosition(1, 2)
+						   ],
+						   [new LinePosition(5, 2),
+						    new LinePosition(5, 1),
+						    new LinePosition(4, 2),
+						    new LinePosition(4, 1),
+						    new LinePosition(3, 2),
+						    new LinePosition(3, 1),
+						    new LinePosition(2, 2),
+						    new LinePosition(2, 1),
+						    new LinePosition(1, 2),
+						    new LinePosition(1, 1)
+						   ],
+						   [new LinePosition(5, 1),
+						    new LinePosition(4, 1),
+						    new LinePosition(3, 1),
+						    new LinePosition(2, 1),
+						    new LinePosition(1, 1),
+						   ]
+						  ];
+						 
+function isSamePlace(place1, place2) {
+	return place1.line == place2.line && place1.position == place2.position;
+}
+				 
+function findTryCycleIndex(tryCycle, place) {
+	for (i = 0; i < tryCycle.length; i++) {
+		if (isSamePlace(tryCycle[i], place)) return i;
+	}
+}
+
+function getNextPlaceInTryCycle(tryCycle, currentPlace) {
+	currentIndex = findTryCycleIndex(tryCycle, currentPlace);
+	if (currentIndex == tryCycle.length - 1)
+		return tryCycle[0]
+	else
+		return tryCycle[currentIndex + 1]	
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
+
+function wordButtonClicked(wordNum) {
+	console.log("Word button clicked");
+	console.log(wordNum);
+	console.log(solve.words[wordNum]);
+	if (grid.isComplete) return;
+	if (!solve.words[wordNum].inGrid) {
+		console.log("Word not in grid");
+		const word = solve.words[wordNum].spelling;
+		allPossibleFits = [];
+		for (let i = 1; i < grid.lines.length; i++) {
+			possibleFits = grid.lines[i].whereDoesWordFit(word);
+			for (let fit of possibleFits) {	allPossibleFits.push(fit); }
+		}
+		console.log(allPossibleFits);
+		if (allPossibleFits.length == 0) return;
+		const randomFit = allPossibleFits[getRandomInt(allPossibleFits.length)];
+		console.log(randomFit);
+		grid.lines[randomFit.line].setOccupied();
+		solve.selectedWordNum = wordNum;
+		solve.words[wordNum].inGrid = true;
+		solve.words[wordNum].place = randomFit;
+		offGridWordIndicateIn(wordNum);
+	}
+	else if (solve.selectedWordNum == wordNum) {
+		console.log("Word in grid. Selected");
+		const place = solve.words[solve.selectedWordNum].place;
+		grid.lines[place.line].setUnoccupied();
+		solve.selectedWordNum = 0;
+		solve.words[wordNum].inGrid = false;
+		offGridWordIndicateOut(wordNum);
+	}
+	else {
+		console.log("Word in grid. Not selected");
+		solve.selectedWordNum = wordNum;
+	}
+	checkForCompleteness();
+	refreshGrid();
+}
+
+function wardButtonClicked(tryCycles) {
+	if (grid.isComplete) return;
+	console.log("ward button clicked");
+	if (solve.selectedWordNum != 0) {
+		const currentPlace = solve.words[solve.selectedWordNum].place;
+		grid.lines[currentPlace.line].setUnoccupied();
+		const tryCycle = tryCycles[solve.words[solve.selectedWordNum].spelling.length]
+		let nextPlace = getNextPlaceInTryCycle(tryCycle, currentPlace);
+		while (true) {
+			console.log(nextPlace);
+			console.log(solve.words[solve.selectedWordNum].spelling)
+			if (grid.lines[nextPlace.line].doesWordFit(solve.words[solve.selectedWordNum].spelling, nextPlace.position)) {
+				grid.lines[nextPlace.line].setOccupied();
+				solve.words[solve.selectedWordNum].place = nextPlace;
+				break;
+			}
+			else {
+				nextPlace = getNextPlaceInTryCycle(tryCycle, nextPlace);
+			}
+		}
+		checkForCompleteness();
+		refreshGrid();
+	}
+}
+
+const forwardButton = document.querySelector("#control-forward");
+forwardButton.onclick = function() {
+	console.log("Forward button clicked");
+	wardButtonClicked(forwardTryCycles);
+}
+
+const backwardButton = document.querySelector("#control-backward");
+backwardButton.onclick = function() {
+	console.log("Backward button clicked");
+	wardButtonClicked(backwardTryCycles);
+}
+
+function removeAnyWordsFromGrid() {
+	for (i = 1; i <= 5; i++) {
+		grid.lines[i].setUnoccupied();
+	}
+	grid.isComplete = false;
+	offGridIndicateAllWordsOut();
+	resetSolveWords();
+}
+
+const clearButton = document.querySelector("#control-clear");
+clearButton.onclick = function() {
+	console.log("Clear button clicked");
+	let noWordsInGrid = true;
+	for (i = 1; i <= 5; i++) {
+		if (solve.words[i].inGrid) {
+			noWordsInGrid = false;
+			break;
+		}
+	}
+	if (noWordsInGrid) {
+		//Remove any hints
+		//for (i = 1; i <= 5; i++) {
+		//	grid.lines[i].removeHints();
+		//}
+		removeHintsFromGrid();
+		//solve.numHintsGiven = 0;
+		resetSolveHints();
+	}
+	else {
+		//Remove words
+		removeAnyWordsFromGrid();
+		//for (i = 1; i <= 5; i++) {
+		//	grid.lines[i].setUnoccupied();
+		//}
+		//grid.isComplete = false;
+		//offGridIndicateAllWordsOut();
+		//resetSolve();
+	}
+	refreshGrid();
+}
+
+const hintButton = document.querySelector("#control-hint");
+hintButton.onclick = function() {
+	console.log("Hint button clicked");
+	if (solve.hints.length == solve.numHintsGiven) return;
+	removeAnyWordsFromGrid();
+	const hint = solve.hints[solve.numHintsGiven];
+	grid.lines[hint.place.line].addHint(hint.letter, hint.place.position);
+	solve.numHintsGiven += 1;
+	refreshGrid();
+}
+
+const solutionButton = document.querySelector("#control-solution");
+solutionButton.onclick = function() {
+	console.log("Solution button clicked");
+	removeWordsFromGrid();
+	removeHintsFromGrid();
+	offGridIndicateAllWordsIn();
+	for (i = 1; i <= 5; i++) {
+		solve.words[i].place = new LinePosition(puzzle.solution[i][0], puzzle.solution[i][1]);
+		solve.words[i].inGrid = true;
+	}
+	solve.selectedWordNum = 0;
+	solve.numHintsGiven = 0;
+	grid.isComplete = true;
+	refreshGrid();
+}
+
+const offGridColourOffGrid = `black`;
+const offGridColourInGrid = `gray`;
+const gridColourNotSelected = `gray`;
+const gridColourSelected = `rgb(0%,0%,80%)`;
+const gridColourComplete = `black`;
+const gridColourHintAlone = `black`;
+const gridColourSolution = `black`;
+
+class Word {
+	constructor(spelling) {
+		this.spelling = spelling;
+		this.inGrid = false;
+		this.place = null;
+	}
+}
+
+class Hint {
+	constructor(letter, place) {
+		this.letter = letter;
+		this.place = place;
+		this.inGrid = false;
+	}
+}
+
+//Raw data
+//let puzzle = {
+//	words:[],
+//	hints: [],
+//	solution: []
+//};
+
+//function initialisePuzzle(words, hints) {
+//	puzzle.words = words;
+//	puzzle.hints = hints;
+//	puzzle.solution = solution;
+//}
+
+//From JSON
+//const words = [undefined, "ROWENA", "LEANNA", "RENATA", "ROSALEE", "RAMONA"];
+//const hints = [["R", 4, 1], ["N", 2, 5]];
+//const solution = [undefined, [4, 1], [2, 1], [5, 1], [1, 1], [3, 1]];
+//initialisePuzzle(words, hints, solution);
+
+
+let solve = {
+	words: [],
+	selectedWordNum: 0,
+	hints: [],
+	numHintsGiven: 0
+}
+
+function initialiseSolve() {
+	for (i = 1; i <= 5; i++) {
+		solve.words[i] = new Word(puzzle.words[i]);
+	}
+	solve.selectedWordNum = 0;
+	for (let hint of puzzle.hints) {
+		solve.hints.push(new Hint(hint[0], new LinePosition(hint[1], hint[2])));
+	}
+	console.log(solve.hints);
+	solve.numHintsGiven = 0;
+}
+initialiseSolve();
+
+function resetSolveWords() {
+	for (i = 1; i <= 5; i++) {
+		solve.words[i].inGrid = false;
+	}
+	solve.selectedWordNum = 0;
+}
+
+function resetSolveHints() {
+	solve.numHintsGiven = 0;
+}
+
+function resetSolve() {
+	resetSolveWords();
+	resetSolveHints();
+}
+</script>
+
+
