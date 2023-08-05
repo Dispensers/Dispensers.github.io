@@ -1,660 +1,909 @@
-<!DOCTYPE HTML
+<!DOCTYPE HTML>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Grid</title>
+  <title>Lambda</title>
   <style>
 body {
 	font-family: Montserrat, Arial, 'sans-serif';
-	/* font-size: min(calc(100vw / 20), calc(100vh / 36)); */
-	font-size: min(calc(90vw / 20), calc(90vh / 36));
+	font-size: min(calc(90vw / 59), calc(90vh / 120));
 	margin: 0;
 	overflow: hidden;
 	background-color: black;
 }
 
-/* button { font-size: inherit; } */
-
-#instructions {
-  z-index: 1;
-  position: absolute;
-  height: 36em;
-  width: 20em;
-  background-color: #807873;
-  display: grid;
-  grid-template-columns:
-    1fr
-	[outBack-start panel-start]
-	1fr 1fr
-    [outBack-end outHeaderA-start]
-	repeat(6, 1fr) 
-	[outHeaderA-end outHeaderB-start]
-	1fr
-	[outHeaderB-end outHeaderC-start]
-	repeat(7, 1fr)
-	[outHeaderC-end]
-	1fr 1fr
-	[panel-end]
-	1fr;
+#information {
+	display:none;
+	z-index:1;
+	position:absolute;
+	height:200em;
+	width:59em;
+	/* background-color:#9E9E9E; */
 	
-  grid-template-rows:
-    1fr
-	[outBack outHeader]
-	1fr 1fr 1fr
-	[pane1Start-1]
-	3fr
-	[panelEnd-1]
-	repeat(29, 1fr);
- }
-
-#control-back {
-  grid-column: outBack-start / outBack-end;
-  grid-row: outBack / span 2;
-}
-
-#instructions-header-A {
-  grid-row: outHeader / span 2;
-  grid-column: outHeaderA-start / outHeaderA-end;
-}
-
-#instructions-header-B {
-  grid-row: outHeader / span 2;
-  grid-column: outHeaderB-start / outHeaderB-end;
-}
-
-#instructions-header-C {
-  grid-row: outHeader / span 2;
-  grid-column: outHeaderC-start / outHeaderC-end;
-}
-
-#instructionPanel-1 {
-  grid-column: panel-start / panel-end;
-  grid-row: pane1Start-1 / panelEnd-1;
-  background-color: white;
-}
-
-#container {
-  z-index: 2;
-  height: 36em;
-  width: 20em;
-  display: grid;
-  grid-template-columns:
-	[out-start]
-	1fr
-	[outInstructions-start in-start outClear-start]
-	1fr
-	[inWord-left-start]
-	1fr
-	[outHeaderA-start inCell-1]
-	1fr
-	[outClear-end]
-	1fr
-	[inCell-2]
-	1fr
-	[outInstructions-end inWord-centre-start]
-	1fr
-	[inCell-3 outForward-start]
-	1fr
-	[outHint-start]
-	1fr
-	[outHeaderA-end outHeaderB-start inCell-4 inWord-left-end]
-	1fr
-	[outHeaderB-end outHeaderC-start]
-	1fr
-	[inCell-5 inWord-right-start]
-	1fr	
-	[outHint-end outForward-end]
-	1fr
-	[inCell-6]
-	1fr
-	[outSolution-start inWord-centre-end outBackward-start]
-	1fr
-	[inCell-7]
-	1fr
-	[outHeader-end]
-	1fr
-	[outHeaderC-end inCell-7-end]
-	1fr
-	[inWord-right-end]
-	1fr
-	[outSolution-end in-end outBackward-end]
-	1fr
-	[out-end]
-	;
-  grid-template-rows:
-	[out-start outRow-1]
-	1fr
-	[outRow-2 outHeader]
-	1fr
-	[outRow-3]
-	1fr
-	[outRow-4]
-	1fr
-	[outRow-5 outControl-top]
-	1fr
-	[outRow-6]
-	1fr
-	[outRow-7]
-	1fr
-	[outRow-8 inRow-1]
-	1fr
-	[outRow-9 inCell-1]
-	1fr
-	[outRow-10]
-	1fr
-	[outRow-11 inCell-2]
-	1fr
-	[outRow-12]
-	1fr
-	[outRow-13 inCell-3]
-	1fr
-	[outRow-14]
-	1fr
-	[outRow-15 inCell-4]
-	1fr
-	[outRow-16]
-	1fr
-	[outRow-17 inCell-5]
-	1fr
-	[outRow-18]
-	1fr
-	[outRow-19 inCell-6]
-	1fr
-	[outRow-20]
-	1fr
-	[outRow-21 inCell-7]
-	1fr
-	[outRow-22]
-	1fr
-	[outRow-23]
-	1fr
-	[outRow-24 inWord-1]
-	1fr
-	[outRow-25]
-	1fr
-	[outRow-26]
-	1fr
-	[outRow-27 inWord-2]
-	1fr
-	[outRow-28]
-	1fr
-	[outRow-29]
-	1fr
-	[outRow-30 inWord-3]
-	1fr
-	[outRow-31]
-	1fr
-	[outRow-32 inRow-25]
-	1fr
-	[outRow-33]
-	1fr
-	[outRow-34 outControl-bottom]
-	1fr
-	[outRow-35]
-	1fr
-	[outRow-36]
-	1fr
-	[outRow-end]
-	;
-  background-color: white;
-  position: absolute;
-}
-
-.outer {
-background-color: #807873;
-}
-
-#outBackground-1 {
-  grid-column: out-start / out-end;
-  grid-row: outRow-1 / span 1;
-}
-
-#outBackground-2a {
-  grid-column: out-start / outHeaderA-start;
-  grid-row: outHeader / span 2;
-}
-
-#outBackground-2b {
-  grid-column: outHeaderC-end / out-end;
-  grid-row: outHeader / span 2;
-}
-
-#outBackground-4 {
-  grid-column: out-start / out-end;
-  grid-row: outRow-4 / span 1;
-}
-
-#outBackground-5a {
-  grid-column: out-start / outInstructions-start;
-  grid-row: outRow-5 / span 2;
-}
-
-#outBackground-5b {
-  grid-column: outInstructions-end / outHint-start;
-  grid-row: outRow-5 / span 2;
-}
-
-#outBackground-5c {
-  grid-column: outHint-end / outSolution-start;
-  grid-row: outRow-5 / span 2;
-}
-
-#outBackground-5d {
-  grid-column: outSolution-end / out-end;
-  grid-row: outRow-5 / span 2;
-}
- 
-#outBackground-7 {
-  grid-column: out-start / out-end;
-  grid-row: outRow-7 / span 1;
-}
-
-#outBackground-33 {
-  grid-column: out-start / out-end;
-  grid-row: outRow-33 / span 1;
-}
-
-#outBackground-34a {
-  grid-column: out-start / outClear-start;
-  grid-row: outRow-34 / span 2;
-}
-
-#outBackground-34b {
-  grid-column: outClear-end / outForward-start;
-  grid-row: outRow-34 / span 2;
-}
-
-#outBackground-34c {
-  grid-column: outForward-end / outBackward-start;
-  grid-row: outRow-34 / span 2;
-}
-
-#outBackground-34d {
-  grid-column: outBackward-end / out-end;
-  grid-row: outRow-34 / span 2;
-}
-
-#outBackground-36 {
-  grid-column: out-start / out-end;
-  grid-row: outRow-36 / span 1;
-}
-
-#outBackground-left {
-  grid-column: out-start / span 1;
-  grid-row: outRow-8 / outRow-33;
-}
-
-#outBackground-right {
-  grid-column: in-end / span 1;
-  grid-row: outRow-8 / outRow-33;
-}
-
-#cell-12 {
-  grid-row: inCell-1 / span 2;
-  grid-column: inCell-2 / span 2;
-}
-
-#cell-16 {
-  grid-row: inCell-1 / span 2;
-  grid-column: inCell-6 / span 2;
-}
-
-#cell-21 {
-  grid-row: inCell-2 / span 2;
-  grid-column: inCell-1 / span 2;
-}
-
-#cell-22 {
-  grid-row: inCell-2 / span 2;
-  grid-column: inCell-2 / span 2;
-}
-
-#cell-23 {
-  grid-row: inCell-2 / span 2;
-  grid-column: inCell-3 / span 2;
-}
-
-#cell-24 {
-  grid-row: inCell-2 / span 2;
-  grid-column: inCell-4 / span 2;
-}
-
-#cell-25 {
-  grid-row: inCell-2 / span 2;
-  grid-column: inCell-5 / span 2;
-}
-
-#cell-26 {
-  grid-row: inCell-2 / span 2;
-  grid-column: inCell-6 / span 2;
-}
-
-#cell-27 {
-  grid-row: inCell-2 / span 2;
-  grid-column: inCell-7 / span 2;
-}
-
-#cell-32 {
-  grid-row: inCell-3 / span 2;
-  grid-column: inCell-2 / span 2;
-}
-
-#cell-36 {
-  grid-row: inCell-3 / span 2;
-  grid-column: inCell-6 / span 2;
-}
-
-#hole-top {
-  grid-row: inCell-3 / span 2;
-  grid-column: inCell-3 / span 6;
-}
-
-#cell-41 {
-  grid-row: inCell-4 / span 2;
-  grid-column: inCell-1 / span 2;
-}
-
-#cell-42 {
-  grid-row: inCell-4 / span 2;
-  grid-column: inCell-2 / span 2;
-}
-
-#cell-43 {
-  grid-row: inCell-4 / span 2;
-  grid-column: inCell-3 / span 2;
-}
-
-#cell-44 {
-  grid-row: inCell-4 / span 2;
-  grid-column: inCell-4 / span 2;
-}
-
-#cell-45 {
-  grid-row: inCell-4 / span 2;
-  grid-column: inCell-5 / span 2;
-}
-
-#cell-46 {
-  grid-row: inCell-4 / span 2;
-  grid-column: inCell-6 / span 2;
-}
-
-#cell-47 {
-  grid-row: inCell-4 / span 2;
-  grid-column: inCell-7 / span 2;
-}
-
-#cell-52 {
-  grid-row: inCell-5 / span 2;
-  grid-column: inCell-2 / span 2;
-}
-
-#cell-56 {
-  grid-row: inCell-5 / span 2;
-  grid-column: inCell-6 / span 2;
-}
-
-#hole-bottom {
-  grid-row: inCell-5 / span 2;
-  grid-column: inCell-3 / span 6;
-}
-
-#cell-61 {
-  grid-row: inCell-6 / span 2;
-  grid-column: inCell-1 / span 2;
-}
-
-#cell-62 {
-  grid-row: inCell-6 / span 2;
-  grid-column: inCell-2 / span 2;
-}
-
-#cell-63 {
-  grid-row: inCell-6 / span 2;
-  grid-column: inCell-3 / span 2;
-}
-
-#cell-64 {
-  grid-row: inCell-6 / span 2;
-  grid-column: inCell-4 / span 2;
-}
-
-#cell-65 {
-  grid-row: inCell-6 / span 2;
-  grid-column: inCell-5 / span 2;
-}
-
-#cell-66 {
-  grid-row: inCell-6 / span 2;
-  grid-column: inCell-6 / span 2;
-}
-
-#cell-67 {
-  grid-row: inCell-6 / span 2;
-  grid-column: inCell-7 / span 2;
-}
-
-#cell-72 {
-  grid-row: inCell-7 / span 2;
-  grid-column: inCell-2 / span 2;
-}
-
-#cell-76 {
-  grid-row: inCell-7 / span 2;
-  grid-column: inCell-6 / span 2;
-}
-
-.limb {background-color: #96E6DA}
-.torso {background-color: #FAFAFA}
-.hole {background-color: black; border: none}
-.cell {font-size: inherit; border-color: black; border-style: solid; margin: 0; text-align: center; padding: 0}
-.edge-top {border-top-width: 0.05em}
-.edge-bottom {border-bottom-width: 0.05em}
-.edge-left {border-left-width: 0.05em}
-.edge-right {border-right-width: 0.05em}
-.thin-top {border-top-width: 0.02em}
-.thin-bottom {border-bottom-width: 0.02em}
-.thin-left {border-left-width: 0.02em}
-.thin-right {border-right-width: 0.02em}
-.nothing-top {border-top-width: 0}
-.nothing-bottom {border-bottom-width: 0}
-.nothing-left {border-left-width: 0}
-.nothing-right {border-right-width: 0}
-
-
-#word-1 {
-  grid-row: inWord-1 / span 2;
-  grid-column: inWord-left-start / inWord-left-end;
-}
-
-#word-2 {
-  grid-row: inWord-1 / span 2;
-  grid-column: inWord-right-start / inWord-right-end;
-}
-
-#word-3 {
-  grid-row: inWord-2 / span 2;
-  grid-column: inWord-centre-start / inWord-centre-end;
-}
-
-#word-4 {
-  grid-row: inWord-3 / span 2;
-  grid-column: inWord-left-start / inWord-left-end;
-}
-
-#word-5 {
-  grid-row: inWord-3 / span 2;
-  grid-column: inWord-right-start / inWord-right-end;
-}
-
-.word {font-size: inherit; border-style: none; background-color: white; padding: 0; color: black}
-.word-left {text-align: left}
-.word-right {text-align: right}
-.word-centre {text-align: center}
-
-
-#puzzle-header-A {
-  grid-row: outHeader / span 2;
-  grid-column: outHeaderA-start / outHeaderA-end;
-}
-
-#puzzle-header-B {
-  grid-row: outHeader / span 2;
-  grid-column: outHeaderB-start / outHeaderB-end;
-}
-
-#puzzle-header-C {
-  grid-row: outHeader / span 2;
-  grid-column: outHeaderC-start / outHeaderC-end;
-}
-
-.header {padding: 0}
-.header-left {font-size: 1.1em; border-style: none; margin: 0; background-color: black; color: white; text-align: center}
-.header-centre {font-size: 1.5em; border-style: none; margin: 0; background-color: black; color: lime; text-align: right}
-.header-right {font-size: 1.1em; border-style: none; margin: 0; background-color: black; color: white; text-align: center}
-
-
-
-#control-instructions {
-  grid-row: outControl-top / span 2;
-  grid-column: outInstructions-start / outInstructions-end;
-}
-
-#control-hint {
-  grid-row: outControl-top / span 2;
-  grid-column: outHint-start / outHint-end;
-}
-
-#control-solution {
-  grid-row: outControl-top / span 2;
-  grid-column: outSolution-start / outSolution-end;
-}
-
-#control-clear {
-  grid-row: outControl-bottom / span 2;
-  grid-column: outClear-start / outClear-end;
-}
-
-#control-forward {
-  grid-row: outControl-bottom / span 2;
-  grid-column: outForward-start / outForward-end;
-}
-
-#control-backward {
-  grid-row: outControl-bottom / span 2;
-  grid-column: outBackward-start / outBackward-end;
-}
-
-.control {margin: 0; padding: 0}
-.control-primary {text-align: center; border-style: solid; border-width: thin; border-color: black; background-color: #FFC34D; color: black}
-.control-secondary {text-align: center; border: none; background-color: rgb(25%,25%,25%); color: white}
-.control-tertiary {text-align: left; border: none; background-color: transparent; color: #FFC34D; font-size: 1.5em}
-
+	grid-template-rows:
+		[rInformation-s]
+		3fr
+		[rIHeader-s rIBack-s]
+		6fr
+		[rIHeader-e rIBack-e]
+		3fr
+		[rIInstructions-s]
+		20fr
+		[rIInstructions-e]
+		168fr
+		[rInformation-e]
+		;
+		
+ 	grid-template-columns:
+		[cInformation-s]
+		3fr
+		[cIBack-s cIInstructions-s]
+		7fr
+		[cIBack-e]
+		5fr 
+		[cIHeader-s]
+		29fr
+		[cIHeader-e]
+		12fr
+		[cIInstructions-e]
+		3fr
+		[cInformation-e]
+		;
+	
+}
+
+#iBack {grid-row:rIBack-s/rIBack-e; grid-column:cIBack-s/cIBack-e;}
+#iHeader {grid-row:rIHeader-s/rIHeader-e; grid-column:cIHeader-s/cIHeader-e;}
+#iInstructions {grid-row:rIInstructions-s/rIInstructions-e; grid-column:cIInstructions-s/cIInstructions-e; font-size:3em; background-color:white;}
+
+
+#door-3 {display:none; z-index:2; width:59em; background-color:gray; position:absolute;
+	grid-template-columns:
+		[cDoor-3-s]
+		3fr
+		[cPanel-3-s cCInformation-3-s cCReset-3-s]
+		11fr
+		[cCReset-3-e]
+		3fr
+		[cPHeader-3-s]
+		2fr
+		[cCInformation-3-e]
+		5fr
+		[cCHint-3-s]
+		11fr
+		[cCHint-3-e cCBack-3-s]
+		5fr
+		[cCSolution-3-s]
+		2fr
+		[cPHeader-3-e]
+		14fr
+		[cPanel-3-3-e cCSolution-3-e cCBack-3-e]
+		3fr
+		[cDoor-3-e]
+		;
+}
+
+#pHeader-3 {grid-row:rPHeader-3-s/rPHeader-3-e; grid-column:cPHeader-3-s/cPHeader-3-e;}
+
+#cInformation-3 {grid-row:rCTop-3-s/rCTop-3-e; grid-column:cCInformation-3-s/cCInformation-3-e;}
+#cHint-3 {grid-row:rCTop-3-s/rCTop-3-e; grid-column:cCHint-3-s/cCHint-3-e;}
+#cSolution-3 {grid-row:rCTop-3-s/rCTop-3-e; grid-column:cCSolution-3-s/cCSolution-3-e;}
+#cReset-3 {grid-row:rCBottom-3-s/rCBottom-3-e; grid-column:cCReset-3-s/cCReset-3-e;}
+#cBack-3 {grid-row:rCBottom-3-s/rCBottom-3-e; grid-column:cCBack-3-s/cCBack-3-e;}
+
+#panel-33 {display:none; z-index:3; grid-row:rPanel-3-s/rPanel-3-e; grid-column:cPanel-3-s/cPanel-3-e; height:80em; width:53em; background-color:white; position:absolute;
+	grid-template-rows:
+		[rPanel-33-s]
+		3fr
+		[rDTile-33-4-e]
+		1fr
+		[rDTile-33-3-s]
+		7fr
+		[rDTile-33-3-e]
+		1fr
+		[rDTile-33-2-s]
+		7fr
+		[rDTile-33-2-e]
+		1fr
+		[rDTile-33-1-s]
+		7fr
+		[rDTile-33-1-e rDContainer-33-b]
+		7fr
+		[rMRow-3-1]
+		7fr
+		[rMRow-3-2]
+		7fr
+		[rMRow-3-3]
+		7fr
+		[rMRow-3-e]
+		3fr
+		[rCBackground-3-s]
+		3fr
+		[rCDispense-3-s]
+		6fr
+		[rPanel-33-e rCBackground-3-e rCDispense-3-e]
+		;
+	grid-template-columns:
+		[cPanel-33-s]
+		9fr
+		[cDContainer-33-1-s]
+		1fr
+		[cDTile-33-1-s]
+		6fr
+		[cMColumn-3-1]
+		1fr
+		[cDTile-33-1-e]
+		1fr
+		[cDContainer-33-1-e]
+		4fr
+		[cDContainer-33-2-s]
+		1fr
+		[cDTile-33-2-s cMColumn-3-2]
+		7fr
+		[cDTile-33-2-e cMColumn-3-3]
+		1fr
+		[cDContainer-33-2-e]
+		4fr
+		[cDContainer-33-3-s]
+		1fr
+		[cDTile-33-3-s]
+		1fr
+		[cMColumn-3-e]
+		6fr
+		[cDTile-33-3-e]
+		1fr
+		[cDContainer-33-3-e]
+		9fr
+		[cPanel-33-e]
+		;
+}
+
+#dTile-33-11 {grid-row:rDTile-33-1-s/rDTile-33-1-e; grid-column:cDTile-33-1-s/cDTile-33-1-e;}
+#dTile-33-12 {grid-row:rDTile-33-2-s/rDTile-33-2-e; grid-column:cDTile-33-1-s/cDTile-33-1-e;}
+#dTile-33-13 {grid-row:rDTile-33-3-s/rDTile-33-3-e; grid-column:cDTile-33-1-s/cDTile-33-1-e;}
+#dTile-33-21 {grid-row:rDTile-33-1-s/rDTile-33-1-e; grid-column:cDTile-33-2-s/cDTile-33-2-e;}
+#dTile-33-22 {grid-row:rDTile-33-2-s/rDTile-33-2-e; grid-column:cDTile-33-2-s/cDTile-33-2-e;}
+#dTile-33-23 {grid-row:rDTile-33-3-s/rDTile-33-3-e; grid-column:cDTile-33-2-s/cDTile-33-2-e;}
+#dTile-33-31 {grid-row:rDTile-33-1-s/rDTile-33-1-e; grid-column:cDTile-33-3-s/cDTile-33-3-e;}
+#dTile-33-32 {grid-row:rDTile-33-2-s/rDTile-33-2-e; grid-column:cDTile-33-3-s/cDTile-33-3-e;}
+#dTile-33-33 {grid-row:rDTile-33-3-s/rDTile-33-3-e; grid-column:cDTile-33-3-s/cDTile-33-3-e;}
+
+#dContainer-33-11 {grid-row:rDTile-33-2-e/rDContainer-33-b; grid-column:cDContainer-33-1-s/cDContainer-33-1-e;}
+#dContainer-33-12 {grid-row:rDTile-33-3-e/rDContainer-33-b; grid-column:cDContainer-33-1-s/cDContainer-33-1-e;}
+#dContainer-33-13 {grid-row:rDTile-33-4-e/rDContainer-33-b; grid-column:cDContainer-33-1-s/cDContainer-33-1-e;}
+#dContainer-33-21 {grid-row:rDTile-33-2-e/rDContainer-33-b; grid-column:cDContainer-33-2-s/cDContainer-33-2-e;}
+#dContainer-33-22 {grid-row:rDTile-33-3-e/rDContainer-33-b; grid-column:cDContainer-33-2-s/cDContainer-33-2-e;}
+#dContainer-33-23 {grid-row:rDTile-33-4-e/rDContainer-33-b; grid-column:cDContainer-33-2-s/cDContainer-33-2-e;}
+#dContainer-33-31 {grid-row:rDTile-33-2-e/rDContainer-33-b; grid-column:cDContainer-33-3-s/cDContainer-33-3-e;}
+#dContainer-33-32 {grid-row:rDTile-33-3-e/rDContainer-33-b; grid-column:cDContainer-33-3-s/cDContainer-33-3-e;}
+#dContainer-33-33 {grid-row:rDTile-33-4-e/rDContainer-33-b; grid-column:cDContainer-33-3-s/cDContainer-33-3-e;}
+
+#mSquare-33-1 {grid-row:rMRow-3-1/rMRow-3-2; grid-column:cMColumn-3-1/cMColumn-3-2;}
+#mSquare-33-2 {grid-row:rMRow-3-1/rMRow-3-2; grid-column:cMColumn-3-2/cMColumn-3-3;}
+#mSquare-33-3 {grid-row:rMRow-3-1/rMRow-3-2; grid-column:cMColumn-3-3/cMColumn-3-e;}
+#mSquare-33-4 {grid-row:rMRow-3-2/rMRow-3-3; grid-column:cMColumn-3-1/cMColumn-3-2;}
+#mSquare-33-5 {grid-row:rMRow-3-2/rMRow-3-3; grid-column:cMColumn-3-2/cMColumn-3-3;}
+#mSquare-33-6 {grid-row:rMRow-3-2/rMRow-3-3; grid-column:cMColumn-3-3/cMColumn-3-e;}
+#mSquare-33-7 {grid-row:rMRow-3-3/rMRow-3-e; grid-column:cMColumn-3-1/cMColumn-3-2;}
+#mSquare-33-8 {grid-row:rMRow-3-3/rMRow-3-e; grid-column:cMColumn-3-2/cMColumn-3-3;}
+#mSquare-33-9 {grid-row:rMRow-3-3/rMRow-3-e; grid-column:cMColumn-3-3/cMColumn-3-e;}
+
+#cBackground-33 {grid-row:rCBackground-3-s/rCBackground-3-e; grid-column:cPanel-33-s/cPanel-33-e;}
+#cDispense-33-1 {grid-row:rCDispense-3-s/rCDispense-3-e; grid-column:cDTile-33-1-s/cDTile-33-1-e;}
+#cDispense-33-2 {grid-row:rCDispense-3-s/rCDispense-3-e; grid-column:cDTile-33-2-s/cDTile-33-2-e;}
+#cDispense-33-3 {grid-row:rCDispense-3-s/rCDispense-3-e; grid-column:cDTile-33-3-s/cDTile-33-3-e;}
+
+
+#panel-34 {display:none; z-index:3; grid-row:rPanel-3-s/rPanel-3-e; grid-column:cPanel-3-s/cPanel-3-e; height:80em; width:53em; background-color:white; position:absolute;
+	grid-template-rows:
+		[rPanel-34-s]
+		3fr
+		[rDTile-34-4-e]
+		1fr
+		[rDTile-34-3-s]
+		7fr
+		[rDTile-34-3-e]
+		1fr
+		[rDTile-34-2-s]
+		7fr
+		[rDTile-34-2-e]
+		1fr
+		[rDTile-34-1-s]
+		7fr
+		[rDTile-34-1-e rDContainer-34-b]
+		7fr
+		[rMRow-3-1]
+		7fr
+		[rMRow-3-2]
+		7fr
+		[rMRow-3-3]
+		7fr
+		[rMRow-3-e]
+		3fr
+		[rCBackground-3-s]
+		3fr
+		[rCDispense-3-s]
+		6fr
+		[rPanel-34-e rCBackground-3-e rCDispense-3-e]
+		;
+	grid-template-columns:
+		[cPanel-34-s]
+		4fr
+		[cDContainer-34-1-s]
+		1fr
+		[cDTile-34-1-s]
+		7fr
+		[cDTile-34-1-e]
+		1fr
+		[cDContainer-34-1-e]
+		3fr
+		[cDContainer-34-2-s cMColumn-3-1]
+		1fr
+		[cDTile-34-2-s]
+		6fr
+		[cMColumn-3-2]
+		1fr
+		[cDTile-34-2-e]
+		1fr
+		[cDContainer-34-2-e]
+		3fr
+		[cDContainer-34-3-s]
+		1fr
+		[cDTile-34-3-s]
+		1fr
+		[cMColumn-3-3]
+		6fr
+		[cDTile-34-3-e]
+		1fr
+		[cDContainer-34-3-e cMColumn-3-e]
+		3fr
+		[cDContainer-34-4-s]
+		1fr
+		[cDTile-34-4-s]
+		7fr
+		[cDTile-34-4-e]
+		1fr
+		[cDContainer-34-4-e]
+		4fr
+		[cPanel-34-e]
+		;
+}
+
+#dTile-34-11 {grid-row:rDTile-34-1-s/rDTile-34-1-e; grid-column:cDTile-34-1-s/cDTile-34-1-e;}
+#dTile-34-12 {grid-row:rDTile-34-2-s/rDTile-34-2-e; grid-column:cDTile-34-1-s/cDTile-34-1-e;}
+#dTile-34-13 {grid-row:rDTile-34-3-s/rDTile-34-3-e; grid-column:cDTile-34-1-s/cDTile-34-1-e;}
+#dTile-34-21 {grid-row:rDTile-34-1-s/rDTile-34-1-e; grid-column:cDTile-34-2-s/cDTile-34-2-e;}
+#dTile-34-22 {grid-row:rDTile-34-2-s/rDTile-34-2-e; grid-column:cDTile-34-2-s/cDTile-34-2-e;}
+#dTile-34-23 {grid-row:rDTile-34-3-s/rDTile-34-3-e; grid-column:cDTile-34-2-s/cDTile-34-2-e;}
+#dTile-34-31 {grid-row:rDTile-34-1-s/rDTile-34-1-e; grid-column:cDTile-34-3-s/cDTile-34-3-e;}
+#dTile-34-32 {grid-row:rDTile-34-2-s/rDTile-34-2-e; grid-column:cDTile-34-3-s/cDTile-34-3-e;}
+#dTile-34-33 {grid-row:rDTile-34-3-s/rDTile-34-3-e; grid-column:cDTile-34-3-s/cDTile-34-3-e;}
+#dTile-34-41 {grid-row:rDTile-34-1-s/rDTile-34-1-e; grid-column:cDTile-34-4-s/cDTile-34-4-e;}
+#dTile-34-42 {grid-row:rDTile-34-2-s/rDTile-34-2-e; grid-column:cDTile-34-4-s/cDTile-34-4-e;}
+#dTile-34-43 {grid-row:rDTile-34-3-s/rDTile-34-3-e; grid-column:cDTile-34-4-s/cDTile-34-4-e;}
+
+#dContainer-34-11 {grid-row:rDTile-34-2-e/rDContainer-34-b; grid-column:cDContainer-34-1-s/cDContainer-34-1-e;}
+#dContainer-34-12 {grid-row:rDTile-34-3-e/rDContainer-34-b; grid-column:cDContainer-34-1-s/cDContainer-34-1-e;}
+#dContainer-34-13 {grid-row:rDTile-34-4-e/rDContainer-34-b; grid-column:cDContainer-34-1-s/cDContainer-34-1-e;}
+#dContainer-34-21 {grid-row:rDTile-34-2-e/rDContainer-34-b; grid-column:cDContainer-34-2-s/cDContainer-34-2-e;}
+#dContainer-34-22 {grid-row:rDTile-34-3-e/rDContainer-34-b; grid-column:cDContainer-34-2-s/cDContainer-34-2-e;}
+#dContainer-34-23 {grid-row:rDTile-34-4-e/rDContainer-34-b; grid-column:cDContainer-34-2-s/cDContainer-34-2-e;}
+#dContainer-34-31 {grid-row:rDTile-34-2-e/rDContainer-34-b; grid-column:cDContainer-34-3-s/cDContainer-34-3-e;}
+#dContainer-34-32 {grid-row:rDTile-34-3-e/rDContainer-34-b; grid-column:cDContainer-34-3-s/cDContainer-34-3-e;}
+#dContainer-34-33 {grid-row:rDTile-34-4-e/rDContainer-34-b; grid-column:cDContainer-34-3-s/cDContainer-34-3-e;}
+#dContainer-34-41 {grid-row:rDTile-34-2-e/rDContainer-34-b; grid-column:cDContainer-34-4-s/cDContainer-34-4-e;}
+#dContainer-34-42 {grid-row:rDTile-34-3-e/rDContainer-34-b; grid-column:cDContainer-34-4-s/cDContainer-34-4-e;}
+#dContainer-34-43 {grid-row:rDTile-34-4-e/rDContainer-34-b; grid-column:cDContainer-34-4-s/cDContainer-34-4-e;}
+
+#mSquare-34-1 {grid-row:rMRow-3-1/rMRow-3-2; grid-column:cMColumn-3-1/cMColumn-3-2;}
+#mSquare-34-2 {grid-row:rMRow-3-1/rMRow-3-2; grid-column:cMColumn-3-2/cMColumn-3-3;}
+#mSquare-34-3 {grid-row:rMRow-3-1/rMRow-3-2; grid-column:cMColumn-3-3/cMColumn-3-e;}
+#mSquare-34-4 {grid-row:rMRow-3-2/rMRow-3-3; grid-column:cMColumn-3-1/cMColumn-3-2;}
+#mSquare-34-5 {grid-row:rMRow-3-2/rMRow-3-3; grid-column:cMColumn-3-2/cMColumn-3-3;}
+#mSquare-34-6 {grid-row:rMRow-3-2/rMRow-3-3; grid-column:cMColumn-3-3/cMColumn-3-e;}
+#mSquare-34-7 {grid-row:rMRow-3-3/rMRow-3-e; grid-column:cMColumn-3-1/cMColumn-3-2;}
+#mSquare-34-8 {grid-row:rMRow-3-3/rMRow-3-e; grid-column:cMColumn-3-2/cMColumn-3-3;}
+#mSquare-34-9 {grid-row:rMRow-3-3/rMRow-3-e; grid-column:cMColumn-3-3/cMColumn-3-e;}
+
+#cBackground-34 {grid-row:rCBackground-3-s/rCBackground-3-e; grid-column:cPanel-34-s/cPanel-34-e;}
+#cDispense-34-1 {grid-row:rCDispense-3-s/rCDispense-3-e; grid-column:cDTile-34-1-s/cDTile-34-1-e;}
+#cDispense-34-2 {grid-row:rCDispense-3-s/rCDispense-3-e; grid-column:cDTile-34-2-s/cDTile-34-2-e;}
+#cDispense-34-3 {grid-row:rCDispense-3-s/rCDispense-3-e; grid-column:cDTile-34-3-s/cDTile-34-3-e;}
+#cDispense-34-4 {grid-row:rCDispense-3-s/rCDispense-3-e; grid-column:cDTile-34-4-s/cDTile-34-4-e;}
+
+
+/* #door-7 {display:none; z-index:2; width:59em; background-color:gray; position:absolute; */
+#door-7 {display:none; z-index:2; width:59em; position:absolute;
+	grid-template-columns:
+		[cDoor-7-s]
+		3fr
+		[cPanel-7-s cCInformation-7-s cCReset-7-s]
+		11fr
+		[cCReset-7-e]
+		2fr
+		[cPHeader-7-s]
+		3fr
+		[cCInformation-7-e]
+		5fr
+		[cCHint-7-s]
+		11fr
+		[cCHint-7-e cCBack-7-s]
+		5fr
+		[cCSolution-7-s]
+		3fr
+		[cPHeader-7-e]
+		13fr
+		[cPanel-7-e cCSolution-7-e cCBack-7-e]
+		3fr
+		[cDoor-7-e]
+		;
+}
+
+#pHeader-7 {grid-row:rPHeader-7-s/rPHeader-7-e; grid-column:cPHeader-7-s/cPHeader-7-e;}
+
+#cInformation-7 {grid-row:rCTop-7-s/rCTop-7-e; grid-column:cCInformation-7-s/cCInformation-7-e;}
+#cHint-7 {grid-row:rCTop-7-s/rCTop-7-e; grid-column:cCHint-7-s/cCHint-7-e;}
+#cSolution-7 {grid-row:rCTop-7-s/rCTop-7-e; grid-column:cCSolution-7-s/cCSolution-7-e;}
+#cReset-7 {grid-row:rCBottom-7-s/rCBottom-7-e; grid-column:cCReset-7-s/cCReset-7-e;}
+#cBack-7 {grid-row:rCBottom-7-s/rCBottom-7-e; grid-column:cCBack-7-s/cCBack-7-e;}
+
+#panel-72 {display:none; z-index:3; grid-row:rPanel-7-s/rPanel-7-e; grid-column:cPanel-7-s/cPanel-7-e; height:80em; width:53em; background-color:white; position:absolute;
+	grid-template-rows:
+		[rPanel-72-s]
+		3fr
+		[rDTile-72-8-e]
+		1fr
+		[rDTile-72-7-s]
+		7fr
+		[rDTile-72-7-e]
+		1fr
+		[rDTile-72-6-s]
+		7fr
+		[rDTile-72-6-e]
+		1fr
+		[rDTile-72-5-s]
+		7fr
+		[rDTile-72-5-e]
+		1fr
+		[rDTile-72-4-s]
+		7fr
+		[rDTile-72-4-e]
+		1fr
+		[rDTile-72-3-s]
+		7fr
+		[rDTile-72-3-e]
+		1fr
+		[rDTile-72-2-s]
+		7fr
+		[rDTile-72-2-e]
+		1fr
+		[rDTile-72-1-s]
+		7fr
+		[rDTile-72-1-e rDContainer-72-b]
+		7fr
+		[rMRow-7-1]
+		6fr
+		[rTickCross-7-s]
+		1fr
+		[rMRow-7-2]
+		7fr
+		[rMRow-7-3]
+		1fr
+		[rTickCross-7-e]
+		6fr
+		[rMRow-7-e]
+		3fr
+		[rCBackground-7-s]
+		3fr
+		[rCDispense-7-s]
+		6fr
+		[rPanel-72-e rCBackground-7-e rCDispense-7-e]
+		;
+	grid-template-columns:
+		[cPanel-72-s]
+		15fr
+		[cDContainer-72-1-s]
+		1fr
+		[cDTile-72-1-s cMColumn-7-1]
+		7fr
+		[cDTile-72-1-e cMColumn-7-2]
+		1fr
+		[cDContainer-72-1-e]
+		5fr
+		[cDContainer-72-2-s]
+		1fr
+		[cDTile-72-2-s cMColumn-7-3]
+		7fr
+		[cDTile-72-2-e cMColumn-7-e]
+		1fr
+		[cDContainer-72-2-e]
+		1fr
+		[cTickCross-7-s]
+		9fr
+		[cTickCross-7-e]
+		5fr
+		[cPanel-72-e]
+		;
+}
+
+#dTile-72-11 {grid-row:rDTile-72-1-s/rDTile-72-1-e; grid-column:cDTile-72-1-s/cDTile-72-1-e;}
+#dTile-72-12 {grid-row:rDTile-72-2-s/rDTile-72-2-e; grid-column:cDTile-72-1-s/cDTile-72-1-e;}
+#dTile-72-13 {grid-row:rDTile-72-3-s/rDTile-72-3-e; grid-column:cDTile-72-1-s/cDTile-72-1-e;}
+#dTile-72-14 {grid-row:rDTile-72-4-s/rDTile-72-4-e; grid-column:cDTile-72-1-s/cDTile-72-1-e;}
+#dTile-72-15 {grid-row:rDTile-72-5-s/rDTile-72-5-e; grid-column:cDTile-72-1-s/cDTile-72-1-e;}
+#dTile-72-16 {grid-row:rDTile-72-6-s/rDTile-72-6-e; grid-column:cDTile-72-1-s/cDTile-72-1-e;}
+#dTile-72-17 {grid-row:rDTile-72-7-s/rDTile-72-7-e; grid-column:cDTile-72-1-s/cDTile-72-1-e;}
+#dTile-72-21 {grid-row:rDTile-72-1-s/rDTile-72-1-e; grid-column:cDTile-72-2-s/cDTile-72-2-e;}
+#dTile-72-22 {grid-row:rDTile-72-2-s/rDTile-72-2-e; grid-column:cDTile-72-2-s/cDTile-72-2-e;}
+#dTile-72-23 {grid-row:rDTile-72-3-s/rDTile-72-3-e; grid-column:cDTile-72-2-s/cDTile-72-2-e;}
+#dTile-72-24 {grid-row:rDTile-72-4-s/rDTile-72-4-e; grid-column:cDTile-72-2-s/cDTile-72-2-e;}
+#dTile-72-25 {grid-row:rDTile-72-5-s/rDTile-72-5-e; grid-column:cDTile-72-2-s/cDTile-72-2-e;}
+#dTile-72-26 {grid-row:rDTile-72-6-s/rDTile-72-6-e; grid-column:cDTile-72-2-s/cDTile-72-2-e;}
+#dTile-72-27 {grid-row:rDTile-72-7-s/rDTile-72-7-e; grid-column:cDTile-72-2-s/cDTile-72-2-e;}
+
+#dContainer-72-11 {grid-row:rDTile-72-2-e/rDContainer-72-b; grid-column:cDContainer-72-1-s/cDContainer-72-1-e;}
+#dContainer-72-12 {grid-row:rDTile-72-3-e/rDContainer-72-b; grid-column:cDContainer-72-1-s/cDContainer-72-1-e;}
+#dContainer-72-13 {grid-row:rDTile-72-4-e/rDContainer-72-b; grid-column:cDContainer-72-1-s/cDContainer-72-1-e;}
+#dContainer-72-14 {grid-row:rDTile-72-5-e/rDContainer-72-b; grid-column:cDContainer-72-1-s/cDContainer-72-1-e;}
+#dContainer-72-15 {grid-row:rDTile-72-6-e/rDContainer-72-b; grid-column:cDContainer-72-1-s/cDContainer-72-1-e;}
+#dContainer-72-16 {grid-row:rDTile-72-7-e/rDContainer-72-b; grid-column:cDContainer-72-1-s/cDContainer-72-1-e;}
+#dContainer-72-17 {grid-row:rDTile-72-8-e/rDContainer-72-b; grid-column:cDContainer-72-1-s/cDContainer-72-1-e;}
+#dContainer-72-21 {grid-row:rDTile-72-2-e/rDContainer-72-b; grid-column:cDContainer-72-2-s/cDContainer-72-2-e;}
+#dContainer-72-22 {grid-row:rDTile-72-3-e/rDContainer-72-b; grid-column:cDContainer-72-2-s/cDContainer-72-2-e;}
+#dContainer-72-23 {grid-row:rDTile-72-4-e/rDContainer-72-b; grid-column:cDContainer-72-2-s/cDContainer-72-2-e;}
+#dContainer-72-24 {grid-row:rDTile-72-5-e/rDContainer-72-b; grid-column:cDContainer-72-2-s/cDContainer-72-2-e;}
+#dContainer-72-25 {grid-row:rDTile-72-6-e/rDContainer-72-b; grid-column:cDContainer-72-2-s/cDContainer-72-2-e;}
+#dContainer-72-26 {grid-row:rDTile-72-7-e/rDContainer-72-b; grid-column:cDContainer-72-2-s/cDContainer-72-2-e;}
+#dContainer-72-27 {grid-row:rDTile-72-8-e/rDContainer-72-b; grid-column:cDContainer-72-2-s/cDContainer-72-2-e;}
+
+#mSquare-72-1 {grid-row:rMRow-7-1/rMRow-7-2; grid-column:cMColumn-7-1/cMColumn-7-2;}
+#mSquare-72-2 {grid-row:rMRow-7-1/rMRow-7-2; grid-column:cMColumn-7-2/cMColumn-7-3;}
+#mSquare-72-3 {grid-row:rMRow-7-1/rMRow-7-2; grid-column:cMColumn-7-3/cMColumn-7-e;}
+#mSquare-72-4 {grid-row:rMRow-7-2/rMRow-7-3; grid-column:cMColumn-7-1/cMColumn-7-2;}
+#mSquare-72-5 {grid-row:rMRow-7-2/rMRow-7-3; grid-column:cMColumn-7-2/cMColumn-7-3;}
+#mSquare-72-6 {grid-row:rMRow-7-2/rMRow-7-3; grid-column:cMColumn-7-3/cMColumn-7-e;}
+#mSquare-72-7 {grid-row:rMRow-7-3/rMRow-7-e; grid-column:cMColumn-7-1/cMColumn-7-2;}
+#mSquare-72-8 {grid-row:rMRow-7-3/rMRow-7-e; grid-column:cMColumn-7-2/cMColumn-7-3;}
+#mSquare-72-9 {grid-row:rMRow-7-3/rMRow-7-e; grid-column:cMColumn-7-3/cMColumn-7-e;}
+
+#TickCross-72 {grid-row:rTickCross-7-s/rTickCross-7-e; grid-column:cTickCross-7-s/cTickCross-7-e;}
+
+#cBackground-72 {grid-row:rCBackground-7-s/rCBackground-7-e; grid-column:cPanel-72-s/cPanel-72-e;}
+#cDispense-72-1 {grid-row:rCDispense-7-s/rCDispense-7-e; grid-column:cDTile-72-1-s/cDTile-72-1-e;}
+#cDispense-72-2 {grid-row:rCDispense-7-s/rCDispense-7-e; grid-column:cDTile-72-2-s/cDTile-72-2-e;}
+
+
+#panel-73 {display:none; z-index:3; grid-row:rPanel-7-s/rPanel-7-e; grid-column:cPanel-7-s/cPanel-7-e; height:80em; width:53em; background-color:white; position:absolute;
+	grid-template-rows:
+		[rPanel-73-s]
+		3fr
+		[rDTile-73-8-e]
+		1fr
+		[rDTile-73-7-s]
+		7fr
+		[rDTile-73-7-e]
+		1fr
+		[rDTile-73-6-s]
+		7fr
+		[rDTile-73-6-e]
+		1fr
+		[rDTile-73-5-s]
+		7fr
+		[rDTile-73-5-e]
+		1fr
+		[rDTile-73-4-s]
+		7fr
+		[rDTile-73-4-e]
+		1fr
+		[rDTile-73-3-s]
+		7fr
+		[rDTile-73-3-e]
+		1fr
+		[rDTile-73-2-s]
+		7fr
+		[rDTile-73-2-e]
+		1fr
+		[rDTile-73-1-s]
+		7fr
+		[rDTile-73-1-e rDContainer-73-b]
+		7fr
+		[rMRow-7-1]
+		7fr
+		[rMRow-7-2]
+		7fr
+		[rMRow-7-3]
+		7fr
+		[rMRow-7-e]
+		3fr
+		[rCBackground-7-s]
+		3fr
+		[rCDispense-7-s]
+		6fr
+		[rPanel-73-e rCBackground-7-e rCDispense-7-e]
+		;
+	grid-template-columns:
+		[cPanel-73-s]
+		9fr
+		[cDContainer-73-1-s]
+		1fr
+		[cDTile-73-1-s]
+		6fr
+		[cMColumn-7-1]
+		1fr
+		[cDTile-73-1-e]
+		1fr
+		[cDContainer-73-1-e]
+		4fr
+		[cDContainer-73-2-s]
+		1fr
+		[cDTile-73-2-s cMColumn-7-2]
+		7fr
+		[cDTile-73-2-e cMColumn-7-3]
+		1fr
+		[cDContainer-73-2-e]
+		4fr
+		[cDContainer-73-3-s]
+		1fr
+		[cDTile-73-3-s]
+		1fr
+		[cMColumn-7-e]
+		6fr
+		[cDTile-73-3-e]
+		1fr
+		[cDContainer-73-3-e]
+		9fr
+		[cPanel-73-e]
+		;
+}
+
+#dTile-73-11 {grid-row:rDTile-73-1-s/rDTile-73-1-e; grid-column:cDTile-73-1-s/cDTile-73-1-e;}
+#dTile-73-12 {grid-row:rDTile-73-2-s/rDTile-73-2-e; grid-column:cDTile-73-1-s/cDTile-73-1-e;}
+#dTile-73-13 {grid-row:rDTile-73-3-s/rDTile-73-3-e; grid-column:cDTile-73-1-s/cDTile-73-1-e;}
+#dTile-73-14 {grid-row:rDTile-73-4-s/rDTile-73-4-e; grid-column:cDTile-73-1-s/cDTile-73-1-e;}
+#dTile-73-15 {grid-row:rDTile-73-5-s/rDTile-73-5-e; grid-column:cDTile-73-1-s/cDTile-73-1-e;}
+#dTile-73-16 {grid-row:rDTile-73-6-s/rDTile-73-6-e; grid-column:cDTile-73-1-s/cDTile-73-1-e;}
+#dTile-73-17 {grid-row:rDTile-73-7-s/rDTile-73-7-e; grid-column:cDTile-73-1-s/cDTile-73-1-e;}
+#dTile-73-21 {grid-row:rDTile-73-1-s/rDTile-73-1-e; grid-column:cDTile-73-2-s/cDTile-73-2-e;}
+#dTile-73-22 {grid-row:rDTile-73-2-s/rDTile-73-2-e; grid-column:cDTile-73-2-s/cDTile-73-2-e;}
+#dTile-73-23 {grid-row:rDTile-73-3-s/rDTile-73-3-e; grid-column:cDTile-73-2-s/cDTile-73-2-e;}
+#dTile-73-24 {grid-row:rDTile-73-4-s/rDTile-73-4-e; grid-column:cDTile-73-2-s/cDTile-73-2-e;}
+#dTile-73-25 {grid-row:rDTile-73-5-s/rDTile-73-5-e; grid-column:cDTile-73-2-s/cDTile-73-2-e;}
+#dTile-73-26 {grid-row:rDTile-73-6-s/rDTile-73-6-e; grid-column:cDTile-73-2-s/cDTile-73-2-e;}
+#dTile-73-27 {grid-row:rDTile-73-7-s/rDTile-73-7-e; grid-column:cDTile-73-2-s/cDTile-73-2-e;}
+#dTile-73-31 {grid-row:rDTile-73-1-s/rDTile-73-1-e; grid-column:cDTile-73-3-s/cDTile-73-3-e;}
+#dTile-73-32 {grid-row:rDTile-73-2-s/rDTile-73-2-e; grid-column:cDTile-73-3-s/cDTile-73-3-e;}
+#dTile-73-33 {grid-row:rDTile-73-3-s/rDTile-73-3-e; grid-column:cDTile-73-3-s/cDTile-73-3-e;}
+#dTile-73-34 {grid-row:rDTile-73-4-s/rDTile-73-4-e; grid-column:cDTile-73-3-s/cDTile-73-3-e;}
+#dTile-73-35 {grid-row:rDTile-73-5-s/rDTile-73-5-e; grid-column:cDTile-73-3-s/cDTile-73-3-e;}
+#dTile-73-36 {grid-row:rDTile-73-6-s/rDTile-73-6-e; grid-column:cDTile-73-3-s/cDTile-73-3-e;}
+#dTile-73-37 {grid-row:rDTile-73-7-s/rDTile-73-7-e; grid-column:cDTile-73-3-s/cDTile-73-3-e;}
+
+#dContainer-73-11 {grid-row:rDTile-73-2-e/rDContainer-73-b; grid-column:cDContainer-73-1-s/cDContainer-73-1-e;}
+#dContainer-73-12 {grid-row:rDTile-73-3-e/rDContainer-73-b; grid-column:cDContainer-73-1-s/cDContainer-73-1-e;}
+#dContainer-73-13 {grid-row:rDTile-73-4-e/rDContainer-73-b; grid-column:cDContainer-73-1-s/cDContainer-73-1-e;}
+#dContainer-73-14 {grid-row:rDTile-73-5-e/rDContainer-73-b; grid-column:cDContainer-73-1-s/cDContainer-73-1-e;}
+#dContainer-73-15 {grid-row:rDTile-73-6-e/rDContainer-73-b; grid-column:cDContainer-73-1-s/cDContainer-73-1-e;}
+#dContainer-73-16 {grid-row:rDTile-73-7-e/rDContainer-73-b; grid-column:cDContainer-73-1-s/cDContainer-73-1-e;}
+#dContainer-73-17 {grid-row:rDTile-73-8-e/rDContainer-73-b; grid-column:cDContainer-73-1-s/cDContainer-73-1-e;}
+#dContainer-73-21 {grid-row:rDTile-73-2-e/rDContainer-73-b; grid-column:cDContainer-73-2-s/cDContainer-73-2-e;}
+#dContainer-73-22 {grid-row:rDTile-73-3-e/rDContainer-73-b; grid-column:cDContainer-73-2-s/cDContainer-73-2-e;}
+#dContainer-73-23 {grid-row:rDTile-73-4-e/rDContainer-73-b; grid-column:cDContainer-73-2-s/cDContainer-73-2-e;}
+#dContainer-73-24 {grid-row:rDTile-73-5-e/rDContainer-73-b; grid-column:cDContainer-73-2-s/cDContainer-73-2-e;}
+#dContainer-73-25 {grid-row:rDTile-73-6-e/rDContainer-73-b; grid-column:cDContainer-73-2-s/cDContainer-73-2-e;}
+#dContainer-73-26 {grid-row:rDTile-73-7-e/rDContainer-73-b; grid-column:cDContainer-73-2-s/cDContainer-73-2-e;}
+#dContainer-73-27 {grid-row:rDTile-73-8-e/rDContainer-73-b; grid-column:cDContainer-73-2-s/cDContainer-73-2-e;}
+#dContainer-73-31 {grid-row:rDTile-73-2-e/rDContainer-73-b; grid-column:cDContainer-73-3-s/cDContainer-73-3-e;}
+#dContainer-73-32 {grid-row:rDTile-73-3-e/rDContainer-73-b; grid-column:cDContainer-73-3-s/cDContainer-73-3-e;}
+#dContainer-73-33 {grid-row:rDTile-73-4-e/rDContainer-73-b; grid-column:cDContainer-73-3-s/cDContainer-73-3-e;}
+#dContainer-73-34 {grid-row:rDTile-73-5-e/rDContainer-73-b; grid-column:cDContainer-73-3-s/cDContainer-73-3-e;}
+#dContainer-73-35 {grid-row:rDTile-73-6-e/rDContainer-73-b; grid-column:cDContainer-73-3-s/cDContainer-73-3-e;}
+#dContainer-73-36 {grid-row:rDTile-73-7-e/rDContainer-73-b; grid-column:cDContainer-73-3-s/cDContainer-73-3-e;}
+#dContainer-73-37 {grid-row:rDTile-73-8-e/rDContainer-73-b; grid-column:cDContainer-73-3-s/cDContainer-73-3-e;}
+
+#mSquare-73-1 {grid-row:rMRow-7-1/rMRow-7-2; grid-column:cMColumn-7-1/cMColumn-7-2;}
+#mSquare-73-2 {grid-row:rMRow-7-1/rMRow-7-2; grid-column:cMColumn-7-2/cMColumn-7-3;}
+#mSquare-73-3 {grid-row:rMRow-7-1/rMRow-7-2; grid-column:cMColumn-7-3/cMColumn-7-e;}
+#mSquare-73-4 {grid-row:rMRow-7-2/rMRow-7-3; grid-column:cMColumn-7-1/cMColumn-7-2;}
+#mSquare-73-5 {grid-row:rMRow-7-2/rMRow-7-3; grid-column:cMColumn-7-2/cMColumn-7-3;}
+#mSquare-73-6 {grid-row:rMRow-7-2/rMRow-7-3; grid-column:cMColumn-7-3/cMColumn-7-e;}
+#mSquare-73-7 {grid-row:rMRow-7-3/rMRow-7-e; grid-column:cMColumn-7-1/cMColumn-7-2;}
+#mSquare-73-8 {grid-row:rMRow-7-3/rMRow-7-e; grid-column:cMColumn-7-2/cMColumn-7-3;}
+#mSquare-73-9 {grid-row:rMRow-7-3/rMRow-7-e; grid-column:cMColumn-7-3/cMColumn-7-e;}
+
+#cBackground-73 {grid-row:rCBackground-7-s/rCBackground-7-e; grid-column:cPanel-73-s/cPanel-73-e;}
+#cDispense-73-1 {grid-row:rCDispense-7-s/rCDispense-7-e; grid-column:cDTile-73-1-s/cDTile-73-1-e;}
+#cDispense-73-2 {grid-row:rCDispense-7-s/rCDispense-7-e; grid-column:cDTile-73-2-s/cDTile-73-2-e;}
+#cDispense-73-3 {grid-row:rCDispense-7-s/rCDispense-7-e; grid-column:cDTile-73-3-s/cDTile-73-3-e;}
+
+
+.plateColour {background-color:#9E9E9E;}
+.dTile {display:none; z-index:5; margin:0; padding:0; background-color:orange;}
+.dContainer {
+	display:none;
+	z-index:4;
+	margin:0; padding:0;
+	/* background-color:#FAFAFA; */
+	background-color:#F5F5F5;
+	border-style:solid; border-color:black; border-top-width:1.6px; border-bottom-width:0; border-left-width:1.6px; border-right-width:1.6px;
+}
+/* .mSquare {z-index:4; margin:0; padding:0; background-color:gray; font-size: 5em; text-align:center;} */
+.mSquare {z-index:4; margin:0; padding:0; background-color:transparent; color:#B2B2B2; font-size: 5em; text-align:center;}
+.mSquare-lt {border-style:solid; border-color:black; border-top-width:0.8px; border-bottom-width:0; border-left-width:0.8px; border-right-width:0;}
+.mSquare-ltr {border-style:solid; border-color:black; border-top-width:0.8px; border-bottom-width:0; border-left-width:0.8px; border-right-width:0.8px;}
+.mSquare-blt {border-style:solid; border-color:black; border-top-width:0.8px; border-bottom-width:0.8px; border-left-width:0.8px; border-right-width:0;}
+.mSquare-bltr {border-style:solid; border-color:black; border-top-width:0.8px; border-bottom-width:0.8px; border-left-width:0.8px; border-right-width:0.8px;}
+
+.tickCross {margin:0; padding:0; text-align:center; border:none; background-color:transparent; color:black; font-size:6em;}
+
+.cCommon {margin:0; padding:0;}
+/* .cSecondary {text-align:center; border:none; background-color:rgb(25%,25%,25%); color:white;} */
+.cSecondary {text-align:center; border:none; background-color:#484848; color:white; font-size:2.5em;}
+.cTertiary {text-align:left; border:none; background-color:transparent; color:black; font-size:3em}
+/* .cBackground {z-index:4; margin:0; padding:0; background-color:gray;} */
+.cBackground {z-index:4; margin:0; padding:0;}
+/* .cDispense {z-index:5; margin:0; padding:0; border:none; background-color:lime; font-size:3em; text-align:center;} */
+.cDispense {z-index:5; margin:0; padding:0; border-style:solid; border-width:thin; border-color:white; background-color:maroon; color:white; font-size:3em; text-align:center;}
+.cBack {font-size: 3em; text-align:center;}
+
+.pHeader {padding:0; font-size:3.6em; border-style:none; border-radius:0.3em; margin:0; background-color:black; color:white; text-align:center;}
 
   </style>
 </head>
 
 <body>
-  <div id="instructions">
-	<button id="control-back" class="control control-tertiary"><code><strong>&lt;</strong></code></button>
+	<div id="information" class="plateColour">
+		<button id="iBack" class="cCommon cTertiary"><code><strong>&lt;</strong></code></button>
 
-	<button id="instructions-header-A" class="header header-left"><strong>Loose Fit</strong></button>
-	<button id="instructions-header-B" class="header header-centre">&blacksquare;</button>
-	<button id="instructions-header-C" class="header header-right">Instructions</button>
+		<button id="iHeader" class="pHeader"><strong>Information</strong></button>
 	
-    <div id="instructionPanel-1">Fit the words into the grid. A number of coloured squares will remain blank.</div>
-  </div>
-  <div id="container">
-    <div id="outBackground-1" class="outer"></div>
-    <div id="outBackground-2a" class="outer"></div>
-    <div id="outBackground-2b" class="outer"></div>
-    <div id="outBackground-4" class="outer"></div>
-    <div id="outBackground-5a" class="outer"></div>
-    <div id="outBackground-5b" class="outer"></div>
-    <div id="outBackground-5c" class="outer"></div>
-    <div id="outBackground-5d" class="outer"></div>
-    <div id="outBackground-7" class="outer"></div>
-    <div id="outBackground-33" class="outer"></div>
-    <div id="outBackground-34a" class="outer"></div>
-    <div id="outBackground-34b" class="outer"></div>
-    <div id="outBackground-34c" class="outer"></div>
-    <div id="outBackground-34d" class="outer"></div>
-    <div id="outBackground-36" class="outer"></div>
-    <div id="outBackground-left" class="outer"></div>
-    <div id="outBackground-right" class="outer"></div>
+		<div id="iInstructions">Build a square which has just ONE area of each colour.<br><br>
+								As well as instructions:<br>
+								* puzzle number<br>
+								* date when a new puzzle will appear<br>
+								* links to other puzzles<br>
+								* Lazy Dog ad<br>
+								* copyright<br>
+		</div>
+	</div>
+	<div id="door-3"
+		 style="height:120em;
+				grid-template-rows:[rDoor-3-s]3fr[rPHeader-3-s]6fr[rPHeader-3-e]3fr[rCTop-3-s]6fr[rCTop-3-e]3fr
+				[rPanel-3-s]80fr[rPanel-3-e]3fr[rCBottom-3-s]6fr[rCBottom-3-e]3fr[rDoor-3-e];
+			   "
+		 >
+		<button id="pHeader-3" class="pHeader"><strong>Dispensers</strong></button>
+		<button id="cInformation-3" class="cCommon cSecondary">Information</button>
+		<button id="cHint-3" class="cCommon cSecondary">Hint</button>
+		<button id="cSolution-3" class="cCommon cSecondary">Solution</button>
+		
+		<div id="panel-33">
+			<div id="dTile-33-11" class="dTile"></div>
+			<div id="dTile-33-12" class="dTile"></div>
+			<div id="dTile-33-13" class="dTile"></div>
+			<div id="dTile-33-21" class="dTile"></div>
+			<div id="dTile-33-22" class="dTile"></div>
+			<div id="dTile-33-23" class="dTile"></div>
+			<div id="dTile-33-31" class="dTile"></div>
+			<div id="dTile-33-32" class="dTile"></div>
+			<div id="dTile-33-33" class="dTile"></div>
+
+			<div id="dContainer-33-11" class="dContainer"></div>
+			<div id="dContainer-33-12" class="dContainer"></div>
+			<div id="dContainer-33-13" class="dContainer"></div>
+			<div id="dContainer-33-21" class="dContainer"></div>
+			<div id="dContainer-33-22" class="dContainer"></div>
+			<div id="dContainer-33-23" class="dContainer"></div>
+			<div id="dContainer-33-31" class="dContainer"></div>
+			<div id="dContainer-33-32" class="dContainer"></div>
+			<div id="dContainer-33-33" class="dContainer"></div>
+
+			<button id="mSquare-33-1" class="mSquare mSquare-lt">1</button>
+			<button id="mSquare-33-2" class="mSquare mSquare-lt">2</button>
+			<button id="mSquare-33-3" class="mSquare mSquare-ltr">3</button>
+			<button id="mSquare-33-4" class="mSquare mSquare-lt">4</button>
+			<button id="mSquare-33-5" class="mSquare mSquare-lt">5</button>
+			<button id="mSquare-33-6" class="mSquare mSquare-ltr">6</button>
+			<button id="mSquare-33-7" class="mSquare mSquare-blt">7</button>
+			<button id="mSquare-33-8" class="mSquare mSquare-blt">8</button>
+			<button id="mSquare-33-9" class="mSquare mSquare-bltr">9</button>
+
+			<div id="cBackground-33" class="cBackground"></div>
+			<button id="cDispense-33-1" class="cDispense"><strong>&bigtriangledown;</strong></button>
+			<button id="cDispense-33-2" class="cDispense"><strong>&bigtriangledown;</strong></button>
+			<button id="cDispense-33-3" class="cDispense"><strong>&bigtriangledown;</strong></button>
+		</div>
+		
+		<div id="panel-34">
+			<div id="dTile-34-11" class="dTile"></div>
+			<div id="dTile-34-12" class="dTile"></div>
+			<div id="dTile-34-13" class="dTile"></div>
+			<div id="dTile-34-21" class="dTile"></div>
+			<div id="dTile-34-22" class="dTile"></div>
+			<div id="dTile-34-23" class="dTile"></div>
+			<div id="dTile-34-31" class="dTile"></div>
+			<div id="dTile-34-32" class="dTile"></div>
+			<div id="dTile-34-33" class="dTile"></div>
+			<div id="dTile-34-41" class="dTile"></div>
+			<div id="dTile-34-42" class="dTile"></div>
+			<div id="dTile-34-43" class="dTile"></div>
+
+			<div id="dContainer-34-11" class="dContainer"></div>
+			<div id="dContainer-34-12" class="dContainer"></div>
+			<div id="dContainer-34-13" class="dContainer"></div>
+			<div id="dContainer-34-21" class="dContainer"></div>
+			<div id="dContainer-34-22" class="dContainer"></div>
+			<div id="dContainer-34-23" class="dContainer"></div>
+			<div id="dContainer-34-31" class="dContainer"></div>
+			<div id="dContainer-34-32" class="dContainer"></div>
+			<div id="dContainer-34-33" class="dContainer"></div>
+			<div id="dContainer-34-41" class="dContainer"></div>
+			<div id="dContainer-34-42" class="dContainer"></div>
+			<div id="dContainer-34-43" class="dContainer"></div>
+			
+			<button id="mSquare-34-1" class="mSquare mSquare-lt">1</button>
+			<button id="mSquare-34-2" class="mSquare mSquare-lt">2</button>
+			<button id="mSquare-34-3" class="mSquare mSquare-ltr">3</button>
+			<button id="mSquare-34-4" class="mSquare mSquare-lt">4</button>
+			<button id="mSquare-34-5" class="mSquare mSquare-lt">5</button>
+			<button id="mSquare-34-6" class="mSquare mSquare-ltr">6</button>
+			<button id="mSquare-34-7" class="mSquare mSquare-blt">7</button>
+			<button id="mSquare-34-8" class="mSquare mSquare-blt">8</button>
+			<button id="mSquare-34-9" class="mSquare mSquare-bltr">9</button>
+
+			<div id="cBackground-34" class="cBackground"></div>
+			<button id="cDispense-34-1" class="cDispense"><strong>&bigtriangledown;</strong></button>
+			<button id="cDispense-34-2" class="cDispense"><strong>&bigtriangledown;</strong></button>
+			<button id="cDispense-34-3" class="cDispense"><strong>&bigtriangledown;</strong></button>
+			<button id="cDispense-34-4" class="cDispense"><strong>&bigtriangledown;</strong></button>
+		</div>
+
+		<button id="cReset-3" class="cCommon cSecondary">Reset</button>
+		<button id="cBack-3" class="cCommon cSecondary cBack">&bigtriangleup;</button>
+	</div>
 	
-	<button id="puzzle-header-A" class="header header-left"><strong>Loose Fit</strong></button>
-<!--	<button id="puzzle-header-B" class="header header-centre">&blacksquare;</button> -->
-	<button id="puzzle-header-C" class="header header-right">Puzzle 001</button>
-
-	<button id="control-instructions" class="control control-secondary">Instructions</button>
-	<button id="control-hint" class="control control-secondary">Hint</button>
-	<button id="control-solution" class="control control-secondary">Solution</button>
 	
-	<button id="cell-12" class="cell limb edge-top nothing-bottom edge-left edge-right"></button>
-	<button id="cell-16" class="cell limb edge-top nothing-bottom edge-left edge-right"></button>
+	<div id="door-7" class="plateColour"
+		 style="height:120em;
+				grid-template-rows:[rDoor-7-s]3fr[rPHeader-7-s]7fr[rPHeader-7-e]3fr[rCTop-7-s]6fr[rCTop-7-e]3fr
+				[rPanel-7-s]80fr[rPanel-7-e]3fr[rCBottom-7-s]6fr[rCBottom-7-e]3fr[rDoor-7-e];
+			   "
+		 >
+		<button id="pHeader-7" class="pHeader"><strong>Dispensers<sup>&lambda;</sup></strong></button>
+		<button id="cInformation-7" class="cCommon cSecondary">Information</button>
+		<button id="cHint-7" class="cCommon cSecondary">Hint</button>
+		<button id="cSolution-7" class="cCommon cSecondary">Solution</button>
 
-	<button id="cell-21" class="cell limb edge-top edge-bottom edge-left nothing-right"></button>
-	<button id="cell-22" class="cell torso thin-top thin-bottom thin-left thin-right"></button>
-	<button id="cell-23" class="cell torso edge-top thin-bottom nothing-left thin-right"></button>
-	<button id="cell-24" class="cell torso edge-top thin-bottom nothing-left nothing-right"></button>
-	<button id="cell-25" class="cell torso edge-top thin-bottom thin-left nothing-right"></button>
-	<button id="cell-26" class="cell torso thin-top thin-bottom thin-left thin-right"></button>
-	<button id="cell-27" class="cell limb edge-top edge-bottom nothing-left edge-right"></button>
+		<div id="panel-72">
+			<div id="dTile-72-11" class="dTile"></div>
+			<div id="dTile-72-12" class="dTile"></div>
+			<div id="dTile-72-13" class="dTile"></div>
+			<div id="dTile-72-14" class="dTile"></div>
+			<div id="dTile-72-15" class="dTile"></div>
+			<div id="dTile-72-16" class="dTile"></div>
+			<div id="dTile-72-17" class="dTile"></div>
+			<div id="dTile-72-21" class="dTile"></div>
+			<div id="dTile-72-22" class="dTile"></div>
+			<div id="dTile-72-23" class="dTile"></div>
+			<div id="dTile-72-24" class="dTile"></div>
+			<div id="dTile-72-25" class="dTile"></div>
+			<div id="dTile-72-26" class="dTile"></div>
+			<div id="dTile-72-27" class="dTile"></div>
 
-	<button id="cell-32" class="cell torso nothing-top nothing-bottom edge-left thin-right"></button>
-	<button id="cell-36" class="cell torso nothing-top nothing-bottom thin-left edge-right"></button>
-    <div id="hole-top" class="hole"></div>
+			<div id="dContainer-72-11" class="dContainer"></div>
+			<div id="dContainer-72-12" class="dContainer"></div>
+			<div id="dContainer-72-13" class="dContainer"></div>
+			<div id="dContainer-72-14" class="dContainer"></div>
+			<div id="dContainer-72-15" class="dContainer"></div>
+			<div id="dContainer-72-16" class="dContainer"></div>
+			<div id="dContainer-72-17" class="dContainer"></div>
+			<div id="dContainer-72-21" class="dContainer"></div>
+			<div id="dContainer-72-22" class="dContainer"></div>
+			<div id="dContainer-72-23" class="dContainer"></div>
+			<div id="dContainer-72-24" class="dContainer"></div>
+			<div id="dContainer-72-25" class="dContainer"></div>
+			<div id="dContainer-72-26" class="dContainer"></div>
+			<div id="dContainer-72-27" class="dContainer"></div>
 
-	<button id="cell-41" class="cell limb edge-top edge-bottom edge-left nothing-right"></button>
-	<button id="cell-42" class="cell torso thin-top thin-bottom thin-left thin-right"></button>
-	<button id="cell-43" class="cell torso thin-top thin-bottom nothing-left thin-right"></button>
-	<button id="cell-44" class="cell torso thin-top thin-bottom nothing-left nothing-right"></button>
-	<button id="cell-45" class="cell torso thin-top thin-bottom thin-left nothing-right"></button>
-	<button id="cell-46" class="cell torso thin-top thin-bottom thin-left thin-right"></button>
-	<button id="cell-47" class="cell limb edge-top edge-bottom nothing-left edge-right"></button>
-	
-	<button id="cell-52" class="cell torso nothing-top nothing-bottom edge-left thin-right"></button>
-	<button id="cell-56" class="cell torso nothing-top nothing-bottom thin-left edge-right"></button>
-    <div id="hole-bottom" class="hole"></div>
+			<button id="mSquare-72-1" class="mSquare mSquare-lt">1</button>
+			<button id="mSquare-72-2" class="mSquare mSquare-lt">2</button>
+			<button id="mSquare-72-3" class="mSquare mSquare-ltr">3</button>
+			<button id="mSquare-72-4" class="mSquare mSquare-lt">4</button>
+			<button id="mSquare-72-5" class="mSquare mSquare-lt">5</button>
+			<button id="mSquare-72-6" class="mSquare mSquare-ltr">6</button>
+			<button id="mSquare-72-7" class="mSquare mSquare-blt">7</button>
+			<button id="mSquare-72-8" class="mSquare mSquare-blt">8</button>
+			<button id="mSquare-72-9" class="mSquare mSquare-bltr">9</button>
+			
+			<button id="TickCross-72" class="tickCross">&cross;</button>
 
-	<button id="cell-61" class="cell limb edge-top edge-bottom edge-left nothing-right"></button>
-	<button id="cell-62" class="cell torso thin-top thin-bottom thin-left thin-right"></button>
-	<button id="cell-63" class="cell torso thin-top edge-bottom nothing-left thin-right"></button>
-	<button id="cell-64" class="cell torso thin-top edge-bottom nothing-left nothing-right"></button>
-	<button id="cell-65" class="cell torso thin-top edge-bottom thin-left nothing-right"></button>
-	<button id="cell-66" class="cell torso thin-top thin-bottom thin-left thin-right"></button>
-	<button id="cell-67" class="cell limb edge-top edge-bottom nothing-left edge-right"></button>
+			<div id="cBackground-72" class="cBackground plateColour"></div>
+			<button id="cDispense-72-1" class="cDispense"><strong>&bigtriangledown;</strong></button>
+			<button id="cDispense-72-2" class="cDispense"><strong>&bigtriangledown;</strong></button>
+		</div>
+		
+		<div id="panel-73">
+			<div id="dTile-73-11" class="dTile"></div>
+			<div id="dTile-73-12" class="dTile"></div>
+			<div id="dTile-73-13" class="dTile"></div>
+			<div id="dTile-73-14" class="dTile"></div>
+			<div id="dTile-73-15" class="dTile"></div>
+			<div id="dTile-73-16" class="dTile"></div>
+			<div id="dTile-73-17" class="dTile"></div>
+			<div id="dTile-73-21" class="dTile"></div>
+			<div id="dTile-73-22" class="dTile"></div>
+			<div id="dTile-73-23" class="dTile"></div>
+			<div id="dTile-73-24" class="dTile"></div>
+			<div id="dTile-73-25" class="dTile"></div>
+			<div id="dTile-73-26" class="dTile"></div>
+			<div id="dTile-73-27" class="dTile"></div>
+			<div id="dTile-73-31" class="dTile"></div>
+			<div id="dTile-73-32" class="dTile"></div>
+			<div id="dTile-73-33" class="dTile"></div>
+			<div id="dTile-73-34" class="dTile"></div>
+			<div id="dTile-73-35" class="dTile"></div>
+			<div id="dTile-73-36" class="dTile"></div>
+			<div id="dTile-73-37" class="dTile"></div>
 
-	<button id="cell-72" class="cell limb nothing-top edge-bottom edge-left edge-right"></button>
-	<button id="cell-76" class="cell limb nothing-top edge-bottom edge-left edge-right"></button>
-	
-	<button id="word-1" class="word word-left">WORD1</button>
-	<button id="word-2" class="word word-right">WORD2</button>
-	<button id="word-3" class="word word-centre">WORD3</button>
-	<button id="word-4" class="word word-left">WORD4</button>
-	<button id="word-5" class="word word-right">WORD5</button>
-	
-	<button id="control-clear" class="control control-secondary">Clear</button>
-	<button id="control-forward" class="control control-primary">FORWARD</button>
-	<button id="control-backward" class="control control-primary">BACKWARD</button>
+			<div id="dContainer-73-11" class="dContainer"></div>
+			<div id="dContainer-73-12" class="dContainer"></div>
+			<div id="dContainer-73-13" class="dContainer"></div>
+			<div id="dContainer-73-14" class="dContainer"></div>
+			<div id="dContainer-73-15" class="dContainer"></div>
+			<div id="dContainer-73-16" class="dContainer"></div>
+			<div id="dContainer-73-17" class="dContainer"></div>
+			<div id="dContainer-73-21" class="dContainer"></div>
+			<div id="dContainer-73-22" class="dContainer"></div>
+			<div id="dContainer-73-23" class="dContainer"></div>
+			<div id="dContainer-73-24" class="dContainer"></div>
+			<div id="dContainer-73-25" class="dContainer"></div>
+			<div id="dContainer-73-26" class="dContainer"></div>
+			<div id="dContainer-73-27" class="dContainer"></div>
+			<div id="dContainer-73-31" class="dContainer"></div>
+			<div id="dContainer-73-32" class="dContainer"></div>
+			<div id="dContainer-73-33" class="dContainer"></div>
+			<div id="dContainer-73-34" class="dContainer"></div>
+			<div id="dContainer-73-35" class="dContainer"></div>
+			<div id="dContainer-73-36" class="dContainer"></div>
+			<div id="dContainer-73-37" class="dContainer"></div>
+			
+			<button id="mSquare-73-1" class="mSquare mSquare-lt">1</button>
+			<button id="mSquare-73-2" class="mSquare mSquare-lt">2</button>
+			<button id="mSquare-73-3" class="mSquare mSquare-ltr">3</button>
+			<button id="mSquare-73-4" class="mSquare mSquare-lt">4</button>
+			<button id="mSquare-73-5" class="mSquare mSquare-lt">5</button>
+			<button id="mSquare-73-6" class="mSquare mSquare-ltr">6</button>
+			<button id="mSquare-73-7" class="mSquare mSquare-blt">7</button>
+			<button id="mSquare-73-8" class="mSquare mSquare-blt">8</button>
+			<button id="mSquare-73-9" class="mSquare mSquare-bltr">9</button>
 
-  </div>
+			<div id="cBackground-73" class="cBackground"></div>
+			<button id="cDispense-73-1" class="cDispense"><strong>&bigtriangledown;</strong></button>
+			<button id="cDispense-73-2" class="cDispense"><strong>&bigtriangledown;</strong></button>
+			<button id="cDispense-73-3" class="cDispense"><strong>&bigtriangledown;</strong></button>
+		</div>
+		
+		<button id="cReset-7" class="cCommon cSecondary">Reset</button>
+		<button id="cBack-7" class="cCommon cSecondary cBack">&bigtriangleup;</button>
+	</div>
 </body>
 </html>
+
 <script>
+//const doorHeightAbovePanel = 21;
+const doorHeightAbovePanel = 22;
+const doorHeightBelowPanel = 12;
+const numGridColumns = 59;
+
 console.log('Thank you');
 console.log(`${window.innerHeight}px`);
 console.log(`${window.innerWidth}px`);
 console.log(`${window.devicePixelRatio}`);
-// const styleSheet = document.styleSheets[0]
-// const edgeTopRule = [...styleSheet.cssRules].find((r) => r.selectorText === ".edge-top");
-// edgeTopRule.style.setProperty("border-top-width", "0.08em")
-function updateFontSize() {
+
+function updateFontSize(MaxTilesInADispenser, numGridRows, numGridColumns) {
   console.log('updateFontSize called');
-  const numGridRows = 36;
-  const numGridColumns = 20;
+  console.log(numGridRows);
+  console.log(numGridColumns);
   
   let innerDimension = 0
   let gridDimension = 0
@@ -694,10 +943,11 @@ function updateFontSize() {
   let roundedSpareHeight = roundedDeviceSpareHeight / window.devicePixelRatio;
   console.log('roundedSpareHeight');
   console.log(roundedSpareHeight);
-  let container = document.querySelector("#container");
-  let instructions = document.querySelector("#instructions");
-  container.style.top = `${roundedSpareHeight / 2}px`;
-  instructions.style.top = `${roundedSpareHeight / 2}px`;
+  const doorId = "#door-" + String(MaxTilesInADispenser);
+  let door = document.querySelector(doorId);
+  let information = document.querySelector("#information");
+  door.style.top = `${roundedSpareHeight / 2}px`;
+  information.style.top = `${roundedSpareHeight / 2}px`;
   
   let spareWidth = window.innerWidth - (fontSize * numGridColumns);
   console.log('spareWidth');
@@ -711,13 +961,14 @@ function updateFontSize() {
   let roundedSpareWidth = roundedDeviceSpareWidth / window.devicePixelRatio;
   console.log('roundedSpareWidth');
   console.log(roundedSpareWidth);
-  container.style.left = `${roundedSpareWidth / 2}px`;
-  instructions.style.left = `${roundedSpareWidth / 2}px`;
+  door.style.left = `${roundedSpareWidth / 2}px`;
+  information.style.left = `${roundedSpareWidth / 2}px`;
   
   return fontSize;
 }
-let fontSize = updateFontSize();
+//let fontSize = updateFontSize();
 
+/*
 function setBorderWidths(fontSize, internalFraction, externalFraction) {
   let internalWidth = Math.floor(fontSize * internalFraction * window.devicePixelRatio);
   if (internalWidth == 0) {
@@ -756,722 +1007,616 @@ function setBorderWidths(fontSize, internalFraction, externalFraction) {
   edgeRightRule.style.setProperty("border-right-width", `${increasingExternalFraction}em`);
 }
 setBorderWidths(fontSize, 0.02, 0.05);
+*/
 
-function instructionsButtonClicked() {
-  console.log("Instructions button clicked");
-  const styleSheet = document.styleSheets[0]
-  const instructionsRule = [...styleSheet.cssRules].find((r) => r.selectorText === "#instructions");
-  instructionsRule.style.setProperty("z-index", `3`);
-}
-let instructionsButton = document.querySelector("#control-instructions");
-instructionsButton.onclick = function() {instructionsButtonClicked();}
 
-function backButtonClicked() {
-  console.log("Back button clicked");
-  const styleSheet = document.styleSheets[0]
-  const instructionsRule = [...styleSheet.cssRules].find((r) => r.selectorText === "#instructions");
-  instructionsRule.style.setProperty("z-index", `1`);
-}
-let backButton = document.querySelector("#control-back");
-backButton.onclick = function() {backButtonClicked();}
+//const offGridColourOffGrid = `black`;
+//const offGridColourInGrid = `gray`;
+//const gridColourNotSelected = `gray`;
+//const gridColourSelected = `rgb(0%,0%,80%)`;
+//const gridColourComplete = `black`;
+//const gridColourHintAlone = `black`;
+//const gridColourSolution = `black`;
+
 
 //Raw data
 let puzzle = {
-	words:[],
-	hints: [],
+	dispenserFullSpec:[],
+	numDispensers: undefined,
+	dispenserHeightSpec: [undefined],
+	maxDispenserHeight: undefined,
+	matrixSpec: [],
+	hint: [],
 	solution: []
 };
 
-function initialisePuzzle(words, hints) {
-	puzzle.words = words;
-	puzzle.hints = hints;
+function initialisePuzzle(dispenserSpec, matrixSpec, solution) {
+	puzzle.dispenserFullSpec = dispenserSpec;
+	puzzle.numDispensers = puzzle.dispenserFullSpec.length - 1;
+	for (let i = 1; i <= puzzle.numDispensers; i++) puzzle.dispenserHeightSpec[i] = puzzle.dispenserFullSpec[i].length;
+	puzzle.maxDispenserHeight = 1;
+	for (let d = 1; d <= puzzle.numDispensers; d++) {
+		if (puzzle.dispenserHeightSpec[d] > puzzle.maxDispenserHeight) puzzle.maxDispenserHeight = puzzle.dispenserHeightSpec[d];
+	};
+	puzzle.matrixSpec = matrixSpec;
+	puzzle.hint = hint;
 	puzzle.solution = solution;
+	console.log(puzzle);
 }
 
 //From JSON
-const words = [undefined, "ROWENA", "LEANNA", "RENATA", "ROSALEE", "RAMONA"];
-const hints = [["R", 4, 1], ["N", 2, 5]];
-const solution = [undefined, [4, 1], [2, 1], [5, 1], [1, 1], [3, 1]];
-initialisePuzzle(words, hints, solution);
-
-class RowColumn {
-	constructor(row, column) {
-		this.row = row;
-		this.column = column;
-	}
-}
-
-class LinePosition {
-	constructor(line, position) {
-		this.line = line;
-		this.position = position;
-	}
-}
-
-class Intersection {
-	constructor(self, other) {
-		this.self = self;
-		this.other = other;
-	}
-}
-	
-class Line {
-	constructor(num, matrixCoords, intersections) {
-		this.num = num;
-		this.matrixCoords = matrixCoords;
-		this.intersections = intersections;
-		this.isOccupied = false;
-		this.wordLetters = new Array(8);
-		this.hintLetters = [undefined, null, null, null, null, null, null, null]
-	}
-	
-	doesWordFit(word, wordStartPosition) {
-		if (this.isOccupied) return false;
-		for (let intersection of this.intersections) {
-			const otherLine = grid.lines[intersection.other.line];
-			if (!otherLine.isOccupied) continue;
-			const otherLetter = otherLine.wordLetters[intersection.other.position];
-			if (word[intersection.self.position - wordStartPosition] != otherLetter) return false;
-		}
-		for (let position = 1; position < 8; position++) {
-			if (this.hintLetters[position] != null) {
-				if (wordStartPosition > position) return false;
-				const wordEndPosition = wordStartPosition + word.length - 1;
-				if (wordEndPosition < position) return false;				
-				if (word[position - wordStartPosition] != this.hintLetters[position]) return false;
-			}
-		}
-		return true;
-	}
-	
-	whereDoesWordFit(word) {
-		if (this.isOccupied) { return [] };
-		if (word.length == 5) {
-			if (this.doesWordFit(word, 2)) return [new LinePosition(this.num, 2)]; else return [];
-		}
-		if (word.length == 7) {
-			if (this.doesWordFit(word, 1)) return [new LinePosition(this.num, 1)]; else return [];
-		}
-		let possibleFits = [];
-		if (this.doesWordFit(word, 1)) possibleFits.push(new LinePosition(this.num, 1));
-		if (this.doesWordFit(word, 2)) possibleFits.push(new LinePosition(this.num, 2));
-		return possibleFits;
-	}
-
-	setOccupied() {
-		this.isOccupied = true;
-	}
-
-	setUnoccupied() {
-		this.isOccupied = false;
-	}
-	
-	writeWord(word, wordStartPosition) {
-		for (let position = 1; position < 8; position++) {
-			this.wordLetters[position] = " ";
-		}
-		for (let position = wordStartPosition; position < wordStartPosition + word.length; position++) {
-			const letter = word[position - wordStartPosition];
-			this.wordLetters[position] = letter;
-			const matrixCoord = this.matrixCoords[position];
-			grid.elementMatrix[matrixCoord.row][matrixCoord.column].textContent = letter;
-		}
-	}
-	
-	writeHints() {
-		for (let position = 1; position < 8; position++) {
-			if (this.hintLetters[position] != null) {
-				const letter = this.hintLetters[position];
-				const content = "<strong>" + letter + "</strong>";
-				const matrixCoord = this.matrixCoords[position];
-				grid.elementMatrix[matrixCoord.row][matrixCoord.column].innerHTML = content;
-				if (!this.isOccupied) {
-					grid.styleMatrix[matrixCoord.row][matrixCoord.column].style.setProperty("color", gridColourHintAlone);
-				}
-			}
-		}
-	}
-	
-	clear() {
-		for (let position = 1; position < 8; position++) {
-			const matrixCoord = this.matrixCoords[position];
-			grid.elementMatrix[matrixCoord.row][matrixCoord.column].textContent = " ";
-		}
-	}
-	
-	setColour(colour) {
-		for (let position = 1; position < 8; position++) {
-			const matrixCoord = this.matrixCoords[position];
-			grid.styleMatrix[matrixCoord.row][matrixCoord.column].style.setProperty("color", colour);
-		}
-	}
-	
-	addHint(letter, position) {
-		this.hintLetters[position] = letter;
-	}
-	
-	removeHints() {
-		for (let position = 1; position < 8; position++) {
-			this.hintLetters[position] = null;
-		}
-	}
-}
-
-let grid = {
-	lines: [],
-	elementMatrix: [],
-	styleMatrix: [],
-	isComplete: false
-}
-
-function initialiseGrid() {
-	grid.lines[1] = new Line (
-						1,
-						[undefined,
-						 new RowColumn(2, 1),
-						 new RowColumn(2, 2),
-						 new RowColumn(2, 3),
-						 new RowColumn(2, 4),
-						 new RowColumn(2, 5),
-						 new RowColumn(2, 6),
-						 new RowColumn(2, 7)
-						],
-						[new Intersection(new LinePosition(0, 2), new LinePosition(4, 2)), 
-						 new Intersection(new LinePosition(0, 6), new LinePosition(5, 2))
-						]
-					);
-				
-	grid.lines[2] = new Line(
-						2,
-						[undefined,
-						 new RowColumn(4, 1),
-						 new RowColumn(4, 2),
-						 new RowColumn(4, 3),
-						 new RowColumn(4, 4),
-						 new RowColumn(4, 5),
-						 new RowColumn(4, 6),
-						 new RowColumn(4, 7)
-						],
-						[new Intersection(new LinePosition(0, 2), new LinePosition(4, 4)), 
-						 new Intersection(new LinePosition(0, 6), new LinePosition(5, 4))
-						]
-					);
-				
-	grid.lines[3] = new Line(
-						3,
-						[undefined,
-						 new RowColumn(6, 1),
-						 new RowColumn(6, 2),
-						 new RowColumn(6, 3),
-						 new RowColumn(6, 4),
-						 new RowColumn(6, 5),
-						 new RowColumn(6, 6),
-						 new RowColumn(6, 7)
-						],
-						[new Intersection(new LinePosition(0, 2), new LinePosition(4, 6)), 
-						 new Intersection(new LinePosition(0, 6), new LinePosition(5, 6))
-						]
-					);
-				
-	grid.lines[4] = new Line(
-						4,
-						[undefined,
-						 new RowColumn(1, 2),
-						 new RowColumn(2, 2),
-						 new RowColumn(3, 2),
-						 new RowColumn(4, 2),
-						 new RowColumn(5, 2),
-						 new RowColumn(6, 2),
-						 new RowColumn(7, 2)
-						],
-						[new Intersection(new LinePosition(0, 2), new LinePosition(1, 2)), 
-						 new Intersection(new LinePosition(0, 4), new LinePosition(2, 2)), 
-						 new Intersection(new LinePosition(0, 6), new LinePosition(3, 2))
-						]
-					);
-				
-	grid.lines[5] = new Line(
-						5,
-						[undefined,
-						 new RowColumn(1, 6),
-						 new RowColumn(2, 6),
-						 new RowColumn(3, 6),
-						 new RowColumn(4, 6),
-						 new RowColumn(5, 6),
-						 new RowColumn(6, 6),
-						 new RowColumn(7, 6)
-						],
-						[new Intersection(new LinePosition(0, 2), new LinePosition(1, 6)), 
-						 new Intersection(new LinePosition(0, 4), new LinePosition(2, 6)), 
-						 new Intersection(new LinePosition(0, 6), new LinePosition(3, 6))
-						]
-					);
-
-	for (let i = 1; i <= 7; i++) {
-		grid.elementMatrix[i] = new Array(8)
-	};
-
-	for (let i = 1; i <= 7; i++) {
-		grid.styleMatrix[i] = new Array(8)
-	};
-
-	const cellCoords = ["12", "16",
-						"21", "22", "23", "24", "25", "26", "27",
-						"32", "36",
-						"41", "42", "43", "44", "45", "46", "47",
-						"52", "56",
-						"61", "62", "63", "64", "65", "66", "67",
-						"72", "76"
-					   ];
-
-	for (let coord of cellCoords) {
-		cellId = "#cell-" + coord;
-		console.log(cellId);
-		const cellElement = document.querySelector(cellId);
-		const letters = [...coord];
-		const row = Number(letters[0]);
-		const column = Number(letters[1]);
-		console.log(row);
-		console.log(column);
-		grid.elementMatrix[row][column] = cellElement;
-	};
-				   
-	const styleSheet = document.styleSheets[0];
-	for (let coord of cellCoords) {
-		cellId = "#cell-" + coord;
-		console.log(cellId);
-		const cellRule = [...styleSheet.cssRules].find((r) => r.selectorText === cellId);
-		const letters = [...coord];
-		const row = Number(letters[0]);
-		const column = Number(letters[1]);
-		console.log(row);
-		console.log(column);
-		grid.styleMatrix[row][column] = cellRule;
-	};
-	
-	grid.isComplete = false;
-};
-initialiseGrid();
-
-function checkForCompleteness() {
-	let isComplete = true;
-	for (i = 1; i <= 5; i++) {
-		const word = solve.words[i];
-		if (!word.inGrid) {
-			isComplete = false;
-			break;
-		}
-	}
-	grid.isComplete = isComplete;
-}
-
-function removeWordsFromGrid() {
-	for (i = 1; i <= 5; i++) {
-		//grid.lines[i].clear();
-		grid.lines[i].setUnoccupied();
-	}
-	grid.isComplete = false;
-}
-
-function removeHintsFromGrid() {
-		for (i = 1; i <= 5; i++) {
-			grid.lines[i].removeHints();
-		}
-	}
-	
-function refreshGrid() {
-	for (i = 1; i <= 5; i++) {
-		grid.lines[i].clear();
-	}
-	if (grid.isComplete) {
-		for (i = 1; i <= 5; i++) {
-			const word = solve.words[i];
-			grid.lines[word.place.line].setColour(gridColourComplete);
-			grid.lines[word.place.line].writeWord(word.spelling, word.place.position);		
-		}
-	}
-	else {
-		for (i = 1; i <= 5; i++) {
-			const word = solve.words[i];
-			if (word.inGrid) {
-				grid.lines[word.place.line].setColour(gridColourNotSelected);
-				grid.lines[word.place.line].writeWord(word.spelling, word.place.position);		
-			}
-		}
-		if (solve.selectedWordNum != 0) {
-			grid.lines[solve.words[solve.selectedWordNum].place.line].setColour(gridColourSelected);
-		}
-	}
-	for (i = 1; i <= 5; i++) {
-		grid.lines[i].writeHints();
-	}
-}
-
-let offGrid = {
-	styleMatrix: [6]
-}
-
-function interleaveSpaces(word) {
-	modifiedWord = "";
-	for (i = 0; i < word.length - 1; i++) modifiedWord = modifiedWord + word[i] + " ";
-	return modifiedWord + word[word.length - 1];
-}
-
-function initialiseOffGrid() {
-	const word1Button = document.querySelector("#word-1");
-	word1Button.textContent = interleaveSpaces(puzzle.words[1]);
-	word1Button.onclick = function() {wordButtonClicked(1);}
-
-	const word2Button = document.querySelector("#word-2");
-	word2Button.textContent = interleaveSpaces(puzzle.words[2]);
-	word2Button.onclick = function() {wordButtonClicked(2);}
-	
-	const word3Button = document.querySelector("#word-3");
-	word3Button.textContent = interleaveSpaces(puzzle.words[3]);
-	word3Button.onclick = function() {wordButtonClicked(3);}
-	
-	const word4Button = document.querySelector("#word-4");
-	word4Button.textContent = interleaveSpaces(puzzle.words[4]);	
-	word4Button.onclick = function() {wordButtonClicked(4);}
-	
-	const word5Button = document.querySelector("#word-5");
-	word5Button.textContent = interleaveSpaces(puzzle.words[5]);	
-	word5Button.onclick = function() {wordButtonClicked(5);}
-	
-	const styleSheet = document.styleSheets[0];
-	for (i = 1; i <= 5; i++) {
-		const wordId = "#word-" + String(i);
-		const wordRule = [...styleSheet.cssRules].find((r) => r.selectorText === wordId);
-		offGrid.styleMatrix[i] = wordRule;
-	}
-}
-initialiseOffGrid();
-
-function offGridWordIndicateIn(wordNum) {
-	offGrid.styleMatrix[wordNum].style.setProperty("color", offGridColourInGrid);
-}
-
-function offGridWordIndicateOut(wordNum) {
-	offGrid.styleMatrix[wordNum].style.setProperty("color", offGridColourOffGrid);
-}
-
-function offGridIndicateAllWordsIn() {
-	for (i = 1; i <= 5; i++) {
-		offGridWordIndicateIn(i);
-	}}
-
-function offGridIndicateAllWordsOut() {
-	for (i = 1; i <= 5; i++) {
-		offGridWordIndicateOut(i);
-	}
-}
-
-const forwardTryCycles = [undefined,
-						  undefined,
-						  undefined,
-						  undefined,
-						  undefined,
-						  [new LinePosition(1, 2),
-						   new LinePosition(2, 2),
-						   new LinePosition(3, 2),
-						   new LinePosition(4, 2),
-						   new LinePosition(5, 2)
-						  ],
-						  [new LinePosition(1, 1),
-						   new LinePosition(1, 2),
-						   new LinePosition(2, 1),
-						   new LinePosition(2, 2),
-						   new LinePosition(3, 1),
-						   new LinePosition(3, 2),
-						   new LinePosition(4, 1),
-						   new LinePosition(4, 2),
-						   new LinePosition(5, 1),
-						   new LinePosition(5, 2)
-						  ],
-						  [new LinePosition(1, 1),
-						   new LinePosition(2, 1),
-						   new LinePosition(3, 1),
-						   new LinePosition(4, 1),
-						   new LinePosition(5, 1),
-						  ]
-						 ];
-
-const backwardTryCycles = [undefined,
-						   undefined,
-						   undefined,
-						   undefined,
-						   undefined,
-						   [new LinePosition(5, 2),
-						    new LinePosition(4, 2),
-						    new LinePosition(3, 2),
-						    new LinePosition(2, 2),
-						    new LinePosition(1, 2)
-						   ],
-						   [new LinePosition(5, 2),
-						    new LinePosition(5, 1),
-						    new LinePosition(4, 2),
-						    new LinePosition(4, 1),
-						    new LinePosition(3, 2),
-						    new LinePosition(3, 1),
-						    new LinePosition(2, 2),
-						    new LinePosition(2, 1),
-						    new LinePosition(1, 2),
-						    new LinePosition(1, 1)
-						   ],
-						   [new LinePosition(5, 1),
-						    new LinePosition(4, 1),
-						    new LinePosition(3, 1),
-						    new LinePosition(2, 1),
-						    new LinePosition(1, 1),
-						   ]
-						  ];
-						 
-function isSamePlace(place1, place2) {
-	return place1.line == place2.line && place1.position == place2.position;
-}
-				 
-function findTryCycleIndex(tryCycle, place) {
-	for (i = 0; i < tryCycle.length; i++) {
-		if (isSamePlace(tryCycle[i], place)) return i;
-	}
-}
-
-function getNextPlaceInTryCycle(tryCycle, currentPlace) {
-	currentIndex = findTryCycleIndex(tryCycle, currentPlace);
-	if (currentIndex == tryCycle.length - 1)
-		return tryCycle[0]
-	else
-		return tryCycle[currentIndex + 1]	
-}
-
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
-}
+const dispenserSpec = [undefined, "pq","rstpqrs"];
+//const dispenserSpec = [undefined, "p", "qrstpqr", "s"];
+//const dispenserSpec = [undefined, "pqr", "stp", "qrs"];
+//const dispenserSpec = [undefined, "pqr", "st", "pq", "rs"];
+const matrixSpec = [8, 5, 2, 1, 3, 4, 6, 7, 9];
+//this needs converting. 6 is not position 6!
+const hint = ["p", 6];
+const solution = [1, 1, 2, 2, 2, 2, 2, 2, 2];
+initialisePuzzle(dispenserSpec, matrixSpec, solution);
+//console.log(puzzle);
 
 
-function wordButtonClicked(wordNum) {
-	console.log("Word button clicked");
-	console.log(wordNum);
-	console.log(solve.words[wordNum]);
-	if (grid.isComplete) return;
-	if (!solve.words[wordNum].inGrid) {
-		console.log("Word not in grid");
-		const word = solve.words[wordNum].spelling;
-		allPossibleFits = [];
-		for (let i = 1; i < grid.lines.length; i++) {
-			possibleFits = grid.lines[i].whereDoesWordFit(word);
-			for (let fit of possibleFits) {	allPossibleFits.push(fit); }
-		}
-		console.log(allPossibleFits);
-		if (allPossibleFits.length == 0) return;
-		const randomFit = allPossibleFits[getRandomInt(allPossibleFits.length)];
-		console.log(randomFit);
-		grid.lines[randomFit.line].setOccupied();
-		solve.selectedWordNum = wordNum;
-		solve.words[wordNum].inGrid = true;
-		solve.words[wordNum].place = randomFit;
-		offGridWordIndicateIn(wordNum);
-	}
-	else if (solve.selectedWordNum == wordNum) {
-		console.log("Word in grid. Selected");
-		const place = solve.words[solve.selectedWordNum].place;
-		grid.lines[place.line].setUnoccupied();
-		solve.selectedWordNum = 0;
-		solve.words[wordNum].inGrid = false;
-		offGridWordIndicateOut(wordNum);
-	}
-	else {
-		console.log("Word in grid. Not selected");
-		solve.selectedWordNum = wordNum;
-	}
-	checkForCompleteness();
-	refreshGrid();
-}
-
-function wardButtonClicked(tryCycles) {
-	if (grid.isComplete) return;
-	console.log("ward button clicked");
-	if (solve.selectedWordNum != 0) {
-		const currentPlace = solve.words[solve.selectedWordNum].place;
-		grid.lines[currentPlace.line].setUnoccupied();
-		const tryCycle = tryCycles[solve.words[solve.selectedWordNum].spelling.length]
-		let nextPlace = getNextPlaceInTryCycle(tryCycle, currentPlace);
-		while (true) {
-			console.log(nextPlace);
-			console.log(solve.words[solve.selectedWordNum].spelling)
-			if (grid.lines[nextPlace.line].doesWordFit(solve.words[solve.selectedWordNum].spelling, nextPlace.position)) {
-				grid.lines[nextPlace.line].setOccupied();
-				solve.words[solve.selectedWordNum].place = nextPlace;
-				break;
-			}
-			else {
-				nextPlace = getNextPlaceInTryCycle(tryCycle, nextPlace);
-			}
-		}
-		checkForCompleteness();
-		refreshGrid();
-	}
-}
-
-const forwardButton = document.querySelector("#control-forward");
-forwardButton.onclick = function() {
-	console.log("Forward button clicked");
-	wardButtonClicked(forwardTryCycles);
-}
-
-const backwardButton = document.querySelector("#control-backward");
-backwardButton.onclick = function() {
-	console.log("Backward button clicked");
-	wardButtonClicked(backwardTryCycles);
-}
-
-function removeAnyWordsFromGrid() {
-	for (i = 1; i <= 5; i++) {
-		grid.lines[i].setUnoccupied();
-	}
-	grid.isComplete = false;
-	offGridIndicateAllWordsOut();
-	resetSolveWords();
-}
-
-const clearButton = document.querySelector("#control-clear");
-clearButton.onclick = function() {
-	console.log("Clear button clicked");
-	let noWordsInGrid = true;
-	for (i = 1; i <= 5; i++) {
-		if (solve.words[i].inGrid) {
-			noWordsInGrid = false;
-			break;
-		}
-	}
-	if (noWordsInGrid) {
-		//Remove any hints
-		//for (i = 1; i <= 5; i++) {
-		//	grid.lines[i].removeHints();
-		//}
-		removeHintsFromGrid();
-		//solve.numHintsGiven = 0;
-		resetSolveHints();
-	}
-	else {
-		//Remove words
-		removeAnyWordsFromGrid();
-		//for (i = 1; i <= 5; i++) {
-		//	grid.lines[i].setUnoccupied();
-		//}
-		//grid.isComplete = false;
-		//offGridIndicateAllWordsOut();
-		//resetSolve();
-	}
-	refreshGrid();
-}
-
-const hintButton = document.querySelector("#control-hint");
-hintButton.onclick = function() {
-	console.log("Hint button clicked");
-	if (solve.hints.length == solve.numHintsGiven) return;
-	removeAnyWordsFromGrid();
-	const hint = solve.hints[solve.numHintsGiven];
-	grid.lines[hint.place.line].addHint(hint.letter, hint.place.position);
-	solve.numHintsGiven += 1;
-	refreshGrid();
-}
-
-const solutionButton = document.querySelector("#control-solution");
-solutionButton.onclick = function() {
-	console.log("Solution button clicked");
-	removeWordsFromGrid();
-	removeHintsFromGrid();
-	offGridIndicateAllWordsIn();
-	for (i = 1; i <= 5; i++) {
-		solve.words[i].place = new LinePosition(puzzle.solution[i][0], puzzle.solution[i][1]);
-		solve.words[i].inGrid = true;
-	}
-	solve.selectedWordNum = 0;
-	solve.numHintsGiven = 0;
-	grid.isComplete = true;
-	refreshGrid();
-}
-
-const offGridColourOffGrid = `black`;
-const offGridColourInGrid = `gray`;
-const gridColourNotSelected = `gray`;
-const gridColourSelected = `rgb(0%,0%,80%)`;
-const gridColourComplete = `black`;
-const gridColourHintAlone = `black`;
-const gridColourSolution = `black`;
-
-class Word {
-	constructor(spelling) {
-		this.spelling = spelling;
-		this.inGrid = false;
-		this.place = null;
-	}
-}
-
-class Hint {
-	constructor(letter, place) {
-		this.letter = letter;
-		this.place = place;
-		this.inGrid = false;
-	}
-}
-
-//Raw data
-//let puzzle = {
-//	words:[],
+//let solve = {
+//	words: [],
+//	selectedWordNum: 0,
 //	hints: [],
-//	solution: []
-//};
-
-//function initialisePuzzle(words, hints) {
-//	puzzle.words = words;
-//	puzzle.hints = hints;
-//	puzzle.solution = solution;
+//	numHintsGiven: 0
 //}
 
-//From JSON
-//const words = [undefined, "ROWENA", "LEANNA", "RENATA", "ROSALEE", "RAMONA"];
-//const hints = [["R", 4, 1], ["N", 2, 5]];
-//const solution = [undefined, [4, 1], [2, 1], [5, 1], [1, 1], [3, 1]];
-//initialisePuzzle(words, hints, solution);
+//function initialiseSolve() {
+//	for (i = 1; i <= 5; i++) {
+//		solve.words[i] = new Word(puzzle.words[i]);
+//	}
+//	solve.selectedWordNum = 0;
+//	for (let hint of puzzle.hints) {
+//		solve.hints.push(new Hint(hint[0], new LinePosition(hint[1], hint[2])));
+//	}
+//	console.log(solve.hints);
+//	solve.numHintsGiven = 0;
+//}
+//initialiseSolve();
 
+//let anotherTile = document.createElement("div");
+//anotherTile.id = "dTile-41";
+//anotherTile.className = "dTile";
+//let panel = document.querySelector("#panel");
+//panel.append(anotherTile);
 
-let solve = {
-	words: [],
-	selectedWordNum: 0,
-	hints: [],
-	numHintsGiven: 0
-}
+//const tile_33_23 = document.querySelector("#dTile-33-23");
+//tile_33_23.remove();
 
-function initialiseSolve() {
-	for (i = 1; i <= 5; i++) {
-		solve.words[i] = new Word(puzzle.words[i]);
+//let spec = [undefined];
+//for (i = 1; i < puzzle.dispensers.length; i++) spec[i] = puzzle.dispensers[i].length;
+//const spec = [undefined, 2, 7, 1];
+//const spec = [undefined, 3, 2, 1];
+//const numDispensers = spec.length - 1;
+//let MaxTilesInADispenser = 1;
+//for (d = 1; d <= numDispensers; d++) {if (spec[d] > MaxTilesInADispenser) MaxTilesInADispenser = spec[d];};
+const doorId = "door-" + String(puzzle.maxDispenserHeight);
+const doorRef = document.getElementById(doorId);
+doorRef.style.display = `grid`;
+const panelId = "panel-" + String(puzzle.maxDispenserHeight) + String(puzzle.numDispensers);
+const panelRef = document.getElementById(panelId);
+panelRef.style.display = `grid`;
+const panelHeight = 3 + (1 + 7) * puzzle.maxDispenserHeight + 7 + (3 * 7) + 3 + 3 + 6;
+panelRef.style.height = `${panelHeight}em`;
+for (let d = 1; d <= puzzle.numDispensers; d++) {
+	const numTiles = puzzle.dispenserHeightSpec[d];
+	const containerId = "dContainer-" + String(puzzle.maxDispenserHeight) + String(puzzle.numDispensers) + "-" + String(d) + String(numTiles);
+	const containerRef = document.getElementById(containerId);
+	containerRef.style.display = `block`;
+	for (let t = 1; t <= numTiles; t++) {
+		const tileId = "dTile-" + String(puzzle.maxDispenserHeight) + String(puzzle.numDispensers) + "-" + String(d) + String(t);
+		const tileRef = document.getElementById(tileId);
+		tileRef.style.display = `block`;
 	}
-	solve.selectedWordNum = 0;
-	for (let hint of puzzle.hints) {
-		solve.hints.push(new Hint(hint[0], new LinePosition(hint[1], hint[2])));
+}
+for (let t = 1; t <= 9; t++) {
+	const tileId = "mSquare-" + String(puzzle.maxDispenserHeight) + String(puzzle.numDispensers) + "-" + String(t);
+	const tileRef = document.getElementById(tileId);
+	tileRef.style.display = `block`;
+}
+const doorStyle = doorRef.style.cssText;
+console.log(doorStyle);
+newDoorStyle = doorStyle.replace(/80/, String(panelHeight));
+console.log(newDoorStyle);
+doorRef.style.cssText = newDoorStyle;
+//Here to avoid risk of introducing "80" into the style string.
+const doorHeight = doorHeightAbovePanel + panelHeight + doorHeightBelowPanel;
+doorRef.style.height = `${doorHeight}em`;
+updateFontSize(puzzle.maxDispenserHeight, doorHeight, numGridColumns);
+
+
+const pColour = `black`;
+const qColour = `#0072B2`;
+const rColour = `#009E73`;
+const sColour = `#E69F00`;
+const tColour = `#CC79A7`;
+const dispenserBackgroundColour = `#F5F5F5`;
+const matrixBackgroundColour = `transparent`;
+const matrixForegroundColour = `#B2B2B2`;
+
+const tileColours = [];
+tileColours["p"] = pColour;
+tileColours["q"] = qColour;
+tileColours["r"] = rColour;
+tileColours["s"] = sColour;
+tileColours["t"] = tColour;
+
+
+class Tile {
+	constructor(dispenser, colour) {
+		this.dispenser = dispenser;
+		this.colour = colour;
 	}
-	console.log(solve.hints);
-	solve.numHintsGiven = 0;
 }
-initialiseSolve();
 
-function resetSolveWords() {
-	for (i = 1; i <= 5; i++) {
-		solve.words[i].inGrid = false;
+class Dispenser {
+	constructor(tileSequence, tileIdRoot) {
+		this.tileQueue = [];
+		for (let t = 0; t < tileSequence.length; t++) {
+			const tile = new Tile(this, tileColours[tileSequence[t]]);
+			this.tileQueue.unshift(tile);
+		}
+		
+		this.tileStyles = [];
+		const styleSheet = document.styleSheets[0];
+		for (let t = 1; t <= tileSequence.length; t++) {
+			const tileId = tileIdRoot + String(t);
+			const tileRule = [...styleSheet.cssRules].find((r) => r.selectorText === tileId);
+			this.tileStyles.push(tileRule);
+		}
+		
+		this.container = [];
+		for (let t = 0; t < this.tileQueue.length; t++) this.container[t] = this.tileQueue[t];
+				
+		this.numTilesInContainer = this.tileQueue.length;
 	}
-	solve.selectedWordNum = 0;
+	
+	refresh() {
+		for (let t = 0; t < this.container.length; t++) {
+			const colour = this.container[t] == null ? dispenserBackgroundColour : this.container[t].colour;
+			this.tileStyles[t].style.setProperty("background-color", colour);
+		}
+	}
+	
+	reset() {	
+		this.container = [];
+		for (let t = 0; t < this.tileQueue.length; t++) this.container[t] = this.tileQueue[t];
+		this.numTilesInContainer = this.tileQueue.length;
+	}
+	
+	takeTile() {
+		const tile = this.container.shift();
+		this.container.push(null);
+		this.numTilesInContainer--;
+		return tile;
+	}
+	
+	replaceTile() {
+		this.container.pop();
+		const tile = this.tileQueue[this.tileQueue.length - this.numTilesInContainer - 1];
+		this.container.unshift(tile);
+		this.numTilesInContainer++;		
+	}
 }
 
-function resetSolveHints() {
-	solve.numHintsGiven = 0;
+/*
+let matrix = {
+	squareStyles: [undefined],
+	squareTiles: [undefined],
+	numTilesInPlace: undefined,
+	squarePositions: []
 }
 
-function resetSolve() {
-	resetSolveWords();
-	resetSolveHints();
+function initialiseMatrix() {
+	matrix.squarePositions = puzzle.matrixSpec;
+	const squareIdRoot = "#mSquare-" + String(puzzle.maxDispenserHeight) + String(puzzle.numDispensers) + "-";
+	for (i = 0;  i < matrix.squarePositions.length; i++) {
+		const position = i + 1;
+		const squareId = squareIdRoot + String(matrix.squarePositions[i]);
+		const squareElement = document.querySelector(squareId);
+		squareElement.textContent = String(position);
+	}
+	const styleSheet = document.styleSheets[0];
+	for (s = 1; s <= 9; s++) {
+		const squareId = squareIdRoot + String(s);
+		const squareRule = [...styleSheet.cssRules].find((r) => r.selectorText === squareId);
+		matrix.squareStyles.push(squareRule);
+		matrix.squareTiles.push(null);
+		}
+	matrix.numTilesInPlace = 0;
 }
+initialiseMatrix();
+console.log(matrix);
+
+function placeTileInMatrix(tile) {
+//	const nextPosition = matrix.numTilesInPlace + 1;
+	const nextPosition = matrix.squarePositions[matrix.numTilesInPlace];
+	matrix.squareTiles[nextPosition] = tile;
+	matrix.numTilesInPlace++;
+}
+
+function removeTileFromMatrix() {
+//	const tile = matrix.squareTiles[matrix.numTilesInPlace];
+	const tileNum = matrix.squarePositions[matrix.numTilesInPlace - 1];
+	const tile = matrix.squareTiles[tileNum];
+	matrix.squareTiles[tileNum] = null;
+	matrix.numTilesInPlace--;
+	return tile;
+}
+
+function resetMatrix() {
+	for (s = 1; s <= 9; s++) matrix.squareTiles[s] = null;
+	matrix.numTilesInPlace = 0;	
+}
+
+function refreshMatrix() {
+	for (s = 1; s <= 9; s++) {
+		let backgroundColour = matrixBackgroundColour;
+		let foregroundColour = matrixForegroundColour;
+		if (matrix.squareTiles[s] != null) {
+			backgroundColour = matrix.squareTiles[s].colour;
+			foregroundColour = backgroundColour;
+		}
+		matrix.squareStyles[s].style.setProperty("background-color", backgroundColour);
+		matrix.squareStyles[s].style.setProperty("color", foregroundColour);
+	}
+}
+*/
+
+class Matrix {
+	constructor() {
+		this.squarePositions = puzzle.matrixSpec;
+		const squareIdRoot = "#mSquare-" + String(puzzle.maxDispenserHeight) + String(puzzle.numDispensers) + "-";
+		for (let i = 0;  i < this.squarePositions.length; i++) {
+			const position = i + 1;
+			const squareId = squareIdRoot + String(this.squarePositions[i]);
+			const squareElement = document.querySelector(squareId);
+			squareElement.textContent = String(position);
+		}
+
+		this.squareStyles = [undefined];
+		this.squareTiles = [undefined];
+		const styleSheet = document.styleSheets[0];
+		for (let s = 1; s <= 9; s++) {
+			const squareId = squareIdRoot + String(s);
+			const squareRule = [...styleSheet.cssRules].find((r) => r.selectorText === squareId);
+			this.squareStyles.push(squareRule);
+			this.squareTiles.push(null);
+			}
+			
+		this.numTilesInPlace = 0;
+		this.temporaryPosition = undefined;
+	}
+	
+	reset() {
+		for (let s = 1; s <= 9; s++) this.squareTiles[s] = null;
+		this.numTilesInPlace = 0;	
+	}
+
+	addTile(tile) {
+		const nextPosition = this.squarePositions[this.numTilesInPlace];
+		this.squareTiles[nextPosition] = tile;
+		this.numTilesInPlace++;
+	}
+	
+	removeTile() {
+		const tileNum = this.squarePositions[this.numTilesInPlace - 1];
+		const tile = this.squareTiles[tileNum];
+		this.squareTiles[tileNum] = null;
+		this.numTilesInPlace--;
+		return tile;
+	}
+	
+	addTemporaryTile(tile, position) {
+		this.temporaryPosition = this.squarePositions[position];
+		this.squareTiles[this.temporaryPosition] = tile;
+	}
+	
+	removeTemporaryTile() {
+		this.squareTiles[this.temporaryPosition] = null;
+	}
+	
+	refresh() {
+		for (let s = 1; s <= 9; s++) {
+			let backgroundColour = matrixBackgroundColour;
+			let foregroundColour = matrixForegroundColour;
+			if (this.squareTiles[s] != null) {
+				backgroundColour = this.squareTiles[s].colour;
+				foregroundColour = backgroundColour;
+			}
+			this.squareStyles[s].style.setProperty("background-color", backgroundColour);
+			this.squareStyles[s].style.setProperty("color", foregroundColour);
+		}
+	}
+}
+const matrix = new Matrix();
+
+
+class TickCross {
+	constructor() {
+		const elementId = "#TickCross-" + String(puzzle.maxDispenserHeight) + String(puzzle.numDispensers);
+		this.elementRef = document.querySelector(elementId);
+	}
+	
+	setTick() {
+		this.elementRef.innerHTML = "&check;"
+	}
+	
+	setCross() {
+		this.elementRef.innerHTML = "&cross;"
+	}
+	
+	show() {
+		this.elementRef.style.visibility = `visible`;
+	}
+	
+	hide() {
+		this.elementRef.style.visibility = `hidden`;
+	}
+}
+tickCross = new TickCross();
+
+
+class Control {
+	constructor(id, onClick) {
+	this.id = id;
+	this.onClick = onClick;
+	this.button = document.querySelector(id);
+	this.isEnabled = true;
+	this.disable();
+	}
+	
+	enable() {
+		if (!this.isEnabled) {
+			this.button.style.opacity = `1.0`;
+			this.button.addEventListener("click", this.onClick);
+			this.isEnabled = true;
+		}
+	}
+	
+	disable() {
+		if (this.isEnabled) {
+			this.button.style.opacity = `0.5`;
+			this.button.removeEventListener("click", this.onClick);
+			this.isEnabled = false;
+		}
+	}
+}
+
+
+let dispenseOnClicks = [undefined,
+						function() {solve.dispenseOnClick(1)},
+						function() {solve.dispenseOnClick(2)},
+						function() {solve.dispenseOnClick(3)},
+						function() {solve.dispenseOnClick(4)},
+					   ];
+
+function backOnClick() {solve.backOnClick();};
+function informationOnClick() {solve.informationOnClick();};
+function solutionOnClick() {solve.solutionOnClick();};
+function solutionTimerExpired() {solve.solutionTimerExpired();}
+function resetOnClick() {solve.resetOnClick();};
+function undispenseOnClick() {solve.undispenseOnClick();};
+function hintOnClick() {solve.hintOnClick();};
+function hintTimerExpired() {solve.hintTimerExpired();}
+
+
+class Solve {	
+	constructor() {
+		this.dispensers = [undefined];
+		const tileIdRoot = "#dTile-" + String(puzzle.maxDispenserHeight) + String(puzzle.numDispensers) + "-";
+		for (let i = 1; i <= puzzle.numDispensers; i++) {
+			const tileIdRootPlus = tileIdRoot + String(i);
+			this.dispensers[i] = new Dispenser(puzzle.dispenserFullSpec[i], tileIdRootPlus);
+			//console.log(this.dispensers[i]);
+		}
+		
+		this.controls = [];
+		this.controls["Back"] = new Control("#iBack", backOnClick);
+		this.controls["Information"] = new Control("#cInformation-" + String(puzzle.maxDispenserHeight), informationOnClick);
+		this.controls["Solution"] = new Control("#cSolution-" + String(puzzle.maxDispenserHeight), solutionOnClick);
+		this.controls["Reset"] = new Control("#cReset-" + String(puzzle.maxDispenserHeight), resetOnClick);
+		this.controls["Undispense"] = new Control("#cBack-" + String(puzzle.maxDispenserHeight), undispenseOnClick);
+		this.controls["Hint"] = new Control("#cHint-" + String(puzzle.maxDispenserHeight), hintOnClick);
+
+		const dispenseIdRoot = "#cDispense-" + String(puzzle.maxDispenserHeight) + String(puzzle.numDispensers) + "-";
+		for (let i = 1; i <= puzzle.numDispensers; i++) {
+			const dispenseId = dispenseIdRoot + String(i);
+			this.controls["Dispense" + String(i)] = new Control(dispenseId, dispenseOnClicks[i]);
+		}
+		
+		this.dispenseSequence = [];
+		
+		this.solutionTimer = undefined;
+		this.solutionNextIndex = undefined;
+
+		for (let i = 1; i <= puzzle.numDispensers; i++) this.dispensers[i].refresh();
+
+		tickCross.hide();
+		
+		this.hintTemporaryTile = new Tile(null, tileColours[puzzle.hint[0]]);
+		this.hintTimer = undefined;
+		this.hintNumShows = 3;
+		this.hintNumShowsRemaining = undefined;
+		this.hintShowing = undefined;
+
+		this.enableAllControlsExcept(["Reset", "Undispense"]);
+	}
+	
+	disableAllControls() {
+		for (let name in this.controls) {
+			this.controls[name].disable();
+		}
+	}
+
+	disableControls(controls) {
+		for (let i in controls) {
+			this.controls[controls[i]].disable();
+		}
+	}
+	
+	enableAllControls() {
+		for (let name in this.controls) {
+			this.controls[name].enable();
+		}
+	}
+
+	enableControls(controls) {
+		for (let i in controls) {
+			this.controls[controls[i]].enable();
+		}
+	}
+	
+	enableAllControlsExcept(exceptions) {
+		for (let name in this.controls) {
+			if (!exceptions.includes(name)) this.controls[name].enable(); else this.controls[name].disable();
+		}
+	}
+	
+	reset() {
+		matrix.reset();
+		matrix.refresh();
+		for (let i = 1; i <= puzzle.numDispensers; i++) {
+			const dispenser = this.dispensers[i];
+			dispenser.reset();
+			dispenser.refresh();
+		}
+		this.dispenseSequence = [];
+	}
+	
+	informationOnClick() {
+		console.log("informationOnClick called");
+		const styleSheet = document.styleSheets[0]
+		const informationRule = [...styleSheet.cssRules].find((r) => r.selectorText === "#information");
+		informationRule.style.setProperty("display", `grid`);
+		informationRule.style.setProperty("z-index", `3`);
+		const bodyRule = [...styleSheet.cssRules].find((r) => r.selectorText === "body");
+		bodyRule.style.setProperty("overflow", `auto`);
+	}
+	
+	backOnClick() {
+		console.log("backOnClick called");
+		const styleSheet = document.styleSheets[0]
+		const informationRule = [...styleSheet.cssRules].find((r) => r.selectorText === "#information");
+		informationRule.style.setProperty("z-index", `1`);
+		informationRule.style.setProperty("display", `none`);
+		const bodyRule = [...styleSheet.cssRules].find((r) => r.selectorText === "body");
+		bodyRule.style.setProperty("overflow", `hidden`);
+	}
+
+	hintTimerExpired() {
+		if (this.hintShowing) {
+			matrix.removeTemporaryTile();
+			matrix.refresh();
+			this.hintShowing = false;
+			this.hintNumShowsRemaining--;
+			if (this.hintNumShowsRemaining == 0) {
+				clearInterval(this.hintTimer);
+				this.enableAllControlsExcept(["Reset", "Undispense"]);
+			}
+		}
+		else {
+			matrix.addTemporaryTile(this.hintTemporaryTile, puzzle.hint[1]);
+			matrix.refresh();
+			this.hintShowing = true;			
+		}
+	}
+	
+	hintOnClick() {
+		this.disableAllControls();
+		tickCross.hide();
+		if (matrix.numTilesInPlace == 0) {
+			matrix.addTemporaryTile(this.hintTemporaryTile, puzzle.hint[1]);
+			matrix.refresh();
+			this.hintShowing = true;
+			this.hintNumShowsRemaining = this.hintNumShows;
+		}
+		else {
+			this.reset();
+			this.hintShowing = false;
+			this.hintNumShowsRemaining = this.hintNumShows;
+		}
+		this.hintTimer = setInterval(hintTimerExpired, 1000);
+	}
+
+	solutionShowTile(dispenser) {
+		const tileTaken = dispenser.takeTile();
+		matrix.addTile(tileTaken);
+		dispenser.refresh();
+		matrix.refresh();
+	}
+
+	solutionTimerExpired() {
+		const dispenser = this.dispensers[puzzle.solution[this.solutionNextIndex]];
+		this.solutionShowTile(dispenser);
+		this.solutionNextIndex++;
+		if (this.solutionNextIndex == 9) {
+			clearInterval(this.solutionTimer);
+			this.enableControls(["Reset"]);
+		}
+	}
+	
+	solutionOnClick() {
+		this.disableAllControls();
+		tickCross.hide();
+		if (matrix.numTilesInPlace == 0) {
+			this.solutionShowTile(this.dispensers[puzzle.solution[0]]);
+			this.solutionNextIndex = 1;
+		}
+		else {
+			this.reset();
+			this.solutionNextIndex = 0;
+		}
+		this.solutionTimer = setInterval(solutionTimerExpired, 1000);
+	}
+	
+	resetOnClick() {
+		this.reset();
+		this.enableAllControlsExcept(["Reset", "Undispense"]);
+		this.updateTickCross();
+	}
+	
+	undispenseOnClick() {
+		const tileRemoved = matrix.removeTile();
+		const dispenser = tileRemoved.dispenser;
+		dispenser.replaceTile();
+		const dispenserNum = this.dispenseSequence.pop();
+		matrix.refresh();
+		dispenser.refresh();
+		if (dispenser.numTilesInContainer == 1) this.enableControls(["Dispense" + String(dispenserNum)]);
+		if (matrix.numTilesInPlace == 0) this.disableControls(["Reset", "Undispense"]);
+		this.updateTickCross();
+	}
+	
+	dispenseOnClick(dispenserNum) {
+		const dispenser = this.dispensers[dispenserNum];
+		const tileTaken = dispenser.takeTile();
+		matrix.addTile(tileTaken);
+		this.dispenseSequence.push(dispenserNum);
+		dispenser.refresh();
+		matrix.refresh();
+		if (dispenser.numTilesInContainer == 0) this.disableControls(["Dispense" + String(dispenserNum)]);
+		this.enableControls(["Reset", "Undispense"]);
+		this.updateTickCross();
+	}
+	
+	updateTickCross() {
+		if (matrix.numTilesInPlace == 9) {
+			const thisSolution = this.dispenseSequence.join("");
+			const correctSolution = puzzle.solution.join("");
+			if (thisSolution === correctSolution) tickCross.setTick(); else tickCross.setCross();
+			tickCross.show();
+		}
+		else {
+			tickCross.hide();
+		}
+	}
+}
+const solve = new Solve();
+
+
 </script>
-
 
