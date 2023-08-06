@@ -1235,6 +1235,13 @@ setBorderWidths(fontSize, 0.02, 0.05);
 //const gridColourHintAlone = `black`;
 //const gridColourSolution = `black`;
 
+//const pColour = `black`;
+//const qColour = `#0072B2`;
+//const rColour = `#009E73`;
+//const sColour = `#E69F00`;
+//const tColour = `#CC79A7`;
+
+
 
 //Raw data
 let puzzle = {
@@ -1243,11 +1250,14 @@ let puzzle = {
 	dispenserHeightSpec: [undefined],
 	maxDispenserHeight: undefined,
 	matrixSpec: [],
-	hint: [],
-	solution: []
+	tileColours: [],
+	hintColour: undefined,
+	hintIndex: undefined,
+	solutionDispenseSequence: [],
+	solutionColourSequence: []
 };
 
-function initialisePuzzle(dispenserSpec, matrixSpec, solution) {
+function initialisePuzzle(dispenserSpec, matrixSpec, colourSpec, hintSpec, solutionDispenseSequence, solutionColourSequence) {
 	puzzle.dispenserFullSpec = dispenserSpec;
 	puzzle.numDispensers = puzzle.dispenserFullSpec.length - 1;
 	for (let i = 1; i <= puzzle.numDispensers; i++) puzzle.dispenserHeightSpec[i] = puzzle.dispenserFullSpec[i].length;
@@ -1256,27 +1266,42 @@ function initialisePuzzle(dispenserSpec, matrixSpec, solution) {
 		if (puzzle.dispenserHeightSpec[d] > puzzle.maxDispenserHeight) puzzle.maxDispenserHeight = puzzle.dispenserHeightSpec[d];
 	};
 	puzzle.matrixSpec = matrixSpec;
-	puzzle.hint = hint;
-	puzzle.solution = solution;
+
+	let colourCodeLookUp = [];
+	colourCodeLookUp["black"] = `black`;
+	colourCodeLookUp["blue"] = `#0072B2`;
+	colourCodeLookUp["green"] = `#009E73`;
+	colourCodeLookUp["orange"] = `#E69F00`;
+	colourCodeLookUp["pink"] = `#CC79A7`;
+	const tileCodes = ["p", "q", "r", "s", "t"];
+	for (let i = 0; i < tileCodes.length; i++) puzzle.tileColours[tileCodes[i]] = colourCodeLookUp[colourSpec[i]];
+	
+	puzzle.hintColour = colourCodeLookUp[hintSpec[0]];
+	puzzle.hintIndex = hintSpec[1];
+	puzzle.solutionDispenseSequence = solutionDispenseSequence;
+	for (let i = 0; i < solutionColourSequence.length; i++) puzzle.solutionColourSequence[i] = colourCodeLookUp[solutionColourSequence[i]];
+
 	console.log(puzzle);
 }
 
 //From JSON
 //const dispenserSpec = [undefined, "pq","rstpqrs"];
 //const matrixSpec = [8, 5, 2, 1, 3, 4, 6, 7, 9];
-//const hint = ["p", 6];
+//const colourSpec = ["black", "blue", "green", "orange", "pink"];
+//const hint = ["orange", 8];
 //const solution = [1, 1, 2, 2, 2, 2, 2, 2, 2];
 
-const dispenserSpec = [undefined, "pq","rst", "pqrs"];
+const dispenserSpec = [undefined, "ps","rsr", "pqtq"];
 const matrixSpec = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-const hint = ["p", 6];
-const solution = [1, 1, 2, 2, 2, 3, 3, 3, 3];
+const colourSpec = ["blue", "black", "green", "orange", "pink"];
+const hintSpec = ["blue", 6];
+const solutionDispenseSequence = [2, 2, 1, 2, 3, 1, 3, 3, 3];
+const solutionColourSequence = ["green", "orange", "orange", "green", "black", "blue", "pink", "black", "blue"];
 
 //const dispenserSpec = [undefined, "p", "qrstpqr", "s"];
 //const dispenserSpec = [undefined, "pqr", "stp", "qrs"];
 //const dispenserSpec = [undefined, "pqr", "st", "pq", "rs"];
-//this needs converting. 6 is not position 6!
-initialisePuzzle(dispenserSpec, matrixSpec, solution);
+initialisePuzzle(dispenserSpec, matrixSpec, colourSpec, hintSpec, solutionDispenseSequence, solutionColourSequence);
 //console.log(puzzle);
 
 
@@ -1351,21 +1376,18 @@ doorRef.style.height = `${doorHeight}em`;
 updateFontSize(puzzle.maxDispenserHeight, doorHeight, numGridColumns);
 
 
-const pColour = `black`;
-const qColour = `#0072B2`;
-const rColour = `#009E73`;
-const sColour = `#E69F00`;
-const tColour = `#CC79A7`;
+
+
 const dispenserBackgroundColour = `#F5F5F5`;
 const matrixBackgroundColour = `transparent`;
 const matrixForegroundColour = `#B2B2B2`;
 
-const tileColours = [];
-tileColours["p"] = pColour;
-tileColours["q"] = qColour;
-tileColours["r"] = rColour;
-tileColours["s"] = sColour;
-tileColours["t"] = tColour;
+//const tileColours = [];
+//tileColours["p"] = pColour;
+//tileColours["q"] = qColour;
+//tileColours["r"] = rColour;
+//tileColours["s"] = sColour;
+//tileColours["t"] = tColour;
 
 
 class Tile {
@@ -1379,7 +1401,7 @@ class Dispenser {
 	constructor(tileSequence, tileIdRoot) {
 		this.tileQueue = [];
 		for (let t = 0; t < tileSequence.length; t++) {
-			const tile = new Tile(this, tileColours[tileSequence[t]]);
+			const tile = new Tile(this, puzzle.tileColours[tileSequence[t]]);
 			this.tileQueue.unshift(tile);
 		}
 		
@@ -1511,7 +1533,15 @@ class Matrix {
 			}
 			
 		this.numTilesInPlace = 0;
-		this.temporaryPosition = undefined;
+		this.temporaryIndex = undefined;
+	}
+	
+	getColourSequence() {
+		let colourSequence = [];
+		for (let s = 1; s <= 9; s++) {
+			if (this.squareTiles[s] == null) colourSequence.push(``); else colourSequence.push(this.squareTiles[s].colour);
+		}
+		return colourSequence;
 	}
 	
 	reset() {
@@ -1533,13 +1563,17 @@ class Matrix {
 		return tile;
 	}
 	
-	addTemporaryTile(tile, position) {
-		this.temporaryPosition = this.squarePositions[position];
-		this.squareTiles[this.temporaryPosition] = tile;
+	//addTemporaryTile(tile, position) {
+	//	this.temporaryPosition = this.squarePositions[position];
+	//	this.squareTiles[this.temporaryPosition] = tile;
+	//}
+	addTemporaryTile(tile, index) {
+		this.squareTiles[index] = tile;
+		this.temporaryIndex = index;
 	}
 	
 	removeTemporaryTile() {
-		this.squareTiles[this.temporaryPosition] = null;
+		this.squareTiles[this.temporaryIndex] = null;
 	}
 	
 	refresh() {
@@ -1660,7 +1694,7 @@ class Solve {
 
 		tickCross.hide();
 		
-		this.hintTemporaryTile = new Tile(null, tileColours[puzzle.hint[0]]);
+		this.hintTemporaryTile = new Tile(null, puzzle.hintColour);
 		this.hintTimer = undefined;
 		this.hintNumShows = 3;
 		this.hintNumShowsRemaining = undefined;
@@ -1742,7 +1776,7 @@ class Solve {
 			}
 		}
 		else {
-			matrix.addTemporaryTile(this.hintTemporaryTile, puzzle.hint[1]);
+			matrix.addTemporaryTile(this.hintTemporaryTile, puzzle.hintIndex);
 			matrix.refresh();
 			this.hintShowing = true;			
 		}
@@ -1752,7 +1786,7 @@ class Solve {
 		this.disableAllControls();
 		tickCross.hide();
 		if (matrix.numTilesInPlace == 0) {
-			matrix.addTemporaryTile(this.hintTemporaryTile, puzzle.hint[1]);
+			matrix.addTemporaryTile(this.hintTemporaryTile, puzzle.hintIndex);
 			matrix.refresh();
 			this.hintShowing = true;
 			this.hintNumShowsRemaining = this.hintNumShows;
@@ -1773,7 +1807,7 @@ class Solve {
 	}
 
 	solutionTimerExpired() {
-		const dispenser = this.dispensers[puzzle.solution[this.solutionNextIndex]];
+		const dispenser = this.dispensers[puzzle.solutionDispenseSequence[this.solutionNextIndex]];
 		this.solutionShowTile(dispenser);
 		this.solutionNextIndex++;
 		if (this.solutionNextIndex == 9) {
@@ -1786,7 +1820,7 @@ class Solve {
 		this.disableAllControls();
 		tickCross.hide();
 		if (matrix.numTilesInPlace == 0) {
-			this.solutionShowTile(this.dispensers[puzzle.solution[0]]);
+			this.solutionShowTile(this.dispensers[puzzle.solutionDispenseSequence[0]]);
 			this.solutionNextIndex = 1;
 		}
 		else {
@@ -1828,8 +1862,10 @@ class Solve {
 	
 	updateTickCross() {
 		if (matrix.numTilesInPlace == 9) {
-			const thisSolution = this.dispenseSequence.join("");
-			const correctSolution = puzzle.solution.join("");
+			//const thisSolution = this.dispenseSequence.join("");
+			//const correctSolution = puzzle.solution.join("");
+			const thisSolution = matrix.getColourSequence().join("");
+			const correctSolution = puzzle.solutionColourSequence.join("");
 			if (thisSolution === correctSolution) tickCross.setTick(); else tickCross.setCross();
 			tickCross.show();
 		}
