@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lambda</title>
+  <title>Ladderet</title>
   <style>
 body {
 	font-family: Montserrat, Arial, 'sans-serif';
-	font-size: min(calc(90vw / 59), calc(90vh / 120));
+	font-size: min(calc(90vw / 39), calc(90vh / 120));
 	margin: 0;
 	overflow: hidden;
 	background-color: black;
@@ -18,1109 +18,628 @@ body {
 	z-index:1;
 	position:absolute;
 	height:200em;
-	width:59em;
-	/* background-color:#9E9E9E; */
+	width:39em;
 	
 	grid-template-rows:
-		[rInformation-s]
-		3fr
+		[rInformation-s rMarg-s]
+		1fr
 		[rIHeader-s rIBack-s]
-		6fr
-		[rIHeader-e rIBack-e]
 		3fr
+		[rIHeader-e rIBack-e]
+		1fr
 		[rIInstructions-s]
 		20fr
 		[rIInstructions-e]
-		168fr
-		[rInformation-e]
+		175fr
+		[rInformation-e rMarg-e]
 		;
 		
  	grid-template-columns:
-		[cInformation-s]
-		3fr
+		[cInformation-s cMargLeft-s]
+		9fr
+		[cMargLeft-e]
+		1fr
 		[cIBack-s cIInstructions-s]
-		7fr
+		2fr
 		[cIBack-e]
-		5fr 
+		2fr 
 		[cIHeader-s]
-		29fr
+		11fr
 		[cIHeader-e]
-		12fr
+		4fr
 		[cIInstructions-e]
-		3fr
-		[cInformation-e]
+		1fr
+		[cMargRight-s]
+		9fr
+		[cInformation-e cMargRight-e]
 		;
-	
 }
+
+#margLeft {grid-row:rMarg-s/rMarg-e; grid-column:cMargLeft-s/cMargLeft-e;}
+#margRight {grid-row:rMarg-s/rMarg-e; grid-column:cMargRight-s/cMargRight-e;}
 
 #iBack {grid-row:rIBack-s/rIBack-e; grid-column:cIBack-s/cIBack-e;}
 #iHeader {grid-row:rIHeader-s/rIHeader-e; grid-column:cIHeader-s/cIHeader-e;}
-#iInstructions {grid-row:rIInstructions-s/rIInstructions-e; grid-column:cIInstructions-s/cIInstructions-e; font-size:3em; background-color:white;}
+#iInstructions {grid-row:rIInstructions-s/rIInstructions-e; grid-column:cIInstructions-s/cIInstructions-e; font-size:0.5em; background-color:white;}
 
 
-#door-3 {display:none; z-index:2; width:59em; background-color:gray; position:absolute;
-	grid-template-columns:
-		[cDoor-3-s]
-		3fr
-		[cPanel-3-s cCInformation-3-s cCReset-3-s]
-		11fr
-		[cCReset-3-e]
-		3fr
-		[cPHeader-3-s]
-		2fr
-		[cCInformation-3-e]
-		5fr
-		[cCHint-3-s]
-		11fr
-		[cCHint-3-e cCBack-3-s]
-		5fr
-		[cCSolution-3-s]
-		2fr
-		[cPHeader-3-e]
-		14fr
-		[cPanel-3-3-e cCSolution-3-e cCBack-3-e]
-		3fr
-		[cDoor-3-e]
-		;
-}
-
-#pHeader-3 {grid-row:rPHeader-3-s/rPHeader-3-e; grid-column:cPHeader-3-s/cPHeader-3-e;}
-
-#cInformation-3 {grid-row:rCTop-3-s/rCTop-3-e; grid-column:cCInformation-3-s/cCInformation-3-e;}
-#cHint-3 {grid-row:rCTop-3-s/rCTop-3-e; grid-column:cCHint-3-s/cCHint-3-e;}
-#cSolution-3 {grid-row:rCTop-3-s/rCTop-3-e; grid-column:cCSolution-3-s/cCSolution-3-e;}
-#cReset-3 {grid-row:rCBottom-3-s/rCBottom-3-e; grid-column:cCReset-3-s/cCReset-3-e;}
-#cBack-3 {grid-row:rCBottom-3-s/rCBottom-3-e; grid-column:cCBack-3-s/cCBack-3-e;}
-
-#panel-33 {display:none; z-index:3; grid-row:rPanel-3-s/rPanel-3-e; grid-column:cPanel-3-s/cPanel-3-e; height:80em; width:53em; background-color:white; position:absolute;
+#door {
+	display:grid;
+	z-index:2;
+	width:39em;
+	height:35em;
+	position:absolute;
 	grid-template-rows:
-		[rPanel-33-s]
+		[rDoor-s rMargin-s rLED-s]
+		1fr
+		[rLadderet-s]
 		3fr
-		[rDTile-33-4-e]
+		[rLadderet-e]
 		1fr
-		[rDTile-33-3-s]
-		7fr
-		[rDTile-33-3-e]
-		1fr
-		[rDTile-33-2-s]
-		7fr
-		[rDTile-33-2-e]
-		1fr
-		[rDTile-33-1-s]
-		7fr
-		[rDTile-33-1-e rDContainer-33-b]
-		7fr
-		[rMRow-3-1]
-		7fr
-		[rMRow-3-2]
-		7fr
-		[rMRow-3-3]
-		7fr
-		[rMRow-3-e]
-		3fr
-		[rCBackground-3-s]
-		3fr
-		[rCDispense-3-s]
-		6fr
-		[rPanel-33-e rCBackground-3-e rCDispense-3-e]
-		;
-	grid-template-columns:
-		[cPanel-33-s]
-		9fr
-		[cDContainer-33-1-s]
-		1fr
-		[cDTile-33-1-s]
-		6fr
-		[cMColumn-3-1]
-		1fr
-		[cDTile-33-1-e]
-		1fr
-		[cDContainer-33-1-e]
-		4fr
-		[cDContainer-33-2-s]
-		1fr
-		[cDTile-33-2-s cMColumn-3-2]
-		7fr
-		[cDTile-33-2-e cMColumn-3-3]
-		1fr
-		[cDContainer-33-2-e]
-		4fr
-		[cDContainer-33-3-s]
-		1fr
-		[cDTile-33-3-s]
-		1fr
-		[cMColumn-3-e]
-		6fr
-		[cDTile-33-3-e]
-		1fr
-		[cDContainer-33-3-e]
-		9fr
-		[cPanel-33-e]
-		;
-}
-
-#dTile-33-11 {grid-row:rDTile-33-1-s/rDTile-33-1-e; grid-column:cDTile-33-1-s/cDTile-33-1-e;}
-#dTile-33-12 {grid-row:rDTile-33-2-s/rDTile-33-2-e; grid-column:cDTile-33-1-s/cDTile-33-1-e;}
-#dTile-33-13 {grid-row:rDTile-33-3-s/rDTile-33-3-e; grid-column:cDTile-33-1-s/cDTile-33-1-e;}
-#dTile-33-21 {grid-row:rDTile-33-1-s/rDTile-33-1-e; grid-column:cDTile-33-2-s/cDTile-33-2-e;}
-#dTile-33-22 {grid-row:rDTile-33-2-s/rDTile-33-2-e; grid-column:cDTile-33-2-s/cDTile-33-2-e;}
-#dTile-33-23 {grid-row:rDTile-33-3-s/rDTile-33-3-e; grid-column:cDTile-33-2-s/cDTile-33-2-e;}
-#dTile-33-31 {grid-row:rDTile-33-1-s/rDTile-33-1-e; grid-column:cDTile-33-3-s/cDTile-33-3-e;}
-#dTile-33-32 {grid-row:rDTile-33-2-s/rDTile-33-2-e; grid-column:cDTile-33-3-s/cDTile-33-3-e;}
-#dTile-33-33 {grid-row:rDTile-33-3-s/rDTile-33-3-e; grid-column:cDTile-33-3-s/cDTile-33-3-e;}
-
-#dContainer-33-11 {grid-row:rDTile-33-2-e/rDContainer-33-b; grid-column:cDContainer-33-1-s/cDContainer-33-1-e;}
-#dContainer-33-12 {grid-row:rDTile-33-3-e/rDContainer-33-b; grid-column:cDContainer-33-1-s/cDContainer-33-1-e;}
-#dContainer-33-13 {grid-row:rDTile-33-4-e/rDContainer-33-b; grid-column:cDContainer-33-1-s/cDContainer-33-1-e;}
-#dContainer-33-21 {grid-row:rDTile-33-2-e/rDContainer-33-b; grid-column:cDContainer-33-2-s/cDContainer-33-2-e;}
-#dContainer-33-22 {grid-row:rDTile-33-3-e/rDContainer-33-b; grid-column:cDContainer-33-2-s/cDContainer-33-2-e;}
-#dContainer-33-23 {grid-row:rDTile-33-4-e/rDContainer-33-b; grid-column:cDContainer-33-2-s/cDContainer-33-2-e;}
-#dContainer-33-31 {grid-row:rDTile-33-2-e/rDContainer-33-b; grid-column:cDContainer-33-3-s/cDContainer-33-3-e;}
-#dContainer-33-32 {grid-row:rDTile-33-3-e/rDContainer-33-b; grid-column:cDContainer-33-3-s/cDContainer-33-3-e;}
-#dContainer-33-33 {grid-row:rDTile-33-4-e/rDContainer-33-b; grid-column:cDContainer-33-3-s/cDContainer-33-3-e;}
-
-#mSquare-33-1 {grid-row:rMRow-3-1/rMRow-3-2; grid-column:cMColumn-3-1/cMColumn-3-2;}
-#mSquare-33-2 {grid-row:rMRow-3-1/rMRow-3-2; grid-column:cMColumn-3-2/cMColumn-3-3;}
-#mSquare-33-3 {grid-row:rMRow-3-1/rMRow-3-2; grid-column:cMColumn-3-3/cMColumn-3-e;}
-#mSquare-33-4 {grid-row:rMRow-3-2/rMRow-3-3; grid-column:cMColumn-3-1/cMColumn-3-2;}
-#mSquare-33-5 {grid-row:rMRow-3-2/rMRow-3-3; grid-column:cMColumn-3-2/cMColumn-3-3;}
-#mSquare-33-6 {grid-row:rMRow-3-2/rMRow-3-3; grid-column:cMColumn-3-3/cMColumn-3-e;}
-#mSquare-33-7 {grid-row:rMRow-3-3/rMRow-3-e; grid-column:cMColumn-3-1/cMColumn-3-2;}
-#mSquare-33-8 {grid-row:rMRow-3-3/rMRow-3-e; grid-column:cMColumn-3-2/cMColumn-3-3;}
-#mSquare-33-9 {grid-row:rMRow-3-3/rMRow-3-e; grid-column:cMColumn-3-3/cMColumn-3-e;}
-
-#cBackground-33 {grid-row:rCBackground-3-s/rCBackground-3-e; grid-column:cPanel-33-s/cPanel-33-e;}
-#cDispense-33-1 {grid-row:rCDispense-3-s/rCDispense-3-e; grid-column:cDTile-33-1-s/cDTile-33-1-e;}
-#cDispense-33-2 {grid-row:rCDispense-3-s/rCDispense-3-e; grid-column:cDTile-33-2-s/cDTile-33-2-e;}
-#cDispense-33-3 {grid-row:rCDispense-3-s/rCDispense-3-e; grid-column:cDTile-33-3-s/cDTile-33-3-e;}
-
-
-#panel-34 {display:none; z-index:3; grid-row:rPanel-3-s/rPanel-3-e; grid-column:cPanel-3-s/cPanel-3-e; height:80em; width:53em; background-color:white; position:absolute;
-	grid-template-rows:
-		[rPanel-34-s]
-		3fr
-		[rDTile-34-4-e]
-		1fr
-		[rDTile-34-3-s]
-		7fr
-		[rDTile-34-3-e]
-		1fr
-		[rDTile-34-2-s]
-		7fr
-		[rDTile-34-2-e]
-		1fr
-		[rDTile-34-1-s]
-		7fr
-		[rDTile-34-1-e rDContainer-34-b]
-		7fr
-		[rMRow-3-1]
-		7fr
-		[rMRow-3-2]
-		7fr
-		[rMRow-3-3]
-		7fr
-		[rMRow-3-e]
-		3fr
-		[rCBackground-3-s]
-		3fr
-		[rCDispense-3-s]
-		6fr
-		[rPanel-34-e rCBackground-3-e rCDispense-3-e]
-		;
-	grid-template-columns:
-		[cPanel-34-s]
-		4fr
-		[cDContainer-34-1-s]
-		1fr
-		[cDTile-34-1-s]
-		7fr
-		[cDTile-34-1-e]
-		1fr
-		[cDContainer-34-1-e]
-		3fr
-		[cDContainer-34-2-s cMColumn-3-1]
-		1fr
-		[cDTile-34-2-s]
-		6fr
-		[cMColumn-3-2]
-		1fr
-		[cDTile-34-2-e]
-		1fr
-		[cDContainer-34-2-e]
-		3fr
-		[cDContainer-34-3-s]
-		1fr
-		[cDTile-34-3-s]
-		1fr
-		[cMColumn-3-3]
-		6fr
-		[cDTile-34-3-e]
-		1fr
-		[cDContainer-34-3-e cMColumn-3-e]
-		3fr
-		[cDContainer-34-4-s]
-		1fr
-		[cDTile-34-4-s]
-		7fr
-		[cDTile-34-4-e]
-		1fr
-		[cDContainer-34-4-e]
-		4fr
-		[cPanel-34-e]
-		;
-}
-
-#dTile-34-11 {grid-row:rDTile-34-1-s/rDTile-34-1-e; grid-column:cDTile-34-1-s/cDTile-34-1-e;}
-#dTile-34-12 {grid-row:rDTile-34-2-s/rDTile-34-2-e; grid-column:cDTile-34-1-s/cDTile-34-1-e;}
-#dTile-34-13 {grid-row:rDTile-34-3-s/rDTile-34-3-e; grid-column:cDTile-34-1-s/cDTile-34-1-e;}
-#dTile-34-21 {grid-row:rDTile-34-1-s/rDTile-34-1-e; grid-column:cDTile-34-2-s/cDTile-34-2-e;}
-#dTile-34-22 {grid-row:rDTile-34-2-s/rDTile-34-2-e; grid-column:cDTile-34-2-s/cDTile-34-2-e;}
-#dTile-34-23 {grid-row:rDTile-34-3-s/rDTile-34-3-e; grid-column:cDTile-34-2-s/cDTile-34-2-e;}
-#dTile-34-31 {grid-row:rDTile-34-1-s/rDTile-34-1-e; grid-column:cDTile-34-3-s/cDTile-34-3-e;}
-#dTile-34-32 {grid-row:rDTile-34-2-s/rDTile-34-2-e; grid-column:cDTile-34-3-s/cDTile-34-3-e;}
-#dTile-34-33 {grid-row:rDTile-34-3-s/rDTile-34-3-e; grid-column:cDTile-34-3-s/cDTile-34-3-e;}
-#dTile-34-41 {grid-row:rDTile-34-1-s/rDTile-34-1-e; grid-column:cDTile-34-4-s/cDTile-34-4-e;}
-#dTile-34-42 {grid-row:rDTile-34-2-s/rDTile-34-2-e; grid-column:cDTile-34-4-s/cDTile-34-4-e;}
-#dTile-34-43 {grid-row:rDTile-34-3-s/rDTile-34-3-e; grid-column:cDTile-34-4-s/cDTile-34-4-e;}
-
-#dContainer-34-11 {grid-row:rDTile-34-2-e/rDContainer-34-b; grid-column:cDContainer-34-1-s/cDContainer-34-1-e;}
-#dContainer-34-12 {grid-row:rDTile-34-3-e/rDContainer-34-b; grid-column:cDContainer-34-1-s/cDContainer-34-1-e;}
-#dContainer-34-13 {grid-row:rDTile-34-4-e/rDContainer-34-b; grid-column:cDContainer-34-1-s/cDContainer-34-1-e;}
-#dContainer-34-21 {grid-row:rDTile-34-2-e/rDContainer-34-b; grid-column:cDContainer-34-2-s/cDContainer-34-2-e;}
-#dContainer-34-22 {grid-row:rDTile-34-3-e/rDContainer-34-b; grid-column:cDContainer-34-2-s/cDContainer-34-2-e;}
-#dContainer-34-23 {grid-row:rDTile-34-4-e/rDContainer-34-b; grid-column:cDContainer-34-2-s/cDContainer-34-2-e;}
-#dContainer-34-31 {grid-row:rDTile-34-2-e/rDContainer-34-b; grid-column:cDContainer-34-3-s/cDContainer-34-3-e;}
-#dContainer-34-32 {grid-row:rDTile-34-3-e/rDContainer-34-b; grid-column:cDContainer-34-3-s/cDContainer-34-3-e;}
-#dContainer-34-33 {grid-row:rDTile-34-4-e/rDContainer-34-b; grid-column:cDContainer-34-3-s/cDContainer-34-3-e;}
-#dContainer-34-41 {grid-row:rDTile-34-2-e/rDContainer-34-b; grid-column:cDContainer-34-4-s/cDContainer-34-4-e;}
-#dContainer-34-42 {grid-row:rDTile-34-3-e/rDContainer-34-b; grid-column:cDContainer-34-4-s/cDContainer-34-4-e;}
-#dContainer-34-43 {grid-row:rDTile-34-4-e/rDContainer-34-b; grid-column:cDContainer-34-4-s/cDContainer-34-4-e;}
-
-#mSquare-34-1 {grid-row:rMRow-3-1/rMRow-3-2; grid-column:cMColumn-3-1/cMColumn-3-2;}
-#mSquare-34-2 {grid-row:rMRow-3-1/rMRow-3-2; grid-column:cMColumn-3-2/cMColumn-3-3;}
-#mSquare-34-3 {grid-row:rMRow-3-1/rMRow-3-2; grid-column:cMColumn-3-3/cMColumn-3-e;}
-#mSquare-34-4 {grid-row:rMRow-3-2/rMRow-3-3; grid-column:cMColumn-3-1/cMColumn-3-2;}
-#mSquare-34-5 {grid-row:rMRow-3-2/rMRow-3-3; grid-column:cMColumn-3-2/cMColumn-3-3;}
-#mSquare-34-6 {grid-row:rMRow-3-2/rMRow-3-3; grid-column:cMColumn-3-3/cMColumn-3-e;}
-#mSquare-34-7 {grid-row:rMRow-3-3/rMRow-3-e; grid-column:cMColumn-3-1/cMColumn-3-2;}
-#mSquare-34-8 {grid-row:rMRow-3-3/rMRow-3-e; grid-column:cMColumn-3-2/cMColumn-3-3;}
-#mSquare-34-9 {grid-row:rMRow-3-3/rMRow-3-e; grid-column:cMColumn-3-3/cMColumn-3-e;}
-
-#cBackground-34 {grid-row:rCBackground-3-s/rCBackground-3-e; grid-column:cPanel-34-s/cPanel-34-e;}
-#cDispense-34-1 {grid-row:rCDispense-3-s/rCDispense-3-e; grid-column:cDTile-34-1-s/cDTile-34-1-e;}
-#cDispense-34-2 {grid-row:rCDispense-3-s/rCDispense-3-e; grid-column:cDTile-34-2-s/cDTile-34-2-e;}
-#cDispense-34-3 {grid-row:rCDispense-3-s/rCDispense-3-e; grid-column:cDTile-34-3-s/cDTile-34-3-e;}
-#cDispense-34-4 {grid-row:rCDispense-3-s/rCDispense-3-e; grid-column:cDTile-34-4-s/cDTile-34-4-e;}
-
-
-#door-4 {display:none; z-index:2; width:59em; position:absolute;
-	grid-template-columns:
-		[cDoor-4-s]
-		3fr
-		[cPanel-4-s cCInformation-4-s cCReset-4-s]
-		11fr
-		[cCReset-4-e]
+		[rCTop-s]
 		2fr
-		[cPHeader-4-s]
-		3fr
-		[cCInformation-4-e]
-		5fr
-		[cCHint-4-s]
-		11fr
-		[cCHint-4-e cCBack-4-s]
-		5fr
-		[cCSolution-4-s]
-		3fr
-		[cPHeader-4-e]
+		[rCTop-e]
+		1fr
+		[rPanel-s]
 		13fr
-		[cPanel-4-e cCSolution-4-e cCBack-4-e]
-		3fr
-		[cDoor-4-e]
-		;
-}
-
-#pHeader-4 {grid-row:rPHeader-4-s/rPHeader-4-e; grid-column:cPHeader-4-s/cPHeader-4-e;}
-
-#cInformation-4 {grid-row:rCTop-4-s/rCTop-4-e; grid-column:cCInformation-4-s/cCInformation-4-e;}
-#cHint-4 {grid-row:rCTop-4-s/rCTop-4-e; grid-column:cCHint-4-s/cCHint-4-e;}
-#cSolution-4 {grid-row:rCTop-4-s/rCTop-4-e; grid-column:cCSolution-4-s/cCSolution-4-e;}
-#cReset-4 {grid-row:rCBottom-4-s/rCBottom-4-e; grid-column:cCReset-4-s/cCReset-4-e;}
-#cBack-4 {grid-row:rCBottom-4-s/rCBottom-4-e; grid-column:cCBack-4-s/cCBack-4-e;}
-
-#panel-43 {display:none; z-index:3; grid-row:rPanel-4-s/rPanel-4-e; grid-column:cPanel-4-s/cPanel-4-e; height:80em; width:53em; background-color:white; position:absolute;
-	grid-template-rows:
-		[rPanel-43-s]
-		3fr
-		[rDTile-43-5-e]
+		[rLED-e]
+		10fr
+		[rPanel-e]
 		1fr
-		[rDTile-43-4-s]
-		7fr
-		[rDTile-43-4-e]
-		1fr
-		[rDTile-43-3-s]
-		7fr
-		[rDTile-43-3-e]
-		1fr
-		[rDTile-43-2-s]
-		7fr
-		[rDTile-43-2-e]
-		1fr
-		[rDTile-43-1-s]
-		7fr
-		[rDTile-43-1-e rDContainer-43-b]
-		7fr
-		[rMRow-4-1]
-		6fr
-		[rTickCross-4-s]
-		1fr
-		[rMRow-4-2]
-		7fr
-		[rMRow-4-3]
-		1fr
-		[rTickCross-4-e]
-		6fr
-		[rMRow-4-e]
-		3fr
-		[rCBackground-4-s]
-		3fr
-		[rCDispense-4-s]
-		6fr
-		[rPanel-43-e rCBackground-4-e rCDispense-4-e]
-		;
-	grid-template-columns:
-		[cPanel-43-s]
-		9fr
-		[cDContainer-43-1-s]
-		1fr
-		[cDTile-43-1-s]
-		6fr
-		[cMColumn-4-1]
-		1fr
-		[cDTile-43-1-e]
-		1fr
-		[cDContainer-43-1-e]
-		4fr
-		[cDContainer-43-2-s]
-		1fr
-		[cDTile-43-2-s cMColumn-4-2]
-		7fr
-		[cDTile-43-2-e cMColumn-4-3]
-		1fr
-		[cDContainer-43-2-e]
-		4fr
-		[cDContainer-43-3-s]
-		1fr
-		[cDTile-43-3-s]
-		1fr
-		[cMColumn-4-e]
+		[rCBottom-s]
 		2fr
-		[cTickCross-4-s]
-		4fr
-		[cDTile-43-3-e]
+		[rCBottom-e]
 		1fr
-		[cDContainer-43-3-e]
-		4fr
-		[cTickCross-4-e]
-		5fr
-		[cPanel-43-e]
+		[rDoor-e rMargin-e]
 		;
-}
-
-#dTile-43-11 {grid-row:rDTile-43-1-s/rDTile-43-1-e; grid-column:cDTile-43-1-s/cDTile-43-1-e;}
-#dTile-43-12 {grid-row:rDTile-43-2-s/rDTile-43-2-e; grid-column:cDTile-43-1-s/cDTile-43-1-e;}
-#dTile-43-13 {grid-row:rDTile-43-3-s/rDTile-43-3-e; grid-column:cDTile-43-1-s/cDTile-43-1-e;}
-#dTile-43-14 {grid-row:rDTile-43-4-s/rDTile-43-4-e; grid-column:cDTile-43-1-s/cDTile-43-1-e;}
-#dTile-43-21 {grid-row:rDTile-43-1-s/rDTile-43-1-e; grid-column:cDTile-43-2-s/cDTile-43-2-e;}
-#dTile-43-22 {grid-row:rDTile-43-2-s/rDTile-43-2-e; grid-column:cDTile-43-2-s/cDTile-43-2-e;}
-#dTile-43-23 {grid-row:rDTile-43-3-s/rDTile-43-3-e; grid-column:cDTile-43-2-s/cDTile-43-2-e;}
-#dTile-43-24 {grid-row:rDTile-43-4-s/rDTile-43-4-e; grid-column:cDTile-43-2-s/cDTile-43-2-e;}
-#dTile-43-31 {grid-row:rDTile-43-1-s/rDTile-43-1-e; grid-column:cDTile-43-3-s/cDTile-43-3-e;}
-#dTile-43-32 {grid-row:rDTile-43-2-s/rDTile-43-2-e; grid-column:cDTile-43-3-s/cDTile-43-3-e;}
-#dTile-43-33 {grid-row:rDTile-43-3-s/rDTile-43-3-e; grid-column:cDTile-43-3-s/cDTile-43-3-e;}
-#dTile-43-34 {grid-row:rDTile-43-4-s/rDTile-43-4-e; grid-column:cDTile-43-3-s/cDTile-43-3-e;}
-
-#dContainer-43-11 {grid-row:rDTile-43-2-e/rDContainer-43-b; grid-column:cDContainer-43-1-s/cDContainer-43-1-e;}
-#dContainer-43-12 {grid-row:rDTile-43-3-e/rDContainer-43-b; grid-column:cDContainer-43-1-s/cDContainer-43-1-e;}
-#dContainer-43-13 {grid-row:rDTile-43-4-e/rDContainer-43-b; grid-column:cDContainer-43-1-s/cDContainer-43-1-e;}
-#dContainer-43-14 {grid-row:rDTile-43-5-e/rDContainer-43-b; grid-column:cDContainer-43-1-s/cDContainer-43-1-e;}
-#dContainer-43-21 {grid-row:rDTile-43-2-e/rDContainer-43-b; grid-column:cDContainer-43-2-s/cDContainer-43-2-e;}
-#dContainer-43-22 {grid-row:rDTile-43-3-e/rDContainer-43-b; grid-column:cDContainer-43-2-s/cDContainer-43-2-e;}
-#dContainer-43-23 {grid-row:rDTile-43-4-e/rDContainer-43-b; grid-column:cDContainer-43-2-s/cDContainer-43-2-e;}
-#dContainer-43-24 {grid-row:rDTile-43-5-e/rDContainer-43-b; grid-column:cDContainer-43-2-s/cDContainer-43-2-e;}
-#dContainer-43-31 {grid-row:rDTile-43-2-e/rDContainer-43-b; grid-column:cDContainer-43-3-s/cDContainer-43-3-e;}
-#dContainer-43-32 {grid-row:rDTile-43-3-e/rDContainer-43-b; grid-column:cDContainer-43-3-s/cDContainer-43-3-e;}
-#dContainer-43-33 {grid-row:rDTile-43-4-e/rDContainer-43-b; grid-column:cDContainer-43-3-s/cDContainer-43-3-e;}
-#dContainer-43-34 {grid-row:rDTile-43-5-e/rDContainer-43-b; grid-column:cDContainer-43-3-s/cDContainer-43-3-e;}
-
-#mSquare-43-1 {grid-row:rMRow-4-1/rMRow-4-2; grid-column:cMColumn-4-1/cMColumn-4-2;}
-#mSquare-43-2 {grid-row:rMRow-4-1/rMRow-4-2; grid-column:cMColumn-4-2/cMColumn-4-3;}
-#mSquare-43-3 {grid-row:rMRow-4-1/rMRow-4-2; grid-column:cMColumn-4-3/cMColumn-4-e;}
-#mSquare-43-4 {grid-row:rMRow-4-2/rMRow-4-3; grid-column:cMColumn-4-1/cMColumn-4-2;}
-#mSquare-43-5 {grid-row:rMRow-4-2/rMRow-4-3; grid-column:cMColumn-4-2/cMColumn-4-3;}
-#mSquare-43-6 {grid-row:rMRow-4-2/rMRow-4-3; grid-column:cMColumn-4-3/cMColumn-4-e;}
-#mSquare-43-7 {grid-row:rMRow-4-3/rMRow-4-e; grid-column:cMColumn-4-1/cMColumn-4-2;}
-#mSquare-43-8 {grid-row:rMRow-4-3/rMRow-4-e; grid-column:cMColumn-4-2/cMColumn-4-3;}
-#mSquare-43-9 {grid-row:rMRow-4-3/rMRow-4-e; grid-column:cMColumn-4-3/cMColumn-4-e;}
-
-#TickCross-43 {grid-row:rTickCross-4-s/rTickCross-4-e; grid-column:cTickCross-4-s/cTickCross-4-e;}
-
-#cBackground-43 {grid-row:rCBackground-4-s/rCBackground-4-e; grid-column:cPanel-43-s/cPanel-43-e;}
-#cDispense-43-1 {grid-row:rCDispense-4-s/rCDispense-4-e; grid-column:cDTile-43-1-s/cDTile-43-1-e;}
-#cDispense-43-2 {grid-row:rCDispense-4-s/rCDispense-4-e; grid-column:cDTile-43-2-s/cDTile-43-2-e;}
-#cDispense-43-3 {grid-row:rCDispense-4-s/rCDispense-4-e; grid-column:cDTile-43-3-s/cDTile-43-3-e;}
-
-
-#door-7 {display:none; z-index:2; width:59em; position:absolute;
+		
 	grid-template-columns:
-		[cDoor-7-s]
+		[cDoor-s cMarginLeft-s]
+		9fr
+		[cMarginLeft-e cLED-s]
+		1fr
+		[cPanel-s cCInformation-s cCReset-s]
 		3fr
-		[cPanel-7-s cCInformation-7-s cCReset-7-s]
-		11fr
-		[cCReset-7-e]
+		[cCReset-e]
+		1fr
+		[cLadderet-s]
 		2fr
-		[cPHeader-7-s]
+		[cCInformation-e cCUpperLower-s]
+		2fr
+		[cCHint-s]
+		1fr
+		[cCUpperLower-e]
+		2fr
+		[cCHint-e cCDeleteBack-s]
+		2fr
+		[cCSolution-s]
+		1fr
+		[cCDeleteBack-e]
+		1fr
+		[cLadderet-e]
+		1fr
+		[cCDeleteAll-s]
 		3fr
-		[cCInformation-7-e]
-		5fr
-		[cCHint-7-s]
-		11fr
-		[cCHint-7-e cCBack-7-s]
-		5fr
-		[cCSolution-7-s]
-		3fr
-		[cPHeader-7-e]
-		13fr
-		[cPanel-7-e cCSolution-7-e cCBack-7-e]
-		3fr
-		[cDoor-7-e]
+		[cCSolution-e cCDeleteAll-e cPanel-e]
+		1fr
+		[cLED-e cMarginRight-s]
+		9fr
+		[cMarginRight-e cDoor-e]
 		;
 }
 
-#pHeader-7 {grid-row:rPHeader-7-s/rPHeader-7-e; grid-column:cPHeader-7-s/cPHeader-7-e;}
+#mLeft {grid-row:rMargin-s/rMargin-e; grid-column:cMarginLeft-s/cMarginLeft-e;}
+#mRight {grid-row:rMargin-s/rMargin-e; grid-column:cMarginRight-s/cMarginRight-e;}
 
-#cInformation-7 {grid-row:rCTop-7-s/rCTop-7-e; grid-column:cCInformation-7-s/cCInformation-7-e;}
-#cHint-7 {grid-row:rCTop-7-s/rCTop-7-e; grid-column:cCHint-7-s/cCHint-7-e;}
-#cSolution-7 {grid-row:rCTop-7-s/rCTop-7-e; grid-column:cCSolution-7-s/cCSolution-7-e;}
-#cReset-7 {grid-row:rCBottom-7-s/rCBottom-7-e; grid-column:cCReset-7-s/cCReset-7-e;}
-#cBack-7 {grid-row:rCBottom-7-s/rCBottom-7-e; grid-column:cCBack-7-s/cCBack-7-e;}
+#LEDGreen {display:none; grid-row:rLED-s/rLED-e; grid-column:cLED-s/cLED-e;}
+#LEDAmber {display:none; grid-row:rLED-s/rLED-e; grid-column:cLED-s/cLED-e;}
+#LEDRed {display:none; grid-row:rLED-s/rLED-e; grid-column:cLED-s/cLED-e;}
 
-#panel-72 {display:none; z-index:3; grid-row:rPanel-7-s/rPanel-7-e; grid-column:cPanel-7-s/cPanel-7-e; height:80em; width:53em; background-color:white; position:absolute;
+#Ladderet {grid-row:rLadderet-s/rLadderet-e; grid-column:cLadderet-s/cLadderet-e;}
+
+#cInformation {grid-row:rCTop-s/rCTop-e; grid-column:cCInformation-s/cCInformation-e;}
+#cHint {grid-row:rCTop-s/rCTop-e; grid-column:cCHint-s/cCHint-e;}
+#cSolution {grid-row:rCTop-s/rCTop-e; grid-column:cCSolution-s/cCSolution-e;}
+#cReset {grid-row:rCBottom-s/rCBottom-e; grid-column:cCReset-s/cCReset-e;}
+#cUpperLower {grid-row:rCBottom-s/rCBottom-e; grid-column:cCUpperLower-s/cCUpperLower-e;}
+#cDeleteBack {grid-row:rCBottom-s/rCBottom-e; grid-column:cCDeleteBack-s/cCDeleteBack-e;}
+#cDeleteAll {grid-row:rCBottom-s/rCBottom-e; grid-column:cCDeleteAll-s/cCDeleteAll-e;}
+
+#panel {display:grid; z-index:3; grid-row:rPanel-s/rPanel-e; grid-column:cPanel-s/cPanel-e; width:19em; height:23em; background-color:white; position:absolute;
 	grid-template-rows:
-		[rPanel-72-s]
-		3fr
-		[rDTile-72-8-e]
-		1fr
-		[rDTile-72-7-s]
-		7fr
-		[rDTile-72-7-e]
-		1fr
-		[rDTile-72-6-s]
-		7fr
-		[rDTile-72-6-e]
-		1fr
-		[rDTile-72-5-s]
-		7fr
-		[rDTile-72-5-e]
-		1fr
-		[rDTile-72-4-s]
-		7fr
-		[rDTile-72-4-e]
-		1fr
-		[rDTile-72-3-s]
-		7fr
-		[rDTile-72-3-e]
-		1fr
-		[rDTile-72-2-s]
-		7fr
-		[rDTile-72-2-e]
-		1fr
-		[rDTile-72-1-s]
-		7fr
-		[rDTile-72-1-e rDContainer-72-b]
-		7fr
-		[rMRow-7-1]
-		6fr
-		[rTickCross-7-s]
-		1fr
-		[rMRow-7-2]
-		7fr
-		[rMRow-7-3]
-		1fr
-		[rTickCross-7-e]
-		6fr
-		[rMRow-7-e]
-		3fr
-		[rCBackground-7-s]
-		3fr
-		[rCDispense-7-s]
-		6fr
-		[rPanel-72-e rCBackground-7-e rCDispense-7-e]
+		[rPanel-s]
+		1em
+		[rLSide-s]
+		1em
+		[rLLetter-1-s]
+		3em
+		[rLLetter-1-e rLRungTop-1-s]
+		1em
+		[rLRungTop-1-e rLRungBottom-1-s]
+		1em
+		[rLRungBottom-1-e rLLetter-2-s]
+		3em
+		[rLLetter-2-e rLRungTop-2-s]
+		1em
+		[rLRungTop-2-e rLRungBottom-2-s]
+		1em
+		[rLRungBottom-2-e rLLetter-3-s]
+		3em
+		[rLLetter-3-e rLRungTop-3-s]
+		1em
+		[rLRungTop-3-e rLRungBottom-3-s]
+		1em
+		[rLRungBottom-3-e rLLetter-4-s]
+		3em
+		[rLLetter-4-e rLRungTop-4-s]
+		1em
+		[rLRungTop-4-e rLRungBottom-4-s]
+		1em
+		[rLRungBottom-4-e rLSide-e]
+		1em
+		[rPanel-e]
 		;
 	grid-template-columns:
-		[cPanel-72-s]
-		15fr
-		[cDContainer-72-1-s]
+		[cPanel-s]
 		1fr
-		[cDTile-72-1-s cMColumn-7-1]
-		7fr
-		[cDTile-72-1-e cMColumn-7-2]
+		[cLSideLeft-s]
 		1fr
-		[cDContainer-72-1-e]
-		5fr
-		[cDContainer-72-2-s]
+		[cLSideLeft-e cLRung-s cLLetter-1-s]
 		1fr
-		[cDTile-72-2-s cMColumn-7-3]
-		7fr
-		[cDTile-72-2-e cMColumn-7-e]
+		[cLDiamond-1-s]
 		1fr
-		[cDContainer-72-2-e]
+		[cLDiamond-1-e]
 		1fr
-		[cTickCross-7-s]
-		9fr
-		[cTickCross-7-e]
-		5fr
-		[cPanel-72-e]
+		[cLLetter-1-e cLLetter-2-s]
+		1fr
+		[cLDiamond-2-s]
+		1fr
+		[cLDiamond-2-e]
+		1fr
+		[cLLetter-2-e cLLetter-3-s]
+		1fr
+		[cLDiamond-3-s]
+		1fr
+		[cLDiamond-3-e]
+		1fr
+		[cLLetter-3-e cLLetter-4-s]
+		1fr
+		[cLDiamond-4-s]
+		1fr
+		[cLDiamond-4-e]
+		1fr
+		[cLLetter-4-e cLLetter-5-s]
+		1fr
+		[cLDiamond-5-s]
+		1fr
+		[cLDiamond-5-e]
+		1fr
+		[cLLetter-5-e cLRung-e cLSideRight-s]
+		1fr
+		[cLSideRight-e]
+		1fr
+		[cPanel-e]
 		;
 }
 
-#dTile-72-11 {grid-row:rDTile-72-1-s/rDTile-72-1-e; grid-column:cDTile-72-1-s/cDTile-72-1-e;}
-#dTile-72-12 {grid-row:rDTile-72-2-s/rDTile-72-2-e; grid-column:cDTile-72-1-s/cDTile-72-1-e;}
-#dTile-72-13 {grid-row:rDTile-72-3-s/rDTile-72-3-e; grid-column:cDTile-72-1-s/cDTile-72-1-e;}
-#dTile-72-14 {grid-row:rDTile-72-4-s/rDTile-72-4-e; grid-column:cDTile-72-1-s/cDTile-72-1-e;}
-#dTile-72-15 {grid-row:rDTile-72-5-s/rDTile-72-5-e; grid-column:cDTile-72-1-s/cDTile-72-1-e;}
-#dTile-72-16 {grid-row:rDTile-72-6-s/rDTile-72-6-e; grid-column:cDTile-72-1-s/cDTile-72-1-e;}
-#dTile-72-17 {grid-row:rDTile-72-7-s/rDTile-72-7-e; grid-column:cDTile-72-1-s/cDTile-72-1-e;}
-#dTile-72-21 {grid-row:rDTile-72-1-s/rDTile-72-1-e; grid-column:cDTile-72-2-s/cDTile-72-2-e;}
-#dTile-72-22 {grid-row:rDTile-72-2-s/rDTile-72-2-e; grid-column:cDTile-72-2-s/cDTile-72-2-e;}
-#dTile-72-23 {grid-row:rDTile-72-3-s/rDTile-72-3-e; grid-column:cDTile-72-2-s/cDTile-72-2-e;}
-#dTile-72-24 {grid-row:rDTile-72-4-s/rDTile-72-4-e; grid-column:cDTile-72-2-s/cDTile-72-2-e;}
-#dTile-72-25 {grid-row:rDTile-72-5-s/rDTile-72-5-e; grid-column:cDTile-72-2-s/cDTile-72-2-e;}
-#dTile-72-26 {grid-row:rDTile-72-6-s/rDTile-72-6-e; grid-column:cDTile-72-2-s/cDTile-72-2-e;}
-#dTile-72-27 {grid-row:rDTile-72-7-s/rDTile-72-7-e; grid-column:cDTile-72-2-s/cDTile-72-2-e;}
-
-#dContainer-72-11 {grid-row:rDTile-72-2-e/rDContainer-72-b; grid-column:cDContainer-72-1-s/cDContainer-72-1-e;}
-#dContainer-72-12 {grid-row:rDTile-72-3-e/rDContainer-72-b; grid-column:cDContainer-72-1-s/cDContainer-72-1-e;}
-#dContainer-72-13 {grid-row:rDTile-72-4-e/rDContainer-72-b; grid-column:cDContainer-72-1-s/cDContainer-72-1-e;}
-#dContainer-72-14 {grid-row:rDTile-72-5-e/rDContainer-72-b; grid-column:cDContainer-72-1-s/cDContainer-72-1-e;}
-#dContainer-72-15 {grid-row:rDTile-72-6-e/rDContainer-72-b; grid-column:cDContainer-72-1-s/cDContainer-72-1-e;}
-#dContainer-72-16 {grid-row:rDTile-72-7-e/rDContainer-72-b; grid-column:cDContainer-72-1-s/cDContainer-72-1-e;}
-#dContainer-72-17 {grid-row:rDTile-72-8-e/rDContainer-72-b; grid-column:cDContainer-72-1-s/cDContainer-72-1-e;}
-#dContainer-72-21 {grid-row:rDTile-72-2-e/rDContainer-72-b; grid-column:cDContainer-72-2-s/cDContainer-72-2-e;}
-#dContainer-72-22 {grid-row:rDTile-72-3-e/rDContainer-72-b; grid-column:cDContainer-72-2-s/cDContainer-72-2-e;}
-#dContainer-72-23 {grid-row:rDTile-72-4-e/rDContainer-72-b; grid-column:cDContainer-72-2-s/cDContainer-72-2-e;}
-#dContainer-72-24 {grid-row:rDTile-72-5-e/rDContainer-72-b; grid-column:cDContainer-72-2-s/cDContainer-72-2-e;}
-#dContainer-72-25 {grid-row:rDTile-72-6-e/rDContainer-72-b; grid-column:cDContainer-72-2-s/cDContainer-72-2-e;}
-#dContainer-72-26 {grid-row:rDTile-72-7-e/rDContainer-72-b; grid-column:cDContainer-72-2-s/cDContainer-72-2-e;}
-#dContainer-72-27 {grid-row:rDTile-72-8-e/rDContainer-72-b; grid-column:cDContainer-72-2-s/cDContainer-72-2-e;}
-
-#mSquare-72-1 {grid-row:rMRow-7-1/rMRow-7-2; grid-column:cMColumn-7-1/cMColumn-7-2;}
-#mSquare-72-2 {grid-row:rMRow-7-1/rMRow-7-2; grid-column:cMColumn-7-2/cMColumn-7-3;}
-#mSquare-72-3 {grid-row:rMRow-7-1/rMRow-7-2; grid-column:cMColumn-7-3/cMColumn-7-e;}
-#mSquare-72-4 {grid-row:rMRow-7-2/rMRow-7-3; grid-column:cMColumn-7-1/cMColumn-7-2;}
-#mSquare-72-5 {grid-row:rMRow-7-2/rMRow-7-3; grid-column:cMColumn-7-2/cMColumn-7-3;}
-#mSquare-72-6 {grid-row:rMRow-7-2/rMRow-7-3; grid-column:cMColumn-7-3/cMColumn-7-e;}
-#mSquare-72-7 {grid-row:rMRow-7-3/rMRow-7-e; grid-column:cMColumn-7-1/cMColumn-7-2;}
-#mSquare-72-8 {grid-row:rMRow-7-3/rMRow-7-e; grid-column:cMColumn-7-2/cMColumn-7-3;}
-#mSquare-72-9 {grid-row:rMRow-7-3/rMRow-7-e; grid-column:cMColumn-7-3/cMColumn-7-e;}
-
-#TickCross-72 {grid-row:rTickCross-7-s/rTickCross-7-e; grid-column:cTickCross-7-s/cTickCross-7-e;}
-
-#cBackground-72 {grid-row:rCBackground-7-s/rCBackground-7-e; grid-column:cPanel-72-s/cPanel-72-e;}
-#cDispense-72-1 {grid-row:rCDispense-7-s/rCDispense-7-e; grid-column:cDTile-72-1-s/cDTile-72-1-e;}
-#cDispense-72-2 {grid-row:rCDispense-7-s/rCDispense-7-e; grid-column:cDTile-72-2-s/cDTile-72-2-e;}
+#lSideLeft {grid-row:rLSide-s/rLSide-e; grid-column:cLSideLeft-s/cLSideLeft-e;}
+#lSideRight {grid-row:rLSide-s/rLSide-e; grid-column:cLSideRight-s/cLSideRight-e;}
+#lRungTop-1 {grid-row:rLRungTop-1-s/rLRungTop-1-e; grid-column:cLRung-s/cLRung-e;}
+#lRungBottom-1 {grid-row:rLRungBottom-1-s/rLRungBottom-1-e; grid-column:cLRung-s/cLRung-e;}
+#lRungTop-2 {grid-row:rLRungTop-2-s/rLRungTop-2-e; grid-column:cLRung-s/cLRung-e;}
+#lRungBottom-2 {grid-row:rLRungBottom-2-s/rLRungBottom-2-e; grid-column:cLRung-s/cLRung-e;}
+#lRungTop-3 {grid-row:rLRungTop-3-s/rLRungTop-3-e; grid-column:cLRung-s/cLRung-e;}
+#lRungBottom-3 {grid-row:rLRungBottom-3-s/rLRungBottom-3-e; grid-column:cLRung-s/cLRung-e;}
+#lRungTop-4 {grid-row:rLRungTop-4-s/rLRungTop-4-e; grid-column:cLRung-s/cLRung-e;}
+#lRungBottom-4 {grid-row:rLRungBottom-4-s/rLRungBottom-4-e; grid-column:cLRung-s/cLRung-e;}
 
 
-#panel-73 {display:none; z-index:3; grid-row:rPanel-7-s/rPanel-7-e; grid-column:cPanel-7-s/cPanel-7-e; height:80em; width:53em; background-color:white; position:absolute;
+#lLetter-11 {grid-row:rLSide-s/rLRungTop-1-e; grid-column:cLLetter-1-s/cLLetter-1-e;}
+#lLetter-12 {grid-row:rLSide-s/rLRungTop-1-e; grid-column:cLLetter-2-s/cLLetter-2-e;}
+#lLetter-13 {grid-row:rLSide-s/rLRungTop-1-e; grid-column:cLLetter-3-s/cLLetter-3-e;}
+#lLetter-14 {grid-row:rLSide-s/rLRungTop-1-e; grid-column:cLLetter-4-s/cLLetter-4-e;}
+#lLetter-15 {grid-row:rLSide-s/rLRungTop-1-e; grid-column:cLLetter-5-s/cLLetter-5-e;}
+#lLetter-21 {grid-row:rLRungBottom-1-s/rLRungTop-2-e; grid-column:cLLetter-1-s/cLLetter-1-e;}
+#lLetter-22 {grid-row:rLRungBottom-1-s/rLRungTop-2-e; grid-column:cLLetter-2-s/cLLetter-2-e;}
+#lLetter-23 {grid-row:rLRungBottom-1-s/rLRungTop-2-e; grid-column:cLLetter-3-s/cLLetter-3-e;}
+#lLetter-24 {grid-row:rLRungBottom-1-s/rLRungTop-2-e; grid-column:cLLetter-4-s/cLLetter-4-e;}
+#lLetter-25 {grid-row:rLRungBottom-1-s/rLRungTop-2-e; grid-column:cLLetter-5-s/cLLetter-5-e;}
+#lLetter-31 {grid-row:rLRungBottom-2-s/rLRungTop-3-e; grid-column:cLLetter-1-s/cLLetter-1-e;}
+#lLetter-32 {grid-row:rLRungBottom-2-s/rLRungTop-3-e; grid-column:cLLetter-2-s/cLLetter-2-e;}
+#lLetter-33 {grid-row:rLRungBottom-2-s/rLRungTop-3-e; grid-column:cLLetter-3-s/cLLetter-3-e;}
+#lLetter-34 {grid-row:rLRungBottom-2-s/rLRungTop-3-e; grid-column:cLLetter-4-s/cLLetter-4-e;}
+#lLetter-35 {grid-row:rLRungBottom-2-s/rLRungTop-3-e; grid-column:cLLetter-5-s/cLLetter-5-e;}
+#lLetter-41 {grid-row:rLRungBottom-3-s/rLRungTop-4-e; grid-column:cLLetter-1-s/cLLetter-1-e;}
+#lLetter-42 {grid-row:rLRungBottom-3-s/rLRungTop-4-e; grid-column:cLLetter-2-s/cLLetter-2-e;}
+#lLetter-43 {grid-row:rLRungBottom-3-s/rLRungTop-4-e; grid-column:cLLetter-3-s/cLLetter-3-e;}
+#lLetter-44 {grid-row:rLRungBottom-3-s/rLRungTop-4-e; grid-column:cLLetter-4-s/cLLetter-4-e;}
+#lLetter-45 {grid-row:rLRungBottom-3-s/rLRungTop-4-e; grid-column:cLLetter-5-s/cLLetter-5-e;}
+
+#lDiamondGood-11 {display:none; grid-row:rLRungTop-1-s/rLRungBottom-1-e; grid-column:cLDiamond-1-s/cLDiamond-1-e;}
+#lDiamondGood-12 {display:none; grid-row:rLRungTop-1-s/rLRungBottom-1-e; grid-column:cLDiamond-2-s/cLDiamond-2-e;}
+#lDiamondGood-13 {display:none; grid-row:rLRungTop-1-s/rLRungBottom-1-e; grid-column:cLDiamond-3-s/cLDiamond-3-e;}
+#lDiamondGood-14 {display:none; grid-row:rLRungTop-1-s/rLRungBottom-1-e; grid-column:cLDiamond-4-s/cLDiamond-4-e;}
+#lDiamondGood-15 {display:none; grid-row:rLRungTop-1-s/rLRungBottom-1-e; grid-column:cLDiamond-5-s/cLDiamond-5-e;}
+#lDiamondGood-21 {display:none; grid-row:rLRungTop-2-s/rLRungBottom-2-e; grid-column:cLDiamond-1-s/cLDiamond-1-e;}
+#lDiamondGood-22 {display:none; grid-row:rLRungTop-2-s/rLRungBottom-2-e; grid-column:cLDiamond-2-s/cLDiamond-2-e;}
+#lDiamondGood-23 {display:none; grid-row:rLRungTop-2-s/rLRungBottom-2-e; grid-column:cLDiamond-3-s/cLDiamond-3-e;}
+#lDiamondGood-24 {display:none; grid-row:rLRungTop-2-s/rLRungBottom-2-e; grid-column:cLDiamond-4-s/cLDiamond-4-e;}
+#lDiamondGood-25 {display:none; grid-row:rLRungTop-2-s/rLRungBottom-2-e; grid-column:cLDiamond-5-s/cLDiamond-5-e;}
+#lDiamondGood-31 {display:none; grid-row:rLRungTop-3-s/rLRungBottom-3-e; grid-column:cLDiamond-1-s/cLDiamond-1-e;}
+#lDiamondGood-32 {display:none; grid-row:rLRungTop-3-s/rLRungBottom-3-e; grid-column:cLDiamond-2-s/cLDiamond-2-e;}
+#lDiamondGood-33 {display:none; grid-row:rLRungTop-3-s/rLRungBottom-3-e; grid-column:cLDiamond-3-s/cLDiamond-3-e;}
+#lDiamondGood-34 {display:none; grid-row:rLRungTop-3-s/rLRungBottom-3-e; grid-column:cLDiamond-4-s/cLDiamond-4-e;}
+#lDiamondGood-35 {display:none; grid-row:rLRungTop-3-s/rLRungBottom-3-e; grid-column:cLDiamond-5-s/cLDiamond-5-e;}
+
+#lDiamondBad-11 {display:none; grid-row:rLRungTop-1-s/rLRungBottom-1-e; grid-column:cLDiamond-1-s/cLDiamond-1-e;}
+#lDiamondBad-12 {display:none; grid-row:rLRungTop-1-s/rLRungBottom-1-e; grid-column:cLDiamond-2-s/cLDiamond-2-e;}
+#lDiamondBad-13 {display:none; grid-row:rLRungTop-1-s/rLRungBottom-1-e; grid-column:cLDiamond-3-s/cLDiamond-3-e;}
+#lDiamondBad-14 {display:none; grid-row:rLRungTop-1-s/rLRungBottom-1-e; grid-column:cLDiamond-4-s/cLDiamond-4-e;}
+#lDiamondBad-15 {display:none; grid-row:rLRungTop-1-s/rLRungBottom-1-e; grid-column:cLDiamond-5-s/cLDiamond-5-e;}
+#lDiamondBad-21 {display:none; grid-row:rLRungTop-2-s/rLRungBottom-2-e; grid-column:cLDiamond-1-s/cLDiamond-1-e;}
+#lDiamondBad-22 {display:none; grid-row:rLRungTop-2-s/rLRungBottom-2-e; grid-column:cLDiamond-2-s/cLDiamond-2-e;}
+#lDiamondBad-23 {display:none; grid-row:rLRungTop-2-s/rLRungBottom-2-e; grid-column:cLDiamond-3-s/cLDiamond-3-e;}
+#lDiamondBad-24 {display:none; grid-row:rLRungTop-2-s/rLRungBottom-2-e; grid-column:cLDiamond-4-s/cLDiamond-4-e;}
+#lDiamondBad-25 {display:none; grid-row:rLRungTop-2-s/rLRungBottom-2-e; grid-column:cLDiamond-5-s/cLDiamond-5-e;}
+#lDiamondBad-31 {display:none; grid-row:rLRungTop-3-s/rLRungBottom-3-e; grid-column:cLDiamond-1-s/cLDiamond-1-e;}
+#lDiamondBad-32 {display:none; grid-row:rLRungTop-3-s/rLRungBottom-3-e; grid-column:cLDiamond-2-s/cLDiamond-2-e;}
+#lDiamondBad-33 {display:none; grid-row:rLRungTop-3-s/rLRungBottom-3-e; grid-column:cLDiamond-3-s/cLDiamond-3-e;}
+#lDiamondBad-34 {display:none; grid-row:rLRungTop-3-s/rLRungBottom-3-e; grid-column:cLDiamond-4-s/cLDiamond-4-e;}
+#lDiamondBad-35 {display:none; grid-row:rLRungTop-3-s/rLRungBottom-3-e; grid-column:cLDiamond-5-s/cLDiamond-5-e;}
+
+#lCursor-21 {grid-row:rLLetter-2-s/rLLetter-2-e; grid-column:cLLetter-1-s/cLLetter-1-e;}
+#lCursor-22 {grid-row:rLLetter-2-s/rLLetter-2-e; grid-column:cLLetter-2-s/cLLetter-2-e;}
+#lCursor-23 {grid-row:rLLetter-2-s/rLLetter-2-e; grid-column:cLLetter-3-s/cLLetter-3-e;}
+#lCursor-24 {grid-row:rLLetter-2-s/rLLetter-2-e; grid-column:cLLetter-4-s/cLLetter-4-e;}
+#lCursor-25 {grid-row:rLLetter-2-s/rLLetter-2-e; grid-column:cLLetter-5-s/cLLetter-5-e;}
+#lCursor-31 {grid-row:rLLetter-3-s/rLLetter-3-e; grid-column:cLLetter-1-s/cLLetter-1-e;}
+#lCursor-32 {grid-row:rLLetter-3-s/rLLetter-3-e; grid-column:cLLetter-2-s/cLLetter-2-e;}
+#lCursor-33 {grid-row:rLLetter-3-s/rLLetter-3-e; grid-column:cLLetter-3-s/cLLetter-3-e;}
+#lCursor-34 {grid-row:rLLetter-3-s/rLLetter-3-e; grid-column:cLLetter-4-s/cLLetter-4-e;}
+#lCursor-35 {grid-row:rLLetter-3-s/rLLetter-3-e; grid-column:cLLetter-5-s/cLLetter-5-e;}
+
+
+#keyboardLeft {
+	display:grid;
+	z-index:3;
+	width:3em;
+	height:100vh;
+	position:absolute;
+	top:0px;
 	grid-template-rows:
-		[rPanel-73-s]
-		3fr
-		[rDTile-73-8-e]
+		[rKbLeft-s rKb-A]
 		1fr
-		[rDTile-73-7-s]
-		7fr
-		[rDTile-73-7-e]
+		[rKb-B]
 		1fr
-		[rDTile-73-6-s]
-		7fr
-		[rDTile-73-6-e]
+		[rKb-C]
 		1fr
-		[rDTile-73-5-s]
-		7fr
-		[rDTile-73-5-e]
+		[rKb-D]
 		1fr
-		[rDTile-73-4-s]
-		7fr
-		[rDTile-73-4-e]
+		[rKb-E]
 		1fr
-		[rDTile-73-3-s]
-		7fr
-		[rDTile-73-3-e]
+		[rKb-F]
 		1fr
-		[rDTile-73-2-s]
-		7fr
-		[rDTile-73-2-e]
+		[rKb-G]
 		1fr
-		[rDTile-73-1-s]
-		7fr
-		[rDTile-73-1-e rDContainer-73-b]
-		7fr
-		[rMRow-7-1]
-		7fr
-		[rMRow-7-2]
-		7fr
-		[rMRow-7-3]
-		7fr
-		[rMRow-7-e]
-		3fr
-		[rCBackground-7-s]
-		3fr
-		[rCDispense-7-s]
-		6fr
-		[rPanel-73-e rCBackground-7-e rCDispense-7-e]
+		[rKb-H]
+		1fr
+		[rKb-I]
+		1fr
+		[rKb-J]
+		1fr
+		[rKb-K]
+		1fr
+		[rKb-L]
+		1fr
+		[rKb-M]
+		1fr
+		[rKbLeft-e]
 		;
+		
 	grid-template-columns:
-		[cPanel-73-s]
-		9fr
-		[cDContainer-73-1-s]
+		[cKbLeft-s]
 		1fr
-		[cDTile-73-1-s]
-		6fr
-		[cMColumn-7-1]
-		1fr
-		[cDTile-73-1-e]
-		1fr
-		[cDContainer-73-1-e]
-		4fr
-		[cDContainer-73-2-s]
-		1fr
-		[cDTile-73-2-s cMColumn-7-2]
-		7fr
-		[cDTile-73-2-e cMColumn-7-3]
-		1fr
-		[cDContainer-73-2-e]
-		4fr
-		[cDContainer-73-3-s]
-		1fr
-		[cDTile-73-3-s]
-		1fr
-		[cMColumn-7-e]
-		6fr
-		[cDTile-73-3-e]
-		1fr
-		[cDContainer-73-3-e]
-		9fr
-		[cPanel-73-e]
+		[cKbLeft-e]
 		;
 }
 
-#dTile-73-11 {grid-row:rDTile-73-1-s/rDTile-73-1-e; grid-column:cDTile-73-1-s/cDTile-73-1-e;}
-#dTile-73-12 {grid-row:rDTile-73-2-s/rDTile-73-2-e; grid-column:cDTile-73-1-s/cDTile-73-1-e;}
-#dTile-73-13 {grid-row:rDTile-73-3-s/rDTile-73-3-e; grid-column:cDTile-73-1-s/cDTile-73-1-e;}
-#dTile-73-14 {grid-row:rDTile-73-4-s/rDTile-73-4-e; grid-column:cDTile-73-1-s/cDTile-73-1-e;}
-#dTile-73-15 {grid-row:rDTile-73-5-s/rDTile-73-5-e; grid-column:cDTile-73-1-s/cDTile-73-1-e;}
-#dTile-73-16 {grid-row:rDTile-73-6-s/rDTile-73-6-e; grid-column:cDTile-73-1-s/cDTile-73-1-e;}
-#dTile-73-17 {grid-row:rDTile-73-7-s/rDTile-73-7-e; grid-column:cDTile-73-1-s/cDTile-73-1-e;}
-#dTile-73-21 {grid-row:rDTile-73-1-s/rDTile-73-1-e; grid-column:cDTile-73-2-s/cDTile-73-2-e;}
-#dTile-73-22 {grid-row:rDTile-73-2-s/rDTile-73-2-e; grid-column:cDTile-73-2-s/cDTile-73-2-e;}
-#dTile-73-23 {grid-row:rDTile-73-3-s/rDTile-73-3-e; grid-column:cDTile-73-2-s/cDTile-73-2-e;}
-#dTile-73-24 {grid-row:rDTile-73-4-s/rDTile-73-4-e; grid-column:cDTile-73-2-s/cDTile-73-2-e;}
-#dTile-73-25 {grid-row:rDTile-73-5-s/rDTile-73-5-e; grid-column:cDTile-73-2-s/cDTile-73-2-e;}
-#dTile-73-26 {grid-row:rDTile-73-6-s/rDTile-73-6-e; grid-column:cDTile-73-2-s/cDTile-73-2-e;}
-#dTile-73-27 {grid-row:rDTile-73-7-s/rDTile-73-7-e; grid-column:cDTile-73-2-s/cDTile-73-2-e;}
-#dTile-73-31 {grid-row:rDTile-73-1-s/rDTile-73-1-e; grid-column:cDTile-73-3-s/cDTile-73-3-e;}
-#dTile-73-32 {grid-row:rDTile-73-2-s/rDTile-73-2-e; grid-column:cDTile-73-3-s/cDTile-73-3-e;}
-#dTile-73-33 {grid-row:rDTile-73-3-s/rDTile-73-3-e; grid-column:cDTile-73-3-s/cDTile-73-3-e;}
-#dTile-73-34 {grid-row:rDTile-73-4-s/rDTile-73-4-e; grid-column:cDTile-73-3-s/cDTile-73-3-e;}
-#dTile-73-35 {grid-row:rDTile-73-5-s/rDTile-73-5-e; grid-column:cDTile-73-3-s/cDTile-73-3-e;}
-#dTile-73-36 {grid-row:rDTile-73-6-s/rDTile-73-6-e; grid-column:cDTile-73-3-s/cDTile-73-3-e;}
-#dTile-73-37 {grid-row:rDTile-73-7-s/rDTile-73-7-e; grid-column:cDTile-73-3-s/cDTile-73-3-e;}
-
-#dContainer-73-11 {grid-row:rDTile-73-2-e/rDContainer-73-b; grid-column:cDContainer-73-1-s/cDContainer-73-1-e;}
-#dContainer-73-12 {grid-row:rDTile-73-3-e/rDContainer-73-b; grid-column:cDContainer-73-1-s/cDContainer-73-1-e;}
-#dContainer-73-13 {grid-row:rDTile-73-4-e/rDContainer-73-b; grid-column:cDContainer-73-1-s/cDContainer-73-1-e;}
-#dContainer-73-14 {grid-row:rDTile-73-5-e/rDContainer-73-b; grid-column:cDContainer-73-1-s/cDContainer-73-1-e;}
-#dContainer-73-15 {grid-row:rDTile-73-6-e/rDContainer-73-b; grid-column:cDContainer-73-1-s/cDContainer-73-1-e;}
-#dContainer-73-16 {grid-row:rDTile-73-7-e/rDContainer-73-b; grid-column:cDContainer-73-1-s/cDContainer-73-1-e;}
-#dContainer-73-17 {grid-row:rDTile-73-8-e/rDContainer-73-b; grid-column:cDContainer-73-1-s/cDContainer-73-1-e;}
-#dContainer-73-21 {grid-row:rDTile-73-2-e/rDContainer-73-b; grid-column:cDContainer-73-2-s/cDContainer-73-2-e;}
-#dContainer-73-22 {grid-row:rDTile-73-3-e/rDContainer-73-b; grid-column:cDContainer-73-2-s/cDContainer-73-2-e;}
-#dContainer-73-23 {grid-row:rDTile-73-4-e/rDContainer-73-b; grid-column:cDContainer-73-2-s/cDContainer-73-2-e;}
-#dContainer-73-24 {grid-row:rDTile-73-5-e/rDContainer-73-b; grid-column:cDContainer-73-2-s/cDContainer-73-2-e;}
-#dContainer-73-25 {grid-row:rDTile-73-6-e/rDContainer-73-b; grid-column:cDContainer-73-2-s/cDContainer-73-2-e;}
-#dContainer-73-26 {grid-row:rDTile-73-7-e/rDContainer-73-b; grid-column:cDContainer-73-2-s/cDContainer-73-2-e;}
-#dContainer-73-27 {grid-row:rDTile-73-8-e/rDContainer-73-b; grid-column:cDContainer-73-2-s/cDContainer-73-2-e;}
-#dContainer-73-31 {grid-row:rDTile-73-2-e/rDContainer-73-b; grid-column:cDContainer-73-3-s/cDContainer-73-3-e;}
-#dContainer-73-32 {grid-row:rDTile-73-3-e/rDContainer-73-b; grid-column:cDContainer-73-3-s/cDContainer-73-3-e;}
-#dContainer-73-33 {grid-row:rDTile-73-4-e/rDContainer-73-b; grid-column:cDContainer-73-3-s/cDContainer-73-3-e;}
-#dContainer-73-34 {grid-row:rDTile-73-5-e/rDContainer-73-b; grid-column:cDContainer-73-3-s/cDContainer-73-3-e;}
-#dContainer-73-35 {grid-row:rDTile-73-6-e/rDContainer-73-b; grid-column:cDContainer-73-3-s/cDContainer-73-3-e;}
-#dContainer-73-36 {grid-row:rDTile-73-7-e/rDContainer-73-b; grid-column:cDContainer-73-3-s/cDContainer-73-3-e;}
-#dContainer-73-37 {grid-row:rDTile-73-8-e/rDContainer-73-b; grid-column:cDContainer-73-3-s/cDContainer-73-3-e;}
-
-#mSquare-73-1 {grid-row:rMRow-7-1/rMRow-7-2; grid-column:cMColumn-7-1/cMColumn-7-2;}
-#mSquare-73-2 {grid-row:rMRow-7-1/rMRow-7-2; grid-column:cMColumn-7-2/cMColumn-7-3;}
-#mSquare-73-3 {grid-row:rMRow-7-1/rMRow-7-2; grid-column:cMColumn-7-3/cMColumn-7-e;}
-#mSquare-73-4 {grid-row:rMRow-7-2/rMRow-7-3; grid-column:cMColumn-7-1/cMColumn-7-2;}
-#mSquare-73-5 {grid-row:rMRow-7-2/rMRow-7-3; grid-column:cMColumn-7-2/cMColumn-7-3;}
-#mSquare-73-6 {grid-row:rMRow-7-2/rMRow-7-3; grid-column:cMColumn-7-3/cMColumn-7-e;}
-#mSquare-73-7 {grid-row:rMRow-7-3/rMRow-7-e; grid-column:cMColumn-7-1/cMColumn-7-2;}
-#mSquare-73-8 {grid-row:rMRow-7-3/rMRow-7-e; grid-column:cMColumn-7-2/cMColumn-7-3;}
-#mSquare-73-9 {grid-row:rMRow-7-3/rMRow-7-e; grid-column:cMColumn-7-3/cMColumn-7-e;}
-
-#cBackground-73 {grid-row:rCBackground-7-s/rCBackground-7-e; grid-column:cPanel-73-s/cPanel-73-e;}
-#cDispense-73-1 {grid-row:rCDispense-7-s/rCDispense-7-e; grid-column:cDTile-73-1-s/cDTile-73-1-e;}
-#cDispense-73-2 {grid-row:rCDispense-7-s/rCDispense-7-e; grid-column:cDTile-73-2-s/cDTile-73-2-e;}
-#cDispense-73-3 {grid-row:rCDispense-7-s/rCDispense-7-e; grid-column:cDTile-73-3-s/cDTile-73-3-e;}
+#kb-A {grid-row:rKb-A/rKb-B; grid-column:cKbLeft-s/cKbLeft-e;}
+#kb-B {grid-row:rKb-B/rKb-C; grid-column:cKbLeft-s/cKbLeft-e;}
+#kb-C {grid-row:rKb-C/rKb-D; grid-column:cKbLeft-s/cKbLeft-e;}
+#kb-D {grid-row:rKb-D/rKb-E; grid-column:cKbLeft-s/cKbLeft-e;}
+#kb-E {grid-row:rKb-E/rKb-F; grid-column:cKbLeft-s/cKbLeft-e;}
+#kb-F {grid-row:rKb-F/rKb-G; grid-column:cKbLeft-s/cKbLeft-e;}
+#kb-G {grid-row:rKb-G/rKb-H; grid-column:cKbLeft-s/cKbLeft-e;}
+#kb-H {grid-row:rKb-H/rKb-I; grid-column:cKbLeft-s/cKbLeft-e;}
+#kb-I {grid-row:rKb-I/rKb-J; grid-column:cKbLeft-s/cKbLeft-e;}
+#kb-J {grid-row:rKb-J/rKb-K; grid-column:cKbLeft-s/cKbLeft-e;}
+#kb-K {grid-row:rKb-K/rKb-L; grid-column:cKbLeft-s/cKbLeft-e;}
+#kb-L {grid-row:rKb-L/rKb-M; grid-column:cKbLeft-s/cKbLeft-e;}
+#kb-M {grid-row:rKb-M/rKbLeft-e; grid-column:cKbLeft-s/cKbLeft-e;}
 
 
-.plateColour {background-color:#9E9E9E;}
-.dTile {display:none; z-index:5; margin:0; padding:0; background-color:orange;}
-.dContainer {
-	display:none;
-	z-index:4;
-	margin:0; padding:0;
-	/* background-color:#FAFAFA; */
-	background-color:#F5F5F5;
-	border-style:solid; border-color:black; border-top-width:1.6px; border-bottom-width:0; border-left-width:1.6px; border-right-width:1.6px;
+#keyboardRight {
+	display:grid;
+	z-index:3;
+	width:3em;
+	height:100vh;
+	position:absolute;
+	top:0px;
+	grid-template-rows:
+		[rKbRight-s rKb-N]
+		1fr
+		[rKb-O]
+		1fr
+		[rKb-P]
+		1fr
+		[rKb-Q]
+		1fr
+		[rKb-R]
+		1fr
+		[rKb-S]
+		1fr
+		[rKb-T]
+		1fr
+		[rKb-U]
+		1fr
+		[rKb-V]
+		1fr
+		[rKb-W]
+		1fr
+		[rKb-X]
+		1fr
+		[rKb-Y]
+		1fr
+		[rKb-Z]
+		1fr
+		[rKbRight-e]
+		;
+		
+	grid-template-columns:
+		[cKbRight-s]
+		1fr
+		[cKbRight-e]
+		;
 }
-/* .mSquare {z-index:4; margin:0; padding:0; background-color:gray; font-size: 5em; text-align:center;} */
-.mSquare {z-index:4; margin:0; padding:0; background-color:transparent; color:#B2B2B2; font-size: 5em; text-align:center;}
-.mSquare-lt {border-style:solid; border-color:black; border-top-width:0.8px; border-bottom-width:0; border-left-width:0.8px; border-right-width:0;}
-.mSquare-ltr {border-style:solid; border-color:black; border-top-width:0.8px; border-bottom-width:0; border-left-width:0.8px; border-right-width:0.8px;}
-.mSquare-blt {border-style:solid; border-color:black; border-top-width:0.8px; border-bottom-width:0.8px; border-left-width:0.8px; border-right-width:0;}
-.mSquare-bltr {border-style:solid; border-color:black; border-top-width:0.8px; border-bottom-width:0.8px; border-left-width:0.8px; border-right-width:0.8px;}
 
-.tickCross {margin:0; padding:0; text-align:center; border:none; background-color:transparent; color:black; font-size:6em;}
+#kb-N {grid-row:rKb-N/rKb-O; grid-column:cKbRight-s/cKbRight-e;}
+#kb-O {grid-row:rKb-O/rKb-P; grid-column:cKbRight-s/cKbRight-e;}
+#kb-P {grid-row:rKb-P/rKb-Q; grid-column:cKbRight-s/cKbRight-e;}
+#kb-Q {grid-row:rKb-Q/rKb-R; grid-column:cKbRight-s/cKbRight-e;}
+#kb-R {grid-row:rKb-R/rKb-S; grid-column:cKbRight-s/cKbRight-e;}
+#kb-S {grid-row:rKb-S/rKb-T; grid-column:cKbRight-s/cKbRight-e;}
+#kb-T {grid-row:rKb-T/rKb-U; grid-column:cKbRight-s/cKbRight-e;}
+#kb-U {grid-row:rKb-U/rKb-V; grid-column:cKbRight-s/cKbRight-e;}
+#kb-V {grid-row:rKb-V/rKb-W; grid-column:cKbRight-s/cKbRight-e;}
+#kb-W {grid-row:rKb-W/rKb-X; grid-column:cKbRight-s/cKbRight-e;}
+#kb-X {grid-row:rKb-X/rKb-Y; grid-column:cKbRight-s/cKbRight-e;}
+#kb-Y {grid-row:rKb-Y/rKb-Z; grid-column:cKbRight-s/cKbRight-e;}
+#kb-Z {grid-row:rKb-Z/cKbRight-e; grid-column:cKbRight-s/cKbRight-e;}
 
-.cCommon {margin:0; padding:0;}
-/* .cSecondary {text-align:center; border:none; background-color:rgb(25%,25%,25%); color:white;} */
-.cSecondary {text-align:center; border:none; background-color:#484848; color:white; font-size:2.5em;}
-.cTertiary {text-align:left; border:none; background-color:transparent; color:black; font-size:3em}
-/* .cBackground {z-index:4; margin:0; padding:0; background-color:gray;} */
-.cBackground {z-index:4; margin:0; padding:0;}
-/* .cDispense {z-index:5; margin:0; padding:0; border:none; background-color:lime; font-size:3em; text-align:center;} */
-.cDispense {z-index:5; margin:0; padding:0; border-style:solid; border-width:thin; border-color:white; background-color:maroon; color:white; font-size:3em; text-align:center;}
-.cBack {font-size: 3em; text-align:center;}
 
-.pHeader {padding:0; font-size:3.6em; border-style:none; border-radius:0.3em; margin:0; background-color:black; color:white; text-align:center;}
+.kb {background-color:transparent;}
+/* .kbLetter {margin:0; padding:0; border:none; background-color:inherit; color:white;} */
+.kbLetter {margin:0; padding:0; border:none; background-color:inherit; color:#F2E9C4;}
+.kbLeft {text-align:center;}
+.kbRight {text-align:center;}
+
+
+.margin {margin:0; padding:0; background-color:black;}
+
+.led {z-index:3; width:21em; height:21em;}
+
+.plateColour {background-color:#4B7365;}
+
+.lSide {background-color:transparent;}
+.lSide-l {border-style:solid; border-color:black; border-top-width:0; border-bottom-width:0; border-left-width:0; border-right-width:0.4em;}
+.lSide-r {border-style:solid; border-color:black; border-top-width:0; border-bottom-width:0; border-left-width:0.4em; border-right-width:0;}
+
+.lRung {background-color:transparent;}
+.lRung-t {border-style:solid; border-color:black; border-top-width:0; border-bottom-width:0.1em; border-left-width:0; border-right-width:0;}
+.lRung-b {border-style:solid; border-color:black; border-top-width:0.1em; border-bottom-width:0; border-left-width:0; border-right-width:0;}
+
+/* .lLetter {z-index:4; margin:0; padding:0; background-color:transparent; text-align:center; font-family:"Lucida Console",monospace; font-size:3.3em;} */
+.lLetter {z-index:4;
+		  margin:0;
+		  padding:0 0 0 0;
+		  border-style:none;
+		  border-width:0 0 0 0;
+		  background-color:transparent;
+		  font-family:"Lucida Console",monospace;
+		  font-size:3.5em;
+		  text-align:center;
+		 }
+.lCursor {margin:0;
+		  padding:0;
+		  border-style:solid;
+		  border-color:white;
+		  border-top-width:0;
+		  border-bottom-width:0;
+		  border-left-width:0.2em;
+		  border-right-width:0.2em;
+		  background-color:silver;
+		 }
+
+.lDiamond {z-index:5; width:1em; height:2em;}
+
+.cCommon {z-index:4; margin:0; padding:0;}
+/* .cSecondary {text-align:center; border:none; background-color:#484848; color:white; font-size:0.7em;} */
+.cPrimary {text-align:center; border:none; background-color:#F2E9C4; color:black; font-size:0.7em;}
+.cSecondary {text-align:center; border:none; background-color:#2A4038; color:white; font-size:0.7em;}
+.cTertiary {text-align:left; border:none; background-color:transparent; color:black; font-size:1.5em}
+.cBack {font-size: 1.5em; text-align:center;}
+
+.header {padding:0; font-size:1.8em; border-style:none; border-radius:0.3em; margin:0; background-color:black; color:white; text-align:center; letter-spacing:0.1em;}
 
   </style>
 </head>
 
 <body>
 	<div id="information" class="plateColour">
+
+		<div id="margLeft" class="margin"></div>
+		<div id="margRight" class="margin"></div>
+
 		<button id="iBack" class="cCommon cTertiary"><code><strong>&lt;</strong></code></button>
 
-		<button id="iHeader" class="pHeader"><strong>Information</strong></button>
+		<button id="iHeader" class="header"><strong>Information</strong></button>
 	
-		<div id="iInstructions">Build a square which has just ONE area of each colour.<br><br>
+		<div id="iInstructions">A 5-letter Word Ladder with just 3 steps.<br>
+								Change precisely 2 letters per step.<br><br>
 								As well as instructions:<br>
 								* puzzle number<br>
 								* date when a new puzzle will appear<br>
 								* links to other puzzles<br>
 								* Lazy Dog ad<br>
 								* copyright<br>
+								* social media<br>
+								* Ukraine flag<br>
 		</div>
 	</div>
-	<div id="door-3"
-		 style="height:120em;
-				grid-template-rows:[rDoor-3-s]3fr[rPHeader-3-s]6fr[rPHeader-3-e]3fr[rCTop-3-s]6fr[rCTop-3-e]3fr
-				[rPanel-3-s]80fr[rPanel-3-e]3fr[rCBottom-3-s]6fr[rCBottom-3-e]3fr[rDoor-3-e];
-			   "
-		 >
-		<button id="pHeader-3" class="pHeader"><strong>Dispensers</strong></button>
-		<button id="cInformation-3" class="cCommon cSecondary">Information</button>
-		<button id="cHint-3" class="cCommon cSecondary">Hint</button>
-		<button id="cSolution-3" class="cCommon cSecondary">Solution</button>
+
+	<div id="door" class="plateColour">
+	
+		<div id="mLeft" class="margin"></div>
+		<div id="mRight" class="margin"></div>
+
+		<img id="LEDGreen" class="led" src="LEDGreen.svg" alt="Green LED"/>
+		<img id="LEDAmber" class="led" src="LEDAmber.svg" alt="Amber LED"/>
+		<img id="LEDRed" class="led" src="LEDRed.svg" alt="Red LED"/>
 		
-		<div id="panel-33">
-			<div id="dTile-33-11" class="dTile"></div>
-			<div id="dTile-33-12" class="dTile"></div>
-			<div id="dTile-33-13" class="dTile"></div>
-			<div id="dTile-33-21" class="dTile"></div>
-			<div id="dTile-33-22" class="dTile"></div>
-			<div id="dTile-33-23" class="dTile"></div>
-			<div id="dTile-33-31" class="dTile"></div>
-			<div id="dTile-33-32" class="dTile"></div>
-			<div id="dTile-33-33" class="dTile"></div>
+		<button id="Ladderet" class="header"><strong>Ladderet</strong></button>
+		<button id="cInformation" class="cCommon cSecondary">Information</button>
+		<button id="cHint" class="cCommon cSecondary">Hint</button>
+		<button id="cSolution" class="cCommon cSecondary">Solution</button>
 
-			<div id="dContainer-33-11" class="dContainer"></div>
-			<div id="dContainer-33-12" class="dContainer"></div>
-			<div id="dContainer-33-13" class="dContainer"></div>
-			<div id="dContainer-33-21" class="dContainer"></div>
-			<div id="dContainer-33-22" class="dContainer"></div>
-			<div id="dContainer-33-23" class="dContainer"></div>
-			<div id="dContainer-33-31" class="dContainer"></div>
-			<div id="dContainer-33-32" class="dContainer"></div>
-			<div id="dContainer-33-33" class="dContainer"></div>
+		<div id="panel">
+			<button id="lLetter-11" class="lLetter">X</button>
+			<button id="lLetter-12" class="lLetter">X</button>
+			<button id="lLetter-13" class="lLetter">X</button>
+			<button id="lLetter-14" class="lLetter">X</button>
+			<button id="lLetter-15" class="lLetter">X</button>
+			<button id="lLetter-21" class="lLetter">X</button>
+			<button id="lLetter-22" class="lLetter">X</button>
+			<button id="lLetter-23" class="lLetter">X</button>
+			<button id="lLetter-24" class="lLetter">X</button>
+			<button id="lLetter-25" class="lLetter">X</button>
+			<button id="lLetter-31" class="lLetter">X</button>
+			<button id="lLetter-32" class="lLetter">X</button>
+			<button id="lLetter-33" class="lLetter">X</button>
+			<button id="lLetter-34" class="lLetter">X</button>
+			<button id="lLetter-35" class="lLetter">X</button>
+			<button id="lLetter-41" class="lLetter">X</button>
+			<button id="lLetter-42" class="lLetter">X</button>
+			<button id="lLetter-43" class="lLetter">X</button>
+			<button id="lLetter-44" class="lLetter">X</button>
+			<button id="lLetter-45" class="lLetter">X</button>
 
-			<button id="mSquare-33-1" class="mSquare mSquare-lt">1</button>
-			<button id="mSquare-33-2" class="mSquare mSquare-lt">2</button>
-			<button id="mSquare-33-3" class="mSquare mSquare-ltr">3</button>
-			<button id="mSquare-33-4" class="mSquare mSquare-lt">4</button>
-			<button id="mSquare-33-5" class="mSquare mSquare-lt">5</button>
-			<button id="mSquare-33-6" class="mSquare mSquare-ltr">6</button>
-			<button id="mSquare-33-7" class="mSquare mSquare-blt">7</button>
-			<button id="mSquare-33-8" class="mSquare mSquare-blt">8</button>
-			<button id="mSquare-33-9" class="mSquare mSquare-bltr">9</button>
+			<div id="lCursor-21" class="lCursor"></div>
+			<div id="lCursor-22" class="lCursor"></div>
+			<div id="lCursor-23" class="lCursor"></div>
+			<div id="lCursor-24" class="lCursor"></div>
+			<div id="lCursor-25" class="lCursor"></div>
+			<div id="lCursor-31" class="lCursor"></div>
+			<div id="lCursor-32" class="lCursor"></div>
+			<div id="lCursor-33" class="lCursor"></div>
+			<div id="lCursor-34" class="lCursor"></div>
+			<div id="lCursor-35" class="lCursor"></div>
 
-			<div id="cBackground-33" class="cBackground"></div>
-			<button id="cDispense-33-1" class="cDispense"><strong>&bigtriangledown;</strong></button>
-			<button id="cDispense-33-2" class="cDispense"><strong>&bigtriangledown;</strong></button>
-			<button id="cDispense-33-3" class="cDispense"><strong>&bigtriangledown;</strong></button>
-		</div>
-		
-		<div id="panel-34">
-			<div id="dTile-34-11" class="dTile"></div>
-			<div id="dTile-34-12" class="dTile"></div>
-			<div id="dTile-34-13" class="dTile"></div>
-			<div id="dTile-34-21" class="dTile"></div>
-			<div id="dTile-34-22" class="dTile"></div>
-			<div id="dTile-34-23" class="dTile"></div>
-			<div id="dTile-34-31" class="dTile"></div>
-			<div id="dTile-34-32" class="dTile"></div>
-			<div id="dTile-34-33" class="dTile"></div>
-			<div id="dTile-34-41" class="dTile"></div>
-			<div id="dTile-34-42" class="dTile"></div>
-			<div id="dTile-34-43" class="dTile"></div>
+			<img id="lDiamondGood-11" class="lDiamond" src="diamondRed.svg" alt="D"/>
+			<img id="lDiamondGood-12" class="lDiamond" src="diamondRed.svg" alt="D"/>
+			<img id="lDiamondGood-13" class="lDiamond" src="diamondRed.svg" alt="D"/>
+			<img id="lDiamondGood-14" class="lDiamond" src="diamondRed.svg" alt="D"/>
+			<img id="lDiamondGood-15" class="lDiamond" src="diamondRed.svg" alt="D"/>
+			<img id="lDiamondGood-21" class="lDiamond" src="diamondRed.svg" alt="D"/>
+			<img id="lDiamondGood-22" class="lDiamond" src="diamondRed.svg" alt="D"/>
+			<img id="lDiamondGood-23" class="lDiamond" src="diamondRed.svg" alt="D"/>
+			<img id="lDiamondGood-24" class="lDiamond" src="diamondRed.svg" alt="D"/>
+			<img id="lDiamondGood-25" class="lDiamond" src="diamondRed.svg" alt="D"/>
+			<img id="lDiamondGood-31" class="lDiamond" src="diamondRed.svg" alt="D"/>
+			<img id="lDiamondGood-32" class="lDiamond" src="diamondRed.svg" alt="D"/>
+			<img id="lDiamondGood-33" class="lDiamond" src="diamondRed.svg" alt="D"/>
+			<img id="lDiamondGood-34" class="lDiamond" src="diamondRed.svg" alt="D"/>
+			<img id="lDiamondGood-35" class="lDiamond" src="diamondRed.svg" alt="D"/>
 
-			<div id="dContainer-34-11" class="dContainer"></div>
-			<div id="dContainer-34-12" class="dContainer"></div>
-			<div id="dContainer-34-13" class="dContainer"></div>
-			<div id="dContainer-34-21" class="dContainer"></div>
-			<div id="dContainer-34-22" class="dContainer"></div>
-			<div id="dContainer-34-23" class="dContainer"></div>
-			<div id="dContainer-34-31" class="dContainer"></div>
-			<div id="dContainer-34-32" class="dContainer"></div>
-			<div id="dContainer-34-33" class="dContainer"></div>
-			<div id="dContainer-34-41" class="dContainer"></div>
-			<div id="dContainer-34-42" class="dContainer"></div>
-			<div id="dContainer-34-43" class="dContainer"></div>
+			<img id="lDiamondBad-11" class="lDiamond" src="diamondBlack.svg" alt="D"/>
+			<img id="lDiamondBad-12" class="lDiamond" src="diamondBlack.svg" alt="D"/>
+			<img id="lDiamondBad-13" class="lDiamond" src="diamondBlack.svg" alt="D"/>
+			<img id="lDiamondBad-14" class="lDiamond" src="diamondBlack.svg" alt="D"/>
+			<img id="lDiamondBad-15" class="lDiamond" src="diamondBlack.svg" alt="D"/>
+			<img id="lDiamondBad-21" class="lDiamond" src="diamondBlack.svg" alt="D"/>
+			<img id="lDiamondBad-22" class="lDiamond" src="diamondBlack.svg" alt="D"/>
+			<img id="lDiamondBad-23" class="lDiamond" src="diamondBlack.svg" alt="D"/>
+			<img id="lDiamondBad-24" class="lDiamond" src="diamondBlack.svg" alt="D"/>
+			<img id="lDiamondBad-25" class="lDiamond" src="diamondBlack.svg" alt="D"/>
+			<img id="lDiamondBad-31" class="lDiamond" src="diamondBlack.svg" alt="D"/>
+			<img id="lDiamondBad-32" class="lDiamond" src="diamondBlack.svg" alt="D"/>
+			<img id="lDiamondBad-33" class="lDiamond" src="diamondBlack.svg" alt="D"/>
+			<img id="lDiamondBad-34" class="lDiamond" src="diamondBlack.svg" alt="D"/>
+			<img id="lDiamondBad-35" class="lDiamond" src="diamondBlack.svg" alt="D"/>
+
+			<div id="lSideLeft" class="lSide lSide-l"></div>
+			<div id="lSideRight" class="lSide lSide-r"></div>
 			
-			<button id="mSquare-34-1" class="mSquare mSquare-lt">1</button>
-			<button id="mSquare-34-2" class="mSquare mSquare-lt">2</button>
-			<button id="mSquare-34-3" class="mSquare mSquare-ltr">3</button>
-			<button id="mSquare-34-4" class="mSquare mSquare-lt">4</button>
-			<button id="mSquare-34-5" class="mSquare mSquare-lt">5</button>
-			<button id="mSquare-34-6" class="mSquare mSquare-ltr">6</button>
-			<button id="mSquare-34-7" class="mSquare mSquare-blt">7</button>
-			<button id="mSquare-34-8" class="mSquare mSquare-blt">8</button>
-			<button id="mSquare-34-9" class="mSquare mSquare-bltr">9</button>
-
-			<div id="cBackground-34" class="cBackground"></div>
-			<button id="cDispense-34-1" class="cDispense"><strong>&bigtriangledown;</strong></button>
-			<button id="cDispense-34-2" class="cDispense"><strong>&bigtriangledown;</strong></button>
-			<button id="cDispense-34-3" class="cDispense"><strong>&bigtriangledown;</strong></button>
-			<button id="cDispense-34-4" class="cDispense"><strong>&bigtriangledown;</strong></button>
+			<div id="lRungTop-1" class="lRung lRung-t"></div>
+			<div id="lRungBottom-1" class="lRung lRung-b"></div>
+			<div id="lRungTop-2" class="lRung lRung-t"></div>
+			<div id="lRungBottom-2" class="lRung lRung-b"></div>
+			<div id="lRungTop-3" class="lRung lRung-t"></div>
+			<div id="lRungBottom-3" class="lRung lRung-b"></div>
+			<div id="lRungTop-4" class="lRung lRung-t"></div>
+			<div id="lRungBottom-4" class="lRung lRung-b"></div>
+			
 		</div>
-
-		<button id="cReset-3" class="cCommon cSecondary">Reset</button>
-		<button id="cBack-3" class="cCommon cSecondary cBack">&bigtriangleup;</button>
+		
+		<button id="cReset" class="cCommon cSecondary">Reset</button>
+		<button id="cUpperLower" class="cCommon cPrimary">&bigtriangledown;</button>
+		<button id="cDeleteBack" class="cCommon cPrimary">&lt;&times;</button>
+		<button id="cDeleteAll" class="cCommon cPrimary">&times;&times;&times;&times;&times;</button>
 	</div>
 	
-
-	<div id="door-4" class="plateColour"
-		 style="height:120em;
-				grid-template-rows:[rDoor-4-s]3fr[rPHeader-4-s]7fr[rPHeader-4-e]3fr[rCTop-4-s]6fr[rCTop-4-e]3fr
-				[rPanel-4-s]80fr[rPanel-4-e]3fr[rCBottom-4-s]6fr[rCBottom-4-e]3fr[rDoor-4-e];
-			   "
-		 >
-		<button id="pHeader-4" class="pHeader"><strong>Dispensers<sup>&lambda;</sup></strong></button>
-		<button id="cInformation-4" class="cCommon cSecondary">Information</button>
-		<button id="cHint-4" class="cCommon cSecondary">Hint</button>
-		<button id="cSolution-4" class="cCommon cSecondary">Solution</button>
-
-		<div id="panel-43">
-			<div id="dTile-43-11" class="dTile"></div>
-			<div id="dTile-43-12" class="dTile"></div>
-			<div id="dTile-43-13" class="dTile"></div>
-			<div id="dTile-43-14" class="dTile"></div>
-			<div id="dTile-43-21" class="dTile"></div>
-			<div id="dTile-43-22" class="dTile"></div>
-			<div id="dTile-43-23" class="dTile"></div>
-			<div id="dTile-43-24" class="dTile"></div>
-			<div id="dTile-43-31" class="dTile"></div>
-			<div id="dTile-43-32" class="dTile"></div>
-			<div id="dTile-43-33" class="dTile"></div>
-			<div id="dTile-43-34" class="dTile"></div>
-
-			<div id="dContainer-43-11" class="dContainer"></div>
-			<div id="dContainer-43-12" class="dContainer"></div>
-			<div id="dContainer-43-13" class="dContainer"></div>
-			<div id="dContainer-43-14" class="dContainer"></div>
-			<div id="dContainer-43-21" class="dContainer"></div>
-			<div id="dContainer-43-22" class="dContainer"></div>
-			<div id="dContainer-43-23" class="dContainer"></div>
-			<div id="dContainer-43-24" class="dContainer"></div>
-			<div id="dContainer-43-31" class="dContainer"></div>
-			<div id="dContainer-43-32" class="dContainer"></div>
-			<div id="dContainer-43-33" class="dContainer"></div>
-			<div id="dContainer-43-34" class="dContainer"></div>
-			
-			<button id="mSquare-43-1" class="mSquare mSquare-lt">1</button>
-			<button id="mSquare-43-2" class="mSquare mSquare-lt">2</button>
-			<button id="mSquare-43-3" class="mSquare mSquare-ltr">3</button>
-			<button id="mSquare-43-4" class="mSquare mSquare-lt">4</button>
-			<button id="mSquare-43-5" class="mSquare mSquare-lt">5</button>
-			<button id="mSquare-43-6" class="mSquare mSquare-ltr">6</button>
-			<button id="mSquare-43-7" class="mSquare mSquare-blt">7</button>
-			<button id="mSquare-43-8" class="mSquare mSquare-blt">8</button>
-			<button id="mSquare-43-9" class="mSquare mSquare-bltr">9</button>
-			
-			<button id="TickCross-43" class="tickCross">&cross;</button>
-
-			<div id="cBackground-43" class="cBackground plateColour"></div>
-			<button id="cDispense-43-1" class="cDispense"><strong>&bigtriangledown;</strong></button>
-			<button id="cDispense-43-2" class="cDispense"><strong>&bigtriangledown;</strong></button>
-			<button id="cDispense-43-3" class="cDispense"><strong>&bigtriangledown;</strong></button>
-		</div>
-		
-		<button id="cReset-4" class="cCommon cSecondary">Reset</button>
-		<button id="cBack-4" class="cCommon cSecondary cBack">&bigtriangleup;</button>
+	<div id="keyboardLeft" class="kb">
+		<button id="kb-A" class="kbLetter kbLeft">A</button>
+		<button id="kb-B" class="kbLetter kbLeft">B</button>
+		<button id="kb-C" class="kbLetter kbLeft">C</button>
+		<button id="kb-D" class="kbLetter kbLeft">D</button>
+		<button id="kb-E" class="kbLetter kbLeft">E</button>
+		<button id="kb-F" class="kbLetter kbLeft">F</button>
+		<button id="kb-G" class="kbLetter kbLeft">G</button>
+		<button id="kb-H" class="kbLetter kbLeft">H</button>
+		<button id="kb-I" class="kbLetter kbLeft">I</button>
+		<button id="kb-J" class="kbLetter kbLeft">J</button>
+		<button id="kb-K" class="kbLetter kbLeft">K</button>
+		<button id="kb-L" class="kbLetter kbLeft">L</button>
+		<button id="kb-M" class="kbLetter kbLeft">M</button>
 	</div>
 
-	
-	<div id="door-7" class="plateColour"
-		 style="height:120em;
-				grid-template-rows:[rDoor-7-s]3fr[rPHeader-7-s]7fr[rPHeader-7-e]3fr[rCTop-7-s]6fr[rCTop-7-e]3fr
-				[rPanel-7-s]80fr[rPanel-7-e]3fr[rCBottom-7-s]6fr[rCBottom-7-e]3fr[rDoor-7-e];
-			   "
-		 >
-		<button id="pHeader-7" class="pHeader"><strong>Dispensers<sup>&lambda;</sup></strong></button>
-		<button id="cInformation-7" class="cCommon cSecondary">Information</button>
-		<button id="cHint-7" class="cCommon cSecondary">Hint</button>
-		<button id="cSolution-7" class="cCommon cSecondary">Solution</button>
-
-		<div id="panel-72">
-			<div id="dTile-72-11" class="dTile"></div>
-			<div id="dTile-72-12" class="dTile"></div>
-			<div id="dTile-72-13" class="dTile"></div>
-			<div id="dTile-72-14" class="dTile"></div>
-			<div id="dTile-72-15" class="dTile"></div>
-			<div id="dTile-72-16" class="dTile"></div>
-			<div id="dTile-72-17" class="dTile"></div>
-			<div id="dTile-72-21" class="dTile"></div>
-			<div id="dTile-72-22" class="dTile"></div>
-			<div id="dTile-72-23" class="dTile"></div>
-			<div id="dTile-72-24" class="dTile"></div>
-			<div id="dTile-72-25" class="dTile"></div>
-			<div id="dTile-72-26" class="dTile"></div>
-			<div id="dTile-72-27" class="dTile"></div>
-
-			<div id="dContainer-72-11" class="dContainer"></div>
-			<div id="dContainer-72-12" class="dContainer"></div>
-			<div id="dContainer-72-13" class="dContainer"></div>
-			<div id="dContainer-72-14" class="dContainer"></div>
-			<div id="dContainer-72-15" class="dContainer"></div>
-			<div id="dContainer-72-16" class="dContainer"></div>
-			<div id="dContainer-72-17" class="dContainer"></div>
-			<div id="dContainer-72-21" class="dContainer"></div>
-			<div id="dContainer-72-22" class="dContainer"></div>
-			<div id="dContainer-72-23" class="dContainer"></div>
-			<div id="dContainer-72-24" class="dContainer"></div>
-			<div id="dContainer-72-25" class="dContainer"></div>
-			<div id="dContainer-72-26" class="dContainer"></div>
-			<div id="dContainer-72-27" class="dContainer"></div>
-
-			<button id="mSquare-72-1" class="mSquare mSquare-lt">1</button>
-			<button id="mSquare-72-2" class="mSquare mSquare-lt">2</button>
-			<button id="mSquare-72-3" class="mSquare mSquare-ltr">3</button>
-			<button id="mSquare-72-4" class="mSquare mSquare-lt">4</button>
-			<button id="mSquare-72-5" class="mSquare mSquare-lt">5</button>
-			<button id="mSquare-72-6" class="mSquare mSquare-ltr">6</button>
-			<button id="mSquare-72-7" class="mSquare mSquare-blt">7</button>
-			<button id="mSquare-72-8" class="mSquare mSquare-blt">8</button>
-			<button id="mSquare-72-9" class="mSquare mSquare-bltr">9</button>
-			
-			<button id="TickCross-72" class="tickCross">&cross;</button>
-
-			<div id="cBackground-72" class="cBackground plateColour"></div>
-			<button id="cDispense-72-1" class="cDispense"><strong>&bigtriangledown;</strong></button>
-			<button id="cDispense-72-2" class="cDispense"><strong>&bigtriangledown;</strong></button>
-		</div>
-		
-		<div id="panel-73">
-			<div id="dTile-73-11" class="dTile"></div>
-			<div id="dTile-73-12" class="dTile"></div>
-			<div id="dTile-73-13" class="dTile"></div>
-			<div id="dTile-73-14" class="dTile"></div>
-			<div id="dTile-73-15" class="dTile"></div>
-			<div id="dTile-73-16" class="dTile"></div>
-			<div id="dTile-73-17" class="dTile"></div>
-			<div id="dTile-73-21" class="dTile"></div>
-			<div id="dTile-73-22" class="dTile"></div>
-			<div id="dTile-73-23" class="dTile"></div>
-			<div id="dTile-73-24" class="dTile"></div>
-			<div id="dTile-73-25" class="dTile"></div>
-			<div id="dTile-73-26" class="dTile"></div>
-			<div id="dTile-73-27" class="dTile"></div>
-			<div id="dTile-73-31" class="dTile"></div>
-			<div id="dTile-73-32" class="dTile"></div>
-			<div id="dTile-73-33" class="dTile"></div>
-			<div id="dTile-73-34" class="dTile"></div>
-			<div id="dTile-73-35" class="dTile"></div>
-			<div id="dTile-73-36" class="dTile"></div>
-			<div id="dTile-73-37" class="dTile"></div>
-
-			<div id="dContainer-73-11" class="dContainer"></div>
-			<div id="dContainer-73-12" class="dContainer"></div>
-			<div id="dContainer-73-13" class="dContainer"></div>
-			<div id="dContainer-73-14" class="dContainer"></div>
-			<div id="dContainer-73-15" class="dContainer"></div>
-			<div id="dContainer-73-16" class="dContainer"></div>
-			<div id="dContainer-73-17" class="dContainer"></div>
-			<div id="dContainer-73-21" class="dContainer"></div>
-			<div id="dContainer-73-22" class="dContainer"></div>
-			<div id="dContainer-73-23" class="dContainer"></div>
-			<div id="dContainer-73-24" class="dContainer"></div>
-			<div id="dContainer-73-25" class="dContainer"></div>
-			<div id="dContainer-73-26" class="dContainer"></div>
-			<div id="dContainer-73-27" class="dContainer"></div>
-			<div id="dContainer-73-31" class="dContainer"></div>
-			<div id="dContainer-73-32" class="dContainer"></div>
-			<div id="dContainer-73-33" class="dContainer"></div>
-			<div id="dContainer-73-34" class="dContainer"></div>
-			<div id="dContainer-73-35" class="dContainer"></div>
-			<div id="dContainer-73-36" class="dContainer"></div>
-			<div id="dContainer-73-37" class="dContainer"></div>
-			
-			<button id="mSquare-73-1" class="mSquare mSquare-lt">1</button>
-			<button id="mSquare-73-2" class="mSquare mSquare-lt">2</button>
-			<button id="mSquare-73-3" class="mSquare mSquare-ltr">3</button>
-			<button id="mSquare-73-4" class="mSquare mSquare-lt">4</button>
-			<button id="mSquare-73-5" class="mSquare mSquare-lt">5</button>
-			<button id="mSquare-73-6" class="mSquare mSquare-ltr">6</button>
-			<button id="mSquare-73-7" class="mSquare mSquare-blt">7</button>
-			<button id="mSquare-73-8" class="mSquare mSquare-blt">8</button>
-			<button id="mSquare-73-9" class="mSquare mSquare-bltr">9</button>
-
-			<div id="cBackground-73" class="cBackground"></div>
-			<button id="cDispense-73-1" class="cDispense"><strong>&bigtriangledown;</strong></button>
-			<button id="cDispense-73-2" class="cDispense"><strong>&bigtriangledown;</strong></button>
-			<button id="cDispense-73-3" class="cDispense"><strong>&bigtriangledown;</strong></button>
-		</div>
-		
-		<button id="cReset-7" class="cCommon cSecondary">Reset</button>
-		<button id="cBack-7" class="cCommon cSecondary cBack">&bigtriangleup;</button>
+	<div id="keyboardRight" class="kb">
+		<button id="kb-N" class="kbLetter kbRight">N</button>
+		<button id="kb-O" class="kbLetter kbRight">O</button>
+		<button id="kb-P" class="kbLetter kbRight">P</button>
+		<button id="kb-Q" class="kbLetter kbRight">Q</button>
+		<button id="kb-R" class="kbLetter kbRight">R</button>
+		<button id="kb-S" class="kbLetter kbRight">S</button>
+		<button id="kb-T" class="kbLetter kbRight">T</button>
+		<button id="kb-U" class="kbLetter kbRight">U</button>
+		<button id="kb-V" class="kbLetter kbRight">V</button>
+		<button id="kb-W" class="kbLetter kbRight">W</button>
+		<button id="kb-X" class="kbLetter kbRight">X</button>
+		<button id="kb-Y" class="kbLetter kbRight">Y</button>
+		<button id="kb-Z" class="kbLetter kbRight">Z</button>
 	</div>
+
 </body>
 </html>
 
 <script>
-//const doorHeightAbovePanel = 21;
-const doorHeightAbovePanel = 22;
-const doorHeightBelowPanel = 12;
-const numGridColumns = 59;
-
-console.log('Thank you');
 console.log(`${window.innerHeight}px`);
 console.log(`${window.innerWidth}px`);
 console.log(`${window.devicePixelRatio}`);
 
-function updateFontSize(MaxTilesInADispenser, numGridRows, numGridColumns) {
+function updateFontSize() {
   console.log('updateFontSize called');
-  console.log(numGridRows);
-  console.log(numGridColumns);
+  const numGridRows = 35;
+  const numGridColumns = 39;
   
   let innerDimension = 0
   let gridDimension = 0
@@ -1160,9 +679,10 @@ function updateFontSize(MaxTilesInADispenser, numGridRows, numGridColumns) {
   let roundedSpareHeight = roundedDeviceSpareHeight / window.devicePixelRatio;
   console.log('roundedSpareHeight');
   console.log(roundedSpareHeight);
-  const doorId = "#door-" + String(MaxTilesInADispenser);
-  let door = document.querySelector(doorId);
+  let door = document.querySelector("#door");
   let information = document.querySelector("#information");
+  let keyboardLeft = document.querySelector("#keyboardLeft");
+  let keyboardRight = document.querySelector("#keyboardRight");
   door.style.top = `${roundedSpareHeight / 2}px`;
   information.style.top = `${roundedSpareHeight / 2}px`;
   
@@ -1178,443 +698,291 @@ function updateFontSize(MaxTilesInADispenser, numGridRows, numGridColumns) {
   let roundedSpareWidth = roundedDeviceSpareWidth / window.devicePixelRatio;
   console.log('roundedSpareWidth');
   console.log(roundedSpareWidth);
-  door.style.left = `${roundedSpareWidth / 2}px`;
-  information.style.left = `${roundedSpareWidth / 2}px`;
+  const doorLeft = roundedSpareWidth / 2;
+  const keyboardLeftLeft = doorLeft;
+  const keyboardRightLeft = doorLeft + (fontSize * (numGridColumns - 3));
+  door.style.left = `${doorLeft}px`;
+  information.style.left = `${doorLeft}px`;;
+  keyboardLeft.style.left = `${keyboardLeftLeft}px`;
+  keyboardRight.style.left = `${keyboardRightLeft}px`;
   
   return fontSize;
 }
-//let fontSize = updateFontSize();
-
-/*
-function setBorderWidths(fontSize, internalFraction, externalFraction) {
-  let internalWidth = Math.floor(fontSize * internalFraction * window.devicePixelRatio);
-  if (internalWidth == 0) {
-    internalWidth = 1
-	}
-  console.log('internalWidth');
-  console.log(internalWidth);
-  const increment = 0.01;
-  let increasingExternalFraction = externalFraction - increment;
-  do {
-    increasingExternalFraction = increasingExternalFraction + increment;
-    console.log('increasingExternalFraction');
-	console.log(increasingExternalFraction);
-	increasingExternalWidth = Math.floor(fontSize * increasingExternalFraction * window.devicePixelRatio);
-    console.log('increasingExternalWidth');
-	console.log(increasingExternalWidth);
-  } while (increasingExternalWidth <= internalWidth);
-  
-  const styleSheet = document.styleSheets[0]
-  const thinTopRule = [...styleSheet.cssRules].find((r) => r.selectorText === ".thin-top");
-  thinTopRule.style.setProperty("border-top-width", `${internalFraction}em`);
-  const thinBottomRule = [...styleSheet.cssRules].find((r) => r.selectorText === ".thin-bottom");
-  thinBottomRule.style.setProperty("border-bottom-width", `${internalFraction}em`);
-  const thinLeftRule = [...styleSheet.cssRules].find((r) => r.selectorText === ".thin-left");
-  thinLeftRule.style.setProperty("border-left-width", `${internalFraction}em`);
-  const thinRightRule = [...styleSheet.cssRules].find((r) => r.selectorText === ".thin-right");
-  thinRightRule.style.setProperty("border-right-width", `${internalFraction}em`);
-
-  const edgeTopRule = [...styleSheet.cssRules].find((r) => r.selectorText === ".edge-top");
-  edgeTopRule.style.setProperty("border-top-width", `${increasingExternalFraction}em`);
-  const edgeBottomRule = [...styleSheet.cssRules].find((r) => r.selectorText === ".edge-bottom");
-  edgeBottomRule.style.setProperty("border-bottom-width", `${increasingExternalFraction}em`);
-  const edgeLeftRule = [...styleSheet.cssRules].find((r) => r.selectorText === ".edge-left");
-  edgeLeftRule.style.setProperty("border-left-width", `${increasingExternalFraction}em`);
-  const edgeRightRule = [...styleSheet.cssRules].find((r) => r.selectorText === ".edge-right");
-  edgeRightRule.style.setProperty("border-right-width", `${increasingExternalFraction}em`);
-}
-setBorderWidths(fontSize, 0.02, 0.05);
-*/
+let fontSize = updateFontSize();
 
 
-//const offGridColourOffGrid = `black`;
-//const offGridColourInGrid = `gray`;
-//const gridColourNotSelected = `gray`;
-//const gridColourSelected = `rgb(0%,0%,80%)`;
-//const gridColourComplete = `black`;
-//const gridColourHintAlone = `black`;
-//const gridColourSolution = `black`;
-
-//const pColour = `black`;
-//const qColour = `#0072B2`;
-//const rColour = `#009E73`;
-//const sColour = `#E69F00`;
-//const tColour = `#CC79A7`;
-
-
-
-//Raw data
-let puzzle = {
-	dispenserFullSpec:[],
-	numDispensers: undefined,
-	dispenserHeightSpec: [undefined],
-	maxDispenserHeight: undefined,
-	matrixSpec: [],
-	tileColours: [],
-	hintColour: undefined,
-	hintIndex: undefined,
-	solutionDispenseSequence: [],
-	solutionColourSequence: []
-};
-
-function initialisePuzzle(dispenserSpec, matrixSpec, colourSpec, hintSpec, solutionDispenseSequence, solutionColourSequence) {
-	puzzle.dispenserFullSpec = dispenserSpec;
-	puzzle.numDispensers = puzzle.dispenserFullSpec.length - 1;
-	for (let i = 1; i <= puzzle.numDispensers; i++) puzzle.dispenserHeightSpec[i] = puzzle.dispenserFullSpec[i].length;
-	puzzle.maxDispenserHeight = 1;
-	for (let d = 1; d <= puzzle.numDispensers; d++) {
-		if (puzzle.dispenserHeightSpec[d] > puzzle.maxDispenserHeight) puzzle.maxDispenserHeight = puzzle.dispenserHeightSpec[d];
-	};
-	puzzle.matrixSpec = matrixSpec;
-
-	let colourCodeLookUp = [];
-	colourCodeLookUp["black"] = `black`;
-	colourCodeLookUp["blue"] = `#0072B2`;
-	colourCodeLookUp["green"] = `#009E73`;
-	colourCodeLookUp["orange"] = `#E69F00`;
-	colourCodeLookUp["pink"] = `#CC79A7`;
-	const tileCodes = ["p", "q", "r", "s", "t"];
-	for (let i = 0; i < tileCodes.length; i++) puzzle.tileColours[tileCodes[i]] = colourCodeLookUp[colourSpec[i]];
-	
-	puzzle.hintColour = colourCodeLookUp[hintSpec[0]];
-	puzzle.hintIndex = hintSpec[1];
-	puzzle.solutionDispenseSequence = solutionDispenseSequence;
-	for (let i = 0; i < solutionColourSequence.length; i++) puzzle.solutionColourSequence[i] = colourCodeLookUp[solutionColourSequence[i]];
-
-	console.log(puzzle);
-}
-
-//From JSON
-//const dispenserSpec = [undefined, "pq","rstpqrs"];
-//const matrixSpec = [8, 5, 2, 1, 3, 4, 6, 7, 9];
-//const colourSpec = ["black", "blue", "green", "orange", "pink"];
-//const hint = ["orange", 8];
-//const solution = [1, 1, 2, 2, 2, 2, 2, 2, 2];
-
-const dispenserSpec = [undefined, "ps","rsr", "pqtq"];
-const matrixSpec = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-const colourSpec = ["blue", "black", "green", "orange", "pink"];
-const hintSpec = ["blue", 6];
-const solutionDispenseSequence = [2, 2, 1, 2, 3, 1, 3, 3, 3];
-const solutionColourSequence = ["green", "orange", "orange", "green", "black", "blue", "pink", "black", "blue"];
-
-//const dispenserSpec = [undefined, "p", "qrstpqr", "s"];
-//const dispenserSpec = [undefined, "pqr", "stp", "qrs"];
-//const dispenserSpec = [undefined, "pqr", "st", "pq", "rs"];
-initialisePuzzle(dispenserSpec, matrixSpec, colourSpec, hintSpec, solutionDispenseSequence, solutionColourSequence);
-//console.log(puzzle);
-
-
-//let solve = {
-//	words: [],
-//	selectedWordNum: 0,
-//	hints: [],
-//	numHintsGiven: 0
-//}
-
-//function initialiseSolve() {
-//	for (i = 1; i <= 5; i++) {
-//		solve.words[i] = new Word(puzzle.words[i]);
-//	}
-//	solve.selectedWordNum = 0;
-//	for (let hint of puzzle.hints) {
-//		solve.hints.push(new Hint(hint[0], new LinePosition(hint[1], hint[2])));
-//	}
-//	console.log(solve.hints);
-//	solve.numHintsGiven = 0;
-//}
-//initialiseSolve();
-
-//let anotherTile = document.createElement("div");
-//anotherTile.id = "dTile-41";
-//anotherTile.className = "dTile";
-//let panel = document.querySelector("#panel");
-//panel.append(anotherTile);
-
-//const tile_33_23 = document.querySelector("#dTile-33-23");
-//tile_33_23.remove();
-
-//let spec = [undefined];
-//for (i = 1; i < puzzle.dispensers.length; i++) spec[i] = puzzle.dispensers[i].length;
-//const spec = [undefined, 2, 7, 1];
-//const spec = [undefined, 3, 2, 1];
-//const numDispensers = spec.length - 1;
-//let MaxTilesInADispenser = 1;
-//for (d = 1; d <= numDispensers; d++) {if (spec[d] > MaxTilesInADispenser) MaxTilesInADispenser = spec[d];};
-const doorId = "door-" + String(puzzle.maxDispenserHeight);
-const doorRef = document.getElementById(doorId);
-doorRef.style.display = `grid`;
-const panelId = "panel-" + String(puzzle.maxDispenserHeight) + String(puzzle.numDispensers);
-const panelRef = document.getElementById(panelId);
-panelRef.style.display = `grid`;
-const panelHeight = 3 + (1 + 7) * puzzle.maxDispenserHeight + 7 + (3 * 7) + 3 + 3 + 6;
-panelRef.style.height = `${panelHeight}em`;
-for (let d = 1; d <= puzzle.numDispensers; d++) {
-	const numTiles = puzzle.dispenserHeightSpec[d];
-	const containerId = "dContainer-" + String(puzzle.maxDispenserHeight) + String(puzzle.numDispensers) + "-" + String(d) + String(numTiles);
-	const containerRef = document.getElementById(containerId);
-	containerRef.style.display = `block`;
-	for (let t = 1; t <= numTiles; t++) {
-		const tileId = "dTile-" + String(puzzle.maxDispenserHeight) + String(puzzle.numDispensers) + "-" + String(d) + String(t);
-		const tileRef = document.getElementById(tileId);
-		tileRef.style.display = `block`;
-	}
-}
-for (let t = 1; t <= 9; t++) {
-	const tileId = "mSquare-" + String(puzzle.maxDispenserHeight) + String(puzzle.numDispensers) + "-" + String(t);
-	const tileRef = document.getElementById(tileId);
-	tileRef.style.display = `block`;
-}
-const doorStyle = doorRef.style.cssText;
-console.log(doorStyle);
-newDoorStyle = doorStyle.replace(/80/, String(panelHeight));
-console.log(newDoorStyle);
-doorRef.style.cssText = newDoorStyle;
-//Here to avoid risk of introducing "80" into the style string.
-const doorHeight = doorHeightAbovePanel + panelHeight + doorHeightBelowPanel;
-doorRef.style.height = `${doorHeight}em`;
-updateFontSize(puzzle.maxDispenserHeight, doorHeight, numGridColumns);
-
-
-
-
-const dispenserBackgroundColour = `#F5F5F5`;
-const matrixBackgroundColour = `transparent`;
-const matrixForegroundColour = `#B2B2B2`;
-
-//const tileColours = [];
-//tileColours["p"] = pColour;
-//tileColours["q"] = qColour;
-//tileColours["r"] = rColour;
-//tileColours["s"] = sColour;
-//tileColours["t"] = tColour;
-
-
-class Tile {
-	constructor(dispenser, colour) {
-		this.dispenser = dispenser;
-		this.colour = colour;
-	}
-}
-
-class Dispenser {
-	constructor(tileSequence, tileIdRoot) {
-		this.tileQueue = [];
-		for (let t = 0; t < tileSequence.length; t++) {
-			const tile = new Tile(this, puzzle.tileColours[tileSequence[t]]);
-			this.tileQueue.unshift(tile);
-		}
-		
-		this.tileStyles = [];
-		const styleSheet = document.styleSheets[0];
-		for (let t = 1; t <= tileSequence.length; t++) {
-			const tileId = tileIdRoot + String(t);
-			const tileRule = [...styleSheet.cssRules].find((r) => r.selectorText === tileId);
-			this.tileStyles.push(tileRule);
-		}
-		
-		this.container = [];
-		for (let t = 0; t < this.tileQueue.length; t++) this.container[t] = this.tileQueue[t];
-				
-		this.numTilesInContainer = this.tileQueue.length;
+class Key {
+	constructor(id, onClick) {
+		this.id = id;
+		this.onClick = onClick;
+		this.button = document.querySelector(id);
+		this.isEnabled = true;
+		this.disable();
 	}
 	
-	refresh() {
-		for (let t = 0; t < this.container.length; t++) {
-			const colour = this.container[t] == null ? dispenserBackgroundColour : this.container[t].colour;
-			this.tileStyles[t].style.setProperty("background-color", colour);
+	enable() {
+		if (!this.isEnabled) {
+			this.button.style.opacity = `1.0`;
+			this.button.addEventListener("click", this.onClick);
+			this.isEnabled = true;
 		}
 	}
 	
-	reset() {	
-		this.container = [];
-		for (let t = 0; t < this.tileQueue.length; t++) this.container[t] = this.tileQueue[t];
-		this.numTilesInContainer = this.tileQueue.length;
-	}
-	
-	takeTile() {
-		const tile = this.container.shift();
-		this.container.push(null);
-		this.numTilesInContainer--;
-		return tile;
-	}
-	
-	replaceTile() {
-		this.container.pop();
-		const tile = this.tileQueue[this.tileQueue.length - this.numTilesInContainer - 1];
-		this.container.unshift(tile);
-		this.numTilesInContainer++;		
-	}
-}
-
-/*
-let matrix = {
-	squareStyles: [undefined],
-	squareTiles: [undefined],
-	numTilesInPlace: undefined,
-	squarePositions: []
-}
-
-function initialiseMatrix() {
-	matrix.squarePositions = puzzle.matrixSpec;
-	const squareIdRoot = "#mSquare-" + String(puzzle.maxDispenserHeight) + String(puzzle.numDispensers) + "-";
-	for (i = 0;  i < matrix.squarePositions.length; i++) {
-		const position = i + 1;
-		const squareId = squareIdRoot + String(matrix.squarePositions[i]);
-		const squareElement = document.querySelector(squareId);
-		squareElement.textContent = String(position);
-	}
-	const styleSheet = document.styleSheets[0];
-	for (s = 1; s <= 9; s++) {
-		const squareId = squareIdRoot + String(s);
-		const squareRule = [...styleSheet.cssRules].find((r) => r.selectorText === squareId);
-		matrix.squareStyles.push(squareRule);
-		matrix.squareTiles.push(null);
+	disable() {
+		if (this.isEnabled) {
+			this.button.style.opacity = `0.5`;
+			this.button.removeEventListener("click", this.onClick);
+			this.isEnabled = false;
 		}
-	matrix.numTilesInPlace = 0;
-}
-initialiseMatrix();
-console.log(matrix);
-
-function placeTileInMatrix(tile) {
-//	const nextPosition = matrix.numTilesInPlace + 1;
-	const nextPosition = matrix.squarePositions[matrix.numTilesInPlace];
-	matrix.squareTiles[nextPosition] = tile;
-	matrix.numTilesInPlace++;
-}
-
-function removeTileFromMatrix() {
-//	const tile = matrix.squareTiles[matrix.numTilesInPlace];
-	const tileNum = matrix.squarePositions[matrix.numTilesInPlace - 1];
-	const tile = matrix.squareTiles[tileNum];
-	matrix.squareTiles[tileNum] = null;
-	matrix.numTilesInPlace--;
-	return tile;
-}
-
-function resetMatrix() {
-	for (s = 1; s <= 9; s++) matrix.squareTiles[s] = null;
-	matrix.numTilesInPlace = 0;	
-}
-
-function refreshMatrix() {
-	for (s = 1; s <= 9; s++) {
-		let backgroundColour = matrixBackgroundColour;
-		let foregroundColour = matrixForegroundColour;
-		if (matrix.squareTiles[s] != null) {
-			backgroundColour = matrix.squareTiles[s].colour;
-			foregroundColour = backgroundColour;
-		}
-		matrix.squareStyles[s].style.setProperty("background-color", backgroundColour);
-		matrix.squareStyles[s].style.setProperty("color", foregroundColour);
 	}
 }
-*/
 
-class Matrix {
+let keyOnClicks = [function() {solve.keyOnClick("A")},
+				   function() {solve.keyOnClick("B")},
+				   function() {solve.keyOnClick("C")},
+				   function() {solve.keyOnClick("D")},
+				   function() {solve.keyOnClick("E")},
+				   function() {solve.keyOnClick("F")},
+				   function() {solve.keyOnClick("G")},
+				   function() {solve.keyOnClick("H")},
+				   function() {solve.keyOnClick("I")},
+				   function() {solve.keyOnClick("J")},
+				   function() {solve.keyOnClick("K")},
+				   function() {solve.keyOnClick("L")},
+				   function() {solve.keyOnClick("M")},
+				   function() {solve.keyOnClick("N")},
+				   function() {solve.keyOnClick("O")},
+				   function() {solve.keyOnClick("P")},
+				   function() {solve.keyOnClick("Q")},
+				   function() {solve.keyOnClick("R")},
+				   function() {solve.keyOnClick("S")},
+				   function() {solve.keyOnClick("T")},
+				   function() {solve.keyOnClick("U")},
+				   function() {solve.keyOnClick("V")},
+				   function() {solve.keyOnClick("W")},
+				   function() {solve.keyOnClick("X")},
+				   function() {solve.keyOnClick("Y")},
+				   function() {solve.keyOnClick("Z")}
+				   ];
+
+class Keyboard {
 	constructor() {
-		this.squarePositions = puzzle.matrixSpec;
-		const squareIdRoot = "#mSquare-" + String(puzzle.maxDispenserHeight) + String(puzzle.numDispensers) + "-";
-		for (let i = 0;  i < this.squarePositions.length; i++) {
-			const position = i + 1;
-			const squareId = squareIdRoot + String(this.squarePositions[i]);
-			const squareElement = document.querySelector(squareId);
-			squareElement.textContent = String(position);
+		this.keys = [];
+		this.isEnabled = false;
+		const letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+		const keyIdRoot = "#kb-";
+		for (let i = 0; i < letters.length; i++) {
+			const keyId = keyIdRoot + letters[i];
+			this.keys[i] = new Key(keyId, keyOnClicks[i]);
 		}
-
-		this.squareStyles = [undefined];
-		this.squareTiles = [undefined];
-		const styleSheet = document.styleSheets[0];
-		for (let s = 1; s <= 9; s++) {
-			const squareId = squareIdRoot + String(s);
-			const squareRule = [...styleSheet.cssRules].find((r) => r.selectorText === squareId);
-			this.squareStyles.push(squareRule);
-			this.squareTiles.push(null);
-			}
-			
-		this.numTilesInPlace = 0;
-		this.temporaryIndex = undefined;
 	}
 	
-	getColourSequence() {
-		let colourSequence = [];
-		for (let s = 1; s <= 9; s++) {
-			if (this.squareTiles[s] == null) colourSequence.push(``); else colourSequence.push(this.squareTiles[s].colour);
+	enable() {
+		if (!this.isEnabled) {
+			for (let i = 0; i < this.keys.length; i++) {
+				this.keys[i].enable();
+			}
+			this.isEnabled = true;
 		}
-		return colourSequence;
 	}
 	
-	reset() {
-		for (let s = 1; s <= 9; s++) this.squareTiles[s] = null;
-		this.numTilesInPlace = 0;	
-	}
-
-	addTile(tile) {
-		const nextPosition = this.squarePositions[this.numTilesInPlace];
-		this.squareTiles[nextPosition] = tile;
-		this.numTilesInPlace++;
-	}
-	
-	removeTile() {
-		const tileNum = this.squarePositions[this.numTilesInPlace - 1];
-		const tile = this.squareTiles[tileNum];
-		this.squareTiles[tileNum] = null;
-		this.numTilesInPlace--;
-		return tile;
-	}
-	
-	//addTemporaryTile(tile, position) {
-	//	this.temporaryPosition = this.squarePositions[position];
-	//	this.squareTiles[this.temporaryPosition] = tile;
-	//}
-	addTemporaryTile(tile, index) {
-		this.squareTiles[index] = tile;
-		this.temporaryIndex = index;
-	}
-	
-	removeTemporaryTile() {
-		this.squareTiles[this.temporaryIndex] = null;
-	}
-	
-	refresh() {
-		for (let s = 1; s <= 9; s++) {
-			let backgroundColour = matrixBackgroundColour;
-			let foregroundColour = matrixForegroundColour;
-			if (this.squareTiles[s] != null) {
-				backgroundColour = this.squareTiles[s].colour;
-				foregroundColour = backgroundColour;
+	disable() {
+		if (this.isEnabled) {
+			for (let i = 0; i <= this.keys.length; i++) {
+				this.keys[i].disable();
 			}
-			this.squareStyles[s].style.setProperty("background-color", backgroundColour);
-			this.squareStyles[s].style.setProperty("color", foregroundColour);
+			this.isEnabled = false;
 		}
 	}
 }
-const matrix = new Matrix();
 
-
-class TickCross {
+class LED {
 	constructor() {
-		const elementId = "#TickCross-" + String(puzzle.maxDispenserHeight) + String(puzzle.numDispensers);
-		this.elementRef = document.querySelector(elementId);
+		this.greenRef = document.querySelector("#LEDGreen");
+		this.amberRef = document.querySelector("#LEDAmber");
+		this.redRef = document.querySelector("#LEDRed");
 	}
 	
-	setTick() {
-		this.elementRef.innerHTML = "&check;"
+	showGreen() {
+		this.greenRef.style.display = `block`;
+		this.amberRef.style.display = `none`;
+		this.redRef.style.display = `none`;
 	}
 	
-	setCross() {
-		this.elementRef.innerHTML = "&cross;"
+	showAmber() {
+		this.amberRef.style.display = `block`;
+		this.greenRef.style.display = `none`;
+		this.redRef.style.display = `none`;
 	}
 	
-	show() {
-		this.elementRef.style.visibility = `visible`;
+	showRed() {
+		this.redRef.style.display = `block`;
+		this.greenRef.style.display = `none`;
+		this.amberRef.style.display = `none`;
 	}
 	
 	hide() {
-		this.elementRef.style.visibility = `hidden`;
+		this.greenRef.style.display = `none`;
+		this.amberRef.style.display = `none`;
+		this.redRef.style.display = `none`;
 	}
 }
-tickCross = new TickCross();
+
+class Rung {
+	constructor(num, letters) {
+		this.num = num;
+		this.letters = letters;
+		
+		this.letterElements = [];
+		for (let i = 0; i < letters.length; i++) {
+			const letterId = "#lLetter-" + String(num + 1) + String(i + 1);
+			this.letterElements[i] = document.querySelector(letterId);
+		}
+	}
+	
+	refresh() {
+		for (let i = 0; i < this.letters.length; i++) {
+			const text = this.letters[i] == undefined ? " " : this.letters[i];
+			this.letterElements[i].textContent = text;
+		}
+	}
+	
+	setLetter(letter, position) {
+		console.log(letter);
+		this.letters[position] = letter;
+	}
+	
+	unsetLetter(position) {
+		this.letters[position] = undefined;
+	}
+	
+	reset() {
+		for (let i = 0; i < this.letters.length; i++) {
+			this.letters[i] = undefined;
+		}
+	}
+
+	getLetter(num) {
+		return this.letters[num];
+	}
+	
+	isEmpty() {
+		let numLetters = 0;
+		for (let i = 0; i < this.letters.length; i++) {
+			if (this.letters[i] != undefined) numLetters++;
+		}
+		return numLetters == 0;
+	}
+	
+	setDiamond(num, colour) {
+	}
+	
+	unsetDiamond(num) {
+	}
+}
+
+class Cursor {
+	constructor() {
+		this.rung = undefined;
+		this.position = undefined;
+		this.isShowing = false;
+		
+		this.styles = [undefined, [], []];
+		const styleSheet = document.styleSheets[0];
+		for (let rung = 1; rung <= 2; rung++) {
+			for (let position = 0; position < 5; position++) {
+				const cursorId = "#lCursor-" + String(rung + 1) + String(position + 1);
+				const rule = [...styleSheet.cssRules].find((r) => r.selectorText === cursorId);
+				this.styles[rung][position] = rule;
+			}
+		}	
+	}
+	
+	hide() {
+		this.isShowing = false;
+	}
+	
+	show() {
+		this.isShowing = true;
+	}
+	
+	setRungPosition(rung, position) {
+		this.rung = rung;
+		this.position = position;
+	}
+	
+	setPosition(position) {
+		this.position = position;
+	}
+	
+	getPosition() {
+		return this.position;
+	}
+	
+	refresh() {
+		for (let rung = 1; rung <= 2; rung++) {
+			for (let position = 0; position < 5; position++) {
+				let backgroundColour = undefined;
+				if (!this.isShowing) {					
+					backgroundColour = `transparent`;
+				}
+				else if (rung == this.rung && position == this.position) {
+					backgroundColour = `#E0E0E0`;
+				}
+				else {
+					backgroundColour = `transparent`;
+				}
+				this.styles[rung][position].style.setProperty("background-color", backgroundColour);
+			}
+		}
+	}
+}
+
+class Diamonds {
+	constructor() {
+		this.goodRefs = [[], [], []];
+		this.badRefs = [[], [], []];
+		for (let rung = 0; rung < 3; rung++) {
+			for (let position = 0; position < 5; position++) {
+				const goodId = "#lDiamondGood-" + String(rung + 1) + String(position + 1);
+				const badId = "#lDiamondBad-" + String(rung + 1) + String(position + 1);
+				this.goodRefs[rung][position] = document.querySelector(goodId);
+				this.badRefs[rung][position] = document.querySelector(badId);
+			}
+		}
+	}
+	
+	showGood(rung, position) {
+		this.badRefs[rung][position].style.display = `none`;
+		this.goodRefs[rung][position].style.display = `block`;
+	}
+
+	showBad(rung, position) {
+		this.goodRefs[rung][position].style.display = `none`;
+		this.badRefs[rung][position].style.display = `block`;
+	}
+	
+	hide(rung, position) {
+		this.goodRefs[rung][position].style.display = `none`;
+		this.badRefs[rung][position].style.display = `none`;
+	}
+}
+
+let puzzle = {
+	words: [],
+	hint: []
+};
+
+function initialisePuzzle(words, hint) {
+	puzzle.words = [];
+	puzzle.hint = hint;
+	for (let i = 0; i < words.length; i++) puzzle.words[i] = [...words[i]];
+}
+
+//from JSON
+const words = ["GREEN", "GREBE", "BRIBE", "BAIZE"];
+const hint = [2, 2, "I"];
+initialisePuzzle(words, hint);
 
 
 class Control {
@@ -1643,64 +1011,136 @@ class Control {
 	}
 }
 
-
-let dispenseOnClicks = [undefined,
-						function() {solve.dispenseOnClick(1)},
-						function() {solve.dispenseOnClick(2)},
-						function() {solve.dispenseOnClick(3)},
-						function() {solve.dispenseOnClick(4)},
-					   ];
-
 function backOnClick() {solve.backOnClick();};
 function informationOnClick() {solve.informationOnClick();};
+function deleteBackOnClick() {solve.deleteBackOnClick();};
+function deleteAllOnClick() {solve.deleteAllOnClick();};
+function resetOnClick() {solve.resetOnClick();};
+function upperLowerOnClick() {solve.upperLowerOnClick();};
 function solutionOnClick() {solve.solutionOnClick();};
 function solutionTimerExpired() {solve.solutionTimerExpired();}
-function resetOnClick() {solve.resetOnClick();};
-function undispenseOnClick() {solve.undispenseOnClick();};
 function hintOnClick() {solve.hintOnClick();};
 function hintTimerExpired() {solve.hintTimerExpired();}
 
-
 class Solve {	
 	constructor() {
-		this.dispensers = [undefined];
-		const tileIdRoot = "#dTile-" + String(puzzle.maxDispenserHeight) + String(puzzle.numDispensers) + "-";
-		for (let i = 1; i <= puzzle.numDispensers; i++) {
-			const tileIdRootPlus = tileIdRoot + String(i);
-			this.dispensers[i] = new Dispenser(puzzle.dispenserFullSpec[i], tileIdRootPlus);
-			//console.log(this.dispensers[i]);
-		}
+		this.keyboard = new Keyboard();
+		this.keyboard.enable();
+		
+		this.rungs = [];
+		this.rungs[0] = new Rung(0, puzzle.words[0]);
+		this.rungs[1] = new Rung(1, [undefined, undefined, undefined, undefined, undefined]);
+		this.rungs[2] = new Rung(2, [undefined, undefined, undefined, undefined, undefined]);
+		this.rungs[3] = new Rung(3, puzzle.words[3]);
+		
+		this.selectedRungNum = 1;
+		this.cursor = new Cursor();
+		this.cursor.setRungPosition(this.selectedRungNum, 0);
+		this.cursor.show();
+		this.savedRungPosition = 0;
+
+		this.diamonds = new Diamonds();
+		//console.log(this.diamonds);
+		this.diamondCounts = [undefined, undefined, undefined];
 		
 		this.controls = [];
 		this.controls["Back"] = new Control("#iBack", backOnClick);
-		this.controls["Information"] = new Control("#cInformation-" + String(puzzle.maxDispenserHeight), informationOnClick);
-		this.controls["Solution"] = new Control("#cSolution-" + String(puzzle.maxDispenserHeight), solutionOnClick);
-		this.controls["Reset"] = new Control("#cReset-" + String(puzzle.maxDispenserHeight), resetOnClick);
-		this.controls["Undispense"] = new Control("#cBack-" + String(puzzle.maxDispenserHeight), undispenseOnClick);
-		this.controls["Hint"] = new Control("#cHint-" + String(puzzle.maxDispenserHeight), hintOnClick);
-
-		const dispenseIdRoot = "#cDispense-" + String(puzzle.maxDispenserHeight) + String(puzzle.numDispensers) + "-";
-		for (let i = 1; i <= puzzle.numDispensers; i++) {
-			const dispenseId = dispenseIdRoot + String(i);
-			this.controls["Dispense" + String(i)] = new Control(dispenseId, dispenseOnClicks[i]);
-		}
+		this.controls["Information"] = new Control("#cInformation", informationOnClick);
+		this.controls["DeleteBack"] = new Control("#cDeleteBack", deleteBackOnClick);
+		this.controls["DeleteAll"] = new Control("#cDeleteAll", deleteAllOnClick);
+		this.controls["Reset"] = new Control("#cReset", resetOnClick);
+		this.controls["UpperLower"] = new Control("#cUpperLower", upperLowerOnClick);
+		this.controls["Solution"] = new Control("#cSolution", solutionOnClick);
+		this.controls["Hint"] = new Control("#cHint", hintOnClick);
+		this.upperLowerRef = document.querySelector("#cUpperLower");
 		
-		this.dispenseSequence = [];
-		
-		this.solutionTimer = undefined;
+		this.solutionRungPositions = [[1, 0], [1, 1], [1, 2], [1, 3], [1, 4], [2, 0], [2, 1], [2, 2], [2, 3], [2, 4]];
+		this.solutionLetters = [];
+		for (let i = 0; i < 5; i++) this.solutionLetters.push(puzzle.words[1][i]);
+		for (let i = 0; i < 5; i++) this.solutionLetters.push(puzzle.words[2][i]);
 		this.solutionNextIndex = undefined;
+		this.solutionTimer = undefined;
+		//delays BEFORE letter this.solutionLetters[this.solutionNextIndex] is shown
+		//if rungs are empty the first letter is shown immediately
+		//otherwise the delay applies
+		this.solutionDelays = [1000, 500, 500, 500, 500, 1000, 500, 500, 500, 500];
 
-		for (let i = 1; i <= puzzle.numDispensers; i++) this.dispensers[i].refresh();
-
-		tickCross.hide();
-		
-		this.hintTemporaryTile = new Tile(null, puzzle.hintColour);
+		this.hintRung = this.rungs[puzzle.hint[0]];
+		this.hintPosition = puzzle.hint[1];
+		this.hintLetter = puzzle.hint[2];
 		this.hintTimer = undefined;
 		this.hintNumShows = 3;
 		this.hintNumShowsRemaining = undefined;
 		this.hintShowing = undefined;
 
-		this.enableAllControlsExcept(["Reset", "Undispense"]);
+		this.refresh();
+		
+		this.enableAllControlsExcept(["Reset", "DeleteBack", "DeleteAll"]);
+		
+		this.led = new LED();
+	}
+
+	updateLED() {
+		let letters1 = [];
+		let letters2 = [];
+		for (let position = 0; position < 5; position++) {
+			letters1[position] = this.rungs[1].getLetter(position);
+			letters2[position] = this.rungs[2].getLetter(position);
+		}
+		if (letters1.includes(undefined) || letters2.includes(undefined)) {
+			this.led.hide();
+			return;
+		}
+		else {
+			for (let i = 0; i < this.diamondCounts.length; i++) {
+				if (this.diamondCounts[i] != 2) {
+					this.led.showRed();
+					return;
+				}
+			}
+			if (letters1.join() === puzzle.words[1].join() && letters2.join() === puzzle.words[2].join()) {
+				this.led.showGreen();
+				return;
+			}
+			else {
+				this.led.showAmber();
+				return;
+			}
+		}
+	}
+	
+	updateRungDiamonds(rung) {
+		let diamondCount = 0;
+		for (let position = 0; position < 5; position++) {
+			const letterAbove = this.rungs[rung].getLetter(position);
+			const letterBelow = this.rungs[rung + 1].getLetter(position);
+			if (letterAbove == undefined || letterBelow == undefined) continue;
+			if (letterAbove != letterBelow) diamondCount++;
+		}
+		for (let position = 0; position < 5; position++) {
+			const letterAbove = this.rungs[rung].getLetter(position);
+			const letterBelow = this.rungs[rung + 1].getLetter(position);
+			if (letterAbove == undefined || letterBelow == undefined) {
+				this.diamonds.hide(rung, position);
+			}
+			else if (letterAbove == letterBelow) {
+				this.diamonds.hide(rung, position);
+			}
+			else if (diamondCount <= 2) this.diamonds.showGood(rung, position); else this.diamonds.showBad(rung, position);
+		}
+		return diamondCount;
+	}
+	
+	updateAllDiamonds() {
+		this.diamondCounts[0] = this.updateRungDiamonds(0);
+		this.diamondCounts[1] = this.updateRungDiamonds(1);
+		this.diamondCounts[2] = this.updateRungDiamonds(2);
+	}
+	
+	refresh() {
+		this.updateAllDiamonds();
+		for (let i = 0; i < this.rungs.length; i++) this.rungs[i].refresh();
+		this.cursor.refresh();
 	}
 	
 	disableAllControls() {
@@ -1732,24 +1172,13 @@ class Solve {
 			if (!exceptions.includes(name)) this.controls[name].enable(); else this.controls[name].disable();
 		}
 	}
-	
-	reset() {
-		matrix.reset();
-		matrix.refresh();
-		for (let i = 1; i <= puzzle.numDispensers; i++) {
-			const dispenser = this.dispensers[i];
-			dispenser.reset();
-			dispenser.refresh();
-		}
-		this.dispenseSequence = [];
-	}
-	
+
 	informationOnClick() {
 		console.log("informationOnClick called");
 		const styleSheet = document.styleSheets[0]
 		const informationRule = [...styleSheet.cssRules].find((r) => r.selectorText === "#information");
 		informationRule.style.setProperty("display", `grid`);
-		informationRule.style.setProperty("z-index", `3`);
+		informationRule.style.setProperty("z-index", `5`);
 		const bodyRule = [...styleSheet.cssRules].find((r) => r.selectorText === "body");
 		bodyRule.style.setProperty("overflow", `auto`);
 	}
@@ -1763,119 +1192,148 @@ class Solve {
 		const bodyRule = [...styleSheet.cssRules].find((r) => r.selectorText === "body");
 		bodyRule.style.setProperty("overflow", `hidden`);
 	}
+	
+	keyOnClick(letter) {
+		let cursorPosition = this.cursor.getPosition();
+		this.rungs[this.selectedRungNum].setLetter(letter, cursorPosition);
+		cursorPosition = cursorPosition == 4 ? 4 : cursorPosition + 1;
+		this.cursor.setPosition(cursorPosition);
+		this.refresh();
+		this.enableControls(["Reset", "DeleteBack", "DeleteAll"]);
+		this.updateLED();
+	}
+	
+	deleteBackOnClick() {
+		let cursorPosition = this.cursor.getPosition();
+		this.rungs[this.selectedRungNum].unsetLetter(cursorPosition);
+		if (cursorPosition != 0) {
+			cursorPosition--;
+			this.cursor.setPosition(cursorPosition);
+		}
+		else {
+			this.disableControls(["DeleteBack", "DeleteAll"]);
+			const otherRungNum = this.selectedRungNum == 1 ? 2 : 1;
+			if (this.rungs[otherRungNum].isEmpty()) this.disableControls(["Reset"]);
+		}
+		this.refresh();
+		this.updateLED();
+	}
 
+	deleteAllOnClick() {
+		this.rungs[this.selectedRungNum].reset();
+		this.cursor.setPosition(0);
+		this.disableControls(["DeleteAll", "DeleteBack"]);
+		const otherRungNum = this.selectedRungNum == 1 ? 2 : 1;
+		if (this.rungs[otherRungNum].isEmpty()) this.disableControls(["Reset"]);
+		this.refresh();
+		this.updateLED();
+	}
+
+	upperLowerOnClick() {
+		const otherRungNum = this.selectedRungNum == 1 ? 2 : 1;
+		if (this.rungs[this.selectedRungNum].isEmpty()) {
+			if (this.rungs[otherRungNum].isEmpty()) this.disableControls(["Reset", "DeleteBack", "DeleteAll"]); else this.enableControls(["DeleteBack", "DeleteAll"]);
+		}
+		else {
+			if (this.rungs[otherRungNum].isEmpty()) this.disableControls(["DeleteBack"]); else this.enableControls(["DeleteBack", "DeleteAll"]);
+		}
+		this.selectedRungNum = otherRungNum;
+		const newSavedRungPosition = this.cursor.getPosition();
+		this.cursor.setRungPosition(this.selectedRungNum, this.savedRungPosition);
+		this.savedRungPosition = newSavedRungPosition;
+		this.refresh();
+		this.upperLowerRef.innerHTML = this.selectedRungNum == 1 ? "&bigtriangledown;" : "&bigtriangleup;";
+	}
+	
+	resetOnClick() {
+		this.rungs[1].reset();
+		this.rungs[2].reset();
+		this.selectedRungNum = 1;
+		this.cursor.setRungPosition(this.selectedRungNum, 0);
+		this.savedRungPosition = 0;
+		this.enableAllControlsExcept(["Reset", "DeleteBack", "DeleteAll"]);
+		this.upperLowerRef.innerHTML = "&bigtriangledown;";
+		this.cursor.show();
+		this.refresh();
+		this.updateLED();
+	}
+
+	solutionTimerExpired() {
+		const rungPosition = this.solutionRungPositions[this.solutionNextIndex];
+		this.rungs[rungPosition[0]].setLetter(this.solutionLetters[this.solutionNextIndex], rungPosition[1]);
+		this.refresh();
+		this.solutionNextIndex++;
+		if (this.solutionNextIndex == 10) {
+			this.enableControls(["Reset"]);
+		}
+		else {
+			this.solutionTimer = setTimeout(solutionTimerExpired, this.solutionDelays[this.solutionNextIndex]);		
+		}
+	}
+	
+	solutionOnClick() {
+		this.disableAllControls();
+		this.cursor.hide();
+		this.led.hide();
+		if (this.rungs[1].isEmpty() && this.rungs[2].isEmpty()) {
+			const rungPosition = this.solutionRungPositions[0];
+			this.rungs[rungPosition[0]].setLetter(this.solutionLetters[0], rungPosition[1]);
+			this.refresh();
+			this.solutionNextIndex = 1;
+		}
+		else {
+			this.rungs[1].reset();
+			this.rungs[2].reset();
+			this.refresh();
+			this.solutionNextIndex = 0;
+		}
+		this.solutionTimer = setTimeout(solutionTimerExpired, this.solutionDelays[this.solutionNextIndex]);
+	}
+	
 	hintTimerExpired() {
 		if (this.hintShowing) {
-			matrix.removeTemporaryTile();
-			matrix.refresh();
+			this.hintRung.unsetLetter(this.hintPosition);
+			this.refresh();
 			this.hintShowing = false;
 			this.hintNumShowsRemaining--;
 			if (this.hintNumShowsRemaining == 0) {
 				clearInterval(this.hintTimer);
-				this.enableAllControlsExcept(["Reset", "Undispense"]);
+				this.selectedRungNum = 1;
+				this.cursor.setRungPosition(this.selectedRungNum, 0);
+				this.savedRungPosition = 0;
+				this.enableAllControlsExcept(["Reset", "DeleteBack", "DeleteAll"]);
+				this.cursor.show();
+				this.refresh();
 			}
 		}
 		else {
-			matrix.addTemporaryTile(this.hintTemporaryTile, puzzle.hintIndex);
-			matrix.refresh();
+			this.hintRung.setLetter(this.hintLetter, this.hintPosition);
+			this.refresh();
 			this.hintShowing = true;			
 		}
 	}
 	
 	hintOnClick() {
 		this.disableAllControls();
-		tickCross.hide();
-		if (matrix.numTilesInPlace == 0) {
-			matrix.addTemporaryTile(this.hintTemporaryTile, puzzle.hintIndex);
-			matrix.refresh();
+		this.cursor.hide();
+		this.led.hide();
+		if (this.rungs[1].isEmpty() && this.rungs[2].isEmpty()) {
+			this.hintRung.setLetter(this.hintLetter, this.hintPosition);
+			this.refresh();
 			this.hintShowing = true;
 			this.hintNumShowsRemaining = this.hintNumShows;
 		}
 		else {
-			this.reset();
+			this.rungs[1].reset();
+			this.rungs[2].reset();
+			this.refresh();
 			this.hintShowing = false;
 			this.hintNumShowsRemaining = this.hintNumShows;
 		}
 		this.hintTimer = setInterval(hintTimerExpired, 1000);
 	}
-
-	solutionShowTile(dispenser) {
-		const tileTaken = dispenser.takeTile();
-		matrix.addTile(tileTaken);
-		dispenser.refresh();
-		matrix.refresh();
-	}
-
-	solutionTimerExpired() {
-		const dispenser = this.dispensers[puzzle.solutionDispenseSequence[this.solutionNextIndex]];
-		this.solutionShowTile(dispenser);
-		this.solutionNextIndex++;
-		if (this.solutionNextIndex == 9) {
-			clearInterval(this.solutionTimer);
-			this.enableControls(["Reset"]);
-		}
-	}
-	
-	solutionOnClick() {
-		this.disableAllControls();
-		tickCross.hide();
-		if (matrix.numTilesInPlace == 0) {
-			this.solutionShowTile(this.dispensers[puzzle.solutionDispenseSequence[0]]);
-			this.solutionNextIndex = 1;
-		}
-		else {
-			this.reset();
-			this.solutionNextIndex = 0;
-		}
-		this.solutionTimer = setInterval(solutionTimerExpired, 1000);
-	}
-	
-	resetOnClick() {
-		this.reset();
-		this.enableAllControlsExcept(["Reset", "Undispense"]);
-		this.updateTickCross();
-	}
-	
-	undispenseOnClick() {
-		const tileRemoved = matrix.removeTile();
-		const dispenser = tileRemoved.dispenser;
-		dispenser.replaceTile();
-		const dispenserNum = this.dispenseSequence.pop();
-		matrix.refresh();
-		dispenser.refresh();
-		if (dispenser.numTilesInContainer == 1) this.enableControls(["Dispense" + String(dispenserNum)]);
-		if (matrix.numTilesInPlace == 0) this.disableControls(["Reset", "Undispense"]);
-		this.updateTickCross();
-	}
-	
-	dispenseOnClick(dispenserNum) {
-		const dispenser = this.dispensers[dispenserNum];
-		const tileTaken = dispenser.takeTile();
-		matrix.addTile(tileTaken);
-		this.dispenseSequence.push(dispenserNum);
-		dispenser.refresh();
-		matrix.refresh();
-		if (dispenser.numTilesInContainer == 0) this.disableControls(["Dispense" + String(dispenserNum)]);
-		this.enableControls(["Reset", "Undispense"]);
-		this.updateTickCross();
-	}
-	
-	updateTickCross() {
-		if (matrix.numTilesInPlace == 9) {
-			//const thisSolution = this.dispenseSequence.join("");
-			//const correctSolution = puzzle.solution.join("");
-			const thisSolution = matrix.getColourSequence().join("");
-			const correctSolution = puzzle.solutionColourSequence.join("");
-			if (thisSolution === correctSolution) tickCross.setTick(); else tickCross.setCross();
-			tickCross.show();
-		}
-		else {
-			tickCross.hide();
-		}
-	}
 }
 const solve = new Solve();
-
 
 </script>
 
