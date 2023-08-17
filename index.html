@@ -7,7 +7,7 @@
   <style>
 body {
 	font-family: Montserrat, Arial, 'sans-serif';
-	font-size: min(calc(90vw / 39), calc(90vh / 120));
+	font-size: min(calc(90vw / 35), calc(90vh / 120));
 	margin: 0;
 	overflow: hidden;
 	background-color: black;
@@ -18,7 +18,7 @@ body {
 	z-index:1;
 	position:absolute;
 	height:200em;
-	width:39em;
+	width:35em;
 	
 	grid-template-rows:
 		[rInformation-s rMarg-s]
@@ -36,7 +36,7 @@ body {
 		
  	grid-template-columns:
 		[cInformation-s cMargLeft-s]
-		9fr
+		7fr
 		[cMargLeft-e]
 		1fr
 		[cIBack-s cIInstructions-s]
@@ -50,7 +50,7 @@ body {
 		[cIInstructions-e]
 		1fr
 		[cMargRight-s]
-		9fr
+		7fr
 		[cInformation-e cMargRight-e]
 		;
 }
@@ -66,7 +66,7 @@ body {
 #door {
 	display:grid;
 	z-index:2;
-	width:39em;
+	width:35em;
 	height:35em;
 	position:absolute;
 	grid-template-rows:
@@ -95,7 +95,7 @@ body {
 		
 	grid-template-columns:
 		[cDoor-s cMarginLeft-s]
-		9fr
+		7fr
 		[cMarginLeft-e cLED-s]
 		1fr
 		[cPanel-s cCInformation-s cCReset-s]
@@ -123,7 +123,7 @@ body {
 		[cCSolution-e cCDeleteAll-e cPanel-e]
 		1fr
 		[cLED-e cMarginRight-s]
-		9fr
+		7fr
 		[cMarginRight-e cDoor-e]
 		;
 }
@@ -445,8 +445,9 @@ body {
 		  border-style:none;
 		  border-width:0 0 0 0;
 		  background-color:transparent;
+		  color:black;
 		  font-family:"Lucida Console",monospace;
-		  font-size:3.5em;
+		  font-size:3.2em;
 		  text-align:center;
 		 }
 .lCursor {margin:0;
@@ -639,7 +640,7 @@ console.log(`${window.devicePixelRatio}`);
 function updateFontSize() {
   console.log('updateFontSize called');
   const numGridRows = 35;
-  const numGridColumns = 39;
+  const numGridColumns = 35;
   
   let innerDimension = 0
   let gridDimension = 0
