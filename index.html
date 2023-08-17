@@ -493,7 +493,7 @@ body {
 		<button id="iBack" class="cCommon cTertiary"><code><strong>&lt;</strong></code></button>
 
 <!--		<button id="iHeader" class="header"><strong>Information</strong></button> -->
-		<button id="iHeader" class="header"><strong>Informat5</strong></button>
+		<button id="iHeader" class="header"><strong>Informat6</strong></button>
 	
 		<div id="iInstructions">A 5-letter Word Ladder with just 3 steps.<br>
 								Change precisely 2 letters per step.<br><br>
@@ -651,10 +651,10 @@ const HTMLElement = document.documentElement;
 console.log(`${HTMLElement.clientHeight}px`);
 console.log(`${HTMLElement.clientWidth}px`);
 
-//const usableHeight = window.innerHeight;
-//const usableWidth = window.innerWidth;
-const usableHeight = HTMLElement.clientHeight;
-const usableWidth = HTMLElement.clientWidth;
+const usableHeight = window.innerHeight;
+const usableWidth = window.innerWidth;
+//const usableHeight = HTMLElement.clientHeight;
+//const usableWidth = HTMLElement.clientWidth;
 
 
 function updateFontSize() {
@@ -790,6 +790,9 @@ class Keyboard {
 	constructor() {
 		this.leftRef = document.querySelector("#keyboardLeft");
 		this.rightRef = document.querySelector("#keyboardRight");
+		
+		leftRef.style.height = `${window.innerHeight}px`;
+
 		this.keys = [];
 		this.isEnabled = false;
 		const letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
