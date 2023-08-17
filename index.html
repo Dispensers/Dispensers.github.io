@@ -493,7 +493,7 @@ body {
 		<button id="iBack" class="cCommon cTertiary"><code><strong>&lt;</strong></code></button>
 
 <!--		<button id="iHeader" class="header"><strong>Information</strong></button> -->
-		<button id="iHeader" class="header"><strong>Informat4</strong></button>
+		<button id="iHeader" class="header"><strong>Informat5</strong></button>
 	
 		<div id="iInstructions">A 5-letter Word Ladder with just 3 steps.<br>
 								Change precisely 2 letters per step.<br><br>
@@ -647,6 +647,16 @@ console.log(`${window.innerHeight}px`);
 console.log(`${window.innerWidth}px`);
 console.log(`${window.devicePixelRatio}`);
 
+const HTMLElement = document.documentElement;
+console.log(`${HTMLElement.clientHeight}px`);
+console.log(`${HTMLElement.clientWidth}px`);
+
+//const usableHeight = window.innerHeight;
+//const usableWidth = window.innerWidth;
+const usableHeight = HTMLElement.clientHeight;
+const usableWidth = HTMLElement.clientWidth;
+
+
 function updateFontSize() {
   console.log('updateFontSize called');
   const numGridRows = 35;
@@ -654,12 +664,12 @@ function updateFontSize() {
   
   let innerDimension = 0
   let gridDimension = 0
-  if ((window.innerHeight / numGridRows) <= (window.innerWidth / numGridColumns)) {
-    innerDimension = window.innerHeight;
+  if ((usableHeight / numGridRows) <= (usableWidth / numGridColumns)) {
+    innerDimension = usableHeight;
 	gridDimension = numGridRows;
 	}
   else {
-    innerDimension = window.innerWidth;
+    innerDimension = usableWidth;
 	gridDimension = numGridColumns;
 	}
 	
@@ -678,7 +688,7 @@ function updateFontSize() {
   console.log(fontSize);
   document.body.style.fontSize = `${fontSize}px`;
   
-  let spareHeight = window.innerHeight - (fontSize * numGridRows);
+  let spareHeight = usableHeight - (fontSize * numGridRows);
   console.log('spareHeight');
   console.log(spareHeight);
   let deviceSpareHeight = spareHeight * window.devicePixelRatio;
@@ -697,7 +707,7 @@ function updateFontSize() {
   door.style.top = `${roundedSpareHeight / 2}px`;
   information.style.top = `${roundedSpareHeight / 2}px`;
   
-  let spareWidth = window.innerWidth - (fontSize * numGridColumns);
+  let spareWidth = usableWidth - (fontSize * numGridColumns);
   console.log('spareWidth');
   console.log(spareWidth);
   let deviceSpareWidth = spareWidth * window.devicePixelRatio;
