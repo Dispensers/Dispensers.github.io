@@ -1,0 +1,28 @@
+<svg version="1.1"
+     width="343" height="245"
+     xmlns="http://www.w3.org/2000/svg">
+	<defs>
+		<clipPath id="leave-40">
+			<path 
+				d="M 171 228
+				   L 171 0
+				   A 500 500 0 0 1 671 500
+				   L 443 500
+				   A 300 300 0 0 0 171 228
+				  "
+				transform="rotate(50 171 500)"
+			/>
+		</clipPath>
+	</defs>
+	<path 
+		d="M 171 228
+		   L 171 0
+		   A 500 500 0 0 1 671 500
+		   L 443 500
+		   A 300 300 0 0 0 171 228
+		  "
+		clip-path="url(#leave-40)"
+		transform="rotate(-70 171 500)"
+		fill="black"
+	/>
+</svg>
