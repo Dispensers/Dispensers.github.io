@@ -13,766 +13,280 @@ body {
 	background-color: black;
 }
 
-/*
-#information {
+
+#wallInformation {
 	display:none;
 	z-index:1;
 	position:absolute;
 	height:200em;
 	width:59em;
 	grid-template-rows:
-		[rInformation-s]
+		[rWallInformation-s]
 		3fr
-		[rIHeader-s rIBack-s]
-		6fr
-		[rIHeader-e rIBack-e]
+		[rIInformation-s rIBack-s]
+		7fr
+		[rIInformation-e rIBack-e]
 		3fr
 		[rIInstructions-s]
-		20fr
+		30fr
 		[rIInstructions-e]
-		168fr
-		[rInformation-e];	
+		3fr
+		[rISeparator-1-s]
+		3fr
+		[rISeparator-1-e rIDoorDemo-s]
+		105fr
+		[rIDoorDemo-e rISeparator-2-s]
+		3fr
+		[rISeparator-2-e]
+		43fr
+		[rwallInformation-e];	
  	grid-template-columns:
-		[cInformation-s]
+		[cWallInformation-s cIDoorDemo-s cISeparator-s]
 		3fr
 		[cIBack-s cIInstructions-s]
 		7fr
 		[cIBack-e]
-		5fr 
-		[cIHeader-s]
-		29fr
-		[cIHeader-e]
-		12fr
+		3fr 
+		[cIInformation-s]
+		33fr
+		[cIInformation-e]
+		10fr
 		[cIInstructions-e]
 		3fr
-		[cInformation-e];
+		[cWallInformation-e cIDoorDemo-e cISeparator-e];
 }
 
 #iBack {grid-row:rIBack-s/rIBack-e; grid-column:cIBack-s/cIBack-e;}
-#iHeader {grid-row:rIHeader-s/rIHeader-e; grid-column:cIHeader-s/cIHeader-e;}
-#iInstructions {grid-row:rIInstructions-s/rIInstructions-e; grid-column:cIInstructions-s/cIInstructions-e; font-size:3em; background-color:white;}
-*/
-/*
-#door-3 {display:none; z-index:2; width:59em; background-color:gray; position:absolute;
-	grid-template-columns:
-		[cDoor-3-s]
-		3fr
-		[cPanel-3-s cCInformation-3-s cCReset-3-s]
-		11fr
-		[cCReset-3-e]
-		3fr
-		[cPHeader-3-s]
-		2fr
-		[cCInformation-3-e]
-		5fr
-		[cCHint-3-s]
-		11fr
-		[cCHint-3-e cCBack-3-s]
-		5fr
-		[cCSolution-3-s]
-		2fr
-		[cPHeader-3-e]
-		14fr
-		[cPanel-3-3-e cCSolution-3-e cCBack-3-e]
-		3fr
-		[cDoor-3-e]
-		;
-}
+#iInformation {grid-row:rIInformation-s/rIInformation-e; grid-column:cIInformation-s/cIInformation-e;}
+#iInstructions {grid-row:rIInstructions-s/rIInstructions-e; grid-column:cIInstructions-s/cIInstructions-e; font-size:1.5em; background-color:white;}
 
-#pHeader-3 {grid-row:rPHeader-3-s/rPHeader-3-e; grid-column:cPHeader-3-s/cPHeader-3-e;}
+#iSeparator-1 {grid-row:rISeparator-1-s/rISeparator-1-e; grid-column:cISeparator-s/cISeparator-e;}
+#iSeparator-2 {grid-row:rISeparator-2-s/rISeparator-2-e; grid-column:cISeparator-s/cISeparator-e;}
 
-#cInformation-3 {grid-row:rCTop-3-s/rCTop-3-e; grid-column:cCInformation-3-s/cCInformation-3-e;}
-#cHint-3 {grid-row:rCTop-3-s/rCTop-3-e; grid-column:cCHint-3-s/cCHint-3-e;}
-#cSolution-3 {grid-row:rCTop-3-s/rCTop-3-e; grid-column:cCSolution-3-s/cCSolution-3-e;}
-#cReset-3 {grid-row:rCBottom-3-s/rCBottom-3-e; grid-column:cCReset-3-s/cCReset-3-e;}
-#cBack-3 {grid-row:rCBottom-3-s/rCBottom-3-e; grid-column:cCBack-3-s/cCBack-3-e;}
-
-#panel-33 {display:none; z-index:3; grid-row:rPanel-3-s/rPanel-3-e; grid-column:cPanel-3-s/cPanel-3-e; height:80em; width:53em; background-color:white; position:absolute;
+#iDoorDemo {
+	height:105em;
+	width:59em;
+	grid-row:rIDoorDemo-s/rIDoorDemo-e;
+	grid-column:cIDoorDemo-s/cIDoorDemo-e;
+	display:grid;
 	grid-template-rows:
-		[rPanel-33-s]
+		[rDemoDoor-s rDemoLED-s]
 		3fr
-		[rDTile-33-4-e]
-		1fr
-		[rDTile-33-3-s]
+		[rDemoLED-e rDemoCDemo-s]
 		7fr
-		[rDTile-33-3-e]
-		1fr
-		[rDTile-33-2-s]
-		7fr
-		[rDTile-33-2-e]
-		1fr
-		[rDTile-33-1-s]
-		7fr
-		[rDTile-33-1-e rDContainer-33-b]
-		7fr
-		[rMRow-3-1]
-		7fr
-		[rMRow-3-2]
-		7fr
-		[rMRow-3-3]
-		7fr
-		[rMRow-3-e]
+		[rDemoCDemo-e]
 		3fr
-		[rCBackground-3-s]
-		3fr
-		[rCDispense-3-s]
-		6fr
-		[rPanel-33-e rCBackground-3-e rCDispense-3-e]
-		;
-	grid-template-columns:
-		[cPanel-33-s]
-		9fr
-		[cDContainer-33-1-s]
+		[rDemoCTop-s]
 		1fr
-		[cDTile-33-1-s]
-		6fr
-		[cMColumn-3-1]
-		1fr
-		[cDTile-33-1-e]
-		1fr
-		[cDContainer-33-1-e]
+		[rDemoSTop-s]
 		4fr
-		[cDContainer-33-2-s]
+		[rDemoSTop-e]
 		1fr
-		[cDTile-33-2-s cMColumn-3-2]
-		7fr
-		[cDTile-33-2-e cMColumn-3-3]
-		1fr
-		[cDContainer-33-2-e]
+		[rDemoCTop-e]
+		3fr
+		[rDemoDoorPanel-s]
+		62fr
+		[rDemoDoorPanel-e]
+		3fr
+		[rDemoCDispense-s rDemoSDispense-s]
 		4fr
-		[cDContainer-33-3-s]
-		1fr
-		[cDTile-33-3-s]
-		1fr
-		[cMColumn-3-e]
-		6fr
-		[cDTile-33-3-e]
-		1fr
-		[cDContainer-33-3-e]
-		9fr
-		[cPanel-33-e]
-		;
-}
-
-#dTile-33-11 {grid-row:rDTile-33-1-s/rDTile-33-1-e; grid-column:cDTile-33-1-s/cDTile-33-1-e;}
-#dTile-33-12 {grid-row:rDTile-33-2-s/rDTile-33-2-e; grid-column:cDTile-33-1-s/cDTile-33-1-e;}
-#dTile-33-13 {grid-row:rDTile-33-3-s/rDTile-33-3-e; grid-column:cDTile-33-1-s/cDTile-33-1-e;}
-#dTile-33-21 {grid-row:rDTile-33-1-s/rDTile-33-1-e; grid-column:cDTile-33-2-s/cDTile-33-2-e;}
-#dTile-33-22 {grid-row:rDTile-33-2-s/rDTile-33-2-e; grid-column:cDTile-33-2-s/cDTile-33-2-e;}
-#dTile-33-23 {grid-row:rDTile-33-3-s/rDTile-33-3-e; grid-column:cDTile-33-2-s/cDTile-33-2-e;}
-#dTile-33-31 {grid-row:rDTile-33-1-s/rDTile-33-1-e; grid-column:cDTile-33-3-s/cDTile-33-3-e;}
-#dTile-33-32 {grid-row:rDTile-33-2-s/rDTile-33-2-e; grid-column:cDTile-33-3-s/cDTile-33-3-e;}
-#dTile-33-33 {grid-row:rDTile-33-3-s/rDTile-33-3-e; grid-column:cDTile-33-3-s/cDTile-33-3-e;}
-
-#dContainer-33-11 {grid-row:rDTile-33-2-e/rDContainer-33-b; grid-column:cDContainer-33-1-s/cDContainer-33-1-e;}
-#dContainer-33-12 {grid-row:rDTile-33-3-e/rDContainer-33-b; grid-column:cDContainer-33-1-s/cDContainer-33-1-e;}
-#dContainer-33-13 {grid-row:rDTile-33-4-e/rDContainer-33-b; grid-column:cDContainer-33-1-s/cDContainer-33-1-e;}
-#dContainer-33-21 {grid-row:rDTile-33-2-e/rDContainer-33-b; grid-column:cDContainer-33-2-s/cDContainer-33-2-e;}
-#dContainer-33-22 {grid-row:rDTile-33-3-e/rDContainer-33-b; grid-column:cDContainer-33-2-s/cDContainer-33-2-e;}
-#dContainer-33-23 {grid-row:rDTile-33-4-e/rDContainer-33-b; grid-column:cDContainer-33-2-s/cDContainer-33-2-e;}
-#dContainer-33-31 {grid-row:rDTile-33-2-e/rDContainer-33-b; grid-column:cDContainer-33-3-s/cDContainer-33-3-e;}
-#dContainer-33-32 {grid-row:rDTile-33-3-e/rDContainer-33-b; grid-column:cDContainer-33-3-s/cDContainer-33-3-e;}
-#dContainer-33-33 {grid-row:rDTile-33-4-e/rDContainer-33-b; grid-column:cDContainer-33-3-s/cDContainer-33-3-e;}
-
-#mSquare-33-1 {grid-row:rMRow-3-1/rMRow-3-2; grid-column:cMColumn-3-1/cMColumn-3-2;}
-#mSquare-33-2 {grid-row:rMRow-3-1/rMRow-3-2; grid-column:cMColumn-3-2/cMColumn-3-3;}
-#mSquare-33-3 {grid-row:rMRow-3-1/rMRow-3-2; grid-column:cMColumn-3-3/cMColumn-3-e;}
-#mSquare-33-4 {grid-row:rMRow-3-2/rMRow-3-3; grid-column:cMColumn-3-1/cMColumn-3-2;}
-#mSquare-33-5 {grid-row:rMRow-3-2/rMRow-3-3; grid-column:cMColumn-3-2/cMColumn-3-3;}
-#mSquare-33-6 {grid-row:rMRow-3-2/rMRow-3-3; grid-column:cMColumn-3-3/cMColumn-3-e;}
-#mSquare-33-7 {grid-row:rMRow-3-3/rMRow-3-e; grid-column:cMColumn-3-1/cMColumn-3-2;}
-#mSquare-33-8 {grid-row:rMRow-3-3/rMRow-3-e; grid-column:cMColumn-3-2/cMColumn-3-3;}
-#mSquare-33-9 {grid-row:rMRow-3-3/rMRow-3-e; grid-column:cMColumn-3-3/cMColumn-3-e;}
-
-#cBackground-33 {grid-row:rCBackground-3-s/rCBackground-3-e; grid-column:cPanel-33-s/cPanel-33-e;}
-#cDispense-33-1 {grid-row:rCDispense-3-s/rCDispense-3-e; grid-column:cDTile-33-1-s/cDTile-33-1-e;}
-#cDispense-33-2 {grid-row:rCDispense-3-s/rCDispense-3-e; grid-column:cDTile-33-2-s/cDTile-33-2-e;}
-#cDispense-33-3 {grid-row:rCDispense-3-s/rCDispense-3-e; grid-column:cDTile-33-3-s/cDTile-33-3-e;}
-
-
-#panel-34 {display:none; z-index:3; grid-row:rPanel-3-s/rPanel-3-e; grid-column:cPanel-3-s/cPanel-3-e; height:80em; width:53em; background-color:white; position:absolute;
-	grid-template-rows:
-		[rPanel-34-s]
-		3fr
-		[rDTile-34-4-e]
-		1fr
-		[rDTile-34-3-s]
-		7fr
-		[rDTile-34-3-e]
-		1fr
-		[rDTile-34-2-s]
-		7fr
-		[rDTile-34-2-e]
-		1fr
-		[rDTile-34-1-s]
-		7fr
-		[rDTile-34-1-e rDContainer-34-b]
-		7fr
-		[rMRow-3-1]
-		7fr
-		[rMRow-3-2]
-		7fr
-		[rMRow-3-3]
-		7fr
-		[rMRow-3-e]
-		3fr
-		[rCBackground-3-s]
-		3fr
-		[rCDispense-3-s]
-		6fr
-		[rPanel-34-e rCBackground-3-e rCDispense-3-e]
-		;
-	grid-template-columns:
-		[cPanel-34-s]
-		4fr
-		[cDContainer-34-1-s]
-		1fr
-		[cDTile-34-1-s]
-		7fr
-		[cDTile-34-1-e]
-		1fr
-		[cDContainer-34-1-e]
-		3fr
-		[cDContainer-34-2-s cMColumn-3-1]
-		1fr
-		[cDTile-34-2-s]
-		6fr
-		[cMColumn-3-2]
-		1fr
-		[cDTile-34-2-e]
-		1fr
-		[cDContainer-34-2-e]
-		3fr
-		[cDContainer-34-3-s]
-		1fr
-		[cDTile-34-3-s]
-		1fr
-		[cMColumn-3-3]
-		6fr
-		[cDTile-34-3-e]
-		1fr
-		[cDContainer-34-3-e cMColumn-3-e]
-		3fr
-		[cDContainer-34-4-s]
-		1fr
-		[cDTile-34-4-s]
-		7fr
-		[cDTile-34-4-e]
-		1fr
-		[cDContainer-34-4-e]
-		4fr
-		[cPanel-34-e]
-		;
-}
-
-#dTile-34-11 {grid-row:rDTile-34-1-s/rDTile-34-1-e; grid-column:cDTile-34-1-s/cDTile-34-1-e;}
-#dTile-34-12 {grid-row:rDTile-34-2-s/rDTile-34-2-e; grid-column:cDTile-34-1-s/cDTile-34-1-e;}
-#dTile-34-13 {grid-row:rDTile-34-3-s/rDTile-34-3-e; grid-column:cDTile-34-1-s/cDTile-34-1-e;}
-#dTile-34-21 {grid-row:rDTile-34-1-s/rDTile-34-1-e; grid-column:cDTile-34-2-s/cDTile-34-2-e;}
-#dTile-34-22 {grid-row:rDTile-34-2-s/rDTile-34-2-e; grid-column:cDTile-34-2-s/cDTile-34-2-e;}
-#dTile-34-23 {grid-row:rDTile-34-3-s/rDTile-34-3-e; grid-column:cDTile-34-2-s/cDTile-34-2-e;}
-#dTile-34-31 {grid-row:rDTile-34-1-s/rDTile-34-1-e; grid-column:cDTile-34-3-s/cDTile-34-3-e;}
-#dTile-34-32 {grid-row:rDTile-34-2-s/rDTile-34-2-e; grid-column:cDTile-34-3-s/cDTile-34-3-e;}
-#dTile-34-33 {grid-row:rDTile-34-3-s/rDTile-34-3-e; grid-column:cDTile-34-3-s/cDTile-34-3-e;}
-#dTile-34-41 {grid-row:rDTile-34-1-s/rDTile-34-1-e; grid-column:cDTile-34-4-s/cDTile-34-4-e;}
-#dTile-34-42 {grid-row:rDTile-34-2-s/rDTile-34-2-e; grid-column:cDTile-34-4-s/cDTile-34-4-e;}
-#dTile-34-43 {grid-row:rDTile-34-3-s/rDTile-34-3-e; grid-column:cDTile-34-4-s/cDTile-34-4-e;}
-
-#dContainer-34-11 {grid-row:rDTile-34-2-e/rDContainer-34-b; grid-column:cDContainer-34-1-s/cDContainer-34-1-e;}
-#dContainer-34-12 {grid-row:rDTile-34-3-e/rDContainer-34-b; grid-column:cDContainer-34-1-s/cDContainer-34-1-e;}
-#dContainer-34-13 {grid-row:rDTile-34-4-e/rDContainer-34-b; grid-column:cDContainer-34-1-s/cDContainer-34-1-e;}
-#dContainer-34-21 {grid-row:rDTile-34-2-e/rDContainer-34-b; grid-column:cDContainer-34-2-s/cDContainer-34-2-e;}
-#dContainer-34-22 {grid-row:rDTile-34-3-e/rDContainer-34-b; grid-column:cDContainer-34-2-s/cDContainer-34-2-e;}
-#dContainer-34-23 {grid-row:rDTile-34-4-e/rDContainer-34-b; grid-column:cDContainer-34-2-s/cDContainer-34-2-e;}
-#dContainer-34-31 {grid-row:rDTile-34-2-e/rDContainer-34-b; grid-column:cDContainer-34-3-s/cDContainer-34-3-e;}
-#dContainer-34-32 {grid-row:rDTile-34-3-e/rDContainer-34-b; grid-column:cDContainer-34-3-s/cDContainer-34-3-e;}
-#dContainer-34-33 {grid-row:rDTile-34-4-e/rDContainer-34-b; grid-column:cDContainer-34-3-s/cDContainer-34-3-e;}
-#dContainer-34-41 {grid-row:rDTile-34-2-e/rDContainer-34-b; grid-column:cDContainer-34-4-s/cDContainer-34-4-e;}
-#dContainer-34-42 {grid-row:rDTile-34-3-e/rDContainer-34-b; grid-column:cDContainer-34-4-s/cDContainer-34-4-e;}
-#dContainer-34-43 {grid-row:rDTile-34-4-e/rDContainer-34-b; grid-column:cDContainer-34-4-s/cDContainer-34-4-e;}
-
-#mSquare-34-1 {grid-row:rMRow-3-1/rMRow-3-2; grid-column:cMColumn-3-1/cMColumn-3-2;}
-#mSquare-34-2 {grid-row:rMRow-3-1/rMRow-3-2; grid-column:cMColumn-3-2/cMColumn-3-3;}
-#mSquare-34-3 {grid-row:rMRow-3-1/rMRow-3-2; grid-column:cMColumn-3-3/cMColumn-3-e;}
-#mSquare-34-4 {grid-row:rMRow-3-2/rMRow-3-3; grid-column:cMColumn-3-1/cMColumn-3-2;}
-#mSquare-34-5 {grid-row:rMRow-3-2/rMRow-3-3; grid-column:cMColumn-3-2/cMColumn-3-3;}
-#mSquare-34-6 {grid-row:rMRow-3-2/rMRow-3-3; grid-column:cMColumn-3-3/cMColumn-3-e;}
-#mSquare-34-7 {grid-row:rMRow-3-3/rMRow-3-e; grid-column:cMColumn-3-1/cMColumn-3-2;}
-#mSquare-34-8 {grid-row:rMRow-3-3/rMRow-3-e; grid-column:cMColumn-3-2/cMColumn-3-3;}
-#mSquare-34-9 {grid-row:rMRow-3-3/rMRow-3-e; grid-column:cMColumn-3-3/cMColumn-3-e;}
-
-#cBackground-34 {grid-row:rCBackground-3-s/rCBackground-3-e; grid-column:cPanel-34-s/cPanel-34-e;}
-#cDispense-34-1 {grid-row:rCDispense-3-s/rCDispense-3-e; grid-column:cDTile-34-1-s/cDTile-34-1-e;}
-#cDispense-34-2 {grid-row:rCDispense-3-s/rCDispense-3-e; grid-column:cDTile-34-2-s/cDTile-34-2-e;}
-#cDispense-34-3 {grid-row:rCDispense-3-s/rCDispense-3-e; grid-column:cDTile-34-3-s/cDTile-34-3-e;}
-#cDispense-34-4 {grid-row:rCDispense-3-s/rCDispense-3-e; grid-column:cDTile-34-4-s/cDTile-34-4-e;}
-
-
-#door-4 {display:none; z-index:2; width:59em; position:absolute;
-	grid-template-columns:
-		[cDoor-4-s]
-		3fr
-		[cPanel-4-s cCInformation-4-s cCReset-4-s]
-		11fr
-		[cCReset-4-e]
+		[rDemoSDispense-e]
 		2fr
-		[cPHeader-4-s]
+		[rDemoCDispense-e]
 		3fr
-		[cCInformation-4-e]
-		5fr
-		[cCHint-4-s]
-		11fr
-		[cCHint-4-e cCBack-4-s]
-		5fr
-		[cCSolution-4-s]
+		[rDemoCBottom-s]
+		1fr
+		[rDemoSBottom-s]
+		4fr
+		[rDemoSBottom-e]
+		1fr
+		[rDemoCBottom-e]
 		3fr
-		[cPHeader-4-e]
-		13fr
-		[cPanel-4-e cCSolution-4-e cCBack-4-e]
-		3fr
-		[cDoor-4-e]
-		;
-}
-
-#pHeader-4 {grid-row:rPHeader-4-s/rPHeader-4-e; grid-column:cPHeader-4-s/cPHeader-4-e;}
-
-#cInformation-4 {grid-row:rCTop-4-s/rCTop-4-e; grid-column:cCInformation-4-s/cCInformation-4-e;}
-#cHint-4 {grid-row:rCTop-4-s/rCTop-4-e; grid-column:cCHint-4-s/cCHint-4-e;}
-#cSolution-4 {grid-row:rCTop-4-s/rCTop-4-e; grid-column:cCSolution-4-s/cCSolution-4-e;}
-#cReset-4 {grid-row:rCBottom-4-s/rCBottom-4-e; grid-column:cCReset-4-s/cCReset-4-e;}
-#cBack-4 {grid-row:rCBottom-4-s/rCBottom-4-e; grid-column:cCBack-4-s/cCBack-4-e;}
-
-#panel-43 {display:none; z-index:3; grid-row:rPanel-4-s/rPanel-4-e; grid-column:cPanel-4-s/cPanel-4-e; height:80em; width:53em; background-color:white; position:absolute;
-	grid-template-rows:
-		[rPanel-43-s]
-		3fr
-		[rDTile-43-5-e]
-		1fr
-		[rDTile-43-4-s]
-		7fr
-		[rDTile-43-4-e]
-		1fr
-		[rDTile-43-3-s]
-		7fr
-		[rDTile-43-3-e]
-		1fr
-		[rDTile-43-2-s]
-		7fr
-		[rDTile-43-2-e]
-		1fr
-		[rDTile-43-1-s]
-		7fr
-		[rDTile-43-1-e rDContainer-43-b]
-		7fr
-		[rMRow-4-1]
-		6fr
-		[rTickCross-4-s]
-		1fr
-		[rMRow-4-2]
-		7fr
-		[rMRow-4-3]
-		1fr
-		[rTickCross-4-e]
-		6fr
-		[rMRow-4-e]
-		3fr
-		[rCBackground-4-s]
-		3fr
-		[rCDispense-4-s]
-		6fr
-		[rPanel-43-e rCBackground-4-e rCDispense-4-e]
-		;
+		[rDemoDoor-e];
 	grid-template-columns:
-		[cPanel-43-s]
-		9fr
-		[cDContainer-43-1-s]
-		1fr
-		[cDTile-43-1-s]
-		6fr
-		[cMColumn-4-1]
-		1fr
-		[cDTile-43-1-e]
-		1fr
-		[cDContainer-43-1-e]
-		4fr
-		[cDContainer-43-2-s]
-		1fr
-		[cDTile-43-2-s cMColumn-4-2]
-		7fr
-		[cDTile-43-2-e cMColumn-4-3]
-		1fr
-		[cDContainer-43-2-e]
-		4fr
-		[cDContainer-43-3-s]
-		1fr
-		[cDTile-43-3-s]
-		1fr
-		[cMColumn-4-e]
+		[cDemoDoor-s]
+		3fr
+		[cDemoDoorPanel-s cDemoCInformation-s cDemoCReset-s]
+		3fr
+		[cDemoSReset-s]
+		5fr
+		[cDemoSReset-e]
 		2fr
-		[cTickCross-4-s]
-		4fr
-		[cDTile-43-3-e]
+		[cDemoCDispense-1-s]
 		1fr
-		[cDContainer-43-3-e]
-		4fr
-		[cTickCross-4-e]
-		5fr
-		[cPanel-43-e]
-		;
-}
-
-#testTile {z-index:6; grid-row:rDTile-43-1-s/span 14; grid-column:cDTile-43-1-s/span 14; width:14em; height:14em;}
-
-#dTile-43-11 {grid-row:rDTile-43-1-s/rDTile-43-1-e; grid-column:cDTile-43-1-s/cDTile-43-1-e;}
-#dTile-43-12 {grid-row:rDTile-43-2-s/rDTile-43-2-e; grid-column:cDTile-43-1-s/cDTile-43-1-e;}
-#dTile-43-13 {grid-row:rDTile-43-3-s/rDTile-43-3-e; grid-column:cDTile-43-1-s/cDTile-43-1-e;}
-#dTile-43-14 {grid-row:rDTile-43-4-s/rDTile-43-4-e; grid-column:cDTile-43-1-s/cDTile-43-1-e;}
-#dTile-43-21 {grid-row:rDTile-43-1-s/rDTile-43-1-e; grid-column:cDTile-43-2-s/cDTile-43-2-e;}
-#dTile-43-22 {grid-row:rDTile-43-2-s/rDTile-43-2-e; grid-column:cDTile-43-2-s/cDTile-43-2-e;}
-#dTile-43-23 {grid-row:rDTile-43-3-s/rDTile-43-3-e; grid-column:cDTile-43-2-s/cDTile-43-2-e;}
-#dTile-43-24 {grid-row:rDTile-43-4-s/rDTile-43-4-e; grid-column:cDTile-43-2-s/cDTile-43-2-e;}
-#dTile-43-31 {grid-row:rDTile-43-1-s/rDTile-43-1-e; grid-column:cDTile-43-3-s/cDTile-43-3-e;}
-#dTile-43-32 {grid-row:rDTile-43-2-s/rDTile-43-2-e; grid-column:cDTile-43-3-s/cDTile-43-3-e;}
-#dTile-43-33 {grid-row:rDTile-43-3-s/rDTile-43-3-e; grid-column:cDTile-43-3-s/cDTile-43-3-e;}
-#dTile-43-34 {grid-row:rDTile-43-4-s/rDTile-43-4-e; grid-column:cDTile-43-3-s/cDTile-43-3-e;}
-
-#dContainer-43-11 {grid-row:rDTile-43-2-e/rDContainer-43-b; grid-column:cDContainer-43-1-s/cDContainer-43-1-e;}
-#dContainer-43-12 {grid-row:rDTile-43-3-e/rDContainer-43-b; grid-column:cDContainer-43-1-s/cDContainer-43-1-e;}
-#dContainer-43-13 {grid-row:rDTile-43-4-e/rDContainer-43-b; grid-column:cDContainer-43-1-s/cDContainer-43-1-e;}
-#dContainer-43-14 {grid-row:rDTile-43-5-e/rDContainer-43-b; grid-column:cDContainer-43-1-s/cDContainer-43-1-e;}
-#dContainer-43-21 {grid-row:rDTile-43-2-e/rDContainer-43-b; grid-column:cDContainer-43-2-s/cDContainer-43-2-e;}
-#dContainer-43-22 {grid-row:rDTile-43-3-e/rDContainer-43-b; grid-column:cDContainer-43-2-s/cDContainer-43-2-e;}
-#dContainer-43-23 {grid-row:rDTile-43-4-e/rDContainer-43-b; grid-column:cDContainer-43-2-s/cDContainer-43-2-e;}
-#dContainer-43-24 {grid-row:rDTile-43-5-e/rDContainer-43-b; grid-column:cDContainer-43-2-s/cDContainer-43-2-e;}
-#dContainer-43-31 {grid-row:rDTile-43-2-e/rDContainer-43-b; grid-column:cDContainer-43-3-s/cDContainer-43-3-e;}
-#dContainer-43-32 {grid-row:rDTile-43-3-e/rDContainer-43-b; grid-column:cDContainer-43-3-s/cDContainer-43-3-e;}
-#dContainer-43-33 {grid-row:rDTile-43-4-e/rDContainer-43-b; grid-column:cDContainer-43-3-s/cDContainer-43-3-e;}
-#dContainer-43-34 {grid-row:rDTile-43-5-e/rDContainer-43-b; grid-column:cDContainer-43-3-s/cDContainer-43-3-e;}
-
-#ring-4 {grid-row:rMRow-4-1/rMRow-4-e; grid-column:cMColumn-4-1/cMColumn-4-e;}
-#ring-4-1 {display:none; fill:green;}
-
-#mSquare-43-2 {grid-row:rMRow-4-1/rMRow-4-2; grid-column:cMColumn-4-2/cMColumn-4-3;}
-#mSquare-43-3 {grid-row:rMRow-4-1/rMRow-4-2; grid-column:cMColumn-4-3/cMColumn-4-e;}
-#mSquare-43-4 {grid-row:rMRow-4-2/rMRow-4-3; grid-column:cMColumn-4-1/cMColumn-4-2;}
-#mSquare-43-5 {grid-row:rMRow-4-2/rMRow-4-3; grid-column:cMColumn-4-2/cMColumn-4-3;}
-#mSquare-43-6 {grid-row:rMRow-4-2/rMRow-4-3; grid-column:cMColumn-4-3/cMColumn-4-e;}
-#mSquare-43-7 {grid-row:rMRow-4-3/rMRow-4-e; grid-column:cMColumn-4-1/cMColumn-4-2;}
-#mSquare-43-8 {grid-row:rMRow-4-3/rMRow-4-e; grid-column:cMColumn-4-2/cMColumn-4-3;}
-#mSquare-43-9 {grid-row:rMRow-4-3/rMRow-4-e; grid-column:cMColumn-4-3/cMColumn-4-e;}
-
-#TickCross-43 {grid-row:rTickCross-4-s/rTickCross-4-e; grid-column:cTickCross-4-s/cTickCross-4-e;}
-
-#cBackground-43 {grid-row:rCBackground-4-s/rCBackground-4-e; grid-column:cPanel-43-s/cPanel-43-e;}
-#cDispense-43-1 {grid-row:rCDispense-4-s/rCDispense-4-e; grid-column:cDTile-43-1-s/cDTile-43-1-e;}
-#cDispense-43-2 {grid-row:rCDispense-4-s/rCDispense-4-e; grid-column:cDTile-43-2-s/cDTile-43-2-e;}
-#cDispense-43-3 {grid-row:rCDispense-4-s/rCDispense-4-e; grid-column:cDTile-43-3-s/cDTile-43-3-e;}
-
-
-#door-7 {display:none; z-index:2; width:59em; position:absolute;
-	grid-template-columns:
-		[cDoor-7-s]
-		3fr
-		[cPanel-7-s cCInformation-7-s cCReset-7-s]
-		11fr
-		[cCReset-7-e]
+		[cDemoCReset-e cDemoSDispense-1-s]
 		2fr
-		[cPHeader-7-s]
+		[cDemoCDemo-s]
 		3fr
-		[cCInformation-7-e]
+		[cDemoCInformation-e cDemoSDispense-1-e]
+		1fr
+		[cDemoCDispense-1-e]
+		1fr
+		[cDemoCBack-s]
+		3fr
+		[cDemoCHint-s]
+		2fr
+		[cDemoCDispense-2-s]
+		1fr
+		[cDemoSDispense-2-s cDemoSHint-s]
 		5fr
-		[cCHint-7-s]
-		11fr
-		[cCHint-7-e cCBack-7-s]
-		5fr
-		[cCSolution-7-s]
+		[cDemoSDispense-2-e cDemoSHint-e]
+		1fr
+		[cDemoCDispense-2-e]
+		2fr
+		[cDemoCHint-e]
+		1fr
+		[cDemoSBack-s]
 		3fr
-		[cPHeader-7-e]
-		13fr
-		[cPanel-7-e cCSolution-7-e cCBack-7-e]
-		3fr
-		[cDoor-7-e]
-		;
-}
-
-#pHeader-7 {grid-row:rPHeader-7-s/rPHeader-7-e; grid-column:cPHeader-7-s/cPHeader-7-e;}
-
-#cInformation-7 {grid-row:rCTop-7-s/rCTop-7-e; grid-column:cCInformation-7-s/cCInformation-7-e;}
-#cHint-7 {grid-row:rCTop-7-s/rCTop-7-e; grid-column:cCHint-7-s/cCHint-7-e;}
-#cSolution-7 {grid-row:rCTop-7-s/rCTop-7-e; grid-column:cCSolution-7-s/cCSolution-7-e;}
-#cReset-7 {grid-row:rCBottom-7-s/rCBottom-7-e; grid-column:cCReset-7-s/cCReset-7-e;}
-#cBack-7 {grid-row:rCBottom-7-s/rCBottom-7-e; grid-column:cCBack-7-s/cCBack-7-e;}
-
-#panel-72 {display:none; z-index:3; grid-row:rPanel-7-s/rPanel-7-e; grid-column:cPanel-7-s/cPanel-7-e; height:80em; width:53em; background-color:white; position:absolute;
-	grid-template-rows:
-		[rPanel-72-s]
-		3fr
-		[rDTile-72-8-e]
+		[cDemoCDispense-3-s]
 		1fr
-		[rDTile-72-7-s]
-		7fr
-		[rDTile-72-7-e]
+		[cDemoCSolution-s cDemoSDispense-3-s]
 		1fr
-		[rDTile-72-6-s]
-		7fr
-		[rDTile-72-6-e]
+		[cDemoSBack-e]
+		2fr
+		[cDemoCDemo-e]
+		2fr
+		[cDemoSDispense-3-e]
 		1fr
-		[rDTile-72-5-s]
-		7fr
-		[rDTile-72-5-e]
-		1fr
-		[rDTile-72-4-s]
-		7fr
-		[rDTile-72-4-e]
-		1fr
-		[rDTile-72-3-s]
-		7fr
-		[rDTile-72-3-e]
-		1fr
-		[rDTile-72-2-s]
-		7fr
-		[rDTile-72-2-e]
-		1fr
-		[rDTile-72-1-s]
-		7fr
-		[rDTile-72-1-e rDContainer-72-b]
-		7fr
-		[rMRow-7-1]
-		6fr
-		[rTickCross-7-s]
-		1fr
-		[rMRow-7-2]
-		7fr
-		[rMRow-7-3]
-		1fr
-		[rTickCross-7-e]
-		6fr
-		[rMRow-7-e]
-		3fr
-		[rCBackground-7-s]
-		3fr
-		[rCDispense-7-s]
-		6fr
-		[rPanel-72-e rCBackground-7-e rCDispense-7-e]
-		;
-	grid-template-columns:
-		[cPanel-72-s]
-		15fr
-		[cDContainer-72-1-s]
-		1fr
-		[cDTile-72-1-s cMColumn-7-1]
-		7fr
-		[cDTile-72-1-e cMColumn-7-2]
-		1fr
-		[cDContainer-72-1-e]
-		5fr
-		[cDContainer-72-2-s]
-		1fr
-		[cDTile-72-2-s cMColumn-7-3]
-		7fr
-		[cDTile-72-2-e cMColumn-7-e]
-		1fr
-		[cDContainer-72-2-e]
-		1fr
-		[cTickCross-7-s]
-		9fr
-		[cTickCross-7-e]
-		5fr
-		[cPanel-72-e]
-		;
-}
-
-#dTile-72-11 {grid-row:rDTile-72-1-s/rDTile-72-1-e; grid-column:cDTile-72-1-s/cDTile-72-1-e;}
-#dTile-72-12 {grid-row:rDTile-72-2-s/rDTile-72-2-e; grid-column:cDTile-72-1-s/cDTile-72-1-e;}
-#dTile-72-13 {grid-row:rDTile-72-3-s/rDTile-72-3-e; grid-column:cDTile-72-1-s/cDTile-72-1-e;}
-#dTile-72-14 {grid-row:rDTile-72-4-s/rDTile-72-4-e; grid-column:cDTile-72-1-s/cDTile-72-1-e;}
-#dTile-72-15 {grid-row:rDTile-72-5-s/rDTile-72-5-e; grid-column:cDTile-72-1-s/cDTile-72-1-e;}
-#dTile-72-16 {grid-row:rDTile-72-6-s/rDTile-72-6-e; grid-column:cDTile-72-1-s/cDTile-72-1-e;}
-#dTile-72-17 {grid-row:rDTile-72-7-s/rDTile-72-7-e; grid-column:cDTile-72-1-s/cDTile-72-1-e;}
-#dTile-72-21 {grid-row:rDTile-72-1-s/rDTile-72-1-e; grid-column:cDTile-72-2-s/cDTile-72-2-e;}
-#dTile-72-22 {grid-row:rDTile-72-2-s/rDTile-72-2-e; grid-column:cDTile-72-2-s/cDTile-72-2-e;}
-#dTile-72-23 {grid-row:rDTile-72-3-s/rDTile-72-3-e; grid-column:cDTile-72-2-s/cDTile-72-2-e;}
-#dTile-72-24 {grid-row:rDTile-72-4-s/rDTile-72-4-e; grid-column:cDTile-72-2-s/cDTile-72-2-e;}
-#dTile-72-25 {grid-row:rDTile-72-5-s/rDTile-72-5-e; grid-column:cDTile-72-2-s/cDTile-72-2-e;}
-#dTile-72-26 {grid-row:rDTile-72-6-s/rDTile-72-6-e; grid-column:cDTile-72-2-s/cDTile-72-2-e;}
-#dTile-72-27 {grid-row:rDTile-72-7-s/rDTile-72-7-e; grid-column:cDTile-72-2-s/cDTile-72-2-e;}
-
-#dContainer-72-11 {grid-row:rDTile-72-2-e/rDContainer-72-b; grid-column:cDContainer-72-1-s/cDContainer-72-1-e;}
-#dContainer-72-12 {grid-row:rDTile-72-3-e/rDContainer-72-b; grid-column:cDContainer-72-1-s/cDContainer-72-1-e;}
-#dContainer-72-13 {grid-row:rDTile-72-4-e/rDContainer-72-b; grid-column:cDContainer-72-1-s/cDContainer-72-1-e;}
-#dContainer-72-14 {grid-row:rDTile-72-5-e/rDContainer-72-b; grid-column:cDContainer-72-1-s/cDContainer-72-1-e;}
-#dContainer-72-15 {grid-row:rDTile-72-6-e/rDContainer-72-b; grid-column:cDContainer-72-1-s/cDContainer-72-1-e;}
-#dContainer-72-16 {grid-row:rDTile-72-7-e/rDContainer-72-b; grid-column:cDContainer-72-1-s/cDContainer-72-1-e;}
-#dContainer-72-17 {grid-row:rDTile-72-8-e/rDContainer-72-b; grid-column:cDContainer-72-1-s/cDContainer-72-1-e;}
-#dContainer-72-21 {grid-row:rDTile-72-2-e/rDContainer-72-b; grid-column:cDContainer-72-2-s/cDContainer-72-2-e;}
-#dContainer-72-22 {grid-row:rDTile-72-3-e/rDContainer-72-b; grid-column:cDContainer-72-2-s/cDContainer-72-2-e;}
-#dContainer-72-23 {grid-row:rDTile-72-4-e/rDContainer-72-b; grid-column:cDContainer-72-2-s/cDContainer-72-2-e;}
-#dContainer-72-24 {grid-row:rDTile-72-5-e/rDContainer-72-b; grid-column:cDContainer-72-2-s/cDContainer-72-2-e;}
-#dContainer-72-25 {grid-row:rDTile-72-6-e/rDContainer-72-b; grid-column:cDContainer-72-2-s/cDContainer-72-2-e;}
-#dContainer-72-26 {grid-row:rDTile-72-7-e/rDContainer-72-b; grid-column:cDContainer-72-2-s/cDContainer-72-2-e;}
-#dContainer-72-27 {grid-row:rDTile-72-8-e/rDContainer-72-b; grid-column:cDContainer-72-2-s/cDContainer-72-2-e;}
-
-#mSquare-72-1 {grid-row:rMRow-7-1/rMRow-7-2; grid-column:cMColumn-7-1/cMColumn-7-2;}
-#mSquare-72-2 {grid-row:rMRow-7-1/rMRow-7-2; grid-column:cMColumn-7-2/cMColumn-7-3;}
-#mSquare-72-3 {grid-row:rMRow-7-1/rMRow-7-2; grid-column:cMColumn-7-3/cMColumn-7-e;}
-#mSquare-72-4 {grid-row:rMRow-7-2/rMRow-7-3; grid-column:cMColumn-7-1/cMColumn-7-2;}
-#mSquare-72-5 {grid-row:rMRow-7-2/rMRow-7-3; grid-column:cMColumn-7-2/cMColumn-7-3;}
-#mSquare-72-6 {grid-row:rMRow-7-2/rMRow-7-3; grid-column:cMColumn-7-3/cMColumn-7-e;}
-#mSquare-72-7 {grid-row:rMRow-7-3/rMRow-7-e; grid-column:cMColumn-7-1/cMColumn-7-2;}
-#mSquare-72-8 {grid-row:rMRow-7-3/rMRow-7-e; grid-column:cMColumn-7-2/cMColumn-7-3;}
-#mSquare-72-9 {grid-row:rMRow-7-3/rMRow-7-e; grid-column:cMColumn-7-3/cMColumn-7-e;}
-
-#TickCross-72 {grid-row:rTickCross-7-s/rTickCross-7-e; grid-column:cTickCross-7-s/cTickCross-7-e;}
-
-#cBackground-72 {grid-row:rCBackground-7-s/rCBackground-7-e; grid-column:cPanel-72-s/cPanel-72-e;}
-#cDispense-72-1 {grid-row:rCDispense-7-s/rCDispense-7-e; grid-column:cDTile-72-1-s/cDTile-72-1-e;}
-#cDispense-72-2 {grid-row:rCDispense-7-s/rCDispense-7-e; grid-column:cDTile-72-2-s/cDTile-72-2-e;}
-
-
-#panel-73 {display:none; z-index:3; grid-row:rPanel-7-s/rPanel-7-e; grid-column:cPanel-7-s/cPanel-7-e; height:80em; width:53em; background-color:white; position:absolute;
-	grid-template-rows:
-		[rPanel-73-s]
-		3fr
-		[rDTile-73-8-e]
-		1fr
-		[rDTile-73-7-s]
-		7fr
-		[rDTile-73-7-e]
-		1fr
-		[rDTile-73-6-s]
-		7fr
-		[rDTile-73-6-e]
-		1fr
-		[rDTile-73-5-s]
-		7fr
-		[rDTile-73-5-e]
-		1fr
-		[rDTile-73-4-s]
-		7fr
-		[rDTile-73-4-e]
-		1fr
-		[rDTile-73-3-s]
-		7fr
-		[rDTile-73-3-e]
-		1fr
-		[rDTile-73-2-s]
-		7fr
-		[rDTile-73-2-e]
-		1fr
-		[rDTile-73-1-s]
-		7fr
-		[rDTile-73-1-e rDContainer-73-b]
-		7fr
-		[rMRow-7-1]
-		7fr
-		[rMRow-7-2]
-		7fr
-		[rMRow-7-3]
-		7fr
-		[rMRow-7-e]
-		3fr
-		[rCBackground-7-s]
-		3fr
-		[rCDispense-7-s]
-		6fr
-		[rPanel-73-e rCBackground-7-e rCDispense-7-e]
-		;
-	grid-template-columns:
-		[cPanel-73-s]
-		9fr
-		[cDContainer-73-1-s]
-		1fr
-		[cDTile-73-1-s]
-		6fr
-		[cMColumn-7-1]
-		1fr
-		[cDTile-73-1-e]
-		1fr
-		[cDContainer-73-1-e]
+		[cDemoCDispense-3-e cDemoSSolution-s]
 		4fr
-		[cDContainer-73-2-s]
-		1fr
-		[cDTile-73-2-s cMColumn-7-2]
-		7fr
-		[cDTile-73-2-e cMColumn-7-3]
-		1fr
-		[cDContainer-73-2-e]
-		4fr
-		[cDContainer-73-3-s]
-		1fr
-		[cDTile-73-3-s]
-		1fr
-		[cMColumn-7-e]
+		[cDemoSSolution-e]
 		6fr
-		[cDTile-73-3-e]
-		1fr
-		[cDContainer-73-3-e]
-		9fr
-		[cPanel-73-e]
-		;
+		[cDemoDoorPanel-e cDemoCSolution-e cDemoCBack-e cDemoLED-s]
+		3fr
+		[cDemoDoor-e];
 }
 
-#dTile-73-11 {grid-row:rDTile-73-1-s/rDTile-73-1-e; grid-column:cDTile-73-1-s/cDTile-73-1-e;}
-#dTile-73-12 {grid-row:rDTile-73-2-s/rDTile-73-2-e; grid-column:cDTile-73-1-s/cDTile-73-1-e;}
-#dTile-73-13 {grid-row:rDTile-73-3-s/rDTile-73-3-e; grid-column:cDTile-73-1-s/cDTile-73-1-e;}
-#dTile-73-14 {grid-row:rDTile-73-4-s/rDTile-73-4-e; grid-column:cDTile-73-1-s/cDTile-73-1-e;}
-#dTile-73-15 {grid-row:rDTile-73-5-s/rDTile-73-5-e; grid-column:cDTile-73-1-s/cDTile-73-1-e;}
-#dTile-73-16 {grid-row:rDTile-73-6-s/rDTile-73-6-e; grid-column:cDTile-73-1-s/cDTile-73-1-e;}
-#dTile-73-17 {grid-row:rDTile-73-7-s/rDTile-73-7-e; grid-column:cDTile-73-1-s/cDTile-73-1-e;}
-#dTile-73-21 {grid-row:rDTile-73-1-s/rDTile-73-1-e; grid-column:cDTile-73-2-s/cDTile-73-2-e;}
-#dTile-73-22 {grid-row:rDTile-73-2-s/rDTile-73-2-e; grid-column:cDTile-73-2-s/cDTile-73-2-e;}
-#dTile-73-23 {grid-row:rDTile-73-3-s/rDTile-73-3-e; grid-column:cDTile-73-2-s/cDTile-73-2-e;}
-#dTile-73-24 {grid-row:rDTile-73-4-s/rDTile-73-4-e; grid-column:cDTile-73-2-s/cDTile-73-2-e;}
-#dTile-73-25 {grid-row:rDTile-73-5-s/rDTile-73-5-e; grid-column:cDTile-73-2-s/cDTile-73-2-e;}
-#dTile-73-26 {grid-row:rDTile-73-6-s/rDTile-73-6-e; grid-column:cDTile-73-2-s/cDTile-73-2-e;}
-#dTile-73-27 {grid-row:rDTile-73-7-s/rDTile-73-7-e; grid-column:cDTile-73-2-s/cDTile-73-2-e;}
-#dTile-73-31 {grid-row:rDTile-73-1-s/rDTile-73-1-e; grid-column:cDTile-73-3-s/cDTile-73-3-e;}
-#dTile-73-32 {grid-row:rDTile-73-2-s/rDTile-73-2-e; grid-column:cDTile-73-3-s/cDTile-73-3-e;}
-#dTile-73-33 {grid-row:rDTile-73-3-s/rDTile-73-3-e; grid-column:cDTile-73-3-s/cDTile-73-3-e;}
-#dTile-73-34 {grid-row:rDTile-73-4-s/rDTile-73-4-e; grid-column:cDTile-73-3-s/cDTile-73-3-e;}
-#dTile-73-35 {grid-row:rDTile-73-5-s/rDTile-73-5-e; grid-column:cDTile-73-3-s/cDTile-73-3-e;}
-#dTile-73-36 {grid-row:rDTile-73-6-s/rDTile-73-6-e; grid-column:cDTile-73-3-s/cDTile-73-3-e;}
-#dTile-73-37 {grid-row:rDTile-73-7-s/rDTile-73-7-e; grid-column:cDTile-73-3-s/cDTile-73-3-e;}
+#demoCDemo {
+	grid-row:rDemoCDemo-s/rDemoCDemo-e;
+	grid-column:cDemoCDemo-s/cDemoCDemo-e;
+	text-align:center;
+	border:none;
+	background-color:#484848;
+	color:white;
+	font-size:3em;
+}
 
-#dContainer-73-11 {grid-row:rDTile-73-2-e/rDContainer-73-b; grid-column:cDContainer-73-1-s/cDContainer-73-1-e;}
-#dContainer-73-12 {grid-row:rDTile-73-3-e/rDContainer-73-b; grid-column:cDContainer-73-1-s/cDContainer-73-1-e;}
-#dContainer-73-13 {grid-row:rDTile-73-4-e/rDContainer-73-b; grid-column:cDContainer-73-1-s/cDContainer-73-1-e;}
-#dContainer-73-14 {grid-row:rDTile-73-5-e/rDContainer-73-b; grid-column:cDContainer-73-1-s/cDContainer-73-1-e;}
-#dContainer-73-15 {grid-row:rDTile-73-6-e/rDContainer-73-b; grid-column:cDContainer-73-1-s/cDContainer-73-1-e;}
-#dContainer-73-16 {grid-row:rDTile-73-7-e/rDContainer-73-b; grid-column:cDContainer-73-1-s/cDContainer-73-1-e;}
-#dContainer-73-17 {grid-row:rDTile-73-8-e/rDContainer-73-b; grid-column:cDContainer-73-1-s/cDContainer-73-1-e;}
-#dContainer-73-21 {grid-row:rDTile-73-2-e/rDContainer-73-b; grid-column:cDContainer-73-2-s/cDContainer-73-2-e;}
-#dContainer-73-22 {grid-row:rDTile-73-3-e/rDContainer-73-b; grid-column:cDContainer-73-2-s/cDContainer-73-2-e;}
-#dContainer-73-23 {grid-row:rDTile-73-4-e/rDContainer-73-b; grid-column:cDContainer-73-2-s/cDContainer-73-2-e;}
-#dContainer-73-24 {grid-row:rDTile-73-5-e/rDContainer-73-b; grid-column:cDContainer-73-2-s/cDContainer-73-2-e;}
-#dContainer-73-25 {grid-row:rDTile-73-6-e/rDContainer-73-b; grid-column:cDContainer-73-2-s/cDContainer-73-2-e;}
-#dContainer-73-26 {grid-row:rDTile-73-7-e/rDContainer-73-b; grid-column:cDContainer-73-2-s/cDContainer-73-2-e;}
-#dContainer-73-27 {grid-row:rDTile-73-8-e/rDContainer-73-b; grid-column:cDContainer-73-2-s/cDContainer-73-2-e;}
-#dContainer-73-31 {grid-row:rDTile-73-2-e/rDContainer-73-b; grid-column:cDContainer-73-3-s/cDContainer-73-3-e;}
-#dContainer-73-32 {grid-row:rDTile-73-3-e/rDContainer-73-b; grid-column:cDContainer-73-3-s/cDContainer-73-3-e;}
-#dContainer-73-33 {grid-row:rDTile-73-4-e/rDContainer-73-b; grid-column:cDContainer-73-3-s/cDContainer-73-3-e;}
-#dContainer-73-34 {grid-row:rDTile-73-5-e/rDContainer-73-b; grid-column:cDContainer-73-3-s/cDContainer-73-3-e;}
-#dContainer-73-35 {grid-row:rDTile-73-6-e/rDContainer-73-b; grid-column:cDContainer-73-3-s/cDContainer-73-3-e;}
-#dContainer-73-36 {grid-row:rDTile-73-7-e/rDContainer-73-b; grid-column:cDContainer-73-3-s/cDContainer-73-3-e;}
-#dContainer-73-37 {grid-row:rDTile-73-8-e/rDContainer-73-b; grid-column:cDContainer-73-3-s/cDContainer-73-3-e;}
+#demoLEDGreen {display:none; grid-row:rDemoLED-s/rDemoLED-e; grid-column:cDemoLED-s/cDemoLED-e;}
+#demoLEDRed {display:none; grid-row:rDemoLED-s/rDemoLED-e; grid-column:cDemoLED-s/cDemoLED-e;}
 
-#mSquare-73-1 {grid-row:rMRow-7-1/rMRow-7-2; grid-column:cMColumn-7-1/cMColumn-7-2;}
-#mSquare-73-2 {grid-row:rMRow-7-1/rMRow-7-2; grid-column:cMColumn-7-2/cMColumn-7-3;}
-#mSquare-73-3 {grid-row:rMRow-7-1/rMRow-7-2; grid-column:cMColumn-7-3/cMColumn-7-e;}
-#mSquare-73-4 {grid-row:rMRow-7-2/rMRow-7-3; grid-column:cMColumn-7-1/cMColumn-7-2;}
-#mSquare-73-5 {grid-row:rMRow-7-2/rMRow-7-3; grid-column:cMColumn-7-2/cMColumn-7-3;}
-#mSquare-73-6 {grid-row:rMRow-7-2/rMRow-7-3; grid-column:cMColumn-7-3/cMColumn-7-e;}
-#mSquare-73-7 {grid-row:rMRow-7-3/rMRow-7-e; grid-column:cMColumn-7-1/cMColumn-7-2;}
-#mSquare-73-8 {grid-row:rMRow-7-3/rMRow-7-e; grid-column:cMColumn-7-2/cMColumn-7-3;}
-#mSquare-73-9 {grid-row:rMRow-7-3/rMRow-7-e; grid-column:cMColumn-7-3/cMColumn-7-e;}
+#demoCInformation {grid-row:rDemoCTop-s/rDemoCTop-e; grid-column:cDemoCInformation-s/cDemoCInformation-e;}
+#demoCHint {grid-row:rDemoCTop-s/rDemoCTop-e; grid-column:cDemoCHint-s/cDemoCHint-e;}
+#demoCSolution {grid-row:rDemoCTop-s/rDemoCTop-e; grid-column:cDemoCSolution-s/cDemoCSolution-e;}
+#demoCReset {grid-row:rDemoCBottom-s/rDemoCBottom-e; grid-column:cDemoCReset-s/cDemoCReset-e;}
+#demoCBack {grid-row:rDemoCBottom-s/rDemoCBottom-e; grid-column:cDemoCBack-s/cDemoCBack-e;}
 
-#cBackground-73 {grid-row:rCBackground-7-s/rCBackground-7-e; grid-column:cPanel-73-s/cPanel-73-e;}
-#cDispense-73-1 {grid-row:rCDispense-7-s/rCDispense-7-e; grid-column:cDTile-73-1-s/cDTile-73-1-e;}
-#cDispense-73-2 {grid-row:rCDispense-7-s/rCDispense-7-e; grid-column:cDTile-73-2-s/cDTile-73-2-e;}
-#cDispense-73-3 {grid-row:rCDispense-7-s/rCDispense-7-e; grid-column:cDTile-73-3-s/cDTile-73-3-e;}
-*/
+#demoSHint {display:none; grid-row:rDemoSTop-s/rDemoSTop-e; grid-column:cDemoSHint-s/cDemoSHint-e;}
+#demoSSolution {display:none; grid-row:rDemoSTop-s/rDemoSTop-e; grid-column:cDemoSSolution-s/cDemoSSolution-e;}
+#demoSReset {display:none; grid-row:rDemoSBottom-s/rDemoSBottom-e; grid-column:cDemoSReset-s/cDemoSReset-e;}
+#demoSBack {display:none; grid-row:rDemoSBottom-s/rDemoSBottom-e; grid-column:cDemoSBack-s/cDemoSBack-e;}
 
+#demoCDispense-1 {grid-row:rDemoCDispense-s/rDemoCDispense-e; grid-column:cDemoCDispense-1-s/cDemoCDispense-1-e;}
+#demoCDispense-2 {grid-row:rDemoCDispense-s/rDemoCDispense-e; grid-column:cDemoCDispense-2-s/cDemoCDispense-2-e;}
+#demoCDispense-3 {grid-row:rDemoCDispense-s/rDemoCDispense-e; grid-column:cDemoCDispense-3-s/cDemoCDispense-3-e;}
 
+#demoSDispense-1 {display:none; grid-row:rDemoSDispense-s/rDemoSDispense-e; grid-column:cDemoSDispense-1-s/cDemoSDispense-1-e;}
+#demoSDispense-2 {display:none; grid-row:rDemoSDispense-s/rDemoSDispense-e; grid-column:cDemoSDispense-2-s/cDemoSDispense-2-e;}
+#demoSDispense-3 {display:none; grid-row:rDemoSDispense-s/rDemoSDispense-e; grid-column:cDemoSDispense-3-s/cDemoSDispense-3-e;}
+
+#demoPanel {
+	height:62em;
+	width:53em;
+	background-color:white;
+	grid-row:rDemoDoorPanel-s/rDemoDoorPanel-e;
+	grid-column:cDemoDoorPanel-s/cDemoDoorPanel-e;
+	display:grid;
+	grid-template-rows:
+		[rDemoPanel-s]
+		3fr
+		[rDemoDTile-6-e]
+		1fr
+		[rDemoDTile-5-s]
+		5fr
+		[rDemoDTile-5-e]
+		1fr
+		[rDemoDTile-4-s]
+		5fr
+		[rDemoDTile-4-e]
+		1fr
+		[rDemoDTile-3-s]
+		5fr
+		[rDemoDTile-3-e]
+		1fr
+		[rDemoDTile-2-s]
+		5fr
+		[rDemoDTile-2-e]
+		1fr
+		[rDemoDTile-1-s]
+		5fr
+		[rDemoDTile-1-e]
+		5fr
+		[rDemoRing-s]
+		21fr
+		[rDemoRing-e]
+		3fr
+		[rDemoPanel-e];
+	grid-template-columns:
+		[cDemoPanel-s]
+		9fr
+		[cDemoDContainer-1-s]
+		1fr
+		[cDemoDTile-1-s]
+		6fr
+		[cDemoRing-s]
+		1fr
+		[cDemoDTile-1-e]
+		1fr
+		[cDemoDContainer-1-e]
+		4fr
+		[cDemoDContainer-2-s]
+		1fr
+		[cDemoDTile-2-s]
+		7fr
+		[cDemoDTile-2-e]
+		1fr
+		[cDemoDContainer-2-e]
+		4fr
+		[cDemoDContainer-3-s]
+		1fr
+		[cDemoDTile-3-s]
+		1fr
+		[cDemoRing-e]
+		6fr
+		[cDemoDTile-3-e]
+		1fr
+		[cDemoDContainer-3-e]
+		9fr
+		[cDemoPanel-e];
+}
+
+#demoDContainer-1 {grid-row:rDemoDTile-5-e/rDemoDTile-1-e; grid-column:cDemoDContainer-1-s/cDemoDContainer-1-e;}
+#demoDContainer-2 {grid-row:rDemoDTile-6-e/rDemoDTile-1-e; grid-column:cDemoDContainer-2-s/cDemoDContainer-2-e;}
+#demoDContainer-3 {grid-row:rDemoDTile-2-e/rDemoDTile-1-e; grid-column:cDemoDContainer-3-s/cDemoDContainer-3-e;}
+
+#demoDTile-11 {z-index:5; grid-row:rDemoDTile-1-s/rDemoDTile-1-e; grid-column:cDemoDTile-1-s/cDemoDTile-1-e; width:7em; height:5em;}
+#demoDTile-12 {z-index:5; grid-row:rDemoDTile-2-s/rDemoDTile-2-e; grid-column:cDemoDTile-1-s/cDemoDTile-1-e; width:7em; height:5em;}
+#demoDTile-13 {z-index:5; grid-row:rDemoDTile-3-s/rDemoDTile-3-e; grid-column:cDemoDTile-1-s/cDemoDTile-1-e; width:7em; height:5em;}
+#demoDTile-14 {z-index:5; grid-row:rDemoDTile-4-s/rDemoDTile-4-e; grid-column:cDemoDTile-1-s/cDemoDTile-1-e; width:7em; height:5em;}
+
+#demoDTile-21 {z-index:5; grid-row:rDemoDTile-1-s/rDemoDTile-1-e; grid-column:cDemoDTile-2-s/cDemoDTile-2-e; width:7em; height:5em;}
+#demoDTile-22 {z-index:5; grid-row:rDemoDTile-2-s/rDemoDTile-2-e; grid-column:cDemoDTile-2-s/cDemoDTile-2-e; width:7em; height:5em;}
+#demoDTile-23 {z-index:5; grid-row:rDemoDTile-3-s/rDemoDTile-3-e; grid-column:cDemoDTile-2-s/cDemoDTile-2-e; width:7em; height:5em;}
+#demoDTile-24 {z-index:5; grid-row:rDemoDTile-4-s/rDemoDTile-4-e; grid-column:cDemoDTile-2-s/cDemoDTile-2-e; width:7em; height:5em;}
+#demoDTile-25 {z-index:5; grid-row:rDemoDTile-5-s/rDemoDTile-5-e; grid-column:cDemoDTile-2-s/cDemoDTile-2-e; width:7em; height:5em;}
+
+#demoDTile-31 {z-index:5; grid-row:rDemoDTile-1-s/rDemoDTile-1-e; grid-column:cDemoDTile-3-s/cDemoDTile-3-e; width:7em; height:5em;}
+
+#demoRing {z-index:4; grid-row:rDemoRing-s/rDemoRing-e; grid-column:cDemoRing-s/cDemoRing-e;}
+#demoSegment-1 {display:none; z-index:5; fill:transparent;}
+#demoSegment-2 {display:none; z-index:5; fill:transparent;}
+#demoSegment-3 {display:none; z-index:5; fill:transparent;}
+#demoSegment-4 {display:none; z-index:5; fill:transparent;}
+#demoSegment-5 {display:none; z-index:5; fill:transparent;}
+#demoSegment-6 {display:none; z-index:5; fill:transparent;}
+#demoSegment-7 {display:none; z-index:5; fill:transparent;}
+#demoSegment-8 {display:none; z-index:5; fill:transparent;}
+#demoSegment-9 {display:none; z-index:5; fill:transparent;}
 
 
 #door {
@@ -798,7 +312,9 @@ body {
 		[cCInformation-e cRing-s cCDispense-21-s]
 		1fr
 		[cCDispense-31-e cCDispense-42-s]
-		4fr
+		1fr
+		[cCBack-s]
+		3fr
 		[cCHint-s]
 		2fr
 		[cCDispense-21-e cCDispense-32-s]
@@ -809,16 +325,18 @@ body {
 		1fr
 		[cCDispense-32-e cCDispense-22-s]
 		2fr
-		[cCHint-e cCBack-s]
+		[cCHint-e]
 		4fr
 		[cCDispense-43-e cCDispense-33-s]
 		1fr
-		[cRing-e cCDispense-22-e cCSolution-s]
+		[cRing-e cCDispense-22-e cCSolution-s cSpotDispense-33-s]
 		3fr
 		[cPuzzleName-e]
 		1fr
 		[cCDispense-44-s]
-		2fr
+		1fr
+		[cSpotDispense-33-e]
+		1fr
 		[cCDispense-33-e]
 		5fr
 		[cCDispense-44-e]
@@ -827,6 +345,8 @@ body {
 		3fr
 		[cLED-e cDoor-e];
 }
+
+/* #spotDispense-33 {display:none; grid-row:rSpotDispense-s/rSpotDispense-e; grid-column:cSpotDispense-33-s/cSpotDispense-33-e;} */
 
 #PuzzleName {grid-row:rPuzzleName-s/rPuzzleName-e; grid-column:cPuzzleName-s/cPuzzleName-e;}
 
@@ -1052,14 +572,21 @@ body {
 #dTile-73-36 {display:none; z-index:5; grid-row:rDTile-73-6-s/rDTile-73-5-e; grid-column:cDTile-73-3-s/cDTile-73-3-e; width:7em; height:5em;}
 #dTile-73-37 {display:none; z-index:5; grid-row:rDTile-73-7-s/rDTile-73-5-e; grid-column:cDTile-73-3-s/cDTile-73-3-e; width:7em; height:5em;}
 
+.spotOdd {z-index:10; width:5em; height:4em;}
+.spotEven {z-index:10; width:4em; height:4em;}
 
+.wall {background-color:#9E9E9E;}
+.door {background-color:#9E9E9E;}
 .plate {background-color:#9E9E9E;}
 .title {padding:0; font-size:3.6em; border-style:none; border-radius:0.3em; margin:0; background-color:black; color:white; text-align:center;}
 
 .led {z-index:3; width:3em; height:3em;}
 
+.displayNone {display:none;}
+.displayBlock {display:block;}
+
 .dContainer {
-	display:none;
+/*	display:none; */
 	z-index:4;
 	margin:0;
 	padding:0;
@@ -1079,15 +606,16 @@ body {
 .cDispense {width:7em; height:6em;}
 .cBack {font-size:3em; text-align:center;}
 
+.separator {background-color:black;}
 
   </style>
 </head>
 <body>
-<!--
-	<div id="information" class="plateColour">
+
+	<div id="wallInformation" class="wall">
 		<button id="iBack" class="cCommon cTertiary"><code><strong>&lt;</strong></code></button>
 
-		<button id="Information" class="header"><strong>Information</strong></button>
+		<button id="iInformation" class="title"><strong>Information</strong></button>
 	
 		<div id="iInstructions">Build a square which has just ONE area of each colour.<br><br>
 								As well as instructions:<br>
@@ -1101,323 +629,86 @@ body {
 								* Ukraine flag<br>
 								* copyright<br>
 		</div>
-	</div> -->
-<!--	<div id="door-3"
-		 style="height:120em;
-				grid-template-rows:[rDoor-3-s]3fr[rPHeader-3-s]6fr[rPHeader-3-e]3fr[rCTop-3-s]6fr[rCTop-3-e]3fr
-				[rPanel-3-s]80fr[rPanel-3-e]3fr[rCBottom-3-s]6fr[rCBottom-3-e]3fr[rDoor-3-e];
-			   "
-		 >
-		<button id="pHeader-3" class="pHeader"><strong>Dispensers</strong></button>
-		<button id="cInformation-3" class="cCommon cSecondary">Information</button>
-		<button id="cHint-3" class="cCommon cSecondary">Hint</button>
-		<button id="cSolution-3" class="cCommon cSecondary">Solution</button>
 		
-		<div id="panel-33">
-			<div id="dTile-33-11" class="dTile"></div>
-			<div id="dTile-33-12" class="dTile"></div>
-			<div id="dTile-33-13" class="dTile"></div>
-			<div id="dTile-33-21" class="dTile"></div>
-			<div id="dTile-33-22" class="dTile"></div>
-			<div id="dTile-33-23" class="dTile"></div>
-			<div id="dTile-33-31" class="dTile"></div>
-			<div id="dTile-33-32" class="dTile"></div>
-			<div id="dTile-33-33" class="dTile"></div>
+		<div id="iSeparator-1" class="separator"></div>
 
-			<div id="dContainer-33-11" class="dContainer"></div>
-			<div id="dContainer-33-12" class="dContainer"></div>
-			<div id="dContainer-33-13" class="dContainer"></div>
-			<div id="dContainer-33-21" class="dContainer"></div>
-			<div id="dContainer-33-22" class="dContainer"></div>
-			<div id="dContainer-33-23" class="dContainer"></div>
-			<div id="dContainer-33-31" class="dContainer"></div>
-			<div id="dContainer-33-32" class="dContainer"></div>
-			<div id="dContainer-33-33" class="dContainer"></div>
+		<div id="iDoorDemo" class="door">
+			<button id="demoCDemo" class="cCommon">Demonstration</button>
 
-			<button id="mSquare-33-1" class="mSquare mSquare-lt">1</button>
-			<button id="mSquare-33-2" class="mSquare mSquare-lt">2</button>
-			<button id="mSquare-33-3" class="mSquare mSquare-ltr">3</button>
-			<button id="mSquare-33-4" class="mSquare mSquare-lt">4</button>
-			<button id="mSquare-33-5" class="mSquare mSquare-lt">5</button>
-			<button id="mSquare-33-6" class="mSquare mSquare-ltr">6</button>
-			<button id="mSquare-33-7" class="mSquare mSquare-blt">7</button>
-			<button id="mSquare-33-8" class="mSquare mSquare-blt">8</button>
-			<button id="mSquare-33-9" class="mSquare mSquare-bltr">9</button>
+			<img id="demoLEDGreen" class="led" src="LEDGreen.svg" alt="Green"/>
+			<img id="demoLEDRed" class="led" src="LEDRed.svg" alt="Red"/>
 
-			<div id="cBackground-33" class="cBackground"></div>
-			<button id="cDispense-33-1" class="cDispense"><strong>&bigtriangledown;</strong></button>
-			<button id="cDispense-33-2" class="cDispense"><strong>&bigtriangledown;</strong></button>
-			<button id="cDispense-33-3" class="cDispense"><strong>&bigtriangledown;</strong></button>
+			<button id="demoCInformation" class="cCommon cSecondary">Information</button>
+			<button id="demoCHint" class="cCommon cSecondary">Hint</button>
+			<button id="demoCSolution" class="cCommon cSecondary">Solution</button>
+
+			<img id="demoSHint" class="spotOdd" src="spotOdd.svg" alt="Spot"/>
+			<img id="demoSSolution" class="spotEven" src="spotEven.svg" alt="Spot"/>
+		
+			<img id="demoCDispense-1" class="cDispense" src="buttonDispense.svg" alt="Dispense"/>
+			<img id="demoCDispense-2" class="cDispense" src="buttonDispense.svg" alt="Dispense"/>
+			<img id="demoCDispense-3" class="cDispense" src="buttonDispense.svg" alt="Dispense"/>
+
+			<img id="demoSDispense-1" class="spotOdd" src="spotOdd.svg" alt="Spot"/>
+			<img id="demoSDispense-2" class="spotOdd" src="spotOdd.svg" alt="Spot"/>
+			<img id="demoSDispense-3" class="spotOdd" src="spotOdd.svg" alt="Spot"/>
+
+			<button id="demoCReset" class="cCommon cSecondary">Reset</button>
+			<button id="demoCBack" class="cCommon cSecondary cBack">&bigtriangleup;</button>
+
+			<img id="demoSReset" class="spotOdd" src="spotOdd.svg" alt="Spot"/>
+			<img id="demoSBack" class="spotOdd" src="spotOdd.svg" alt="Spot"/>
+
+			<div id="demoPanel">
+				<div id="demoDContainer-1" class="dContainer displayBlock"></div>
+				<div id="demoDContainer-2" class="dContainer displayBlock"></div>
+				<div id="demoDContainer-3" class="dContainer displayBlock"></div>
+
+				<img id="demoDTile-11" src="tileBlack.svg" alt="blac"/>
+				<img id="demoDTile-12" src="tileBlack.svg" alt="blac"/>
+				<img id="demoDTile-13" src="tileBlack.svg" alt="blac"/>
+				<img id="demoDTile-14" src="tileBlack.svg" alt="blac"/>
+				<img id="demoDTile-21" src="tileBlack.svg" alt="blac"/>
+				<img id="demoDTile-22" src="tileBlack.svg" alt="blac"/>
+				<img id="demoDTile-23" src="tileBlack.svg" alt="blac"/>
+				<img id="demoDTile-24" src="tileBlack.svg" alt="blac"/>
+				<img id="demoDTile-25" src="tileBlack.svg" alt="blac"/>
+				<img id="demoDTile-31" src="tileBlack.svg" alt="blac"/>
+
+				<div id="demoRing">
+					<svg width="100%" height="100%" viewbox="0 0 1000 1000" preserveAspectRatio="none">
+						<circle cx="500" cy="500" r="272" stroke="gray" stroke-width="3" fill="transparent"/>
+						<circle cx="500" cy="500" r="500" stroke="gray" stroke-width="3" fill="transparent"/>
+
+						<line x1="500" y1="228" x2="500" y2="0" stroke="gray" stroke-width="3"/>
+						<line x1="500" y1="228" x2="500" y2="0" stroke="gray" stroke-width="3" transform="rotate(40 500 500)"/>
+						<line x1="500" y1="228" x2="500" y2="0" stroke="gray" stroke-width="3" transform="rotate(80 500 500)"/>
+						<line x1="500" y1="228" x2="500" y2="0" stroke="gray" stroke-width="3" transform="rotate(120 500 500)"/>
+						<line x1="500" y1="228" x2="500" y2="0" stroke="gray" stroke-width="3" transform="rotate(160 500 500)"/>
+						<line x1="500" y1="228" x2="500" y2="0" stroke="gray" stroke-width="3" transform="rotate(200 500 500)"/>
+						<line x1="500" y1="228" x2="500" y2="0" stroke="gray" stroke-width="3" transform="rotate(240 500 500)"/>
+						<line x1="500" y1="228" x2="500" y2="0" stroke="gray" stroke-width="3" transform="rotate(280 500 500)"/>
+						<line x1="500" y1="228" x2="500" y2="0" stroke="gray" stroke-width="3" transform="rotate(320 500 500)"/>
+
+						<defs>
+							<clipPath id="demoKeep-40"> <path d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" transform="rotate(50 500 500)"/> </clipPath>
+						</defs>
+						<path id="demoSegment-1" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#demoKeep-40)" transform="rotate(-50 500 500)"/>
+						<path id="demoSegment-2" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#demoKeep-40)" transform="rotate(-10 500 500)"/>
+						<path id="demoSegment-3" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#demoKeep-40)" transform="rotate(30 500 500)"/>
+						<path id="demoSegment-4" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#demoKeep-40)" transform="rotate(70 500 500)"/>
+						<path id="demoSegment-5" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#demoKeep-40)" transform="rotate(110 500 500)"/>
+						<path id="demoSegment-6" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#demoKeep-40)" transform="rotate(150 500 500)"/>
+						<path id="demoSegment-7" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#demoKeep-40)" transform="rotate(190 500 500)"/>
+						<path id="demoSegment-8" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#demoKeep-40)" transform="rotate(230 500 500)"/>
+						<path id="demoSegment-9" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#demoKeep-40)" transform="rotate(270 500 500)"/>
+					</svg>
+				</div>		
+			</div>
 		</div>
 		
-		<div id="panel-34">
-			<div id="dTile-34-11" class="dTile"></div>
-			<div id="dTile-34-12" class="dTile"></div>
-			<div id="dTile-34-13" class="dTile"></div>
-			<div id="dTile-34-21" class="dTile"></div>
-			<div id="dTile-34-22" class="dTile"></div>
-			<div id="dTile-34-23" class="dTile"></div>
-			<div id="dTile-34-31" class="dTile"></div>
-			<div id="dTile-34-32" class="dTile"></div>
-			<div id="dTile-34-33" class="dTile"></div>
-			<div id="dTile-34-41" class="dTile"></div>
-			<div id="dTile-34-42" class="dTile"></div>
-			<div id="dTile-34-43" class="dTile"></div>
-
-			<div id="dContainer-34-11" class="dContainer"></div>
-			<div id="dContainer-34-12" class="dContainer"></div>
-			<div id="dContainer-34-13" class="dContainer"></div>
-			<div id="dContainer-34-21" class="dContainer"></div>
-			<div id="dContainer-34-22" class="dContainer"></div>
-			<div id="dContainer-34-23" class="dContainer"></div>
-			<div id="dContainer-34-31" class="dContainer"></div>
-			<div id="dContainer-34-32" class="dContainer"></div>
-			<div id="dContainer-34-33" class="dContainer"></div>
-			<div id="dContainer-34-41" class="dContainer"></div>
-			<div id="dContainer-34-42" class="dContainer"></div>
-			<div id="dContainer-34-43" class="dContainer"></div>
-			
-			<button id="mSquare-34-1" class="mSquare mSquare-lt">1</button>
-			<button id="mSquare-34-2" class="mSquare mSquare-lt">2</button>
-			<button id="mSquare-34-3" class="mSquare mSquare-ltr">3</button>
-			<button id="mSquare-34-4" class="mSquare mSquare-lt">4</button>
-			<button id="mSquare-34-5" class="mSquare mSquare-lt">5</button>
-			<button id="mSquare-34-6" class="mSquare mSquare-ltr">6</button>
-			<button id="mSquare-34-7" class="mSquare mSquare-blt">7</button>
-			<button id="mSquare-34-8" class="mSquare mSquare-blt">8</button>
-			<button id="mSquare-34-9" class="mSquare mSquare-bltr">9</button>
-
-			<div id="cBackground-34" class="cBackground"></div>
-			<button id="cDispense-34-1" class="cDispense"><strong>&bigtriangledown;</strong></button>
-			<button id="cDispense-34-2" class="cDispense"><strong>&bigtriangledown;</strong></button>
-			<button id="cDispense-34-3" class="cDispense"><strong>&bigtriangledown;</strong></button>
-			<button id="cDispense-34-4" class="cDispense"><strong>&bigtriangledown;</strong></button>
-		</div>
-
-		<button id="cReset-3" class="cCommon cSecondary">Reset</button>
-		<button id="cBack-3" class="cCommon cSecondary cBack">&bigtriangleup;</button>
+		<div id="iSeparator-2" class="separator"></div>
 	</div>
-	
-
-	<div id="door-4" class="plateColour"
-		 style="height:120em;
-				grid-template-rows:[rDoor-4-s]3fr[rPHeader-4-s]7fr[rPHeader-4-e]3fr[rCTop-4-s]6fr[rCTop-4-e]3fr
-				[rPanel-4-s]80fr[rPanel-4-e]3fr[rCBottom-4-s]6fr[rCBottom-4-e]3fr[rDoor-4-e];
-			   "
-		 >
-		<button id="pHeader-4" class="pHeader"><strong>Dispensers<sup>&lambda;</sup></strong></button>
-		<button id="cInformation-4" class="cCommon cSecondary">Information</button>
-		<button id="cHint-4" class="cCommon cSecondary">Hint</button>
-		<button id="cSolution-4" class="cCommon cSecondary">Solution</button>
-
-		<div id="panel-43">
-
-			<img id="testTile" src="tileRed.svg" alt="T"/>
-			
-			<div id="dTile-43-11" class="dTile"></div>
-			<div id="dTile-43-12" class="dTile"></div>
-			<div id="dTile-43-13" class="dTile"></div>
-			<div id="dTile-43-14" class="dTile"></div>
-			<div id="dTile-43-21" class="dTile"></div>
-			<div id="dTile-43-22" class="dTile"></div>
-			<div id="dTile-43-23" class="dTile"></div>
-			<div id="dTile-43-24" class="dTile"></div>
-			<div id="dTile-43-31" class="dTile"></div>
-			<div id="dTile-43-32" class="dTile"></div>
-			<div id="dTile-43-33" class="dTile"></div>
-			<div id="dTile-43-34" class="dTile"></div>
-
-			<div id="dContainer-43-11" class="dContainer"></div>
-			<div id="dContainer-43-12" class="dContainer"></div>
-			<div id="dContainer-43-13" class="dContainer"></div>
-			<div id="dContainer-43-14" class="dContainer"></div>
-			<div id="dContainer-43-21" class="dContainer"></div>
-			<div id="dContainer-43-22" class="dContainer"></div>
-			<div id="dContainer-43-23" class="dContainer"></div>
-			<div id="dContainer-43-24" class="dContainer"></div>
-			<div id="dContainer-43-31" class="dContainer"></div>
-			<div id="dContainer-43-32" class="dContainer"></div>
-			<div id="dContainer-43-33" class="dContainer"></div>
-			<div id="dContainer-43-34" class="dContainer"></div>
-			
-			<button id="mSquare-43-1" class="mSquare mSquare-lt">1</button>
-<div id="ring-4">
-<svg width="100%" height="100%" viewbox="0 0 1000 1000" preserveAspectRatio="none">
-	<circle cx="500" cy="500" r="272" stroke="gray" stroke-width="3" fill="transparent"/>
-	<circle cx="500" cy="500" r="500" stroke="gray" stroke-width="3" fill="transparent"/>
-
-	<line x1="500" y1="228" x2="500" y2="0" stroke="gray" stroke-width="3"/>
-	<line x1="500" y1="228" x2="500" y2="0" stroke="gray" stroke-width="3" transform="rotate(40 500 500)"/>
-	<line x1="500" y1="228" x2="500" y2="0" stroke="gray" stroke-width="3" transform="rotate(80 500 500)"/>
-	<line x1="500" y1="228" x2="500" y2="0" stroke="gray" stroke-width="3" transform="rotate(120 500 500)"/>
-	<line x1="500" y1="228" x2="500" y2="0" stroke="gray" stroke-width="3" transform="rotate(160 500 500)"/>
-	<line x1="500" y1="228" x2="500" y2="0" stroke="gray" stroke-width="3" transform="rotate(200 500 500)"/>
-	<line x1="500" y1="228" x2="500" y2="0" stroke="gray" stroke-width="3" transform="rotate(240 500 500)"/>
-	<line x1="500" y1="228" x2="500" y2="0" stroke="gray" stroke-width="3" transform="rotate(280 500 500)"/>
-	<line x1="500" y1="228" x2="500" y2="0" stroke="gray" stroke-width="3" transform="rotate(320 500 500)"/>
-
-	<defs>
-		<clipPath id="leave-40">
-			<path d="M 500 228 L 500 0 A 500 500 0 0 1 1000 500 L 772 500 A 272 272 0 0 0 500 228" transform="rotate(50 500 500)"/>
-		</clipPath>
-	</defs>
-	<path id="ring-4-1" d="M 500 228 L 500 0 A 500 500 0 0 1 1000 500 L 772 500 A 272 272 0 0 0 500 228" clip-path="url(#leave-40)" transform="rotate(-50 500 500)"/>
-	<path d="M 500 228 L 500 0 A 500 500 0 0 1 1000 500 L 772 500 A 272 272 0 0 0 500 228" clip-path="url(#leave-40)" transform="rotate(-10 500 500)" fill="orange"/>
-	<path d="M 500 228 L 500 0 A 500 500 0 0 1 1000 500 L 772 500 A 272 272 0 0 0 500 228" clip-path="url(#leave-40)" transform="rotate(30 500 500)" fill="yellow"/>
-	<path d="M 500 228 L 500 0 A 500 500 0 0 1 1000 500 L 772 500 A 272 272 0 0 0 500 228" clip-path="url(#leave-40)" transform="rotate(70 500 500)" fill="green"/>
-	<path d="M 500 228 L 500 0 A 500 500 0 0 1 1000 500 L 772 500 A 272 272 0 0 0 500 228" clip-path="url(#leave-40)" transform="rotate(110 500 500)" fill="blue"/>
-	<path d="M 500 228 L 500 0 A 500 500 0 0 1 1000 500 L 772 500 A 272 272 0 0 0 500 228" clip-path="url(#leave-40)" transform="rotate(150 500 500)" fill="black"/>
-	<path d="M 500 228 L 500 0 A 500 500 0 0 1 1000 500 L 772 500 A 272 272 0 0 0 500 228" clip-path="url(#leave-40)" transform="rotate(190 500 500)" fill="gray"/>
-	<path d="M 500 228 L 500 0 A 500 500 0 0 1 1000 500 L 772 500 A 272 272 0 0 0 500 228" clip-path="url(#leave-40)" transform="rotate(230 500 500)" fill="pink"/>
-	<path d="M 500 228 L 500 0 A 500 500 0 0 1 1000 500 L 772 500 A 272 272 0 0 0 500 228" clip-path="url(#leave-40)" transform="rotate(270 500 500)" fill="purple"/>
-</svg>
-</div>
-
-<			<button id="mSquare-43-2" class="mSquare mSquare-lt">2</button>
-			<button id="mSquare-43-3" class="mSquare mSquare-ltr">3</button>
-			<button id="mSquare-43-4" class="mSquare mSquare-lt">4</button>
-			<button id="mSquare-43-5" class="mSquare mSquare-lt">5</button>
-			<button id="mSquare-43-6" class="mSquare mSquare-ltr">6</button>
-			<button id="mSquare-43-7" class="mSquare mSquare-blt">7</button>
-			<button id="mSquare-43-8" class="mSquare mSquare-blt">8</button>
-			<button id="mSquare-43-9" class="mSquare mSquare-bltr">9</button>
-			
-			<button id="TickCross-43" class="tickCross">&cross;</button>
-
-			<div id="cBackground-43" class="cBackground plateColour"></div>
-			<button id="cDispense-43-1" class="cDispense"><strong>&bigtriangledown;</strong></button>
-			<button id="cDispense-43-2" class="cDispense"><strong>&bigtriangledown;</strong></button>
-			<button id="cDispense-43-3" class="cDispense"><strong>&bigtriangledown;</strong></button>
-		</div>
-		
-		<button id="cReset-4" class="cCommon cSecondary">Reset</button>
-		<button id="cBack-4" class="cCommon cSecondary cBack">&bigtriangleup;</button>
-	</div>
-
-	
-	<div id="door-7" class="plateColour"
-		 style="height:120em;
-				grid-template-rows:[rDoor-7-s]3fr[rPHeader-7-s]7fr[rPHeader-7-e]3fr[rCTop-7-s]6fr[rCTop-7-e]3fr
-				[rPanel-7-s]80fr[rPanel-7-e]3fr[rCBottom-7-s]6fr[rCBottom-7-e]3fr[rDoor-7-e];
-			   "
-		 >
-		<button id="pHeader-7" class="pHeader"><strong>Dispensers<sup>&lambda;</sup></strong></button>
-		<button id="cInformation-7" class="cCommon cSecondary">Information</button>
-		<button id="cHint-7" class="cCommon cSecondary">Hint</button>
-		<button id="cSolution-7" class="cCommon cSecondary">Solution</button>
-
-		<div id="panel-72">
-			<div id="dTile-72-11" class="dTile"></div>
-			<div id="dTile-72-12" class="dTile"></div>
-			<div id="dTile-72-13" class="dTile"></div>
-			<div id="dTile-72-14" class="dTile"></div>
-			<div id="dTile-72-15" class="dTile"></div>
-			<div id="dTile-72-16" class="dTile"></div>
-			<div id="dTile-72-17" class="dTile"></div>
-			<div id="dTile-72-21" class="dTile"></div>
-			<div id="dTile-72-22" class="dTile"></div>
-			<div id="dTile-72-23" class="dTile"></div>
-			<div id="dTile-72-24" class="dTile"></div>
-			<div id="dTile-72-25" class="dTile"></div>
-			<div id="dTile-72-26" class="dTile"></div>
-			<div id="dTile-72-27" class="dTile"></div>
-
-			<div id="dContainer-72-11" class="dContainer"></div>
-			<div id="dContainer-72-12" class="dContainer"></div>
-			<div id="dContainer-72-13" class="dContainer"></div>
-			<div id="dContainer-72-14" class="dContainer"></div>
-			<div id="dContainer-72-15" class="dContainer"></div>
-			<div id="dContainer-72-16" class="dContainer"></div>
-			<div id="dContainer-72-17" class="dContainer"></div>
-			<div id="dContainer-72-21" class="dContainer"></div>
-			<div id="dContainer-72-22" class="dContainer"></div>
-			<div id="dContainer-72-23" class="dContainer"></div>
-			<div id="dContainer-72-24" class="dContainer"></div>
-			<div id="dContainer-72-25" class="dContainer"></div>
-			<div id="dContainer-72-26" class="dContainer"></div>
-			<div id="dContainer-72-27" class="dContainer"></div>
-
-			<button id="mSquare-72-1" class="mSquare mSquare-lt">1</button>
-			<button id="mSquare-72-2" class="mSquare mSquare-lt">2</button>
-			<button id="mSquare-72-3" class="mSquare mSquare-ltr">3</button>
-			<button id="mSquare-72-4" class="mSquare mSquare-lt">4</button>
-			<button id="mSquare-72-5" class="mSquare mSquare-lt">5</button>
-			<button id="mSquare-72-6" class="mSquare mSquare-ltr">6</button>
-			<button id="mSquare-72-7" class="mSquare mSquare-blt">7</button>
-			<button id="mSquare-72-8" class="mSquare mSquare-blt">8</button>
-			<button id="mSquare-72-9" class="mSquare mSquare-bltr">9</button>
-			
-			<button id="TickCross-72" class="tickCross">&cross;</button>
-
-			<div id="cBackground-72" class="cBackground plateColour"></div>
-			<button id="cDispense-72-1" class="cDispense"><strong>&bigtriangledown;</strong></button>
-			<button id="cDispense-72-2" class="cDispense"><strong>&bigtriangledown;</strong></button>
-		</div>
-		
-		<div id="panel-73">
-			<div id="dTile-73-11" class="dTile"></div>
-			<div id="dTile-73-12" class="dTile"></div>
-			<div id="dTile-73-13" class="dTile"></div>
-			<div id="dTile-73-14" class="dTile"></div>
-			<div id="dTile-73-15" class="dTile"></div>
-			<div id="dTile-73-16" class="dTile"></div>
-			<div id="dTile-73-17" class="dTile"></div>
-			<div id="dTile-73-21" class="dTile"></div>
-			<div id="dTile-73-22" class="dTile"></div>
-			<div id="dTile-73-23" class="dTile"></div>
-			<div id="dTile-73-24" class="dTile"></div>
-			<div id="dTile-73-25" class="dTile"></div>
-			<div id="dTile-73-26" class="dTile"></div>
-			<div id="dTile-73-27" class="dTile"></div>
-			<div id="dTile-73-31" class="dTile"></div>
-			<div id="dTile-73-32" class="dTile"></div>
-			<div id="dTile-73-33" class="dTile"></div>
-			<div id="dTile-73-34" class="dTile"></div>
-			<div id="dTile-73-35" class="dTile"></div>
-			<div id="dTile-73-36" class="dTile"></div>
-			<div id="dTile-73-37" class="dTile"></div>
-
-			<div id="dContainer-73-11" class="dContainer"></div>
-			<div id="dContainer-73-12" class="dContainer"></div>
-			<div id="dContainer-73-13" class="dContainer"></div>
-			<div id="dContainer-73-14" class="dContainer"></div>
-			<div id="dContainer-73-15" class="dContainer"></div>
-			<div id="dContainer-73-16" class="dContainer"></div>
-			<div id="dContainer-73-17" class="dContainer"></div>
-			<div id="dContainer-73-21" class="dContainer"></div>
-			<div id="dContainer-73-22" class="dContainer"></div>
-			<div id="dContainer-73-23" class="dContainer"></div>
-			<div id="dContainer-73-24" class="dContainer"></div>
-			<div id="dContainer-73-25" class="dContainer"></div>
-			<div id="dContainer-73-26" class="dContainer"></div>
-			<div id="dContainer-73-27" class="dContainer"></div>
-			<div id="dContainer-73-31" class="dContainer"></div>
-			<div id="dContainer-73-32" class="dContainer"></div>
-			<div id="dContainer-73-33" class="dContainer"></div>
-			<div id="dContainer-73-34" class="dContainer"></div>
-			<div id="dContainer-73-35" class="dContainer"></div>
-			<div id="dContainer-73-36" class="dContainer"></div>
-			<div id="dContainer-73-37" class="dContainer"></div>
-			
-			<button id="mSquare-73-1" class="mSquare mSquare-lt">1</button>
-			<button id="mSquare-73-2" class="mSquare mSquare-lt">2</button>
-			<button id="mSquare-73-3" class="mSquare mSquare-ltr">3</button>
-			<button id="mSquare-73-4" class="mSquare mSquare-lt">4</button>
-			<button id="mSquare-73-5" class="mSquare mSquare-lt">5</button>
-			<button id="mSquare-73-6" class="mSquare mSquare-ltr">6</button>
-			<button id="mSquare-73-7" class="mSquare mSquare-blt">7</button>
-			<button id="mSquare-73-8" class="mSquare mSquare-blt">8</button>
-			<button id="mSquare-73-9" class="mSquare mSquare-bltr">9</button>
-
-			<div id="cBackground-73" class="cBackground"></div>
-			<button id="cDispense-73-1" class="cDispense"><strong>&bigtriangledown;</strong></button>
-			<button id="cDispense-73-2" class="cDispense"><strong>&bigtriangledown;</strong></button>
-			<button id="cDispense-73-3" class="cDispense"><strong>&bigtriangledown;</strong></button>
-		</div>
-		
-		<button id="cReset-7" class="cCommon cSecondary">Reset</button>
-		<button id="cBack-7" class="cCommon cSecondary cBack">&bigtriangleup;</button>
-	</div> -->
 
 	<div id="door"
 		class="plate"
@@ -1446,8 +737,10 @@ body {
 				3fr
 				[rPanel-e]
 				3fr
-				[rCDispense-s]
-				6fr
+				[rCDispense-s rSpotDispense-s]
+				4fr
+				[rSpotDispense-e]
+				2fr
 				[rCDispense-e]
 				3fr
 				[rCBottom-s]
@@ -1456,6 +749,8 @@ body {
 				3fr
 				[rDoor-e];
 		">
+		
+<!--		<img id="spotDispense-33" class="spot" src="spot.svg" alt="Spot"/> -->
 		
 		<button id="PuzzleName" class="title"><strong>Dispensers<sup>&omega;</sup></strong></button>
 
@@ -1522,16 +817,16 @@ body {
 		</div>
 
 		<div id="Dispensers-52">
-			<div id="dContainer-52-11" class="dContainer"></div>
-			<div id="dContainer-52-12" class="dContainer"></div>
-			<div id="dContainer-52-13" class="dContainer"></div>
-			<div id="dContainer-52-14" class="dContainer"></div>
-			<div id="dContainer-52-15" class="dContainer"></div>
-			<div id="dContainer-52-21" class="dContainer"></div>
-			<div id="dContainer-52-22" class="dContainer"></div>
-			<div id="dContainer-52-23" class="dContainer"></div>
-			<div id="dContainer-52-24" class="dContainer"></div>
-			<div id="dContainer-52-25" class="dContainer"></div>
+			<div id="dContainer-52-11" class="dContainer displayNone"></div>
+			<div id="dContainer-52-12" class="dContainer displayNone"></div>
+			<div id="dContainer-52-13" class="dContainer displayNone"></div>
+			<div id="dContainer-52-14" class="dContainer displayNone"></div>
+			<div id="dContainer-52-15" class="dContainer displayNone"></div>
+			<div id="dContainer-52-21" class="dContainer displayNone"></div>
+			<div id="dContainer-52-22" class="dContainer displayNone"></div>
+			<div id="dContainer-52-23" class="dContainer displayNone"></div>
+			<div id="dContainer-52-24" class="dContainer displayNone"></div>
+			<div id="dContainer-52-25" class="dContainer displayNone"></div>
 			
 			<img id="dTile-52-11" src="tileBlack.svg" alt="blac"/>
 			<img id="dTile-52-12" src="tileBlack.svg" alt="blac"/>
@@ -1546,27 +841,27 @@ body {
 		</div>
 
 		<div id="Dispensers-73">
-			<div id="dContainer-73-11" class="dContainer"></div>
-			<div id="dContainer-73-12" class="dContainer"></div>
-			<div id="dContainer-73-13" class="dContainer"></div>
-			<div id="dContainer-73-14" class="dContainer"></div>
-			<div id="dContainer-73-15" class="dContainer"></div>
-			<div id="dContainer-73-16" class="dContainer"></div>
-			<div id="dContainer-73-17" class="dContainer"></div>
-			<div id="dContainer-73-21" class="dContainer"></div>
-			<div id="dContainer-73-22" class="dContainer"></div>
-			<div id="dContainer-73-23" class="dContainer"></div>
-			<div id="dContainer-73-24" class="dContainer"></div>
-			<div id="dContainer-73-25" class="dContainer"></div>
-			<div id="dContainer-73-26" class="dContainer"></div>
-			<div id="dContainer-73-27" class="dContainer"></div>
-			<div id="dContainer-73-31" class="dContainer"></div>
-			<div id="dContainer-73-32" class="dContainer"></div>
-			<div id="dContainer-73-33" class="dContainer"></div>
-			<div id="dContainer-73-34" class="dContainer"></div>
-			<div id="dContainer-73-35" class="dContainer"></div>
-			<div id="dContainer-73-36" class="dContainer"></div>
-			<div id="dContainer-73-37" class="dContainer"></div>
+			<div id="dContainer-73-11" class="dContainer displayNone"></div>
+			<div id="dContainer-73-12" class="dContainer displayNone"></div>
+			<div id="dContainer-73-13" class="dContainer displayNone"></div>
+			<div id="dContainer-73-14" class="dContainer displayNone"></div>
+			<div id="dContainer-73-15" class="dContainer displayNone"></div>
+			<div id="dContainer-73-16" class="dContainer displayNone"></div>
+			<div id="dContainer-73-17" class="dContainer displayNone"></div>
+			<div id="dContainer-73-21" class="dContainer displayNone"></div>
+			<div id="dContainer-73-22" class="dContainer displayNone"></div>
+			<div id="dContainer-73-23" class="dContainer displayNone"></div>
+			<div id="dContainer-73-24" class="dContainer displayNone"></div>
+			<div id="dContainer-73-25" class="dContainer displayNone"></div>
+			<div id="dContainer-73-26" class="dContainer displayNone"></div>
+			<div id="dContainer-73-27" class="dContainer displayNone"></div>
+			<div id="dContainer-73-31" class="dContainer displayNone"></div>
+			<div id="dContainer-73-32" class="dContainer displayNone"></div>
+			<div id="dContainer-73-33" class="dContainer displayNone"></div>
+			<div id="dContainer-73-34" class="dContainer displayNone"></div>
+			<div id="dContainer-73-35" class="dContainer displayNone"></div>
+			<div id="dContainer-73-36" class="dContainer displayNone"></div>
+			<div id="dContainer-73-37" class="dContainer displayNone"></div>
 			
 			<img id="dTile-73-11" src="tileBlack.svg" alt="blac"/>
 			<img id="dTile-73-12" src="tileBlack.svg" alt="blac"/>
@@ -1596,8 +891,6 @@ body {
 </html>
 
 <script>
-//const doorHeightAbovePanel = 22;
-//const doorHeightBelowPanel = 12;
 const doorHeightAboveDispensers = 25;
 const doorHeightBelowDispensers = 50;
 const numGridColumns = 59;
@@ -1652,9 +945,9 @@ function updateFontSize(MaxTilesInADispenser, numGridRows, numGridColumns) {
   console.log(roundedSpareHeight);
   const doorId = "#door";
   let door = document.querySelector(doorId);
-  //let information = document.querySelector("#information");
+  let information = document.querySelector("#wallInformation");
   door.style.top = `${roundedSpareHeight / 2}px`;
-  //information.style.top = `${roundedSpareHeight / 2}px`;
+  information.style.top = `${roundedSpareHeight / 2}px`;
   
   let spareWidth = window.innerWidth - (fontSize * numGridColumns);
   console.log('spareWidth');
@@ -1669,10 +962,12 @@ function updateFontSize(MaxTilesInADispenser, numGridRows, numGridColumns) {
   console.log('roundedSpareWidth');
   console.log(roundedSpareWidth);
   door.style.left = `${roundedSpareWidth / 2}px`;
-  //information.style.left = `${roundedSpareWidth / 2}px`;
+  information.style.left = `${roundedSpareWidth / 2}px`;
   
   return fontSize;
 }
+
+/*
 //let fontSize = updateFontSize();
 
 
@@ -1699,7 +994,7 @@ function initialisePuzzle(dispenserSpec, ringSpec, colourSpec, hintSpec, solutio
 		if (puzzle.dispenserHeightSpec[d] > puzzle.maxDispenserHeight) puzzle.maxDispenserHeight = puzzle.dispenserHeightSpec[d];
 	};
 	puzzle.ringSpec = ringSpec;
-
+*/
 /*
 	let colourCodeLookUp = [];
 	colourCodeLookUp["black"] = `black`;
@@ -1710,7 +1005,7 @@ function initialisePuzzle(dispenserSpec, ringSpec, colourSpec, hintSpec, solutio
 	const tileCodes = ["p", "q", "r", "s", "t"];
 	for (let i = 0; i < tileCodes.length; i++) puzzle.tileColours[tileCodes[i]] = colourCodeLookUp[colourSpec[i]];
 */
-
+/*
 	const tileCodes = ["p", "q", "r", "s", "t"];
 	for (let i = 0; i < tileCodes.length; i++) puzzle.tileColours[tileCodes[i]] = colourSpec[i];
 	
@@ -1723,7 +1018,7 @@ function initialisePuzzle(dispenserSpec, ringSpec, colourSpec, hintSpec, solutio
 
 	console.log(puzzle);
 }
-
+*/
 //From JSON
 /*
 const dispenserSpec = [undefined, "pqrst","pqrs"];
@@ -1733,6 +1028,7 @@ const hintSpec = ["blue", 6];
 const solutionDispenseSequence = [2, 2, 1, 2, 3, 1, 3, 3, 3];
 const solutionColourSequence = ["green", "orange", "orange", "green", "black", "blue", "pink", "black", "blue"];
 */
+/*
 const dispenserSpec = [undefined, "rp", "r", "prrpsqq"];
 const ringSpec = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 const colourSpec = ["blue", "black", "green", "orange", "pink"];
@@ -1787,31 +1083,38 @@ doorRef.style.cssText = newDoorStyle;
 const doorHeight = doorHeightAboveDispensers + dispensersHeight + doorHeightBelowDispensers;
 doorRef.style.height = `${doorHeight}em`;
 updateFontSize(puzzle.maxDispenserHeight, doorHeight, numGridColumns);
+*/
 
 
 
 
-class LED {
-	constructor() {
-		this.greenRef = document.querySelector("#LEDGreen");
-		this.redRef = document.querySelector("#LEDRed");
+/* ====================================================================================================================================================================== */
+class Puzzle {
+	constructor(puzzleSpec) {
+		this.dispenserFullSpec = puzzleSpec.dispenserSpec;
+		this.numDispensers = this.dispenserFullSpec.length - 1;
+		this.dispenserHeightSpec = [undefined];
+		for (let i = 1; i <= this.numDispensers; i++) this.dispenserHeightSpec[i] = this.dispenserFullSpec[i].length;
+		this.maxDispenserHeight = 1;
+		for (let d = 1; d <= this.numDispensers; d++) {
+			if (this.dispenserHeightSpec[d] > this.maxDispenserHeight) this.maxDispenserHeight = this.dispenserHeightSpec[d];
+		};
+		
+		this.ringSpec = puzzleSpec.ringSpec;
+		
+		this.tileColours = [];
+		const tileCodes = ["p", "q", "r", "s", "t"];
+		for (let i = 0; i < tileCodes.length; i++) this.tileColours[tileCodes[i]] = puzzleSpec.colourSpec[i];
+		
+		this.hintColour = puzzleSpec.hintSpec[0];
+		this.hintIndex = puzzleSpec.hintSpec[1];
+		
+		this.solutionDispenseSequence = puzzleSpec.solutionDispenseSequence;
+		this.solutionColourSequence = [];
+		//why copy?
+		for (let i = 0; i < puzzleSpec.solutionColourSequence.length; i++) this.solutionColourSequence[i] = puzzleSpec.solutionColourSequence[i];
 	}
-	
-	showGreen() {
-		this.greenRef.style.display = `block`;
-		this.redRef.style.display = `none`;
-	}
-	
-	showRed() {
-		this.redRef.style.display = `block`;
-		this.greenRef.style.display = `none`;
-	}
-	
-	hide() {
-		this.greenRef.style.display = `none`;
-		this.redRef.style.display = `none`;
-	}
-}
+};
 
 class Tile {
 	constructor(dispenser, colour) {
@@ -1821,7 +1124,7 @@ class Tile {
 }
 
 class Dispenser {
-	constructor(tileSequence, tileIdRoot) {
+	constructor(puzzle, tileSequence, tileIdRoot) {
 		this.tileImageLookUp = [];
 		this.tileImageLookUp["black"] = "tileBlack.svg";
 		this.tileImageLookUp["blue"] = "tileBlue.svg";
@@ -1835,16 +1138,6 @@ class Dispenser {
 			this.tileQueue.unshift(tile);
 		}
 
-/*		
-		this.tileStyles = [];
-		const styleSheet = document.styleSheets[0];
-		for (let t = 1; t <= tileSequence.length; t++) {
-			const tileId = tileIdRoot + String(t);
-			const tileRule = [...styleSheet.cssRules].find((r) => r.selectorText === tileId);
-			this.tileStyles.push(tileRule);
-		}
-*/
-
 		this.tileRefs = [];
 		for (let t = 1; t <= tileSequence.length; t++) {
 			const tileId = tileIdRoot + String(t);
@@ -1857,15 +1150,6 @@ class Dispenser {
 				
 		this.numTilesInContainer = this.tileQueue.length;
 	}
-
-/*	
-	refresh() {
-		for (let t = 0; t < this.container.length; t++) {
-			const colour = this.container[t] == null ? dispenserBackgroundColour : this.container[t].colour;
-			this.tileStyles[t].style.setProperty("background-color", colour);
-		}
-	}
-*/
 
 	refresh() {
 		for (let t = 0; t < this.container.length; t++) {
@@ -1900,86 +1184,10 @@ class Dispenser {
 	}
 }
 
-/*
-class Matrix {
-	constructor() {
-		this.squarePositions = puzzle.matrixSpec;
-		const squareIdRoot = "#mSquare-" + String(puzzle.maxDispenserHeight) + String(puzzle.numDispensers) + "-";
-		for (let i = 0;  i < this.squarePositions.length; i++) {
-			const position = i + 1;
-			const squareId = squareIdRoot + String(this.squarePositions[i]);
-			const squareElement = document.querySelector(squareId);
-			squareElement.textContent = String(position);
-		}
-
-		this.squareStyles = [undefined];
-		this.squareTiles = [undefined];
-		const styleSheet = document.styleSheets[0];
-		for (let s = 1; s <= 9; s++) {
-			const squareId = squareIdRoot + String(s);
-			const squareRule = [...styleSheet.cssRules].find((r) => r.selectorText === squareId);
-			this.squareStyles.push(squareRule);
-			this.squareTiles.push(null);
-			}
-			
-		this.numTilesInPlace = 0;
-		this.temporaryIndex = undefined;
-	}
-	
-	getColourSequence() {
-		let colourSequence = [];
-		for (let s = 1; s <= 9; s++) {
-			if (this.squareTiles[s] == null) colourSequence.push(``); else colourSequence.push(this.squareTiles[s].colour);
-		}
-		return colourSequence;
-	}
-	
-	reset() {
-		for (let s = 1; s <= 9; s++) this.squareTiles[s] = null;
-		this.numTilesInPlace = 0;	
-	}
-
-	addTile(tile) {
-		const nextPosition = this.squarePositions[this.numTilesInPlace];
-		this.squareTiles[nextPosition] = tile;
-		this.numTilesInPlace++;
-	}
-	
-	removeTile() {
-		const tileNum = this.squarePositions[this.numTilesInPlace - 1];
-		const tile = this.squareTiles[tileNum];
-		this.squareTiles[tileNum] = null;
-		this.numTilesInPlace--;
-		return tile;
-	}
-	
-	addTemporaryTile(tile, index) {
-		this.squareTiles[index] = tile;
-		this.temporaryIndex = index;
-	}
-	
-	removeTemporaryTile() {
-		this.squareTiles[this.temporaryIndex] = null;
-	}
-	
-	refresh() {
-		for (let s = 1; s <= 9; s++) {
-			let backgroundColour = matrixBackgroundColour;
-			let foregroundColour = matrixForegroundColour;
-			if (this.squareTiles[s] != null) {
-				backgroundColour = this.squareTiles[s].colour;
-				foregroundColour = backgroundColour;
-			}
-			this.squareStyles[s].style.setProperty("background-color", backgroundColour);
-			this.squareStyles[s].style.setProperty("color", foregroundColour);
-		}
-	}
-}
-//const matrix = new Matrix();
-*/
-
 class Ring {
-	constructor() {
+	constructor(puzzle, segmentIdRoot) {
+		this.puzzle = puzzle;
+		
 		this.colourCodeLookUp = [];
 		this.colourCodeLookUp["black"] = `black`;
 		this.colourCodeLookUp["blue"] = `#0072B2`;
@@ -1987,22 +1195,12 @@ class Ring {
 		this.colourCodeLookUp["orange"] = `#E69F00`;
 		this.colourCodeLookUp["pink"] = `#CC79A7`;
 		
-		this.segmentPositions = puzzle.ringSpec;
-
-/*
-		const squareIdRoot = "#mSquare-" + String(puzzle.maxDispenserHeight) + String(puzzle.numDispensers) + "-";
-		for (let i = 0;  i < this.squarePositions.length; i++) {
-			const position = i + 1;
-			const squareId = squareIdRoot + String(this.squarePositions[i]);
-			const squareElement = document.querySelector(squareId);
-			squareElement.textContent = String(position);
-		}
-*/
+		this.segmentPositions = this.puzzle.ringSpec;
 			
 		this.segmentRefs = [undefined];
 		this.segmentTiles = [undefined];
 		for (let s = 1; s <= 9; s++) {
-			const segmentId = "#Segment-" + String(s);
+			const segmentId = segmentIdRoot + String(s);
 			const segmentRef = document.querySelector(segmentId);
 			this.segmentRefs.push(segmentRef);
 			this.segmentTiles.push(null);
@@ -2060,8 +1258,28 @@ class Ring {
 		}
 	}
 }
-const ring = new Ring();
-console.log(ring)
+
+class LED {
+	constructor(greenId, redId) {
+		this.greenRef = document.querySelector(greenId);
+		this.redRef = document.querySelector(redId);
+	}
+	
+	showGreen() {
+		this.greenRef.style.display = `block`;
+		this.redRef.style.display = `none`;
+	}
+	
+	showRed() {
+		this.redRef.style.display = `block`;
+		this.greenRef.style.display = `none`;
+	}
+	
+	hide() {
+		this.greenRef.style.display = `none`;
+		this.redRef.style.display = `none`;
+	}
+}
 
 class Control {
 	constructor(id, onClick) {
@@ -2073,94 +1291,37 @@ class Control {
 	}
 	
 	enable() {
+		console.log("Control.enable");
+		//console.log((this.OnClick !== null));
+		console.log((this.OnClick === null));
 		if (!this.isEnabled) {
 			this.button.style.opacity = `1.0`;
-			this.button.addEventListener("click", this.onClick);
+			if (this.OnClick !== null) this.button.addEventListener("click", this.onClick);
+			//this.button.addEventListener("click", this.onClick);
 			this.isEnabled = true;
 		}
 	}
 	
 	disable() {
+		console.log("Control.disable");
+		console.log((this.OnClick === null));
 		if (this.isEnabled) {
 			this.button.style.opacity = `0.5`;
-			this.button.removeEventListener("click", this.onClick);
+			if (this.OnClick !== null) this.button.removeEventListener("click", this.onClick);
+			//this.button.removeEventListener("click", this.onClick);
 			this.isEnabled = false;
 		}
 	}
 }
 
-
-let dispenseOnClicks = [undefined,
-						function() {solve.dispenseOnClick(1)},
-						function() {solve.dispenseOnClick(2)},
-						function() {solve.dispenseOnClick(3)},
-						function() {solve.dispenseOnClick(4)},
-					   ];
-
-function backOnClick() {solve.backOnClick();};
-function informationOnClick() {solve.informationOnClick();};
-function solutionOnClick() {solve.solutionOnClick();};
-function solutionTimerExpired() {solve.solutionTimerExpired();}
-function resetOnClick() {solve.resetOnClick();};
-function undispenseOnClick() {solve.undispenseOnClick();};
-function hintOnClick() {solve.hintOnClick();};
-function hintTimerExpired() {solve.hintTimerExpired();}
-
-
-class Solve {	
-	constructor() {
-		this.dispensers = [undefined];
-		const tileIdRoot = "#dTile-" + String(puzzle.maxDispenserHeight) + String(puzzle.numDispensers) + "-";
-		for (let i = 1; i <= puzzle.numDispensers; i++) {
-			const tileIdRootPlus = tileIdRoot + String(i);
-			this.dispensers[i] = new Dispenser(puzzle.dispenserFullSpec[i], tileIdRootPlus);
-			//console.log(this.dispensers[i]);
-		}
-
-/*		
-		this.controls = [];
-		//this.controls["Back"] = new Control("#iBack", backOnClick);
-		this.controls["Information"] = new Control("#cInformation-" + String(puzzle.maxDispenserHeight), informationOnClick);
-		this.controls["Solution"] = new Control("#cSolution-" + String(puzzle.maxDispenserHeight), solutionOnClick);
-		this.controls["Reset"] = new Control("#cReset-" + String(puzzle.maxDispenserHeight), resetOnClick);
-		this.controls["Undispense"] = new Control("#cBack-" + String(puzzle.maxDispenserHeight), undispenseOnClick);
-		this.controls["Hint"] = new Control("#cHint-" + String(puzzle.maxDispenserHeight), hintOnClick);
-*/
-
-		this.controls = [];
-		//this.controls["Back"] = new Control("#iBack", backOnClick);
-		this.controls["Information"] = new Control("#cInformation", informationOnClick);
-		this.controls["Solution"] = new Control("#cSolution", solutionOnClick);
-		this.controls["Reset"] = new Control("#cReset", resetOnClick);
-		this.controls["Undispense"] = new Control("#cBack", undispenseOnClick);
-		this.controls["Hint"] = new Control("#cHint", hintOnClick);
-		
-		const dispenseIdRoot = "#cDispense-" + String(puzzle.numDispensers);
-		for (let i = 1; i <= puzzle.numDispensers; i++) {
-			const dispenseId = dispenseIdRoot + String(i);
-			this.controls["Dispense" + String(i)] = new Control(dispenseId, dispenseOnClicks[i]);
-		}
-
-		this.dispenseSequence = [];
-		
-		this.solutionTimer = undefined;
-		this.solutionNextIndex = undefined;
-
-		for (let i = 1; i <= puzzle.numDispensers; i++) this.dispensers[i].refresh();
-
-		//tickCross.hide();
-		
-		this.hintTemporaryTile = new Tile(null, puzzle.hintColour);
-		this.hintTimer = undefined;
-		this.hintNumShows = 3;
-		this.hintNumShowsRemaining = undefined;
-		this.hintShowing = undefined;
-
-		this.enableAllControlsExcept(["Reset", "Undispense"]);
-
-		this.led = new LED();
+class SolveIO {
+	constructor(controls, led) {
+	//controls
+	//an array of Control objects indexed by these names: "DispenseN", "Information", "Hint", "Reset", "Solution", "Undispense"
+	this.controls = controls;
+	this.led = led;
 	}
-	
+
 	disableAllControls() {
 		for (let name in this.controls) {
 			this.controls[name].disable();
@@ -2191,72 +1352,100 @@ class Solve {
 		}
 	}
 	
+	hideLED() {
+		this.led.hide();
+	}
+	
+	showLEDGreen() {
+		this.led.showGreen();
+	}
+	
+	showLEDRed() {
+		this.led.showRed();
+	}
+}
+
+class SolveBiz {	
+	constructor(puzzle, dispensers, ring, io) {
+		this.puzzle = puzzle;
+		this.dispensers = dispensers;
+		this.ring = ring;
+		this.io = io;
+		
+		this.dispenseSequence = [];
+		
+		this.solutionTimer = undefined;
+		this.solutionNextIndex = undefined;
+
+		for (let i = 1; i <= puzzle.numDispensers; i++) this.dispensers[i].refresh();
+		
+		this.hintTemporaryTile = new Tile(null, puzzle.hintColour);
+		this.hintTimer = undefined;
+		this.hintNumShows = 3;
+		this.hintNumShowsRemaining = undefined;
+		this.hintShowing = undefined;
+		
+		this.callbackResolve = undefined;
+
+		//this.io.enableAllControlsExcept(["Reset", "Undispense"]);
+		this.sleep();
+	}
+	
+	sleep() {
+		this.io.disableControls(["Information", "Hint", "Solution", "Reset", "Undispense", "Dispense1", "Dispense2", "Dispense3"]);
+	}
+	
+	wake() {
+		this.io.enableAllControlsExcept(["Reset", "Undispense"]);
+	}
+		
 	reset() {
-		ring.reset();
-		ring.refresh();
-		for (let i = 1; i <= puzzle.numDispensers; i++) {
+		this.ring.reset();
+		this.ring.refresh();
+		for (let i = 1; i <= this.puzzle.numDispensers; i++) {
 			const dispenser = this.dispensers[i];
 			dispenser.reset();
 			dispenser.refresh();
 		}
 		this.dispenseSequence = [];
+		this.io.hideLED();
 	}
 
 	updateLED() {
-		if (ring.numTilesInPlace == 9) {
-			const thisSolution = ring.getColourSequence().join("");
-			const correctSolution = puzzle.solutionColourSequence.join("");
-			if (thisSolution === correctSolution) this.led.showGreen(); else this.led.showRed();
+		if (this.ring.numTilesInPlace == 9) {
+			const thisSolution = this.ring.getColourSequence().join("");
+			const correctSolution = this.puzzle.solutionColourSequence.join("");
+			if (thisSolution === correctSolution) this.io.showLEDGreen(); else this.io.showLEDRed();
 		}
 		else {
-			this.led.hide();
+			this.io.hideLED();
 		}
-	}
-	
-	informationOnClick() {
-		console.log("informationOnClick called");
-		const styleSheet = document.styleSheets[0]
-		const informationRule = [...styleSheet.cssRules].find((r) => r.selectorText === "#information");
-		informationRule.style.setProperty("display", `grid`);
-		informationRule.style.setProperty("z-index", `3`);
-		const bodyRule = [...styleSheet.cssRules].find((r) => r.selectorText === "body");
-		bodyRule.style.setProperty("overflow", `auto`);
-	}
-	
-	backOnClick() {
-		console.log("backOnClick called");
-		const styleSheet = document.styleSheets[0]
-		const informationRule = [...styleSheet.cssRules].find((r) => r.selectorText === "#information");
-		informationRule.style.setProperty("z-index", `1`);
-		informationRule.style.setProperty("display", `none`);
-		const bodyRule = [...styleSheet.cssRules].find((r) => r.selectorText === "body");
-		bodyRule.style.setProperty("overflow", `hidden`);
 	}
 
 	hintTimerExpired() {
 		if (this.hintShowing) {
-			ring.removeTemporaryTile();
-			ring.refresh();
+			this.ring.removeTemporaryTile();
+			this.ring.refresh();
 			this.hintShowing = false;
 			this.hintNumShowsRemaining--;
 			if (this.hintNumShowsRemaining == 0) {
 				clearInterval(this.hintTimer);
-				this.enableAllControlsExcept(["Reset", "Undispense"]);
+				this.io.enableAllControlsExcept(["Reset", "Undispense"]);
 			}
 		}
 		else {
-			ring.addTemporaryTile(this.hintTemporaryTile, puzzle.hintIndex);
-			ring.refresh();
+			this.ring.addTemporaryTile(this.hintTemporaryTile, this.puzzle.hintIndex);
+			this.ring.refresh();
 			this.hintShowing = true;			
 		}
 	}
 	
 	hintOnClick() {
-		this.disableAllControls();
-		this.led.hide();
-		if (ring.numTilesInPlace == 0) {
-			ring.addTemporaryTile(this.hintTemporaryTile, puzzle.hintIndex);
-			ring.refresh();
+		this.io.disableAllControls();
+		this.io.hideLED();
+		if (this.ring.numTilesInPlace == 0) {
+			this.ring.addTemporaryTile(this.hintTemporaryTile, this.puzzle.hintIndex);
+			this.ring.refresh();
 			this.hintShowing = true;
 			this.hintNumShowsRemaining = this.hintNumShows;
 		}
@@ -2265,112 +1454,494 @@ class Solve {
 			this.hintShowing = false;
 			this.hintNumShowsRemaining = this.hintNumShows;
 		}
-		this.hintTimer = setInterval(hintTimerExpired, 1000);
+		this.hintTimer = setInterval(punterHintTimerExpired, 1000);
 	}
 
+	hintWithCallbackTimerExpired() {
+		if (this.hintShowing) {
+			this.ring.removeTemporaryTile();
+			this.ring.refresh();
+			this.hintShowing = false;
+			this.hintNumShowsRemaining--;
+			if (this.hintNumShowsRemaining == 0) {
+				clearInterval(this.hintTimer);
+				this.io.enableAllControlsExcept(["Reset", "Undispense"]);
+				this.callbackResolve();
+			}
+		}
+		else {
+			this.ring.addTemporaryTile(this.hintTemporaryTile, this.puzzle.hintIndex);
+			this.ring.refresh();
+			this.hintShowing = true;			
+		}
+	}
+
+	hintWithCallback() {
+		return new 	Promise((resolve, reject) => {
+								//dummyHintResolve = resolve;
+								this.callbackResolve = resolve;
+								this.ring.addTemporaryTile(this.hintTemporaryTile, this.puzzle.hintIndex);
+								this.ring.refresh();
+								this.hintShowing = true;
+								this.hintNumShowsRemaining = this.hintNumShows;
+								//dummyHintTimer = setInterval(dummyHint2, 10000);
+								this.hintTimer = setInterval(demoHintTimerExpired, 1000);
+							}
+					);
+	}
+	
 	solutionShowTile(dispenser) {
 		const tileTaken = dispenser.takeTile();
-		ring.addTile(tileTaken);
+		this.ring.addTile(tileTaken);
 		dispenser.refresh();
-		ring.refresh();
+		this.ring.refresh();
 	}
 
 	solutionTimerExpired() {
-		const dispenser = this.dispensers[puzzle.solutionDispenseSequence[this.solutionNextIndex]];
+		const dispenser = this.dispensers[this.puzzle.solutionDispenseSequence[this.solutionNextIndex]];
 		this.solutionShowTile(dispenser);
 		this.solutionNextIndex++;
 		if (this.solutionNextIndex == 9) {
 			clearInterval(this.solutionTimer);
-			this.enableControls(["Reset"]);
+			this.io.enableControls(["Reset"]);
 		}
 	}
 	
 	solutionOnClick() {
-		this.disableAllControls();
-		this.led.hide();
-		if (ring.numTilesInPlace == 0) {
-			this.solutionShowTile(this.dispensers[puzzle.solutionDispenseSequence[0]]);
+		this.io.disableAllControls();
+		this.io.hideLED();
+		if (this.ring.numTilesInPlace == 0) {
+			this.solutionShowTile(this.dispensers[this.puzzle.solutionDispenseSequence[0]]);
 			this.solutionNextIndex = 1;
 		}
 		else {
 			this.reset();
 			this.solutionNextIndex = 0;
 		}
-		this.solutionTimer = setInterval(solutionTimerExpired, 1000);
+		this.solutionTimer = setInterval(punterSolutionTimerExpired, 1000);
 	}
 	
 	resetOnClick() {
 		this.reset();
-		this.enableAllControlsExcept(["Reset", "Undispense"]);
-		this.updateLED();
+		this.io.enableAllControlsExcept(["Reset", "Undispense"]);
+		//this.updateLED();
 	}
 
 	updateDispenseControls() {
-		if (ring.numTilesInPlace == 9) {
-			for (let i = 1; i <= puzzle.numDispensers; i++) this.disableControls(["Dispense" + String(i)]);
+		if (this.ring.numTilesInPlace == 9) {
+			for (let i = 1; i <= this.puzzle.numDispensers; i++) this.io.disableControls(["Dispense" + String(i)]);
 		}
 		else {
-			for (let i = 1; i <= puzzle.numDispensers; i++) {
+			for (let i = 1; i <= this.puzzle.numDispensers; i++) {
 				if (this.dispensers[i].numTilesInContainer == 0) {
-					this.disableControls(["Dispense" + String(i)]);
+					this.io.disableControls(["Dispense" + String(i)]);
 				}
 				else {
-					this.enableControls(["Dispense" + String(i)]);
+					this.io.enableControls(["Dispense" + String(i)]);
 				}
 			}
 		}
 	}
 	
 	undispenseOnClick() {
-		const tileRemoved = ring.removeTile();
+		const tileRemoved = this.ring.removeTile();
 		const dispenser = tileRemoved.dispenser;
 		dispenser.replaceTile();
 		const dispenserNum = this.dispenseSequence.pop();
-		ring.refresh();
+		this.ring.refresh();
 		dispenser.refresh();
-		//if (dispenser.numTilesInContainer == 1) this.enableControls(["Dispense" + String(dispenserNum)]);
 		this.updateDispenseControls();
-		if (ring.numTilesInPlace == 0) this.disableControls(["Reset", "Undispense"]);
+		if (this.ring.numTilesInPlace == 0) this.io.disableControls(["Reset", "Undispense"]);
 		this.updateLED();
 	}
 	
 	dispenseOnClick(dispenserNum) {
 		const dispenser = this.dispensers[dispenserNum];
 		const tileTaken = dispenser.takeTile();
-		ring.addTile(tileTaken);
+		this.ring.addTile(tileTaken);
 		this.dispenseSequence.push(dispenserNum);
 		dispenser.refresh();
-		ring.refresh();
-		//if (dispenser.numTilesInContainer == 0) this.disableControls(["Dispense" + String(dispenserNum)]);
+		this.ring.refresh();
 		this.updateDispenseControls();
-		this.enableControls(["Reset", "Undispense"]);
+		this.io.enableControls(["Reset", "Undispense"]);
 		this.updateLED();
 	}
+}
+
+/* ========================================================================================================================================================= */
+/* PUNTER PUNTER PUNTER PUNTER PUNTER PUNTER PUNTER PUNTER PUNTER PUNTER PUNTER PUNTER PUNTER PUNTER PUNTER PUNTER PUNTER PUNTER PUNTER PUNTER PUNTER PUNTER */
+/* ========================================================================================================================================================= */
+
+let punterPuzzleSpec = {
+	dispenserSpec: [undefined, "rp", "r", "prrpsqq"],
+	ringSpec: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+	colourSpec: ["blue", "black", "green", "orange", "pink"],
+	hintSpec: ["green", 6],
+	solutionDispenseSequence: [3, 2, 3, 3, 3, 3, 1, 3, 3],
+	solutionColourSequence: ["black", "green", "black", "orange", "blue", "green", "blue", "green", "blue"]
+};
+
+const punterPuzzle = new Puzzle(punterPuzzleSpec);
+
+const doorId = "door";
+const doorRef = document.getElementById(doorId);
+const dispensersId = "Dispensers-" + String(punterPuzzle.maxDispenserHeight) + String(punterPuzzle.numDispensers);;
+const dispensersRef = document.getElementById(dispensersId);
+dispensersRef.style.display = `grid`;
+const dispensersHeight = (1 + 5) * punterPuzzle.maxDispenserHeight;
+dispensersRef.style.height = `${dispensersHeight}em`;
+
+for (let d = 1; d <= punterPuzzle.numDispensers; d++) {
+	const numTiles = punterPuzzle.dispenserHeightSpec[d];
+	const containerId = "dContainer-" + String(punterPuzzle.maxDispenserHeight) + String(punterPuzzle.numDispensers) + "-" + String(d) + String(numTiles);
+	const containerRef = document.getElementById(containerId);
+	containerRef.style.display = `block`;
+	for (let t = 1; t <= numTiles; t++) {
+		const tileId = "dTile-" + String(punterPuzzle.maxDispenserHeight) + String(punterPuzzle.numDispensers) + "-" + String(d) + String(t);
+		const tileRef = document.getElementById(tileId);
+		tileRef.style.display = `block`;
+	}
+}
+
+const dispenseIdRoot = "#cDispense-" + String(punterPuzzle.numDispensers);
+for (let d = 1; d <= punterPuzzle.numDispensers; d++) {
+	const dispenseId = dispenseIdRoot + String(d);
+	const dispenseRef = document.querySelector(dispenseId);
+	dispenseRef.style.display = `block`;
+}
+
+const doorStyle = doorRef.style.cssText;
+const newDoorStyle = doorStyle.replace(/80/, String(dispensersHeight));
+console.log(newDoorStyle);
+doorRef.style.cssText = newDoorStyle;
+//Here to avoid risk of introducing "80" into the style string.
+const doorHeight = doorHeightAboveDispensers + dispensersHeight + doorHeightBelowDispensers;
+doorRef.style.height = `${doorHeight}em`;
+updateFontSize(punterPuzzle.maxDispenserHeight, doorHeight, numGridColumns);
+
+function informationOnClick() {
+	console.log("informationOnClick called");
+	const styleSheet = document.styleSheets[0]
+	const informationRule = [...styleSheet.cssRules].find((r) => r.selectorText === "#wallInformation");
+	informationRule.style.setProperty("display", `grid`);
+	informationRule.style.setProperty("z-index", `3`);
+	const bodyRule = [...styleSheet.cssRules].find((r) => r.selectorText === "body");
+	bodyRule.style.setProperty("overflow", `auto`);
+}
+
+function punterHintOnClick() {punterSolveBiz.hintOnClick();};
+function punterHintTimerExpired() {punterSolveBiz.hintTimerExpired();};
+function punterSolutionOnClick() {punterSolveBiz.solutionOnClick();};
+function punterSolutionTimerExpired() {punterSolveBiz.solutionTimerExpired();};
+function punterResetOnClick() {punterSolveBiz.resetOnClick();};
+function punterUndispenseOnClick() {punterSolveBiz.undispenseOnClick();};
+
+let punterDispenseOnClicks = [undefined,
+							  function() {punterSolveBiz.dispenseOnClick(1)},
+							  function() {punterSolveBiz.dispenseOnClick(2)},
+							  function() {punterSolveBiz.dispenseOnClick(3)},
+							  function() {punterSolveBiz.dispenseOnClick(4)},
+							 ];
+
+
+let punterDispensers = [undefined];
+const punterTileIdRoot = "#dTile-" + String(punterPuzzle.maxDispenserHeight) + String(punterPuzzle.numDispensers) + "-";
+for (let i = 1; i <= punterPuzzle.numDispensers; i++) {
+	const tileIdRootPlus = punterTileIdRoot + String(i);
+	punterDispensers[i] = new Dispenser(punterPuzzle, punterPuzzle.dispenserFullSpec[i], tileIdRootPlus);
+}
+
+const punterRing = new Ring(punterPuzzle, "#Segment-");
 	
-/*	
-	updateTickCross() {
-		if (ring.numTilesInPlace == 9) {
-			//const thisSolution = this.dispenseSequence.join("");
-			//const correctSolution = puzzle.solution.join("");
-			const thisSolution = ring.getColourSequence().join("");
-			const correctSolution = puzzle.solutionColourSequence.join("");
-			if (thisSolution === correctSolution) tickCross.setTick(); else tickCross.setCross();
-			tickCross.show();
+let punterControls = [];
+punterControls["Information"] = new Control("#cInformation", informationOnClick);
+punterControls["Hint"] = new Control("#cHint", punterHintOnClick);
+punterControls["Solution"] = new Control("#cSolution", punterSolutionOnClick);
+punterControls["Reset"] = new Control("#cReset", punterResetOnClick);
+punterControls["Undispense"] = new Control("#cBack", punterUndispenseOnClick);
+
+const punterDispenseIdRoot = "#cDispense-" + String(punterPuzzle.numDispensers);
+for (let i = 1; i <= punterPuzzle.numDispensers; i++) {
+	const dispenseId = punterDispenseIdRoot + String(i);
+	punterControls["Dispense" + String(i)] = new Control(dispenseId, punterDispenseOnClicks[i]);
+}
+
+const punterLED = new LED("#LEDGreen", "#LEDRed");
+
+const punterSolveIO = new SolveIO(punterControls, punterLED);	
+const punterSolveBiz = new SolveBiz(punterPuzzle, punterDispensers, punterRing, punterSolveIO);
+punterSolveBiz.wake();
+
+/* ========================================================================================================================================================== */
+/* DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO */
+/* ========================================================================================================================================================== */
+
+let demoPuzzleSpec = {
+	dispenserSpec: [undefined, "qqpr", "qpppr", "p"],
+	ringSpec: [1, 4, 7, 2, 5, 8, 3, 6, 9],
+	colourSpec: ["blue", "black", "orange", "green", "pink"],
+	hintSpec: ["green", 6],
+	solutionDispenseSequence: [1, 1, 2, 2, 1, 2, 1, 2, 2],
+	solutionColourSequence: ["orange", "blue", "black", "blue", "black", "blue", "orange", "blue", "black"]
+};
+
+const demoPuzzle = new Puzzle(demoPuzzleSpec);
+
+function demoHintTimerExpired() {demoSolveBiz.hintWithCallbackTimerExpired();};
+
+function backOnClick() {
+	console.log("backOnClick called");
+	const styleSheet = document.styleSheets[0]
+	const informationRule = [...styleSheet.cssRules].find((r) => r.selectorText === "#wallInformation");
+	informationRule.style.setProperty("z-index", `1`);
+	informationRule.style.setProperty("display", `none`);
+	const bodyRule = [...styleSheet.cssRules].find((r) => r.selectorText === "body");
+	bodyRule.style.setProperty("overflow", `hidden`);
+	}
+const demoControlBack = new Control("#iBack", backOnClick);
+
+/*
+function demoOnClick () {
+	demoControlBack.disable();
+	demoControlDemo.disable();
+
+	const spotHintRef = document.querySelector("#demoSHint");
+	const spotSolutionRef = document.querySelector("#demoSSolution");
+	const spotDispense1Ref = document.querySelector("#demoSDispense-1");
+	const spotDispense2Ref = document.querySelector("#demoSDispense-2");
+	const spotDispense3Ref = document.querySelector("#demoSDispense-3");
+	const spotResetRef = document.querySelector("#demoSReset");
+	const spotBackRef = document.querySelector("#demoSBack");
+	spotHintRef.style.display = `block`;
+	spotSolutionRef.style.display = `block`;
+	spotDispense1Ref.style.display = `block`;
+	spotDispense2Ref.style.display = `block`;
+	spotDispense3Ref.style.display = `block`;
+	spotResetRef.style.display = `block`;
+	spotBackRef.style.display = `block`;
+	}
+const demoControlDemo = new Control("#demoCDemo", demoOnClick);
+*/
+
+let demoDispensers = [undefined];
+const demoTileIdRoot = "#demoDTile-";
+for (let i = 1; i <= demoPuzzle.numDispensers; i++) {
+	const tileIdRootPlus = demoTileIdRoot + String(i);
+	demoDispensers[i] = new Dispenser(demoPuzzle, demoPuzzle.dispenserFullSpec[i], tileIdRootPlus);
+}
+
+const demoRing = new Ring(demoPuzzle, "#demoSegment-");
+
+//demoControls["Back"] = demoControlBack
+//demoControls["Demo"] = demoControlDemo
+let demoControls = [];
+demoControls["Information"] = new Control("#demoCInformation", null);
+demoControls["Hint"] = new Control("#demoCHint", null);
+demoControls["Solution"] = new Control("#demoCSolution", null);
+demoControls["Reset"] = new Control("#demoCReset", null);
+demoControls["Undispense"] = new Control("#demoCBack", null);
+demoControls["Dispense1"] = new Control("#demoCDispense-1", null);
+demoControls["Dispense2"] = new Control("#demoCDispense-2", null);
+demoControls["Dispense3"] = new Control("#demoCDispense-3", null);
+
+const demoLED = new LED("#demoLEDGreen", "#demoLEDRed");
+
+const demoSolveIO = new SolveIO(demoControls, demoLED);	
+const demoSolveBiz = new SolveBiz(demoPuzzle, demoDispensers, demoRing, demoSolveIO);
+//demoControlBack.enable();
+//demoControlDemo.enable();
+
+
+function showSpot(spotRef, opacity) {
+		spotRef.style.display = `block`;
+		spotRef.style.opacity = `${opacity}`;
+	}
+	
+function hideSpot(spotRef) {
+		spotRef.style.display = `none`;
+	}
+
+function demoOnClick () {
+	console.log("demoOnClick");
+
+	//const spotHintRef = document.querySelector("#demoSHint");
+	//const spotSolutionRef = document.querySelector("#demoSSolution");
+	//const spotDispense1Ref = document.querySelector("#demoSDispense-1");
+	//const spotDispense2Ref = document.querySelector("#demoSDispense-2");
+	//const spotDispense3Ref = document.querySelector("#demoSDispense-3");
+	//const spotResetRef = document.querySelector("#demoSReset");
+	//const spotBackRef = document.querySelector("#demoSBack");
+	//spotHintRef.style.display = `block`;
+	//spotSolutionRef.style.display = `block`;
+	//spotDispense1Ref.style.display = `block`;
+	//spotDispense2Ref.style.display = `block`;
+	//spotDispense3Ref.style.display = `block`;
+	//spotResetRef.style.display = `block`;
+	//spotBackRef.style.display = `block`;
+	
+	//showSpot(spotDispense1Ref);
+	
+	//demoControlBack.disable();
+	//demoControlDemo.disable();
+	//demoSolveBiz.wake();
+	executeScript();
+	//demoSolveBiz.sleep();
+	//demoControlBack.enable();
+	//demoControlDemo.enable();
+	}
+const demoControlDemo = new Control("#demoCDemo", demoOnClick);
+
+demoControlBack.enable();
+demoControlDemo.enable();
+
+const spotHintRef = document.querySelector("#demoSHint");
+const spotSolutionRef = document.querySelector("#demoSSolution");
+const spotDispense1Ref = document.querySelector("#demoSDispense-1");
+const spotDispense2Ref = document.querySelector("#demoSDispense-2");
+const spotDispense3Ref = document.querySelector("#demoSDispense-3");
+const spotResetRef = document.querySelector("#demoSReset");
+const spotBackRef = document.querySelector("#demoSBack");
+
+function wait(duration) {
+	return new Promise((resolve, reject) => {setTimeout(resolve, duration)});
+}
+
+/*
+let dummyHintTimer = undefined;
+let dummyHintResolve = undefined;
+
+function dummyHint2() {
+	console.log("dummyHint2");
+	clearInterval(dummyHintTimer);
+	dummyHintResolve();
+	console.log("dummyHint2 after resolve");
+}
+
+function dummyHint1() {
+	//dummyHintTimer = setInterval(dummyHint2, 20000);
+	return new Promise((resolve, reject) => {dummyHintResolve = resolve; dummyHintTimer = setInterval(dummyHint2, 20000)});
+}
+
+async function dummyHintTest() {
+	await dummyHint1();
+	console.log("dummyHintTest after await");
+}
+//dummyHintTest();
+//console.log("dummyHintTest returned");
+*/
+
+let spotRefLookUp = [];
+spotRefLookUp["Dispense1"] = spotDispense1Ref;
+spotRefLookUp["Dispense2"] = spotDispense2Ref;
+spotRefLookUp["Dispense3"] = spotDispense3Ref;
+spotRefLookUp["Hint"] = spotHintRef;
+
+function dispense1Action() {demoSolveBiz.dispenseOnClick(1)};
+function dispense2Action() {demoSolveBiz.dispenseOnClick(2)};
+function dispense3Action() {demoSolveBiz.dispenseOnClick(3)};
+function hintAction() {return demoSolveBiz.hintWithCallback()};
+
+let actionLookUp = [];
+actionLookUp["Dispense1"] = dispense1Action;
+actionLookUp["Dispense2"] = dispense2Action;
+actionLookUp["Dispense3"] = dispense3Action;
+actionLookUp["Hint"] = hintAction;
+
+let dispenserTileLookUp = [];
+dispenserTileLookUp["Dispense1"] = document.querySelector("#demoDTile-11");
+dispenserTileLookUp["Dispense2"] = document.querySelector("#demoDTile-21");
+dispenserTileLookUp["Dispense3"] = document.querySelector("#demoDTile-31");
+
+//const script = ["Dispense2", "Dispense2", "Dispense1", "Dispense1", "Dispense1", "Dispense2", "Dispense1", "Dispense2", "Dispense2"];
+const script = ["Dispense1", "Dispense1", "Dispense2", "Dispense2", "Dispense1", "Dispense2", "Dispense1", "Dispense2", "Dispense2"];
+//const script = ["Hint", "Dispense1"];
+
+const spotFadeSequence = [1.0, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4];
+
+async function executeScript() {
+	demoControlBack.disable();
+	demoControlDemo.disable();
+	demoSolveBiz.wake();
+	await wait(1000);
+	for (let control of script) {
+		const spotRef = spotRefLookUp[control];
+		for (let opacity of spotFadeSequence) {
+			showSpot(spotRef, opacity);
+			await wait(100);
+		}
+		if (control === "Hint") {
+			await actionLookUp[control]();
 		}
 		else {
-			tickCross.hide();
+			const dispenserTileRef = dispenserTileLookUp[control];
+			dispenserTileRef.style.display = `none`;
+			await wait(800);
+			dispenserTileRef.style.display = `block`;
+			await wait(800);
+			dispenserTileRef.style.display = `none`;
+			await wait(800);
+			actionLookUp[control]();
 		}
+		hideSpot(spotRef);
+		await wait(1000);
 	}
-*/
+	await wait(5000);
+	demoSolveBiz.reset();
+	demoSolveBiz.sleep();
+	demoControlBack.enable();
+	demoControlDemo.enable();
 }
-const solve = new Solve();
 
-//const testTile = document.querySelector("#testTile");
-//testTile.src = "tileBlack.svg";
+/*
+function dispense1Action() {solve.dispenseOnClick(1)};
+function dispense2Action() {solve.dispenseOnClick(2)};
+function dispense3Action() {solve.dispenseOnClick(3)};
+function undispenseAction() {solve.undispenseOnClick();};
 
-//const ringPosition1 = document.querySelector("#ring-4-1");
-//ringPosition1.style.display = `block`;
-//ringPosition1.style.fill = `red`;
+let actionLookUp = [];
+actionLookUp["Dispense1"] = dispense1Action;
+actionLookUp["Dispense2"] = dispense2Action;
+actionLookUp["Dispense3"] = dispense3Action;
+actionLookUp["Undispense"] = undispenseAction;
+
+const script = ["Dispense3", "Dispense2", "Dispense3", "Dispense3", "Dispense3", "Dispense3", "Dispense1", "Dispense3", "Dispense3", "Undispense"];
+//const script = ["Dispense1", "Dispense2", "Dispense3", "Undispense"];
+//const script = ["Dispense1"];
+
+function highlightButton() {
+	const buttonName = script[scriptIndex];
+	//highlight button
+	showSpot();
+	setTimeout(highlightTimerExpired, 1000);		
+}
+
+function highlightTimerExpired() {
+	actionLookUp[script[scriptIndex]]();
+	//unhighlight button
+	hideSpot();
+	setTimeout(actionTimerExpired, 2000);		
+}
+
+function actionTimerExpired() {
+	scriptIndex++;
+	if (scriptIndex < script.length) {
+		highlightButton();
+	}
+}
+
+const spotRef = document.querySelector("#spotDispense-33");
+
+function showSpot() {
+		spotRef.style.display = `block`;
+	}
+	
+function hideSpot() {
+		spotRef.style.display = `none`;
+	}
+
+let scriptIndex = 0;
+highlightButton();
+*/
 
 </script>
 
