@@ -1834,17 +1834,23 @@ let spotRefLookUp = [];
 spotRefLookUp["Dispense1"] = spotDispense1Ref;
 spotRefLookUp["Dispense2"] = spotDispense2Ref;
 spotRefLookUp["Dispense3"] = spotDispense3Ref;
+spotRefLookUp["Undispense"] = spotBackRef;
 spotRefLookUp["Hint"] = spotHintRef;
+spotRefLookUp["Reset"] = spotResetRef;
 
 function dispense1Action() {demoSolveBiz.dispenseOnClick(1)};
 function dispense2Action() {demoSolveBiz.dispenseOnClick(2)};
 function dispense3Action() {demoSolveBiz.dispenseOnClick(3)};
+function undispenseAction() {demoSolveBiz.undispenseOnClick()};
+function resetAction() {demoSolveBiz.resetOnClick()};
 function hintAction() {return demoSolveBiz.hintWithCallback()};
 
 let actionLookUp = [];
 actionLookUp["Dispense1"] = dispense1Action;
 actionLookUp["Dispense2"] = dispense2Action;
 actionLookUp["Dispense3"] = dispense3Action;
+actionLookUp["Undispense"] = undispenseAction;
+actionLookUp["Reset"] = resetAction;
 actionLookUp["Hint"] = hintAction;
 
 let dispenserTileLookUp = [];
@@ -1853,14 +1859,35 @@ dispenserTileLookUp["Dispense2"] = document.querySelector("#demoDTile-21");
 dispenserTileLookUp["Dispense3"] = document.querySelector("#demoDTile-31");
 
 //const script = ["Dispense2", "Dispense2", "Dispense1", "Dispense1", "Dispense1", "Dispense2", "Dispense1", "Dispense2", "Dispense2"];
-const script = ["Dispense1", "Dispense1", "Dispense2", "Dispense2", "Dispense1", "Dispense2", "Dispense1", "Dispense2", "Dispense2"];
+//const script = ["Dispense1", "Dispense1", "Dispense2", "Dispense2", "Dispense1", "Dispense2", "Dispense1", "Dispense2", "Dispense2"];
 //const script = ["Hint", "Dispense1"];
+const script = ["Dispense1",
+				"Dispense2",
+				"Dispense3",
+				"Undispense",
+				"Undispense",
+				"Undispense",
+				"Dispense2",
+				"Dispense2",
+				"Dispense1",
+				"Dispense1",
+				"Dispense1",
+				"Dispense2",
+				"Dispense1",
+				"Dispense2",
+				"Dispense2",
+				"Reset",
+				"Hint"
+				];
 
 const spotFadeSequence = [1.0, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4];
 
 async function executeScript() {
+	let numTilesInRing = 0;
+	
 	demoControlBack.disable();
 	demoControlDemo.disable();
+	
 	demoSolveBiz.wake();
 	await wait(1000);
 	for (let control of script) {
@@ -1871,21 +1898,39 @@ async function executeScript() {
 		}
 		if (control === "Hint") {
 			await actionLookUp[control]();
+			numTilesInRing = 0;
+		}
+		else if (control === "Reset") {
+			actionLookUp[control]();
+			numTilesInRing = 0;
+		}
+		else if (control === "Undispense") {
+			const ringTileId = "#demoSegment-" + String(demoPuzzle.ringSpec[numTilesInRing - 1]);
+			const ringTileRef = document.querySelector(ringTileId);
+			ringTileRef.style.display = `none`;
+			await wait(600);
+			ringTileRef.style.display = `block`;
+			await wait(600);
+			ringTileRef.style.display = `none`;
+			await wait(600);
+			actionLookUp[control]();
+			numTilesInRing--;
 		}
 		else {
 			const dispenserTileRef = dispenserTileLookUp[control];
 			dispenserTileRef.style.display = `none`;
-			await wait(800);
+			await wait(600);
 			dispenserTileRef.style.display = `block`;
-			await wait(800);
+			await wait(600);
 			dispenserTileRef.style.display = `none`;
-			await wait(800);
+			await wait(600);
 			actionLookUp[control]();
+			numTilesInRing++;
 		}
 		hideSpot(spotRef);
 		await wait(1000);
 	}
-	await wait(5000);
+	await wait(3000);
 	demoSolveBiz.reset();
 	demoSolveBiz.sleep();
 	demoControlBack.enable();
