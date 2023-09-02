@@ -1520,6 +1520,27 @@ class SolveBiz {
 		}
 		this.solutionTimer = setInterval(punterSolutionTimerExpired, 1000);
 	}
+
+	solutionWithCallbackTimerExpired() {
+		const dispenser = this.dispensers[this.puzzle.solutionDispenseSequence[this.solutionNextIndex]];
+		this.solutionShowTile(dispenser);
+		this.solutionNextIndex++;
+		if (this.solutionNextIndex == 9) {
+			clearInterval(this.solutionTimer);
+			this.io.enableControls(["Reset"]);
+			this.callbackResolve();
+		}
+	}
+
+	solutionWithCallback() {
+		return new 	Promise((resolve, reject) => {
+								this.callbackResolve = resolve;
+								this.solutionShowTile(this.dispensers[this.puzzle.solutionDispenseSequence[0]]);
+								this.solutionNextIndex = 1;
+								this.hintTimer = setInterval(demoSolutionTimerExpired, 1000);
+							}
+					);
+	}
 	
 	resetOnClick() {
 		this.reset();
@@ -1688,6 +1709,7 @@ let demoPuzzleSpec = {
 const demoPuzzle = new Puzzle(demoPuzzleSpec);
 
 function demoHintTimerExpired() {demoSolveBiz.hintWithCallbackTimerExpired();};
+function demoSolutionTimerExpired() {demoSolveBiz.solutionWithCallbackTimerExpired();};
 
 function backOnClick() {
 	console.log("backOnClick called");
@@ -1837,6 +1859,7 @@ spotRefLookUp["Dispense3"] = spotDispense3Ref;
 spotRefLookUp["Undispense"] = spotBackRef;
 spotRefLookUp["Hint"] = spotHintRef;
 spotRefLookUp["Reset"] = spotResetRef;
+spotRefLookUp["Solution"] = spotSolutionRef;
 
 function dispense1Action() {demoSolveBiz.dispenseOnClick(1)};
 function dispense2Action() {demoSolveBiz.dispenseOnClick(2)};
@@ -1844,6 +1867,7 @@ function dispense3Action() {demoSolveBiz.dispenseOnClick(3)};
 function undispenseAction() {demoSolveBiz.undispenseOnClick()};
 function resetAction() {demoSolveBiz.resetOnClick()};
 function hintAction() {return demoSolveBiz.hintWithCallback()};
+function solutionAction() {return demoSolveBiz.solutionWithCallback()};
 
 let actionLookUp = [];
 actionLookUp["Dispense1"] = dispense1Action;
@@ -1852,6 +1876,7 @@ actionLookUp["Dispense3"] = dispense3Action;
 actionLookUp["Undispense"] = undispenseAction;
 actionLookUp["Reset"] = resetAction;
 actionLookUp["Hint"] = hintAction;
+actionLookUp["Solution"] = solutionAction;
 
 let dispenserTileLookUp = [];
 dispenserTileLookUp["Dispense1"] = document.querySelector("#demoDTile-11");
@@ -1861,6 +1886,8 @@ dispenserTileLookUp["Dispense3"] = document.querySelector("#demoDTile-31");
 //const script = ["Dispense2", "Dispense2", "Dispense1", "Dispense1", "Dispense1", "Dispense2", "Dispense1", "Dispense2", "Dispense2"];
 //const script = ["Dispense1", "Dispense1", "Dispense2", "Dispense2", "Dispense1", "Dispense2", "Dispense1", "Dispense2", "Dispense2"];
 //const script = ["Hint", "Dispense1"];
+//const script = ["Solution"];
+
 const script = ["Dispense1",
 				"Dispense2",
 				"Dispense3",
@@ -1877,7 +1904,8 @@ const script = ["Dispense1",
 				"Dispense2",
 				"Dispense2",
 				"Reset",
-				"Hint"
+				"Hint",
+				"Solution"
 				];
 
 const spotFadeSequence = [1.0, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4];
@@ -1897,6 +1925,10 @@ async function executeScript() {
 			await wait(100);
 		}
 		if (control === "Hint") {
+			await actionLookUp[control]();
+			numTilesInRing = 0;
+		}
+		else if (control === "Solution") {
 			await actionLookUp[control]();
 			numTilesInRing = 0;
 		}
