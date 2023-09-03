@@ -278,15 +278,15 @@ body {
 #demoDTile-31 {z-index:5; grid-row:rDemoDTile-1-s/rDemoDTile-1-e; grid-column:cDemoDTile-3-s/cDemoDTile-3-e; width:7em; height:5em;}
 
 #demoRing {z-index:4; grid-row:rDemoRing-s/rDemoRing-e; grid-column:cDemoRing-s/cDemoRing-e;}
-#demoSegment-1 {display:none; z-index:5; fill:transparent;}
-#demoSegment-2 {display:none; z-index:5; fill:transparent;}
-#demoSegment-3 {display:none; z-index:5; fill:transparent;}
-#demoSegment-4 {display:none; z-index:5; fill:transparent;}
-#demoSegment-5 {display:none; z-index:5; fill:transparent;}
-#demoSegment-6 {display:none; z-index:5; fill:transparent;}
-#demoSegment-7 {display:none; z-index:5; fill:transparent;}
-#demoSegment-8 {display:none; z-index:5; fill:transparent;}
-#demoSegment-9 {display:none; z-index:5; fill:transparent;}
+#demoRSegment-1 {display:none; z-index:5; fill:transparent;}
+#demoRSegment-2 {display:none; z-index:5; fill:transparent;}
+#demoRSegment-3 {display:none; z-index:5; fill:transparent;}
+#demoRSegment-4 {display:none; z-index:5; fill:transparent;}
+#demoRSegment-5 {display:none; z-index:5; fill:transparent;}
+#demoRSegment-6 {display:none; z-index:5; fill:transparent;}
+#demoRSegment-7 {display:none; z-index:5; fill:transparent;}
+#demoRSegment-8 {display:none; z-index:5; fill:transparent;}
+#demoRSegment-9 {display:none; z-index:5; fill:transparent;}
 
 
 #door {
@@ -372,15 +372,15 @@ body {
 #Panel {z-index:3; grid-row:rPanel-s/rPanel-e; grid-column:cPanel-s/cPanel-e; background-color:white;}
 
 #Ring {z-index:4; grid-row:rRing-s/rRing-e; grid-column:cRing-s/cRing-e;}
-#Segment-1 {display:none; z-index:5; fill:transparent;}
-#Segment-2 {display:none; z-index:5; fill:transparent;}
-#Segment-3 {display:none; z-index:5; fill:transparent;}
-#Segment-4 {display:none; z-index:5; fill:transparent;}
-#Segment-5 {display:none; z-index:5; fill:transparent;}
-#Segment-6 {display:none; z-index:5; fill:transparent;}
-#Segment-7 {display:none; z-index:5; fill:transparent;}
-#Segment-8 {display:none; z-index:5; fill:transparent;}
-#Segment-9 {display:none; z-index:5; fill:transparent;}
+#rSegment-1 {display:none; z-index:5; fill:transparent;}
+#rSegment-2 {display:none; z-index:5; fill:transparent;}
+#rSegment-3 {display:none; z-index:5; fill:transparent;}
+#rSegment-4 {display:none; z-index:5; fill:transparent;}
+#rSegment-5 {display:none; z-index:5; fill:transparent;}
+#rSegment-6 {display:none; z-index:5; fill:transparent;}
+#rSegment-7 {display:none; z-index:5; fill:transparent;}
+#rSegment-8 {display:none; z-index:5; fill:transparent;}
+#rSegment-9 {display:none; z-index:5; fill:transparent;}
 
 
 #Dispensers-52 {
@@ -677,31 +677,41 @@ body {
 
 				<div id="demoRing">
 					<svg width="100%" height="100%" viewbox="0 0 1000 1000" preserveAspectRatio="none">
-						<circle cx="500" cy="500" r="272" stroke="gray" stroke-width="3" fill="transparent"/>
-						<circle cx="500" cy="500" r="500" stroke="gray" stroke-width="3" fill="transparent"/>
+						<circle cx="500" cy="500" r="272" stroke="black" stroke-width="3" fill="transparent"/>
+						<circle cx="500" cy="500" r="500" stroke="black" stroke-width="3" fill="transparent"/>
 
-						<line x1="500" y1="228" x2="500" y2="0" stroke="gray" stroke-width="3"/>
-						<line x1="500" y1="228" x2="500" y2="0" stroke="gray" stroke-width="3" transform="rotate(40 500 500)"/>
-						<line x1="500" y1="228" x2="500" y2="0" stroke="gray" stroke-width="3" transform="rotate(80 500 500)"/>
-						<line x1="500" y1="228" x2="500" y2="0" stroke="gray" stroke-width="3" transform="rotate(120 500 500)"/>
-						<line x1="500" y1="228" x2="500" y2="0" stroke="gray" stroke-width="3" transform="rotate(160 500 500)"/>
-						<line x1="500" y1="228" x2="500" y2="0" stroke="gray" stroke-width="3" transform="rotate(200 500 500)"/>
-						<line x1="500" y1="228" x2="500" y2="0" stroke="gray" stroke-width="3" transform="rotate(240 500 500)"/>
-						<line x1="500" y1="228" x2="500" y2="0" stroke="gray" stroke-width="3" transform="rotate(280 500 500)"/>
-						<line x1="500" y1="228" x2="500" y2="0" stroke="gray" stroke-width="3" transform="rotate(320 500 500)"/>
+						<line x1="500" y1="228" x2="500" y2="0" stroke="black" stroke-width="3"/>
+						<line x1="500" y1="228" x2="500" y2="0" stroke="black" stroke-width="3" transform="rotate(40 500 500)"/>
+						<line x1="500" y1="228" x2="500" y2="0" stroke="black" stroke-width="3" transform="rotate(80 500 500)"/>
+						<line x1="500" y1="228" x2="500" y2="0" stroke="black" stroke-width="3" transform="rotate(120 500 500)"/>
+						<line x1="500" y1="228" x2="500" y2="0" stroke="black" stroke-width="3" transform="rotate(160 500 500)"/>
+						<line x1="500" y1="228" x2="500" y2="0" stroke="black" stroke-width="3" transform="rotate(200 500 500)"/>
+						<line x1="500" y1="228" x2="500" y2="0" stroke="black" stroke-width="3" transform="rotate(240 500 500)"/>
+						<line x1="500" y1="228" x2="500" y2="0" stroke="black" stroke-width="3" transform="rotate(280 500 500)"/>
+						<line x1="500" y1="228" x2="500" y2="0" stroke="black" stroke-width="3" transform="rotate(320 500 500)"/>
 
 						<defs>
 							<clipPath id="demoKeep-40"> <path d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" transform="rotate(50 500 500)"/> </clipPath>
 						</defs>
-						<path id="demoSegment-1" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#demoKeep-40)" transform="rotate(-50 500 500)"/>
-						<path id="demoSegment-2" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#demoKeep-40)" transform="rotate(-10 500 500)"/>
-						<path id="demoSegment-3" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#demoKeep-40)" transform="rotate(30 500 500)"/>
-						<path id="demoSegment-4" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#demoKeep-40)" transform="rotate(70 500 500)"/>
-						<path id="demoSegment-5" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#demoKeep-40)" transform="rotate(110 500 500)"/>
-						<path id="demoSegment-6" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#demoKeep-40)" transform="rotate(150 500 500)"/>
-						<path id="demoSegment-7" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#demoKeep-40)" transform="rotate(190 500 500)"/>
-						<path id="demoSegment-8" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#demoKeep-40)" transform="rotate(230 500 500)"/>
-						<path id="demoSegment-9" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#demoKeep-40)" transform="rotate(270 500 500)"/>
+						<path id="demoRSegment-1" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#demoKeep-40)" transform="rotate(-50 500 500)"/>
+						<path id="demoRSegment-2" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#demoKeep-40)" transform="rotate(-10 500 500)"/>
+						<path id="demoRSegment-3" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#demoKeep-40)" transform="rotate(30 500 500)"/>
+						<path id="demoRSegment-4" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#demoKeep-40)" transform="rotate(70 500 500)"/>
+						<path id="demoRSegment-5" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#demoKeep-40)" transform="rotate(110 500 500)"/>
+						<path id="demoRSegment-6" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#demoKeep-40)" transform="rotate(150 500 500)"/>
+						<path id="demoRSegment-7" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#demoKeep-40)" transform="rotate(190 500 500)"/>
+						<path id="demoRSegment-8" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#demoKeep-40)" transform="rotate(230 500 500)"/>
+						<path id="demoRSegment-9" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#demoKeep-40)" transform="rotate(270 500 500)"/>
+
+						<text id="demoRDigit-1" x="578" y="203" fill="black" font-family="Arial, Helvetica, sans-serif" font-size="180">1</text>
+						<text id="demoRDigit-2" x="695" y="853" fill="black" font-family="Arial, Helvetica, sans-serif" font-size="180">2</text>
+						<text id="demoRDigit-3" x="72" y="631" fill="black" font-family="Arial, Helvetica, sans-serif" font-size="180">3</text>
+						<text id="demoRDigit-4" x="780" y="362" fill="black" font-family="Arial, Helvetica, sans-serif" font-size="180">4</text>
+						<text id="demoRDigit-5" x="448" y="948" fill="gray" font-family="Arial, Helvetica, sans-serif" font-size="180">5</text>
+						<text id="demoRDigit-6" x="117" y="369" fill="gray" font-family="Arial, Helvetica, sans-serif" font-size="180">6</text>
+						<text id="demoRDigit-7" x="838" y="629" fill="gray" font-family="Arial, Helvetica, sans-serif" font-size="180">7</text>
+						<text id="demoRDigit-8" x="203" y="860" fill="gray" font-family="Arial, Helvetica, sans-serif" font-size="180">8</text>
+						<text id="demoRDigit-9" x="322" y="200" fill="gray" font-family="Arial, Helvetica, sans-serif" font-size="180">9</text>
 					</svg>
 				</div>		
 			</div>
@@ -788,31 +798,41 @@ body {
 		
 		<div id="Ring">
 			<svg width="100%" height="100%" viewbox="0 0 1000 1000" preserveAspectRatio="none">
-				<circle cx="500" cy="500" r="272" stroke="gray" stroke-width="3" fill="transparent"/>
-				<circle cx="500" cy="500" r="500" stroke="gray" stroke-width="3" fill="transparent"/>
+				<circle cx="500" cy="500" r="272" stroke="black" stroke-width="3" fill="transparent"/>
+				<circle cx="500" cy="500" r="500" stroke="black" stroke-width="3" fill="transparent"/>
 
-				<line x1="500" y1="228" x2="500" y2="0" stroke="gray" stroke-width="3"/>
-				<line x1="500" y1="228" x2="500" y2="0" stroke="gray" stroke-width="3" transform="rotate(40 500 500)"/>
-				<line x1="500" y1="228" x2="500" y2="0" stroke="gray" stroke-width="3" transform="rotate(80 500 500)"/>
-				<line x1="500" y1="228" x2="500" y2="0" stroke="gray" stroke-width="3" transform="rotate(120 500 500)"/>
-				<line x1="500" y1="228" x2="500" y2="0" stroke="gray" stroke-width="3" transform="rotate(160 500 500)"/>
-				<line x1="500" y1="228" x2="500" y2="0" stroke="gray" stroke-width="3" transform="rotate(200 500 500)"/>
-				<line x1="500" y1="228" x2="500" y2="0" stroke="gray" stroke-width="3" transform="rotate(240 500 500)"/>
-				<line x1="500" y1="228" x2="500" y2="0" stroke="gray" stroke-width="3" transform="rotate(280 500 500)"/>
-				<line x1="500" y1="228" x2="500" y2="0" stroke="gray" stroke-width="3" transform="rotate(320 500 500)"/>
+				<line x1="500" y1="228" x2="500" y2="0" stroke="black" stroke-width="3"/>
+				<line x1="500" y1="228" x2="500" y2="0" stroke="black" stroke-width="3" transform="rotate(40 500 500)"/>
+				<line x1="500" y1="228" x2="500" y2="0" stroke="black" stroke-width="3" transform="rotate(80 500 500)"/>
+				<line x1="500" y1="228" x2="500" y2="0" stroke="black" stroke-width="3" transform="rotate(120 500 500)"/>
+				<line x1="500" y1="228" x2="500" y2="0" stroke="black" stroke-width="3" transform="rotate(160 500 500)"/>
+				<line x1="500" y1="228" x2="500" y2="0" stroke="black" stroke-width="3" transform="rotate(200 500 500)"/>
+				<line x1="500" y1="228" x2="500" y2="0" stroke="black" stroke-width="3" transform="rotate(240 500 500)"/>
+				<line x1="500" y1="228" x2="500" y2="0" stroke="black" stroke-width="3" transform="rotate(280 500 500)"/>
+				<line x1="500" y1="228" x2="500" y2="0" stroke="black" stroke-width="3" transform="rotate(320 500 500)"/>
 
 				<defs>
 					<clipPath id="keep-40"> <path d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" transform="rotate(50 500 500)"/> </clipPath>
 				</defs>
-				<path id="Segment-1" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#keep-40)" transform="rotate(-50 500 500)"/>
-				<path id="Segment-2" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#keep-40)" transform="rotate(-10 500 500)"/>
-				<path id="Segment-3" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#keep-40)" transform="rotate(30 500 500)"/>
-				<path id="Segment-4" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#keep-40)" transform="rotate(70 500 500)"/>
-				<path id="Segment-5" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#keep-40)" transform="rotate(110 500 500)"/>
-				<path id="Segment-6" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#keep-40)" transform="rotate(150 500 500)"/>
-				<path id="Segment-7" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#keep-40)" transform="rotate(190 500 500)"/>
-				<path id="Segment-8" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#keep-40)" transform="rotate(230 500 500)"/>
-				<path id="Segment-9" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#keep-40)" transform="rotate(270 500 500)"/>
+				<path id="rSegment-1" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#keep-40)" transform="rotate(-50 500 500)"/>
+				<path id="rSegment-2" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#keep-40)" transform="rotate(-10 500 500)"/>
+				<path id="rSegment-3" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#keep-40)" transform="rotate(30 500 500)"/>
+				<path id="rSegment-4" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#keep-40)" transform="rotate(70 500 500)"/>
+				<path id="rSegment-5" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#keep-40)" transform="rotate(110 500 500)"/>
+				<path id="rSegment-6" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#keep-40)" transform="rotate(150 500 500)"/>
+				<path id="rSegment-7" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#keep-40)" transform="rotate(190 500 500)"/>
+				<path id="rSegment-8" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#keep-40)" transform="rotate(230 500 500)"/>
+				<path id="rSegment-9" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#keep-40)" transform="rotate(270 500 500)"/>
+
+				<text id="rDigit-1" x="578" y="203" fill="black" font-family="Arial, Helvetica, sans-serif" font-size="180">1</text>
+				<text id="rDigit-2" x="695" y="853" fill="black" font-family="Arial, Helvetica, sans-serif" font-size="180">2</text>
+				<text id="rDigit-3" x="72" y="631" fill="black" font-family="Arial, Helvetica, sans-serif" font-size="180">3</text>
+				<text id="rDigit-4" x="780" y="362" fill="black" font-family="Arial, Helvetica, sans-serif" font-size="180">4</text>
+				<text id="rDigit-5" x="448" y="948" fill="gray" font-family="Arial, Helvetica, sans-serif" font-size="180">5</text>
+				<text id="rDigit-6" x="117" y="369" fill="gray" font-family="Arial, Helvetica, sans-serif" font-size="180">6</text>
+				<text id="rDigit-7" x="838" y="629" fill="gray" font-family="Arial, Helvetica, sans-serif" font-size="180">7</text>
+				<text id="rDigit-8" x="203" y="860" fill="gray" font-family="Arial, Helvetica, sans-serif" font-size="180">8</text>
+				<text id="rDigit-9" x="322" y="200" fill="gray" font-family="Arial, Helvetica, sans-serif" font-size="180">9</text>
 			</svg>
 		</div>
 
@@ -1185,7 +1205,7 @@ class Dispenser {
 }
 
 class Ring {
-	constructor(puzzle, segmentIdRoot) {
+	constructor(puzzle, segmentIdRoot, digitIdRoot) {
 		this.puzzle = puzzle;
 		
 		this.colourCodeLookUp = [];
@@ -1204,7 +1224,14 @@ class Ring {
 			const segmentRef = document.querySelector(segmentId);
 			this.segmentRefs.push(segmentRef);
 			this.segmentTiles.push(null);
-			}
+		}
+
+		this.digitRefs = [undefined];
+		for (let i = 0; i < this.segmentPositions.length; i++) {
+			const digitId = digitIdRoot + String(this.segmentPositions[i]);
+			const digitRef = document.querySelector(digitId);
+			this.digitRefs.push(digitRef);
+		}
 
 		this.numTilesInPlace = 0;
 		this.temporaryIndex = undefined;
@@ -1250,12 +1277,27 @@ class Ring {
 		for (let s = 1; s <= 9; s++) {
 			if (this.segmentTiles[s] == null) {
 				this.segmentRefs[s].style.display = `none`;
+				this.digitRefs[s].style.visibility = `visible`;
 			}
 			else {
 				this.segmentRefs[s].style.display = `block`;
 				this.segmentRefs[s].style.fill = this.colourCodeLookUp[this.segmentTiles[s].colour];
+				this.digitRefs[s].style.visibility = `hidden`;
 			}
 		}
+	}
+	
+	hideLastTileAdded() {
+		console.log(this.numTilesInPlace)
+		const segmentNum = this.segmentPositions[this.numTilesInPlace - 1];
+		this.segmentRefs[segmentNum].style.display = `none`;
+		this.digitRefs[segmentNum].style.visibility = `visible`;
+	}
+	
+	showLastTileAdded() {
+		const segmentNum = this.segmentPositions[this.numTilesInPlace - 1];
+		this.segmentRefs[segmentNum].style.display = `block`;
+		this.digitRefs[segmentNum].style.visibility = `hidden`;
 	}
 }
 
@@ -1291,9 +1333,9 @@ class Control {
 	}
 	
 	enable() {
-		console.log("Control.enable");
+		//console.log("Control.enable");
 		//console.log((this.OnClick !== null));
-		console.log((this.OnClick === null));
+		//console.log((this.OnClick === null));
 		if (!this.isEnabled) {
 			this.button.style.opacity = `1.0`;
 			if (this.OnClick !== null) this.button.addEventListener("click", this.onClick);
@@ -1303,8 +1345,8 @@ class Control {
 	}
 	
 	disable() {
-		console.log("Control.disable");
-		console.log((this.OnClick === null));
+		//console.log("Control.disable");
+		//console.log((this.OnClick === null));
 		if (this.isEnabled) {
 			this.button.style.opacity = `0.5`;
 			if (this.OnClick !== null) this.button.removeEventListener("click", this.onClick);
@@ -1478,13 +1520,12 @@ class SolveBiz {
 
 	hintWithCallback() {
 		return new 	Promise((resolve, reject) => {
-								//dummyHintResolve = resolve;
+								this.io.disableAllControls();
 								this.callbackResolve = resolve;
 								this.ring.addTemporaryTile(this.hintTemporaryTile, this.puzzle.hintIndex);
 								this.ring.refresh();
 								this.hintShowing = true;
 								this.hintNumShowsRemaining = this.hintNumShows;
-								//dummyHintTimer = setInterval(dummyHint2, 10000);
 								this.hintTimer = setInterval(demoHintTimerExpired, 1000);
 							}
 					);
@@ -1534,6 +1575,7 @@ class SolveBiz {
 
 	solutionWithCallback() {
 		return new 	Promise((resolve, reject) => {
+								this.io.disableAllControls();
 								this.callbackResolve = resolve;
 								this.solutionShowTile(this.dispensers[this.puzzle.solutionDispenseSequence[0]]);
 								this.solutionNextIndex = 1;
@@ -1672,7 +1714,7 @@ for (let i = 1; i <= punterPuzzle.numDispensers; i++) {
 	punterDispensers[i] = new Dispenser(punterPuzzle, punterPuzzle.dispenserFullSpec[i], tileIdRootPlus);
 }
 
-const punterRing = new Ring(punterPuzzle, "#Segment-");
+const punterRing = new Ring(punterPuzzle, "#rSegment-", "#rDigit-");
 	
 let punterControls = [];
 punterControls["Information"] = new Control("#cInformation", informationOnClick);
@@ -1701,7 +1743,7 @@ let demoPuzzleSpec = {
 	dispenserSpec: [undefined, "qqpr", "qpppr", "p"],
 	ringSpec: [1, 4, 7, 2, 5, 8, 3, 6, 9],
 	colourSpec: ["blue", "black", "orange", "green", "pink"],
-	hintSpec: ["green", 6],
+	hintSpec: ["blue", 6],
 	solutionDispenseSequence: [1, 1, 2, 2, 1, 2, 1, 2, 2],
 	solutionColourSequence: ["orange", "blue", "black", "blue", "black", "blue", "orange", "blue", "black"]
 };
@@ -1752,7 +1794,7 @@ for (let i = 1; i <= demoPuzzle.numDispensers; i++) {
 	demoDispensers[i] = new Dispenser(demoPuzzle, demoPuzzle.dispenserFullSpec[i], tileIdRootPlus);
 }
 
-const demoRing = new Ring(demoPuzzle, "#demoSegment-");
+const demoRing = new Ring(demoPuzzle, "#demoRSegment-", "#demoRDigit-");
 
 //demoControls["Back"] = demoControlBack
 //demoControls["Demo"] = demoControlDemo
@@ -1885,9 +1927,9 @@ dispenserTileLookUp["Dispense3"] = document.querySelector("#demoDTile-31");
 
 //const script = ["Dispense2", "Dispense2", "Dispense1", "Dispense1", "Dispense1", "Dispense2", "Dispense1", "Dispense2", "Dispense2"];
 //const script = ["Dispense1", "Dispense1", "Dispense2", "Dispense2", "Dispense1", "Dispense2", "Dispense1", "Dispense2", "Dispense2"];
-//const script = ["Hint", "Dispense1"];
+//const script = ["Hint", "Dispense1", "Undispense"];
 //const script = ["Solution"];
-
+/*
 const script = ["Dispense1",
 				"Dispense2",
 				"Dispense3",
@@ -1901,6 +1943,29 @@ const script = ["Dispense1",
 				"Dispense1",
 				"Dispense2",
 				"Dispense1",
+				"Dispense2",
+				"Dispense2",
+				"Reset",
+				"Hint",
+				"Solution"
+				];
+*/
+
+const script = ["Dispense1",
+				"Dispense2",
+				"Dispense3",
+				"Reset",
+				"Dispense2",
+				"Dispense2",
+				"Dispense1",
+				"Dispense1",
+				"Dispense1",
+				"Dispense2",
+				"Dispense1",
+				"Dispense3",
+				"Dispense2",
+				"Undispense",
+				"Undispense",
 				"Dispense2",
 				"Dispense2",
 				"Reset",
@@ -1937,13 +2002,16 @@ async function executeScript() {
 			numTilesInRing = 0;
 		}
 		else if (control === "Undispense") {
-			const ringTileId = "#demoSegment-" + String(demoPuzzle.ringSpec[numTilesInRing - 1]);
-			const ringTileRef = document.querySelector(ringTileId);
-			ringTileRef.style.display = `none`;
+			//const ringTileId = "#demoRSegment-" + String(demoPuzzle.ringSpec[numTilesInRing - 1]);
+			//const ringTileRef = document.querySelector(ringTileId);
+			//ringTileRef.style.display = `none`;
+			demoRing.hideLastTileAdded();
 			await wait(600);
-			ringTileRef.style.display = `block`;
+			//ringTileRef.style.display = `block`;
+			demoRing.showLastTileAdded();
 			await wait(600);
-			ringTileRef.style.display = `none`;
+			//ringTileRef.style.display = `none`;
+			demoRing.hideLastTileAdded();
 			await wait(600);
 			actionLookUp[control]();
 			numTilesInRing--;
