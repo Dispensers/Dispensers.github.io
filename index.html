@@ -704,13 +704,13 @@ body {
 						<path id="demoRSegment-9" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#demoKeep-40)" transform="rotate(270 500 500)"/>
 
 						<text id="demoRDigit-1" x="578" y="203" fill="black" font-family="Arial, Helvetica, sans-serif" font-size="180">1</text>
-						<text id="demoRDigit-2" x="695" y="853" fill="black" font-family="Arial, Helvetica, sans-serif" font-size="180">2</text>
-						<text id="demoRDigit-3" x="72" y="631" fill="black" font-family="Arial, Helvetica, sans-serif" font-size="180">3</text>
 						<text id="demoRDigit-4" x="780" y="362" fill="black" font-family="Arial, Helvetica, sans-serif" font-size="180">4</text>
-						<text id="demoRDigit-5" x="448" y="948" fill="gray" font-family="Arial, Helvetica, sans-serif" font-size="180">5</text>
-						<text id="demoRDigit-6" x="117" y="369" fill="gray" font-family="Arial, Helvetica, sans-serif" font-size="180">6</text>
 						<text id="demoRDigit-7" x="838" y="629" fill="gray" font-family="Arial, Helvetica, sans-serif" font-size="180">7</text>
+						<text id="demoRDigit-2" x="695" y="853" fill="black" font-family="Arial, Helvetica, sans-serif" font-size="180">2</text>
+						<text id="demoRDigit-5" x="448" y="948" fill="gray" font-family="Arial, Helvetica, sans-serif" font-size="180">5</text>
 						<text id="demoRDigit-8" x="203" y="860" fill="gray" font-family="Arial, Helvetica, sans-serif" font-size="180">8</text>
+						<text id="demoRDigit-3" x="72" y="631" fill="black" font-family="Arial, Helvetica, sans-serif" font-size="180">3</text>
+						<text id="demoRDigit-6" x="117" y="369" fill="gray" font-family="Arial, Helvetica, sans-serif" font-size="180">6</text>
 						<text id="demoRDigit-9" x="322" y="200" fill="gray" font-family="Arial, Helvetica, sans-serif" font-size="180">9</text>
 					</svg>
 				</div>		
@@ -825,13 +825,13 @@ body {
 				<path id="rSegment-9" d="M500 228 L500 0 A500 500 0 0 1 1000 500 L772 500 A272 272 0 0 0 500 228" clip-path="url(#keep-40)" transform="rotate(270 500 500)"/>
 
 				<text id="rDigit-1" x="578" y="203" fill="black" font-family="Arial, Helvetica, sans-serif" font-size="180">1</text>
-				<text id="rDigit-2" x="695" y="853" fill="black" font-family="Arial, Helvetica, sans-serif" font-size="180">2</text>
-				<text id="rDigit-3" x="72" y="631" fill="black" font-family="Arial, Helvetica, sans-serif" font-size="180">3</text>
-				<text id="rDigit-4" x="780" y="362" fill="black" font-family="Arial, Helvetica, sans-serif" font-size="180">4</text>
+				<text id="rDigit-2" x="780" y="362" fill="black" font-family="Arial, Helvetica, sans-serif" font-size="180">2</text>
+				<text id="rDigit-3" x="838" y="629" fill="gray" font-family="Arial, Helvetica, sans-serif" font-size="180">3</text>
+				<text id="rDigit-4" x="695" y="853" fill="black" font-family="Arial, Helvetica, sans-serif" font-size="180">4</text>
 				<text id="rDigit-5" x="448" y="948" fill="gray" font-family="Arial, Helvetica, sans-serif" font-size="180">5</text>
-				<text id="rDigit-6" x="117" y="369" fill="gray" font-family="Arial, Helvetica, sans-serif" font-size="180">6</text>
-				<text id="rDigit-7" x="838" y="629" fill="gray" font-family="Arial, Helvetica, sans-serif" font-size="180">7</text>
-				<text id="rDigit-8" x="203" y="860" fill="gray" font-family="Arial, Helvetica, sans-serif" font-size="180">8</text>
+				<text id="rDigit-6" x="203" y="860" fill="gray" font-family="Arial, Helvetica, sans-serif" font-size="180">6</text>
+				<text id="rDigit-7" x="72" y="631" fill="black" font-family="Arial, Helvetica, sans-serif" font-size="180">7</text>
+				<text id="rDigit-8" x="117" y="369" fill="gray" font-family="Arial, Helvetica, sans-serif" font-size="180">8</text>
 				<text id="rDigit-9" x="322" y="200" fill="gray" font-family="Arial, Helvetica, sans-serif" font-size="180">9</text>
 			</svg>
 		</div>
@@ -1952,9 +1952,12 @@ const script = ["Dispense1",
 */
 
 const script = ["Dispense1",
+				"Pause",
 				"Dispense2",
 				"Dispense3",
+				"Pause",
 				"Reset",
+				"Pause",
 				"Dispense2",
 				"Dispense2",
 				"Dispense1",
@@ -1964,12 +1967,16 @@ const script = ["Dispense1",
 				"Dispense1",
 				"Dispense3",
 				"Dispense2",
+				"Pause",
 				"Undispense",
 				"Undispense",
 				"Dispense2",
 				"Dispense2",
+				"Pause",
 				"Reset",
+				"Pause",
 				"Hint",
+				"Pause",
 				"Solution"
 				];
 
@@ -1983,7 +1990,12 @@ async function executeScript() {
 	
 	demoSolveBiz.wake();
 	await wait(1000);
-	for (let control of script) {
+	for (let command of script) {
+		if (command === "Pause") {
+			await wait(500);
+			continue;
+		}
+		const control = command;
 		const spotRef = spotRefLookUp[control];
 		for (let opacity of spotFadeSequence) {
 			showSpot(spotRef, opacity);
@@ -2030,7 +2042,7 @@ async function executeScript() {
 		hideSpot(spotRef);
 		await wait(1000);
 	}
-	await wait(3000);
+	await wait(2000);
 	demoSolveBiz.reset();
 	demoSolveBiz.sleep();
 	demoControlBack.enable();
