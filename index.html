@@ -25,43 +25,72 @@ body {
 		3fr
 		[rIInformation-s rIBack-s]
 		7fr
-		[rIInformation-e rIBack-e]
+		[rIInformation-e rIBack-e rIPuzzleNumber-s rIPuzzleChangesOn-s]
+		9fr
+		[rIPuzzleNumber-e rIPuzzleChangesOn-e rISeparator-1-s]
+		1fr
+		[rISeparator-1-e]
 		3fr
 		[rIInstructions-s]
-		30fr
+		20fr
 		[rIInstructions-e]
 		3fr
-		[rISeparator-1-s]
+		[rISeparator-2-s]
 		3fr
-		[rISeparator-1-e rIDoorDemo-s]
+		[rISeparator-2-e rIDoorDemo-s]
 		105fr
-		[rIDoorDemo-e rISeparator-2-s]
+		[rIDoorDemo-e rISeparator-3-s]
 		3fr
-		[rISeparator-2-e]
+		[rISeparator-3-e]
 		43fr
 		[rwallInformation-e];	
  	grid-template-columns:
 		[cWallInformation-s cIDoorDemo-s cISeparator-s]
 		3fr
-		[cIBack-s cIInstructions-s]
+		[cIBack-s cIPuzzleNumber-s cIInstructions-s]
 		7fr
 		[cIBack-e]
 		3fr 
-		[cIInformation-s]
-		33fr
+		[cIPuzzleNumber-e cIInformation-s]
+		18fr
+		[cIPuzzleChangesOn-s]
+		15fr
 		[cIInformation-e]
 		10fr
-		[cIInstructions-e]
+		[cIPuzzleChangesOn-e cIInstructions-e]
 		3fr
 		[cWallInformation-e cIDoorDemo-e cISeparator-e];
 }
 
 #iBack {grid-row:rIBack-s/rIBack-e; grid-column:cIBack-s/cIBack-e;}
 #iInformation {grid-row:rIInformation-s/rIInformation-e; grid-column:cIInformation-s/cIInformation-e;}
+
+#iPuzzleNumber {
+	border:none;
+	margin:0;
+	padding:0;
+	font-size:2.1em;
+	text-align:left;
+	background-color:transparent;
+	grid-row:rIPuzzleNumber-s/rIPuzzleNumber-e;
+	grid-column:cIPuzzleNumber-s/cIPuzzleNumber-e;
+}
+#iPuzzleChangesOn {
+	border:none;
+	margin:0;
+	padding:0;
+	font-size:2.1em;
+	text-align:right;
+	background-color:transparent;
+	grid-row:rIPuzzleChangesOn-s/rIPuzzleChangesOn-e;
+	grid-column:cIPuzzleChangesOn-s/cIPuzzleChangesOn-e;
+}
+
 #iInstructions {grid-row:rIInstructions-s/rIInstructions-e; grid-column:cIInstructions-s/cIInstructions-e; font-size:1.5em; background-color:white;}
 
 #iSeparator-1 {grid-row:rISeparator-1-s/rISeparator-1-e; grid-column:cISeparator-s/cISeparator-e;}
 #iSeparator-2 {grid-row:rISeparator-2-s/rISeparator-2-e; grid-column:cISeparator-s/cISeparator-e;}
+#iSeparator-3 {grid-row:rISeparator-3-s/rISeparator-3-e; grid-column:cISeparator-s/cISeparator-e;}
 
 #iDoorDemo {
 	height:105em;
@@ -616,6 +645,11 @@ body {
 		<button id="iBack" class="cCommon cTertiary"><code><strong>&lt;</strong></code></button>
 
 		<button id="iInformation" class="title"><strong>Information</strong></button>
+		
+		<button id="iPuzzleNumber"><strong>No 21</strong></button>
+		<button id="iPuzzleChangesOn"><strong>Changes 11 Sep</strong></button>
+
+		<div id="iSeparator-1" class="separator"></div>
 	
 		<div id="iInstructions">Build a square which has just ONE area of each colour.<br><br>
 								As well as instructions:<br>
@@ -630,7 +664,7 @@ body {
 								* copyright<br>
 		</div>
 		
-		<div id="iSeparator-1" class="separator"></div>
+		<div id="iSeparator-2" class="separator"></div>
 
 		<div id="iDoorDemo" class="door">
 			<button id="demoCDemo" class="cCommon">Demonstration</button>
@@ -717,7 +751,7 @@ body {
 			</div>
 		</div>
 		
-		<div id="iSeparator-2" class="separator"></div>
+		<div id="iSeparator-3" class="separator"></div>
 	</div>
 
 	<div id="door"
@@ -1940,7 +1974,7 @@ dispenserTileLookUp["Dispense3"] = document.querySelector("#demoDTile-31");
 //const script = ["Dispense2", "Dispense2", "Dispense1", "Dispense1", "Dispense1", "Dispense2", "Dispense1", "Dispense2", "Dispense2"];
 //const script = ["Dispense1", "Dispense1", "Dispense2", "Dispense2", "Dispense1", "Dispense2", "Dispense1", "Dispense2", "Dispense2"];
 //const script = ["Hint", "Dispense1", "Undispense"];
-const script = ["Solution"];
+//const script = ["Solution"];
 /*
 const script = ["Dispense1",
 				"Dispense2",
@@ -1962,7 +1996,7 @@ const script = ["Dispense1",
 				"Solution"
 				];
 */
-/*
+
 const script = ["Dispense1",
 				"Pause",
 				"Dispense2",
@@ -1991,7 +2025,7 @@ const script = ["Dispense1",
 				"Pause",
 				"Solution"
 				];
-*/
+
 const spotFadeSequence = [1.0, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4];
 
 async function executeScript() {
