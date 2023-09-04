@@ -1416,13 +1416,13 @@ class SolveBiz {
 		
 		this.dispenseSequence = [];
 		
-		this.solutionTimer = undefined;
+		//this.solutionTimer = undefined;
 		this.solutionNextIndex = undefined;
 
 		for (let i = 1; i <= puzzle.numDispensers; i++) this.dispensers[i].refresh();
 		
 		this.hintTemporaryTile = new Tile(null, puzzle.hintColour);
-		this.hintTimer = undefined;
+		//this.hintTimer = undefined;
 		this.hintNumShows = 3;
 		this.hintNumShowsRemaining = undefined;
 		this.hintShowing = undefined;
@@ -1471,15 +1471,17 @@ class SolveBiz {
 			this.hintShowing = false;
 			this.hintNumShowsRemaining--;
 			if (this.hintNumShowsRemaining == 0) {
-				clearInterval(this.hintTimer);
+				//clearInterval(this.hintTimer);
 				this.io.enableAllControlsExcept(["Reset", "Undispense"]);
+				return;
 			}
 		}
 		else {
 			this.ring.addTemporaryTile(this.hintTemporaryTile, this.puzzle.hintIndex);
 			this.ring.refresh();
-			this.hintShowing = true;			
+			this.hintShowing = true;
 		}
+		setTimeout(punterHintTimerExpired, 1000);
 	}
 	
 	hintOnClick() {
@@ -1496,7 +1498,8 @@ class SolveBiz {
 			this.hintShowing = false;
 			this.hintNumShowsRemaining = this.hintNumShows;
 		}
-		this.hintTimer = setInterval(punterHintTimerExpired, 1000);
+		//this.hintTimer = setInterval(punterHintTimerExpired, 1000);
+		setTimeout(punterHintTimerExpired, 1000);
 	}
 
 	hintWithCallbackTimerExpired() {
@@ -1506,9 +1509,10 @@ class SolveBiz {
 			this.hintShowing = false;
 			this.hintNumShowsRemaining--;
 			if (this.hintNumShowsRemaining == 0) {
-				clearInterval(this.hintTimer);
+				//clearInterval(this.hintTimer);
 				this.io.enableAllControlsExcept(["Reset", "Undispense"]);
 				this.callbackResolve();
+				return;
 			}
 		}
 		else {
@@ -1516,6 +1520,7 @@ class SolveBiz {
 			this.ring.refresh();
 			this.hintShowing = true;			
 		}
+		setTimeout(demoHintTimerExpired, 1000);
 	}
 
 	hintWithCallback() {
@@ -1526,7 +1531,8 @@ class SolveBiz {
 								this.ring.refresh();
 								this.hintShowing = true;
 								this.hintNumShowsRemaining = this.hintNumShows;
-								this.hintTimer = setInterval(demoHintTimerExpired, 1000);
+								//this.hintTimer = setInterval(demoHintTimerExpired, 1000);
+								setTimeout(demoHintTimerExpired, 1000);
 							}
 					);
 	}
@@ -1543,9 +1549,11 @@ class SolveBiz {
 		this.solutionShowTile(dispenser);
 		this.solutionNextIndex++;
 		if (this.solutionNextIndex == 9) {
-			clearInterval(this.solutionTimer);
+			//clearInterval(this.solutionTimer);
 			this.io.enableControls(["Reset"]);
+			return;
 		}
+		setTimeout(punterSolutionTimerExpired, 1000);
 	}
 	
 	solutionOnClick() {
@@ -1559,7 +1567,8 @@ class SolveBiz {
 			this.reset();
 			this.solutionNextIndex = 0;
 		}
-		this.solutionTimer = setInterval(punterSolutionTimerExpired, 1000);
+		//this.solutionTimer = setInterval(punterSolutionTimerExpired, 1000);
+		setTimeout(punterSolutionTimerExpired, 1000);
 	}
 
 	solutionWithCallbackTimerExpired() {
@@ -1570,7 +1579,9 @@ class SolveBiz {
 			clearInterval(this.solutionTimer);
 			this.io.enableControls(["Reset"]);
 			this.callbackResolve();
+			return;
 		}
+		setTimeout(demoSolutionTimerExpired, 1000);
 	}
 
 	solutionWithCallback() {
@@ -1579,7 +1590,8 @@ class SolveBiz {
 								this.callbackResolve = resolve;
 								this.solutionShowTile(this.dispensers[this.puzzle.solutionDispenseSequence[0]]);
 								this.solutionNextIndex = 1;
-								this.hintTimer = setInterval(demoSolutionTimerExpired, 1000);
+								//this.hintTimer = setInterval(demoSolutionTimerExpired, 1000);
+								setTimeout(demoSolutionTimerExpired, 1000);
 							}
 					);
 	}
@@ -1928,7 +1940,7 @@ dispenserTileLookUp["Dispense3"] = document.querySelector("#demoDTile-31");
 //const script = ["Dispense2", "Dispense2", "Dispense1", "Dispense1", "Dispense1", "Dispense2", "Dispense1", "Dispense2", "Dispense2"];
 //const script = ["Dispense1", "Dispense1", "Dispense2", "Dispense2", "Dispense1", "Dispense2", "Dispense1", "Dispense2", "Dispense2"];
 //const script = ["Hint", "Dispense1", "Undispense"];
-//const script = ["Solution"];
+const script = ["Solution"];
 /*
 const script = ["Dispense1",
 				"Dispense2",
@@ -1950,7 +1962,7 @@ const script = ["Dispense1",
 				"Solution"
 				];
 */
-
+/*
 const script = ["Dispense1",
 				"Pause",
 				"Dispense2",
@@ -1979,7 +1991,7 @@ const script = ["Dispense1",
 				"Pause",
 				"Solution"
 				];
-
+*/
 const spotFadeSequence = [1.0, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4];
 
 async function executeScript() {
