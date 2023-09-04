@@ -31,8 +31,10 @@ body {
 		1fr
 		[rISeparator-1-e]
 		3fr
-		[rIInstructions-s]
-		20fr
+		[rIHdrInstructions-s]
+		3fr
+		[rIHdrInstructions-e rIInstructions-s]
+		25fr
 		[rIInstructions-e]
 		3fr
 		[rISeparator-2-s]
@@ -42,17 +44,19 @@ body {
 		[rIDoorDemo-e rISeparator-3-s]
 		3fr
 		[rISeparator-3-e]
-		43fr
+		35fr
 		[rwallInformation-e];	
  	grid-template-columns:
 		[cWallInformation-s cIDoorDemo-s cISeparator-s]
 		3fr
-		[cIBack-s cIPuzzleNumber-s cIInstructions-s]
+		[cIBack-s cIPuzzleNumber-s cIHdrInstructions-s cIInstructions-s]
 		7fr
 		[cIBack-e]
 		3fr 
 		[cIPuzzleNumber-e cIInformation-s]
-		18fr
+		10fr
+		[cIHdrInstructions-e]
+		8fr
 		[cIPuzzleChangesOn-s]
 		15fr
 		[cIInformation-e]
@@ -86,6 +90,17 @@ body {
 	color:black;
 	grid-row:rIPuzzleChangesOn-s/rIPuzzleChangesOn-e;
 	grid-column:cIPuzzleChangesOn-s/cIPuzzleChangesOn-e;
+}
+
+#iHdrInstructions {
+	overflow:hidden;
+	border:none;
+	margin:0;
+	padding:0;
+	font-size:2.5em;
+	font-variant:small-caps;
+	grid-row:rIHdrInstructions-s/rIHdrInstructions-e;
+	grid-column:cIHdrInstructions-s/cIHdrInstructions-e;
 }
 
 #iInstructions {grid-row:rIInstructions-s/rIInstructions-e; grid-column:cIInstructions-s/cIInstructions-e; font-size:1.5em; background-color:white;}
@@ -639,6 +654,8 @@ body {
 
 .separator {background-color:black;}
 
+span.sub {vertical-align:sub;}
+
   </style>
 </head>
 <body>
@@ -652,7 +669,10 @@ body {
 		<button id="iPuzzleChangesOn"><strong>Changes 11 Sep</strong></button>
 
 		<div id="iSeparator-1" class="separator"></div>
-	
+
+<!--		<p id="iHdrInstructions"><span class="sub"><strong>Instructions</strong></span></p> -->
+		<p id="iHdrInstructions"><strong>Instructions</strong></p>
+
 		<div id="iInstructions">Build a square which has just ONE area of each colour.<br><br>
 								As well as instructions:<br>
 								* puzzle number<br>
