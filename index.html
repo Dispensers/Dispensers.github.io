@@ -24,19 +24,33 @@ body {
 		[rWallInformation-s]
 		3fr
 		[rIInformation-s rIBack-s]
-		7fr
+		1fr
+		[rISBack-s]
+		4fr
+		[rISBack-e]
+		2fr
 		[rIInformation-e rIBack-e rIPuzzleNumber-s rIPuzzleChangesOn-s]
 		9fr
 		[rIPuzzleNumber-e rIPuzzleChangesOn-e rISeparator-1-s]
 		1fr
 		[rISeparator-1-e]
-		3fr
+		1fr
+		[rIHighlighter-1-top-s]
+		1fr
+		[rIHighlighter-1-top-e rIHighlighter-1-lr-s]
+		1fr
 		[rIHdrInstructions-s]
 		3fr
-		[rIHdrInstructions-e rIInstructions-s]
-		25fr
+		[rIInstructions-s]
+		2fr
+		[rIHdrInstructions-e]
+		8fr
 		[rIInstructions-e]
-		3fr
+		1fr
+		[rIHighlighter-1-lr-e rIHighlighter-1-bottom-s]
+		1fr
+		[rIHighlighter-1-bottom-e]
+		1fr
 		[rISeparator-2-s]
 		3fr
 		[rISeparator-2-e rIDoorDemo-s]
@@ -44,13 +58,25 @@ body {
 		[rIDoorDemo-e rISeparator-3-s]
 		3fr
 		[rISeparator-3-e]
-		35fr
+		3fr
+		[rILazyDog-s]
+		44fr
+		[rILazyDog-e]
+		3fr
 		[rwallInformation-e];	
  	grid-template-columns:
 		[cWallInformation-s cIDoorDemo-s cISeparator-s]
-		3fr
-		[cIBack-s cIPuzzleNumber-s cIHdrInstructions-s cIInstructions-s]
-		7fr
+		1fr
+		[cIHighlighter-1-tb-s cIHighlighter-1-left-s]
+		1fr
+		[cIHighlighter-1-left-e]
+		1fr
+		[cIBack-s cIPuzzleNumber-s cIHdrInstructions-s cIInstructions-s cILazyDog-s]
+		1fr
+		[cISBack-s]
+		4fr
+		[cISBack-e]
+		2fr
 		[cIBack-e]
 		3fr 
 		[cIPuzzleNumber-e cIInformation-s]
@@ -61,13 +87,19 @@ body {
 		15fr
 		[cIInformation-e]
 		10fr
-		[cIPuzzleChangesOn-e cIInstructions-e]
-		3fr
+		[cIPuzzleChangesOn-e cIInstructions-e cILazyDog-e]
+		1fr
+		[cIHighlighter-1-right-s]
+		1fr
+		[cIHighlighter-1-tb-e cIHighlighter-1-right-e]
+		1fr
 		[cWallInformation-e cIDoorDemo-e cISeparator-e];
 }
 
 #iBack {grid-row:rIBack-s/rIBack-e; grid-column:cIBack-s/cIBack-e;}
 #iInformation {grid-row:rIInformation-s/rIInformation-e; grid-column:cIInformation-s/cIInformation-e;}
+
+#iSBack {display:none; grid-row:rISBack-s/rISBack-e; grid-column:cISBack-s/cISBack-e;}
 
 #iPuzzleNumber {
 	border:none;
@@ -93,6 +125,7 @@ body {
 }
 
 #iHdrInstructions {
+/*	vertical-align:sub; */
 	overflow:hidden;
 	border:none;
 	margin:0;
@@ -104,6 +137,13 @@ body {
 }
 
 #iInstructions {grid-row:rIInstructions-s/rIInstructions-e; grid-column:cIInstructions-s/cIInstructions-e; font-size:1.5em; background-color:white;}
+
+#iHighlighter-1-top {grid-row:rIHighlighter-1-top-s/rIHighlighter-1-top-e; grid-column:cIHighlighter-1-tb-s/cIHighlighter-1-tb-e;}
+#iHighlighter-1-bottom {grid-row:rIHighlighter-1-bottom-s/rIHighlighter-1-bottom-e; grid-column:cIHighlighter-1-tb-s/cIHighlighter-1-tb-e;}
+#iHighlighter-1-left {grid-row:rIHighlighter-1-lr-s/rIHighlighter-1-lr-e; grid-column:cIHighlighter-1-left-s/cIHighlighter-1-left-e;}
+#iHighlighter-1-right {grid-row:rIHighlighter-1-lr-s/rIHighlighter-1-lr-e; grid-column:cIHighlighter-1-right-s/cIHighlighter-1-right-e;}
+
+#iLazyDog {grid-row:rILazyDog-s/rILazyDog-e; grid-column:cILazyDog-s/cILazyDog-e; font-size:1.5em; background-color:white;}
 
 #iSeparator-1 {grid-row:rISeparator-1-s/rISeparator-1-e; grid-column:cISeparator-s/cISeparator-e;}
 #iSeparator-2 {grid-row:rISeparator-2-s/rISeparator-2-e; grid-column:cISeparator-s/cISeparator-e;}
@@ -117,11 +157,19 @@ body {
 	display:grid;
 	grid-template-rows:
 		[rDemoDoor-s rDemoLED-s]
-		3fr
+		1fr
+		[rIHighlighter-2-top-s]
+		1fr
+		[rIHighlighter-2-top-e rIHighlighter-2-lr-s]
+		1fr
 		[rDemoLED-e rDemoCDemo-s]
 		7fr
 		[rDemoCDemo-e]
-		3fr
+		1fr
+		[rIHighlighter-2-lr-e rIHighlighter-2-bottom-s]
+		1fr
+		[rIHighlighter-2-bottom-e]
+		1fr
 		[rDemoCTop-s]
 		1fr
 		[rDemoSTop-s]
@@ -160,8 +208,10 @@ body {
 		2fr
 		[cDemoCDispense-1-s]
 		1fr
-		[cDemoCReset-e cDemoSDispense-1-s]
-		2fr
+		[cDemoCReset-e cDemoSDispense-1-s cIHighlighter-2-tb-s cIHighlighter-2-left-s]
+		1fr
+		[cIHighlighter-2-left-e]
+		1fr
 		[cDemoCDemo-s]
 		3fr
 		[cDemoCInformation-e cDemoSDispense-1-e]
@@ -191,8 +241,10 @@ body {
 		[cDemoSBack-e]
 		2fr
 		[cDemoCDemo-e]
-		2fr
-		[cDemoSDispense-3-e]
+		1fr
+		[cIHighlighter-2-right-s]
+		1fr
+		[cDemoSDispense-3-e cIHighlighter-2-tb-e cIHighlighter-2-right-e]
 		1fr
 		[cDemoCDispense-3-e cDemoSSolution-s]
 		4fr
@@ -212,6 +264,11 @@ body {
 	color:white;
 	font-size:3em;
 }
+
+#iHighlighter-2-top {grid-row:rIHighlighter-2-top-s/rIHighlighter-2-top-e; grid-column:cIHighlighter-2-tb-s/cIHighlighter-2-tb-e;}
+#iHighlighter-2-bottom {grid-row:rIHighlighter-2-bottom-s/rIHighlighter-2-bottom-e; grid-column:cIHighlighter-2-tb-s/cIHighlighter-2-tb-e;}
+#iHighlighter-2-left {grid-row:rIHighlighter-2-lr-s/rIHighlighter-2-lr-e; grid-column:cIHighlighter-2-left-s/cIHighlighter-2-left-e;}
+#iHighlighter-2-right {grid-row:rIHighlighter-2-lr-s/rIHighlighter-2-lr-e; grid-column:cIHighlighter-2-right-s/cIHighlighter-2-right-e;}
 
 #demoLEDGreen {display:none; grid-row:rDemoLED-s/rDemoLED-e; grid-column:cDemoLED-s/cDemoLED-e;}
 #demoLEDRed {display:none; grid-row:rDemoLED-s/rDemoLED-e; grid-column:cDemoLED-s/cDemoLED-e;}
@@ -346,8 +403,10 @@ body {
 		[cPanel-s cDispensers-hn-s cCInformation-s cCReset-s]
 		5fr
 		[cCDispense-41-s]
-		5fr
-		[cCDispense-31-s]
+		1fr
+		[cSInformation-s]
+		4fr
+		[cSInformation-e cCDispense-31-s]
 		1fr
 		[cCReset-e]
 		1fr
@@ -404,6 +463,8 @@ body {
 #cSolution {grid-row:rCTop-s/rCTop-e; grid-column:cCSolution-s/cCSolution-e;}
 #cReset {grid-row:rCBottom-s/rCBottom-e; grid-column:cCReset-s/cCReset-e;}
 #cBack {grid-row:rCBottom-s/rCBottom-e; grid-column:cCBack-s/cCBack-e;}
+
+#sInformation {display:none; grid-row:rSInformation-s/rSInformation-e; grid-column:cSInformation-s/cSInformation-e;}
 
 #cDispense-21 {display:none; grid-row:rCDispense-s/rCDispense-e; grid-column:cCDispense-21-s/cCDispense-21-e;}
 #cDispense-22 {display:none; grid-row:rCDispense-s/rCDispense-e; grid-column:cCDispense-22-s/cCDispense-22-e;}
@@ -653,8 +714,9 @@ body {
 .cBack {font-size:3em; text-align:center;}
 
 .separator {background-color:black;}
+.highlighter {display:none; background-color:yellow;}
 
-span.sub {vertical-align:sub;}
+/* span.sub {vertical-align:sub;} */
 
   </style>
 </head>
@@ -662,6 +724,8 @@ span.sub {vertical-align:sub;}
 
 	<div id="wallInformation" class="wall">
 		<button id="iBack" class="cCommon cTertiary"><code><strong>&lt;</strong></code></button>
+
+		<img id="iSBack" class="spotEven" src="spotEven.svg" alt="Spot"/>
 
 		<button id="iInformation" class="title"><strong>Information</strong></button>
 		
@@ -672,24 +736,38 @@ span.sub {vertical-align:sub;}
 
 <!--		<p id="iHdrInstructions"><span class="sub"><strong>Instructions</strong></span></p> -->
 		<p id="iHdrInstructions"><strong>Instructions</strong></p>
+<!--		<table id="iHdrInstructions"><td><span class="sub"><strong>Instructions</strong></span></tr></table> -->
 
 		<div id="iInstructions">Build a square which has just ONE area of each colour.<br><br>
-								As well as instructions:<br>
-								* puzzle number<br>
-								* date when a new puzzle will appear<br>
-								* blurb<br>
-								* demo<br>
-								* links to other puzzles<br>
-								* social media<br>
-								* Lazy Dog ad<br>
-								* Ukraine flag<br>
-								* copyright<br>
+		</div>
+		
+		<div id="iHighlighter-1-top" class="highlighter"></div>
+		<div id="iHighlighter-1-bottom" class="highlighter"></div>
+		<div id="iHighlighter-1-left" class="highlighter"></div>
+		<div id="iHighlighter-1-right" class="highlighter"></div>
+		
+
+		<div id="iLazyDog">As well as instructions:<br>
+							* puzzle number<br>
+							* date when a new puzzle will appear<br>
+							* blurb<br>
+							* demo<br>
+							* links to other puzzles<br>
+							* social media<br>
+							* Lazy Dog ad<br>
+							* Ukraine flag<br>
+							* copyright<br>
 		</div>
 		
 		<div id="iSeparator-2" class="separator"></div>
 
 		<div id="iDoorDemo" class="door">
 			<button id="demoCDemo" class="cCommon">Demonstration</button>
+
+			<div id="iHighlighter-2-top" class="highlighter"></div>
+			<div id="iHighlighter-2-bottom" class="highlighter"></div>
+			<div id="iHighlighter-2-left" class="highlighter"></div>
+			<div id="iHighlighter-2-right" class="highlighter"></div>
 
 			<img id="demoLEDGreen" class="led" src="LEDGreen.svg" alt="Green"/>
 			<img id="demoLEDRed" class="led" src="LEDRed.svg" alt="Red"/>
@@ -788,7 +866,11 @@ span.sub {vertical-align:sub;}
 				[rPuzzleName-e]
 				3fr
 				[rCTop-s]
-				6fr
+				1fr
+				[rSInformation-s]
+				4fr
+				[rSInformation-e]
+				1fr
 				[rCTop-e]
 				3fr
 				[rPanel-s]
@@ -826,6 +908,8 @@ span.sub {vertical-align:sub;}
 		<button id="cInformation" class="cCommon cSecondary">Information</button>
 		<button id="cHint" class="cCommon cSecondary">Hint</button>
 		<button id="cSolution" class="cCommon cSecondary">Solution</button>
+
+		<img id="sInformation" class="spotEven" src="spotEven.svg" alt="Spot"/>
 		
 <!--		<button id="cDispense-21" class="cDispense"><strong>&bigtriangledown;</strong></button>
 		<button id="cDispense-22" class="cDispense"><strong>&bigtriangledown;</strong></button>
@@ -2048,9 +2132,10 @@ const script = ["Dispense1",
 				"Solution"
 				];
 
-const spotFadeSequence = [1.0, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4];
+//const spotFadeSequence = [1.0, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4];
 
 async function executeScript() {
+	const spotFadeSequence = [1.0, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4];
 	let numTilesInRing = 0;
 	
 	demoControlBack.disable();
@@ -2117,56 +2202,78 @@ async function executeScript() {
 	demoControlDemo.enable();
 }
 
-/*
-function dispense1Action() {solve.dispenseOnClick(1)};
-function dispense2Action() {solve.dispenseOnClick(2)};
-function dispense3Action() {solve.dispenseOnClick(3)};
-function undispenseAction() {solve.undispenseOnClick();};
+async function begin() {
+	const spotFadeSequence = [1.0, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4];
+	const spotInformationRef = document.querySelector("#sInformation");
+	const spotBackRef = document.querySelector("#iSBack");
+	const styleSheet = document.styleSheets[0]
+	const informationRule = [...styleSheet.cssRules].find((r) => r.selectorText === "#wallInformation");
+	
+	const highlighter1TopRef = document.querySelector("#iHighlighter-1-top");
+	const highlighter1BottomRef = document.querySelector("#iHighlighter-1-bottom");
+	const highlighter1LeftRef = document.querySelector("#iHighlighter-1-left");
+	const highlighter1RightRef = document.querySelector("#iHighlighter-1-right");
 
-let actionLookUp = [];
-actionLookUp["Dispense1"] = dispense1Action;
-actionLookUp["Dispense2"] = dispense2Action;
-actionLookUp["Dispense3"] = dispense3Action;
-actionLookUp["Undispense"] = undispenseAction;
+	const highlighter2TopRef = document.querySelector("#iHighlighter-2-top");
+	const highlighter2BottomRef = document.querySelector("#iHighlighter-2-bottom");
+	const highlighter2LeftRef = document.querySelector("#iHighlighter-2-left");
+	const highlighter2RightRef = document.querySelector("#iHighlighter-2-right");
 
-const script = ["Dispense3", "Dispense2", "Dispense3", "Dispense3", "Dispense3", "Dispense3", "Dispense1", "Dispense3", "Dispense3", "Undispense"];
-//const script = ["Dispense1", "Dispense2", "Dispense3", "Undispense"];
-//const script = ["Dispense1"];
-
-function highlightButton() {
-	const buttonName = script[scriptIndex];
-	//highlight button
-	showSpot();
-	setTimeout(highlightTimerExpired, 1000);		
-}
-
-function highlightTimerExpired() {
-	actionLookUp[script[scriptIndex]]();
-	//unhighlight button
-	hideSpot();
-	setTimeout(actionTimerExpired, 2000);		
-}
-
-function actionTimerExpired() {
-	scriptIndex++;
-	if (scriptIndex < script.length) {
-		highlightButton();
-	}
-}
-
-const spotRef = document.querySelector("#spotDispense-33");
-
-function showSpot() {
-		spotRef.style.display = `block`;
+	await wait(2000);
+	
+	for (let opacity of spotFadeSequence) {
+		showSpot(spotInformationRef, opacity);
+		await wait(100);
 	}
 	
-function hideSpot() {
-		spotRef.style.display = `none`;
-	}
+	await wait(700);
+	hideSpot(spotInformationRef);
+	
+	informationRule.style.setProperty("display", `grid`);
+	informationRule.style.setProperty("z-index", `3`);
 
-let scriptIndex = 0;
-highlightButton();
-*/
+	await wait(2000);
+
+	highlighter1TopRef.style.display = `block`;
+	highlighter1BottomRef.style.display = `block`;
+	highlighter1LeftRef.style.display = `block`;
+	highlighter1RightRef.style.display = `block`;
+
+	await wait(1500);
+
+	highlighter1TopRef.style.display = `none`;
+	highlighter1BottomRef.style.display = `none`;
+	highlighter1LeftRef.style.display = `none`;
+	highlighter1RightRef.style.display = `none`;
+
+	await wait(1000);
+	
+	highlighter2TopRef.style.display = `block`;
+	highlighter2BottomRef.style.display = `block`;
+	highlighter2LeftRef.style.display = `block`;
+	highlighter2RightRef.style.display = `block`;
+
+	await wait(1500);
+
+	highlighter2TopRef.style.display = `none`;
+	highlighter2BottomRef.style.display = `none`;
+	highlighter2LeftRef.style.display = `none`;
+	highlighter2RightRef.style.display = `none`;
+
+	await wait(1000);
+
+	for (let opacity of spotFadeSequence) {
+		showSpot(spotBackRef, opacity);
+		await wait(100);
+	}
+	
+	await wait(700);
+	hideSpot(spotBackRef);
+	
+	informationRule.style.setProperty("z-index", `1`);
+	informationRule.style.setProperty("display", `none`);
+}
+begin();
 
 </script>
 
