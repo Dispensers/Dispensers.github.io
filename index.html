@@ -39,11 +39,11 @@ body {
 		1fr
 		[rIHighlighter-1-top-e rIHighlighter-1-lr-s]
 		1fr
-		[rIHdrInstructions-s]
+		[rITTInstructions-s]
 		3fr
 		[rIInstructions-s]
 		2fr
-		[rIHdrInstructions-e]
+		[rITTInstructions-e]
 		8fr
 		[rIInstructions-e]
 		1fr
@@ -51,6 +51,20 @@ body {
 		1fr
 		[rIHighlighter-1-bottom-e]
 		1fr
+
+		[rITTOtherPuzzles-s]
+		3fr
+		[rITCDispensersLambda-s]
+		2fr
+		[rITTOtherPuzzles-e]
+		4fr
+		[rITCDispensersLambda-e rITCLadderet-s]
+		6fr
+		[rITCLadderet-e rITCLooseFit-s]
+		6fr
+		[rITCLooseFit-e]
+		3fr
+		
 		[rISeparator-2-s]
 		3fr
 		[rISeparator-2-e rIDoorDemo-s]
@@ -60,7 +74,7 @@ body {
 		[rISeparator-3-e]
 		3fr
 		[rILazyDog-s]
-		44fr
+		20fr
 		[rILazyDog-e]
 		3fr
 		[rwallInformation-e];	
@@ -71,7 +85,7 @@ body {
 		1fr
 		[cIHighlighter-1-left-e]
 		1fr
-		[cIBack-s cIPuzzleNumber-s cIHdrInstructions-s cIInstructions-s cILazyDog-s]
+		[cIBack-s cIPuzzleNumber-s cITT-s cITC-s cILazyDog-s]
 		1fr
 		[cISBack-s]
 		4fr
@@ -80,14 +94,12 @@ body {
 		[cIBack-e]
 		3fr 
 		[cIPuzzleNumber-e cIInformation-s]
-		10fr
-		[cIHdrInstructions-e]
-		8fr
+		18fr
 		[cIPuzzleChangesOn-s]
 		15fr
 		[cIInformation-e]
 		10fr
-		[cIPuzzleChangesOn-e cIInstructions-e cILazyDog-e]
+		[cIPuzzleChangesOn-e cITT-e cITC-e cILazyDog-e]
 		1fr
 		[cIHighlighter-1-right-s]
 		1fr
@@ -124,19 +136,72 @@ body {
 	grid-column:cIPuzzleChangesOn-s/cIPuzzleChangesOn-e;
 }
 
+/*
 #iHdrInstructions {
-/*	vertical-align:sub; */
 	overflow:hidden;
 	border:none;
 	margin:0;
 	padding:0;
+	text-align:justify;
 	font-size:2.5em;
 	font-variant:small-caps;
 	grid-row:rIHdrInstructions-s/rIHdrInstructions-e;
 	grid-column:cIHdrInstructions-s/cIHdrInstructions-e;
 }
+*/
 
-#iInstructions {grid-row:rIInstructions-s/rIInstructions-e; grid-column:cIInstructions-s/cIInstructions-e; font-size:1.5em; background-color:white;}
+#iTTInstructions {grid-row:rITTInstructions-s/rITTInstructions-e; grid-column:cITT-s/cITT-e;}
+
+/*
+#iInstructions {
+	border:none;
+	margin:0;
+	padding:0 0.5em 0 0.5em;
+	font-size:2.5em;
+	background-color:white;
+	color:black;
+	grid-row:rIInstructions-s/rIInstructions-e;
+	grid-column:cIInstructions-s/cIInstructions-e;
+}
+*/
+
+#iTCInstructions {
+	border:none;
+	padding:0 0.5em 0 0.5em;
+	font-size:2.5em;
+	grid-row:rIInstructions-s/rIInstructions-e;
+	grid-column:cITC-s/cITC-e;
+}
+
+#iTTOtherPuzzles {
+	overflow:hidden;
+	border:none;
+	margin:0;
+	padding:0;
+	text-align:center;
+	font-size:2.5em;
+	font-variant:small-caps;
+	grid-row:rITTOtherPuzzles-s/rITTOtherPuzzles-e;
+	grid-column:cITT-s/cITT-e;
+}
+
+#iTCDispensersLambda {
+	border-bottom-width:0;
+	grid-row:rITCDispensersLambda-s/rITCDispensersLambda-e;
+	grid-column:cITC-s/cITC-e;
+}
+
+#iTCLadderet {
+	border-bottom-width:0;
+	grid-row:rITCLadderet-s/rITCLadderet-e;
+	grid-column:cITC-s/cITC-e;
+}
+
+#iTCLooseFit {
+	border-bottom-width:1px;
+	grid-row:rITCLooseFit-s/rITCLooseFit-e;
+	grid-column:cITC-s/cITC-e;
+}
 
 #iHighlighter-1-top {grid-row:rIHighlighter-1-top-s/rIHighlighter-1-top-e; grid-column:cIHighlighter-1-tb-s/cIHighlighter-1-tb-e;}
 #iHighlighter-1-bottom {grid-row:rIHighlighter-1-bottom-s/rIHighlighter-1-bottom-e; grid-column:cIHighlighter-1-tb-s/cIHighlighter-1-tb-e;}
@@ -716,7 +781,30 @@ body {
 .separator {background-color:black;}
 .highlighter {display:none; background-color:yellow;}
 
-/* span.sub {vertical-align:sub;} */
+.topicTitle {
+	overflow:hidden;
+	border:none;
+	margin:0;
+	padding:0;
+	text-align:center;
+	font-size:2.5em;
+	font-variant:small-caps;
+}
+
+.topicContent {margin:0; background-color:white; color:black;}
+
+.iOtherPuzzles {
+	border-style:solid;
+	border-color:black;
+	border-top-width:1px;
+	border-left-width:1px;
+	border-right-width:1px;
+/*	margin:0; */
+	padding:0;
+	font-size:2.4em;
+/*	background-color:white; */
+/*	color:black; */
+}
 
   </style>
 </head>
@@ -735,16 +823,23 @@ body {
 		<div id="iSeparator-1" class="separator"></div>
 
 <!--		<p id="iHdrInstructions"><span class="sub"><strong>Instructions</strong></span></p> -->
-		<p id="iHdrInstructions"><strong>Instructions</strong></p>
+<!--		<p id="iHdrInstructions"><strong>Instructions</strong></p> -->
 <!--		<table id="iHdrInstructions"><td><span class="sub"><strong>Instructions</strong></span></tr></table> -->
+		<p id="iTTInstructions" class="topicTitle"><strong>Instructions</strong></p>
 
-		<div id="iInstructions">Build a square which has just ONE area of each colour.<br><br>
-		</div>
+<!--		<div id="iInstructions"><strong>Build a ring in which NO tile has the same colour as either of its neighbours.</strong><br><br></div> -->
+		<button id="iTCInstructions" class="topicContent"><strong>Build a ring in which NO tile has the same colour as either of its neighbours.</strong></button>
 		
 		<div id="iHighlighter-1-top" class="highlighter"></div>
 		<div id="iHighlighter-1-bottom" class="highlighter"></div>
 		<div id="iHighlighter-1-left" class="highlighter"></div>
 		<div id="iHighlighter-1-right" class="highlighter"></div>
+
+		<p id="iTTOtherPuzzles" class="topicTitle"><strong>Other Puzzles</strong></p>
+
+		<button id="iTCDispensersLambda" class="topicContent iOtherPuzzles"><a href="DispensersLamba.html">https://dispensers.github.io</a></button>
+		<button id="iTCLadderet" class="topicContent iOtherPuzzles"><a href="Ladderet.html">https://dispensers.github.io</a></button>
+		<button id="iTCLooseFit" class="topicContent iOtherPuzzles"><a href="LooseFit.html">https://dispensers.github.io</a></button>
 		
 
 		<div id="iLazyDog">As well as instructions:<br>
