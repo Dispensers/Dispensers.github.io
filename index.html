@@ -18,7 +18,7 @@ body {
 	display:none;
 	z-index:1;
 	position:absolute;
-	height:200em;
+	height:225em;
 	width:59em;
 	grid-template-rows:
 		[rWallInformation-s]
@@ -41,11 +41,11 @@ body {
 		1fr
 		[rITTInstructions-s]
 		3fr
-		[rIInstructions-s]
+		[rITCInstructions-s]
 		2fr
 		[rITTInstructions-e]
 		8fr
-		[rIInstructions-e]
+		[rITCInstructions-e]
 		1fr
 		[rIHighlighter-1-lr-e rIHighlighter-1-bottom-s]
 		1fr
@@ -73,11 +73,36 @@ body {
 		3fr
 		[rISeparator-3-e]
 		3fr
-		[rILazyDog-s]
-		20fr
-		[rILazyDog-e]
+
+		[rITTWhereIPost-s]
 		3fr
-		[rwallInformation-e];	
+		[rITCFacebook-s]
+		2fr
+		[rITTWhereIPost-e]
+		4fr
+		[rITCFacebook-e rITCMastodon-s]
+		6fr
+		[rITCMastodon-e rITCReddit-s]
+		6fr
+		[rITCReddit-e rITCTwitter-s]
+		6fr
+		[rITCTwitter-e]
+		3fr
+		
+		[rITTLazyDog-s]
+		3fr
+		[rITCLazyDog-s]
+		2fr
+		[rITTLazyDog-e]
+		8fr
+		[rITCLazyDog-e]
+
+		3fr
+		
+		[rICopyright-s]
+		2fr
+
+		[rICopyright-e rwallInformation-e];	
  	grid-template-columns:
 		[cWallInformation-s cIDoorDemo-s cISeparator-s]
 		1fr
@@ -85,7 +110,7 @@ body {
 		1fr
 		[cIHighlighter-1-left-e]
 		1fr
-		[cIBack-s cIPuzzleNumber-s cITT-s cITC-s cILazyDog-s]
+		[cIBack-s cIPuzzleNumber-s cITT-s cITC-s cICopyright-s]
 		1fr
 		[cISBack-s]
 		4fr
@@ -99,7 +124,7 @@ body {
 		15fr
 		[cIInformation-e]
 		10fr
-		[cIPuzzleChangesOn-e cITT-e cITC-e cILazyDog-e]
+		[cIPuzzleChangesOn-e cITT-e cITC-e cICopyright-e]
 		1fr
 		[cIHighlighter-1-right-s]
 		1fr
@@ -169,7 +194,7 @@ body {
 	border:none;
 	padding:0 0.5em 0 0.5em;
 	font-size:2.5em;
-	grid-row:rIInstructions-s/rIInstructions-e;
+	grid-row:rITCInstructions-s/rITCInstructions-e;
 	grid-column:cITC-s/cITC-e;
 }
 
@@ -186,21 +211,75 @@ body {
 }
 
 #iTCDispensersLambda {
-	border-bottom-width:0;
+	border-bottom-width:1px;
 	grid-row:rITCDispensersLambda-s/rITCDispensersLambda-e;
 	grid-column:cITC-s/cITC-e;
 }
 
 #iTCLadderet {
-	border-bottom-width:0;
+	border-bottom-width:1px;
 	grid-row:rITCLadderet-s/rITCLadderet-e;
 	grid-column:cITC-s/cITC-e;
 }
 
 #iTCLooseFit {
-	border-bottom-width:1px;
+	border-bottom-width:0;
 	grid-row:rITCLooseFit-s/rITCLooseFit-e;
 	grid-column:cITC-s/cITC-e;
+}
+
+#iTTWhereIPost {
+	overflow:hidden;
+	border:none;
+	margin:0;
+	padding:0;
+	text-align:center;
+	font-size:2.5em;
+	font-variant:small-caps;
+	grid-row:rITTWhereIPost-s/rITTWhereIPost-e;
+	grid-column:cITT-s/cITT-e;
+}
+
+#iTCFacebook {
+	border-bottom-width:1px;
+	grid-row:rITCFacebook-s/rITCFacebook-e;
+	grid-column:cITC-s/cITC-e;
+}
+
+#iTCMastodon {
+	border-bottom-width:1px;
+	grid-row:rITCMastodon-s/rITCMastodon-e;
+	grid-column:cITC-s/cITC-e;
+}
+
+#iTCReddit {
+	border-bottom-width:1px;
+	grid-row:rITCReddit-s/rITCReddit-e;
+	grid-column:cITC-s/cITC-e;
+}
+
+#iTCTwitter {
+	border-bottom-width:0;
+	grid-row:rITCTwitter-s/rITCTwitter-e;
+	grid-column:cITC-s/cITC-e;
+}
+
+#iTTLazyDog {grid-row:rITTLazyDog-s/rITTLazyDog-e; grid-column:cITT-s/cITT-e;}
+
+#iTCLazyDog {
+	border:none;
+	padding:0 0.5em 0 0.5em;
+	font-size:2.5em;
+	grid-row:rITCLazyDog-s/rITCLazyDog-e;
+	grid-column:cITC-s/cITC-e;
+}
+
+#iCopyright {
+	background-color:transparent;
+	color:black;
+	text-align:center;
+	grid-row:rICopyright-s/rICopyright-e;
+	grid-column:cICopyright-s/cICopyright-e;
 }
 
 #iHighlighter-1-top {grid-row:rIHighlighter-1-top-s/rIHighlighter-1-top-e; grid-column:cIHighlighter-1-tb-s/cIHighlighter-1-tb-e;}
@@ -789,21 +868,33 @@ body {
 	text-align:center;
 	font-size:2.5em;
 	font-variant:small-caps;
+	letter-spacing:0.1em;
 }
 
 .topicContent {margin:0; background-color:white; color:black;}
 
 .iOtherPuzzles {
-	border-style:solid;
+	border-style:dashed;
 	border-color:black;
-	border-top-width:1px;
-	border-left-width:1px;
-	border-right-width:1px;
+	border-top-width:0;
+	border-left-width:0;
+	border-right-width:0;
+
 /*	margin:0; */
 	padding:0;
 	font-size:2.4em;
 /*	background-color:white; */
 /*	color:black; */
+}
+
+.iWhereIPost {
+	border-style:dashed;
+	border-color:black;
+	border-top-width:0;
+	border-left-width:0;
+	border-right-width:0;
+	padding:0;
+	font-size:2.4em;
 }
 
   </style>
@@ -841,8 +932,20 @@ body {
 		<button id="iTCLadderet" class="topicContent iOtherPuzzles"><a href="Ladderet.html">https://dispensers.github.io</a></button>
 		<button id="iTCLooseFit" class="topicContent iOtherPuzzles"><a href="LooseFit.html">https://dispensers.github.io</a></button>
 		
+		<p id="iTTWhereIPost" class="topicTitle"><strong>Where I Post Puzzles</strong></p>
 
-		<div id="iLazyDog">As well as instructions:<br>
+		<button id="iTCFacebook" class="topicContent iWhereIPost">Facebook&emsp;-&emsp;Weekday Puzzles page</button>
+		<button id="iTCMastodon" class="topicContent iWhereIPost">Mastodon&ensp;-&ensp;@PuzzleSmith@mas.to</button>
+		<button id="iTCReddit" class="topicContent iWhereIPost">Reddit&ensp;-&ensp;u/G_F_Smith</button>
+		<button id="iTCTwitter" class="topicContent iWhereIPost">X/Twitter&ensp;-&ensp;@PuzzleSmith</button>
+
+		<p id="iTTLazyDog" class="topicTitle"><strong>Lazy Dog</strong></p>
+
+		<button id="iTCLazyDog" class="topicContent"><strong>Lazy Dog</strong> is a challenging word puzzle. etc</button>
+		
+		<p id="iCopyright">Copyright &copy; 2023 G F Smith</p>
+		
+<!--		<div id="iLazyDog">As well as instructions:<br>
 							* puzzle number<br>
 							* date when a new puzzle will appear<br>
 							* blurb<br>
@@ -852,7 +955,7 @@ body {
 							* Lazy Dog ad<br>
 							* Ukraine flag<br>
 							* copyright<br>
-		</div>
+		</div> -->
 		
 		<div id="iSeparator-2" class="separator"></div>
 
@@ -1563,16 +1666,18 @@ class Control {
 	this.id = id;
 	this.onClick = onClick;
 	this.button = document.querySelector(id);
-	this.isEnabled = true;
-	this.disable();
+	//this.isEnabled = true;
+	//this.disable();
+	this.isEnabled = false;
 	}
+
 	
 	enable() {
 		//console.log("Control.enable");
 		//console.log((this.OnClick !== null));
 		//console.log((this.OnClick === null));
 		if (!this.isEnabled) {
-			this.button.style.opacity = `1.0`;
+			//this.button.style.opacity = `1.0`;
 			if (this.OnClick !== null) this.button.addEventListener("click", this.onClick);
 			//this.button.addEventListener("click", this.onClick);
 			this.isEnabled = true;
@@ -1580,14 +1685,25 @@ class Control {
 	}
 	
 	disable() {
-		//console.log("Control.disable");
+		console.log("Control.disable");
 		//console.log((this.OnClick === null));
 		if (this.isEnabled) {
-			this.button.style.opacity = `0.5`;
-			if (this.OnClick !== null) this.button.removeEventListener("click", this.onClick);
+			//this.button.style.opacity = `0.5`;
+			if (this.OnClick !== null) {
+				console.log("removeEventListener");
+				this.button.removeEventListener("click", this.onClick);
+			}
 			//this.button.removeEventListener("click", this.onClick);
 			this.isEnabled = false;
 		}
+	}
+
+	fade() {
+		this.button.style.opacity = `0.5`;
+	}
+	
+	unfade() {
+		this.button.style.opacity = `1.0`;
 	}
 }
 
@@ -1602,30 +1718,55 @@ class SolveIO {
 	disableAllControls() {
 		for (let name in this.controls) {
 			this.controls[name].disable();
+			this.controls[name].fade();
 		}
 	}
 
 	disableControls(controls) {
 		for (let i in controls) {
 			this.controls[controls[i]].disable();
+			this.controls[controls[i]].fade();
 		}
 	}
 	
 	enableAllControls() {
 		for (let name in this.controls) {
 			this.controls[name].enable();
+			this.controls[name].unfade();
 		}
 	}
 
 	enableControls(controls) {
 		for (let i in controls) {
 			this.controls[controls[i]].enable();
+			this.controls[controls[i]].unfade();
 		}
 	}
 	
 	enableAllControlsExcept(exceptions) {
 		for (let name in this.controls) {
-			if (!exceptions.includes(name)) this.controls[name].enable(); else this.controls[name].disable();
+			if (!exceptions.includes(name)) {
+				this.controls[name].enable();
+				this.controls[name].unfade();
+			}
+			else {
+				this.controls[name].disable();
+				this.controls[name].fade();
+			}
+		}
+	}
+	
+	freezeAllControls() {
+		console.log("freezeAllControls");
+		for (let name in this.controls) {
+			console.log(name);
+			this.controls[name].disable();
+		}
+	}
+	
+	unfreezeAllControls() {
+		for (let name in this.controls) {
+			this.controls[name].enable();
 		}
 	}
 	
@@ -1674,6 +1815,14 @@ class SolveBiz {
 	
 	wake() {
 		this.io.enableAllControlsExcept(["Reset", "Undispense"]);
+	}
+	
+	freeze() {
+		this.io.freezeAllControls();
+	}
+	
+	unfreeze() {
+		this.io.unfreezeAllControls();
 	}
 		
 	reset() {
@@ -1981,6 +2130,9 @@ const punterLED = new LED("#LEDGreen", "#LEDRed");
 const punterSolveIO = new SolveIO(punterControls, punterLED);	
 const punterSolveBiz = new SolveBiz(punterPuzzle, punterDispensers, punterRing, punterSolveIO);
 punterSolveBiz.wake();
+//disable all the controls while the preamble runs
+punterSolveBiz.freeze();
+
 
 /* ========================================================================================================================================================== */
 /* DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO */
@@ -2103,7 +2255,10 @@ function demoOnClick () {
 const demoControlDemo = new Control("#demoCDemo", demoOnClick);
 
 demoControlBack.enable();
+demoControlBack.unfade();
+
 demoControlDemo.enable();
+demoControlDemo.unfade();
 
 const spotHintRef = document.querySelector("#demoSHint");
 const spotSolutionRef = document.querySelector("#demoSSolution");
@@ -2234,7 +2389,9 @@ async function executeScript() {
 	let numTilesInRing = 0;
 	
 	demoControlBack.disable();
+	demoControlBack.fade();
 	demoControlDemo.disable();
+	demoControlDemo.fade();
 	
 	demoSolveBiz.wake();
 	await wait(1000);
@@ -2294,10 +2451,12 @@ async function executeScript() {
 	demoSolveBiz.reset();
 	demoSolveBiz.sleep();
 	demoControlBack.enable();
+	demoControlBack.unfade();
 	demoControlDemo.enable();
+	demoControlDemo.unfade();
 }
 
-async function begin() {
+async function performPreamble() {
 	const spotFadeSequence = [1.0, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4];
 	const spotInformationRef = document.querySelector("#sInformation");
 	const spotBackRef = document.querySelector("#iSBack");
@@ -2367,8 +2526,10 @@ async function begin() {
 	
 	informationRule.style.setProperty("z-index", `1`);
 	informationRule.style.setProperty("display", `none`);
+
+	punterSolveBiz.unfreeze();
 }
-begin();
+performPreamble();
 
 </script>
 
