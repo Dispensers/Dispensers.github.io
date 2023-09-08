@@ -21,15 +21,15 @@ body {
 	height:225em;
 	width:59em;
 	grid-template-rows:
-		[rWallInformation-s]
+		[rWallInformation-s rIUkraineFlag-s]
 		3fr
-		[rIInformation-s rIBack-s]
+		[rIUkraineFlag-e rIInformation-s]
 		1fr
-		[rISBack-s]
-		4fr
-		[rISBack-e]
-		2fr
-		[rIInformation-e rIBack-e rIPuzzleNumber-s rIPuzzleChangesOn-s]
+		[rIBackArrow-s rISBackArrow-s]
+		5fr
+		[rIBackArrow-e rISBackArrow-e]
+		1fr
+		[rIInformation-e rIPuzzleNumber-s rIPuzzleChangesOn-s]
 		9fr
 		[rIPuzzleNumber-e rIPuzzleChangesOn-e rISeparator-1-s]
 		1fr
@@ -106,37 +106,57 @@ body {
  	grid-template-columns:
 		[cWallInformation-s cIDoorDemo-s cISeparator-s]
 		1fr
-		[cIHighlighter-1-tb-s cIHighlighter-1-left-s]
+		[cISBackArrow-s cIHighlighter-1-tb-s cIHighlighter-1-left-s]
 		1fr
-		[cIHighlighter-1-left-e]
+		[cIHighlighter-1-left-e cIBackArrow-s]
 		1fr
-		[cIBack-s cIPuzzleNumber-s cITT-s cITC-s cICopyright-s]
+		[cIPuzzleNumber-s cITT-s cITC-s cICopyright-s]
+		3fr
+		[cISBackArrow-e]
 		1fr
-		[cISBack-s]
-		4fr
-		[cISBack-e]
+		[cIBackArrow-e]
+		6fr
+/*		[cIPuzzleNumber-e cIInformation-s] */
+/*		18fr */
+		[cIPuzzleNumber-e]
 		2fr
-		[cIBack-e]
-		3fr 
-		[cIPuzzleNumber-e cIInformation-s]
-		18fr
+		[cIInformation-s]
+		16fr
 		[cIPuzzleChangesOn-s]
-		15fr
+/*		15fr */
+		13fr
 		[cIInformation-e]
-		10fr
-		[cIPuzzleChangesOn-e cITT-e cITC-e cICopyright-e]
+/*		10fr */
+		12fr
+		[cIPuzzleChangesOn-e cITT-e cITC-e cICopyright-e cIUkraineFlag-s]
 		1fr
 		[cIHighlighter-1-right-s]
 		1fr
 		[cIHighlighter-1-tb-e cIHighlighter-1-right-e]
 		1fr
-		[cWallInformation-e cIDoorDemo-e cISeparator-e];
+		[cWallInformation-e cIDoorDemo-e cISeparator-e cIUkraineFlag-e];
 }
 
-#iBack {grid-row:rIBack-s/rIBack-e; grid-column:cIBack-s/cIBack-e;}
+/* #iBack {grid-row:rIBack-s/rIBack-e; grid-column:cIBack-s/cIBack-e;} */
+
+#iBackArrow {
+	width:5em;
+	height:5em;
+	grid-row:rIBackArrow-s/rIBackArrow-e;
+	grid-column:cIBackArrow-s/cIBackArrow-e;
+}
+
 #iInformation {grid-row:rIInformation-s/rIInformation-e; grid-column:cIInformation-s/cIInformation-e;}
 
-#iSBack {display:none; grid-row:rISBack-s/rISBack-e; grid-column:cISBack-s/cISBack-e;}
+#iUkraineFlag {
+	z-index:3;
+	width:3em;
+	height:3em;
+	grid-row:rIUkraineFlag-s/rIUkraineFlag-e;
+	grid-column:cIUkraineFlag-s/cIUkraineFlag-e;
+}
+
+#iSBackArrow {display:none; grid-row:rISBackArrow-s/rISBackArrow-e; grid-column:cISBackArrow-s/cISBackArrow-e;}
 
 #iPuzzleNumber {
 	border:none;
@@ -396,7 +416,7 @@ body {
 		6fr
 		[cDemoDoorPanel-e cDemoCSolution-e cDemoCBack-e cDemoLED-s]
 		3fr
-		[cDemoDoor-e];
+		[cDemoLED-e cDemoDoor-e];
 }
 
 #demoCDemo {
@@ -552,12 +572,13 @@ body {
 		4fr
 		[cSInformation-e cCDispense-31-s]
 		1fr
-		[cCReset-e]
+		[cCReset-e cPuzzleName-s]
 		1fr
 		[cCDispense-41-e]
-		1fr
-		[cPuzzleName-s]
-		3fr
+/*		1fr */
+/*		[cPuzzleName-s] */
+/*		3fr */
+		4fr
 		[cCInformation-e cRing-s cCDispense-21-s]
 		1fr
 		[cCDispense-31-e cCDispense-42-s]
@@ -579,12 +600,13 @@ body {
 		[cCDispense-43-e cCDispense-33-s]
 		1fr
 		[cRing-e cCDispense-22-e cCSolution-s cSpotDispense-33-s]
-		3fr
-		[cPuzzleName-e]
-		1fr
+/*		3fr */
+/*		[cPuzzleName-e] */
+/*		1fr */
+		4fr
 		[cCDispense-44-s]
 		1fr
-		[cSpotDispense-33-e]
+		[cPuzzleName-e cSpotDispense-33-e]
 		1fr
 		[cCDispense-33-e]
 		5fr
@@ -597,7 +619,11 @@ body {
 
 /* #spotDispense-33 {display:none; grid-row:rSpotDispense-s/rSpotDispense-e; grid-column:cSpotDispense-33-s/cSpotDispense-33-e;} */
 
-#PuzzleName {grid-row:rPuzzleName-s/rPuzzleName-e; grid-column:cPuzzleName-s/cPuzzleName-e;}
+#PuzzleName {
+	padding-bottom:0.2em;
+	grid-row:rPuzzleName-s/rPuzzleName-e;
+	grid-column:cPuzzleName-s/cPuzzleName-e;
+}
 
 #LEDGreen {display:none; grid-row:rLED-s/rLED-e; grid-column:cLED-s/cLED-e;}
 #LEDRed {display:none; grid-row:rLED-s/rLED-e; grid-column:cLED-s/cLED-e;}
@@ -823,13 +849,24 @@ body {
 #dTile-73-36 {display:none; z-index:5; grid-row:rDTile-73-6-s/rDTile-73-5-e; grid-column:cDTile-73-3-s/cDTile-73-3-e; width:7em; height:5em;}
 #dTile-73-37 {display:none; z-index:5; grid-row:rDTile-73-7-s/rDTile-73-5-e; grid-column:cDTile-73-3-s/cDTile-73-3-e; width:7em; height:5em;}
 
-.spotOdd {z-index:10; width:5em; height:4em;}
-.spotEven {z-index:10; width:4em; height:4em;}
+.spotOddEven {z-index:10; width:5em; height:4em;}
+.spotEvenEven {z-index:10; width:4em; height:4em;}
+.spotOddOdd {z-index:10; width:5em; height:5em;}
 
 .wall {background-color:#9E9E9E;}
 .door {background-color:#9E9E9E;}
 .plate {background-color:#9E9E9E;}
-.title {padding:0; font-size:3.6em; border-style:none; border-radius:0.3em; margin:0; background-color:black; color:white; text-align:center;}
+.title {
+	padding:0;
+	font-size:3.6em;
+	border-style:none;
+	border-radius:0.3em;
+	margin:0;
+	background-color:black;
+	color:white;
+	text-align:center;
+	letter-spacing:0.1em;
+}
 
 .led {z-index:3; width:3em; height:3em;}
 
@@ -902,9 +939,12 @@ body {
 <body>
 
 	<div id="wallInformation" class="wall">
-		<button id="iBack" class="cCommon cTertiary"><code><strong>&lt;</strong></code></button>
+<!--		<button id="iBack" class="cCommon cTertiary"><code><strong>&lt;</strong></code></button> -->
+		<img id="iBackArrow" src="backArrow.svg" alt="Back"/>
 
-		<img id="iSBack" class="spotEven" src="spotEven.svg" alt="Spot"/>
+		<img id="iSBackArrow" class="spotOddOdd" src="spotOddOdd.svg" alt="Spot"/>
+
+		<img id="iUkraineFlag" src="UkraineFlag.svg" alt="Flag"/>
 
 		<button id="iInformation" class="title"><strong>Information</strong></button>
 		
@@ -974,22 +1014,22 @@ body {
 			<button id="demoCHint" class="cCommon cSecondary">Hint</button>
 			<button id="demoCSolution" class="cCommon cSecondary">Solution</button>
 
-			<img id="demoSHint" class="spotOdd" src="spotOdd.svg" alt="Spot"/>
-			<img id="demoSSolution" class="spotEven" src="spotEven.svg" alt="Spot"/>
+			<img id="demoSHint" class="spotOddEven" src="spotOddEven.svg" alt="Spot"/>
+			<img id="demoSSolution" class="spotEvenEven" src="spotEvenEven.svg" alt="Spot"/>
 		
 			<img id="demoCDispense-1" class="cDispense" src="buttonDispense.svg" alt="Dispense"/>
 			<img id="demoCDispense-2" class="cDispense" src="buttonDispense.svg" alt="Dispense"/>
 			<img id="demoCDispense-3" class="cDispense" src="buttonDispense.svg" alt="Dispense"/>
 
-			<img id="demoSDispense-1" class="spotOdd" src="spotOdd.svg" alt="Spot"/>
-			<img id="demoSDispense-2" class="spotOdd" src="spotOdd.svg" alt="Spot"/>
-			<img id="demoSDispense-3" class="spotOdd" src="spotOdd.svg" alt="Spot"/>
+			<img id="demoSDispense-1" class="spotOddEven" src="spotOddEven.svg" alt="Spot"/>
+			<img id="demoSDispense-2" class="spotOddEven" src="spotOddEven.svg" alt="Spot"/>
+			<img id="demoSDispense-3" class="spotOddEven" src="spotOddEven.svg" alt="Spot"/>
 
 			<button id="demoCReset" class="cCommon cSecondary">Reset</button>
 			<button id="demoCBack" class="cCommon cSecondary cBack">&bigtriangleup;</button>
 
-			<img id="demoSReset" class="spotOdd" src="spotOdd.svg" alt="Spot"/>
-			<img id="demoSBack" class="spotOdd" src="spotOdd.svg" alt="Spot"/>
+			<img id="demoSReset" class="spotOddEven" src="spotOddEven.svg" alt="Spot"/>
+			<img id="demoSBack" class="spotOddEven" src="spotOddEven.svg" alt="Spot"/>
 
 			<div id="demoPanel">
 				<div id="demoDContainer-1" class="dContainer displayBlock"></div>
@@ -1107,7 +1147,7 @@ body {
 		<button id="cHint" class="cCommon cSecondary">Hint</button>
 		<button id="cSolution" class="cCommon cSecondary">Solution</button>
 
-		<img id="sInformation" class="spotEven" src="spotEven.svg" alt="Spot"/>
+		<img id="sInformation" class="spotEvenEven" src="spotEvenEven.svg" alt="Spot"/>
 		
 <!--		<button id="cDispense-21" class="cDispense"><strong>&bigtriangledown;</strong></button>
 		<button id="cDispense-22" class="cDispense"><strong>&bigtriangledown;</strong></button>
@@ -1639,20 +1679,36 @@ class Ring {
 	}
 }
 
+function ledFlashed(solveBiz) {solveBiz.unfreeze()}
+
+async function flashLED(ledRef, solveBiz) {
+	await wait(300);
+	ledRef.style.display = `none`;
+	await wait(300);
+	ledRef.style.display = `block`;
+	await wait(300);
+	ledRef.style.display = `none`;
+	await wait(300);
+	ledRef.style.display = `block`;
+	ledFlashed(solveBiz)
+}
+
 class LED {
 	constructor(greenId, redId) {
 		this.greenRef = document.querySelector(greenId);
 		this.redRef = document.querySelector(redId);
 	}
 	
-	showGreen() {
-		this.greenRef.style.display = `block`;
+	showGreen(solveBiz) {
 		this.redRef.style.display = `none`;
+		this.greenRef.style.display = `block`;
+		flashLED(this.greenRef, solveBiz);
 	}
 	
-	showRed() {
-		this.redRef.style.display = `block`;
+	showRed(solveBiz) {
 		this.greenRef.style.display = `none`;
+		this.redRef.style.display = `block`;
+		flashLED(this.redRef, solveBiz);
 	}
 	
 	hide() {
@@ -1774,12 +1830,12 @@ class SolveIO {
 		this.led.hide();
 	}
 	
-	showLEDGreen() {
-		this.led.showGreen();
+	showLEDGreen(solveBiz) {
+		this.led.showGreen(solveBiz);
 	}
 	
-	showLEDRed() {
-		this.led.showRed();
+	showLEDRed(solveBiz) {
+		this.led.showRed(solveBiz);
 	}
 }
 
@@ -1841,7 +1897,8 @@ class SolveBiz {
 		if (this.ring.numTilesInPlace == 9) {
 			const thisSolution = this.ring.getColourSequence().join("");
 			const correctSolution = this.puzzle.solutionColourSequence.join("");
-			if (thisSolution === correctSolution) this.io.showLEDGreen(); else this.io.showLEDRed();
+			this.freeze();
+			if (thisSolution === correctSolution) this.io.showLEDGreen(this); else this.io.showLEDRed(this);
 		}
 		else {
 			this.io.hideLED();
@@ -2161,7 +2218,8 @@ function backOnClick() {
 	const bodyRule = [...styleSheet.cssRules].find((r) => r.selectorText === "body");
 	bodyRule.style.setProperty("overflow", `hidden`);
 	}
-const demoControlBack = new Control("#iBack", backOnClick);
+//const demoControlBack = new Control("#iBack", backOnClick);
+const demoControlBack = new Control("#iBackArrow", backOnClick);
 
 /*
 function demoOnClick () {
@@ -2445,7 +2503,13 @@ async function executeScript() {
 			numTilesInRing++;
 		}
 		hideSpot(spotRef);
-		await wait(1000);
+		if (numTilesInRing == 9) {
+			//wait longer if the ring is complete - to allow for LED flashing
+			await wait(2000);
+		}
+		else {
+			await wait(1000);
+		}
 	}
 	await wait(2000);
 	demoSolveBiz.reset();
@@ -2459,7 +2523,7 @@ async function executeScript() {
 async function performPreamble() {
 	const spotFadeSequence = [1.0, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4];
 	const spotInformationRef = document.querySelector("#sInformation");
-	const spotBackRef = document.querySelector("#iSBack");
+	const spotBackRef = document.querySelector("#iSBackArrow");
 	const styleSheet = document.styleSheets[0]
 	const informationRule = [...styleSheet.cssRules].find((r) => r.selectorText === "#wallInformation");
 	
@@ -2532,4 +2596,7 @@ async function performPreamble() {
 performPreamble();
 
 </script>
+
 <script defer src="/_vercel/insights/script.js"></script>
+
+
