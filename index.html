@@ -29,9 +29,11 @@ body {
 		5fr
 		[rIBackArrow-e rISBackArrow-e]
 		1fr
-		[rIInformation-e rIPuzzleNumber-s rIPuzzleChangesOn-s]
+/*		[rIInformation-e rIPuzzleNumber-s rIPuzzleChangesOn-s] */
+		[rIInformation-e rIPuzzleInfo-s]
 		9fr
-		[rIPuzzleNumber-e rIPuzzleChangesOn-e rISeparator-1-s]
+/*		[rIPuzzleNumber-e rIPuzzleChangesOn-e rISeparator-1-s] */
+		[rIPuzzleInfo-e rISeparator-1-s]
 		1fr
 		[rISeparator-1-e rIHighlighter-1-top-s]
 		1fr
@@ -131,25 +133,29 @@ body {
 		1fr
 		[cIHighlighter-1-left-e cIBackArrow-s]
 		1fr
-		[cIPuzzleNumber-s cITT-s cITC-s cICopyright-s]
+/*		[cIPuzzleNumber-s cITT-s cITC-s cICopyright-s] */
+		[cIPuzzleInfo-s cITT-s cITC-s cICopyright-s]
 		3fr
 		[cISBackArrow-e]
 		1fr
 		[cIBackArrow-e]
-		6fr
+/*		6fr */
+		8fr
 /*		[cIPuzzleNumber-e cIInformation-s] */
 /*		18fr */
-		[cIPuzzleNumber-e]
-		2fr
+/*		[cIPuzzleNumber-e] */
+/*		2fr */
 		[cIInformation-s]
-		16fr
-		[cIPuzzleChangesOn-s]
+/*		16fr */
+		29fr
+/*		[cIPuzzleChangesOn-s] */
 /*		15fr */
-		13fr
+/*		13fr */
 		[cIInformation-e]
 /*		10fr */
 		12fr
-		[cIPuzzleChangesOn-e cITT-e cITC-e cICopyright-e cIUkraineFlag-s]
+/*		[cIPuzzleChangesOn-e cITT-e cITC-e cICopyright-e cIUkraineFlag-s] */
+		[cIPuzzleInfo-e cITT-e cITC-e cICopyright-e cIUkraineFlag-s]
 		1fr
 		[cIHighlighter-1-right-s]
 		1fr
@@ -179,6 +185,7 @@ body {
 
 #iSBackArrow {display:none; grid-row:rISBackArrow-s/rISBackArrow-e; grid-column:cISBackArrow-s/cISBackArrow-e;}
 
+/*
 #iPuzzleNumber {
 	border:none;
 	margin:0;
@@ -200,6 +207,18 @@ body {
 	color:black;
 	grid-row:rIPuzzleChangesOn-s/rIPuzzleChangesOn-e;
 	grid-column:cIPuzzleChangesOn-s/cIPuzzleChangesOn-e;
+}
+*/
+#iPuzzleInfo {
+	border:none;
+	margin:0;
+	padding:0;
+	font-size:2.5em;
+	text-align:center;
+	background-color:transparent;
+	color:black;
+	grid-row:rIPuzzleInfo-s/rIPuzzleInfo-e;
+	grid-column:cIPuzzleInfo-s/cIPuzzleInfo-e;
 }
 
 /*
@@ -992,8 +1011,9 @@ body {
 
 		<button id="iInformation" class="title"><strong>Information</strong></button>
 		
-		<button id="iPuzzleNumber"><strong>No A1</strong></button>
-		<button id="iPuzzleChangesOn"><strong>Changes on dd mmm</strong></button>
+<!--		<button id="iPuzzleNumber"><strong>No A1</strong></button> -->
+<!--		<button id="iPuzzleChangesOn"><strong>Changes on dd mmm</strong></button> -->
+		<button id="iPuzzleInfo"><strong>Puzzle no A1&emsp;-&emsp;here until dd mmm</strong></button>
 
 		<div id="iSeparator-1"></div>
 
