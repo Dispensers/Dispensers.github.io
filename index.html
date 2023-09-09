@@ -18,7 +18,7 @@ body {
 	display:none;
 	z-index:1;
 	position:absolute;
-	height:225em;
+	height:245em;
 	width:59em;
 	grid-template-rows:
 		[rWallInformation-s rIUkraineFlag-s]
@@ -33,14 +33,17 @@ body {
 		9fr
 		[rIPuzzleNumber-e rIPuzzleChangesOn-e rISeparator-1-s]
 		1fr
-		[rISeparator-1-e]
+		[rISeparator-1-e rIHighlighter-1-top-s]
 		1fr
-		[rIHighlighter-1-top-s]
-		1fr
-		[rIHighlighter-1-top-e rIHighlighter-1-lr-s]
+		
+/*		[rIHighlighter-1-top-e rIHighlighter-1-lr-s]
 		1fr
 		[rITTInstructions-s]
 		3fr
+*/
+		[rIHighlighter-1-top-e rIHighlighter-1-lr-s rITTInstructions-s]
+		4fr
+
 		[rITCInstructions-s]
 		2fr
 		[rITTInstructions-e]
@@ -49,11 +52,16 @@ body {
 		1fr
 		[rIHighlighter-1-lr-e rIHighlighter-1-bottom-s]
 		1fr
-		[rIHighlighter-1-bottom-e]
+
+/*		[rIHighlighter-1-bottom-e]
 		1fr
 
 		[rITTOtherPuzzles-s]
 		3fr
+*/
+		[rIHighlighter-1-bottom-e rITTOtherPuzzles-s]
+		4fr
+
 		[rITCDispensersLambda-s]
 		2fr
 		[rITTOtherPuzzles-e]
@@ -72,10 +80,16 @@ body {
 		[rIDoorDemo-e rISeparator-3-s]
 		3fr
 		[rISeparator-3-e]
+/*
 		3fr
 
 		[rITTWhereIPost-s]
 		3fr
+*/
+		2fr
+		[rITTWhereIPost-s]
+		4fr
+
 		[rITCFacebook-s]
 		2fr
 		[rITTWhereIPost-e]
@@ -87,14 +101,21 @@ body {
 		[rITCReddit-e rITCTwitter-s]
 		6fr
 		[rITCTwitter-e]
+		
+/*		
 		3fr
 		
 		[rITTLazyDog-s]
 		3fr
+*/
+		2fr
+		[rITTLazyDog-s]
+		4fr
+		
 		[rITCLazyDog-s]
 		2fr
 		[rITTLazyDog-e]
-		8fr
+		29fr
 		[rITCLazyDog-e]
 
 		3fr
@@ -211,6 +232,7 @@ body {
 */
 
 #iTCInstructions {
+	text-align:justify;
 	border:none;
 	padding:0 0.5em 0 0.5em;
 	font-size:2.5em;
@@ -218,6 +240,7 @@ body {
 	grid-column:cITC-s/cITC-e;
 }
 
+/*
 #iTTOtherPuzzles {
 	overflow:hidden;
 	border:none;
@@ -229,6 +252,9 @@ body {
 	grid-row:rITTOtherPuzzles-s/rITTOtherPuzzles-e;
 	grid-column:cITT-s/cITT-e;
 }
+*/
+
+#iTTOtherPuzzles {grid-row:rITTOtherPuzzles-s/rITTOtherPuzzles-e; grid-column:cITT-s/cITT-e;}
 
 #iTCDispensersLambda {
 	border-bottom-width:1px;
@@ -248,6 +274,7 @@ body {
 	grid-column:cITC-s/cITC-e;
 }
 
+/*
 #iTTWhereIPost {
 	overflow:hidden;
 	border:none;
@@ -259,6 +286,9 @@ body {
 	grid-row:rITTWhereIPost-s/rITTWhereIPost-e;
 	grid-column:cITT-s/cITT-e;
 }
+*/
+
+#iTTWhereIPost {grid-row:rITTWhereIPost-s/rITTWhereIPost-e;	grid-column:cITT-s/cITT-e;}
 
 #iTCFacebook {
 	border-bottom-width:1px;
@@ -287,6 +317,7 @@ body {
 #iTTLazyDog {grid-row:rITTLazyDog-s/rITTLazyDog-e; grid-column:cITT-s/cITT-e;}
 
 #iTCLazyDog {
+	text-align:justify;
 	border:none;
 	padding:0 0.5em 0 0.5em;
 	font-size:2.5em;
@@ -307,9 +338,16 @@ body {
 #iHighlighter-1-left {grid-row:rIHighlighter-1-lr-s/rIHighlighter-1-lr-e; grid-column:cIHighlighter-1-left-s/cIHighlighter-1-left-e;}
 #iHighlighter-1-right {grid-row:rIHighlighter-1-lr-s/rIHighlighter-1-lr-e; grid-column:cIHighlighter-1-right-s/cIHighlighter-1-right-e;}
 
-#iLazyDog {grid-row:rILazyDog-s/rILazyDog-e; grid-column:cILazyDog-s/cILazyDog-e; font-size:1.5em; background-color:white;}
+/* #iLazyDog {grid-row:rILazyDog-s/rILazyDog-e; grid-column:cILazyDog-s/cILazyDog-e; font-size:1.5em; background-color:white;} */
 
-#iSeparator-1 {grid-row:rISeparator-1-s/rISeparator-1-e; grid-column:cISeparator-s/cISeparator-e;}
+#iSeparator-1 {
+	background-color:transparent;
+	border-style:solid;
+	border-color:black;
+	border-width:0.1em 0 0 0;
+	grid-row:rISeparator-1-s/rISeparator-1-e;
+	grid-column:cISeparator-s/cISeparator-e;
+}
 #iSeparator-2 {grid-row:rISeparator-2-s/rISeparator-2-e; grid-column:cISeparator-s/cISeparator-e;}
 #iSeparator-3 {grid-row:rISeparator-3-s/rISeparator-3-e; grid-column:cISeparator-s/cISeparator-e;}
 
@@ -894,45 +932,51 @@ body {
 .cDispense {width:7em; height:6em;}
 .cBack {font-size:3em; text-align:center;}
 
-.separator {background-color:black;}
+.demoSeparator {background-color:black;}
 .highlighter {display:none; background-color:yellow;}
 
 .topicTitle {
 	overflow:hidden;
 	border:none;
 	margin:0;
-	padding:0;
+/*	padding:0; */
+	padding:0.3em 0 0 0;
 	text-align:center;
 	font-size:2.5em;
 	font-variant:small-caps;
-	letter-spacing:0.1em;
+/*	letter-spacing:0.1em; */
+	letter-spacing:0.08em;
 }
 
 .topicContent {margin:0; background-color:white; color:black;}
 
 .iOtherPuzzles {
 	border-style:dashed;
-	border-color:black;
+/*	border-color:black; */
+	border-color:#606060;
 	border-top-width:0;
 	border-left-width:0;
 	border-right-width:0;
 
 /*	margin:0; */
 	padding:0;
-	font-size:2.4em;
+	font-size:2.5em;
 /*	background-color:white; */
 /*	color:black; */
 }
 
 .iWhereIPost {
 	border-style:dashed;
-	border-color:black;
+/*	border-color:black; */
+	border-color:#606060;
 	border-top-width:0;
 	border-left-width:0;
 	border-right-width:0;
 	padding:0;
-	font-size:2.4em;
+	font-size:2.5em;
 }
+
+.italic {font-style:italic;}
 
   </style>
 </head>
@@ -948,10 +992,10 @@ body {
 
 		<button id="iInformation" class="title"><strong>Information</strong></button>
 		
-		<button id="iPuzzleNumber"><strong>No 21</strong></button>
-		<button id="iPuzzleChangesOn"><strong>Changes 11 Sep</strong></button>
+		<button id="iPuzzleNumber"><strong>No A1</strong></button>
+		<button id="iPuzzleChangesOn"><strong>Changes on dd mmm</strong></button>
 
-		<div id="iSeparator-1" class="separator"></div>
+		<div id="iSeparator-1"></div>
 
 <!--		<p id="iHdrInstructions"><span class="sub"><strong>Instructions</strong></span></p> -->
 <!--		<p id="iHdrInstructions"><strong>Instructions</strong></p> -->
@@ -968,20 +1012,26 @@ body {
 
 		<p id="iTTOtherPuzzles" class="topicTitle"><strong>Other Puzzles</strong></p>
 
-		<button id="iTCDispensersLambda" class="topicContent iOtherPuzzles"><a href="DispensersLamba.html">https://dispensers.github.io</a></button>
-		<button id="iTCLadderet" class="topicContent iOtherPuzzles"><a href="Ladderet.html">https://dispensers.github.io</a></button>
-		<button id="iTCLooseFit" class="topicContent iOtherPuzzles"><a href="LooseFit.html">https://dispensers.github.io</a></button>
+		<button id="iTCDispensersLambda" class="topicContent iOtherPuzzles"><a href="DispensersLamba.html">https://other-puzzle-1.vercel.app</a></button>
+		<button id="iTCLadderet" class="topicContent iOtherPuzzles"><a href="Ladderet.html">https://other-puzzle-2.vercel.app</a></button>
+		<button id="iTCLooseFit" class="topicContent iOtherPuzzles"><a href="LooseFit.html">https://other-puzzle-3.vercel.app</a></button>
 		
 		<p id="iTTWhereIPost" class="topicTitle"><strong>Where I Post Puzzles</strong></p>
 
-		<button id="iTCFacebook" class="topicContent iWhereIPost">Facebook&emsp;-&emsp;Weekday Puzzles page</button>
-		<button id="iTCMastodon" class="topicContent iWhereIPost">Mastodon&ensp;-&ensp;@PuzzleSmith@mas.to</button>
-		<button id="iTCReddit" class="topicContent iWhereIPost">Reddit&ensp;-&ensp;u/G_F_Smith</button>
-		<button id="iTCTwitter" class="topicContent iWhereIPost">X/Twitter&ensp;-&ensp;@PuzzleSmith</button>
+		<button id="iTCFacebook" class="topicContent iWhereIPost">Facebook&emsp;-&emsp;<span class="italic">Weekday Puzzles</span> page</button>
+		<button id="iTCMastodon" class="topicContent iWhereIPost">Mastodon&emsp;-&emsp;<span class="italic">@PuzzleSmith@mas.to</span></button>
+		<button id="iTCReddit" class="topicContent iWhereIPost">Reddit&emsp;-&emsp;<span class="italic">u/G_F_Smith</span></button>
+		<button id="iTCTwitter" class="topicContent iWhereIPost">X/Twitter&emsp;-&emsp;<span class="italic">@PuzzleSmith</span></button>
 
-		<p id="iTTLazyDog" class="topicTitle"><strong>Lazy Dog</strong></p>
+		<p id="iTTLazyDog" class="topicTitle"><strong>Lazy Dog App</strong></p>
 
-		<button id="iTCLazyDog" class="topicContent"><strong>Lazy Dog</strong> is a challenging word puzzle. etc</button>
+		<button id="iTCLazyDog" class="topicContent">
+		If you do crosswords or codewords, there is a good chance you will enjoy the challenge of a <strong>Lazy Dog</strong> word puzzle.
+		The puzzle exists as an app for iPhones and iPads: it's on App Store.
+		<br>
+		<br>
+		The app is <strong>not-for-profit</strong>. It is free to download and there are no advertisments. It does not ask for any personal details.
+		</button>
 		
 		<p id="iCopyright">Copyright &copy; 2023 G F Smith</p>
 		
@@ -997,7 +1047,7 @@ body {
 							* copyright<br>
 		</div> -->
 		
-		<div id="iSeparator-2" class="separator"></div>
+		<div id="iSeparator-2" class="demoSeparator"></div>
 
 		<div id="iDoorDemo" class="door">
 			<button id="demoCDemo" class="cCommon">Demonstration</button>
@@ -1089,7 +1139,7 @@ body {
 			</div>
 		</div>
 		
-		<div id="iSeparator-3" class="separator"></div>
+		<div id="iSeparator-3" class="demoSeparator"></div>
 	</div>
 
 	<div id="door"
