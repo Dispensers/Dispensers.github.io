@@ -18,7 +18,8 @@ body {
 	display:none;
 	z-index:1;
 	position:absolute;
-	height:245em;
+/*	height:245em; */
+	height:251em;
 	width:59em;
 	grid-template-rows:
 		[rWallInformation-s rIUkraineFlag-s]
@@ -49,8 +50,10 @@ body {
 		[rITCInstructions-s]
 		2fr
 		[rITTInstructions-e]
+		6fr
+		[rITCInstructions-e rITCInstructions-2-s]
 		8fr
-		[rITCInstructions-e]
+		[rITCInstructions-2-e]
 		1fr
 		[rIHighlighter-1-lr-e rIHighlighter-1-bottom-s]
 		1fr
@@ -256,6 +259,15 @@ body {
 	padding:0 0.5em 0 0.5em;
 	font-size:2.5em;
 	grid-row:rITCInstructions-s/rITCInstructions-e;
+	grid-column:cITC-s/cITC-e;
+}
+
+#iTCInstructions-2 {
+	text-align:justify;
+	border:none;
+	padding:0 0.5em 0 0.5em;
+	font-size:2.5em;
+	grid-row:rITCInstructions-2-s/rITCInstructions-2-e;
 	grid-column:cITC-s/cITC-e;
 }
 
@@ -1023,7 +1035,12 @@ body {
 		<p id="iTTInstructions" class="topicTitle"><strong>Instructions</strong></p>
 
 <!--		<div id="iInstructions"><strong>Build a ring in which NO tile has the same colour as either of its neighbours.</strong><br><br></div> -->
-		<button id="iTCInstructions" class="topicContent"><strong>Build a ring in which NO tile has the same colour as either of its neighbours.</strong></button>
+		<button id="iTCInstructions" class="topicContent">
+		<strong>Build a ring in which NO tile has the same colour as either of its neighbours.</strong>
+		</button>
+		<button id="iTCInstructions-2" class="topicContent">
+		The dispensers may contain more tiles than are actually needed.
+		</button>
 		
 		<div id="iHighlighter-1-top" class="highlighter"></div>
 		<div id="iHighlighter-1-bottom" class="highlighter"></div>
