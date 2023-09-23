@@ -1103,68 +1103,6 @@ class SolveBiz {
 							}
 					);
 	}
-
-/*		
-	hintWithCallbackTimerExpired() {
-		if (this.hintShowing) {
-			this.ring.removeTemporaryTile();
-			this.ring.refresh();
-			this.hintShowing = false;
-			this.hintNumShowsRemaining--;
-			if (this.hintNumShowsRemaining == 0) {
-				//clearInterval(this.hintTimer);
-				this.io.enableAllControlsExcept(["Reset", "Undispense"]);
-				this.callbackResolve();
-				return;
-			}
-		}
-		else {
-			this.ring.addTemporaryTile(this.hintTemporaryTile, this.puzzle.hintIndex);
-			this.ring.refresh();
-			this.hintShowing = true;			
-		}
-		setTimeout(demoHintTimerExpired, 1000);
-	}
-
-	hintWithCallback() {
-		return new 	Promise((resolve, reject) => {
-								this.io.disableAllControls();
-								this.callbackResolve = resolve;
-								this.ring.addTemporaryTile(this.hintTemporaryTile, this.puzzle.hintIndex);
-								this.ring.refresh();
-								this.hintShowing = true;
-								this.hintNumShowsRemaining = this.hintNumShows;
-								//this.hintTimer = setInterval(demoHintTimerExpired, 1000);
-								setTimeout(demoHintTimerExpired, 1000);
-							}
-					);
-	}
-	
-	solutionWithCallbackTimerExpired() {
-		const dispenser = this.dispensers[this.puzzle.solutionDispenseSequence[this.solutionNextIndex]];
-		this.solutionShowTile(dispenser);
-		this.solutionNextIndex++;
-		if (this.solutionNextIndex == 9) {
-			clearInterval(this.solutionTimer);
-			this.io.enableControls(["Reset"]);
-			this.callbackResolve();
-			return;
-		}
-		setTimeout(demoSolutionTimerExpired, 1000);
-	}
-
-	solutionWithCallback() {
-		return new 	Promise((resolve, reject) => {
-								this.io.disableAllControls();
-								this.callbackResolve = resolve;
-								this.solutionShowTile(this.dispensers[this.puzzle.solutionDispenseSequence[0]]);
-								this.solutionNextIndex = 1;
-								//this.hintTimer = setInterval(demoSolutionTimerExpired, 1000);
-								setTimeout(demoSolutionTimerExpired, 1000);
-							}
-					);
-	}
-*/	
 }
 
 
@@ -1535,7 +1473,7 @@ async function performPreamble() {
 
 	surround3TopRef.style.display = `none`;
 	surround3BottomRef.style.display = `none`;
-	surround3LeftRef.style.display = `none`;
+	//surround3LeftRef.style.display = `none`;
 	surround3RightRef.style.display = `none`;
 	
 	demoControlBack.unfreeze();
