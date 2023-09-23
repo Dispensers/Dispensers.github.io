@@ -1,0 +1,887 @@
+body {
+	font-family: Montserrat, Arial, 'sans-serif';
+	font-size: min(calc(90vw / 60), calc(90vh / 119));
+	margin: 0;
+	overflow: hidden;
+	background-color: black;
+}
+
+#infoWall {
+	display:none;
+/*	display:grid; */
+	z-index:1;
+/*	z-index:10; */
+	position:absolute;
+	height:253em;
+	width:60em;
+	grid-template-rows:
+		[rIWall-s rIUkraineFlag-s]
+		3fr
+		[rIUkraineFlag-e rIWallName-s]
+		1fr
+		[rICBackArrow-s]
+		5fr
+		[rICBackArrow-e]
+		1fr
+		[rIWallName-e rIPuzzleData-s]
+		9fr
+		[rIPuzzleData-e rISeparator-1-s]
+		1fr
+		[rISeparator-1-e rISurroundInstructions-top-s]
+		1fr
+		
+		[rISurroundInstructions-top-e rISurroundInstructions-lr-s rITTInstructions-s]
+		4fr
+
+		[rITCInstructions-s]
+		2fr
+		[rITTInstructions-e]
+		6fr
+		[rITCInstructions-e]
+		9fr
+		[rISurroundInstructions-lr-e rISurroundInstructions-bottom-s]
+		1fr
+
+		[rISurroundInstructions-bottom-e rITTOtherPuzzles-s]
+		4fr
+
+		[rITCDispensersLambda-s]
+		2fr
+		[rITTOtherPuzzles-e]
+		4fr
+		[rITCDispensersLambda-e rITCDispensersOmega-s]
+		6fr
+		[rITCDispensersOmega-e rITCLadderet-s]
+		6fr
+		[rITCLadderet-e]
+		3fr
+		
+		[rISeparator-2-s]
+		3fr
+		[rISeparator-2-e rIDoor-s]
+		120fr
+		[rIDoor-e rISeparator-3-s]
+		3fr
+		[rISeparator-3-e]
+
+		2fr
+		[rITTWhereIPost-s]
+		4fr
+
+		[rITCFacebook-s]
+		2fr
+		[rITTWhereIPost-e]
+		4fr
+		[rITCFacebook-e rITCMastodon-s]
+		6fr
+		[rITCMastodon-e rITCReddit-s]
+		6fr
+		[rITCReddit-e rITCTwitter-s]
+		6fr
+		[rITCTwitter-e]
+		
+		2fr
+		[rITTLazyDog-s]
+		4fr
+		
+		[rITCLazyDog-s]
+		2fr
+		[rITTLazyDog-e]
+		26fr
+		[rITCLazyDog-e]
+
+		3fr
+		
+		[rICopyright-s]
+		2fr
+
+		[rICopyright-e rIWall-e];
+		
+ 	grid-template-columns:
+		[cIWall-s cIDoor-s cISeparator-s]
+		1fr
+		[cISurroundInstructions-tb-s cISurroundInstructions-left-s]
+		1fr
+		[cISurroundInstructions-left-e cICBackArrow-s]
+		1fr
+		[cIPuzzleData-s cITT-s cITC-s cICopyright-s]
+		4fr
+		[cICBackArrow-e]
+		8fr
+		[cIWallName-s]
+		30fr
+		[cIWallName-e]
+		12fr
+		[cIPuzzleData-e cITT-e cITC-e cICopyright-e cIUkraineFlag-s]
+		1fr
+		[cISurroundInstructions-right-s]
+		1fr
+		[cISurroundInstructions-tb-e cISurroundInstructions-right-e]
+		1fr
+		[cIDoor-e cISeparator-e cIUkraineFlag-e cIWall-e];
+}
+
+#infoCtrlBackArrow {
+	width:5em;
+	height:5em;
+	grid-row:rICBackArrow-s/rICBackArrow-e;
+	grid-column:cICBackArrow-s/cICBackArrow-e;
+}
+
+#infoWallName {grid-row:rIWallName-s/rIWallName-e; grid-column:cIWallName-s/cIWallName-e;}
+
+#infoUkraineFlag {
+	z-index:3;
+	width:3em;
+	height:3em;
+	grid-row:rIUkraineFlag-s/rIUkraineFlag-e;
+	grid-column:cIUkraineFlag-s/cIUkraineFlag-e;
+}
+
+#infoPuzzleData {
+	border:none;
+	margin:0;
+	padding:0;
+	font-size:2.5em;
+	text-align:center;
+	background-color:transparent;
+	color:black;
+	grid-row:rIPuzzleData-s/rIPuzzleData-e;
+	grid-column:cIPuzzleData-s/cIPuzzleData-e;
+}
+
+#infoSeparator-1 {
+	background-color:transparent;
+	border-style:solid;
+	border-color:black;
+	border-width:0.1em 0 0 0;
+	grid-row:rISeparator-1-s/rISeparator-1-e;
+	grid-column:cISeparator-s/cISeparator-e;
+}
+
+#infoTTInstructions {grid-row:rITTInstructions-s/rITTInstructions-e; grid-column:cITT-s/cITT-e;}
+
+#infoTCInstructions {
+	text-align:justify;
+	border:none;
+	padding:0 0.5em 0 0.5em;
+	font-size:2.5em;
+	grid-row:rITCInstructions-s/rITCInstructions-e;
+	grid-column:cITC-s/cITC-e;
+}
+
+#infoSurroundInstructions-top {grid-row:rISurroundInstructions-top-s/rISurroundInstructions-top-e; grid-column:cISurroundInstructions-tb-s/cISurroundInstructions-tb-e;}
+#infoSurroundInstructions-bottom {grid-row:rISurroundInstructions-bottom-s/rISurroundInstructions-bottom-e; grid-column:cISurroundInstructions-tb-s/cISurroundInstructions-tb-e;}
+#infoSurroundInstructions-left {grid-row:rISurroundInstructions-lr-s/rISurroundInstructions-lr-e; grid-column:cISurroundInstructions-left-s/cISurroundInstructions-left-e;}
+#infoSurroundInstructions-right {grid-row:rISurroundInstructions-lr-s/rISurroundInstructions-lr-e; grid-column:cISurroundInstructions-right-s/cISurroundInstructions-right-e;}
+
+#infoTTOtherPuzzles {grid-row:rITTOtherPuzzles-s/rITTOtherPuzzles-e; grid-column:cITT-s/cITT-e;}
+
+#infoTCDispensersLambda {
+	border-bottom-width:1px;
+	grid-row:rITCDispensersLambda-s/rITCDispensersLambda-e;
+	grid-column:cITC-s/cITC-e;
+}
+
+#infoTCDispensersOmega {
+	border-bottom-width:1px;
+	grid-row:rITCDispensersOmega-s/rITCDispensersOmega-e;
+	grid-column:cITC-s/cITC-e;
+}
+
+#infoTCLadderet {
+	border-bottom-width:1px;
+	grid-row:rITCLadderet-s/rITCLadderet-e;
+	grid-column:cITC-s/cITC-e;
+}
+
+#infoTTWhereIPost {grid-row:rITTWhereIPost-s/rITTWhereIPost-e; grid-column:cITT-s/cITT-e;}
+
+#infoTCFacebook {
+	border-bottom-width:1px;
+	grid-row:rITCFacebook-s/rITCFacebook-e;
+	grid-column:cITC-s/cITC-e;
+}
+
+#infoTCMastodon {
+	border-bottom-width:1px;
+	grid-row:rITCMastodon-s/rITCMastodon-e;
+	grid-column:cITC-s/cITC-e;
+}
+
+#infoTCReddit {
+	border-bottom-width:1px;
+	grid-row:rITCReddit-s/rITCReddit-e;
+	grid-column:cITC-s/cITC-e;
+}
+
+#infoTCTwitter {
+	border-bottom-width:0;
+	grid-row:rITCTwitter-s/rITCTwitter-e;
+	grid-column:cITC-s/cITC-e;
+}
+
+#infoTTLazyDog {grid-row:rITTLazyDog-s/rITTLazyDog-e; grid-column:cITT-s/cITT-e;}
+
+#infoTCLazyDog {
+	text-align:justify;
+	border:none;
+	padding:0 0.5em 0 0.5em;
+	font-size:2.5em;
+	grid-row:rITCLazyDog-s/rITCLazyDog-e;
+	grid-column:cITC-s/cITC-e;
+}
+
+#infoCopyright {
+	background-color:transparent;
+	color:black;
+	text-align:center;
+	grid-row:rICopyright-s/rICopyright-e;
+	grid-column:cICopyright-s/cICopyright-e;
+}
+
+#infoSeparator-2 {grid-row:rISeparator-2-s/rISeparator-2-e; grid-column:cISeparator-s/cISeparator-e;}
+#infoSeparator-3 {grid-row:rISeparator-3-s/rISeparator-3-e; grid-column:cISeparator-s/cISeparator-e;}
+
+
+#demoDoor {
+	grid-row:rIDoor-s/rIDoor-e;
+	grid-column:cIDoor-s/cIDoor-e;
+	height:120em;
+	width:60em;
+/*	position:absolute; */
+	display:grid;
+	grid-template-rows:
+		[rDDoor-s]
+		1fr
+		[rDSurroundDemonstration-top-s]
+		1fr
+		[rDSurroundDemonstration-top-e rDSurroundDemonstration-lr-s]
+		1fr
+		[rDCDemonstration-s rDCrossTick-s]
+		7fr
+		[rDCDemonstration-e rDCrossTick-e]
+		1fr
+		[rDSurroundDemonstration-lr-e rDSurroundDemonstration-bottom-s]
+		1fr
+		[rDSurroundDemonstration-bottom-e]
+		1fr
+		[rDCTop-s]
+		1fr
+		[rDSTop-s]
+		4fr
+		[rDSTop-e]
+		1fr
+		[rDCTop-e]
+		3fr
+		[rDPanel-s]
+		76fr
+		[rDPanel-e]
+		3fr
+		[rDCBackward-s rDCForward-s]
+		1fr
+		[rDSBackward-s rDSForward-s]
+		5fr
+		[rDSBackward-e rDSForward-e]
+		1fr
+		[rDCBackward-e rDCForward-e]
+		3fr
+		[rDCBottom-s]
+		1fr
+		[rDSBottom-s]
+		4fr
+		[rDSBottom-e]
+		1fr
+		[rDCBottom-e]
+		3fr
+		[rDDoor-e];
+	grid-template-columns:
+		[cDDoor-s]
+		3fr
+		[cDPanel-s cDCInformation-s cDCReset-s]
+		11fr
+		[cDSurroundDemonstration-tb-s cDSurroundDemonstration-left-s]
+		1fr
+		[cDSurroundDemonstration-left-e]
+		1fr
+		[cDCDemonstration-s]
+		2fr
+		[cDCBackward-s]
+		1fr
+		[cDCInformation-e]
+		1fr
+		[cDSBackward-s]
+		4fr
+		[cDSBackward-e cDCBackward-e cDCHint-s]
+		2fr
+		[cDSReset-s]
+		2fr
+		[cDSHint-s]
+		1fr
+		[cDSReset-s]
+		4fr
+		[cDSReset-e cDSHint-e]
+		3fr
+		[cDCHint-e cDCForward-s cDSForward-s]
+		4fr
+		[cDSForward-e]
+		1fr
+		[cDCSolution-s]
+		1fr
+		[cDCForward-e]
+		2fr
+		[cDCDemonstration-e]
+		1fr
+		[cDSurroundDemonstration-right-s]
+		1fr
+		[cDSurroundDemonstration-tb-e cDSurroundDemonstration-right-e]
+		1fr
+		[cDSSolution-s]
+		4fr
+		[cDSSolution-e]
+		1fr
+		[cDCrossTick-s]
+		5fr
+		[cDPanel-e cDCSolution-e cDCReset-e cDCrossTick-e]
+		3fr
+		[cDDoor-e];
+}
+
+#demoCtrlDemonstration {
+	grid-row:rDCDemonstration-s/rDCDemonstration-e;
+	grid-column:cDCDemonstration-s/cDCDemonstration-e;
+	text-align:center;
+	border:none;
+	background-color:#484848;
+	color:white;
+	font-size:3em;
+}
+
+#demoSurroundDemonstration-top {
+	grid-row:rDSurroundDemonstration-top-s/rDSurroundDemonstration-top-e;
+	grid-column:cDSurroundDemonstration-tb-s/cDSurroundDemonstration-tb-e;
+}
+#demoSurroundDemonstration-bottom {
+	grid-row:rDSurroundDemonstration-bottom-s/rDSurroundDemonstration-bottom-e;
+	grid-column:cDSurroundDemonstration-tb-s/cDSurroundDemonstration-tb-e;
+}
+#demoSurroundDemonstration-left {
+	grid-row:rDSurroundDemonstration-lr-s/rDSurroundDemonstration-lr-e;
+	grid-column:cDSurroundDemonstration-left-s/cDSurroundDemonstration-left-e;
+}
+#demoSurroundDemonstration-right {
+	grid-row:rDSurroundDemonstration-lr-s/rDSurroundDemonstration-lr-e;
+	grid-column:cDSurroundDemonstration-right-s/cDSurroundDemonstration-right-e;
+}
+
+#demoCrossTick {display:none; grid-row:rDCrossTick-s/rDCrossTick-e; grid-column:cDCrossTick-s/cDCrossTick-e;}
+
+#demoCtrlInformation {grid-row:rDCTop-s/rDCTop-e; grid-column:cDCInformation-s/cDCInformation-e;}
+
+#demoCtrlHint {grid-row:rDCTop-s/rDCTop-e; grid-column:cDCHint-s/cDCHint-e;}
+
+#demoSpotHint {display:none; grid-row:rDSTop-s/rDSTop-e; grid-column:cDSHint-s/cDSHint-e;}
+
+#demoCtrlSolution {grid-row:rDCTop-s/rDCTop-e; grid-column:cDCSolution-s/cDCSolution-e;}
+
+#demoSpotSolution {display:none; grid-row:rDSTop-s/rDSTop-e; grid-column:cDSSolution-s/cDSSolution-e;}
+
+#demoCtrlReset {grid-row:rDCBottom-s/rDCBottom-e; grid-column:cDCReset-s/cDCReset-e;}
+
+#demoSpotReset {display:none; grid-row:rDSBottom-s/rDSBottom-e; grid-column:cDSReset-s/cDSReset-e;}
+
+#demoCtrlBackward {grid-row:rDCBackward-s/rDCBackward-e; grid-column:cDCBackward-s/cDCBackward-e;}
+#demoSpotBackward {display:none; grid-row:rDSBackward-s/rDSBackward-e; grid-column:cDSBackward-s/cDSBackward-e;}
+
+#demoCtrlForward {grid-row:rDCForward-s/rDCForward-e; grid-column:cDCForward-s/cDCForward-e;}
+#demoSpotForward {display:none; grid-row:rDSForward-s/rDSForward-e; grid-column:cDSForward-s/cDSForward-e;}
+
+#demoPanel {
+	grid-row:rDPanel-s/rDPanel-e;
+	grid-column:cDPanel-s/cDPanel-e;
+	display:grid;
+/*	position:absolute; */
+	height:76em;
+	width:54em;
+	background-color:white;
+	grid-template-rows:
+		[rIWDP-s]
+		3fr
+		[rIWDPCellRow-1-s]
+		6fr
+		[rIWDPCellRow-1-e rIWDPCellRow-2-s]
+		6fr
+		[rIWDPCellRow-2-e rIWDPCellRow-3-s]
+		6fr
+		[rIWDPCellRow-3-e rIWDPCellRow-4-s]
+		6fr
+		[rIWDPCellRow-4-e rIWDPCellRow-5-s]
+		6fr
+		[rIWDPCellRow-5-e rIWDPCellRow-6-s]
+		6fr
+		[rIWDPCellRow-6-e rIWDPCellRow-7-s]
+		6fr
+		[rIWDPCellRow-7-e]
+		3fr
+		[rIWDPWordTop-s]
+		2fr
+		[rIWDPSpotWordTop-s]
+		5fr
+		[rIWDPSpotWordTop-e]
+		2fr
+		[rIWDPWordTop-e rIWDPWordCentre-s]
+		2fr
+		[rIWDPSpotWordCentre-s]
+		5fr
+		[rIWDPSpotWordCentre-e]
+		2fr
+		[rIWDPWordCentre-e rIWDPWordBottom-s]
+		2fr
+		[rIWDPSpotWordBottom-s]
+		5fr
+		[rIWDPSpotWordBottom-e]
+		2fr
+		[rIWDPWordBottom-e]
+		1fr
+		[rIWDP-e];
+	grid-template-columns:
+		[cIWDP-s]
+		3fr
+		[cIWDPWordLeft-s]
+		3fr
+		[cIWDPCellColumn-1-s]
+		4fr
+		[cIWDPSpotWordLeft-s]
+		2fr
+		[cIWDPCellColumn-1-e cIWDPCellColumn-2-s]
+		2fr
+		[cIWDPSpotWordLeft-e]
+		2fr
+		[cIWDPWordCentre-s]
+		2fr
+		[cIWDPCellColumn-2-e cIWDPCellColumn-3-s]
+		6fr
+		[cIWDPWordLeft-e cIWDPCellColumn-3-e cIWDPCellColumn-4-s]
+		1fr
+		[cIWDPSpotWordCentre-s]
+		4fr
+		[cIWDPSpotWordCentre-e]
+		1fr
+		[cIWDPCellColumn-4-e cIWDPCellColumn-5-s cIWDPWordRight-s]
+		6fr
+		[cIWDPCellColumn-5-e cIWDPCellColumn-6-s cIWDPSpotWordRight-s]
+		2fr
+		[cIWDPWordCentre-e]
+		3fr
+		[cIWDPSpotWordRight-e]
+		1fr
+		[cIWDPCellColumn-6-e cIWDPCellColumn-7-s]
+		6fr
+		[cIWDPCellColumn-7-e]
+		3fr
+		[cIWDPWordRight-e]
+		3fr
+		[cIWDP-e];
+}
+
+#demoCell-12 {grid-row:rIWDPCellRow-1-s/rIWDPCellRow-1-e; grid-column:cIWDPCellColumn-2-s/cIWDPCellColumn-2-e;}
+#demoCell-16 {grid-row:rIWDPCellRow-1-s/rIWDPCellRow-1-e; grid-column:cIWDPCellColumn-6-s/cIWDPCellColumn-6-e;}
+
+#demoCell-21 {grid-row:rIWDPCellRow-2-s/rIWDPCellRow-2-e; grid-column:cIWDPCellColumn-1-s/cIWDPCellColumn-1-e;}
+#demoCell-22 {grid-row:rIWDPCellRow-2-s/rIWDPCellRow-2-e; grid-column:cIWDPCellColumn-2-s/cIWDPCellColumn-2-e;}
+#demoCell-23 {grid-row:rIWDPCellRow-2-s/rIWDPCellRow-2-e; grid-column:cIWDPCellColumn-3-s/cIWDPCellColumn-3-e;}
+#demoCell-24 {grid-row:rIWDPCellRow-2-s/rIWDPCellRow-2-e; grid-column:cIWDPCellColumn-4-s/cIWDPCellColumn-4-e;}
+#demoCell-25 {grid-row:rIWDPCellRow-2-s/rIWDPCellRow-2-e; grid-column:cIWDPCellColumn-5-s/cIWDPCellColumn-5-e;}
+#demoCell-26 {grid-row:rIWDPCellRow-2-s/rIWDPCellRow-2-e; grid-column:cIWDPCellColumn-6-s/cIWDPCellColumn-6-e;}
+#demoCell-27 {grid-row:rIWDPCellRow-2-s/rIWDPCellRow-2-e; grid-column:cIWDPCellColumn-7-s/cIWDPCellColumn-7-e;}
+
+#demoCell-32 {grid-row:rIWDPCellRow-3-s/rIWDPCellRow-3-e; grid-column:cIWDPCellColumn-2-s/cIWDPCellColumn-2-e;}
+#demoCell-36 {grid-row:rIWDPCellRow-3-s/rIWDPCellRow-3-e; grid-column:cIWDPCellColumn-6-s/cIWDPCellColumn-6-e;}
+
+#demoCell-41 {grid-row:rIWDPCellRow-4-s/rIWDPCellRow-4-e; grid-column:cIWDPCellColumn-1-s/cIWDPCellColumn-1-e;}
+#demoCell-42 {grid-row:rIWDPCellRow-4-s/rIWDPCellRow-4-e; grid-column:cIWDPCellColumn-2-s/cIWDPCellColumn-2-e;}
+#demoCell-43 {grid-row:rIWDPCellRow-4-s/rIWDPCellRow-4-e; grid-column:cIWDPCellColumn-3-s/cIWDPCellColumn-3-e;}
+#demoCell-44 {grid-row:rIWDPCellRow-4-s/rIWDPCellRow-4-e; grid-column:cIWDPCellColumn-4-s/cIWDPCellColumn-4-e;}
+#demoCell-45 {grid-row:rIWDPCellRow-4-s/rIWDPCellRow-4-e; grid-column:cIWDPCellColumn-5-s/cIWDPCellColumn-5-e;}
+#demoCell-46 {grid-row:rIWDPCellRow-4-s/rIWDPCellRow-4-e; grid-column:cIWDPCellColumn-6-s/cIWDPCellColumn-6-e;}
+#demoCell-47 {grid-row:rIWDPCellRow-4-s/rIWDPCellRow-4-e; grid-column:cIWDPCellColumn-7-s/cIWDPCellColumn-7-e;}
+
+#demoCell-52 {grid-row:rIWDPCellRow-5-s/rIWDPCellRow-5-e; grid-column:cIWDPCellColumn-2-s/cIWDPCellColumn-2-e;}
+#demoCell-56 {grid-row:rIWDPCellRow-5-s/rIWDPCellRow-5-e; grid-column:cIWDPCellColumn-6-s/cIWDPCellColumn-6-e;}
+
+#demoCell-61 {grid-row:rIWDPCellRow-6-s/rIWDPCellRow-6-e; grid-column:cIWDPCellColumn-1-s/cIWDPCellColumn-1-e;}
+#demoCell-62 {grid-row:rIWDPCellRow-6-s/rIWDPCellRow-6-e; grid-column:cIWDPCellColumn-2-s/cIWDPCellColumn-2-e;}
+#demoCell-63 {grid-row:rIWDPCellRow-6-s/rIWDPCellRow-6-e; grid-column:cIWDPCellColumn-3-s/cIWDPCellColumn-3-e;}
+#demoCell-64 {grid-row:rIWDPCellRow-6-s/rIWDPCellRow-6-e; grid-column:cIWDPCellColumn-4-s/cIWDPCellColumn-4-e;}
+#demoCell-65 {grid-row:rIWDPCellRow-6-s/rIWDPCellRow-6-e; grid-column:cIWDPCellColumn-5-s/cIWDPCellColumn-5-e;}
+#demoCell-66 {grid-row:rIWDPCellRow-6-s/rIWDPCellRow-6-e; grid-column:cIWDPCellColumn-6-s/cIWDPCellColumn-6-e;}
+#demoCell-67 {grid-row:rIWDPCellRow-6-s/rIWDPCellRow-6-e; grid-column:cIWDPCellColumn-7-s/cIWDPCellColumn-7-e;}
+
+#demoCell-72 {grid-row:rIWDPCellRow-7-s/rIWDPCellRow-7-e; grid-column:cIWDPCellColumn-2-s/cIWDPCellColumn-2-e;}
+#demoCell-76 {grid-row:rIWDPCellRow-7-s/rIWDPCellRow-7-e; grid-column:cIWDPCellColumn-6-s/cIWDPCellColumn-6-e;}
+
+#demoHoleTop {grid-row:rIWDPCellRow-3-s/rIWDPCellRow-3-e; grid-column:cIWDPCellColumn-3-s/cIWDPCellColumn-5-e;}
+#demoHoleBottom {grid-row:rIWDPCellRow-5-s/rIWDPCellRow-5-e; grid-column:cIWDPCellColumn-3-s/cIWDPCellColumn-5-e;}
+
+#demoWord-1 {grid-row:rIWDPWordTop-s/rIWDPWordTop-e; grid-column:cIWDPWordLeft-s/cIWDPWordLeft-e;}
+#demoWord-2 {grid-row:rIWDPWordTop-s/rIWDPWordTop-e; grid-column:cIWDPWordRight-s/cIWDPWordRight-e;}
+#demoWord-3 {grid-row:rIWDPWordCentre-s/rIWDPWordCentre-e; grid-column:cIWDPWordCentre-s/cIWDPWordCentre-e;}
+#demoWord-4 {grid-row:rIWDPWordBottom-s/rIWDPWordBottom-e; grid-column:cIWDPWordLeft-s/cIWDPWordLeft-e;}
+#demoWord-5 {grid-row:rIWDPWordBottom-s/rIWDPWordBottom-e; grid-column:cIWDPWordRight-s/cIWDPWordRight-e;}
+
+#demoSpotWord-1 {display:none; grid-row:rIWDPSpotWordTop-s/rIWDPSpotWordTop-e; grid-column:cIWDPSpotWordLeft-s/cIWDPSpotWordLeft-e;}
+#demoSpotWord-2 {display:none; grid-row:rIWDPSpotWordTop-s/rIWDPSpotWordTop-e; grid-column:cIWDPSpotWordRight-s/cIWDPSpotWordRight-e;}
+#demoSpotWord-3 {display:none; grid-row:rIWDPSpotWordCentre-s/rIWDPSpotWordCentre-e; grid-column:cIWDPSpotWordCentre-s/cIWDPSpotWordCentre-e;}
+#demoSpotWord-4 {display:none; grid-row:rIWDPSpotWordBottom-s/rIWDPSpotWordBottom-e; grid-column:cIWDPSpotWordLeft-s/cIWDPSpotWordLeft-e;}
+#demoSpotWord-5 {display:none; grid-row:rIWDPSpotWordBottom-s/rIWDPSpotWordBottom-e; grid-column:cIWDPSpotWordRight-s/cIWDPSpotWordRight-e;}
+
+#demoWord-1-spelling {background-color:white; color:black;}
+#demoWord-2-spelling {background-color:white; color:black;}
+#demoWord-3-spelling {background-color:white; color:black;}
+#demoWord-4-spelling {background-color:white; color:black;}
+#demoWord-5-spelling {background-color:white; color:black;}
+
+
+#mainWall {
+	display:grid;
+	z-index:1;
+	position:absolute;
+/*	height:122em; */
+	height:120em;
+	width:60em;
+	grid-template-rows:
+		[rMainWall-s]
+		3fr
+		[rMWallName-s rMCrossTick-s]
+		7fr
+		[rMWallName-e rMCrossTick-e rMDoor-s]
+/*		112fr */
+		110fr
+		[rMDoor-e rMainWall-e];
+ 	grid-template-columns:
+		[cMainWall-s cMDoor-s]
+		18fr		
+		[cMWallName-s]
+		24fr
+		[cMWallName-e]
+		10fr
+		[cMCrossTick-s]
+		5fr
+		[cMCrossTick-e]
+		3fr
+		[cMDoor-e cMainWall-e];
+}
+
+#mainWallName {
+	grid-row:rMWallName-s/rMWallName-e;
+	grid-column:cMWallName-s/cMWallName-e;
+}
+
+#mainCrossTick {display:none; grid-row:rMCrossTick-s/rMCrossTick-e; grid-column:cMCrossTick-s/cMCrossTick-e;}
+			
+#punterDoor {
+	grid-row:rMDoor-s/rMDoor-e;
+	grid-column:cMDoor-s/cMDoor-e;
+	display:grid;
+	position:absolute;
+/*	height:112em; */
+	height:110em;
+	width:60em;
+	grid-template-rows:
+		[rPunterDoor-s]
+		1fr
+		[rPSurroundInformation-top-s]
+		1fr
+		[rPSurroundInformation-top-e rPSurroundInformation-lr-s]
+		1fr
+		[rPCTop-s]
+		6fr
+		[rPCTop-e]
+		1fr
+		[rPSurroundInformation-lr-e rPSurroundInformation-bottom-s]
+		1fr
+		[rPSurroundInformation-bottom-e]
+		1fr
+		[rPPanel-s]
+/*		78fr */
+		76fr
+		[rPPanel-e]
+		3fr
+		[rPCBackward-s rPCForward-s]
+		7fr
+		[rPCBackward-e rPCForward-e]
+		3fr
+		[rPCBottom-s]
+		6fr
+		[rPCBottom-e]
+		3fr
+		[rPunterDoor-e];
+	grid-template-columns:
+		[cPunterDoor-s]
+		1fr
+		[cPSurroundInformation-tb-s cPSurroundInformation-left-s]
+		1fr
+		[cPSurroundInformation-left-e]
+		1fr
+		[cPPanel-s cPCInformation-s cPCReset-s]
+		15fr
+		[cPCBackward-s]
+		1fr
+		[cPCInformation-e]
+		1fr
+		[cPSurroundInformation-right-s]
+		1fr
+		[cPSurroundInformation-tb-e cPSurroundInformation-right-e]
+		3fr
+		[cPCBackward-e cPCHint-s]
+		12fr
+		[cPCHint-e cPCForward-s]
+		5fr
+		[cPCSolution-s]
+		1fr
+		[cPCForward-e]
+		15fr
+		[cPCSolution-e cPCReset-e cPPanel-e]
+		3fr
+		[cPunterDoor-e];
+}
+
+#punterCtrlInformation {grid-row:rPCTop-s/rPCTop-e; grid-column:cPCInformation-s/cPCInformation-e;}
+
+#punterSurroundInformation-top {grid-row:rPSurroundInformation-top-s/rPSurroundInformation-top-e; grid-column:cPSurroundInformation-tb-s/cPSurroundInformation-tb-e;}
+#punterSurroundInformation-bottom {grid-row:rPSurroundInformation-bottom-s/rPSurroundInformation-bottom-e; grid-column:cPSurroundInformation-tb-s/cPSurroundInformation-tb-e;}
+#punterSurroundInformation-left {grid-row:rPSurroundInformation-lr-s/rPSurroundInformation-lr-e; grid-column:cPSurroundInformation-left-s/cPSurroundInformation-left-e;}
+#punterSurroundInformation-right {grid-row:rPSurroundInformation-lr-s/rPSurroundInformation-lr-e; grid-column:cPSurroundInformation-right-s/cPSurroundInformation-right-e;}
+
+#punterCtrlHint {grid-row:rPCTop-s/rPCTop-e; grid-column:cPCHint-s/cPCHint-e;}
+
+#punterCtrlSolution {grid-row:rPCTop-s/rPCTop-e; grid-column:cPCSolution-s/cPCSolution-e;}
+
+#punterCtrlBackward {grid-row:rPCBackward-s/rPCBackward-e; grid-column:cPCBackward-s/cPCBackward-e;}
+#punterCtrlForward {grid-row:rPCForward-s/rPCForward-e; grid-column:cPCForward-s/cPCForward-e;}
+
+#punterCtrlReset {grid-row:rPCBottom-s/rPCBottom-e; grid-column:cPCReset-s/cPCReset-e;}
+
+#punterPanel {
+	grid-row:rPPanel-s/rPPanel-e;
+	grid-column:cPPanel-s/cPPanel-e;
+	display:grid;
+	position:absolute;
+/*	height:78em; */
+	height:76em;
+	width:54em;
+	background-color:white;
+	grid-template-rows:
+		[rPunterPanel-s]
+		3fr
+		[rPPCellRow-1-s]
+		6fr
+		[rPPCellRow-1-e rPPCellRow-2-s]
+		6fr
+		[rPPCellRow-2-e rPPCellRow-3-s]
+		6fr
+		[rPPCellRow-3-e rPPCellRow-4-s]
+		6fr
+		[rPPCellRow-4-e rPPCellRow-5-s]
+		6fr
+		[rPPCellRow-5-e rPPCellRow-6-s]
+		6fr
+		[rPPCellRow-6-e rPPCellRow-7-s]
+		6fr
+		[rPPCellRow-7-e]
+		3fr
+		[rPPWordTop-s]
+		9fr
+		[rPPWordTop-e rPPWordCentre-s]
+		9fr
+		[rPPWordCentre-e rPPWordBottom-s]
+		9fr
+		[rPPWordBottom-e]
+/*		3fr */
+		1fr
+		[rPunterPanel-e];
+	grid-template-columns:
+		[cPunterPanel-s]
+		3fr
+		[cPPWordLeft-s]
+		3fr
+		[cPPCellColumn-1-s]
+		6fr
+		[cPPCellColumn-1-e cPPCellColumn-2-s]
+		4fr
+		[cPPWordCentre-s]
+		2fr
+		[cPPCellColumn-2-e cPPCellColumn-3-s]
+		6fr
+		[cPPWordLeft-e cPPCellColumn-3-e cPPCellColumn-4-s]
+		6fr
+		[cPPCellColumn-4-e cPPCellColumn-5-s cPPWordRight-s]
+		6fr
+		[cPPCellColumn-5-e cPPCellColumn-6-s]
+		2fr
+		[cPPWordCentre-e]
+		4fr
+		[cPPCellColumn-6-e cPPCellColumn-7-s]
+		6fr
+		[cPPCellColumn-7-e]
+		3fr
+		[cPPWordRight-e]
+		3fr
+		[cPunterPanel-e];
+}
+
+#punterCell-12 {grid-row:rPPCellRow-1-s/rPPCellRow-1-e; grid-column:cPPCellColumn-2-s/cPPCellColumn-2-e;}
+#punterCell-16 {grid-row:rPPCellRow-1-s/rPPCellRow-1-e; grid-column:cPPCellColumn-6-s/cPPCellColumn-6-e;}
+
+#punterCell-21 {grid-row:rPPCellRow-2-s/rPPCellRow-2-e; grid-column:cPPCellColumn-1-s/cPPCellColumn-1-e;}
+#punterCell-22 {grid-row:rPPCellRow-2-s/rPPCellRow-2-e; grid-column:cPPCellColumn-2-s/cPPCellColumn-2-e;}
+#punterCell-23 {grid-row:rPPCellRow-2-s/rPPCellRow-2-e; grid-column:cPPCellColumn-3-s/cPPCellColumn-3-e;}
+#punterCell-24 {grid-row:rPPCellRow-2-s/rPPCellRow-2-e; grid-column:cPPCellColumn-4-s/cPPCellColumn-4-e;}
+#punterCell-25 {grid-row:rPPCellRow-2-s/rPPCellRow-2-e; grid-column:cPPCellColumn-5-s/cPPCellColumn-5-e;}
+#punterCell-26 {grid-row:rPPCellRow-2-s/rPPCellRow-2-e; grid-column:cPPCellColumn-6-s/cPPCellColumn-6-e;}
+#punterCell-27 {grid-row:rPPCellRow-2-s/rPPCellRow-2-e; grid-column:cPPCellColumn-7-s/cPPCellColumn-7-e;}
+
+#punterCell-32 {grid-row:rPPCellRow-3-s/rPPCellRow-3-e; grid-column:cPPCellColumn-2-s/cPPCellColumn-2-e;}
+#punterCell-36 {grid-row:rPPCellRow-3-s/rPPCellRow-3-e; grid-column:cPPCellColumn-6-s/cPPCellColumn-6-e;}
+
+#punterCell-41 {grid-row:rPPCellRow-4-s/rPPCellRow-4-e; grid-column:cPPCellColumn-1-s/cPPCellColumn-1-e;}
+#punterCell-42 {grid-row:rPPCellRow-4-s/rPPCellRow-4-e; grid-column:cPPCellColumn-2-s/cPPCellColumn-2-e;}
+#punterCell-43 {grid-row:rPPCellRow-4-s/rPPCellRow-4-e; grid-column:cPPCellColumn-3-s/cPPCellColumn-3-e;}
+#punterCell-44 {grid-row:rPPCellRow-4-s/rPPCellRow-4-e; grid-column:cPPCellColumn-4-s/cPPCellColumn-4-e;}
+#punterCell-45 {grid-row:rPPCellRow-4-s/rPPCellRow-4-e; grid-column:cPPCellColumn-5-s/cPPCellColumn-5-e;}
+#punterCell-46 {grid-row:rPPCellRow-4-s/rPPCellRow-4-e; grid-column:cPPCellColumn-6-s/cPPCellColumn-6-e;}
+#punterCell-47 {grid-row:rPPCellRow-4-s/rPPCellRow-4-e; grid-column:cPPCellColumn-7-s/cPPCellColumn-7-e;}
+
+#punterCell-52 {grid-row:rPPCellRow-5-s/rPPCellRow-5-e; grid-column:cPPCellColumn-2-s/cPPCellColumn-2-e;}
+#punterCell-56 {grid-row:rPPCellRow-5-s/rPPCellRow-5-e; grid-column:cPPCellColumn-6-s/cPPCellColumn-6-e;}
+
+#punterCell-61 {grid-row:rPPCellRow-6-s/rPPCellRow-6-e; grid-column:cPPCellColumn-1-s/cPPCellColumn-1-e;}
+#punterCell-62 {grid-row:rPPCellRow-6-s/rPPCellRow-6-e; grid-column:cPPCellColumn-2-s/cPPCellColumn-2-e;}
+#punterCell-63 {grid-row:rPPCellRow-6-s/rPPCellRow-6-e; grid-column:cPPCellColumn-3-s/cPPCellColumn-3-e;}
+#punterCell-64 {grid-row:rPPCellRow-6-s/rPPCellRow-6-e; grid-column:cPPCellColumn-4-s/cPPCellColumn-4-e;}
+#punterCell-65 {grid-row:rPPCellRow-6-s/rPPCellRow-6-e; grid-column:cPPCellColumn-5-s/cPPCellColumn-5-e;}
+#punterCell-66 {grid-row:rPPCellRow-6-s/rPPCellRow-6-e; grid-column:cPPCellColumn-6-s/cPPCellColumn-6-e;}
+#punterCell-67 {grid-row:rPPCellRow-6-s/rPPCellRow-6-e; grid-column:cPPCellColumn-7-s/cPPCellColumn-7-e;}
+
+#punterCell-72 {grid-row:rPPCellRow-7-s/rPPCellRow-7-e; grid-column:cPPCellColumn-2-s/cPPCellColumn-2-e;}
+#punterCell-76 {grid-row:rPPCellRow-7-s/rPPCellRow-7-e; grid-column:cPPCellColumn-6-s/cPPCellColumn-6-e;}
+
+#punterHoleTop {grid-row:rPPCellRow-3-s/rPPCellRow-3-e; grid-column:cPPCellColumn-3-s/cPPCellColumn-5-e;}
+#punterHoleBottom {grid-row:rPPCellRow-5-s/rPPCellRow-5-e; grid-column:cPPCellColumn-3-s/cPPCellColumn-5-e;}
+
+#punterWord-1 {grid-row:rPPWordTop-s/rPPWordTop-e; grid-column:cPPWordLeft-s/cPPWordLeft-e;}
+#punterWord-2 {grid-row:rPPWordTop-s/rPPWordTop-e; grid-column:cPPWordRight-s/cPPWordRight-e;}
+#punterWord-3 {grid-row:rPPWordCentre-s/rPPWordCentre-e; grid-column:cPPWordCentre-s/cPPWordCentre-e;}
+#punterWord-4 {grid-row:rPPWordBottom-s/rPPWordBottom-e; grid-column:cPPWordLeft-s/cPPWordLeft-e;}
+#punterWord-5 {grid-row:rPPWordBottom-s/rPPWordBottom-e; grid-column:cPPWordRight-s/cPPWordRight-e;}
+
+#punterWord-1-spelling {background-color:white; color:black;}
+#punterWord-2-spelling {background-color:white; color:black;}
+#punterWord-3-spelling {background-color:white; color:black;}
+#punterWord-4-spelling {background-color:white; color:black;}
+#punterWord-5-spelling {background-color:white; color:black;}
+
+
+.SpotEvenOdd {z-index:10; width:4em; height:5em;}
+.SpotOddEven {z-index:10; width:5em; height:4em;}
+.SpotEvenEven {z-index:10; width:4em; height:4em;}
+.SpotOddOdd {z-index:10; width:5em; height:5em;}
+
+.Wall {background-color:#807873;}
+
+.Door {background-color:#807873;}
+
+.WallName {
+	padding:0;
+	font-size:3.6em;
+	border-style:none;
+	border-radius:0.3em;
+	margin:0;
+	background-color:black;
+	color:white;
+	text-align:center;
+	letter-spacing:0.1em;
+}
+
+.CtrlCommon {margin:0; padding:0;}
+.CtrlSecondary {text-align:center; border:none; background-color:#484848; color:white; font-size:2.5em;}
+
+.DemoSeparator {background-color:black;}
+
+.Surround {display:none; background-color:yellow;}
+
+.InfoTopicTitle {
+	overflow:hidden;
+	border:none;
+	margin:0;
+	padding:0.3em 0 0 0;
+	text-align:center;
+	font-size:2.5em;
+	font-variant:small-caps;
+	letter-spacing:0.08em;
+}
+
+.InfoTopicContent {margin:0; background-color:white; color:black;}
+
+.InfoOtherPuzzles {
+	border-style:dashed;
+	border-color:#606060;
+	border-top-width:0;
+	border-left-width:0;
+	border-right-width:0;
+	padding:0;
+	font-size:2.5em;
+}
+
+a {color:silver;}
+
+.InfoWhereIPost {
+	border-style:dashed;
+	border-color:#606060;
+	border-top-width:0;
+	border-left-width:0;
+	border-right-width:0;
+	padding:0;
+	font-size:2.5em;
+}
+
+.Italic {font-style:italic;}
+
+.CrossTick {
+	padding:0;
+	font-size:3.6em;
+	border-style:none;
+	border-radius:0.3em;
+	margin:0;
+	background-color:#FFFF80;
+	color:black;
+	text-align:center;
+}
+
+/*
+.Limb {background-color:#96E6DA;}
+.Torso {background-color:#FAFAFA;}
+.Hole {background-color:black; border:none;}
+.Cell {font-size:4em; border-color:black; border-style:solid; margin:0; text-align:center; padding:0;}
+.EdgeTop {border-top-width:0.05em;}
+.EdgeBottom {border-bottom-width:0.05em;}
+.EdgeLeft {border-left-width:0.05em;}
+.EdgeRight {border-right-width:0.05em;}
+.ThinTop {border-top-width:0.02em;}
+.ThinBottom {border-bottom-width:0.02em;}
+.ThinLeft {border-left-width:0.02em;}
+.ThinRight {border-right-width:0.02em;}
+.NothingTop {border-top-width:0;}
+.NothingBottom {border-bottom-width:0;}
+.NothingLeft {border-left-width:0;}
+.NothingRight {border-right-width:0;}
+*/
+
+.Word {font-size:4em; border-style:none; background-color:white; padding:0; color:black;}
+.WordLeft {text-align:left;}
+.WordRight {text-align:right;}
+.WordCentre {text-align:center;}
+
+.CtrlXward {width:6em; height:7em;}
+
+
