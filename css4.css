@@ -596,7 +596,7 @@ body {
 	grid-row:rMDoor-s/rMDoor-e;
 	grid-column:cMDoor-s/cMDoor-e;
 	display:grid;
-	position:absolute;
+/*	position:absolute; */
 /*	height:112em; */
 	height:110em;
 	width:60em;
@@ -679,7 +679,7 @@ body {
 	grid-row:rPPanel-s/rPPanel-e;
 	grid-column:cPPanel-s/cPPanel-e;
 	display:grid;
-	position:absolute;
+/*	position:absolute; */
 /*	height:78em; */
 	height:76em;
 	width:54em;
