@@ -79,6 +79,42 @@ function updateFontSize(numGridRows, numGridColumns) {
 const fontSize = updateFontSize(numGridRows, numGridColumns);
 
 
+
+
+
+
+
+async function performPreamble() {
+	const surround3TopRef = document.querySelector("#punterSurroundInformation-top");
+	const surround3BottomRef = document.querySelector("#punterSurroundInformation-bottom");
+	const surround3LeftRef = document.querySelector("#punterSurroundInformation-left");
+	const surround3RightRef = document.querySelector("#punterSurroundInformation-right");
+
+	await wait(2000);
+
+	surround3TopRef.style.display = `block`;
+	surround3BottomRef.style.display = `block`;
+	surround3LeftRef.style.display = `block`;
+	surround3RightRef.style.display = `block`;
+
+	await wait(1500);
+
+	surround3TopRef.style.display = `none`;
+	surround3BottomRef.style.display = `none`;
+	surround3LeftRef.style.display = `none`;
+	surround3RightRef.style.display = `none`;
+	
+	await wait(10000);
+}
+performPreamble();
+
+
+
+
+
+
+
+
 function setBorderWidths(cellDimensionEM, fontSize, internalFraction, externalFraction) {
 	const cellDimensionPX = cellDimensionEM * fontSize;
 	const cellDimensionDevicePX = cellDimensionPX * window.devicePixelRatio;
@@ -1476,27 +1512,3 @@ async function performPreamble() {
 }
 performPreamble();
 */
-
-async function performPreamble() {
-	const surround3TopRef = document.querySelector("#punterSurroundInformation-top");
-	const surround3BottomRef = document.querySelector("#punterSurroundInformation-bottom");
-	const surround3LeftRef = document.querySelector("#punterSurroundInformation-left");
-	const surround3RightRef = document.querySelector("#punterSurroundInformation-right");
-
-	await wait(2000);
-
-	surround3TopRef.style.display = `block`;
-	surround3BottomRef.style.display = `block`;
-	surround3LeftRef.style.display = `block`;
-	surround3RightRef.style.display = `block`;
-
-	await wait(1500);
-
-	surround3TopRef.style.display = `none`;
-	surround3BottomRef.style.display = `none`;
-	surround3LeftRef.style.display = `none`;
-	surround3RightRef.style.display = `none`;
-	
-	punterSolveBiz.unfreeze();
-}
-performPreamble();
