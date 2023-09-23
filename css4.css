@@ -12,7 +12,7 @@ body {
 	z-index:1;
 /*	z-index:10; */
 	position:absolute;
-	height:251em;
+	height:257em;
 	width:60em;
 	grid-template-rows:
 		[rIWall-s rIUkraineFlag-s]
@@ -31,7 +31,7 @@ body {
 		1fr
 		
 		[rISurroundInstructions-top-e rISurroundInstructions-lr-s rITTInstructions-s]
-		4fr
+		5fr
 
 		[rITCInstructions-1-s]
 		2fr
@@ -44,8 +44,10 @@ body {
 		[rISurroundInstructions-lr-e rISurroundInstructions-bottom-s]
 		1fr
 
-		[rISurroundInstructions-bottom-e rITTOtherPuzzles-s]
-		4fr
+		[rISurroundInstructions-bottom-e]
+		1fr
+		[rITTOtherPuzzles-s]
+		5fr
 
 		[rITCDispensersOmega-s]
 		2fr
@@ -68,7 +70,7 @@ body {
 
 		2fr
 		[rITTWhereIPost-s]
-		4fr
+		5fr
 
 		[rITCFacebook-s]
 		2fr
@@ -82,14 +84,14 @@ body {
 		6fr
 		[rITCTwitter-e]
 		
-		2fr
+		3fr
 		[rITTLazyDog-s]
-		4fr
+		5fr
 		
 		[rITCLazyDog-s]
-		2fr
+		1fr
 		[rITTLazyDog-e]
-		26fr
+		28fr
 		[rITCLazyDog-e]
 
 		3fr
