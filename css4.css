@@ -823,7 +823,8 @@ body {
 
 .DemoSeparator {background-color:black;}
 
-.Surround {display:none; background-color:yellow;}
+/* .Surround {display:none; background-color:yellow;} */
+.Surround {display:none; background-color:yellow; color: transparent;}
 
 .InfoTopicTitle {
 	overflow:hidden;
