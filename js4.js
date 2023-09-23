@@ -1471,8 +1471,8 @@ async function performPreamble() {
 
 	await wait(1500);
 
-	surround3TopRef.style.display = `none`;
-	surround3BottomRef.style.display = `none`;
+	//surround3TopRef.style.display = `none`;
+	//surround3BottomRef.style.display = `none`;
 	//surround3LeftRef.style.display = `none`;
 	surround3RightRef.style.display = `none`;
 	
