@@ -12,7 +12,7 @@ body {
 	z-index:1;
 /*	z-index:10; */
 	position:absolute;
-	height:253em;
+	height:251em;
 	width:60em;
 	grid-template-rows:
 		[rIWall-s rIUkraineFlag-s]
@@ -33,25 +33,27 @@ body {
 		[rISurroundInstructions-top-e rISurroundInstructions-lr-s rITTInstructions-s]
 		4fr
 
-		[rITCInstructions-s]
+		[rITCInstructions-1-s]
 		2fr
 		[rITTInstructions-e]
-		6fr
-		[rITCInstructions-e]
-		9fr
+		4fr
+		[rITCInstructions-1-e rITCInstructions-2-s]
+		8fr
+		[rITCInstructions-2-e]
+		1fr
 		[rISurroundInstructions-lr-e rISurroundInstructions-bottom-s]
 		1fr
 
 		[rISurroundInstructions-bottom-e rITTOtherPuzzles-s]
 		4fr
 
-		[rITCDispensersLambda-s]
+		[rITCDispensersOmega-s]
 		2fr
 		[rITTOtherPuzzles-e]
 		4fr
-		[rITCDispensersLambda-e rITCDispensersOmega-s]
+		[rITCDispensersOmega-e rITCDispensersLambda-s]
 		6fr
-		[rITCDispensersOmega-e rITCLadderet-s]
+		[rITCDispensersLambda-e rITCLadderet-s]
 		6fr
 		[rITCLadderet-e]
 		3fr
@@ -161,12 +163,21 @@ body {
 
 #infoTTInstructions {grid-row:rITTInstructions-s/rITTInstructions-e; grid-column:cITT-s/cITT-e;}
 
-#infoTCInstructions {
+#infoTCInstructions-1 {
 	text-align:justify;
 	border:none;
 	padding:0 0.5em 0 0.5em;
 	font-size:2.5em;
-	grid-row:rITCInstructions-s/rITCInstructions-e;
+	grid-row:rITCInstructions-1-s/rITCInstructions-1-e;
+	grid-column:cITC-s/cITC-e;
+}
+
+#infoTCInstructions-2 {
+	text-align:justify;
+	border:none;
+	padding:0 0.5em 0 0.5em;
+	font-size:2.5em;
+	grid-row:rITCInstructions-2-s/rITCInstructions-2-e;
 	grid-column:cITC-s/cITC-e;
 }
 
@@ -821,7 +832,7 @@ body {
 
 .InfoTopicContent {margin:0; background-color:white; color:black;}
 
-.InfoOtherPuzzles {
+.InfoOtherPuzzles1 {
 	border-style:dashed;
 	border-color:#606060;
 	border-top-width:0;
@@ -831,7 +842,11 @@ body {
 	font-size:2.5em;
 }
 
-a {color:silver;}
+.InfoOtherPuzzles2 {
+	border:0;
+	padding:0;
+	font-size:2.5em;
+}
 
 .InfoWhereIPost {
 	border-style:dashed;
