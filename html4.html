@@ -1,0 +1,355 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Loose Fit</title>
+		
+<style>
+.Limb {background-color:#96E6DA;}
+.Torso {background-color:#FAFAFA;}
+.Hole {background-color:black; border:none;}
+.Cell {font-size:4em; border-color:black; border-style:solid; margin:0; text-align:center; padding:0;}
+.EdgeTop {border-top-width:0.05em;}
+.EdgeBottom {border-bottom-width:0.05em;}
+.EdgeLeft {border-left-width:0.05em;}
+.EdgeRight {border-right-width:0.05em;}
+.ThinTop {border-top-width:0.02em;}
+.ThinBottom {border-bottom-width:0.02em;}
+.ThinLeft {border-left-width:0.02em;}
+.ThinRight {border-right-width:0.02em;}
+.NothingTop {border-top-width:0;}
+.NothingBottom {border-bottom-width:0;}
+.NothingLeft {border-left-width:0;}
+.NothingRight {border-right-width:0;}
+</style>
+
+<!--		<link type="text/css" rel="stylesheet" href="css2.css" media="screen"> -->
+		<link id="styling" type="text/css" rel="stylesheet" href="css4.css" media="screen">
+		<script defer src="js4.js"></script>
+	</head>
+	<body>
+		<div id="infoWall" class="Wall">
+			<img id="infoCtrlBackArrow" src="backArrow.svg" alt="Back"/>
+
+			<img id="infoUkraineFlag" src="UkraineFlag.svg" alt="Flag"/>
+
+			<button id="infoWallName" class="WallName"><strong>Information</strong></button>
+			
+			<button id="infoPuzzleData"><strong>Puzzle #A1&emsp;-&emsp;Solve by 5 Oct</strong></button>
+
+			<div id="infoSeparator-1"></div>
+
+			<p id="infoTTInstructions" class="InfoTopicTitle"><strong>Instructions</strong></p>
+			<button id="infoTCInstructions" class="InfoTopicContent">
+				<strong>Build a ring in which NO tile has the same colour as either of its neighbours.</strong>
+			</button>			
+			<div id="infoSurroundInstructions-top" class="Surround"></div>
+			<div id="infoSurroundInstructions-bottom" class="Surround"></div>
+			<div id="infoSurroundInstructions-left" class="Surround"></div>
+			<div id="infoSurroundInstructions-right" class="Surround"></div>
+
+			<p id="infoTTOtherPuzzles" class="InfoTopicTitle"><strong>Other Puzzles</strong></p>
+			<button id="infoTCDispensersLambda" class="InfoTopicContent InfoOtherPuzzles"><a href="DispensersLamba.html">https://other-puzzle-1.vercel.app</a></button>
+			<button id="infoTCDispensersOmega" class="InfoTopicContent InfoOtherPuzzles"><a href="DispensersOmega.html">https://dispensers-omega.vercel.app</a></button>
+			<button id="infoTCLadderet" class="InfoTopicContent InfoOtherPuzzles"><a href="Ladderet.html">https://other-puzzle-2.vercel.app</a></button>
+			
+			<p id="infoTTWhereIPost" class="InfoTopicTitle"><strong>Where I Post Puzzles</strong></p>
+			<button id="infoTCFacebook" class="InfoTopicContent InfoWhereIPost">Facebook&emsp;-&emsp;<span class="Italic">Weekday Puzzles</span> page</button>
+			<button id="infoTCMastodon" class="InfoTopicContent InfoWhereIPost">Mastodon&emsp;-&emsp;<span class="Italic">@PuzzleSmith@mas.to</span></button>
+			<button id="infoTCReddit" class="InfoTopicContent InfoWhereIPost">Reddit&emsp;-&emsp;<span class="Italic">u/G_F_Smith</span></button>
+			<button id="infoTCTwitter" class="InfoTopicContent InfoWhereIPost">X/Twitter&emsp;-&emsp;<span class="Italic">@PuzzleSmith</span></button>
+
+			<p id="infoTTLazyDog" class="InfoTopicTitle"><strong>Lazy Dog App</strong></p>
+			<button id="infoTCLazyDog" class="InfoTopicContent">
+				If you do crosswords or codewords, you might enjoy the challenge of a <strong>Lazy Dog</strong> word puzzle.
+				The puzzle exists as an app for iPhones and iPads: it's on App Store.
+				<br>
+				<br>
+				The app is <strong>not-for-profit</strong>. It is free to download. There are no ads. And it does not ask for any personal details.
+			</button>
+			
+			<p id="infoCopyright">Copyright &copy; 2023 G F Smith</p>
+			
+			<div id="infoSeparator-2" class="DemoSeparator"></div>
+			<div id="infoSeparator-3" class="DemoSeparator"></div>
+
+			<div id="demoDoor" class="Door">
+			
+				<button id="demoCtrlDemonstration" class="CtrlCommon">Demonstration</button>
+				<div id="demoSurroundDemonstration-top" class="Surround"></div>
+				<div id="demoSurroundDemonstration-bottom" class="Surround"></div>
+				<div id="demoSurroundDemonstration-left" class="Surround"></div>
+				<div id="demoSurroundDemonstration-right" class="Surround"></div>
+
+				<button id="demoCrossTick" class="CrossTick"><strong>&check;</strong></button>
+
+				<button id="demoCtrlInformation" class="CtrlCommon CtrlSecondary">Information</button>
+				
+				<button id="demoCtrlHint" class="CtrlCommon CtrlSecondary">Hint</button>
+				<img id="demoSpotHint" class="SpotOddEven" src="spotOddEven.svg" alt="Spot"/>
+
+				<button id="demoCtrlSolution" class="CtrlCommon CtrlSecondary">Solution</button>
+				<img id="demoSpotSolution" class="SpotEvenEven" src="spotEvenEven.svg" alt="Spot"/>
+
+				<img id="demoCtrlBackward" class="CtrlXward" src="buttonBackward.svg" alt="Backward"/>
+				<img id="demoSpotBackward" class="SpotEvenOdd" src="spotEvenOdd.svg" alt="Spot"/>
+				
+				<img id="demoCtrlForward" class="CtrlXward" src="buttonForward.svg" alt="Forward"/>
+				<img id="demoSpotForward" class="SpotEvenOdd" src="spotEvenOdd.svg" alt="Spot"/>
+			
+				<button id="demoCtrlReset" class="CtrlCommon CtrlSecondary">Reset</button>
+				<img id="demoSpotReset" class="SpotEvenEven" src="spotEvenEven.svg" alt="Spot"/>
+
+				<div id="demoPanel">
+					<button id="demoCell-12" class="Cell Limb EdgeTop NothingBottom EdgeLeft EdgeRight"></button>
+					<button id="demoCell-16" class="Cell Limb EdgeTop NothingBottom EdgeLeft EdgeRight"></button>
+
+					<button id="demoCell-21" class="Cell Limb EdgeTop EdgeBottom EdgeLeft NothingRight"></button>
+					<button id="demoCell-22" class="Cell Torso ThinTop ThinBottom ThinLeft ThinRight"></button>
+					<button id="demoCell-23" class="Cell Torso EdgeTop ThinBottom NothingLeft ThinRight"></button>
+					<button id="demoCell-24" class="Cell Torso EdgeTop ThinBottom NothingLeft NothingRight"></button>
+					<button id="demoCell-25" class="Cell Torso EdgeTop ThinBottom ThinLeft NothingRight"></button>
+					<button id="demoCell-26" class="Cell Torso ThinTop ThinBottom ThinLeft ThinRight"></button>
+					<button id="demoCell-27" class="Cell Limb EdgeTop EdgeBottom NothingLeft EdgeRight"></button>
+
+					<button id="demoCell-32" class="Cell Torso NothingTop NothingBottom EdgeLeft ThinRight"></button>
+					<button id="demoCell-36" class="Cell Torso NothingTop NothingBottom ThinLeft EdgeRight"></button>
+
+					<button id="demoCell-41" class="Cell Limb EdgeTop EdgeBottom EdgeLeft NothingRight"></button>
+					<button id="demoCell-42" class="Cell Torso ThinTop ThinBottom ThinLeft ThinRight"></button>
+					<button id="demoCell-43" class="Cell Torso ThinTop ThinBottom NothingLeft ThinRight"></button>
+					<button id="demoCell-44" class="Cell Torso ThinTop ThinBottom NothingLeft NothingRight"></button>
+					<button id="demoCell-45" class="Cell Torso ThinTop ThinBottom ThinLeft NothingRight"></button>
+					<button id="demoCell-46" class="Cell Torso ThinTop ThinBottom ThinLeft ThinRight"></button>
+					<button id="demoCell-47" class="Cell Limb EdgeTop EdgeBottom NothingLeft EdgeRight"></button>
+					
+					<button id="demoCell-52" class="Cell Torso NothingTop NothingBottom EdgeLeft ThinRight"></button>
+					<button id="demoCell-56" class="Cell Torso NothingTop NothingBottom ThinLeft EdgeRight"></button>
+
+					<button id="demoCell-61" class="Cell Limb EdgeTop EdgeBottom EdgeLeft NothingRight"></button>
+					<button id="demoCell-62" class="Cell Torso ThinTop ThinBottom ThinLeft ThinRight"></button>
+					<button id="demoCell-63" class="Cell Torso ThinTop EdgeBottom NothingLeft ThinRight"></button>
+					<button id="demoCell-64" class="Cell Torso ThinTop EdgeBottom NothingLeft NothingRight"></button>
+					<button id="demoCell-65" class="Cell Torso ThinTop EdgeBottom ThinLeft NothingRight"></button>
+					<button id="demoCell-66" class="Cell Torso ThinTop ThinBottom ThinLeft ThinRight"></button>
+					<button id="demoCell-67" class="Cell Limb EdgeTop EdgeBottom NothingLeft EdgeRight"></button>
+
+					<button id="demoCell-72" class="Cell Limb NothingTop EdgeBottom EdgeLeft EdgeRight"></button>
+					<button id="demoCell-76" class="Cell Limb NothingTop EdgeBottom EdgeLeft EdgeRight"></button>
+
+					<div id="demoHoleTop" class="Hole"></div>
+					<div id="demoHoleBottom" class="Hole"></div>
+					
+					<button id="demoWord-1" class="Word WordLeft"><span id="demoWord-1-spelling">&thinsp;WORD1&thinsp;</span></button>
+					<button id="demoWord-2" class="Word WordRight"><span id="demoWord-2-spelling">&thinsp;WORD2&thinsp;</span></button>
+					<button id="demoWord-3" class="Word WordCentre"><span id="demoWord-3-spelling">&thinsp;WORD3&thinsp;</span></button>
+					<button id="demoWord-4" class="Word WordLeft"><span id="demoWord-4-spelling">&thinsp;WORD4&thinsp;</span></button>
+					<button id="demoWord-5" class="Word WordRight"><span id="demoWord-5-spelling">&thinsp;WORD5&thinsp;</span></button>	
+
+					<img id="demoSpotWord-1" class="SpotEvenOdd" src="spotEvenOdd.svg" alt="Spot"/>
+					<img id="demoSpotWord-2" class="SpotOddOdd" src="spotOddOdd.svg" alt="Spot"/>
+					<img id="demoSpotWord-3" class="SpotEvenOdd" src="spotEvenOdd.svg" alt="Spot"/>
+					<img id="demoSpotWord-4" class="SpotEvenOdd" src="spotEvenOdd.svg" alt="Spot"/>
+					<img id="demoSpotWord-5" class="SpotOddOdd" src="spotOddOdd.svg" alt="Spot"/>
+				</div>
+			</div>	
+		</div>
+		
+		<div id="mainWall" class="Wall">
+			<button id="mainWallName" class="WallName"><strong>Loose Fit</strong></button>
+
+			<button id="mainCrossTick" class="CrossTick"><strong>&check;</strong></button>
+			
+			<div id="punterDoor" class="Door">
+			
+				<button id="punterCtrlInformation" class="CtrlCommon CtrlSecondary">Information</button>
+				<div id="punterSurroundInformation-top" class="Surround"></div>
+				<div id="punterSurroundInformation-bottom" class="Surround"></div>
+				<div id="punterSurroundInformation-left" class="Surround"></div>
+				<div id="punterSurroundInformation-right" class="Surround"></div>
+
+				<button id="punterCtrlHint" class="CtrlCommon CtrlSecondary">Hint</button>
+				
+				<button id="punterCtrlSolution" class="CtrlCommon CtrlSecondary">Solution</button>
+
+				<img id="punterCtrlBackward" class="CtrlXward" src="buttonBackward.svg" alt="Backward"/>
+				<img id="punterCtrlForward" class="CtrlXward" src="buttonForward.svg" alt="Forward"/>
+
+				<button id="punterCtrlReset" class="CtrlCommon CtrlSecondary">Reset</button>
+
+				<div id="punterPanel">
+					<button id="punterCell-12" class="Cell Limb EdgeTop NothingBottom EdgeLeft EdgeRight"></button>
+					<button id="punterCell-16" class="Cell Limb EdgeTop NothingBottom EdgeLeft EdgeRight"></button>
+
+					<button id="punterCell-21" class="Cell Limb EdgeTop EdgeBottom EdgeLeft NothingRight"></button>
+					<button id="punterCell-22" class="Cell Torso ThinTop ThinBottom ThinLeft ThinRight"></button>
+					<button id="punterCell-23" class="Cell Torso EdgeTop ThinBottom NothingLeft ThinRight"></button>
+					<button id="punterCell-24" class="Cell Torso EdgeTop ThinBottom NothingLeft NothingRight"></button>
+					<button id="punterCell-25" class="Cell Torso EdgeTop ThinBottom ThinLeft NothingRight"></button>
+					<button id="punterCell-26" class="Cell Torso ThinTop ThinBottom ThinLeft ThinRight"></button>
+					<button id="punterCell-27" class="Cell Limb EdgeTop EdgeBottom NothingLeft EdgeRight"></button>
+
+					<button id="punterCell-32" class="Cell Torso NothingTop NothingBottom EdgeLeft ThinRight"></button>
+					<button id="punterCell-36" class="Cell Torso NothingTop NothingBottom ThinLeft EdgeRight"></button>
+
+					<button id="punterCell-41" class="Cell Limb EdgeTop EdgeBottom EdgeLeft NothingRight"></button>
+					<button id="punterCell-42" class="Cell Torso ThinTop ThinBottom ThinLeft ThinRight"></button>
+					<button id="punterCell-43" class="Cell Torso ThinTop ThinBottom NothingLeft ThinRight"></button>
+					<button id="punterCell-44" class="Cell Torso ThinTop ThinBottom NothingLeft NothingRight"></button>
+					<button id="punterCell-45" class="Cell Torso ThinTop ThinBottom ThinLeft NothingRight"></button>
+					<button id="punterCell-46" class="Cell Torso ThinTop ThinBottom ThinLeft ThinRight"></button>
+					<button id="punterCell-47" class="Cell Limb EdgeTop EdgeBottom NothingLeft EdgeRight"></button>
+					
+					<button id="punterCell-52" class="Cell Torso NothingTop NothingBottom EdgeLeft ThinRight"></button>
+					<button id="punterCell-56" class="Cell Torso NothingTop NothingBottom ThinLeft EdgeRight"></button>
+
+					<button id="punterCell-61" class="Cell Limb EdgeTop EdgeBottom EdgeLeft NothingRight"></button>
+					<button id="punterCell-62" class="Cell Torso ThinTop ThinBottom ThinLeft ThinRight"></button>
+					<button id="punterCell-63" class="Cell Torso ThinTop EdgeBottom NothingLeft ThinRight"></button>
+					<button id="punterCell-64" class="Cell Torso ThinTop EdgeBottom NothingLeft NothingRight"></button>
+					<button id="punterCell-65" class="Cell Torso ThinTop EdgeBottom ThinLeft NothingRight"></button>
+					<button id="punterCell-66" class="Cell Torso ThinTop ThinBottom ThinLeft ThinRight"></button>
+					<button id="punterCell-67" class="Cell Limb EdgeTop EdgeBottom NothingLeft EdgeRight"></button>
+
+					<button id="punterCell-72" class="Cell Limb NothingTop EdgeBottom EdgeLeft EdgeRight"></button>
+					<button id="punterCell-76" class="Cell Limb NothingTop EdgeBottom EdgeLeft EdgeRight"></button>
+
+					<div id="punterHoleTop" class="Hole"></div>
+					<div id="punterHoleBottom" class="Hole"></div>
+					
+					<button id="punterWord-1" class="Word WordLeft"><span id="punterWord-1-spelling">&thinsp;WORD1&thinsp;</span></button>
+					<button id="punterWord-2" class="Word WordRight"><span id="punterWord-2-spelling">&thinsp;WORD2&thinsp;</span></button>
+					<button id="punterWord-3" class="Word WordCentre"><span id="punterWord-3-spelling">&thinsp;WORD3&thinsp;</span></button>
+					<button id="punterWord-4" class="Word WordLeft"><span id="punterWord-4-spelling">&thinsp;WORD4&thinsp;</span></button>
+					<button id="punterWord-5" class="Word WordRight"><span id="punterWord-5-spelling">&thinsp;WORD5&thinsp;</span></button>				
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+
+<!--
+<script>
+const numGridRows = 122;
+const numGridColumns = 60;
+
+console.log('Thank you');
+console.log(`${window.innerHeight}px`);
+console.log(`${window.innerWidth}px`);
+console.log(`${window.devicePixelRatio}`);
+
+function updateFontSize(numGridRows, numGridColumns) {
+  console.log('updateFontSize called');
+  console.log(numGridRows);
+  console.log(numGridColumns);
+  
+  let innerDimension = 0
+  let gridDimension = 0
+  if ((window.innerHeight / numGridRows) <= (window.innerWidth / numGridColumns)) {
+    innerDimension = window.innerHeight;
+	gridDimension = numGridRows;
+	}
+  else {
+    innerDimension = window.innerWidth;
+	gridDimension = numGridColumns;
+	}
+	
+  const percent = innerDimension / 100;
+  console.log('percent');
+  console.log(percent);
+  let fontSize = 0;
+  let reducingInnerDimension = innerDimension + 1;
+  do {
+    reducingInnerDimension = reducingInnerDimension - 1
+    fontSize = Math.floor((reducingInnerDimension / gridDimension) * window.devicePixelRatio) / window.devicePixelRatio
+    console.log('fontSize');
+    console.log(fontSize);
+  } while ((innerDimension - (fontSize * gridDimension)) < (2 * percent));
+  console.log('final fontSize');
+  console.log(fontSize);
+  document.body.style.fontSize = `${fontSize}px`;
+  
+  let spareHeight = window.innerHeight - (fontSize * numGridRows);
+  console.log('spareHeight');
+  console.log(spareHeight);
+  let deviceSpareHeight = spareHeight * window.devicePixelRatio;
+  console.log('deviceSpareHeight');
+  console.log(deviceSpareHeight);
+  let roundedDeviceSpareHeight = Math.trunc(deviceSpareHeight / 2) * 2;
+  console.log('roundedDeviceSpareHeight');
+  console.log(roundedDeviceSpareHeight);
+  let roundedSpareHeight = roundedDeviceSpareHeight / window.devicePixelRatio;
+  console.log('roundedSpareHeight');
+  console.log(roundedSpareHeight);
+  let mainRef = document.querySelector("#mainWall");
+  //let infoRef = document.querySelector("#infoWall");
+  mainRef.style.top = `${roundedSpareHeight / 2}px`;
+  //infoRef.style.top = `${roundedSpareHeight / 2}px`;
+  
+  let spareWidth = window.innerWidth - (fontSize * numGridColumns);
+  console.log('spareWidth');
+  console.log(spareWidth);
+  let deviceSpareWidth = spareWidth * window.devicePixelRatio;
+  console.log('deviceSpareWidth');
+  console.log(deviceSpareWidth);
+  let roundedDeviceSpareWidth = Math.trunc(deviceSpareWidth / 2) * 2
+  console.log('roundedDeviceSpareWidth');
+  console.log(roundedDeviceSpareWidth);
+  let roundedSpareWidth = roundedDeviceSpareWidth / window.devicePixelRatio;
+  console.log('roundedSpareWidth');
+  console.log(roundedSpareWidth);
+  mainRef.style.left = `${roundedSpareWidth / 2}px`;
+  //infoRef.style.left = `${roundedSpareWidth / 2}px`;
+  
+  return fontSize;
+}
+const fontSize = updateFontSize(numGridRows, numGridColumns);
+
+
+function setBorderWidths(fontSize, internalFraction, externalFraction) {
+  let internalWidth = Math.floor(fontSize * internalFraction * window.devicePixelRatio);
+  if (internalWidth == 0) {
+    internalWidth = 1
+	}
+  console.log('internalWidth');
+  console.log(internalWidth);
+  const increment = 0.01;
+  let increasingExternalFraction = externalFraction - increment;
+  do {
+    increasingExternalFraction = increasingExternalFraction + increment;
+    console.log('increasingExternalFraction');
+	console.log(increasingExternalFraction);
+	increasingExternalWidth = Math.floor(fontSize * increasingExternalFraction * window.devicePixelRatio);
+    console.log('increasingExternalWidth');
+	console.log(increasingExternalWidth);
+  } while (increasingExternalWidth <= internalWidth);
+  
+  //const styleSheet = document.styleSheets[0];
+  //const styleSheet = document.querySelector("#styling");
+  //const ruleList = styleSheet.cssRules;
+  const ruleList = document.styleSheets[0].cssRules;
+	for (let i = 0; i < ruleList.length; i++) {
+		console.log(ruleList[i].constructor.name);
+	}
+  const thinTopRule = [...styleSheet.cssRules].find((r) => r.selectorText === ".ThinTop");
+  thinTopRule.style.setProperty("border-top-width", `${internalFraction}em`);
+  const thinBottomRule = [...styleSheet.cssRules].find((r) => r.selectorText === ".ThinBottom");
+  thinBottomRule.style.setProperty("border-bottom-width", `${internalFraction}em`);
+  const thinLeftRule = [...styleSheet.cssRules].find((r) => r.selectorText === ".ThinLeft");
+  thinLeftRule.style.setProperty("border-left-width", `${internalFraction}em`);
+  const thinRightRule = [...styleSheet.cssRules].find((r) => r.selectorText === ".ThinRight");
+  thinRightRule.style.setProperty("border-right-width", `${internalFraction}em`);
+
+  const edgeTopRule = [...styleSheet.cssRules].find((r) => r.selectorText === ".EdgeTop");
+  edgeTopRule.style.setProperty("border-top-width", `${increasingExternalFraction}em`);
+  const edgeBottomRule = [...styleSheet.cssRules].find((r) => r.selectorText === ".EdgeBottom");
+  edgeBottomRule.style.setProperty("border-bottom-width", `${increasingExternalFraction}em`);
+  const edgeLeftRule = [...styleSheet.cssRules].find((r) => r.selectorText === ".EdgeLeft");
+  edgeLeftRule.style.setProperty("border-left-width", `${increasingExternalFraction}em`);
+  const edgeRightRule = [...styleSheet.cssRules].find((r) => r.selectorText === ".EdgeRight");
+  edgeRightRule.style.setProperty("border-right-width", `${increasingExternalFraction}em`);
+}
+setBorderWidths(fontSize, 0.02, 0.05);
+
+</script> -->
