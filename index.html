@@ -36,9 +36,16 @@
 
 			<button id="infoWallName" class="WallName"><strong>Information</strong></button>
 			
-			<button id="infoPuzzleData"><strong>Puzzle #A1&emsp;-&emsp;Solve by 5 Oct</strong></button>
+			<button id="infoPuzzleData"><strong>Puzzle #8&emsp;-&emsp;Solve by 5 Oct</strong></button>
 
 			<div id="infoSeparator-1"></div>
+
+			<p id="infoTTFeaturedWord" class="InfoTopicTitle"><strong>Featured Word</strong></p>
+			<button id="infoTCFeaturedWord" class="InfoTopicContent">
+				In English, it's Switzerland; in French, <strong>SUISSE</strong>; in German, Schweiz; in Italian, Svizzera.
+				Officially, it's Confoederatio Helvetica (CH) - the Latin name.
+			</button>			
+
 
 			<p id="infoTTInstructions" class="InfoTopicTitle"><strong>Instructions</strong></p>
 			<button id="infoTCInstructions-1" class="InfoTopicContent">
@@ -92,7 +99,7 @@
 				<button id="demoCtrlInformation" class="CtrlCommon CtrlSecondary">Information</button>
 				
 				<button id="demoCtrlHint" class="CtrlCommon CtrlSecondary">Hint</button>
-				<img id="demoSpotHint" class="SpotOddEven" src="spotOddEven.svg" alt="Spot"/>
+				<img id="demoSpotHint" class="SpotEvenEven" src="spotEvenEven.svg" alt="Spot"/>
 
 				<button id="demoCtrlSolution" class="CtrlCommon CtrlSecondary">Solution</button>
 				<img id="demoSpotSolution" class="SpotEvenEven" src="spotEvenEven.svg" alt="Spot"/>
@@ -153,10 +160,10 @@
 					<button id="demoWord-5" class="Word WordRight"><span id="demoWord-5-spelling">&thinsp;WORD5&thinsp;</span></button>	
 
 					<img id="demoSpotWord-1" class="SpotEvenOdd" src="spotEvenOdd.svg" alt="Spot"/>
-					<img id="demoSpotWord-2" class="SpotOddOdd" src="spotOddOdd.svg" alt="Spot"/>
+					<img id="demoSpotWord-2" class="SpotEvenOdd" src="spotEvenOdd.svg" alt="Spot"/>
 					<img id="demoSpotWord-3" class="SpotEvenOdd" src="spotEvenOdd.svg" alt="Spot"/>
 					<img id="demoSpotWord-4" class="SpotEvenOdd" src="spotEvenOdd.svg" alt="Spot"/>
-					<img id="demoSpotWord-5" class="SpotOddOdd" src="spotOddOdd.svg" alt="Spot"/>
+					<img id="demoSpotWord-5" class="SpotEvenOdd" src="spotEvenOdd.svg" alt="Spot"/>
 				</div>
 			</div>	
 		</div>
@@ -168,24 +175,26 @@
 			
 			<div id="punterDoor" class="Door">
 			
-<!--				<button id="punterCtrlInformation" class="CtrlCommon CtrlSecondary">Information</button> -->
-<!--				<button id="punterCtrlInformation" class="CtrlCommon CtrlSecondary">Info</button> -->
+				<button id="punterCtrlInformation" class="CtrlCommon CtrlSecondary">Information</button>
 				<div id="punterSurroundInformation-top" class="Surround"></div>
 				<div id="punterSurroundInformation-bottom" class="Surround"></div>
 				<div id="punterSurroundInformation-left" class="Surround"></div>
 				<div id="punterSurroundInformation-right" class="Surround"></div>
 
-<!--				<button id="punterCtrlHint" class="CtrlCommon CtrlSecondary">Hint</button>
+				<button id="punterCtrlHint" class="CtrlCommon CtrlSecondary">Hint</button>
 				
-				<button id="punterCtrlSolution" class="CtrlCommon CtrlSecondary">Solution</button> -->
+				<button id="punterCtrlSolution" class="CtrlCommon CtrlSecondary">Solution</button>
 
-<!--				<img id="punterCtrlBackward" class="CtrlXward" src="buttonBackward.svg" alt="Backward"/>
-				<img id="punterCtrlForward" class="CtrlXward" src="buttonForward.svg" alt="Forward"/> -->
+				<img id="punterCtrlBackward" class="CtrlXward" src="buttonBackward.svg" alt="Backward"/>
+				<img id="punterCtrlBackwardFlasher" class="CtrlXward" src="buttonBackwardFlasher.svg" alt="Flasher"/>
 
-<!--				<button id="punterCtrlReset" class="CtrlCommon CtrlSecondary">Reset</button> -->
+				<img id="punterCtrlForward" class="CtrlXward" src="buttonForward.svg" alt="Forward"/>
+				<img id="punterCtrlForwardFlasher" class="CtrlXward" src="buttonForwardFlasher.svg" alt="Flasher"/>
+
+				<button id="punterCtrlReset" class="CtrlCommon CtrlSecondary">Reset</button>
 
 				<div id="punterPanel">
-<!--					<button id="punterCell-12" class="Cell Limb EdgeTop NothingBottom EdgeLeft EdgeRight"></button>
+					<button id="punterCell-12" class="Cell Limb EdgeTop NothingBottom EdgeLeft EdgeRight"></button>
 					<button id="punterCell-16" class="Cell Limb EdgeTop NothingBottom EdgeLeft EdgeRight"></button>
 
 					<button id="punterCell-21" class="Cell Limb EdgeTop EdgeBottom EdgeLeft NothingRight"></button>
@@ -228,7 +237,7 @@
 					<button id="punterWord-2" class="Word WordRight"><span id="punterWord-2-spelling">&thinsp;WORD2&thinsp;</span></button>
 					<button id="punterWord-3" class="Word WordCentre"><span id="punterWord-3-spelling">&thinsp;WORD3&thinsp;</span></button>
 					<button id="punterWord-4" class="Word WordLeft"><span id="punterWord-4-spelling">&thinsp;WORD4&thinsp;</span></button>
-					<button id="punterWord-5" class="Word WordRight"><span id="punterWord-5-spelling">&thinsp;WORD5&thinsp;</span></button>	-->			
+					<button id="punterWord-5" class="Word WordRight"><span id="punterWord-5-spelling">&thinsp;WORD5&thinsp;</span></button>		
 				</div>
 			</div>
 		</div>

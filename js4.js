@@ -79,42 +79,6 @@ function updateFontSize(numGridRows, numGridColumns) {
 const fontSize = updateFontSize(numGridRows, numGridColumns);
 
 
-
-
-
-
-
-async function performPreamble() {
-	const surround3TopRef = document.querySelector("#punterSurroundInformation-top");
-	const surround3BottomRef = document.querySelector("#punterSurroundInformation-bottom");
-	const surround3LeftRef = document.querySelector("#punterSurroundInformation-left");
-	const surround3RightRef = document.querySelector("#punterSurroundInformation-right");
-
-	await wait(2000);
-
-	surround3TopRef.style.display = `block`;
-	surround3BottomRef.style.display = `block`;
-	surround3LeftRef.style.display = `block`;
-	surround3RightRef.style.display = `block`;
-
-	await wait(1500);
-
-	surround3TopRef.style.display = `none`;
-	surround3BottomRef.style.display = `none`;
-	surround3LeftRef.style.display = `none`;
-	surround3RightRef.style.display = `none`;
-	
-	await wait(10000);
-}
-performPreamble();
-
-
-
-
-
-
-
-
 function setBorderWidths(cellDimensionEM, fontSize, internalFraction, externalFraction) {
 	const cellDimensionPX = cellDimensionEM * fontSize;
 	const cellDimensionDevicePX = cellDimensionPX * window.devicePixelRatio;
@@ -681,6 +645,20 @@ class Control {
 	}
 }
 
+function wordControlFlashed(solveBiz) {solveBiz.unfreeze()}
+
+async function flashWordControl(spellingRef, solveBiz) {
+	await wait(300);
+	spellingRef.style.backgroundColor = `rgb(80%,0%,0%)`;
+	await wait(300);
+	spellingRef.style.backgroundColor = `white`;
+	await wait(300);
+	spellingRef.style.backgroundColor = `rgb(80%,0%,0%)`;
+	await wait(300);
+	spellingRef.style.backgroundColor = `white`;
+	wordControlFlashed(solveBiz)
+}
+
 class WordControl extends Control {
 	constructor(spelling, idWithoutHash, onClick) {
 		const idWithHash = "#" + idWithoutHash;
@@ -700,6 +678,39 @@ class WordControl extends Control {
 	setHighlightOff() {
 		this.spellingRef.style.color = `black`;
 		this.spellingRef.style.backgroundColor = `white`;
+	}
+	
+	flash(solveBiz) {
+		flashWordControl(this.spellingRef, solveBiz);		
+	}
+}
+
+function xwardControlFlashed(solveBiz) {solveBiz.unfreeze()}
+
+async function flashXwardControl(ref, flasherRef, solveBiz) {
+	ref.style.display = `none`;
+	await wait(300);
+	flasherRef.style.display = `block`;
+	await wait(300);
+	flasherRef.style.display = `none`;
+	await wait(300);
+	flasherRef.style.display = `block`;
+	await wait(300);
+	flasherRef.style.display = `none`;
+	ref.style.display = `block`;
+	xwardControlFlashed(solveBiz)
+}
+
+class XwardControl extends Control {
+	constructor(id, onClick) {
+		super(id, onClick);
+		//this.ref = document.querySelector(id);
+		this.flasherRef = document.querySelector(id + "Flasher");
+		this.flasherRef.style.display = `none`;
+	}
+	
+	flash(solveBiz) {
+		flashXwardControl(this.ref, this.flasherRef, solveBiz);		
 	}
 }
 
@@ -792,6 +803,14 @@ class SolveIO {
 		const name = "Word" + String(wordNum);
 		this.controls[name].disable();
 		this.controls[name].fade();		
+	}
+
+	flashXwardControl(name, solveBiz) {
+		this.controls[name].flash(solveBiz);
+	}
+	
+	flashWordControl(wordNum, solveBiz) {
+		this.controls["Word" + String(wordNum)].flash(solveBiz);
 	}
 		
 	hideCrossTick() {
@@ -926,13 +945,13 @@ class SolveBiz {
 			const word = this.words[i];
 			if (!word.inGrid) {
 				this.io.unhighlightWordControl(i);
-				const possibleFits = this.grid.getPossibleFits(word.spelling);
+/*				const possibleFits = this.grid.getPossibleFits(word.spelling);
 				if (possibleFits.length == 0) {
 					this.io.disableWordControl(i);
 				}
 				else {
 					this.io.enableWordControl(i);						
-				}
+				} */
 			}
 			else {
 				this.io.highlightWordControl(i);
@@ -947,24 +966,31 @@ class SolveBiz {
 		console.log(wordNum);
 		console.log(this.words[wordNum]);
 		//if (grid.isComplete) return;
-		if (!this.words[wordNum].inGrid) {
+		const word = this.words[wordNum];
+		//if (!this.words[wordNum].inGrid) {
+		if (!word.inGrid) {
 			console.log("Word not in grid");
-			const spelling = this.words[wordNum].spelling;
+			//const spelling = this.words[wordNum].spelling;
+			const spelling = word.spelling;
 			const possibleFits = this.grid.getPossibleFits(spelling);
 			//console.log(possibleFits);
 			//if nowhere for word to go, control should probably be disabled?
-			if (possibleFits.length == 0) return;
+			if (possibleFits.length == 0) {
+				this.freeze();
+				this.io.flashWordControl(wordNum, this);
+				return;
+			}
 			const randomFit = possibleFits[this.getRandomInt(possibleFits.length)];
 			//console.log(randomFit);
 			this.grid.addWord(spelling, randomFit);
-			const word = this.words[wordNum];
+			//const word = this.words[wordNum];
 			word.inGrid = true;
 			word.placeInGrid = randomFit;
 			this.selectedWordNum = wordNum;
 		}
 		else if (this.selectedWordNum == wordNum) {
 			console.log("Word in grid. Selected");
-			const word = this.words[wordNum];
+			//const word = this.words[wordNum];
 			this.grid.removeWord(word.placeInGrid);
 			word.inGrid = false;
 			this.selectedWordNum = undefined;
@@ -990,7 +1016,7 @@ class SolveBiz {
 		this.selectedWordNum = wordNum;
 		this.review();
 	}
-	
+/*	
 	forwardClicked() {
 		console.log("Forward button clicked");
 		const word = this.words[this.selectedWordNum];
@@ -1001,7 +1027,26 @@ class SolveBiz {
 		this.grid.addWord(word.spelling, newPlace);
 		this.review();
 	}
-		
+*/		
+	forwardClicked() {
+		console.log("Forward button clicked");
+		const word = this.words[this.selectedWordNum];
+		const currentPlace = word.placeInGrid;
+		this.grid.removeWord(currentPlace);
+		const newPlace = this.grid.getNextAvailablePlaceForward(word.spelling, currentPlace);
+		console.log(newPlace);
+		if (newPlace.line == currentPlace.line && newPlace.position == currentPlace.position) {
+			this.grid.addWord(word.spelling, currentPlace);
+			this.freeze();
+			this.io.flashXwardControl("Forward", this);
+		}
+		else {
+			word.placeInGrid = newPlace;
+			this.grid.addWord(word.spelling, newPlace);
+			this.review();
+		}
+	}
+/*
 	backwardClicked() {
 		console.log("Backward button clicked");
 		const word = this.words[this.selectedWordNum];
@@ -1012,7 +1057,26 @@ class SolveBiz {
 		this.grid.addWord(word.spelling, newPlace);
 		this.review();
 	}
-	
+*/	
+	backwardClicked() {
+		console.log("Backward button clicked");
+		const word = this.words[this.selectedWordNum];
+		const currentPlace = word.placeInGrid;
+		this.grid.removeWord(currentPlace);
+		const newPlace = this.grid.getNextAvailablePlaceBackward(word.spelling, currentPlace);
+		console.log(newPlace);
+		if (newPlace.line == currentPlace.line && newPlace.position == currentPlace.position) {
+			this.grid.addWord(word.spelling, currentPlace);
+			this.freeze();
+			this.io.flashXwardControl("Backward", this);
+		}
+		else {
+			word.placeInGrid = newPlace;
+			this.grid.addWord(word.spelling, newPlace);
+			this.review();
+		}
+	}
+
 	resetClicked() {
 		this.reset();
 		this.io.enableAllControlsExcept(["Reset", "Forward", "Backward"]);
@@ -1148,9 +1212,9 @@ class SolveBiz {
 
 let punterPuzzleSpec = {
 	//wordSpec: [undefined, "ROWENA", "LEANNA", "RENATA", "ROSALEE", "RAMONA"],
-	wordSpec: [undefined, "ARCANE", "CAREER", "EARNER", "ARENA", "BANANAS"],
-	solutionSpec: [undefined, [2, 2], [3, 1], [5, 1], [1, 2], [4, 1]],
-	hintSpec: ["R", [1, 3]]
+	wordSpec: [undefined, "RUSHES", "USHERS", "SUISSE", "RUFUS", "USURER"],
+	solutionSpec: [undefined, [2, 2], [5, 1], [1, 2], [3, 2], [4, 1]],
+	hintSpec: ["S", [3, 6]]
 };
 
 const punterPuzzle = new Puzzle(punterPuzzleSpec);
@@ -1185,8 +1249,8 @@ punterControls["Information"] = new Control("#punterCtrlInformation", informatio
 punterControls["Hint"] = new Control("#punterCtrlHint", punterHintOnClick);
 punterControls["Solution"] = new Control("#punterCtrlSolution", punterSolutionOnClick);
 punterControls["Reset"] = new Control("#punterCtrlReset", punterResetOnClick);
-punterControls["Forward"] = new Control("#punterCtrlForward", punterForwardOnClick);
-punterControls["Backward"] = new Control("#punterCtrlBackward", punterBackwardOnClick);
+punterControls["Forward"] = new XwardControl("#punterCtrlForward", punterForwardOnClick);
+punterControls["Backward"] = new XwardControl("#punterCtrlBackward", punterBackwardOnClick);
 
 const punterWordIdRoot = "punterWord-";
 for (let i = 1; i <= 5; i++) {
@@ -1321,24 +1385,32 @@ actionLookUp["Reset"] = resetAction;
 */
 
 const script = ["Word1,3,1",
+				"Pause",
 				"Forward",
+				"Pause",
 				"Forward",
+				"Pause",
 				"Backward",
+				"Pause",
 				"Word1",
+				"Pause",
 				"Word3,2,2",
 				"Backward",
 				"Word5,1,1",
 				"Forward",
 				"Forward",
+				"Pause",
 				"Word3",
+				"Pause",
 				"Word3",
-				"Word2,5,2",
-				"Backward",
+				"Pause",
+				"Word2,5,1",
 				"Backward",
 				"Word1,1,2",
 				"Forward",
 				"Word4,1,2",
 				"Word3,5,1",
+				"Pause",
 				"Pause",
 				"Pause",
 				"Reset",
@@ -1432,7 +1504,7 @@ async function executeScript() {
 /* ======================================================================================================================================================== */
 /* PREAMBLE PREAMBLE PREAMBLE PREAMBLE PREAMBLE PREAMBLE PREAMBLE PREAMBLE PREAMBLE PREAMBLE PREAMBLE PREAMBLE PREAMBLE PREAMBLE PREAMBLE PREAMBLE PREAMBLE */
 /* ======================================================================================================================================================== */
-/*
+
 async function performPreamble() {
 
 	const wallRef = document.querySelector("#infoWall");
@@ -1500,9 +1572,9 @@ async function performPreamble() {
 
 	await wait(1500);
 
-	//surround3TopRef.style.display = `none`;
-	//surround3BottomRef.style.display = `none`;
-	//surround3LeftRef.style.display = `none`;
+	surround3TopRef.style.display = `none`;
+	surround3BottomRef.style.display = `none`;
+	surround3LeftRef.style.display = `none`;
 	surround3RightRef.style.display = `none`;
 	
 	demoControlBack.unfreeze();
@@ -1511,4 +1583,4 @@ async function performPreamble() {
 	punterSolveBiz.unfreeze();
 }
 performPreamble();
-*/
+
