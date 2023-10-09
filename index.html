@@ -3,77 +3,53 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Loose Fit</title>
-		
-<style>
-.Limb {background-color:#96E6DA;}
-.Torso {background-color:#FAFAFA;}
-.Hole {background-color:black; border:none;}
-.Cell {font-size:4em; border-color:black; border-style:solid; margin:0; text-align:center; padding:0;}
-.EdgeTop {border-top-width:0.05em;}
-.EdgeBottom {border-bottom-width:0.05em;}
-.EdgeLeft {border-left-width:0.05em;}
-.EdgeRight {border-right-width:0.05em;}
-.ThinTop {border-top-width:0.02em;}
-.ThinBottom {border-bottom-width:0.02em;}
-.ThinLeft {border-left-width:0.02em;}
-.ThinRight {border-right-width:0.02em;}
-.NothingTop {border-top-width:0;}
-.NothingBottom {border-bottom-width:0;}
-.NothingLeft {border-left-width:0;}
-.NothingRight {border-right-width:0;}
-</style>
-
-<!--		<link type="text/css" rel="stylesheet" href="css2.css" media="screen"> -->
-		<link id="styling" type="text/css" rel="stylesheet" href="css4.css" media="screen">
-		<script defer src="js4.js"></script>
+		<title>Dispensers Pi</title>
+		<link id="styling" type="text/css" rel="stylesheet" href="css10.css" media="screen">
+		<script defer src="js10.js"></script>
+		<script defer src="/_vercel/insights/script.js"></script>
 	</head>
 	<body>
 		<div id="infoWall" class="Wall">
-			<img id="infoCtrlBackArrow" src="backArrow.svg" alt="Back"/>
+			<img id="iwCtrlBack" src="backArrow.svg" alt="Back"/>
 
-			<img id="infoUkraineFlag" src="UkraineFlag.svg" alt="Flag"/>
+			<img id="iwUkraineFlag" src="UkraineFlag.svg" alt="Flag"/>
 
-			<button id="infoWallName" class="WallName"><strong>Information</strong></button>
+			<button id="iwName" class="WallName"><strong>Information</strong></button>
 			
-			<button id="infoPuzzleData"><strong>Puzzle #8&emsp;-&emsp;Solve by 5 Oct</strong></button>
+			<button id="iwPuzzleData"><strong>Puzzle #8&emsp;-&emsp;Solve by 5 Oct</strong></button>
 
-			<div id="infoSeparator-1"></div>
+			<div id="iwSeparator-1"></div>
 
-			<p id="infoTTFeaturedWord" class="InfoTopicTitle"><strong>Featured Word</strong></p>
-			<button id="infoTCFeaturedWord" class="InfoTopicContent">
-				In English, it's Switzerland; in French, <strong>SUISSE</strong>; in German, Schweiz; in Italian, Svizzera.
-				Officially, it's Confoederatio Helvetica (CH) - the Latin name.
+			<p id="iwTTInstructions" class="InfoTopicTitle"><strong>Instructions</strong></p>
+			<button id="iwTCInstructions-1" class="InfoTopicContent">
+				<strong>Build an expression which evaluates to the TARGET NUMBER.</strong>
 			</button>			
-
-
-			<p id="infoTTInstructions" class="InfoTopicTitle"><strong>Instructions</strong></p>
-			<button id="infoTCInstructions-1" class="InfoTopicContent">
-				<strong>Fit the words into the grid.</strong>
+			<button id="iwTCInstructions-2" class="InfoTopicContent">
+				Standard precedence rules apply:<br>1 &plus; 2&thinsp;&times;&thinsp;3 &minus; 8&thinsp;&divide;&thinsp;4 &equals; 5
 			</button>			
-			<button id="infoTCInstructions-2" class="InfoTopicContent">
-				Fill all the white squares. A number of coloured squares will remain blank.
-			</button>			
-			<div id="infoSurroundInstructions-top" class="Surround"></div>
-			<div id="infoSurroundInstructions-bottom" class="Surround"></div>
-			<div id="infoSurroundInstructions-left" class="Surround"></div>
-			<div id="infoSurroundInstructions-right" class="Surround"></div>
+			<div id="iwSurroundInstructions-top" class="Surround"></div>
+			<div id="iwSurroundInstructions-bottom" class="Surround"></div>
+			<div id="iwSurroundInstructions-left" class="Surround"></div>
+			<div id="iwSurroundInstructions-right" class="Surround"></div>
 
-			<p id="infoTTOtherPuzzles" class="InfoTopicTitle"><strong>Other Puzzles</strong></p>
-			<button id="infoTCDispensersLambda" class="InfoTopicContent InfoOtherPuzzles1"><a name="DispensersLamba">https://other-puzzle-1.vercel.app</a></button>
-			<button id="infoTCDispensersOmega" class="InfoTopicContent InfoOtherPuzzles1">
+			<p id="iwTTOtherPuzzles" class="InfoTopicTitle"><strong>Other Puzzles</strong></p>
+			<button id="iwTCDispensersLambda" class="InfoTopicContent InfoOtherPuzzles1"><a name="DispensersLamba">https://other-puzzle-1.vercel.app</a></button>
+			<button id="iwTCDispensersOmega" class="InfoTopicContent InfoOtherPuzzles1">
 				<a href="https://dispensers-omega.vercel.app">https://dispensers-omega.vercel.app</a>
 			</button>
-			<button id="infoTCLadderet" class="InfoTopicContent InfoOtherPuzzles2"><a name="Ladderet">https://other-puzzle-2.vercel.app</a></button>
+			<button id="iwTCLadderet" class="InfoTopicContent InfoOtherPuzzles2"><a name="Ladderet">https://other-puzzle-2.vercel.app</a></button>
+			<button id="iwTCLooseFit" class="InfoTopicContent InfoOtherPuzzles1">
+				<a href="https://loose-fit.vercel.app">https://loose-fit.vercel.app</a>
+			</button>
 			
-			<p id="infoTTWhereIPost" class="InfoTopicTitle"><strong>Where I Post Puzzles</strong></p>
-			<button id="infoTCFacebook" class="InfoTopicContent InfoWhereIPost">Facebook&emsp;-&emsp;<span class="Italic">Weekday Puzzles</span> page</button>
-			<button id="infoTCMastodon" class="InfoTopicContent InfoWhereIPost">Mastodon&emsp;-&emsp;<span class="Italic">@PuzzleSmith@mas.to</span></button>
-			<button id="infoTCReddit" class="InfoTopicContent InfoWhereIPost">Reddit&emsp;-&emsp;<span class="Italic">u/G_F_Smith</span></button>
-			<button id="infoTCTwitter" class="InfoTopicContent InfoWhereIPost">X/Twitter&emsp;-&emsp;<span class="Italic">@PuzzleSmith</span></button>
+			<p id="iwTTWhereIPost" class="InfoTopicTitle"><strong>Where I Post Puzzles</strong></p>
+			<button id="iwTCFacebook" class="InfoTopicContent InfoWhereIPost">Facebook&emsp;-&emsp;<span class="Italic">Weekday Puzzles</span> page</button>
+			<button id="iwTCMastodon" class="InfoTopicContent InfoWhereIPost">Mastodon&emsp;-&emsp;<span class="Italic">@PuzzleSmith@mas.to</span></button>
+			<button id="iwTCReddit" class="InfoTopicContent InfoWhereIPost">Reddit&emsp;-&emsp;<span class="Italic">u/G_F_Smith</span></button>
+			<button id="iwTCTwitter" class="InfoTopicContent InfoWhereIPost">X/Twitter&emsp;-&emsp;<span class="Italic">@PuzzleSmith</span></button>
 
-			<p id="infoTTLazyDog" class="InfoTopicTitle"><strong>Lazy Dog App</strong></p>
-			<button id="infoTCLazyDog" class="InfoTopicContent">
+			<p id="iwTTLazyDog" class="InfoTopicTitle"><strong>Lazy Dog App</strong></p>
+			<button id="iwTCLazyDog" class="InfoTopicContent">
 				If you do crosswords or codewords, you might enjoy the challenge of a <strong>Lazy Dog</strong> word puzzle.
 				The puzzle exists as an app for iPhones and iPads: it's on App Store.
 				<br>
@@ -81,290 +57,223 @@
 				The app is <strong>not-for-profit</strong>. It is free to download. There are no ads. And it does not ask for any personal details.
 			</button>
 			
-			<p id="infoCopyright">Copyright &copy; 2023 G F Smith</p>
+			<p id="iwCopyright">Copyright &copy; 2023 G F Smith</p>
 			
-			<div id="infoSeparator-2" class="DemoSeparator"></div>
-			<div id="infoSeparator-3" class="DemoSeparator"></div>
+			<div id="iwSeparator-2" class="DemoSeparator"></div>
+			<div id="iwSeparator-3" class="DemoSeparator"></div>
 
-			<div id="demoDoor" class="Door">
+			<div id="iwDoor" class="Door">
 			
-				<button id="demoCtrlDemonstration" class="CtrlCommon">Demonstration</button>
-				<div id="demoSurroundDemonstration-top" class="Surround"></div>
-				<div id="demoSurroundDemonstration-bottom" class="Surround"></div>
-				<div id="demoSurroundDemonstration-left" class="Surround"></div>
-				<div id="demoSurroundDemonstration-right" class="Surround"></div>
+				<button id="iwdCtrlDemonstration" class="CtrlCommon">Demonstration</button>
+				<div id="iwdSurroundDemonstration-top" class="Surround"></div>
+				<div id="iwdSurroundDemonstration-bottom" class="Surround"></div>
+				<div id="iwdSurroundDemonstration-left" class="Surround"></div>
+				<div id="iwdSurroundDemonstration-right" class="Surround"></div>
 
-				<button id="demoCrossTick" class="CrossTick"><strong>&check;</strong></button>
+				<button id="iwdCrossTick" class="CrossTick"><strong>&check;</strong></button>
 
-				<button id="demoCtrlInformation" class="CtrlCommon CtrlSecondary">Information</button>
+				<button id="iwdCtrlInformation" class="CtrlCommon CtrlSecondary">Information</button>
 				
-				<button id="demoCtrlHint" class="CtrlCommon CtrlSecondary">Hint</button>
-				<img id="demoSpotHint" class="SpotEvenEven" src="spotEvenEven.svg" alt="Spot"/>
+				<button id="iwdCtrlHint" class="CtrlCommon CtrlSecondary">Hint</button>
+				<img id="iwdSpotHint" class="SpotOddEven" src="spotOddEven.svg" alt="Spot"/>
 
-				<button id="demoCtrlSolution" class="CtrlCommon CtrlSecondary">Solution</button>
-				<img id="demoSpotSolution" class="SpotEvenEven" src="spotEvenEven.svg" alt="Spot"/>
+				<button id="iwdCtrlSolution" class="CtrlCommon CtrlSecondary">Solution</button>
+				<img id="iwdSpotSolution" class="SpotEvenEven" src="spotEvenEven.svg" alt="Spot"/>
 
-				<img id="demoCtrlBackward" class="CtrlXward" src="buttonBackward.svg" alt="Backward"/>
-				<img id="demoSpotBackward" class="SpotEvenOdd" src="spotEvenOdd.svg" alt="Spot"/>
-				
-				<img id="demoCtrlForward" class="CtrlXward" src="buttonForward.svg" alt="Forward"/>
-				<img id="demoSpotForward" class="SpotEvenOdd" src="spotEvenOdd.svg" alt="Spot"/>
-			
-				<button id="demoCtrlReset" class="CtrlCommon CtrlSecondary">Reset</button>
-				<img id="demoSpotReset" class="SpotEvenEven" src="spotEvenEven.svg" alt="Spot"/>
+				<img id="iwdCtrlDispense-1" class="CtrlDispense" src="buttonDispense.svg" alt="Dispense"/>
+				<img id="iwdCtrlDispense-2" class="CtrlDispense" src="buttonDispense.svg" alt="Dispense"/>
+				<img id="iwdCtrlDispense-3" class="CtrlDispense" src="buttonDispense.svg" alt="Dispense"/>
+				<img id="iwdCtrlDispense-4" class="CtrlDispense" src="buttonDispense.svg" alt="Dispense"/>
 
-				<div id="demoPanel">
-					<button id="demoCell-12" class="Cell Limb EdgeTop NothingBottom EdgeLeft EdgeRight"></button>
-					<button id="demoCell-16" class="Cell Limb EdgeTop NothingBottom EdgeLeft EdgeRight"></button>
+				<img id="iwdSpotDispense-1" class="SpotOddEven" src="spotOddEven.svg" alt="Spot"/>
+				<img id="iwdSpotDispense-2" class="SpotOddEven" src="spotOddEven.svg" alt="Spot"/>
+				<img id="iwdSpotDispense-3" class="SpotOddEven" src="spotOddEven.svg" alt="Spot"/>
+				<img id="iwdSpotDispense-4" class="SpotOddEven" src="spotOddEven.svg" alt="Spot"/>
 
-					<button id="demoCell-21" class="Cell Limb EdgeTop EdgeBottom EdgeLeft NothingRight"></button>
-					<button id="demoCell-22" class="Cell Torso ThinTop ThinBottom ThinLeft ThinRight"></button>
-					<button id="demoCell-23" class="Cell Torso EdgeTop ThinBottom NothingLeft ThinRight"></button>
-					<button id="demoCell-24" class="Cell Torso EdgeTop ThinBottom NothingLeft NothingRight"></button>
-					<button id="demoCell-25" class="Cell Torso EdgeTop ThinBottom ThinLeft NothingRight"></button>
-					<button id="demoCell-26" class="Cell Torso ThinTop ThinBottom ThinLeft ThinRight"></button>
-					<button id="demoCell-27" class="Cell Limb EdgeTop EdgeBottom NothingLeft EdgeRight"></button>
+				<button id="iwdCtrlUndispense" class="CtrlCommon CtrlUndispense">&bigtriangleup;</button>
+				<img id="iwdSpotUndispense" class="SpotOddEven" src="spotOddEven.svg" alt="Spot"/>
+		
+				<button id="iwdCtrlReset" class="CtrlCommon CtrlSecondary">Reset</button>
+				<img id="iwdSpotReset" class="SpotOddEven" src="spotOddEven.svg" alt="Spot"/>
 
-					<button id="demoCell-32" class="Cell Torso NothingTop NothingBottom EdgeLeft ThinRight"></button>
-					<button id="demoCell-36" class="Cell Torso NothingTop NothingBottom ThinLeft EdgeRight"></button>
-
-					<button id="demoCell-41" class="Cell Limb EdgeTop EdgeBottom EdgeLeft NothingRight"></button>
-					<button id="demoCell-42" class="Cell Torso ThinTop ThinBottom ThinLeft ThinRight"></button>
-					<button id="demoCell-43" class="Cell Torso ThinTop ThinBottom NothingLeft ThinRight"></button>
-					<button id="demoCell-44" class="Cell Torso ThinTop ThinBottom NothingLeft NothingRight"></button>
-					<button id="demoCell-45" class="Cell Torso ThinTop ThinBottom ThinLeft NothingRight"></button>
-					<button id="demoCell-46" class="Cell Torso ThinTop ThinBottom ThinLeft ThinRight"></button>
-					<button id="demoCell-47" class="Cell Limb EdgeTop EdgeBottom NothingLeft EdgeRight"></button>
+				<div id="iwdPanel">
+					<div id="iwdpdContainer-1" class="Container"></div>
+					<div id="iwdpdContainer-2" class="Container"></div>
+					<div id="iwdpdContainer-3" class="Container"></div>
+					<div id="iwdpdContainer-4" class="Container"></div>
 					
-					<button id="demoCell-52" class="Cell Torso NothingTop NothingBottom EdgeLeft ThinRight"></button>
-					<button id="demoCell-56" class="Cell Torso NothingTop NothingBottom ThinLeft EdgeRight"></button>
-
-					<button id="demoCell-61" class="Cell Limb EdgeTop EdgeBottom EdgeLeft NothingRight"></button>
-					<button id="demoCell-62" class="Cell Torso ThinTop ThinBottom ThinLeft ThinRight"></button>
-					<button id="demoCell-63" class="Cell Torso ThinTop EdgeBottom NothingLeft ThinRight"></button>
-					<button id="demoCell-64" class="Cell Torso ThinTop EdgeBottom NothingLeft NothingRight"></button>
-					<button id="demoCell-65" class="Cell Torso ThinTop EdgeBottom ThinLeft NothingRight"></button>
-					<button id="demoCell-66" class="Cell Torso ThinTop ThinBottom ThinLeft ThinRight"></button>
-					<button id="demoCell-67" class="Cell Limb EdgeTop EdgeBottom NothingLeft EdgeRight"></button>
-
-					<button id="demoCell-72" class="Cell Limb NothingTop EdgeBottom EdgeLeft EdgeRight"></button>
-					<button id="demoCell-76" class="Cell Limb NothingTop EdgeBottom EdgeLeft EdgeRight"></button>
-
-					<div id="demoHoleTop" class="Hole"></div>
-					<div id="demoHoleBottom" class="Hole"></div>
+					<button id="iwdpdItem-11" class="Item"><code><strong>1</strong></code></button>
+					<button id="iwdpdItem-12" class="Item"><code><strong>6</strong></code></button>
+					<button id="iwdpdItem-21" class="Item"><code><strong>6</strong></code></button>
+					<button id="iwdpdItem-22" class="Item"><code><strong>5</strong></code></button>
+					<button id="iwdpdItem-31" class="Item"><code><strong>&minus;</strong></code></button>
+					<button id="iwdpdItem-41" class="Item"><code><strong>&times;</strong></code></button>
+					<button id="iwdpdItem-42" class="Item"><code><strong>4</strong></code></button>
 					
-					<button id="demoWord-1" class="Word WordLeft"><span id="demoWord-1-spelling">&thinsp;WORD1&thinsp;</span></button>
-					<button id="demoWord-2" class="Word WordRight"><span id="demoWord-2-spelling">&thinsp;WORD2&thinsp;</span></button>
-					<button id="demoWord-3" class="Word WordCentre"><span id="demoWord-3-spelling">&thinsp;WORD3&thinsp;</span></button>
-					<button id="demoWord-4" class="Word WordLeft"><span id="demoWord-4-spelling">&thinsp;WORD4&thinsp;</span></button>
-					<button id="demoWord-5" class="Word WordRight"><span id="demoWord-5-spelling">&thinsp;WORD5&thinsp;</span></button>	
-
-					<img id="demoSpotWord-1" class="SpotEvenOdd" src="spotEvenOdd.svg" alt="Spot"/>
-					<img id="demoSpotWord-2" class="SpotEvenOdd" src="spotEvenOdd.svg" alt="Spot"/>
-					<img id="demoSpotWord-3" class="SpotEvenOdd" src="spotEvenOdd.svg" alt="Spot"/>
-					<img id="demoSpotWord-4" class="SpotEvenOdd" src="spotEvenOdd.svg" alt="Spot"/>
-					<img id="demoSpotWord-5" class="SpotEvenOdd" src="spotEvenOdd.svg" alt="Spot"/>
+<!--					<div id="iwdpExpression"><code><strong>1&plus;&minus;&divide;&times;2&half;</strong></code></div>
+					<div id="iwdpExpressionUnderline"></div> -->
+					<div id="iwdpExpressionBackground" class="ExpressionBackground"></div>
+					<button id="iwdpExpressionForeground" class="ExpressionForeground">999</button>
+						
+					<button id="iwdpTarget" class="Target"><strong>28</strong></button>
 				</div>
 			</div>	
 		</div>
 		
-		<div id="mainWall" class="Wall">
-			<button id="mainWallName" class="WallName"><strong>Loose Fit</strong></button>
+		<div	id="mainWall"
+				class="Wall"
+				style="grid-template-rows:
+					[rmw-s]
+					3fr
+					[rmwName-s rmwCrossTick-s]
+					7fr
+					[rmwName-e rmwCrossTick-e rmwDoor-s]
+					999fr
+					[rmwDoor-e rmw-e];
+				"
+		>
+			<button id="mwName" class="WallName"><strong>Dispensers<sup>&pi;</sup></strong></button>
 
-			<button id="mainCrossTick" class="CrossTick"><strong>&check;</strong></button>
+			<button id="mwCrossTick" class="CrossTick"><strong>&check;</strong></button>
 			
-			<div id="punterDoor" class="Door">
+			<div	id="mwDoor"
+					class="Door"
+					style="grid-template-rows:
+						[rmwd-s]
+						1fr
+						[rmwdSurroundInformation-top-s]
+						1fr
+						[rmwdSurroundInformation-top-e rmwdSurroundInformation-lr-s]
+						1fr
+						[rmwdCtrlTop-s]
+						6fr
+						[rmwdCtrlTop-e]
+						1fr
+						[rmwdSurroundInformation-lr-e rmwdSurroundInformation-bottom-s]
+						1fr
+						[rmwdSurroundInformation-bottom-e]
+						1fr
+						[rmwdPanel-s]
+						999fr
+						[rmwdPanel-e]
+						3fr
+						[rmwdCtrlDispense-s]
+						6fr
+						[rmwdCtrlDispense-e]
+						3fr
+						[rmwdCtrlBottom-s]
+						6fr
+						[rmwdCtrlBottom-e]
+						3fr
+						[rmwd-e];
+					"
+			>
 			
-				<button id="punterCtrlInformation" class="CtrlCommon CtrlSecondary">Information</button>
-				<div id="punterSurroundInformation-top" class="Surround"></div>
-				<div id="punterSurroundInformation-bottom" class="Surround"></div>
-				<div id="punterSurroundInformation-left" class="Surround"></div>
-				<div id="punterSurroundInformation-right" class="Surround"></div>
+				<button id="mwdCtrlInformation" class="CtrlCommon CtrlSecondary">Information</button>
+				<div id="mwdSurroundInformation-top" class="Surround"></div>
+				<div id="mwdSurroundInformation-bottom" class="Surround"></div>
+				<div id="mwdSurroundInformation-left" class="Surround"></div>
+				<div id="mwdSurroundInformation-right" class="Surround"></div>
 
-				<button id="punterCtrlHint" class="CtrlCommon CtrlSecondary">Hint</button>
-				
-				<button id="punterCtrlSolution" class="CtrlCommon CtrlSecondary">Solution</button>
+				<button id="mwdCtrlHint" class="CtrlCommon CtrlSecondary">Hint</button>
+				<button id="mwdCtrlSolution" class="CtrlCommon CtrlSecondary">Solution</button>
 
-				<img id="punterCtrlBackward" class="CtrlXward" src="buttonBackward.svg" alt="Backward"/>
-				<img id="punterCtrlBackwardFlasher" class="CtrlXward" src="buttonBackwardFlasher.svg" alt="Flasher"/>
+				<img id="mwdCtrlDispense-31" class="CtrlDispense" src="buttonDispense.svg" alt="Dispense"/>
+				<img id="mwdCtrlDispense-32" class="CtrlDispense" src="buttonDispense.svg" alt="Dispense"/>
+				<img id="mwdCtrlDispense-33" class="CtrlDispense" src="buttonDispense.svg" alt="Dispense"/>
 
-				<img id="punterCtrlForward" class="CtrlXward" src="buttonForward.svg" alt="Forward"/>
-				<img id="punterCtrlForwardFlasher" class="CtrlXward" src="buttonForwardFlasher.svg" alt="Flasher"/>
+				<img id="mwdCtrlDispense-31Flasher" class="CtrlDispense" src="buttonDispenseFlasher.svg" alt="Flasher"/>
+				<img id="mwdCtrlDispense-32Flasher" class="CtrlDispense" src="buttonDispenseFlasher.svg" alt="Flasher"/>
+				<img id="mwdCtrlDispense-33Flasher" class="CtrlDispense" src="buttonDispenseFlasher.svg" alt="Flasher"/>
 
-				<button id="punterCtrlReset" class="CtrlCommon CtrlSecondary">Reset</button>
+				<img id="mwdCtrlDispense-51" class="CtrlDispense" src="buttonDispense.svg" alt="Dispense"/>
+				<img id="mwdCtrlDispense-52" class="CtrlDispense" src="buttonDispense.svg" alt="Dispense"/>
+				<img id="mwdCtrlDispense-53" class="CtrlDispense" src="buttonDispense.svg" alt="Dispense"/>
+				<img id="mwdCtrlDispense-54" class="CtrlDispense" src="buttonDispense.svg" alt="Dispense"/>
+				<img id="mwdCtrlDispense-55" class="CtrlDispense" src="buttonDispense.svg" alt="Dispense"/>
 
-				<div id="punterPanel">
-					<button id="punterCell-12" class="Cell Limb EdgeTop NothingBottom EdgeLeft EdgeRight"></button>
-					<button id="punterCell-16" class="Cell Limb EdgeTop NothingBottom EdgeLeft EdgeRight"></button>
+				<button id="mwdCtrlReset" class="CtrlCommon CtrlSecondary">Reset</button>
+				<button id="mwdCtrlUndispense" class="CtrlCommon CtrlUndispense">&bigtriangleup;</button>
 
-					<button id="punterCell-21" class="Cell Limb EdgeTop EdgeBottom EdgeLeft NothingRight"></button>
-					<button id="punterCell-22" class="Cell Torso ThinTop ThinBottom ThinLeft ThinRight"></button>
-					<button id="punterCell-23" class="Cell Torso EdgeTop ThinBottom NothingLeft ThinRight"></button>
-					<button id="punterCell-24" class="Cell Torso EdgeTop ThinBottom NothingLeft NothingRight"></button>
-					<button id="punterCell-25" class="Cell Torso EdgeTop ThinBottom ThinLeft NothingRight"></button>
-					<button id="punterCell-26" class="Cell Torso ThinTop ThinBottom ThinLeft ThinRight"></button>
-					<button id="punterCell-27" class="Cell Limb EdgeTop EdgeBottom NothingLeft EdgeRight"></button>
+				<div 	id="mwdPanel"
+						style="grid-template-rows:
+							[rmwdp-s]
+							2fr
+							[rmwdpDispensers-hn-s]
+							999fr
+							[rmwdpDispensers-hn-e]
+							5fr
+							[rmwdpExpressionForeground-s]
+							1fr
+							[rmwdpExpressionBackground-s]
+							7fr
+							[rmwdpExpressionBackground-e]
+							1fr
+							[rmwdpExpressionForeground-e]
+							2fr
+							[rmwdpTarget-1-s]
+							8fr
+							[rmwdpTarget-1-e]
+							3fr
+							[rmwdp-e];
+						"
+				>
+						
+					<div id="mwdpDispensers-25">
+						<div id="mwdpdContainer-25-11" class="Container"></div>
+						<div id="mwdpdContainer-25-12" class="Container"></div>
+						<div id="mwdpdContainer-25-21" class="Container"></div>
+						<div id="mwdpdContainer-25-22" class="Container"></div>
+						<div id="mwdpdContainer-25-31" class="Container"></div>
+						<div id="mwdpdContainer-25-32" class="Container"></div>
+						<div id="mwdpdContainer-25-41" class="Container"></div>
+						<div id="mwdpdContainer-25-42" class="Container"></div>
+						<div id="mwdpdContainer-25-51" class="Container"></div>
+						<div id="mwdpdContainer-25-52" class="Container"></div>
 
-					<button id="punterCell-32" class="Cell Torso NothingTop NothingBottom EdgeLeft ThinRight"></button>
-					<button id="punterCell-36" class="Cell Torso NothingTop NothingBottom ThinLeft EdgeRight"></button>
+						<button id="mwdpdItem-25-11" class="Item"><code><strong>8</strong></code></button>
+						<button id="mwdpdItem-25-12" class="Item"><code><strong>8</strong></code></button>
+						<button id="mwdpdItem-25-21" class="Item"><code><strong>8</strong></code></button>
+						<button id="mwdpdItem-25-22" class="Item"><code><strong>8</strong></code></button>
+						<button id="mwdpdItem-25-31" class="Item"><code><strong>8</strong></code></button>
+						<button id="mwdpdItem-25-32" class="Item"><code><strong>8</strong></code></button>
+						<button id="mwdpdItem-25-41" class="Item"><code><strong>8</strong></code></button>
+						<button id="mwdpdItem-25-42" class="Item"><code><strong>8</strong></code></button>
+						<button id="mwdpdItem-25-51" class="Item"><code><strong>8</strong></code></button>
+						<button id="mwdpdItem-25-52" class="Item"><code><strong>8</strong></code></button>
+					</div>
 
-					<button id="punterCell-41" class="Cell Limb EdgeTop EdgeBottom EdgeLeft NothingRight"></button>
-					<button id="punterCell-42" class="Cell Torso ThinTop ThinBottom ThinLeft ThinRight"></button>
-					<button id="punterCell-43" class="Cell Torso ThinTop ThinBottom NothingLeft ThinRight"></button>
-					<button id="punterCell-44" class="Cell Torso ThinTop ThinBottom NothingLeft NothingRight"></button>
-					<button id="punterCell-45" class="Cell Torso ThinTop ThinBottom ThinLeft NothingRight"></button>
-					<button id="punterCell-46" class="Cell Torso ThinTop ThinBottom ThinLeft ThinRight"></button>
-					<button id="punterCell-47" class="Cell Limb EdgeTop EdgeBottom NothingLeft EdgeRight"></button>
-					
-					<button id="punterCell-52" class="Cell Torso NothingTop NothingBottom EdgeLeft ThinRight"></button>
-					<button id="punterCell-56" class="Cell Torso NothingTop NothingBottom ThinLeft EdgeRight"></button>
+					<div id="mwdpDispensers-33">
+						<div id="mwdpdContainer-33-11" class="Container"></div>
+						<div id="mwdpdContainer-33-12" class="Container"></div>
+						<div id="mwdpdContainer-33-13" class="Container"></div>
+						<div id="mwdpdContainer-33-21" class="Container"></div>
+						<div id="mwdpdContainer-33-22" class="Container"></div>
+						<div id="mwdpdContainer-33-23" class="Container"></div>
+						<div id="mwdpdContainer-33-31" class="Container"></div>
+						<div id="mwdpdContainer-33-32" class="Container"></div>
+						<div id="mwdpdContainer-33-33" class="Container"></div>
 
-					<button id="punterCell-61" class="Cell Limb EdgeTop EdgeBottom EdgeLeft NothingRight"></button>
-					<button id="punterCell-62" class="Cell Torso ThinTop ThinBottom ThinLeft ThinRight"></button>
-					<button id="punterCell-63" class="Cell Torso ThinTop EdgeBottom NothingLeft ThinRight"></button>
-					<button id="punterCell-64" class="Cell Torso ThinTop EdgeBottom NothingLeft NothingRight"></button>
-					<button id="punterCell-65" class="Cell Torso ThinTop EdgeBottom ThinLeft NothingRight"></button>
-					<button id="punterCell-66" class="Cell Torso ThinTop ThinBottom ThinLeft ThinRight"></button>
-					<button id="punterCell-67" class="Cell Limb EdgeTop EdgeBottom NothingLeft EdgeRight"></button>
-
-					<button id="punterCell-72" class="Cell Limb NothingTop EdgeBottom EdgeLeft EdgeRight"></button>
-					<button id="punterCell-76" class="Cell Limb NothingTop EdgeBottom EdgeLeft EdgeRight"></button>
-
-					<div id="punterHoleTop" class="Hole"></div>
-					<div id="punterHoleBottom" class="Hole"></div>
-					
-					<button id="punterWord-1" class="Word WordLeft"><span id="punterWord-1-spelling">&thinsp;WORD1&thinsp;</span></button>
-					<button id="punterWord-2" class="Word WordRight"><span id="punterWord-2-spelling">&thinsp;WORD2&thinsp;</span></button>
-					<button id="punterWord-3" class="Word WordCentre"><span id="punterWord-3-spelling">&thinsp;WORD3&thinsp;</span></button>
-					<button id="punterWord-4" class="Word WordLeft"><span id="punterWord-4-spelling">&thinsp;WORD4&thinsp;</span></button>
-					<button id="punterWord-5" class="Word WordRight"><span id="punterWord-5-spelling">&thinsp;WORD5&thinsp;</span></button>		
+						<button id="mwdpdItem-33-11" class="Item"><code><strong>8</strong></code></button>
+						<button id="mwdpdItem-33-12" class="Item"><code><strong>8</strong></code></button>
+						<button id="mwdpdItem-33-13" class="Item"><code><strong>8</strong></code></button>
+						<button id="mwdpdItem-33-21" class="Item"><code><strong>8</strong></code></button>
+						<button id="mwdpdItem-33-22" class="Item"><code><strong>8</strong></code></button>
+						<button id="mwdpdItem-33-23" class="Item"><code><strong>8</strong></code></button>
+						<button id="mwdpdItem-33-31" class="Item"><code><strong>8</strong></code></button>
+						<button id="mwdpdItem-33-32" class="Item"><code><strong>8</strong></code></button>
+						<button id="mwdpdItem-33-33" class="Item"><code><strong>8</strong></code></button>
+					</div>
+						
+<!--					<div id="mwdpExpression" class="Expression"><code><strong>1&plus;&minus;&divide;&times;2&half;</strong></code></div>
+					<div id="mwdpExpressionUnderline"></div> -->
+					<div id="mwdpExpressionBackground" class="ExpressionBackground"></div>
+					<button id="mwdpExpressionForeground" class="ExpressionForeground">999</button>
+						
+					<button id="mwdpTarget-1" class="Target"><strong>99</strong></button>
 				</div>
 			</div>
 		</div>
 	</body>
 </html>
 
-<!--
-<script>
-const numGridRows = 122;
-const numGridColumns = 60;
-
-console.log('Thank you');
-console.log(`${window.innerHeight}px`);
-console.log(`${window.innerWidth}px`);
-console.log(`${window.devicePixelRatio}`);
-
-function updateFontSize(numGridRows, numGridColumns) {
-  console.log('updateFontSize called');
-  console.log(numGridRows);
-  console.log(numGridColumns);
-  
-  let innerDimension = 0
-  let gridDimension = 0
-  if ((window.innerHeight / numGridRows) <= (window.innerWidth / numGridColumns)) {
-    innerDimension = window.innerHeight;
-	gridDimension = numGridRows;
-	}
-  else {
-    innerDimension = window.innerWidth;
-	gridDimension = numGridColumns;
-	}
-	
-  const percent = innerDimension / 100;
-  console.log('percent');
-  console.log(percent);
-  let fontSize = 0;
-  let reducingInnerDimension = innerDimension + 1;
-  do {
-    reducingInnerDimension = reducingInnerDimension - 1
-    fontSize = Math.floor((reducingInnerDimension / gridDimension) * window.devicePixelRatio) / window.devicePixelRatio
-    console.log('fontSize');
-    console.log(fontSize);
-  } while ((innerDimension - (fontSize * gridDimension)) < (2 * percent));
-  console.log('final fontSize');
-  console.log(fontSize);
-  document.body.style.fontSize = `${fontSize}px`;
-  
-  let spareHeight = window.innerHeight - (fontSize * numGridRows);
-  console.log('spareHeight');
-  console.log(spareHeight);
-  let deviceSpareHeight = spareHeight * window.devicePixelRatio;
-  console.log('deviceSpareHeight');
-  console.log(deviceSpareHeight);
-  let roundedDeviceSpareHeight = Math.trunc(deviceSpareHeight / 2) * 2;
-  console.log('roundedDeviceSpareHeight');
-  console.log(roundedDeviceSpareHeight);
-  let roundedSpareHeight = roundedDeviceSpareHeight / window.devicePixelRatio;
-  console.log('roundedSpareHeight');
-  console.log(roundedSpareHeight);
-  let mainRef = document.querySelector("#mainWall");
-  //let infoRef = document.querySelector("#infoWall");
-  mainRef.style.top = `${roundedSpareHeight / 2}px`;
-  //infoRef.style.top = `${roundedSpareHeight / 2}px`;
-  
-  let spareWidth = window.innerWidth - (fontSize * numGridColumns);
-  console.log('spareWidth');
-  console.log(spareWidth);
-  let deviceSpareWidth = spareWidth * window.devicePixelRatio;
-  console.log('deviceSpareWidth');
-  console.log(deviceSpareWidth);
-  let roundedDeviceSpareWidth = Math.trunc(deviceSpareWidth / 2) * 2
-  console.log('roundedDeviceSpareWidth');
-  console.log(roundedDeviceSpareWidth);
-  let roundedSpareWidth = roundedDeviceSpareWidth / window.devicePixelRatio;
-  console.log('roundedSpareWidth');
-  console.log(roundedSpareWidth);
-  mainRef.style.left = `${roundedSpareWidth / 2}px`;
-  //infoRef.style.left = `${roundedSpareWidth / 2}px`;
-  
-  return fontSize;
-}
-const fontSize = updateFontSize(numGridRows, numGridColumns);
-
-
-function setBorderWidths(fontSize, internalFraction, externalFraction) {
-  let internalWidth = Math.floor(fontSize * internalFraction * window.devicePixelRatio);
-  if (internalWidth == 0) {
-    internalWidth = 1
-	}
-  console.log('internalWidth');
-  console.log(internalWidth);
-  const increment = 0.01;
-  let increasingExternalFraction = externalFraction - increment;
-  do {
-    increasingExternalFraction = increasingExternalFraction + increment;
-    console.log('increasingExternalFraction');
-	console.log(increasingExternalFraction);
-	increasingExternalWidth = Math.floor(fontSize * increasingExternalFraction * window.devicePixelRatio);
-    console.log('increasingExternalWidth');
-	console.log(increasingExternalWidth);
-  } while (increasingExternalWidth <= internalWidth);
-  
-  //const styleSheet = document.styleSheets[0];
-  //const styleSheet = document.querySelector("#styling");
-  //const ruleList = styleSheet.cssRules;
-  const ruleList = document.styleSheets[0].cssRules;
-	for (let i = 0; i < ruleList.length; i++) {
-		console.log(ruleList[i].constructor.name);
-	}
-  const thinTopRule = [...styleSheet.cssRules].find((r) => r.selectorText === ".ThinTop");
-  thinTopRule.style.setProperty("border-top-width", `${internalFraction}em`);
-  const thinBottomRule = [...styleSheet.cssRules].find((r) => r.selectorText === ".ThinBottom");
-  thinBottomRule.style.setProperty("border-bottom-width", `${internalFraction}em`);
-  const thinLeftRule = [...styleSheet.cssRules].find((r) => r.selectorText === ".ThinLeft");
-  thinLeftRule.style.setProperty("border-left-width", `${internalFraction}em`);
-  const thinRightRule = [...styleSheet.cssRules].find((r) => r.selectorText === ".ThinRight");
-  thinRightRule.style.setProperty("border-right-width", `${internalFraction}em`);
-
-  const edgeTopRule = [...styleSheet.cssRules].find((r) => r.selectorText === ".EdgeTop");
-  edgeTopRule.style.setProperty("border-top-width", `${increasingExternalFraction}em`);
-  const edgeBottomRule = [...styleSheet.cssRules].find((r) => r.selectorText === ".EdgeBottom");
-  edgeBottomRule.style.setProperty("border-bottom-width", `${increasingExternalFraction}em`);
-  const edgeLeftRule = [...styleSheet.cssRules].find((r) => r.selectorText === ".EdgeLeft");
-  edgeLeftRule.style.setProperty("border-left-width", `${increasingExternalFraction}em`);
-  const edgeRightRule = [...styleSheet.cssRules].find((r) => r.selectorText === ".EdgeRight");
-  edgeRightRule.style.setProperty("border-right-width", `${increasingExternalFraction}em`);
-}
-setBorderWidths(fontSize, 0.02, 0.05);
-
-</script> -->
