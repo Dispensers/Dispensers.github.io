@@ -2,6 +2,6 @@
      width="180" height="440"
      xmlns="http://www.w3.org/2000/svg">
 
-  <polygon points="20 440 20 20 160 20 160 440 166 440 166 14 14 14 14 440" fill="black"/>
+  <polygon points="20 440 20 6 160 6 160 440 166 440 166 0 14 0 14 440" fill="black"/>
 
 </svg>

@@ -799,10 +799,8 @@ body {
 		7fr
 		[rmwdpdItem-33-1-e rmwdpdContainer-33-e rmwdpd-33-e]; */
 	grid-template-rows:
-		[rmwdpd-33-s rmwdpdItem-33-3-s rmwdpdBorder-33-3-s]
-		1fr
-		[rmwdpdContainer-33-3-s]
-		6fr
+		[rmwdpd-33-s rmwdpdContainer-33-3-s rmwdpdItem-33-3-s rmwdpdBorder-33-3-s]
+		7fr
 		[rmwdpdItem-33-2-s rmwdpdBorder-33-2-s]
 		1fr
 		[rmwdpdContainer-33-2-s]
@@ -1003,8 +1001,8 @@ body {
 
 .CtrlDispense {width:7em; height:6em;}
 
-.Border1 {width:9em; height:8em;}
-.Border2 {width:9em; height:15em;}
-.Border3 {width:9em; height:22em;}
+.Border1 {z-index:5; width:9em; height:8em;}
+.Border2 {z-index:5; width:9em; height:15em;}
+.Border3 {z-index:5; width:9em; height:22em;}
 
 /* code {color:black;} */
