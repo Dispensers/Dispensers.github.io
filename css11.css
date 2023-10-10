@@ -986,7 +986,7 @@ body {
 .Item {z-index:5; margin:0; padding:0; border:none; font-size:7em; background-color:transparent;}
 
 .ExpressionBackground {margin:0; padding:0; border-style:solid; border-color:black; border-width:0 0 0.8em 0; background-color:#FFE8E8;}
-.ExpressionForeground {z-index:5; margin:0; padding:0; border:none; text-align:left; font-size:7em; background-color:transparent;}
+.ExpressionForeground {z-index:5; margin:0; padding:0; border:none; text-align:left; font-size:7em; color:black; background-color:transparent;}
 
 .Target {
 	padding:0;
