@@ -983,7 +983,7 @@ body {
 }
 
 /* .Item {z-index:5; margin:0; padding:0; border:none; font-size:6.5em; background-color:transparent;} */
-.Item {z-index:5; margin:0; padding:0; border:none; font-size:7em; background-color:transparent;}
+.Item {z-index:5; margin:0; padding:0; border:none; text-align:center; font-size:7em; color:black; background-color:transparent;}
 
 .ExpressionBackground {margin:0; padding:0; border-style:solid; border-color:black; border-width:0 0 0.8em 0; background-color:#FFE8E8;}
 .ExpressionForeground {z-index:5; margin:0; padding:0; border:none; text-align:left; font-size:7em; color:black; background-color:transparent;}
@@ -1007,4 +1007,4 @@ body {
 .Border2 {width:9em; height:15em;}
 .Border3 {width:9em; height:22em;}
 
-code {color:black;}
+/* code {color:black;} */
