@@ -801,16 +801,12 @@ body {
 	grid-template-rows:
 		[rmwdpd-33-s rmwdpdContainer-33-3-s rmwdpdItem-33-3-s rmwdpdBorder-33-3-s]
 		7fr
-		[rmwdpdItem-33-2-s rmwdpdBorder-33-2-s]
-		1fr
-		[rmwdpdContainer-33-2-s]
-		1fr
+		[rmwdpdContainer-33-2-s rmwdpdItem-33-2-s rmwdpdBorder-33-2-s]
+		2fr
 		[rmwdpdItem-33-3-e]
 		5fr
-		[rmwdpdItem-33-1-s]
-		1fr
-		[rmwdpdContainer-33-1-s]
-		1fr
+		[rmwdpdContainer-33-1-s rmwdpdItem-33-1-s rmwdpdBorder-33-1-s]
+		2fr
 		[rmwdpdItem-33-2-e]
 		6fr
 		[rmwdpdContainer-33-e rmwdpdBorder-33-e]

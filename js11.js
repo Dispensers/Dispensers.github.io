@@ -8,10 +8,8 @@ const punterDoorHeightAbovePanel = 12;
 const punterDoorHeightBelowPanel = 21;
 
 //punter panel
-//const punterPanelHeightAboveDispensers = 3;
-const punterPanelHeightAboveDispensers = 2;
-//const punterPanelHeightBelowDispensers = 28;
-const punterPanelHeightBelowDispensers = 27;
+const punterPanelHeightAboveDispensers = 3;
+const punterPanelHeightBelowDispensers = 26;
 const containerCompartmentHeight = 7;
 
 console.log(`${window.innerHeight}px`);
