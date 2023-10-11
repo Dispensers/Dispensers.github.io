@@ -559,11 +559,6 @@ body {
 	display:grid;
 	height:888em;
 	width:59em;
-	display:grid;
-	z-index:2;
-	position:absolute;
-	height:888em;
-	width:59em;
 	grid-template-columns:
 		[cmwd-s]
 		1fr
@@ -873,9 +868,9 @@ body {
 .SpotEvenEven {z-index:10; width:4em; height:4em;}
 .SpotOddOdd {z-index:10; width:5em; height:5em;}
 
-.Wall {background-color:#807873;}
+.Wall {background-color:#9E9E9E;}
 
-.Door {background-color:#807873;}
+.Door {background-color:#9E9E9E;}
 
 .WallName {
 	padding:0;
