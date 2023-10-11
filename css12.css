@@ -645,15 +645,15 @@ body {
 	background-color:white;
 	grid-template-columns:
 		[cmwdp-s]
-		6fr
+		5fr
 		[cmwdpExpression-s]
-		14fr
+		15fr
 		[cmwdpTarget-1-s]
 		13fr
 		[cmwdpTarget-1-e]
-		14fr
+		15fr
 		[cmwdpExpression-e]
-		6fr
+		5fr
 		[cmwdp-e];
 }
 /*

@@ -318,7 +318,7 @@ class Expression {
 		const numItems = this.items.length;
 		let html = "";
 		if (numItems != 0) {
-			html = "&thinsp;<code><strong>" + Symbol.getHTMLSymbolCode(this.items[0].symbol) + "</strong></code>";
+			html = "&VeryThinSpace;<code><strong>" + Symbol.getHTMLSymbolCode(this.items[0].symbol) + "</strong></code>";
 			for (let i = 1; i < numItems; i++) {
 				const spaceCode = Symbol.getHTMLSpaceCode(this.items[i - 1].symbol, this.items[i].symbol);
 				const symbolCode = Symbol.getHTMLSymbolCode(this.items[i].symbol);
@@ -766,9 +766,16 @@ let punterPuzzleSpec = {
 	solutionExpression: "90-186/3",
 	solutionDispenseSequence: [1, 4, 2, 5, 3, 2, 1, 3]
 }; */
-
+/*
 let punterPuzzleSpec = {
 	dispenserSpec: [undefined, "-1", "4*1", "71"],
+	//hintSpec: ["green", 6],
+	solutionExpression: "11*14-7",
+	solutionDispenseSequence: [1, 2, 2, 3, 2, 1, 3]
+}; */
+
+let punterPuzzleSpec = {
+	dispenserSpec: [undefined, "-12", "4*3", "5+6"],
 	//hintSpec: ["green", 6],
 	solutionExpression: "11*14-7",
 	solutionDispenseSequence: [1, 2, 2, 3, 2, 1, 3]
