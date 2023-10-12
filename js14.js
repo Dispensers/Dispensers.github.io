@@ -975,7 +975,7 @@ for (let i = 1; i <= demoPuzzle.numDispensers; i++) {
 
 const demoExpression = new Expression("#iwdpExpression", demoPuzzle);
 
-const demoTarget = new Target("#iwdpTarget", demoPuzzle);
+//const demoTarget = new Target("#iwdpTarget", demoPuzzle);
 
 const demoSolveBiz = new SolveBiz(demoPuzzle, demoDispensers, demoExpression, demoSolveIO);
 
