@@ -306,66 +306,58 @@ body {
 		[ciwdPanel-s ciwdCtrlInformation-s ciwdCtrlReset-s]
 		3fr
 		[ciwdSpotReset-s]
-		5fr
-		[ciwdSpotReset-e ciwdCtrlDispense-1-s]
+		2fr
+		[ciwdCtrlDispense-1-s]
 		1fr
 		[ciwdSpotDispense-1-s]
 		2fr
-		[ciwdCtrlReset-e ciwdSurroundDemonstration-tb-s ciwdSurroundDemonstration-left-s]
+		[ciwdSpotReset-e]
+		3fr
+		[ciwdCtrlReset-e ciwdSpotDispense-1-e ciwdSurroundDemonstration-tb-s ciwdSurroundDemonstration-left-s]
 		1fr
-		[ciwdSurroundDemonstration-left-e]
+		[ciwdSurroundDemonstration-left-e ciwdCtrlDispense-1-e]
 		1fr
 		[ciwdCtrlDemonstration-s]
-		1fr
-		[ciwdSpotDispense-1-e]
-		1fr
-		[ciwdCtrlDispense-1-e]
-		1fr
+		3fr
 		[ciwdCtrlInformation-e]
-		2fr
-		[ciwdCtrlDispense-2-s ciwdCtrlUndispense-s]
 		1fr
-		[ciwdSpotDispense-2-s]
-		2fr
+		[ciwdCtrlDispense-2-s]
+		1fr
+		[ciwdCtrlUndispense-s ciwdSpotDispense-2-s]
+		3fr
 		[ciwdCtrlHint-s]
-		3fr
-		[ciwdSpotHint-s ciwdSpotDispense-2-e]
+		2fr
+		[ciwdSpotDispense-2-e]
 		1fr
-		[ciwdCtrlDispense-2-e]
-		3fr
-		[ciwdCtrlDispense-3-s]
+		[ciwdSpotHint-s ciwdCtrlDispense-2-e]
+		5fr
+		[ciwdSpotHint-e ciwdCtrlDispense-3-s]
 		1fr
-		[ciwdSpotHint-e ciwdSpotDispense-3-s]
-		3fr
+		[ciwdSpotDispense-3-s]
+		2fr
 		[ciwdCtrlHint-e]
 		1fr
 		[ciwdSpotUndispense-s]
-		1fr
+		2fr
 		[ciwdSpotDispense-3-e]
 		1fr
 		[ciwdCtrlDispense-3-e]
-		2fr
+		1fr
 		[ciwdCtrlSolution-s]
 		1fr
-		[ciwdSpotUndispense-e ciwdCtrlDispense-4-s]
-		1fr
-		[ciwdSpotDispense-4-s]
-		1fr
+		[ciwdSpotUndispense-e]
+		2fr
 		[ciwdCtrlDemonstration-e]
 		1fr
-		[ciwdSurroundDemonstration-right-s]
+		[ciwdSurroundDemonstration-right-s ciwdCtrlDispense-4-s]
 		1fr
-		[ciwdSurroundDemonstration-tb-e ciwdSurroundDemonstration-right-e]
+		[ciwdSurroundDemonstration-tb-e ciwdSurroundDemonstration-right-e ciwdSpotDispense-4-s]
 		1fr
 		[ciwdSpotSolution-s]
+		4fr
+		[ciwdSpotSolution-e ciwdSpotDispense-4-e]
 		1fr
-		[ciwdSpotDispense-4-e]
-		1fr
-		[ciwdCtrlDispense-4-e]
-		2fr
-		[ciwdSpotSolution-e]
-		1fr
-		[ciwdCrossTick-s]
+		[ciwdCtrlDispense-4-e ciwdCrossTick-s]
 		5fr
 		[ciwdPanel-e ciwdCtrlSolution-e ciwdCtrlUndispense-e ciwdCrossTick-e]
 		3fr
@@ -436,21 +428,17 @@ body {
 	background-color:white;
 	grid-template-rows:
 		[riwdp-s]
+		3fr
+		[riwdpdContainer-2-s riwdpdBorder-2-s riwdpdItem-2-s]
+		7fr
+		[riwdpdContainer-1-s riwdpdBorder-1-s riwdpdItem-1-s]
 		2fr
-		[riwdpdItem-2-s]
-		1fr
-		[riwdpdContainer-2-s]
-		6fr
-		[riwdpdItem-1-s]
-		1fr
-		[riwdpdContainer-1-s]
-		1fr
 		[riwdpdItem-2-e]
 		6fr
-		[riwdpdContainer-e]
+		[riwdpdContainer-e riwdpdBorder-e]
 		1fr
 		[riwdpdItem-1-e]
-		5fr
+		4fr
 		[riwdpExpressionForeground-s]
 		1fr
 		[riwdpExpressionBackground-s]
@@ -458,36 +446,60 @@ body {
 		[riwdpExpressionBackground-e]
 		1fr
 		[riwdpExpressionForeground-e]
-		2fr
+		1fr
+		[riwdpTargetForeground-s]
+		1fr
 		[riwdpTargetBackground-s]
 		8fr
 		[riwdpTargetBackground-e]
-		3fr
+		1fr
+		[riwdpTargetForeground-e]
+		2fr
 		[riwdp-e];
 		
 	grid-template-columns:
 		[ciwdp-s]
-		8fr
-		[ciwdpdContainer-1-s ciwdpdItem-1-s ciwdpExpression-s]
-		7fr
+		4fr
+		[ciwdpdBorder-1-s]
+		1fr
+		[ciwdpdContainer-1-s ciwdpdItem-1-s]
+		3fr
+		[ciwdpExpression-s]
+		4fr
 		[ciwdpdContainer-1-e ciwdpdItem-1-e]
+		1fr
+		[ciwdpdBorder-1-e]
 		3fr
+		[ciwdpdBorder-2-s]
+		1fr
 		[ciwdpdContainer-2-s ciwdpdItem-2-s]
-		2fr
-		[ciwdpTargetBackground-2-s ciwdpTargetForeground-2-s]
-		5fr
+		3fr
+		[ciwdpTargetBackground-s ciwdpTargetForeground-s]
+		4fr
 		[ciwdpdContainer-2-e ciwdpdItem-2-e]
+		1fr
+		[ciwdpdBorder-2-e]
 		3fr
+		[ciwdpdBorder-3-s]
+		1fr
 		[ciwdpdContainer-3-s ciwdpdItem-3-s]
-		5fr
-		[ciwdpTargetBackground-2-e ciwdpTargetForeground-2-e]
-		2fr
-		[ciwdpdContainer-3-e ciwdpdItem-3-e]
+		4fr
+		[ciwdpTargetBackground-e ciwdpTargetForeground-e]
 		3fr
+		[ciwdpdContainer-3-e ciwdpdItem-3-e]
+		1fr
+		[ciwdpdBorder-3-e]
+		3fr
+		[ciwdpdBorder-4-s]
+		1fr
 		[ciwdpdContainer-4-s ciwdpdItem-4-s]
-		7fr
-		[ciwdpdContainer-4-e ciwdpdItem-4-e ciwdpExpression-e]
-		8fr
+		4fr
+		[ciwdpExpression-e]
+		3fr
+		[ciwdpdContainer-4-e ciwdpdItem-4-e]
+		1fr
+		[ciwdpdBorder-4-e]
+		4fr
 		[ciwdp-e];
 }
 
@@ -495,6 +507,11 @@ body {
 #iwdpdContainer-2 {grid-row:riwdpdContainer-2-s/riwdpdContainer-e; grid-column:ciwdpdContainer-2-s/ciwdpdContainer-2-e;}
 #iwdpdContainer-3 {grid-row:riwdpdContainer-1-s/riwdpdContainer-e; grid-column:ciwdpdContainer-3-s/ciwdpdContainer-3-e;}
 #iwdpdContainer-4 {grid-row:riwdpdContainer-2-s/riwdpdContainer-e; grid-column:ciwdpdContainer-4-s/ciwdpdContainer-4-e;}
+
+#iwdpdBorder-1 {grid-row:riwdpdBorder-2-s/riwdpdBorder-e; grid-column:ciwdpdBorder-1-s/ciwdpdBorder-1-e;}
+#iwdpdBorder-2 {grid-row:riwdpdBorder-2-s/riwdpdBorder-e; grid-column:ciwdpdBorder-2-s/ciwdpdBorder-2-e;}
+#iwdpdBorder-3 {grid-row:riwdpdBorder-1-s/riwdpdBorder-e; grid-column:ciwdpdBorder-3-s/ciwdpdBorder-3-e;}
+#iwdpdBorder-4 {grid-row:riwdpdBorder-2-s/riwdpdBorder-e; grid-column:ciwdpdBorder-4-s/ciwdpdBorder-4-e;}
 
 #iwdpdItem-11 {grid-row:riwdpdItem-1-s/riwdpdItem-1-e; grid-column:ciwdpdItem-1-s/ciwdpdItem-1-e;}
 #iwdpdItem-12 {grid-row:riwdpdItem-2-s/riwdpdItem-2-e; grid-column:ciwdpdItem-1-s/ciwdpdItem-1-e;}
@@ -522,12 +539,12 @@ body {
 	grid-column:ciwdpExpression-s/ciwdpExpression-e;
 }
 */
-#iwdpExpressionBackground-9 {grid-row:riwdpExpressionBackground-s/riwdpExpressionBackground-e; grid-column:ciwdpExpression-s/ciwdpExpression-e;}
-#iwdpExpressionForeground-9 {grid-row:riwdpExpressionForeground-s/riwdpExpressionForeground-e; grid-column:ciwdpExpression-s/ciwdpExpression-e;}
+#iwdpExpressionBackground-7 {grid-row:riwdpExpressionBackground-s/riwdpExpressionBackground-e; grid-column:ciwdpExpression-s/ciwdpExpression-e;}
+#iwdpExpressionForeground-7 {grid-row:riwdpExpressionForeground-s/riwdpExpressionForeground-e; grid-column:ciwdpExpression-s/ciwdpExpression-e;}
 
 /* #iwdpTarget {grid-row:riwdpTarget-s/riwdpTarget-e; grid-column:ciwdpTarget-s/ciwdpTarget-e;} */
-#iwdpTargetBackground-2 {display:none; grid-row:riwdpTargetBackground-s/riwdpTargetBackground-e; grid-column:ciwdpTargetBackground-2-s/ciwdpTargetBackground-2-e;}
-#iwdpTargetForeground-2 {display:none; grid-row:riwdpTargetForeground-s/riwdpTargetForeground-e; grid-column:ciwdpTargetForeground-2-s/ciwdpTargetForeground-2-e;}
+#iwdpTargetBackground-2 {grid-row:riwdpTargetBackground-s/riwdpTargetBackground-e; grid-column:ciwdpTargetBackground-s/ciwdpTargetBackground-e;}
+#iwdpTargetForeground-2 {grid-row:riwdpTargetForeground-s/riwdpTargetForeground-e; grid-column:ciwdpTargetForeground-s/ciwdpTargetForeground-e;}
 
 
 
@@ -1023,6 +1040,8 @@ body {
 	color:#A7074B;
 	text-align:center;
 }
+
+#targetNumber {color:#A7074B;}
 
 .TargetBackground {
 	padding:0;

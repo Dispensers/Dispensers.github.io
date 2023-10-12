@@ -922,7 +922,7 @@ let demoPuzzleSpec = {
 	dispenserSpec: [undefined, "61", "56", "-", "4*"],
 	targetSpec: "28",
 	//hintSpec: ["green", 6],
-	solutionExpression: "6*14-56++",
+	solutionExpression: "6*14-56",
 	solutionDispenseSequence: [2, 4, 1, 4, 3, 2, 1]
 };
 
@@ -975,7 +975,7 @@ for (let i = 1; i <= demoPuzzle.numDispensers; i++) {
 
 const demoExpression = new Expression("#iwdpExpression", demoPuzzle);
 
-//const demoTarget = new Target("#iwdpTarget", demoPuzzle);
+const demoTarget = new Target("#iwdpTarget", demoPuzzle);
 
 const demoSolveBiz = new SolveBiz(demoPuzzle, demoDispensers, demoExpression, demoSolveIO);
 
