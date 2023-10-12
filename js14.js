@@ -166,6 +166,7 @@ class Symbol {
 class Puzzle {
 	constructor(puzzleSpec) {
 		this.dispenserFullSpec = puzzleSpec.dispenserSpec;
+		this.targetSpec = puzzleSpec.targetSpec;
 		this.solutionExpression = puzzleSpec.solutionExpression;
 		this.solutionDispenseSequence = puzzleSpec.solutionDispenseSequence;
 		this.numDispensers = this.dispenserFullSpec.length - 1;
@@ -272,6 +273,16 @@ class Dispenser {
 		const item = this.itemQueue[this.itemQueue.length - this.numItemsInContainer - 1];
 		this.container.unshift(item);
 		this.numItemsInContainer++;		
+	}
+}
+
+class Target {
+	constructor(targetIdRoot, puzzle) {
+		const backgroundRef = document.querySelector(targetIdRoot + "Background-" + String(puzzle.targetSpec.length));
+		backgroundRef.style.display = `block`;
+		const foregroundRef = document.querySelector(targetIdRoot + "Foreground-" + String(puzzle.targetSpec.length));
+		foregroundRef.style.display = `block`;
+		foregroundRef.innerHTML = "<code><strong>" + puzzle.targetSpec + "</strong></code>";
 	}
 }
 
@@ -775,6 +786,7 @@ let punterPuzzleSpec = {
 
 let punterPuzzleSpec = {
 	dispenserSpec: [undefined, "-1", "4*1", "71"],
+	targetSpec: "147",
 	//hintSpec: ["green", 6],
 	solutionExpression: "11*14-7",
 	solutionDispenseSequence: [1, 2, 2, 3, 2, 1, 3]
@@ -895,6 +907,8 @@ for (let i = 1; i <= punterPuzzle.numDispensers; i++) {
 
 const punterExpression = new Expression("#mwdpExpression", punterPuzzle);
 
+const punterTarget = new Target("#mwdpTarget", punterPuzzle);
+
 const punterSolveBiz = new SolveBiz(punterPuzzle, punterDispensers, punterExpression, punterSolveIO);
 punterSolveBiz.wake();
 //disable all the controls while the preamble runs
@@ -906,6 +920,7 @@ punterSolveBiz.freeze();
 
 let demoPuzzleSpec = {
 	dispenserSpec: [undefined, "61", "56", "-", "4*"],
+	targetSpec: "28",
 	//hintSpec: ["green", 6],
 	solutionExpression: "6*14-56++",
 	solutionDispenseSequence: [2, 4, 1, 4, 3, 2, 1]
@@ -959,6 +974,8 @@ for (let i = 1; i <= demoPuzzle.numDispensers; i++) {
 }
 
 const demoExpression = new Expression("#iwdpExpression", demoPuzzle);
+
+const demoTarget = new Target("#iwdpTarget", demoPuzzle);
 
 const demoSolveBiz = new SolveBiz(demoPuzzle, demoDispensers, demoExpression, demoSolveIO);
 
