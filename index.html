@@ -4,8 +4,9 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Dispensers Pi</title>
-		<link id="styling" type="text/css" rel="stylesheet" href="css18.css" media="screen">
-		<script defer src="js18.js"></script>
+		<link id="styling" type="text/css" rel="stylesheet" href="css20.css" media="screen">
+		<script defer src="puzzleSpec.js"></script>
+		<script defer src="js20.js"></script>
 		<script defer src="/_vercel/insights/script.js"></script>
 	</head>
 	<body>
@@ -14,18 +15,21 @@
 
 			<img id="iwUkraineFlag" src="UkraineFlag.svg" alt="Flag"/>
 
-			<button id="iwName" class="WallName"><strong>Information</strong></button>
+			<button id="iwName" class="WallName InfoWallName"><strong>Information</strong></button>
 			
-			<button id="iwPuzzleData"><strong>Puzzle #8&emsp;-&emsp;Solve by 5 Oct</strong></button>
+			<button id="iwPuzzleData"><strong>Puzzle #99&emsp;-&emsp;Solve by dd Mmm</strong></button>
 
 			<div id="iwSeparator-1"></div>
 
 			<p id="iwTTInstructions" class="InfoTopicTitle"><strong>Instructions</strong></p>
 			<button id="iwTCInstructions-1" class="InfoTopicContent">
-				<strong>Build an expression which evaluates to the <span id="targetNumber">target number</span>. Empty all dispensers.</strong>
+				<strong>Build an expression which evaluates to the <span id="targetNumber">target number</span>. Empty all of the dispensers.</strong>
 			</button>			
 			<button id="iwTCInstructions-2" class="InfoTopicContent">
 				Standard precedence rules apply:<br>1 &plus; 2&thinsp;&times;&thinsp;3 &minus; 8&thinsp;&divide;&thinsp;4 &equals; 5
+			</button>			
+			<button id="iwTCInstructions-3" class="InfoTopicContent">
+				Leading zeros are not permitted.
 			</button>			
 			<div id="iwSurroundInstructions-top" class="Surround"></div>
 			<div id="iwSurroundInstructions-bottom" class="Surround"></div>
@@ -140,7 +144,7 @@
 					[rmwDoor-e rmw-e];
 				"
 		>
-			<button id="mwName" class="WallName"><strong>Dispensers<sup>&pi;</sup></strong></button>
+			<button id="mwName" class="WallName MainWallName"><strong>Dispensers<sup>&pi;</sup></strong></button>
 
 			<button id="mwCrossTick" class="CrossTick"><strong>&check;</strong></button>
 			
