@@ -1,8 +1,18 @@
-/* Go with this one ... */
+/* Go with this one ... 
 let punterPuzzleSpec = {
 	number: 20,
 	solveBy: "17 Nov",
 	dispenserSpec: [undefined, "+7", "6-3", "09"],
+	targetSpec: "88",
+	hintSpec: {numDots: 1, symbol:"9", isHere: false},
+	solutionExpression: "37-9+60",
+	solutionDispenseSequence: [2, 1, 2, 3, 1, 2, 3]
+};
+*/
+let punterPuzzleSpec = {
+	number: 21,
+	solveBy: "17 Nov",
+	dispenserSpec: [undefined, "+7", "6-k", "09"],
 	targetSpec: "88",
 	hintSpec: {numDots: 1, symbol:"9", isHere: false},
 	solutionExpression: "37-9+60",
