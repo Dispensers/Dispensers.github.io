@@ -1,4 +1,4 @@
-/* Go with this one ... 
+/* Go with this one ... */
 let punterPuzzleSpec = {
 	number: 19,
 	solveBy: "17 Nov",
@@ -8,8 +8,8 @@ let punterPuzzleSpec = {
 	solutionExpression: "37-9+60",
 	solutionDispenseSequence: [2, 1, 2, 3, 1, 2, 3]
 };
-*/
 
+/*
 let punterPuzzleSpec = {
 	number: 19,
 	solveBy: "17 Nov",
@@ -18,7 +18,7 @@ let punterPuzzleSpec = {
 	hintSpec: {numDots: 1, symbol:"9", isHere: false},
 	solutionExpression: "37-9+6021",
 	solutionDispenseSequence: [2, 1, 2, 3, 1, 2, 3]
-};
+}; */
 /*
 let punterPuzzleSpec = {
 	number: 19,
