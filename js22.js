@@ -151,7 +151,7 @@ class Symbol {
 			"h":"&frac25;",
 			"i":"&frac34;",
 			"j":"&frac35;",
-			"k":"&frac38;",
+			"k":'<span class="Fraction">&frac38;</span>',
 			"l":"&frac45;",
 			"m":"&frac56;",
 			"n":"&frac58;",
