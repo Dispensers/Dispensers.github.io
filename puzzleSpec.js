@@ -1,6 +1,6 @@
 /* Go with this one ... */
 let punterPuzzleSpec = {
-	number: 19,
+	number: 20,
 	solveBy: "17 Nov",
 	dispenserSpec: [undefined, "+7", "6-3", "09"],
 	targetSpec: "88",
