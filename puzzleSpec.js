@@ -12,7 +12,7 @@ let punterPuzzleSpec = {
 let punterPuzzleSpec = {
 	number: 21,
 	solveBy: "17 Nov",
-	dispenserSpec: [undefined, "+", "9", "7", "06-3"],
+	dispenserSpec: [undefined, "1", "+", "9", "7", "06-3"],
 	targetSpec: "88",
 	hintSpec: {numDots: 1, symbol:"9", isHere: false},
 	solutionExpression: "37-9+60",
