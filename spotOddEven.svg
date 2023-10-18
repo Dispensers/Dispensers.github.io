@@ -2,6 +2,7 @@
      width="10" height="8"
      xmlns="http://www.w3.org/2000/svg">
 	 
-	<circle cx="5" cy="4" r="4" fill="yellow"/>
+<!--	<circle cx="5" cy="4" r="4" fill="yellow"/> -->
+	<circle cx="5" cy="4" r="4" fill="#FFFF00"/>
 
 </svg>
