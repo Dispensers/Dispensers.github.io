@@ -10,7 +10,7 @@ let punterPuzzleSpec = {
 };
 */
 let punterPuzzleSpec = {
-	number: 21,
+	number: 22,
 	solveBy: "17 Nov",
 	dispenserSpec: [undefined, "-", "+9", "7k", "6", "0"],
 	targetSpec: "88",
