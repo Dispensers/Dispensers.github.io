@@ -1,24 +1,23 @@
-/* Go with this one ... 
+/* Go with this one ... */
 let punterPuzzleSpec = {
-	number: 20,
-	solveBy: "17 Nov",
+	number: 22,
+	solveBy: "30 Nov",
 	dispenserSpec: [undefined, "+7", "6-3", "09"],
 	targetSpec: "88",
 	hintSpec: {numDots: 1, symbol:"9", isHere: false},
 	solutionExpression: "37-9+60",
 	solutionDispenseSequence: [2, 1, 2, 3, 1, 2, 3]
 };
-*/
+/*
 let punterPuzzleSpec = {
 	number: 22,
 	solveBy: "17 Nov",
-	dispenserSpec: [undefined, "-", "+9", "7k", "6", "0"],
+	dispenserSpec: [undefined, "-", "/9", "7k", "6", "0"],
 	targetSpec: "88",
 	hintSpec: {numDots: 1, symbol:"9", isHere: false},
 	solutionExpression: "37-9+60",
 	solutionDispenseSequence: [2, 1, 2, 3, 1, 2, 3]
-};
-
+}; */
 /*
 let punterPuzzleSpec = {
 	number: 19,

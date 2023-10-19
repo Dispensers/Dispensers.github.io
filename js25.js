@@ -361,12 +361,13 @@ async function flashHint(solveBiz, frameSequence) {
 } */
 
 async function flashHint(solveBiz, script) {
-	for (let i = 1; i <= 2; i++) {
+	const waitTimes = [2000, 500];
+	for (let i = 0; i <= 1; i++) {
 		for (let command of script) {
 			if (command.ref != null) command.ref.innerHTML = command.html;
 			if (command.pause != 0) await wait(command.pause);		
 		}
-		await wait(2000);
+		await wait(waitTimes[i]);
 	}
 	hintFlashed(solveBiz)
 }
@@ -944,7 +945,8 @@ class SolveBiz {
 		this.solutionNextIndex++;
 		if (this.solutionNextIndex == this.puzzle.solutionDispenseSequence.length) {
 			//add "Information" here
-			this.io.enableControls(["Reset"]);
+			//this.io.enableControls(["Reset"]);
+			this.io.enableControls(["Information", "Reset"]);
 			return;
 		}
 		setTimeout(punterSolutionTimerExpired, 1000);

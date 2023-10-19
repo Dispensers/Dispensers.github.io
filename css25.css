@@ -10,7 +10,7 @@ body {
 	display:none;
 	z-index:1;
 	position:absolute;
-	height:356em;
+	height:452em;
 	width:59em;
 	grid-template-rows:
 		[riw-s riwUkraineFlag-s]
@@ -90,11 +90,13 @@ body {
 		[riwSeparator-4-e riwTCLazyDog-2-s]
 		91fr
 		[riwTCLazyDog-2-e riwSeparator-5-s]
-		2fr
-		[riwSeparator-5-e riwTCLazyDog-3-s]
 		4fr
-		[riwTCLazyDog-3-e]
-		3fr
+		[riwSeparator-5-e riwTCLazyDog-3-s]
+		91fr
+		[riwTCLazyDog-3-e riwTCLazyDog-4-s]
+		8fr
+		[riwTCLazyDog-4-e]
+		2fr
 		[riwCopyright-s]
 		2fr
 		[riwCopyright-e riw-e];
@@ -174,7 +176,7 @@ body {
 	background-color:white;
 	border-style:solid;
 	border-color:black;
-	border-width:0.5em 0 0 0;
+	border-width:0.5em 0 0.5em 0;
 	grid-row:riwSeparator-5-s/riwSeparator-5-e;
 	grid-column:ciwSeparator-45-s/ciwSeparator-45-e;
 }
@@ -285,11 +287,18 @@ body {
 }
 
 #iwTCLazyDog-3 {
+	height:91em;
+	width:53em;
+	grid-row:riwTCLazyDog-3-s/riwTCLazyDog-3-e;
+	grid-column:ciwTC-s/ciwTC-e;
+}
+
+#iwTCLazyDog-4 {
 	text-align:center;
 	border:none;
 	padding:0 0.5em 0 0.5em;
-	font-size:1.4em;
-	grid-row:riwTCLazyDog-3-s/riwTCLazyDog-3-e;
+	font-size:2em;
+	grid-row:riwTCLazyDog-4-s/riwTCLazyDog-4-e;
 	grid-column:ciwTC-s/ciwTC-e;
 }
 
