@@ -151,7 +151,8 @@ class Symbol {
 			"h":"&frac25;",
 			"i":"&frac34;",
 			"j":"&frac35;",
-			"k":'<span class="Fraction">&frac38;</span>',
+			//"k":'<span class="Fraction">&frac38;</span>',
+			"k":"&frac38;",
 			"l":"&frac45;",
 			"m":"&frac56;",
 			"n":"&frac58;",
@@ -545,7 +546,8 @@ class Expression {
 		if (!this.puzzle.hintSpec.isHere) {
 			//const symbolNotHereHTML = dotHTML + '<code><strong><span style="color:red;">/</span></strong></code>';
 			//const symbolNotHereHTML = dotHTML + '<code><span style="color:red;">X</span></code>';
-			const symbolNotHereHTML = dotHTML + '<code><span style="color:#D00000;">X</span></code>';
+			//const symbolNotHereHTML = dotHTML + '<code><span style="color:#D00000;">X</span></code>';
+			const symbolNotHereHTML = dotHTML + '<code><span style="color:#D00000;">&cross;</span></code>';
 			script.push({ref: this.overstrikeRef, html: symbolNotHereHTML, pause: 1000});
 		}
 		script.push({ref: this.foregroundRef, html: "", pause: 0});
