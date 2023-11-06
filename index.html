@@ -4,9 +4,9 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Dispensers Lambda</title>
-		<link id="styling" type="text/css" rel="stylesheet" href="css6.css" media="screen">
+		<link id="styling" type="text/css" rel="stylesheet" href="css1.css" media="screen">
 		<script defer src="puzzleSpec.js"></script>
-		<script defer src="js6.js"></script>
+		<script defer src="js1.js"></script>
 		<script defer src="/_vercel/insights/script.js"></script>
 	</head>
 	<body>
@@ -24,12 +24,18 @@
 
 			<p id="iwTTInstructions" class="InfoTopicTitle"><strong>Instructions</strong></p>
 			<button id="iwTCInstructions-1" class="InfoTopicContent Instructions">
-				<strong>Build a square which has just ONE area of each colour.</strong>
+				<strong>Build an expression which evaluates to the <span id="targetNumber">target number</span>.</strong>
 			</button>			
-			<button id="iwTCInstructions-2" class="InfoTopicContent Instructions Italic">
-				Dispense a tile; put it grid position 1. Dispense another tile; put it in grid position 2. Keep going until the grid is full (and the dispensers are empty.
+			<button id="iwTCInstructions-2" class="InfoTopicContent Instructions">
+				Standard precedence rules apply:<br>1 &plus; 2&thinsp;&times;&thinsp;3 &minus; 8&thinsp;&divide;&thinsp;4 &equals; 5
+			</button>			
+			<button id="iwTCInstructions-3" class="InfoTopicContent Instructions">
+				Leading zeros are not permitted.
+			</button>			
+			<button id="iwTCInstructions-4" class="InfoTopicContent Instructions Italic">
+				Dispense a digit or a sign; add it to the line. Repeat until the dispensers are empty. Always build from left to right.
 			</button>
-			<button id="iwTCInstructions-3" class="InfoTopicContent Instructions Italic">
+			<button id="iwTCInstructions-5" class="InfoTopicContent Instructions Italic">
 				Best to watch the <strong>demonstration below</strong>.
 			</button>
 			<div id="iwSurroundInstructions-top" class="Surround"></div>
@@ -113,36 +119,26 @@
 				<button id="iwdCtrlReset" class="CtrlCommon CtrlSecondary">Reset</button>
 				<img id="iwdSpotReset" class="SpotOddEven" src="spotOddEven.svg" alt="Spot"/>
 
-				<div id="iwdPanel">
+<!--				<div id="iwdPanel">
 					<div id="iwdpdContainer-1" class="Container"></div>
 					<div id="iwdpdContainer-2" class="Container"></div>
 					<div id="iwdpdContainer-3" class="Container"></div>
 					<div id="iwdpdContainer-4" class="Container"></div>
-
-					<div id="iwdpdTile-11" class="Tile"></div>
-					<div id="iwdpdTile-21" class="Tile"></div>
-					<div id="iwdpdTile-22" class="Tile"></div>
-					<div id="iwdpdTile-23" class="Tile"></div>
-					<div id="iwdpdTile-24" class="Tile"></div>
-					<div id="iwdpdTile-25" class="Tile"></div>
-					<div id="iwdpdTile-31" class="Tile"></div>
-					<div id="iwdpdTile-32" class="Tile"></div>
-					<div id="iwdpdTile-41" class="Tile"></div>					
-
-					<img id="iwdpdCosmetic" class="DispensersCosmetic" src="dispensersCosmetic.svg" alt="Cosmetic"/>
-
-					<img id="iwdpmGrid" class="MatrixGrid" src="matrixGrid.svg" alt="Grid"/>
 					
-					<button id="iwdpmSquare-1" class="Square">0</button>
-					<button id="iwdpmSquare-2" class="Square">0</button>
-					<button id="iwdpmSquare-3" class="Square">0</button>
-					<button id="iwdpmSquare-4" class="Square">0</button>
-					<button id="iwdpmSquare-5" class="Square">0</button>
-					<button id="iwdpmSquare-6" class="Square">0</button>
-					<button id="iwdpmSquare-7" class="Square">0</button>
-					<button id="iwdpmSquare-8" class="Square">0</button>
-					<button id="iwdpmSquare-9" class="Square">0</button>
-				</div>
+					<img id="iwdpdBorder-1" class="Border2" src="dispenserBorder2.svg" alt="Border"/>
+					<img id="iwdpdBorder-2" class="Border2" src="dispenserBorder2.svg" alt="Border"/>
+					<img id="iwdpdBorder-3" class="Border1" src="dispenserBorder1.svg" alt="Border"/>
+					<img id="iwdpdBorder-4" class="Border2" src="dispenserBorder2.svg" alt="Border"/>
+
+					<button id="iwdpdItem-11" class="Item"><code><strong>1</strong></code></button>
+					<button id="iwdpdItem-12" class="Item"><code><strong>6</strong></code></button>
+					<button id="iwdpdItem-21" class="Item"><code><strong>6</strong></code></button>
+					<button id="iwdpdItem-22" class="Item"><code><strong>5</strong></code></button>
+					<button id="iwdpdItem-31" class="Item"><code><strong>&minus;</strong></code></button>
+					<button id="iwdpdItem-41" class="Item"><code><strong>&times;</strong></code></button>
+					<button id="iwdpdItem-42" class="Item"><code><strong>4</strong></code></button>
+					
+				</div> -->
 			</div>	
 		</div>
 		
@@ -224,36 +220,32 @@
 							[rmwdpDispensers-hn-s]
 							999fr
 							[rmwdpDispensers-hn-e]
-							6fr
-							[rmwdpmGrid-s]
-							1fr
-							[rmwdpmRow-1-s]
+							7fr
+							[rmwdpMatrix-s rmwdpmRow-1-s]
 							7fr
 							[rmwdpmRow-1-e rmwdpmRow-2-s]
 							7fr
 							[rmwdpmRow-2-e rmwdpmRow-3-s]
 							7fr
-							[rmwdpmRow-3-e]
-							1fr
-							[rmwdpmGrid-e]
-							2fr
+							[rmwdpmRow-3-e rmwdpMatrix-e]
+							3fr
 							[rmwdp-e];
 						"
 				>
 
 				<div id="mwdpDispensers-43">
-					<div id="mwdpdContainer-43-11" class="Container DisplayOff"></div>
-					<div id="mwdpdContainer-43-12" class="Container DisplayOff"></div>
-					<div id="mwdpdContainer-43-13" class="Container DisplayOff"></div>
-					<div id="mwdpdContainer-43-14" class="Container DisplayOff"></div>
-					<div id="mwdpdContainer-43-21" class="Container DisplayOff"></div>
-					<div id="mwdpdContainer-43-22" class="Container DisplayOff"></div>
-					<div id="mwdpdContainer-43-23" class="Container DisplayOff"></div>
-					<div id="mwdpdContainer-43-24" class="Container DisplayOff"></div>
-					<div id="mwdpdContainer-43-31" class="Container DisplayOff"></div>
-					<div id="mwdpdContainer-43-32" class="Container DisplayOff"></div>
-					<div id="mwdpdContainer-43-33" class="Container DisplayOff"></div>
-					<div id="mwdpdContainer-43-34" class="Container DisplayOff"></div>
+					<div id="mwdpdContainer-43-11" class="Container"></div>
+					<div id="mwdpdContainer-43-12" class="Container"></div>
+					<div id="mwdpdContainer-43-13" class="Container"></div>
+					<div id="mwdpdContainer-43-14" class="Container"></div>
+					<div id="mwdpdContainer-43-21" class="Container"></div>
+					<div id="mwdpdContainer-43-22" class="Container"></div>
+					<div id="mwdpdContainer-43-23" class="Container"></div>
+					<div id="mwdpdContainer-43-24" class="Container"></div>
+					<div id="mwdpdContainer-43-31" class="Container"></div>
+					<div id="mwdpdContainer-43-32" class="Container"></div>
+					<div id="mwdpdContainer-43-33" class="Container"></div>
+					<div id="mwdpdContainer-43-34" class="Container"></div>
 
 					<div id="mwdpdTile-43-11" class="Tile"></div>
 					<div id="mwdpdTile-43-12" class="Tile"></div>
@@ -269,17 +261,16 @@
 					<div id="mwdpdTile-43-34" class="Tile"></div>
 				</div>
 				
-					<img id="mwdpmGrid" class="MatrixGrid" src="matrixGrid.svg" alt="Grid"/>
-					
-					<button id="mwdpmSquare-1" class="Square">0</button>
-					<button id="mwdpmSquare-2" class="Square">0</button>
-					<button id="mwdpmSquare-3" class="Square">0</button>
-					<button id="mwdpmSquare-4" class="Square">0</button>
-					<button id="mwdpmSquare-5" class="Square">0</button>
-					<button id="mwdpmSquare-6" class="Square">0</button>
-					<button id="mwdpmSquare-7" class="Square">0</button>
-					<button id="mwdpmSquare-8" class="Square">0</button>
-					<button id="mwdpmSquare-9" class="Square">0</button>
+<!--				<div id ="mwdpGrid"></div> -->
+					<button id="mwdpmSquare-1" class="Square">1</button>
+					<button id="mwdpmSquare-2" class="Square">2</button>
+					<button id="mwdpmSquare-3" class="Square">3</button>
+					<button id="mwdpmSquare-4" class="Square">4</button>
+					<button id="mwdpmSquare-5" class="Square">5</button>
+					<button id="mwdpmSquare-6" class="Square">6</button>
+					<button id="mwdpmSquare-7" class="Square">7</button>
+					<button id="mwdpmSquare-8" class="Square">8</button>
+					<button id="mwdpmSquare-9" class="Square">9</button>
 
 <!--					<div id="mwdpDispensers-24">
 						<div id="mwdpdContainer-24-11" class="Container"></div>
