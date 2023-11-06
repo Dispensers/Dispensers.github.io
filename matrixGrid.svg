@@ -1,0 +1,15 @@
+<svg version="1.1"
+     width="230" height="230"
+     xmlns="http://www.w3.org/2000/svg">
+
+  <polygon points="7 7 222 7 222 9 7 9" fill="black"/>
+  <polygon points="7 222 222 222 222 220 7 220" fill="black"/>
+  <polygon points="7 7 7 222 9 222 9 7" fill="black"/>
+  <polygon points="222 7 222 222 220 222 220 7" fill="black"/>
+
+  <polygon points="7 79 222 79 222 80 7 80" fill="black"/>
+  <polygon points="7 149 222 149 222 150 7 150" fill="black"/>
+  <polygon points="79 7 79 222 80 222 80 7" fill="black"/>
+  <polygon points="149 7 149 222 150 222 150 7" fill="black"/>
+
+</svg>
