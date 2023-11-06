@@ -4,9 +4,9 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Dispensers Lambda</title>
-		<link id="styling" type="text/css" rel="stylesheet" href="css5.css" media="screen">
+		<link id="styling" type="text/css" rel="stylesheet" href="css6.css" media="screen">
 		<script defer src="puzzleSpec.js"></script>
-		<script defer src="js5.js"></script>
+		<script defer src="js6.js"></script>
 		<script defer src="/_vercel/insights/script.js"></script>
 	</head>
 	<body>
@@ -24,18 +24,12 @@
 
 			<p id="iwTTInstructions" class="InfoTopicTitle"><strong>Instructions</strong></p>
 			<button id="iwTCInstructions-1" class="InfoTopicContent Instructions">
-				<strong>Build an expression which evaluates to the <span id="targetNumber">target number</span>.</strong>
+				<strong>Build a square which has just ONE area of each colour.</strong>
 			</button>			
-			<button id="iwTCInstructions-2" class="InfoTopicContent Instructions">
-				Standard precedence rules apply:<br>1 &plus; 2&thinsp;&times;&thinsp;3 &minus; 8&thinsp;&divide;&thinsp;4 &equals; 5
-			</button>			
-			<button id="iwTCInstructions-3" class="InfoTopicContent Instructions">
-				Leading zeros are not permitted.
-			</button>			
-			<button id="iwTCInstructions-4" class="InfoTopicContent Instructions Italic">
-				Dispense a digit or a sign; add it to the line. Repeat until the dispensers are empty. Always build from left to right.
+			<button id="iwTCInstructions-2" class="InfoTopicContent Instructions Italic">
+				Dispense a tile; put it grid position 1. Dispense another tile; put it in grid position 2. Keep going until the grid is full (and the dispensers are empty.
 			</button>
-			<button id="iwTCInstructions-5" class="InfoTopicContent Instructions Italic">
+			<button id="iwTCInstructions-3" class="InfoTopicContent Instructions Italic">
 				Best to watch the <strong>demonstration below</strong>.
 			</button>
 			<div id="iwSurroundInstructions-top" class="Surround"></div>
@@ -134,6 +128,8 @@
 					<div id="iwdpdTile-31" class="Tile"></div>
 					<div id="iwdpdTile-32" class="Tile"></div>
 					<div id="iwdpdTile-41" class="Tile"></div>					
+
+					<img id="iwdpdCosmetic" class="DispensersCosmetic" src="dispensersCosmetic.svg" alt="Cosmetic"/>
 
 					<img id="iwdpmGrid" class="MatrixGrid" src="matrixGrid.svg" alt="Grid"/>
 					
