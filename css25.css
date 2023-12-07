@@ -9,7 +9,7 @@ body {
 	display:none;
 	z-index:1;
 	position:absolute;
-	height:355em;
+	height:358em;
 	width:65em;
 	grid-template-rows:
 		[riw-s riwMargin-s riwUkraineFlag-s]
@@ -27,7 +27,7 @@ body {
 		[riwTCFeaturedWord-s]
 		1fr
 		[riwTTFeaturedWord-e]
-		14fr
+		17fr
 		[riwTCFeaturedWord-e riwSurroundInstructions-s]
 		2fr
 		[riwTTInstructions-s]
