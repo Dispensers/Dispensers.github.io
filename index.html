@@ -1,1387 +1,374 @@
 <!DOCTYPE HTML>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ladderet</title>
-  <style>
-body {
-	font-family: Montserrat, Arial, 'sans-serif';
-	font-size: min(calc(90vw / 33), calc(90vh / 120));
-	margin: 0;
-	overflow: hidden;
-	background-color: black;
-}
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Ladderet</title>
+		<link id="styling" type="text/css" rel="stylesheet" href="css25.css" media="screen">
+		<script defer src="puzzleSpec.js"></script>
+		<script defer src="js25.js"></script>
+		<script defer src="/_vercel/insights/script.js"></script>
+	</head>
+	<body>
+		<div id="infoWall" class="Wall">
+			<div id="iwMarginLeft" class="Margin"></div>
+			<div id="iwMarginRight" class="Margin"></div>
 
-#information {
-	display:none;
-	z-index:1;
-	position:absolute;
-	height:200em;
-	width:33em;
-	
-	grid-template-rows:
-		[rInformation-s rMarg-s]
-		1fr
-		[rIHeader-s rIBack-s]
-		3fr
-		[rIHeader-e rIBack-e]
-		1fr
-		[rIInstructions-s]
-		20fr
-		[rIInstructions-e]
-		175fr
-		[rInformation-e rMarg-e]
-		;
-		
- 	grid-template-columns:
-		[cInformation-s cMargLeft-s]
-		6fr
-		[cMargLeft-e]
-		1fr
-		[cIBack-s cIInstructions-s]
-		2fr
-		[cIBack-e]
-		2fr 
-		[cIHeader-s]
-		11fr
-		[cIHeader-e]
-		4fr
-		[cIInstructions-e]
-		1fr
-		[cMargRight-s]
-		6fr
-		[cInformation-e cMargRight-e]
-		;
-}
+			<img id="iwCtrlBack" src="backArrow.svg" alt="Back"/>
 
-#margLeft {grid-row:rMarg-s/rMarg-e; grid-column:cMargLeft-s/cMargLeft-e;}
-#margRight {grid-row:rMarg-s/rMarg-e; grid-column:cMargRight-s/cMargRight-e;}
+			<img id="iwUkraineFlag" src="UkraineFlag.svg" alt="Flag"/>
 
-#iBack {grid-row:rIBack-s/rIBack-e; grid-column:cIBack-s/cIBack-e;}
-#iHeader {grid-row:rIHeader-s/rIHeader-e; grid-column:cIHeader-s/cIHeader-e;}
-#iInstructions {grid-row:rIInstructions-s/rIInstructions-e; grid-column:cIInstructions-s/cIInstructions-e; font-size:0.5em; background-color:white;}
-
-
-#door {
-	display:grid;
-	z-index:2;
-	width:33em;
-	height:35em;
-	position:absolute;
-	grid-template-rows:
-		[rDoor-s rMargin-s rLED-s]
-		1fr
-		[rLadderet-s]
-		3fr
-		[rLadderet-e]
-		1fr
-		[rCTop-s]
-		2fr
-		[rCTop-e]
-		1fr
-		[rPanel-s]
-		13fr
-		[rLED-e]
-		10fr
-		[rPanel-e]
-		1fr
-		[rCBottom-s]
-		2fr
-		[rCBottom-e]
-		1fr
-		[rDoor-e rMargin-e]
-		;
-		
-	grid-template-columns:
-		[cDoor-s cMarginLeft-s]
-		6fr
-		[cMarginLeft-e cLED-s]
-		1fr
-		[cPanel-s cCInformation-s cCReset-s]
-		3fr
-		[cCReset-e]
-		1fr
-		[cLadderet-s]
-		2fr
-		[cCInformation-e cCUpperLower-s]
-		2fr
-		[cCHint-s]
-		1fr
-		[cCUpperLower-e]
-		2fr
-		[cCHint-e cCDeleteBack-s]
-		2fr
-		[cCSolution-s]
-		1fr
-		[cCDeleteBack-e]
-		1fr
-		[cLadderet-e]
-		1fr
-		[cCDeleteAll-s]
-		3fr
-		[cCSolution-e cCDeleteAll-e cPanel-e]
-		1fr
-		[cLED-e cMarginRight-s]
-		6fr
-		[cMarginRight-e cDoor-e]
-		;
-}
-
-#mLeft {grid-row:rMargin-s/rMargin-e; grid-column:cMarginLeft-s/cMarginLeft-e;}
-#mRight {grid-row:rMargin-s/rMargin-e; grid-column:cMarginRight-s/cMarginRight-e;}
-
-#LEDGreen {display:none; grid-row:rLED-s/rLED-e; grid-column:cLED-s/cLED-e;}
-#LEDAmber {display:none; grid-row:rLED-s/rLED-e; grid-column:cLED-s/cLED-e;}
-#LEDRed {display:none; grid-row:rLED-s/rLED-e; grid-column:cLED-s/cLED-e;}
-
-#Ladderet {grid-row:rLadderet-s/rLadderet-e; grid-column:cLadderet-s/cLadderet-e;}
-
-#cInformation {grid-row:rCTop-s/rCTop-e; grid-column:cCInformation-s/cCInformation-e;}
-#cHint {grid-row:rCTop-s/rCTop-e; grid-column:cCHint-s/cCHint-e;}
-#cSolution {grid-row:rCTop-s/rCTop-e; grid-column:cCSolution-s/cCSolution-e;}
-#cReset {grid-row:rCBottom-s/rCBottom-e; grid-column:cCReset-s/cCReset-e;}
-#cUpperLower {grid-row:rCBottom-s/rCBottom-e; grid-column:cCUpperLower-s/cCUpperLower-e;}
-#cDeleteBack {grid-row:rCBottom-s/rCBottom-e; grid-column:cCDeleteBack-s/cCDeleteBack-e;}
-#cDeleteAll {grid-row:rCBottom-s/rCBottom-e; grid-column:cCDeleteAll-s/cCDeleteAll-e;}
-
-#panel {display:grid; z-index:3; grid-row:rPanel-s/rPanel-e; grid-column:cPanel-s/cPanel-e; width:19em; height:23em; background-color:white; position:absolute;
-	grid-template-rows:
-		[rPanel-s]
-		1em
-		[rLSide-s]
-		1em
-		[rLLetter-1-s]
-		3em
-		[rLLetter-1-e rLRungTop-1-s]
-		1em
-		[rLRungTop-1-e rLRungBottom-1-s]
-		1em
-		[rLRungBottom-1-e rLLetter-2-s]
-		3em
-		[rLLetter-2-e rLRungTop-2-s]
-		1em
-		[rLRungTop-2-e rLRungBottom-2-s]
-		1em
-		[rLRungBottom-2-e rLLetter-3-s]
-		3em
-		[rLLetter-3-e rLRungTop-3-s]
-		1em
-		[rLRungTop-3-e rLRungBottom-3-s]
-		1em
-		[rLRungBottom-3-e rLLetter-4-s]
-		3em
-		[rLLetter-4-e rLRungTop-4-s]
-		1em
-		[rLRungTop-4-e rLRungBottom-4-s]
-		1em
-		[rLRungBottom-4-e rLSide-e]
-		1em
-		[rPanel-e]
-		;
-	grid-template-columns:
-		[cPanel-s]
-		1fr
-		[cLSideLeft-s]
-		1fr
-		[cLSideLeft-e cLRung-s cLLetter-1-s]
-		1fr
-		[cLDiamond-1-s]
-		1fr
-		[cLDiamond-1-e]
-		1fr
-		[cLLetter-1-e cLLetter-2-s]
-		1fr
-		[cLDiamond-2-s]
-		1fr
-		[cLDiamond-2-e]
-		1fr
-		[cLLetter-2-e cLLetter-3-s]
-		1fr
-		[cLDiamond-3-s]
-		1fr
-		[cLDiamond-3-e]
-		1fr
-		[cLLetter-3-e cLLetter-4-s]
-		1fr
-		[cLDiamond-4-s]
-		1fr
-		[cLDiamond-4-e]
-		1fr
-		[cLLetter-4-e cLLetter-5-s]
-		1fr
-		[cLDiamond-5-s]
-		1fr
-		[cLDiamond-5-e]
-		1fr
-		[cLLetter-5-e cLRung-e cLSideRight-s]
-		1fr
-		[cLSideRight-e]
-		1fr
-		[cPanel-e]
-		;
-}
-
-#lSideLeft {grid-row:rLSide-s/rLSide-e; grid-column:cLSideLeft-s/cLSideLeft-e;}
-#lSideRight {grid-row:rLSide-s/rLSide-e; grid-column:cLSideRight-s/cLSideRight-e;}
-#lRungTop-1 {grid-row:rLRungTop-1-s/rLRungTop-1-e; grid-column:cLRung-s/cLRung-e;}
-#lRungBottom-1 {grid-row:rLRungBottom-1-s/rLRungBottom-1-e; grid-column:cLRung-s/cLRung-e;}
-#lRungTop-2 {grid-row:rLRungTop-2-s/rLRungTop-2-e; grid-column:cLRung-s/cLRung-e;}
-#lRungBottom-2 {grid-row:rLRungBottom-2-s/rLRungBottom-2-e; grid-column:cLRung-s/cLRung-e;}
-#lRungTop-3 {grid-row:rLRungTop-3-s/rLRungTop-3-e; grid-column:cLRung-s/cLRung-e;}
-#lRungBottom-3 {grid-row:rLRungBottom-3-s/rLRungBottom-3-e; grid-column:cLRung-s/cLRung-e;}
-#lRungTop-4 {grid-row:rLRungTop-4-s/rLRungTop-4-e; grid-column:cLRung-s/cLRung-e;}
-#lRungBottom-4 {grid-row:rLRungBottom-4-s/rLRungBottom-4-e; grid-column:cLRung-s/cLRung-e;}
-
-
-#lLetter-11 {grid-row:rLSide-s/rLRungTop-1-e; grid-column:cLLetter-1-s/cLLetter-1-e;}
-#lLetter-12 {grid-row:rLSide-s/rLRungTop-1-e; grid-column:cLLetter-2-s/cLLetter-2-e;}
-#lLetter-13 {grid-row:rLSide-s/rLRungTop-1-e; grid-column:cLLetter-3-s/cLLetter-3-e;}
-#lLetter-14 {grid-row:rLSide-s/rLRungTop-1-e; grid-column:cLLetter-4-s/cLLetter-4-e;}
-#lLetter-15 {grid-row:rLSide-s/rLRungTop-1-e; grid-column:cLLetter-5-s/cLLetter-5-e;}
-#lLetter-21 {grid-row:rLRungBottom-1-s/rLRungTop-2-e; grid-column:cLLetter-1-s/cLLetter-1-e;}
-#lLetter-22 {grid-row:rLRungBottom-1-s/rLRungTop-2-e; grid-column:cLLetter-2-s/cLLetter-2-e;}
-#lLetter-23 {grid-row:rLRungBottom-1-s/rLRungTop-2-e; grid-column:cLLetter-3-s/cLLetter-3-e;}
-#lLetter-24 {grid-row:rLRungBottom-1-s/rLRungTop-2-e; grid-column:cLLetter-4-s/cLLetter-4-e;}
-#lLetter-25 {grid-row:rLRungBottom-1-s/rLRungTop-2-e; grid-column:cLLetter-5-s/cLLetter-5-e;}
-#lLetter-31 {grid-row:rLRungBottom-2-s/rLRungTop-3-e; grid-column:cLLetter-1-s/cLLetter-1-e;}
-#lLetter-32 {grid-row:rLRungBottom-2-s/rLRungTop-3-e; grid-column:cLLetter-2-s/cLLetter-2-e;}
-#lLetter-33 {grid-row:rLRungBottom-2-s/rLRungTop-3-e; grid-column:cLLetter-3-s/cLLetter-3-e;}
-#lLetter-34 {grid-row:rLRungBottom-2-s/rLRungTop-3-e; grid-column:cLLetter-4-s/cLLetter-4-e;}
-#lLetter-35 {grid-row:rLRungBottom-2-s/rLRungTop-3-e; grid-column:cLLetter-5-s/cLLetter-5-e;}
-#lLetter-41 {grid-row:rLRungBottom-3-s/rLRungTop-4-e; grid-column:cLLetter-1-s/cLLetter-1-e;}
-#lLetter-42 {grid-row:rLRungBottom-3-s/rLRungTop-4-e; grid-column:cLLetter-2-s/cLLetter-2-e;}
-#lLetter-43 {grid-row:rLRungBottom-3-s/rLRungTop-4-e; grid-column:cLLetter-3-s/cLLetter-3-e;}
-#lLetter-44 {grid-row:rLRungBottom-3-s/rLRungTop-4-e; grid-column:cLLetter-4-s/cLLetter-4-e;}
-#lLetter-45 {grid-row:rLRungBottom-3-s/rLRungTop-4-e; grid-column:cLLetter-5-s/cLLetter-5-e;}
-
-#lDiamondGood-11 {display:none; grid-row:rLRungTop-1-s/rLRungBottom-1-e; grid-column:cLDiamond-1-s/cLDiamond-1-e;}
-#lDiamondGood-12 {display:none; grid-row:rLRungTop-1-s/rLRungBottom-1-e; grid-column:cLDiamond-2-s/cLDiamond-2-e;}
-#lDiamondGood-13 {display:none; grid-row:rLRungTop-1-s/rLRungBottom-1-e; grid-column:cLDiamond-3-s/cLDiamond-3-e;}
-#lDiamondGood-14 {display:none; grid-row:rLRungTop-1-s/rLRungBottom-1-e; grid-column:cLDiamond-4-s/cLDiamond-4-e;}
-#lDiamondGood-15 {display:none; grid-row:rLRungTop-1-s/rLRungBottom-1-e; grid-column:cLDiamond-5-s/cLDiamond-5-e;}
-#lDiamondGood-21 {display:none; grid-row:rLRungTop-2-s/rLRungBottom-2-e; grid-column:cLDiamond-1-s/cLDiamond-1-e;}
-#lDiamondGood-22 {display:none; grid-row:rLRungTop-2-s/rLRungBottom-2-e; grid-column:cLDiamond-2-s/cLDiamond-2-e;}
-#lDiamondGood-23 {display:none; grid-row:rLRungTop-2-s/rLRungBottom-2-e; grid-column:cLDiamond-3-s/cLDiamond-3-e;}
-#lDiamondGood-24 {display:none; grid-row:rLRungTop-2-s/rLRungBottom-2-e; grid-column:cLDiamond-4-s/cLDiamond-4-e;}
-#lDiamondGood-25 {display:none; grid-row:rLRungTop-2-s/rLRungBottom-2-e; grid-column:cLDiamond-5-s/cLDiamond-5-e;}
-#lDiamondGood-31 {display:none; grid-row:rLRungTop-3-s/rLRungBottom-3-e; grid-column:cLDiamond-1-s/cLDiamond-1-e;}
-#lDiamondGood-32 {display:none; grid-row:rLRungTop-3-s/rLRungBottom-3-e; grid-column:cLDiamond-2-s/cLDiamond-2-e;}
-#lDiamondGood-33 {display:none; grid-row:rLRungTop-3-s/rLRungBottom-3-e; grid-column:cLDiamond-3-s/cLDiamond-3-e;}
-#lDiamondGood-34 {display:none; grid-row:rLRungTop-3-s/rLRungBottom-3-e; grid-column:cLDiamond-4-s/cLDiamond-4-e;}
-#lDiamondGood-35 {display:none; grid-row:rLRungTop-3-s/rLRungBottom-3-e; grid-column:cLDiamond-5-s/cLDiamond-5-e;}
-
-#lDiamondBad-11 {display:none; grid-row:rLRungTop-1-s/rLRungBottom-1-e; grid-column:cLDiamond-1-s/cLDiamond-1-e;}
-#lDiamondBad-12 {display:none; grid-row:rLRungTop-1-s/rLRungBottom-1-e; grid-column:cLDiamond-2-s/cLDiamond-2-e;}
-#lDiamondBad-13 {display:none; grid-row:rLRungTop-1-s/rLRungBottom-1-e; grid-column:cLDiamond-3-s/cLDiamond-3-e;}
-#lDiamondBad-14 {display:none; grid-row:rLRungTop-1-s/rLRungBottom-1-e; grid-column:cLDiamond-4-s/cLDiamond-4-e;}
-#lDiamondBad-15 {display:none; grid-row:rLRungTop-1-s/rLRungBottom-1-e; grid-column:cLDiamond-5-s/cLDiamond-5-e;}
-#lDiamondBad-21 {display:none; grid-row:rLRungTop-2-s/rLRungBottom-2-e; grid-column:cLDiamond-1-s/cLDiamond-1-e;}
-#lDiamondBad-22 {display:none; grid-row:rLRungTop-2-s/rLRungBottom-2-e; grid-column:cLDiamond-2-s/cLDiamond-2-e;}
-#lDiamondBad-23 {display:none; grid-row:rLRungTop-2-s/rLRungBottom-2-e; grid-column:cLDiamond-3-s/cLDiamond-3-e;}
-#lDiamondBad-24 {display:none; grid-row:rLRungTop-2-s/rLRungBottom-2-e; grid-column:cLDiamond-4-s/cLDiamond-4-e;}
-#lDiamondBad-25 {display:none; grid-row:rLRungTop-2-s/rLRungBottom-2-e; grid-column:cLDiamond-5-s/cLDiamond-5-e;}
-#lDiamondBad-31 {display:none; grid-row:rLRungTop-3-s/rLRungBottom-3-e; grid-column:cLDiamond-1-s/cLDiamond-1-e;}
-#lDiamondBad-32 {display:none; grid-row:rLRungTop-3-s/rLRungBottom-3-e; grid-column:cLDiamond-2-s/cLDiamond-2-e;}
-#lDiamondBad-33 {display:none; grid-row:rLRungTop-3-s/rLRungBottom-3-e; grid-column:cLDiamond-3-s/cLDiamond-3-e;}
-#lDiamondBad-34 {display:none; grid-row:rLRungTop-3-s/rLRungBottom-3-e; grid-column:cLDiamond-4-s/cLDiamond-4-e;}
-#lDiamondBad-35 {display:none; grid-row:rLRungTop-3-s/rLRungBottom-3-e; grid-column:cLDiamond-5-s/cLDiamond-5-e;}
-
-#lCursor-21 {grid-row:rLLetter-2-s/rLLetter-2-e; grid-column:cLLetter-1-s/cLLetter-1-e;}
-#lCursor-22 {grid-row:rLLetter-2-s/rLLetter-2-e; grid-column:cLLetter-2-s/cLLetter-2-e;}
-#lCursor-23 {grid-row:rLLetter-2-s/rLLetter-2-e; grid-column:cLLetter-3-s/cLLetter-3-e;}
-#lCursor-24 {grid-row:rLLetter-2-s/rLLetter-2-e; grid-column:cLLetter-4-s/cLLetter-4-e;}
-#lCursor-25 {grid-row:rLLetter-2-s/rLLetter-2-e; grid-column:cLLetter-5-s/cLLetter-5-e;}
-#lCursor-31 {grid-row:rLLetter-3-s/rLLetter-3-e; grid-column:cLLetter-1-s/cLLetter-1-e;}
-#lCursor-32 {grid-row:rLLetter-3-s/rLLetter-3-e; grid-column:cLLetter-2-s/cLLetter-2-e;}
-#lCursor-33 {grid-row:rLLetter-3-s/rLLetter-3-e; grid-column:cLLetter-3-s/cLLetter-3-e;}
-#lCursor-34 {grid-row:rLLetter-3-s/rLLetter-3-e; grid-column:cLLetter-4-s/cLLetter-4-e;}
-#lCursor-35 {grid-row:rLLetter-3-s/rLLetter-3-e; grid-column:cLLetter-5-s/cLLetter-5-e;}
-
-
-#keyboardLeft {
-	display:none;
-	z-index:3;
-	width:4em;
-	height:100vh;
-	position:absolute;
-	top:0px;
-	grid-template-rows:
-		[rKbLeft-s rKb-A]
-		1fr
-		[rKb-B]
-		1fr
-		[rKb-C]
-		1fr
-		[rKb-D]
-		1fr
-		[rKb-E]
-		1fr
-		[rKb-F]
-		1fr
-		[rKb-G]
-		1fr
-		[rKb-H]
-		1fr
-		[rKb-I]
-		1fr
-		[rKb-J]
-		1fr
-		[rKb-K]
-		1fr
-		[rKb-L]
-		1fr
-		[rKb-M]
-		1fr
-		[rKbLeft-e]
-		;
-		
-	grid-template-columns:
-		[cKbLeft-s]
-		1fr
-		[cKbLeft-e]
-		;
-}
-
-#kb-A {grid-row:rKb-A/rKb-B; grid-column:cKbLeft-s/cKbLeft-e;}
-#kb-B {grid-row:rKb-B/rKb-C; grid-column:cKbLeft-s/cKbLeft-e;}
-#kb-C {grid-row:rKb-C/rKb-D; grid-column:cKbLeft-s/cKbLeft-e;}
-#kb-D {grid-row:rKb-D/rKb-E; grid-column:cKbLeft-s/cKbLeft-e;}
-#kb-E {grid-row:rKb-E/rKb-F; grid-column:cKbLeft-s/cKbLeft-e;}
-#kb-F {grid-row:rKb-F/rKb-G; grid-column:cKbLeft-s/cKbLeft-e;}
-#kb-G {grid-row:rKb-G/rKb-H; grid-column:cKbLeft-s/cKbLeft-e;}
-#kb-H {grid-row:rKb-H/rKb-I; grid-column:cKbLeft-s/cKbLeft-e;}
-#kb-I {grid-row:rKb-I/rKb-J; grid-column:cKbLeft-s/cKbLeft-e;}
-#kb-J {grid-row:rKb-J/rKb-K; grid-column:cKbLeft-s/cKbLeft-e;}
-#kb-K {grid-row:rKb-K/rKb-L; grid-column:cKbLeft-s/cKbLeft-e;}
-#kb-L {grid-row:rKb-L/rKb-M; grid-column:cKbLeft-s/cKbLeft-e;}
-#kb-M {grid-row:rKb-M/rKbLeft-e; grid-column:cKbLeft-s/cKbLeft-e;}
-
-
-#keyboardRight {
-	display:none;
-	z-index:3;
-	width:4em;
-	height:100vh;
-	position:absolute;
-	top:0px;
-	grid-template-rows:
-		[rKbRight-s rKb-N]
-		1fr
-		[rKb-O]
-		1fr
-		[rKb-P]
-		1fr
-		[rKb-Q]
-		1fr
-		[rKb-R]
-		1fr
-		[rKb-S]
-		1fr
-		[rKb-T]
-		1fr
-		[rKb-U]
-		1fr
-		[rKb-V]
-		1fr
-		[rKb-W]
-		1fr
-		[rKb-X]
-		1fr
-		[rKb-Y]
-		1fr
-		[rKb-Z]
-		1fr
-		[rKbRight-e]
-		;
-		
-	grid-template-columns:
-		[cKbRight-s]
-		1fr
-		[cKbRight-e]
-		;
-}
-
-#kb-N {grid-row:rKb-N/rKb-O; grid-column:cKbRight-s/cKbRight-e;}
-#kb-O {grid-row:rKb-O/rKb-P; grid-column:cKbRight-s/cKbRight-e;}
-#kb-P {grid-row:rKb-P/rKb-Q; grid-column:cKbRight-s/cKbRight-e;}
-#kb-Q {grid-row:rKb-Q/rKb-R; grid-column:cKbRight-s/cKbRight-e;}
-#kb-R {grid-row:rKb-R/rKb-S; grid-column:cKbRight-s/cKbRight-e;}
-#kb-S {grid-row:rKb-S/rKb-T; grid-column:cKbRight-s/cKbRight-e;}
-#kb-T {grid-row:rKb-T/rKb-U; grid-column:cKbRight-s/cKbRight-e;}
-#kb-U {grid-row:rKb-U/rKb-V; grid-column:cKbRight-s/cKbRight-e;}
-#kb-V {grid-row:rKb-V/rKb-W; grid-column:cKbRight-s/cKbRight-e;}
-#kb-W {grid-row:rKb-W/rKb-X; grid-column:cKbRight-s/cKbRight-e;}
-#kb-X {grid-row:rKb-X/rKb-Y; grid-column:cKbRight-s/cKbRight-e;}
-#kb-Y {grid-row:rKb-Y/rKb-Z; grid-column:cKbRight-s/cKbRight-e;}
-#kb-Z {grid-row:rKb-Z/cKbRight-e; grid-column:cKbRight-s/cKbRight-e;}
-
-
-.kb {background-color:transparent;}
-/* .kbLetter {margin:0; padding:0; border:none; background-color:inherit; color:white;} */
-.kbLetter {margin:0; padding:0; border:none; background-color:inherit; color:#F2E9C4;}
-/*
-.kbLeft {text-align:center;}
-.kbRight {text-align:center;}
-*/
-.kbLeft {text-align:left;}
-.kbRight {text-align:right;}
-
-
-.margin {margin:0; padding:0; background-color:black;}
-
-.led {z-index:3; width:21em; height:21em;}
-
-.plateColour {background-color:#4B7365;}
-
-.lSide {background-color:transparent;}
-.lSide-l {border-style:solid; border-color:black; border-top-width:0; border-bottom-width:0; border-left-width:0; border-right-width:0.4em;}
-.lSide-r {border-style:solid; border-color:black; border-top-width:0; border-bottom-width:0; border-left-width:0.4em; border-right-width:0;}
-
-.lRung {background-color:transparent;}
-.lRung-t {border-style:solid; border-color:black; border-top-width:0; border-bottom-width:0.1em; border-left-width:0; border-right-width:0;}
-.lRung-b {border-style:solid; border-color:black; border-top-width:0.1em; border-bottom-width:0; border-left-width:0; border-right-width:0;}
-
-/* .lLetter {z-index:4; margin:0; padding:0; background-color:transparent; text-align:center; font-family:"Lucida Console",monospace; font-size:3.3em;} */
-.lLetter {z-index:4;
-		  margin:0;
-		  padding:0 0 0 0;
-		  border-style:none;
-		  border-width:0 0 0 0;
-		  background-color:transparent;
-		  color:black;
-		  font-family:"Lucida Console",monospace;
-		  font-size:3.2em;
-		  text-align:center;
-		 }
-.lCursor {margin:0;
-		  padding:0;
-		  border-style:solid;
-		  border-color:white;
-		  border-top-width:0;
-		  border-bottom-width:0;
-		  border-left-width:0.2em;
-		  border-right-width:0.2em;
-		  background-color:silver;
-		 }
-
-.lDiamond {z-index:5; width:1em; height:2em;}
-
-.cCommon {z-index:4; margin:0; padding:0;}
-/* .cSecondary {text-align:center; border:none; background-color:#484848; color:white; font-size:0.7em;} */
-/*
-.cPrimary {text-align:center; border:none; background-color:#F2E9C4; color:black; font-size:0.7em;}
-.cSecondary {text-align:center; border:none; background-color:#2A4038; color:white; font-size:0.7em;}
-*/
-.cPrimary {text-align:center; border:none; background-color:#F2E9C4; color:black; font-size:1.0em;}
-.cSecondary {text-align:center; border:none; background-color:#2A4038; color:white; font-size:0.8em;}
-.cTertiary {text-align:left; border:none; background-color:transparent; color:black; font-size:1.5em}
-.ctrlDeleteAll {letter-spacing:-0.08em;}
-.cBack {font-size: 1.5em; text-align:center;}
-
-.header {padding:0; font-size:1.8em; border-style:none; border-radius:0.3em; margin:0; background-color:black; color:white; text-align:center; letter-spacing:0.1em;}
-
-  </style>
-</head>
-
-<body>
-	<div id="information" class="plateColour">
-
-		<div id="margLeft" class="margin"></div>
-		<div id="margRight" class="margin"></div>
-
-		<button id="iBack" type="button" class="cCommon cTertiary"><code><strong>&lt;</strong></code></button>
-
-<!--		<button id="iHeader" type="button" class="header"><strong>Information</strong></button> -->
-		<button id="iHeader" type="button" class="header"><strong>Informat7</strong></button>
-	
-		<div id="iInstructions">A 5-letter Word Ladder with just 3 steps.<br>
-								Change precisely 2 letters per step.<br><br>
-								As well as instructions:<br>
-								* puzzle number<br>
-								* date when a new puzzle will appear<br>
-								* links to other puzzles<br>
-								* Lazy Dog ad<br>
-								* copyright<br>
-								* social media<br>
-								* Ukraine flag<br>
-								* Blurb<br>
-								* Example<br>
-		</div>
-	</div>
-
-	<div id="door" class="plateColour">
-	
-		<div id="mLeft" class="margin"></div>
-		<div id="mRight" class="margin"></div>
-
-		<img id="LEDGreen" class="led" src="LEDGreen.svg" alt="Green LED"/>
-		<img id="LEDAmber" class="led" src="LEDAmber.svg" alt="Amber LED"/>
-		<img id="LEDRed" class="led" src="LEDRed.svg" alt="Red LED"/>
-		
-		<button id="Ladderet" type="button" class="header"><strong>Ladderet</strong></button>
-		<button id="cInformation" type="button" class="cCommon cSecondary">Information</button>
-		<button id="cHint" type="button" class="cCommon cSecondary">Hint</button>
-		<button id="cSolution" type="button" class="cCommon cSecondary">Solution</button>
-
-		<div id="panel">
-			<button id="lLetter-11" type="button" class="lLetter">X</button>
-			<button id="lLetter-12" type="button" class="lLetter">X</button>
-			<button id="lLetter-13" type="button" class="lLetter">X</button>
-			<button id="lLetter-14" type="button" class="lLetter">X</button>
-			<button id="lLetter-15" type="button" class="lLetter">X</button>
-			<button id="lLetter-21" type="button" class="lLetter">X</button>
-			<button id="lLetter-22" type="button" class="lLetter">X</button>
-			<button id="lLetter-23" type="button" class="lLetter">X</button>
-			<button id="lLetter-24" type="button" class="lLetter">X</button>
-			<button id="lLetter-25" type="button" class="lLetter">X</button>
-			<button id="lLetter-31" type="button" class="lLetter">X</button>
-			<button id="lLetter-32" type="button" class="lLetter">X</button>
-			<button id="lLetter-33" type="button" class="lLetter">X</button>
-			<button id="lLetter-34" type="button" class="lLetter">X</button>
-			<button id="lLetter-35" type="button" class="lLetter">X</button>
-			<button id="lLetter-41" type="button" class="lLetter">X</button>
-			<button id="lLetter-42" type="button" class="lLetter">X</button>
-			<button id="lLetter-43" type="button" class="lLetter">X</button>
-			<button id="lLetter-44" type="button" class="lLetter">X</button>
-			<button id="lLetter-45" type="button" class="lLetter">X</button>
-
-			<div id="lCursor-21" class="lCursor"></div>
-			<div id="lCursor-22" class="lCursor"></div>
-			<div id="lCursor-23" class="lCursor"></div>
-			<div id="lCursor-24" class="lCursor"></div>
-			<div id="lCursor-25" class="lCursor"></div>
-			<div id="lCursor-31" class="lCursor"></div>
-			<div id="lCursor-32" class="lCursor"></div>
-			<div id="lCursor-33" class="lCursor"></div>
-			<div id="lCursor-34" class="lCursor"></div>
-			<div id="lCursor-35" class="lCursor"></div>
-
-			<img id="lDiamondGood-11" class="lDiamond" src="diamondRed.svg" alt="D"/>
-			<img id="lDiamondGood-12" class="lDiamond" src="diamondRed.svg" alt="D"/>
-			<img id="lDiamondGood-13" class="lDiamond" src="diamondRed.svg" alt="D"/>
-			<img id="lDiamondGood-14" class="lDiamond" src="diamondRed.svg" alt="D"/>
-			<img id="lDiamondGood-15" class="lDiamond" src="diamondRed.svg" alt="D"/>
-			<img id="lDiamondGood-21" class="lDiamond" src="diamondRed.svg" alt="D"/>
-			<img id="lDiamondGood-22" class="lDiamond" src="diamondRed.svg" alt="D"/>
-			<img id="lDiamondGood-23" class="lDiamond" src="diamondRed.svg" alt="D"/>
-			<img id="lDiamondGood-24" class="lDiamond" src="diamondRed.svg" alt="D"/>
-			<img id="lDiamondGood-25" class="lDiamond" src="diamondRed.svg" alt="D"/>
-			<img id="lDiamondGood-31" class="lDiamond" src="diamondRed.svg" alt="D"/>
-			<img id="lDiamondGood-32" class="lDiamond" src="diamondRed.svg" alt="D"/>
-			<img id="lDiamondGood-33" class="lDiamond" src="diamondRed.svg" alt="D"/>
-			<img id="lDiamondGood-34" class="lDiamond" src="diamondRed.svg" alt="D"/>
-			<img id="lDiamondGood-35" class="lDiamond" src="diamondRed.svg" alt="D"/>
-
-			<img id="lDiamondBad-11" class="lDiamond" src="diamondBlack.svg" alt="D"/>
-			<img id="lDiamondBad-12" class="lDiamond" src="diamondBlack.svg" alt="D"/>
-			<img id="lDiamondBad-13" class="lDiamond" src="diamondBlack.svg" alt="D"/>
-			<img id="lDiamondBad-14" class="lDiamond" src="diamondBlack.svg" alt="D"/>
-			<img id="lDiamondBad-15" class="lDiamond" src="diamondBlack.svg" alt="D"/>
-			<img id="lDiamondBad-21" class="lDiamond" src="diamondBlack.svg" alt="D"/>
-			<img id="lDiamondBad-22" class="lDiamond" src="diamondBlack.svg" alt="D"/>
-			<img id="lDiamondBad-23" class="lDiamond" src="diamondBlack.svg" alt="D"/>
-			<img id="lDiamondBad-24" class="lDiamond" src="diamondBlack.svg" alt="D"/>
-			<img id="lDiamondBad-25" class="lDiamond" src="diamondBlack.svg" alt="D"/>
-			<img id="lDiamondBad-31" class="lDiamond" src="diamondBlack.svg" alt="D"/>
-			<img id="lDiamondBad-32" class="lDiamond" src="diamondBlack.svg" alt="D"/>
-			<img id="lDiamondBad-33" class="lDiamond" src="diamondBlack.svg" alt="D"/>
-			<img id="lDiamondBad-34" class="lDiamond" src="diamondBlack.svg" alt="D"/>
-			<img id="lDiamondBad-35" class="lDiamond" src="diamondBlack.svg" alt="D"/>
-
-			<div id="lSideLeft" class="lSide lSide-l"></div>
-			<div id="lSideRight" class="lSide lSide-r"></div>
+			<button id="iwName" class="WallName InfoWallName"><strong>Information</strong></button>
 			
-			<div id="lRungTop-1" class="lRung lRung-t"></div>
-			<div id="lRungBottom-1" class="lRung lRung-b"></div>
-			<div id="lRungTop-2" class="lRung lRung-t"></div>
-			<div id="lRungBottom-2" class="lRung lRung-b"></div>
-			<div id="lRungTop-3" class="lRung lRung-t"></div>
-			<div id="lRungBottom-3" class="lRung lRung-b"></div>
-			<div id="lRungTop-4" class="lRung lRung-t"></div>
-			<div id="lRungBottom-4" class="lRung lRung-b"></div>
+			<button id="iwPuzzleData"><strong>Puzzle #99&emsp;&boxh;&emsp;Solve by dd Mmm</strong></button>
+
+			<div id="iwSeparator-1"></div>
+
+			<p id="iwTTFeaturedWord" class="InfoTopicTitle"><strong>Featured Word</strong></p>
+			<button id="iwTCFeaturedWord" class="InfoTopicContent FeaturedWord">
+				Just not getting lost required all Santa's skill ...<br>
+				With street signs and numbers more difficult still.<br>
+				He tangled in tree-tops <strong>AGAIN</strong> and <strong>AGAIN</strong>,<br>
+				And barely missed hitting a tri-motored plane.<br>
+				<br>
+				From a draft of 'Rudolph, The Red-Nosed Reindeer'<br>
+				by Robert L. May, 1939.
+			</button>			
+
+			<p id="iwTTInstructions" class="InfoTopicTitle"><strong>Instructions</strong></p>
+			<button id="iwTCInstructions-1" class="InfoTopicContent Instructions">
+				<strong>Complete the ladder by filling in the middle two 5-letter words. Change precisely TWO letters to get from one word to the next.</strong>
+			</button>			
+			<button id="iwTCInstructions-2" class="InfoTopicContent Instructions Italic">
+				Dictionary words only.
+			</button>
+			<button id="iwTCInstructions-3" class="InfoTopicContent Instructions Italic">
+				Best to watch the <strong>demonstration below</strong>.
+			</button>
 			
-		</div>
+			<img id="iwSurroundInstructions" class="NoShow" src="surroundInstructions.svg" alt="surround"/>
+
+			<p id="iwTTOtherPuzzles" class="InfoTopicTitle"><strong>Other Puzzles</strong></p>
+			<button id="iwTCDispensersLambda" class="InfoTopicContent InfoOtherPuzzles1">
+				<a href="https://dispensers-lambda.vercel.app">https://dispensers-lambda.vercel.app</a>
+			</button>
+			<button id="iwTCDispensersOmega" class="InfoTopicContent InfoOtherPuzzles1">
+				<a href="https://dispensers-omega.vercel.app">https://dispensers-omega.vercel.app</a>
+			</button>
+			<button id="iwTCDispensersPi" class="InfoTopicContent InfoOtherPuzzles1">
+				<a href="https://dispensers-pi.vercel.app">https://dispensers-pi.vercel.app</a>
+			</button>
+			<button id="iwTCLooseFit" class="InfoTopicContent InfoOtherPuzzles2">
+				<a href="https://loose-fit.vercel.app">https://loose-fit.vercel.app</a>
+			</button>
+			
+			<p id="iwTTWhereIPost" class="InfoTopicTitle"><strong>Where I Post Puzzles</strong></p>
+			<button id="iwTCFacebook" class="InfoTopicContent InfoWhereIPost">Facebook&emsp;-&emsp;<span class="Italic">Weekday Puzzles</span> page</button>
+			<button id="iwTCMastodon" class="InfoTopicContent InfoWhereIPost">Mastodon&emsp;-&emsp;<span class="Italic">@PuzzleSmith@mas.to</span></button>
+			<button id="iwTCReddit" class="InfoTopicContent InfoWhereIPost">Reddit&emsp;-&emsp;<span class="Italic">u/G_F_Smith</span></button>
+			<button id="iwTCTwitter" class="InfoTopicContent InfoWhereIPost">X/Twitter&emsp;-&emsp;<span class="Italic">@PuzzleSmith</span></button>
+
+			<p id="iwTTLazyDog" class="InfoTopicTitle"><strong>Lazy Dog App</strong></p>
+			<button id="iwTCLazyDog-1" class="InfoTopicContent">
+				If you do crosswords or codewords, you might enjoy the challenge of a <strong>Lazy Dog</strong> word puzzle.
+				The puzzle exists as an app for iPhones and iPads: it's on App Store.
+				<br>
+				<br>
+				The app is <strong>not-for-profit</strong>. It is free to download. There are no ads. And it does not ask for any personal details.
+				<br>
+				<br>
+				Two screenshots:
+				</button>
+			<img id="iwTCLazyDog-2" src="lazyDog1.png" alt="Screenshot"/>
+			<img id="iwTCLazyDog-3" src="lazyDog2.png" alt="Screenshot"/>
+			<button id="iwTCLazyDog-4" class="InfoTopicContent">
+				<a href="https://apps.apple.com/gb/app/lazy-dog-word-puzzle-volume-1/id1502418993">https://apps.apple.com/gb/app/lazy-dog-word-puzzle-volume-1/id1502418993</a>
+			</button>
+			
+			<div id="iwCopyright">Copyright &copy; 2023 G F Smith</div>
+			
+			<div id="iwSeparator-2" class="DemoSeparator"></div>
+			<div id="iwSeparator-3" class="DemoSeparator"></div>
+			<div id="iwSeparator-4" class="ScreenshotSeparator"></div>
+			<div id="iwSeparator-5" class="ScreenshotSeparator"></div>
+
+			<div id="iwDoor" class="Door">
+			
+				<button id="iwdCtrlDemonstration" class="CtrlCommon">Demonstration</button>
+				<img id="iwdSurroundDemonstration" class="NoShow" src="surroundDemonstration.svg" alt="surround"/>
+
+				<button id="iwdCrossTick" class="CrossTick"><strong>&check;</strong></button>
+
+				<button id="iwdCtrlInformation" class="CtrlCommon CtrlSecondary">Information</button>
+				
+				<button id="iwdCtrlHint" class="CtrlCommon CtrlSecondary">Hint</button>
+				<img id="iwdSpotHint" class="SpotW10H8D6" src="spotW10H8D6.svg" alt="Spot"/>
+
+				<button id="iwdCtrlSolution" class="CtrlCommon CtrlSecondary">Solution</button>
+				<img id="iwdSpotSolution" class="SpotW10H8D6" src="spotW10H8D6.svg" alt="Spot"/>
 		
-		<button id="cReset" type="button" class="cCommon cSecondary">Reset</button>
-		<button id="cUpperLower" type="button" class="cCommon cPrimary">&bigtriangledown;</button>
-		<button id="cDeleteBack" type="button" class="cCommon cPrimary">&lt;&times;</button>
-		<button id="cDeleteAll" type="button" class="cCommon cPrimary ctrlDeleteAll">&times;&times;&times;&times;&times;</button>
-	</div>
+				<button id="iwdCtrlReset" class="CtrlCommon CtrlSecondary">Reset</button>
+				<img id="iwdSpotReset" class="SpotW10H8D6" src="spotW10H8D6.svg" alt="Spot"/>
+
+				<img id="iwdCtrlBackDelete" src="backDelete.svg" alt="Back Delete"/>
+				<img id="iwdSpotBackDelete" class="SpotW10H8D6" src="spotW10H8D6.svg" alt="Spot"/>
+
+				<img id="iwdCtrlBackDeleteAll" src="backDeleteAll.svg" alt="Back Delete All"/>
+				<img id="iwdSpotBackDeleteAll" class="SpotW10H8D6" src="spotW10H8D6.svg" alt="Spot"/>
+
+				<div id="iwdPanel">
+					<button id="iwdpUpperWord"  type="button" class="UpperLowerWord">&InvisibleTimes;</button>
+					<img id="iwdpSpotUpperWord" class="SpotW20H24D18" src="spotW20H24D18.svg" alt="Spot"/>
+					
+					<button id="iwdpLowerWord"  type="button" class="UpperLowerWord">&InvisibleTimes;</button>
+					<img id="iwdpSpotLowerWord" class="SpotW20H24D18" src="spotW20H24D18.svg" alt="Spot"/>
+				
+				
+					<button id="iwdpLetter-11" type="button" class="LadderLetter">X</button>
+					<button id="iwdpLetter-12" type="button" class="LadderLetter">X</button>
+					<button id="iwdpLetter-13" type="button" class="LadderLetter">X</button>
+					<button id="iwdpLetter-14" type="button" class="LadderLetter">X</button>
+					<button id="iwdpLetter-15" type="button" class="LadderLetter">X</button>
+					<button id="iwdpLetter-21" type="button" class="LadderLetter">X</button>
+					<button id="iwdpLetter-22" type="button" class="LadderLetter">X</button>
+					<button id="iwdpLetter-23" type="button" class="LadderLetter">X</button>
+					<button id="iwdpLetter-24" type="button" class="LadderLetter">X</button>
+					<button id="iwdpLetter-25" type="button" class="LadderLetter">X</button>
+					<button id="iwdpLetter-31" type="button" class="LadderLetter">X</button>
+					<button id="iwdpLetter-32" type="button" class="LadderLetter">X</button>
+					<button id="iwdpLetter-33" type="button" class="LadderLetter">X</button>
+					<button id="iwdpLetter-34" type="button" class="LadderLetter">X</button>
+					<button id="iwdpLetter-35" type="button" class="LadderLetter">X</button>
+					<button id="iwdpLetter-41" type="button" class="LadderLetter">X</button>
+					<button id="iwdpLetter-42" type="button" class="LadderLetter">X</button>
+					<button id="iwdpLetter-43" type="button" class="LadderLetter">X</button>
+					<button id="iwdpLetter-44" type="button" class="LadderLetter">X</button>
+					<button id="iwdpLetter-45" type="button" class="LadderLetter">X</button>
+
+					<div id="iwdpCursor-21" class="Cursor Cursor1 NoShow"></div>
+					<div id="iwdpCursor-22" class="Cursor Cursor23456 NoShow"></div>
+					<div id="iwdpCursor-23" class="Cursor Cursor23456 NoShow"></div>
+					<div id="iwdpCursor-24" class="Cursor Cursor23456 NoShow"></div>
+					<div id="iwdpCursor-25" class="Cursor Cursor23456 NoShow"></div>
+					<div id="iwdpCursor-26" class="Cursor Cursor23456 NoShow"></div>
+					<div id="iwdpCursor-31" class="Cursor Cursor1 NoShow"></div>
+					<div id="iwdpCursor-32" class="Cursor Cursor23456 NoShow"></div>
+					<div id="iwdpCursor-33" class="Cursor Cursor23456 NoShow"></div>
+					<div id="iwdpCursor-34" class="Cursor Cursor23456 NoShow"></div>
+					<div id="iwdpCursor-35" class="Cursor Cursor23456 NoShow"></div>
+					<div id="iwdpCursor-36" class="Cursor Cursor23456 NoShow"></div>
+
+					<img id="iwdpDiamondGood-11" class="Diamond NoShow" src="diamondRed.svg" alt="D"/>
+					<img id="iwdpDiamondGood-12" class="Diamond NoShow" src="diamondRed.svg" alt="D"/>
+					<img id="iwdpDiamondGood-13" class="Diamond NoShow" src="diamondRed.svg" alt="D"/>
+					<img id="iwdpDiamondGood-14" class="Diamond NoShow" src="diamondRed.svg" alt="D"/>
+					<img id="iwdpDiamondGood-15" class="Diamond NoShow" src="diamondRed.svg" alt="D"/>
+					<img id="iwdpDiamondGood-21" class="Diamond NoShow" src="diamondRed.svg" alt="D"/>
+					<img id="iwdpDiamondGood-22" class="Diamond NoShow" src="diamondRed.svg" alt="D"/>
+					<img id="iwdpDiamondGood-23" class="Diamond NoShow" src="diamondRed.svg" alt="D"/>
+					<img id="iwdpDiamondGood-24" class="Diamond NoShow" src="diamondRed.svg" alt="D"/>
+					<img id="iwdpDiamondGood-25" class="Diamond NoShow" src="diamondRed.svg" alt="D"/>
+					<img id="iwdpDiamondGood-31" class="Diamond NoShow" src="diamondRed.svg" alt="D"/>
+					<img id="iwdpDiamondGood-32" class="Diamond NoShow" src="diamondRed.svg" alt="D"/>
+					<img id="iwdpDiamondGood-33" class="Diamond NoShow" src="diamondRed.svg" alt="D"/>
+					<img id="iwdpDiamondGood-34" class="Diamond NoShow" src="diamondRed.svg" alt="D"/>
+					<img id="iwdpDiamondGood-35" class="Diamond NoShow" src="diamondRed.svg" alt="D"/>
+
+					<img id="iwdpDiamondBad-11" class="Diamond NoShow" src="diamondBlack.svg" alt="D"/>
+					<img id="iwdpDiamondBad-12" class="Diamond NoShow" src="diamondBlack.svg" alt="D"/>
+					<img id="iwdpDiamondBad-13" class="Diamond NoShow" src="diamondBlack.svg" alt="D"/>
+					<img id="iwdpDiamondBad-14" class="Diamond NoShow" src="diamondBlack.svg" alt="D"/>
+					<img id="iwdpDiamondBad-15" class="Diamond NoShow" src="diamondBlack.svg" alt="D"/>
+					<img id="iwdpDiamondBad-21" class="Diamond NoShow" src="diamondBlack.svg" alt="D"/>
+					<img id="iwdpDiamondBad-22" class="Diamond NoShow" src="diamondBlack.svg" alt="D"/>
+					<img id="iwdpDiamondBad-23" class="Diamond NoShow" src="diamondBlack.svg" alt="D"/>
+					<img id="iwdpDiamondBad-24" class="Diamond NoShow" src="diamondBlack.svg" alt="D"/>
+					<img id="iwdpDiamondBad-25" class="Diamond NoShow" src="diamondBlack.svg" alt="D"/>
+					<img id="iwdpDiamondBad-31" class="Diamond NoShow" src="diamondBlack.svg" alt="D"/>
+					<img id="iwdpDiamondBad-32" class="Diamond NoShow" src="diamondBlack.svg" alt="D"/>
+					<img id="iwdpDiamondBad-33" class="Diamond NoShow" src="diamondBlack.svg" alt="D"/>
+					<img id="iwdpDiamondBad-34" class="Diamond NoShow" src="diamondBlack.svg" alt="D"/>
+					<img id="iwdpDiamondBad-35" class="Diamond NoShow" src="diamondBlack.svg" alt="D"/>
+
+					<div id="iwdpSideLeft" class="Side SideLeft"></div>
+					<div id="iwdpSideRight" class="Side SideRight"></div>
+					
+					<div id="iwdpRung-1-top" class="Rung RungTop"></div>
+					<div id="iwdpRung-1-bottom" class="Rung RungBottom"></div>
+					<div id="iwdpRung-2-top" class="Rung RungTop"></div>
+					<div id="iwdpRung-2-bottom" class="Rung RungBottom"></div>
+					<div id="iwdpRung-3-top" class="Rung RungTop"></div>
+					<div id="iwdpRung-3-bottom" class="Rung RungBottom"></div>
+					<div id="iwdpRung-4-top" class="Rung RungTop"></div>
+					<div id="iwdpRung-4-bottom" class="Rung RungBottom"></div>
+				</div>
+			</div>	
+		</div>
+		<div id="mainWall" class="Wall">
+			<div id="mwMarginLeft" class="Margin"></div>
+			<div id="mwMarginRight" class="Margin"></div>
+			
+			<button id="mwName" type="button" class="WallName MainWallName"><strong>Ladderet</strong></button>
+
+			<button id="mwCrossTick" type="button" class="CrossTick"><strong>&check;</strong></button>
+			
+			<div id="mwDoor" class="Door">	
+				<button id="mwdCtrlInformation" type="button" class="CtrlCommon CtrlSecondary">Information</button>
+				<img id="mwdSurroundInformation" class="NoShow" src="surroundInformation.svg" alt="surround"/>
+
+				<button id="mwdCtrlHint" type="button" class="CtrlCommon CtrlSecondary">Hint</button>
+				<button id="mwdCtrlSolution" type="button" class="CtrlCommon CtrlSecondary">Solution</button>
+
+				<div id="mwdPanel">
+					<button id="mwdpUpperWord"  type="button" class="UpperLowerWord">&InvisibleTimes;</button>
+					<button id="mwdpLowerWord"  type="button" class="UpperLowerWord">&InvisibleTimes;</button>
+				
+				
+					<button id="mwdpLetter-11" type="button" class="LadderLetter">X</button>
+					<button id="mwdpLetter-12" type="button" class="LadderLetter">X</button>
+					<button id="mwdpLetter-13" type="button" class="LadderLetter">X</button>
+					<button id="mwdpLetter-14" type="button" class="LadderLetter">X</button>
+					<button id="mwdpLetter-15" type="button" class="LadderLetter">X</button>
+					<button id="mwdpLetter-21" type="button" class="LadderLetter">X</button>
+					<button id="mwdpLetter-22" type="button" class="LadderLetter">X</button>
+					<button id="mwdpLetter-23" type="button" class="LadderLetter">X</button>
+					<button id="mwdpLetter-24" type="button" class="LadderLetter">X</button>
+					<button id="mwdpLetter-25" type="button" class="LadderLetter">X</button>
+					<button id="mwdpLetter-31" type="button" class="LadderLetter">X</button>
+					<button id="mwdpLetter-32" type="button" class="LadderLetter">X</button>
+					<button id="mwdpLetter-33" type="button" class="LadderLetter">X</button>
+					<button id="mwdpLetter-34" type="button" class="LadderLetter">X</button>
+					<button id="mwdpLetter-35" type="button" class="LadderLetter">X</button>
+					<button id="mwdpLetter-41" type="button" class="LadderLetter">X</button>
+					<button id="mwdpLetter-42" type="button" class="LadderLetter">X</button>
+					<button id="mwdpLetter-43" type="button" class="LadderLetter">X</button>
+					<button id="mwdpLetter-44" type="button" class="LadderLetter">X</button>
+					<button id="mwdpLetter-45" type="button" class="LadderLetter">X</button>
+
+					<div id="mwdpCursor-21" class="Cursor Cursor1 NoShow"></div>
+					<div id="mwdpCursor-22" class="Cursor Cursor23456 NoShow"></div>
+					<div id="mwdpCursor-23" class="Cursor Cursor23456 NoShow"></div>
+					<div id="mwdpCursor-24" class="Cursor Cursor23456 NoShow"></div>
+					<div id="mwdpCursor-25" class="Cursor Cursor23456 NoShow"></div>
+					<div id="mwdpCursor-26" class="Cursor Cursor23456 NoShow"></div>
+					<div id="mwdpCursor-31" class="Cursor Cursor1 NoShow"></div>
+					<div id="mwdpCursor-32" class="Cursor Cursor23456 NoShow"></div>
+					<div id="mwdpCursor-33" class="Cursor Cursor23456 NoShow"></div>
+					<div id="mwdpCursor-34" class="Cursor Cursor23456 NoShow"></div>
+					<div id="mwdpCursor-35" class="Cursor Cursor23456 NoShow"></div>
+					<div id="mwdpCursor-36" class="Cursor Cursor23456 NoShow"></div>
+
+					<img id="mwdpDiamondGood-11" class="Diamond NoShow" src="diamondRed.svg" alt="D"/>
+					<img id="mwdpDiamondGood-12" class="Diamond NoShow" src="diamondRed.svg" alt="D"/>
+					<img id="mwdpDiamondGood-13" class="Diamond NoShow" src="diamondRed.svg" alt="D"/>
+					<img id="mwdpDiamondGood-14" class="Diamond NoShow" src="diamondRed.svg" alt="D"/>
+					<img id="mwdpDiamondGood-15" class="Diamond NoShow" src="diamondRed.svg" alt="D"/>
+					<img id="mwdpDiamondGood-21" class="Diamond NoShow" src="diamondRed.svg" alt="D"/>
+					<img id="mwdpDiamondGood-22" class="Diamond NoShow" src="diamondRed.svg" alt="D"/>
+					<img id="mwdpDiamondGood-23" class="Diamond NoShow" src="diamondRed.svg" alt="D"/>
+					<img id="mwdpDiamondGood-24" class="Diamond NoShow" src="diamondRed.svg" alt="D"/>
+					<img id="mwdpDiamondGood-25" class="Diamond NoShow" src="diamondRed.svg" alt="D"/>
+					<img id="mwdpDiamondGood-31" class="Diamond NoShow" src="diamondRed.svg" alt="D"/>
+					<img id="mwdpDiamondGood-32" class="Diamond NoShow" src="diamondRed.svg" alt="D"/>
+					<img id="mwdpDiamondGood-33" class="Diamond NoShow" src="diamondRed.svg" alt="D"/>
+					<img id="mwdpDiamondGood-34" class="Diamond NoShow" src="diamondRed.svg" alt="D"/>
+					<img id="mwdpDiamondGood-35" class="Diamond NoShow" src="diamondRed.svg" alt="D"/>
+
+					<img id="mwdpDiamondBad-11" class="Diamond NoShow" src="diamondBlack.svg" alt="D"/>
+					<img id="mwdpDiamondBad-12" class="Diamond NoShow" src="diamondBlack.svg" alt="D"/>
+					<img id="mwdpDiamondBad-13" class="Diamond NoShow" src="diamondBlack.svg" alt="D"/>
+					<img id="mwdpDiamondBad-14" class="Diamond NoShow" src="diamondBlack.svg" alt="D"/>
+					<img id="mwdpDiamondBad-15" class="Diamond NoShow" src="diamondBlack.svg" alt="D"/>
+					<img id="mwdpDiamondBad-21" class="Diamond NoShow" src="diamondBlack.svg" alt="D"/>
+					<img id="mwdpDiamondBad-22" class="Diamond NoShow" src="diamondBlack.svg" alt="D"/>
+					<img id="mwdpDiamondBad-23" class="Diamond NoShow" src="diamondBlack.svg" alt="D"/>
+					<img id="mwdpDiamondBad-24" class="Diamond NoShow" src="diamondBlack.svg" alt="D"/>
+					<img id="mwdpDiamondBad-25" class="Diamond NoShow" src="diamondBlack.svg" alt="D"/>
+					<img id="mwdpDiamondBad-31" class="Diamond NoShow" src="diamondBlack.svg" alt="D"/>
+					<img id="mwdpDiamondBad-32" class="Diamond NoShow" src="diamondBlack.svg" alt="D"/>
+					<img id="mwdpDiamondBad-33" class="Diamond NoShow" src="diamondBlack.svg" alt="D"/>
+					<img id="mwdpDiamondBad-34" class="Diamond NoShow" src="diamondBlack.svg" alt="D"/>
+					<img id="mwdpDiamondBad-35" class="Diamond NoShow" src="diamondBlack.svg" alt="D"/>
+
+					<div id="mwdpSideLeft" class="Side SideLeft"></div>
+					<div id="mwdpSideRight" class="Side SideRight"></div>
+					
+					<div id="mwdpRung-1-top" class="Rung RungTop"></div>
+					<div id="mwdpRung-1-bottom" class="Rung RungBottom"></div>
+					<div id="mwdpRung-2-top" class="Rung RungTop"></div>
+					<div id="mwdpRung-2-bottom" class="Rung RungBottom"></div>
+					<div id="mwdpRung-3-top" class="Rung RungTop"></div>
+					<div id="mwdpRung-3-bottom" class="Rung RungBottom"></div>
+					<div id="mwdpRung-4-top" class="Rung RungTop"></div>
+					<div id="mwdpRung-4-bottom" class="Rung RungBottom"></div>
+				</div>
+				
+				<button id="mwdCtrlReset"  type="button" class="CtrlCommon CtrlSecondary">Reset</button>		
+<!--				<button id="mwdCtrlBackDelete" type="button" class="CtrlCommon CtrlPrimary">&lt;&times;</button> -->
+<!--				<button id="mwdCtrlBackDeleteAll" type="button" class="CtrlCommon CtrlPrimary">&times;&times;&times;&times;&times;</button> -->
+				<img id="mwdCtrlBackDelete" src="backDelete.svg" alt="Back Delete"/>
+				<img id="mwdCtrlBackDeleteAll" src="backDeleteAll.svg" alt="Back Delete All"/>
+			</div>
+		</div>
 	
-	<div id="keyboardLeft" class="kb">
-		<button id="kb-A" type="button" class="kbLetter kbLeft">A</button>
-		<button id="kb-B" type="button" class="kbLetter kbLeft">B</button>
-		<button id="kb-C" type="button" class="kbLetter kbLeft">C</button>
-		<button id="kb-D" type="button" class="kbLetter kbLeft">D</button>
-		<button id="kb-E" type="button" class="kbLetter kbLeft">E</button>
-		<button id="kb-F" type="button" class="kbLetter kbLeft">F</button>
-		<button id="kb-G" type="button" class="kbLetter kbLeft">G</button>
-		<button id="kb-H" type="button" class="kbLetter kbLeft">H</button>
-		<button id="kb-I" type="button" class="kbLetter kbLeft">I</button>
-		<button id="kb-J" type="button" class="kbLetter kbLeft">J</button>
-		<button id="kb-K" type="button" class="kbLetter kbLeft">K</button>
-		<button id="kb-L" type="button" class="kbLetter kbLeft">L</button>
-		<button id="kb-M" type="button" class="kbLetter kbLeft">M</button>
-	</div>
+		<div id="kbLeft" class="Keyboard">
+			<button id="kb-A" type="button" class="KeyboardLetter KeyboardLeft">A</button>
+			<button id="kb-B" type="button" class="KeyboardLetter KeyboardLeft">B</button>
+			<button id="kb-C" type="button" class="KeyboardLetter KeyboardLeft">C</button>
+			<button id="kb-D" type="button" class="KeyboardLetter KeyboardLeft">D</button>
+			<button id="kb-E" type="button" class="KeyboardLetter KeyboardLeft">E</button>
+			<button id="kb-F" type="button" class="KeyboardLetter KeyboardLeft">F</button>
+			<button id="kb-G" type="button" class="KeyboardLetter KeyboardLeft">G</button>
+			<button id="kb-H" type="button" class="KeyboardLetter KeyboardLeft">H</button>
+			<button id="kb-I" type="button" class="KeyboardLetter KeyboardLeft">I</button>
+			<button id="kb-J" type="button" class="KeyboardLetter KeyboardLeft">J</button>
+			<button id="kb-K" type="button" class="KeyboardLetter KeyboardLeft">K</button>
+			<button id="kb-L" type="button" class="KeyboardLetter KeyboardLeft">L</button>
+			<button id="kb-M" type="button" class="KeyboardLetter KeyboardLeft">M</button>
 
-	<div id="keyboardRight" class="kb">
-		<button id="kb-N" type="button" class="kbLetter kbRight">N</button>
-		<button id="kb-O" type="button" class="kbLetter kbRight">O</button>
-		<button id="kb-P" type="button" class="kbLetter kbRight">P</button>
-		<button id="kb-Q" type="button" class="kbLetter kbRight">Q</button>
-		<button id="kb-R" type="button" class="kbLetter kbRight">R</button>
-		<button id="kb-S" type="button" class="kbLetter kbRight">S</button>
-		<button id="kb-T" type="button" class="kbLetter kbRight">T</button>
-		<button id="kb-U" type="button" class="kbLetter kbRight">U</button>
-		<button id="kb-V" type="button" class="kbLetter kbRight">V</button>
-		<button id="kb-W" type="button" class="kbLetter kbRight">W</button>
-		<button id="kb-X" type="button" class="kbLetter kbRight">X</button>
-		<button id="kb-Y" type="button" class="kbLetter kbRight">Y</button>
-		<button id="kb-Z" type="button" class="kbLetter kbRight">Z</button>
-	</div>
+			<img id="kbSpot-A" class="SpotKeyboard" src="spotKeyboard.svg" alt="Spot"/>
+			<img id="kbSpot-B" class="SpotKeyboard" src="spotKeyboard.svg" alt="Spot"/>
+			<img id="kbSpot-C" class="SpotKeyboard" src="spotKeyboard.svg" alt="Spot"/>
+			<img id="kbSpot-D" class="SpotKeyboard" src="spotKeyboard.svg" alt="Spot"/>
+			<img id="kbSpot-E" class="SpotKeyboard" src="spotKeyboard.svg" alt="Spot"/>
+			<img id="kbSpot-F" class="SpotKeyboard" src="spotKeyboard.svg" alt="Spot"/>
+			<img id="kbSpot-G" class="SpotKeyboard" src="spotKeyboard.svg" alt="Spot"/>
+			<img id="kbSpot-H" class="SpotKeyboard" src="spotKeyboard.svg" alt="Spot"/>
+			<img id="kbSpot-I" class="SpotKeyboard" src="spotKeyboard.svg" alt="Spot"/>
+			<img id="kbSpot-J" class="SpotKeyboard" src="spotKeyboard.svg" alt="Spot"/>
+			<img id="kbSpot-K" class="SpotKeyboard" src="spotKeyboard.svg" alt="Spot"/>
+			<img id="kbSpot-L" class="SpotKeyboard" src="spotKeyboard.svg" alt="Spot"/>
+			<img id="kbSpot-M" class="SpotKeyboard" src="spotKeyboard.svg" alt="Spot"/>
+		</div>
 
-</body>
+		<div id="kbRight" class="Keyboard">
+			<button id="kb-N" type="button" class="KeyboardLetter KeyboardRight">N</button>
+			<button id="kb-O" type="button" class="KeyboardLetter KeyboardRight">O</button>
+			<button id="kb-P" type="button" class="KeyboardLetter KeyboardRight">P</button>
+			<button id="kb-Q" type="button" class="KeyboardLetter KeyboardRight">Q</button>
+			<button id="kb-R" type="button" class="KeyboardLetter KeyboardRight">R</button>
+			<button id="kb-S" type="button" class="KeyboardLetter KeyboardRight">S</button>
+			<button id="kb-T" type="button" class="KeyboardLetter KeyboardRight">T</button>
+			<button id="kb-U" type="button" class="KeyboardLetter KeyboardRight">U</button>
+			<button id="kb-V" type="button" class="KeyboardLetter KeyboardRight">V</button>
+			<button id="kb-W" type="button" class="KeyboardLetter KeyboardRight">W</button>
+			<button id="kb-X" type="button" class="KeyboardLetter KeyboardRight">X</button>
+			<button id="kb-Y" type="button" class="KeyboardLetter KeyboardRight">Y</button>
+			<button id="kb-Z" type="button" class="KeyboardLetter KeyboardRight">Z</button>
+
+			<img id="kbSpot-N" class="SpotKeyboard" src="spotKeyboard.svg" alt="Spot"/>
+			<img id="kbSpot-O" class="SpotKeyboard" src="spotKeyboard.svg" alt="Spot"/>
+			<img id="kbSpot-P" class="SpotKeyboard" src="spotKeyboard.svg" alt="Spot"/>
+			<img id="kbSpot-Q" class="SpotKeyboard" src="spotKeyboard.svg" alt="Spot"/>
+			<img id="kbSpot-R" class="SpotKeyboard" src="spotKeyboard.svg" alt="Spot"/>
+			<img id="kbSpot-S" class="SpotKeyboard" src="spotKeyboard.svg" alt="Spot"/>
+			<img id="kbSpot-T" class="SpotKeyboard" src="spotKeyboard.svg" alt="Spot"/>
+			<img id="kbSpot-U" class="SpotKeyboard" src="spotKeyboard.svg" alt="Spot"/>
+			<img id="kbSpot-V" class="SpotKeyboard" src="spotKeyboard.svg" alt="Spot"/>
+			<img id="kbSpot-W" class="SpotKeyboard" src="spotKeyboard.svg" alt="Spot"/>
+			<img id="kbSpot-X" class="SpotKeyboard" src="spotKeyboard.svg" alt="Spot"/>
+			<img id="kbSpot-Y" class="SpotKeyboard" src="spotKeyboard.svg" alt="Spot"/>
+			<img id="kbSpot-Z" class="SpotKeyboard" src="spotKeyboard.svg" alt="Spot"/>
+		</div>
+	</body>
 </html>
-
-<script>
-console.log(`${window.innerHeight}px`);
-console.log(`${window.innerWidth}px`);
-console.log(`${window.devicePixelRatio}`);
-
-const HTMLElement = document.documentElement;
-console.log(`${HTMLElement.clientHeight}px`);
-console.log(`${HTMLElement.clientWidth}px`);
-
-const usableHeight = window.innerHeight;
-const usableWidth = window.innerWidth;
-//const usableHeight = HTMLElement.clientHeight;
-//const usableWidth = HTMLElement.clientWidth;
-
-
-function updateFontSize() {
-  console.log('updateFontSize called');
-  const numGridRows = 35;
-  const numGridColumns = 33;
-  
-  let innerDimension = 0
-  let gridDimension = 0
-  if ((usableHeight / numGridRows) <= (usableWidth / numGridColumns)) {
-    innerDimension = usableHeight;
-	gridDimension = numGridRows;
-	}
-  else {
-    innerDimension = usableWidth;
-	gridDimension = numGridColumns;
-	}
-	
-  const percent = innerDimension / 100;
-  console.log('percent');
-  console.log(percent);
-  let fontSize = 0;
-  let reducingInnerDimension = innerDimension + 1;
-  do {
-    reducingInnerDimension = reducingInnerDimension - 1
-    fontSize = Math.floor((reducingInnerDimension / gridDimension) * window.devicePixelRatio) / window.devicePixelRatio
-    console.log('fontSize');
-    console.log(fontSize);
-  } while ((innerDimension - (fontSize * gridDimension)) < (2 * percent));
-  console.log('final fontSize');
-  console.log(fontSize);
-  document.body.style.fontSize = `${fontSize}px`;
-  
-  let spareHeight = usableHeight - (fontSize * numGridRows);
-  console.log('spareHeight');
-  console.log(spareHeight);
-  let deviceSpareHeight = spareHeight * window.devicePixelRatio;
-  console.log('deviceSpareHeight');
-  console.log(deviceSpareHeight);
-  let roundedDeviceSpareHeight = Math.trunc(deviceSpareHeight / 2) * 2;
-  console.log('roundedDeviceSpareHeight');
-  console.log(roundedDeviceSpareHeight);
-  let roundedSpareHeight = roundedDeviceSpareHeight / window.devicePixelRatio;
-  console.log('roundedSpareHeight');
-  console.log(roundedSpareHeight);
-  let door = document.querySelector("#door");
-  let information = document.querySelector("#information");
-  let keyboardLeft = document.querySelector("#keyboardLeft");
-  let keyboardRight = document.querySelector("#keyboardRight");
-  door.style.top = `${roundedSpareHeight / 2}px`;
-  information.style.top = `${roundedSpareHeight / 2}px`;
-  
-  let spareWidth = usableWidth - (fontSize * numGridColumns);
-  console.log('spareWidth');
-  console.log(spareWidth);
-  let deviceSpareWidth = spareWidth * window.devicePixelRatio;
-  console.log('deviceSpareWidth');
-  console.log(deviceSpareWidth);
-  let roundedDeviceSpareWidth = Math.trunc(deviceSpareWidth / 2) * 2
-  console.log('roundedDeviceSpareWidth');
-  console.log(roundedDeviceSpareWidth);
-  let roundedSpareWidth = roundedDeviceSpareWidth / window.devicePixelRatio;
-  console.log('roundedSpareWidth');
-  console.log(roundedSpareWidth);
-  const doorLeft = roundedSpareWidth / 2;
-  const keyboardLeftLeft = doorLeft;
-  const keyboardRightLeft = doorLeft + (fontSize * (numGridColumns - 4));
-  door.style.left = `${doorLeft}px`;
-  information.style.left = `${doorLeft}px`;;
-  keyboardLeft.style.left = `${keyboardLeftLeft}px`;
-  keyboardRight.style.left = `${keyboardRightLeft}px`;
-  
-  return fontSize;
-}
-let fontSize = updateFontSize();
-
-
-class Key {
-	constructor(id, onClick) {
-		this.id = id;
-		this.onClick = onClick;
-		this.button = document.querySelector(id);
-		this.isEnabled = true;
-		this.disable();
-	}
-	
-	enable() {
-		if (!this.isEnabled) {
-			this.button.style.opacity = `1.0`;
-			this.button.addEventListener("click", this.onClick);
-			this.isEnabled = true;
-		}
-	}
-	
-	disable() {
-		if (this.isEnabled) {
-			this.button.style.opacity = `0.5`;
-			this.button.removeEventListener("click", this.onClick);
-			this.isEnabled = false;
-		}
-	}
-}
-
-let keyOnClicks = [function() {solve.keyOnClick("A")},
-				   function() {solve.keyOnClick("B")},
-				   function() {solve.keyOnClick("C")},
-				   function() {solve.keyOnClick("D")},
-				   function() {solve.keyOnClick("E")},
-				   function() {solve.keyOnClick("F")},
-				   function() {solve.keyOnClick("G")},
-				   function() {solve.keyOnClick("H")},
-				   function() {solve.keyOnClick("I")},
-				   function() {solve.keyOnClick("J")},
-				   function() {solve.keyOnClick("K")},
-				   function() {solve.keyOnClick("L")},
-				   function() {solve.keyOnClick("M")},
-				   function() {solve.keyOnClick("N")},
-				   function() {solve.keyOnClick("O")},
-				   function() {solve.keyOnClick("P")},
-				   function() {solve.keyOnClick("Q")},
-				   function() {solve.keyOnClick("R")},
-				   function() {solve.keyOnClick("S")},
-				   function() {solve.keyOnClick("T")},
-				   function() {solve.keyOnClick("U")},
-				   function() {solve.keyOnClick("V")},
-				   function() {solve.keyOnClick("W")},
-				   function() {solve.keyOnClick("X")},
-				   function() {solve.keyOnClick("Y")},
-				   function() {solve.keyOnClick("Z")}
-				   ];
-
-class Keyboard {
-	constructor() {
-		this.leftRef = document.querySelector("#keyboardLeft");
-		this.rightRef = document.querySelector("#keyboardRight");
-		
-		this.leftRef.style.height = `${window.innerHeight}px`;
-		this.rightRef.style.height = `${window.innerHeight}px`;
-
-		this.keys = [];
-		this.isEnabled = false;
-		const letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
-		const keyIdRoot = "#kb-";
-		for (let i = 0; i < letters.length; i++) {
-			const keyId = keyIdRoot + letters[i];
-			this.keys[i] = new Key(keyId, keyOnClicks[i]);
-		}
-	}
-	
-	show() {
-		this.leftRef.style.display = `grid`;
-		this.rightRef.style.display = `grid`;
-	}
-
-	
-	hide() {
-		this.leftRef.style.display = `none`;
-		this.rightRef.style.display = `none`;
-	}
-
-	enable() {
-		if (!this.isEnabled) {
-			for (let i = 0; i < this.keys.length; i++) {
-				this.keys[i].enable();
-			}
-			this.isEnabled = true;
-		}
-	}
-	
-	disable() {
-		if (this.isEnabled) {
-			for (let i = 0; i < this.keys.length; i++) {
-				this.keys[i].disable();
-			}
-			this.isEnabled = false;
-		}
-	}
-}
-
-class LED {
-	constructor() {
-		this.greenRef = document.querySelector("#LEDGreen");
-		this.amberRef = document.querySelector("#LEDAmber");
-		this.redRef = document.querySelector("#LEDRed");
-	}
-	
-	showGreen() {
-		this.greenRef.style.display = `block`;
-		this.amberRef.style.display = `none`;
-		this.redRef.style.display = `none`;
-	}
-	
-	showAmber() {
-		this.amberRef.style.display = `block`;
-		this.greenRef.style.display = `none`;
-		this.redRef.style.display = `none`;
-	}
-	
-	showRed() {
-		this.redRef.style.display = `block`;
-		this.greenRef.style.display = `none`;
-		this.amberRef.style.display = `none`;
-	}
-	
-	hide() {
-		this.greenRef.style.display = `none`;
-		this.amberRef.style.display = `none`;
-		this.redRef.style.display = `none`;
-	}
-}
-
-class Rung {
-	constructor(num, letters) {
-		this.num = num;
-		this.letters = letters;
-		
-		this.letterElements = [];
-		for (let i = 0; i < letters.length; i++) {
-			const letterId = "#lLetter-" + String(num + 1) + String(i + 1);
-			this.letterElements[i] = document.querySelector(letterId);
-		}
-	}
-	
-	refresh() {
-		for (let i = 0; i < this.letters.length; i++) {
-//			const text = this.letters[i] == undefined ? " " : this.letters[i];
-//			this.letterElements[i].textContent = text;
-			const text = this.letters[i] == undefined ? "&InvisibleTimes;" : this.letters[i];
-			this.letterElements[i].innerHTML = text;
-		}
-	}
-	
-	setLetter(letter, position) {
-		console.log(letter);
-		this.letters[position] = letter;
-	}
-	
-	unsetLetter(position) {
-		this.letters[position] = undefined;
-	}
-	
-	reset() {
-		for (let i = 0; i < this.letters.length; i++) {
-			this.letters[i] = undefined;
-		}
-	}
-
-	getLetter(num) {
-		return this.letters[num];
-	}
-	
-	isEmpty() {
-		let numLetters = 0;
-		for (let i = 0; i < this.letters.length; i++) {
-			if (this.letters[i] != undefined) numLetters++;
-		}
-		return numLetters == 0;
-	}
-	
-	setDiamond(num, colour) {
-	}
-	
-	unsetDiamond(num) {
-	}
-}
-
-class Cursor {
-	constructor() {
-		this.rung = undefined;
-		this.position = undefined;
-		this.isShowing = false;
-		
-		this.styles = [undefined, [], []];
-		const styleSheet = document.styleSheets[0];
-		for (let rung = 1; rung <= 2; rung++) {
-			for (let position = 0; position < 5; position++) {
-				const cursorId = "#lCursor-" + String(rung + 1) + String(position + 1);
-				const rule = [...styleSheet.cssRules].find((r) => r.selectorText === cursorId);
-				this.styles[rung][position] = rule;
-			}
-		}	
-	}
-	
-	hide() {
-		this.isShowing = false;
-	}
-	
-	show() {
-		this.isShowing = true;
-	}
-	
-	setRungPosition(rung, position) {
-		this.rung = rung;
-		this.position = position;
-	}
-	
-	setPosition(position) {
-		this.position = position;
-	}
-	
-	getPosition() {
-		return this.position;
-	}
-	
-	refresh() {
-		for (let rung = 1; rung <= 2; rung++) {
-			for (let position = 0; position < 5; position++) {
-				let backgroundColour = undefined;
-				if (!this.isShowing) {					
-					backgroundColour = `transparent`;
-				}
-				else if (rung == this.rung && position == this.position) {
-					backgroundColour = `#E0E0E0`;
-				}
-				else {
-					backgroundColour = `transparent`;
-				}
-				this.styles[rung][position].style.setProperty("background-color", backgroundColour);
-			}
-		}
-	}
-}
-
-class Diamonds {
-	constructor() {
-		this.goodRefs = [[], [], []];
-		this.badRefs = [[], [], []];
-		for (let rung = 0; rung < 3; rung++) {
-			for (let position = 0; position < 5; position++) {
-				const goodId = "#lDiamondGood-" + String(rung + 1) + String(position + 1);
-				const badId = "#lDiamondBad-" + String(rung + 1) + String(position + 1);
-				this.goodRefs[rung][position] = document.querySelector(goodId);
-				this.badRefs[rung][position] = document.querySelector(badId);
-			}
-		}
-	}
-	
-	showGood(rung, position) {
-		this.badRefs[rung][position].style.display = `none`;
-		this.goodRefs[rung][position].style.display = `block`;
-	}
-
-	showBad(rung, position) {
-		this.goodRefs[rung][position].style.display = `none`;
-		this.badRefs[rung][position].style.display = `block`;
-	}
-	
-	hide(rung, position) {
-		this.goodRefs[rung][position].style.display = `none`;
-		this.badRefs[rung][position].style.display = `none`;
-	}
-}
-
-let puzzle = {
-	words: [],
-	hint: []
-};
-
-function initialisePuzzle(words, hint) {
-	puzzle.words = [];
-	puzzle.hint = hint;
-	for (let i = 0; i < words.length; i++) puzzle.words[i] = [...words[i]];
-}
-
-//from JSON
-const words = ["GREEN", "GREBE", "BRIBE", "BAIZE"];
-const hint = [2, 2, "I"];
-initialisePuzzle(words, hint);
-
-
-class Control {
-	constructor(id, onClick) {
-	this.id = id;
-	this.onClick = onClick;
-	this.button = document.querySelector(id);
-	this.isEnabled = true;
-	this.disable();
-	}
-	
-	enable() {
-		if (!this.isEnabled) {
-			this.button.style.opacity = `1.0`;
-			this.button.addEventListener("click", this.onClick);
-			this.isEnabled = true;
-		}
-	}
-	
-	disable() {
-		if (this.isEnabled) {
-			this.button.style.opacity = `0.5`;
-			this.button.removeEventListener("click", this.onClick);
-			this.isEnabled = false;
-		}
-	}
-}
-
-function backOnClick() {solve.backOnClick();};
-function informationOnClick() {solve.informationOnClick();};
-function deleteBackOnClick() {solve.deleteBackOnClick();};
-function deleteAllOnClick() {solve.deleteAllOnClick();};
-function resetOnClick() {solve.resetOnClick();};
-function upperLowerOnClick() {solve.upperLowerOnClick();};
-function solutionOnClick() {solve.solutionOnClick();};
-function solutionTimerExpired() {solve.solutionTimerExpired();}
-function hintOnClick() {solve.hintOnClick();};
-function hintTimerExpired() {solve.hintTimerExpired();}
-
-class Solve {	
-	constructor() {
-		this.keyboard = new Keyboard();
-		this.keyboard.show();
-		this.keyboard.enable();
-		
-		this.rungs = [];
-		this.rungs[0] = new Rung(0, puzzle.words[0]);
-		this.rungs[1] = new Rung(1, [undefined, undefined, undefined, undefined, undefined]);
-		this.rungs[2] = new Rung(2, [undefined, undefined, undefined, undefined, undefined]);
-		this.rungs[3] = new Rung(3, puzzle.words[3]);
-		
-		this.selectedRungNum = 1;
-		this.cursor = new Cursor();
-		this.cursor.setRungPosition(this.selectedRungNum, 0);
-		this.cursor.show();
-		this.savedRungPosition = 0;
-
-		this.diamonds = new Diamonds();
-		//console.log(this.diamonds);
-		this.diamondCounts = [undefined, undefined, undefined];
-		
-		this.controls = [];
-		this.controls["Back"] = new Control("#iBack", backOnClick);
-		this.controls["Information"] = new Control("#cInformation", informationOnClick);
-		this.controls["DeleteBack"] = new Control("#cDeleteBack", deleteBackOnClick);
-		this.controls["DeleteAll"] = new Control("#cDeleteAll", deleteAllOnClick);
-		this.controls["Reset"] = new Control("#cReset", resetOnClick);
-		this.controls["UpperLower"] = new Control("#cUpperLower", upperLowerOnClick);
-		this.controls["Solution"] = new Control("#cSolution", solutionOnClick);
-		this.controls["Hint"] = new Control("#cHint", hintOnClick);
-		this.upperLowerRef = document.querySelector("#cUpperLower");
-		
-		this.solutionRungPositions = [[1, 0], [1, 1], [1, 2], [1, 3], [1, 4], [2, 0], [2, 1], [2, 2], [2, 3], [2, 4]];
-		this.solutionLetters = [];
-		for (let i = 0; i < 5; i++) this.solutionLetters.push(puzzle.words[1][i]);
-		for (let i = 0; i < 5; i++) this.solutionLetters.push(puzzle.words[2][i]);
-		this.solutionNextIndex = undefined;
-		this.solutionTimer = undefined;
-		//delays BEFORE letter this.solutionLetters[this.solutionNextIndex] is shown
-		//if rungs are empty the first letter is shown immediately
-		//otherwise the delay applies
-		this.solutionDelays = [1000, 500, 500, 500, 500, 1000, 500, 500, 500, 500];
-
-		this.hintRung = this.rungs[puzzle.hint[0]];
-		this.hintPosition = puzzle.hint[1];
-		this.hintLetter = puzzle.hint[2];
-		this.hintTimer = undefined;
-		this.hintNumShows = 3;
-		this.hintNumShowsRemaining = undefined;
-		this.hintShowing = undefined;
-
-		this.refresh();
-		
-		this.enableAllControlsExcept(["Reset", "DeleteBack", "DeleteAll"]);
-		
-		this.led = new LED();
-	}
-
-	updateLED() {
-		let letters1 = [];
-		let letters2 = [];
-		for (let position = 0; position < 5; position++) {
-			letters1[position] = this.rungs[1].getLetter(position);
-			letters2[position] = this.rungs[2].getLetter(position);
-		}
-		if (letters1.includes(undefined) || letters2.includes(undefined)) {
-			this.led.hide();
-			return;
-		}
-		else {
-			for (let i = 0; i < this.diamondCounts.length; i++) {
-				if (this.diamondCounts[i] != 2) {
-					this.led.showRed();
-					return;
-				}
-			}
-			if (letters1.join() === puzzle.words[1].join() && letters2.join() === puzzle.words[2].join()) {
-				this.led.showGreen();
-				return;
-			}
-			else {
-				this.led.showAmber();
-				return;
-			}
-		}
-	}
-	
-	updateRungDiamonds(rung) {
-		let diamondCount = 0;
-		for (let position = 0; position < 5; position++) {
-			const letterAbove = this.rungs[rung].getLetter(position);
-			const letterBelow = this.rungs[rung + 1].getLetter(position);
-			if (letterAbove == undefined || letterBelow == undefined) continue;
-			if (letterAbove != letterBelow) diamondCount++;
-		}
-		for (let position = 0; position < 5; position++) {
-			const letterAbove = this.rungs[rung].getLetter(position);
-			const letterBelow = this.rungs[rung + 1].getLetter(position);
-			if (letterAbove == undefined || letterBelow == undefined) {
-				this.diamonds.hide(rung, position);
-			}
-			else if (letterAbove == letterBelow) {
-				this.diamonds.hide(rung, position);
-			}
-			else if (diamondCount <= 2) this.diamonds.showGood(rung, position); else this.diamonds.showBad(rung, position);
-		}
-		return diamondCount;
-	}
-	
-	updateAllDiamonds() {
-		this.diamondCounts[0] = this.updateRungDiamonds(0);
-		this.diamondCounts[1] = this.updateRungDiamonds(1);
-		this.diamondCounts[2] = this.updateRungDiamonds(2);
-	}
-	
-	refresh() {
-		this.updateAllDiamonds();
-		for (let i = 0; i < this.rungs.length; i++) this.rungs[i].refresh();
-		this.cursor.refresh();
-	}
-	
-	disableAllControls() {
-		this.keyboard.disable();
-		for (let name in this.controls) {
-			this.controls[name].disable();
-		}
-	}
-
-	disableControls(controls) {
-		for (let i in controls) {
-			this.controls[controls[i]].disable();
-		}
-	}
-	
-	enableAllControls() {
-		this.keyboard.enable();
-		for (let name in this.controls) {
-			this.controls[name].enable();
-		}
-	}
-
-	enableControls(controls) {
-		for (let i in controls) {
-			this.controls[controls[i]].enable();
-		}
-	}
-	
-	enableAllControlsExcept(exceptions) {
-		this.keyboard.enable();
-		for (let name in this.controls) {
-			if (!exceptions.includes(name)) this.controls[name].enable(); else this.controls[name].disable();
-		}
-	}
-
-	informationOnClick() {
-		console.log("informationOnClick called");
-		this.keyboard.hide();
-		const styleSheet = document.styleSheets[0]
-		const informationRule = [...styleSheet.cssRules].find((r) => r.selectorText === "#information");
-		informationRule.style.setProperty("display", `grid`);
-		informationRule.style.setProperty("z-index", `5`);
-		const bodyRule = [...styleSheet.cssRules].find((r) => r.selectorText === "body");
-		bodyRule.style.setProperty("overflow", `auto`);
-	}
-	
-	backOnClick() {
-		console.log("backOnClick called");
-		this.keyboard.show();
-		const styleSheet = document.styleSheets[0]
-		const informationRule = [...styleSheet.cssRules].find((r) => r.selectorText === "#information");
-		informationRule.style.setProperty("z-index", `1`);
-		informationRule.style.setProperty("display", `none`);
-		const bodyRule = [...styleSheet.cssRules].find((r) => r.selectorText === "body");
-		bodyRule.style.setProperty("overflow", `hidden`);
-	}
-	
-	keyOnClick(letter) {
-		let cursorPosition = this.cursor.getPosition();
-		this.rungs[this.selectedRungNum].setLetter(letter, cursorPosition);
-		cursorPosition = cursorPosition == 4 ? 4 : cursorPosition + 1;
-		this.cursor.setPosition(cursorPosition);
-		this.refresh();
-		this.enableControls(["Reset", "DeleteBack", "DeleteAll"]);
-		this.updateLED();
-	}
-	
-	deleteBackOnClick() {
-		let cursorPosition = this.cursor.getPosition();
-		this.rungs[this.selectedRungNum].unsetLetter(cursorPosition);
-		if (cursorPosition != 0) {
-			cursorPosition--;
-			this.cursor.setPosition(cursorPosition);
-		}
-		else {
-			this.disableControls(["DeleteBack", "DeleteAll"]);
-			const otherRungNum = this.selectedRungNum == 1 ? 2 : 1;
-			if (this.rungs[otherRungNum].isEmpty()) this.disableControls(["Reset"]);
-		}
-		this.refresh();
-		this.updateLED();
-	}
-
-	deleteAllOnClick() {
-		this.rungs[this.selectedRungNum].reset();
-		this.cursor.setPosition(0);
-		this.disableControls(["DeleteAll", "DeleteBack"]);
-		const otherRungNum = this.selectedRungNum == 1 ? 2 : 1;
-		if (this.rungs[otherRungNum].isEmpty()) this.disableControls(["Reset"]);
-		this.refresh();
-		this.updateLED();
-	}
-
-	upperLowerOnClick() {
-		const otherRungNum = this.selectedRungNum == 1 ? 2 : 1;
-		if (this.rungs[this.selectedRungNum].isEmpty()) {
-			if (this.rungs[otherRungNum].isEmpty()) this.disableControls(["Reset", "DeleteBack", "DeleteAll"]); else this.enableControls(["DeleteBack", "DeleteAll"]);
-		}
-		else {
-			if (this.rungs[otherRungNum].isEmpty()) this.disableControls(["DeleteBack"]); else this.enableControls(["DeleteBack", "DeleteAll"]);
-		}
-		this.selectedRungNum = otherRungNum;
-		const newSavedRungPosition = this.cursor.getPosition();
-		this.cursor.setRungPosition(this.selectedRungNum, this.savedRungPosition);
-		this.savedRungPosition = newSavedRungPosition;
-		this.refresh();
-		this.upperLowerRef.innerHTML = this.selectedRungNum == 1 ? "&bigtriangledown;" : "&bigtriangleup;";
-	}
-	
-	resetOnClick() {
-		this.rungs[1].reset();
-		this.rungs[2].reset();
-		this.selectedRungNum = 1;
-		this.cursor.setRungPosition(this.selectedRungNum, 0);
-		this.savedRungPosition = 0;
-		this.enableAllControlsExcept(["Reset", "DeleteBack", "DeleteAll"]);
-		this.upperLowerRef.innerHTML = "&bigtriangledown;";
-		this.cursor.show();
-		this.refresh();
-		this.updateLED();
-	}
-
-	solutionTimerExpired() {
-		const rungPosition = this.solutionRungPositions[this.solutionNextIndex];
-		this.rungs[rungPosition[0]].setLetter(this.solutionLetters[this.solutionNextIndex], rungPosition[1]);
-		this.refresh();
-		this.solutionNextIndex++;
-		if (this.solutionNextIndex == 10) {
-			this.enableControls(["Reset"]);
-		}
-		else {
-			this.solutionTimer = setTimeout(solutionTimerExpired, this.solutionDelays[this.solutionNextIndex]);		
-		}
-	}
-	
-	solutionOnClick() {
-		this.disableAllControls();
-		this.cursor.hide();
-		this.led.hide();
-		if (this.rungs[1].isEmpty() && this.rungs[2].isEmpty()) {
-			const rungPosition = this.solutionRungPositions[0];
-			this.rungs[rungPosition[0]].setLetter(this.solutionLetters[0], rungPosition[1]);
-			this.refresh();
-			this.solutionNextIndex = 1;
-		}
-		else {
-			this.rungs[1].reset();
-			this.rungs[2].reset();
-			this.refresh();
-			this.solutionNextIndex = 0;
-		}
-		this.solutionTimer = setTimeout(solutionTimerExpired, this.solutionDelays[this.solutionNextIndex]);
-	}
-	
-	hintTimerExpired() {
-		if (this.hintShowing) {
-			this.hintRung.unsetLetter(this.hintPosition);
-			this.refresh();
-			this.hintShowing = false;
-			this.hintNumShowsRemaining--;
-			if (this.hintNumShowsRemaining == 0) {
-				clearInterval(this.hintTimer);
-				this.selectedRungNum = 1;
-				this.cursor.setRungPosition(this.selectedRungNum, 0);
-				this.savedRungPosition = 0;
-				this.enableAllControlsExcept(["Reset", "DeleteBack", "DeleteAll"]);
-				this.cursor.show();
-				this.refresh();
-			}
-		}
-		else {
-			this.hintRung.setLetter(this.hintLetter, this.hintPosition);
-			this.refresh();
-			this.hintShowing = true;			
-		}
-	}
-	
-	hintOnClick() {
-		this.disableAllControls();
-		this.cursor.hide();
-		this.led.hide();
-		if (this.rungs[1].isEmpty() && this.rungs[2].isEmpty()) {
-			this.hintRung.setLetter(this.hintLetter, this.hintPosition);
-			this.refresh();
-			this.hintShowing = true;
-			this.hintNumShowsRemaining = this.hintNumShows;
-		}
-		else {
-			this.rungs[1].reset();
-			this.rungs[2].reset();
-			this.refresh();
-			this.hintShowing = false;
-			this.hintNumShowsRemaining = this.hintNumShows;
-		}
-		this.hintTimer = setInterval(hintTimerExpired, 1000);
-	}
-}
-const solve = new Solve();
-
-</script>
-

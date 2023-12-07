@@ -1,0 +1,31 @@
+<svg version="1.1"
+     width="220" height="80"
+     xmlns="http://www.w3.org/2000/svg">
+
+<!--	<rect x="0" y="0" width="239" height="79" fill="#F2E9C4"/>
+	<polygon points="50 40, 75 20, 125 20, 125 60, 75 60" stroke="black" stroke-width="5" stroke-linejoin="miter" fill="none"/>
+	<line x1="90" y1="30" x2="110" y2="50" stroke="black" stroke-width="5" stroke-linecap="butt"/>
+	<line x1="90" y1="50" x2="110" y2="30" stroke="black" stroke-width="5" stroke-linecap="butt"/> -->
+<!--	<line x1="47" y1="20" x2="47" y2="60" stroke="black" stroke-width="5" stroke-linecap="square"/> -->
+
+<!--	<rect x="0" y="0" width="239" height="79" fill="#F2E9C4"/>
+	<polygon points="50 40, 75 20, 125 20, 125 60, 75 60" stroke="black" stroke-width="4" stroke-linejoin="miter" fill="none"/>
+	<line x1="90" y1="30" x2="110" y2="50" stroke="black" stroke-width="4" stroke-linecap="butt"/>
+	<line x1="90" y1="50" x2="110" y2="30" stroke="black" stroke-width="4" stroke-linecap="butt"/>
+	<line x1="47" y1="20" x2="47" y2="60" stroke="black" stroke-width="4" stroke-linecap="square"/> -->
+
+<!--	<rect x="0" y="0" width="220" height="80" fill="#F2E9C4"/>
+	<polygon points="68 40, 93 20, 143 20, 143 60, 93 60" stroke="black" stroke-width="3" stroke-linejoin="miter" fill="none"/>
+	<line x1="108" y1="30" x2="128" y2="50" stroke="black" stroke-width="3" stroke-linecap="butt"/>
+	<line x1="108" y1="50" x2="128" y2="30" stroke="black" stroke-width="3" stroke-linecap="butt"/>
+	<line x1="65" y1="20" x2="65" y2="60" stroke="black" stroke-width="5" stroke-linecap="square"/> -->
+<!--	<line x1="0" y1="37" x2="68" y2="37" stroke="red" stroke-width="4" stroke-linecap="butt"/>
+	<line x1="148" y1="37" x2="220" y2="37" stroke="red" stroke-width="4" stroke-linecap="butt"/> -->
+
+	<rect x="0" y="0" width="220" height="80" fill="#F2E9C4"/>
+	<polygon points="74 40, 99 20, 149 20, 149 60, 99 60" stroke="black" stroke-width="3" stroke-linejoin="miter" fill="none"/>
+	<line x1="114" y1="30" x2="134" y2="50" stroke="black" stroke-width="3" stroke-linecap="butt"/>
+	<line x1="114" y1="50" x2="134" y2="30" stroke="black" stroke-width="3" stroke-linecap="butt"/>
+	<line x1="71" y1="20" x2="71" y2="60" stroke="black" stroke-width="5" stroke-linecap="square"/>
+
+</svg>

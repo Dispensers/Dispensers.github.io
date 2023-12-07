@@ -1,233 +1,126 @@
-const numGridColumns = 59;
-
-//main wall
-const mainWallHeightAboveDoor = 10;
-
-//punter door
-const punterDoorHeightAbovePanel = 12;
-const punterDoorHeightBelowPanel = 21;
-
-//punter panel
-const punterPanelHeightAboveDispensers = 3;
-const punterPanelHeightBelowDispensers = 26;
-const containerCompartmentHeight = 7;
-
-console.log(`${window.innerHeight}px`);
-console.log(`${window.innerWidth}px`);
-console.log(`${window.devicePixelRatio}`);
-
-const puzzleDataRef = document.querySelector("#iwPuzzleData");
-puzzleDataRef.innerHTML = "<strong>Puzzle #" + String(punterPuzzleSpec.number) + "&emsp;&boxh;&emsp;Solve by " + punterPuzzleSpec.solveBy + "</strong>";
+/* -------- Utility Functions -------- */
 
 function wait(duration) {
 	return new Promise((resolve, reject) => {setTimeout(resolve, duration)});
 }
 
-function updateFontSize(numGridRows, numGridColumns) {
-	console.log('updateFontSize called');
-	console.log(numGridRows);
-	console.log(numGridColumns);
-	  
-	let innerDimension = 0
-	let gridDimension = 0
-	if ((window.innerHeight / numGridRows) <= (window.innerWidth / numGridColumns)) {
-		innerDimension = window.innerHeight;
-		gridDimension = numGridRows;
+
+/* -------- Fit -------- */
+
+const mainWallSpec = {
+	numGridRows: 69,
+	numGridColumns: 65
+};
+
+class MainWallFit {
+	constructor(mainWallSpec) {
+		console.log(`${window.innerHeight}px`);
+		console.log(`${window.innerWidth}px`);
+		console.log(`${window.devicePixelRatio}`);
+		const mainRef = document.querySelector("#mainWall");
+		
+		let innerDimension = 0
+		let gridDimension = 0
+		if ((window.innerHeight / mainWallSpec.numGridRows) <= (window.innerWidth / mainWallSpec.numGridColumns)) {
+			innerDimension = window.innerHeight;
+			gridDimension = mainWallSpec.numGridRows;
+		}
+		else {
+			innerDimension = window.innerWidth;
+			gridDimension = mainWallSpec.numGridColumns;
+		}
+
+		const percent = innerDimension / 100;
+		let fontSize = 0;
+		let reducingInnerDimension = innerDimension + 1;
+		do {
+			reducingInnerDimension = reducingInnerDimension - 1;
+			fontSize = Math.trunc((reducingInnerDimension / gridDimension) * window.devicePixelRatio) / window.devicePixelRatio;
+			console.log('mw fontSize', fontSize);
+		} while ((innerDimension - (fontSize * gridDimension)) < (2 * percent));
+		console.log('mw final fontSize', fontSize);
+		//document.body.style.fontSize = `${fontSize}px`;
+		mainRef.style.fontSize = `${fontSize}px`;
+		this.fontSize = fontSize;
+		
+		const spareHeight = window.innerHeight - (this.fontSize * mainWallSpec.numGridRows);
+		console.log('mw spareHeight', spareHeight);
+		const deviceSpareHeight = spareHeight * window.devicePixelRatio;
+		console.log('mw deviceSpareHeight', deviceSpareHeight);
+		const roundedDeviceSpareHeight = Math.trunc(deviceSpareHeight / 2) * 2;
+		console.log('mw roundedDeviceSpareHeight', roundedDeviceSpareHeight);
+		const roundedSpareHeight = roundedDeviceSpareHeight / window.devicePixelRatio;
+		console.log('mw roundedSpareHeight', roundedSpareHeight);
+		this.topPosition = roundedSpareHeight / 2;
+		mainRef.style.top = `${this.topPosition}px`;
+
+		this.width = this.fontSize * mainWallSpec.numGridColumns
+		const spareWidth = window.innerWidth - this.width;
+		console.log('mw spareWidth', spareWidth);
+		const deviceSpareWidth = spareWidth * window.devicePixelRatio;
+		console.log('mw deviceSpareWidth', deviceSpareWidth);
+		const roundedDeviceSpareWidth = Math.trunc(deviceSpareWidth / 2) * 2;
+		console.log('mw roundedDeviceSpareWidth', roundedDeviceSpareWidth);
+		const roundedSpareWidth = roundedDeviceSpareWidth / window.devicePixelRatio;
+		console.log('mw roundedSpareWidth', roundedSpareWidth);
+		this.leftPosition = roundedSpareWidth / 2;
+		mainRef.style.left = `${this.leftPosition}px`;
 	}
-	else {
-		innerDimension = window.innerWidth;
-		gridDimension = numGridColumns;
-	}
-	
-	const percent = innerDimension / 100;
-	console.log('percent');
-	console.log(percent);
-	let fontSize = 0;
-	let reducingInnerDimension = innerDimension + 1;
-	do {
-		reducingInnerDimension = reducingInnerDimension - 1
-		fontSize = Math.floor((reducingInnerDimension / gridDimension) * window.devicePixelRatio) / window.devicePixelRatio
-		console.log('fontSize');
-		console.log(fontSize);
-	} while ((innerDimension - (fontSize * gridDimension)) < (2 * percent));
-	console.log('final fontSize');
-	console.log(fontSize);
-	document.body.style.fontSize = `${fontSize}px`;
-  
-	let spareHeight = window.innerHeight - (fontSize * numGridRows);
-	console.log('spareHeight');
-	console.log(spareHeight);
-	let deviceSpareHeight = spareHeight * window.devicePixelRatio;
-	console.log('deviceSpareHeight');
-	console.log(deviceSpareHeight);
-	let roundedDeviceSpareHeight = Math.trunc(deviceSpareHeight / 2) * 2;
-	console.log('roundedDeviceSpareHeight');
-	console.log(roundedDeviceSpareHeight);
-	let roundedSpareHeight = roundedDeviceSpareHeight / window.devicePixelRatio;
-	console.log('roundedSpareHeight');
-	console.log(roundedSpareHeight);
-	let mainRef = document.querySelector("#mainWall");
-	let infoRef = document.querySelector("#infoWall");
-	mainRef.style.top = `${roundedSpareHeight / 2}px`;
-	infoRef.style.top = `${roundedSpareHeight / 2}px`;
-  
-	let spareWidth = window.innerWidth - (fontSize * numGridColumns);
-	console.log('spareWidth');
-	console.log(spareWidth);
-	let deviceSpareWidth = spareWidth * window.devicePixelRatio;
-	console.log('deviceSpareWidth');
-	console.log(deviceSpareWidth);
-	let roundedDeviceSpareWidth = Math.trunc(deviceSpareWidth / 2) * 2
-	console.log('roundedDeviceSpareWidth');
-	console.log(roundedDeviceSpareWidth);
-	let roundedSpareWidth = roundedDeviceSpareWidth / window.devicePixelRatio;
-	console.log('roundedSpareWidth');
-	console.log(roundedSpareWidth);
-	mainRef.style.left = `${roundedSpareWidth / 2}px`;
-	infoRef.style.left = `${roundedSpareWidth / 2}px`;
-  
-	return fontSize;
 }
 
-class Symbol {
-	static getSymbolType(symbol) {
-		const symbolTypeLookUp = {
-			"0":"T0",
-			"1":"T1",
-			"2":"T1",
-			"3":"T1",
-			"4":"T1",
-			"5":"T1",
-			"6":"T1",
-			"7":"T1",
-			"8":"T1",
-			"9":"T1",
-			"+":"T+",
-			"-":"T-",
-			"*":"T*",
-			"/":"T/",
-			"a":"Tf",
-			"b":"Tf",
-			"c":"Tf",
-			"d":"Tf",
-			"e":"Tf",
-			"f":"Tf",
-			"g":"Tf",
-			"h":"Tf",
-			"i":"Tf",
-			"j":"Tf",
-			"k":"Tf",
-			"l":"Tf",
-			"m":"Tf",
-			"n":"Tf",
-			"o":"Tf"
-		};
-		return symbolTypeLookUp[symbol];
-	}
-	
-	static getHTMLSymbolCode(symbol) {
-		const symbolCodeLookUp = {
-			"0":"0",
-			"1":"1",
-			"2":"2",
-			"3":"3",
-			"4":"4",
-			"5":"5",
-			"6":"6",
-			"7":"7",
-			"8":"8",
-			"9":"9",
-			"+":"&plus;",
-			"-":"&minus;",
-			"*":"&times;",
-			"/":"&divide;",
-			"a":"&frac12;",
-			"b":"&frac13;",
-			"c":"&frac14;",
-			"d":"&frac15;",
-			"e":"&frac16;",
-			"f":"&frac18;",
-			"g":"&frac23;",
-			"h":"&frac25;",
-			"i":"&frac34;",
-			"j":"&frac35;",
-			//"k":'<span class="Fraction">&frac38;</span>',
-			"k":"&frac38;",
-			"l":"&frac45;",
-			"m":"&frac56;",
-			"n":"&frac58;",
-			"o":"&frac78;"
-		};
-		return symbolCodeLookUp[symbol]
-	}
-
-	static getHTMLSpaceCode(symbol1, symbol2, symbol3) {
-		const coarseTypeLookUp = {
-			"":"",
-			"0":"Td",
-			"1":"Td",
-			"2":"Td",
-			"3":"Td",
-			"4":"Td",
-			"5":"Td",
-			"6":"Td",
-			"7":"Td",
-			"8":"Td",
-			"9":"Td",
-			"+":"T+",
-			"-":"T-",
-			"*":"T*/",
-			"/":"T*/",
-			"a":"Td",
-			"b":"Td",
-			"c":"Td",
-			"d":"Td",
-			"e":"Td",
-			"f":"Td",
-			"g":"Td",
-			"h":"Td",
-			"i":"Td",
-			"j":"Td",
-			"k":"Td",
-			"l":"Td",
-			"m":"Td",
-			"n":"Td",
-			"o":"Td"
-		};
-		
-		const thinSpaceSequences = ["TdT+", "TdT-", "T+Td", "T-Td", "TdTdT+", "TdTdT-", "T+TdT+", "T+TdT-", "T-TdT+", "T-TdT-", "T*/TdT+", "T*/TdT-", "TdT+Td", "TdT-Td"];
-		const veryThinSpaceSequences = ["TdT*/", "T*/Td", "T*/T-", "TdTdT*/", "T+TdT*/", "T-TdT*/", "T*/TdT*/", "TdT*/Td"];
-
-		const type1 = coarseTypeLookUp[symbol1];
-		const type2 = coarseTypeLookUp[symbol2];
-		const type3 = coarseTypeLookUp[symbol3];
-		const type123 = type1 + type2 + type3;
-		
-		if (thinSpaceSequences.includes(type123))
-			return "&thinsp;";
-		else if (veryThinSpaceSequences.includes(type123))
-			return "&VeryThinSpace;";
-		else
-			return "";
+class InfoWallFit {
+	constructor(topPosition, leftPosition, fontSize) {
+		const infoRef = document.querySelector("#infoWall");
+		infoRef.style.top = `${topPosition}px`;
+		infoRef.style.left = `${leftPosition}px`;
+		infoRef.style.fontSize = `${fontSize}px`;
 	}
 }
+
+class KeyboardFit {
+	constructor(leftKeyboardLeftPosition, rightKeyboardRightPosition) {
+		console.log('kb leftKeyboardLeftPosition', leftKeyboardLeftPosition);
+		console.log('kb rightKeyboardRightPosition', rightKeyboardRightPosition);
+		const numLetters = 13
+		const minSpareHeight = 10;
+		const leftKeyboardRef = document.querySelector("#kbLeft");
+		const rightKeyboardRef = document.querySelector("#kbRight");
+		
+		const fontSize = Math.trunc(((window.innerHeight - minSpareHeight) / numLetters) * window.devicePixelRatio) / window.devicePixelRatio;
+		console.log('kb fontSize', fontSize);
+		leftKeyboardRef.style.fontSize = `${fontSize}px`;
+		rightKeyboardRef.style.fontSize = `${fontSize}px`;
+
+		const spareHeight = window.innerHeight - (fontSize * numLetters);
+		console.log('kb spareHeight', spareHeight);
+		const deviceSpareHeight = spareHeight * window.devicePixelRatio;
+		console.log('kb deviceSpareHeight', deviceSpareHeight);
+		const roundedDeviceSpareHeight = Math.trunc(deviceSpareHeight / 2) * 2;
+		console.log('kb roundedDeviceSpareHeight', roundedDeviceSpareHeight);
+		const roundedSpareHeight = roundedDeviceSpareHeight / window.devicePixelRatio;
+		console.log('kb roundedSpareHeight', roundedSpareHeight);
+		this.mainTopPosition = roundedSpareHeight / 2;
+		//leftKeyboardRef.style.top = `${topPosition}px`;
+		//rightKeyboardRef.style.top = `${topPosition}px`;
+		
+		leftKeyboardRef.style.left = `${leftKeyboardLeftPosition}px`;
+		const rightKeyboardWidth = fontSize;
+		rightKeyboardRef.style.left = `${rightKeyboardRightPosition - rightKeyboardWidth}px`;
+	}
+}
+
+
+/* -------- Puzzle -------- */
 
 class Puzzle {
 	constructor(puzzleSpec) {
-		this.dispenserFullSpec = puzzleSpec.dispenserSpec;
-		this.targetSpec = puzzleSpec.targetSpec;
+		this.words = puzzleSpec.words;
 		this.hintSpec = puzzleSpec.hintSpec;
-		this.solutionExpression = puzzleSpec.solutionExpression;
-		this.solutionDispenseSequence = puzzleSpec.solutionDispenseSequence;
-		this.numDispensers = this.dispenserFullSpec.length - 1;
-		this.dispenserHeightSpec = [undefined];
-		for (let i = 1; i <= this.numDispensers; i++) this.dispenserHeightSpec[i] = this.dispenserFullSpec[i].length;
-		this.maxDispenserHeight = 1;
-		for (let d = 1; d <= this.numDispensers; d++) {
-			if (this.dispenserHeightSpec[d] > this.maxDispenserHeight) this.maxDispenserHeight = this.dispenserHeightSpec[d];
-		};
 	}
-};
+}
+
+
+/* -------- Cross/Tick -------- */
 
 function crossTickFlashed(solveBiz) {solveBiz.unfreeze()}
 
@@ -253,6 +146,12 @@ class CrossTick {
 		this.ref.style.display = `block`;
 		flashCrossTick(this.ref, solveBiz);
 	}
+
+	showTickQuery(solveBiz) {
+		this.ref.innerHTML = "<strong>&check;</strong><sub>?</sub>"
+		this.ref.style.display = `block`;
+		flashCrossTick(this.ref, solveBiz);
+	}
 	
 	showCross(solveBiz) {
 		this.ref.innerHTML = "<strong>&cross;</strong>"
@@ -265,314 +164,260 @@ class CrossTick {
 	}
 }
 
-class Item {
-	constructor(dispenser, symbol) {
-		this.dispenser = dispenser;
-		this.symbol = symbol;
+
+/* -------- Keyboard -------- */
+
+class Key {
+	constructor(id) {
+		this.id = id;
+		this.ref = document.querySelector(id);
+		this.onClick = undefined;
+		this.isEnabled = false;
+	}
+
+	assign(onClick) {
+		this.onClick = onClick;
+		this.isEnabled = true;
+		this.disable();
+		
+	}
+	
+	enable() {
+		if (!this.isEnabled) {
+			this.ref.style.opacity = `1.0`;
+			if (this.onClick != null) this.ref.addEventListener("click", this.onClick);
+			this.isEnabled = true;
+		}
+	}
+	
+	disable() {
+		if (this.isEnabled) {
+			this.ref.style.opacity = `0.5`;
+			if (this.onClick != null) this.ref.removeEventListener("click", this.onClick);
+			this.isEnabled = false;
+		}
 	}
 }
 
-class Dispenser {
-	constructor(symbolSequence, itemIdRoot) {		
-		this.itemQueue = [];
-		for (let i = 0; i < symbolSequence.length; i++) {
-			const item = new Item(this, symbolSequence[i]);
-			this.itemQueue.unshift(item);
-		}
+class Keyboard {
+	constructor() {
+		this.leftRef = document.querySelector("#kbLeft");
+		this.rightRef = document.querySelector("#kbRight");
 
-		this.itemRefs = [];
-		for (let i = 1; i <= symbolSequence.length; i++) {
-			const itemId = itemIdRoot + String(i);
-			const itemRef = document.querySelector(itemId);
-			this.itemRefs.push(itemRef);
+		this.keys = [];
+		const letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+		const keyIdRoot = "#kb-";
+		for (let i = 0; i < letters.length; i++) {
+			const keyId = keyIdRoot + letters[i];
+			this.keys[i] = new Key(keyId);
 		}
 		
-		this.container = [];
-		for (let t = 0; t < this.itemQueue.length; t++) this.container[t] = this.itemQueue[t];
-				
-		this.numItemsInContainer = this.itemQueue.length;
+		this.isEnabled = false;
+	}
+	
+	assign(onClicks) {
+		for (let i = 0; i < this.keys.length; i++) {
+			const onClick = onClicks == null ? null : onClicks[i];
+			this.keys[i].assign(onClick);
+		}
+		this.isEnabled = false;
+	}
+	
+	show(topPosition) {
+		this.leftRef.style.display = `grid`;
+		this.leftRef.style.top = `${topPosition}px`;
+		this.rightRef.style.display = `grid`;
+		this.rightRef.style.top = `${topPosition}px`;		
+	}
+	
+	hide() {
+		console.log("Keyboard.hide called");
+		this.leftRef.style.display = `none`;
+		this.rightRef.style.display = `none`;
 	}
 
+	enable() {
+		if (!this.isEnabled) {
+			for (let i = 0; i < this.keys.length; i++) {
+				this.keys[i].enable();
+			}
+			this.isEnabled = true;
+		}
+	}
+	
+	disable() {
+		if (this.isEnabled) {
+			for (let i = 0; i < this.keys.length; i++) {
+				this.keys[i].disable();
+			}
+			this.isEnabled = false;
+		}
+	}
+}
+
+
+/* -------- Diamonds -------- */
+
+class Diamonds {
+	constructor(diamondIdRoot) {
+		this.goodRefs = [[], [], []];
+		this.badRefs = [[], [], []];
+		for (let rung = 0; rung <= 2; rung++) {
+			for (let position = 0; position < 5; position++) {
+				const goodId = diamondIdRoot + "Good-" + String(rung + 1) + String(position + 1);
+				const badId = diamondIdRoot + "Bad-" + String(rung + 1) + String(position + 1);
+				this.goodRefs[rung][position] = document.querySelector(goodId);
+				this.badRefs[rung][position] = document.querySelector(badId);
+			}
+		}
+	}
+	
+	showGood(rung, position) {
+		this.badRefs[rung][position].style.display = `none`;
+		this.goodRefs[rung][position].style.display = `block`;
+	}
+
+	showBad(rung, position) {
+		this.goodRefs[rung][position].style.display = `none`;
+		this.badRefs[rung][position].style.display = `block`;
+	}
+	
+	hide(rung, position) {
+		this.goodRefs[rung][position].style.display = `none`;
+		this.badRefs[rung][position].style.display = `none`;
+	}
+	
+	hideAll() {
+		for (let rung = 0; rung <= 2; rung++) {
+			for (let position = 0; position < 5; position++) {
+				this.hide(rung, position);
+			}
+		}		
+	}
+}
+
+
+/* -------- Words -------- */
+
+class Word {
+	constructor(letterIdRoot) {	
+		this.letterRefs = [];
+		for (let i = 0; i < 5; i++) {
+			const letterId = letterIdRoot + String(i + 1);
+			this.letterRefs[i] = document.querySelector(letterId);
+		}
+		
+		this.letters = [undefined, undefined, undefined, undefined, undefined];
+		this.position = 0;
+	}
+	
 	refresh() {
-		for (let t = 0; t < this.container.length; t++) {
-			if (this.container[t] == null) {
-				this.itemRefs[t].style.display = `none`;
-			}
-			else {
-				this.itemRefs[t].style.display = `block`;
-				this.itemRefs[t].innerHTML = "<code><strong>" + Symbol.getHTMLSymbolCode(this.container[t].symbol) + "</strong></code>";
-			}
+		for (let i = 0; i < 5; i++) {
+			const text = this.letters[i] == undefined ? "&InvisibleTimes;" : this.letters[i];
+			this.letterRefs[i].innerHTML = text;
 		}
 	}
 	
-	reset() {	
-		this.container = [];
-		for (let i = 0; i < this.itemQueue.length; i++) this.container[i] = this.itemQueue[i];
-		this.numItemsInContainer = this.itemQueue.length;
+	addLetter(letter) {
+		this.letters[this.position] = letter;
+		this.position++;
 	}
 	
-	peekAtItem() {
-		return this.container[0];
+	removeLetter() {
+		this.position--;
+		this.letters[this.position] = undefined;
 	}
 	
-	takeItem() {
-		const item = this.container.shift();
-		this.container.push(null);
-		this.numItemsInContainer--;
-		return item;
+	setLetter(letter, position) {
+		this.letters[position] = letter;
 	}
 	
-	replaceItem() {
-		this.container.pop();
-		const item = this.itemQueue[this.itemQueue.length - this.numItemsInContainer - 1];
-		this.container.unshift(item);
-		this.numItemsInContainer++;		
-	}
-}
-
-class Target {
-	constructor(targetIdRoot, puzzle) {
-		const backgroundRef = document.querySelector(targetIdRoot + "Background-" + String(puzzle.targetSpec.length));
-		backgroundRef.style.display = `block`;
-		const foregroundRef = document.querySelector(targetIdRoot + "Foreground-" + String(puzzle.targetSpec.length));
-		foregroundRef.style.display = `block`;
-		foregroundRef.innerHTML = "<code><strong>" + puzzle.targetSpec + "</strong></code>";
-	}
-}
-
-function hintFlashed(solveBiz) {solveBiz.completeHintClicked()}
-/*
-async function flashHint(solveBiz, foregroundRef, htmlSequence) {
-	for (let html of htmlSequence) {
-		foregroundRef.innerHTML = html;
-		await wait(2000);		
-	}
-	foregroundRef.innerHTML = "";
-	hintFlashed(solveBiz)
-} */
-/*
-async function flashHint(solveBiz, frameSequence) {
-	for (let frame of frameSequence) {
-		frame[0].innerHTML = frame[1];
-		await wait(2000);		
-	}
-	foregroundRef.innerHTML = "";
-	hintFlashed(solveBiz)
-} */
-
-async function flashHint(solveBiz, script) {
-	const waitTimes = [2000, 500];
-	for (let i = 0; i <= 1; i++) {
-		for (let command of script) {
-			if (command.ref != null) command.ref.innerHTML = command.html;
-			if (command.pause != 0) await wait(command.pause);		
-		}
-		await wait(waitTimes[i]);
-	}
-	hintFlashed(solveBiz)
-}
-
-class Expression {
-	constructor(expressionIdRoot, puzzle) {
-		this.puzzle = puzzle;
-		const backgroundRef = document.querySelector(expressionIdRoot + "Background-" + String(puzzle.solutionExpression.length));
-		backgroundRef.style.display = `block`;
-		this.foregroundRef = document.querySelector(expressionIdRoot + "Foreground-" + String(puzzle.solutionExpression.length));
-		this.foregroundRef.style.display = `block`;
-		this.overstrikeRef = document.querySelector(expressionIdRoot + "Overstrike-" + String(puzzle.solutionExpression.length));
-		this.overstrikeRef.style.display = `block`;
-		this.overstrikeRef.innerHTML = "";
-		this.items = [];
-		this.invalidFirstOnes = ["T+", "T*", "T/"];
-		this.invalidFirstTwos = 
-			["T0T0", "T0T1", "T0Tf", "TfT0", "TfT1", "TfTf", "T+T+", "T+T-", "T+T*", "T+T/", "T-T+", "T-T-", "T-T*", "T-T/", "T*/T+", "T*T*", "T*T/", "T/T*", "T/T/"];
-		this.invalidTwos = ["TfT0", "TfT1", "TfTf", "T+T+", "T+T-", "T+T*/", "T-T+", "T-T-", "T-T*", "T-T/", "T*T+", "T/T+", "T*T*", "T*T/", "T/T*", "T/T/"];
-		this.invalidThrees = ["T+T0T0", "T+T0T1", "T+T0Tf", "T-T0T0", "T-T0T1", "T-T0Tf", "T*T0T0", "T*T0T1", "T*T0Tf"];
-		this.invalidLastOnes = ["T+", "T-", "T*", "T/"];
+	unsetLetter(position) {
+		this.letters[position] = undefined;
 	}
 	
 	reset() {
-		this.items = [];
+		for (let i = 0; i < this.letters.length; i++) {
+			this.letters[i] = undefined;
+		}
+		this.position = 0;
 	}
 
-	getLength() {
-		return this.items.length;
-	}
-	
-	getExpression() {
-		let expression = "";
-		for (let item of this.items) {
-			expression = expression + item.symbol;
-		}
-		return expression;
+	getLetter(position) {
+		return this.letters[position];
 	}
 
-	isAddItemValid(item) {
-		const itemType = Symbol.getSymbolType(item.symbol);
-		let expression = "";
-		for (let i of this.items) {
-			expression = expression + i.symbol;
-		}
-		if (expression.length == 0)
-			return !this.invalidFirstOnes.includes(itemType);
-		else if (expression.length == 1) {
-			const type1 = Symbol.getSymbolType(expression.charAt(0));
-			return !this.invalidFirstTwos.includes(type1 + itemType);
-		}
-		else if (expression.length >= 2) {
-			const type2 = Symbol.getSymbolType(expression.charAt(expression.length - 1));
-			if (this.invalidTwos.includes(type2 + itemType))
-				return false;
-			else {
-				const type1 = Symbol.getSymbolType(expression.charAt(expression.length - 2));
-				if (this.invalidThrees.includes(type1 + type2 + itemType))
-					return false;
-				else if (expression.length == this.puzzle.solutionExpression.length - 1)
-					return !this.invalidLastOnes.includes(itemType);
-				else return true;
-			}
-		}
+	getNextLetterPosition() {
+		return this.position;
 	}
 	
-	addItem(item) {
-		this.items.push(item);
+	isEmpty() {
+		return this.position == 0;
 	}
 	
-	removeItem() {
-		return this.items.pop();
-	}
-/*	
-	refresh() {
-		let html = "<code><strong>";
-		for (let item of this.items) {
-			html = html + Symbol.getHTMLSymbolCode(item.symbol);
-		}
-		html = html + "</strong></code>";
-		this.expressionRef.innerHTML = html;
-	}
-*/
-/*
-	refresh() {
-		const numItems = this.items.length;
-		let html = "";
-		if (numItems != 0) {
-			html = "&thinsp;<code><strong>" + Symbol.getHTMLSymbolCode(this.items[0].symbol) + "</strong></code>";
-			for (let i = 1; i < numItems; i++) {
-				const spaceCode = Symbol.getHTMLSpaceCode(this.items[i - 1].symbol, this.items[i].symbol);
-				const symbolCode = Symbol.getHTMLSymbolCode(this.items[i].symbol);
-				html = html + spaceCode + "<code><strong>" + symbolCode + "</strong></code>";
-			}
-		}
-		//console.log(html);
-		this.foregroundRef.innerHTML = html;
+	isComplete() {
+		return this.position == 5;
 	}
 }
-*/
+
+
+/* -------- Cursor -------- */
+
+class Cursor {
+	constructor(cursorIdRoot) {
+		this.wordNum = undefined;
+		this.position = undefined;
+		this.isShowing = false;
+
+		this.refs = [undefined, [], []];
+		for (let wordNum = 1; wordNum <= 2; wordNum++) {
+			for (let position = 0; position <= 5; position++) {
+				const id = cursorIdRoot + String(wordNum + 1) + String(position + 1);
+				this.refs[wordNum][position] = document.querySelector(id);
+			}
+		}
+	}
+	
+	hide() {
+		this.isShowing = false;
+	}
+	
+	show() {
+		this.isShowing = true;
+	}
+	
+	setWordNum(wordNum) {
+		this.wordNum = wordNum;
+	}
+
+	getWordNum() {
+		return this.wordNum;
+	}
+	
+	setPosition(position) {
+		this.position = position;
+	}
+	
+	getPosition() {
+		return this.position;
+	}
+	
 	refresh() {
-		const numItems = this.items.length;
-		let spaceCode = undefined;
-		let symbolCode = undefined;
-		let html = "";
-		if (numItems > 0) {
-			html = "&thinsp;<code><strong>" + Symbol.getHTMLSymbolCode(this.items[0].symbol) + "</strong></code>";
-			if (numItems > 1) {
-				spaceCode = Symbol.getHTMLSpaceCode("", this.items[0].symbol, this.items[1].symbol);
-				symbolCode = Symbol.getHTMLSymbolCode(this.items[1].symbol);
-				html = html + spaceCode + "<code><strong>" + symbolCode + "</strong></code>";
-				if (numItems > 2) {
-					for (let i = 2; i < numItems; i++) {
-						const spaceCode = Symbol.getHTMLSpaceCode(this.items[i - 2].symbol, this.items[i - 1].symbol, this.items[i].symbol);
-						const symbolCode = Symbol.getHTMLSymbolCode(this.items[i].symbol);
-						html = html + spaceCode + "<code><strong>" + symbolCode + "</strong></code>";					
-					}
+		for (let wordNum = 1; wordNum <= 2; wordNum++) {
+			for (let position = 0; position <= 5; position++) {
+				if (this.isShowing && wordNum == this.wordNum && position == this.position) {
+					this.refs[wordNum][position].style.display = `block`;
+				}
+				else {
+					this.refs[wordNum][position].style.display = `none`;
 				}
 			}
 		}
-		//console.log(html);
-		this.foregroundRef.innerHTML = html;
-	}
-/*
-	constructScript() {
-		const script = [];
-		let dotHTML = "";
-		if (this.puzzle.hintSpec.numDots != 0) {
-			for (let i = 0; i < this.puzzle.hintSpec.numDots; i++) {
-				dotHTML = dotHTML + "&bull;";
-				const command = {ref: this.foregroundRef, html: "<code>" + dotHTML + "</code>", pause: 1000};
-				script.push(command);
-			}
-			dotHTML = "<code>" + dotHTML + "</code>";
-		}
-		const symbolHTML = dotHTML + "<code><strong>" + this.puzzle.hintSpec.symbol + "</strong></code>";
-		script.push({ref: this.foregroundRef, html: symbolHTML, pause: 500});
-		if (!this.puzzle.hintSpec.isHere) {
-			const symbolNotHereHTML = dotHTML + <code><strong><span style="color:red;">/</span></strong></code>";
-			script.push({ref: this.overstrikeRef, html: symbolNotHereHTML, pause: 1000});
-		}
-		script.push({ref: this.foregroundRef, html: "", pause: 0});
-		script.push({ref: this.overstrikeRef, html: "", pause: 0});
-		return script;
-	}*/
-	
-	flashHint(solveBiz) {
-		//flashHint(solveBiz, this.foregroundRef, ["<code>&bull;</code>", "<code>&bull;&bull;</code>", "<code>&bull;&bull;</code><code><strong>3</strong></code>"]);
-/*		const htmlSequence = [[this.foregroundRef, "<code>&bull;</code>"],
-							  [this.foregroundRef, "<code>&bull;&bull;</code>"],
-							  [this.overstrikeRef, "<code>&bull;&bull;</code><code><strong>3</strong></code>"]
-							 ]; */
-/*		const htmlSequence = [[this.foregroundRef, "<code>&bull;</code>"],
-							  [this.foregroundRef, "<code>&bull;&bull;</code>"],
-							  [this.foregroundRef, '<code>&bull;&bull;</code><code><strong>3</strong></code>'],
-							  [this.overstrikeRef, '<code>&bull;&bull;</code><code><strong><span style="color:red;">/</span></strong></code>'],
-							 ]; */
-/*		const script = [{ref: this.foregroundRef, html: "<code>&bull;</code>", pause: 1000},
-						{ref: this.foregroundRef, html: "<code>&bull;&bull;</code>", pause: 1000},
-						{ref: this.foregroundRef, html: '<code>&bull;&bull;</code><code><strong>3</strong></code>', pause: 500},
-						{ref: this.overstrikeRef, html: '<code>&bull;&bull;</code><code><strong><span style="color:red;">/</span></strong></code>', pause: 1000},
-						{ref: this.foregroundRef, html: "", pause: 0},
-						{ref: this.overstrikeRef, html: "", pause: 0}
-					   ]; */
-		let script = [];
-		let dotHTML = "";
-		if (this.puzzle.hintSpec.numDots != 0) {
-			for (let i = 0; i < this.puzzle.hintSpec.numDots; i++) {
-				dotHTML = dotHTML + "&bull;";
-				const command = {ref: this.foregroundRef, html: "<code>" + dotHTML + "</code>", pause: 1000};
-				script.push(command);
-			}
-			dotHTML = "<code>" + dotHTML + "</code>";
-		}
-/*		const symbolHTML = dotHTML + "<code><strong>" + this.puzzle.hintSpec.symbol + "</strong></code>";
-		script.push({ref: this.foregroundRef, html: symbolHTML, pause: 500});
-		if (!this.puzzle.hintSpec.isHere) {
-			//const symbolNotHereHTML = dotHTML + '<code><strong><span style="color:red;">/</span></strong></code>';
-			//const symbolNotHereHTML = dotHTML + '<code><span style="color:red;">X</span></code>';
-			//const symbolNotHereHTML = dotHTML + '<code><span style="color:#D00000;">X</span></code>';
-			const symbolNotHereHTML = dotHTML + '<code><span style="color:#D00000;">&cross;</span></code>';
-			script.push({ref: this.overstrikeRef, html: symbolNotHereHTML, pause: 1000});
-		}
-		script.push({ref: this.foregroundRef, html: "", pause: 0});
-		script.push({ref: this.overstrikeRef, html: "", pause: 0});
-		flashHint(solveBiz, script);
-*/
-		const symbolHTML = dotHTML + "<code><strong>" + this.puzzle.hintSpec.symbol + "</strong></code>";
-		if (this.puzzle.hintSpec.isHere) {
-			script.push({ref: this.foregroundRef, html: symbolHTML, pause: 1500});
-		}
-		else {
-			script.push({ref: this.foregroundRef, html: symbolHTML, pause: 0});
-			let spaceHTML = "";
-			for (let i = 0; i < this.puzzle.hintSpec.numDots; i++) {
-				spaceHTML = spaceHTML + "&nbsp;";
-			}
-			const symbolNotHereHTML = "<code>" + spaceHTML + '<strong><span style="color:#D00000;">\\</span></strong></code>';
-			script.push({ref: this.overstrikeRef, html: symbolNotHereHTML, pause: 1500});
-		}
-		script.push({ref: this.foregroundRef, html: "", pause: 0});
-		script.push({ref: this.overstrikeRef, html: "", pause: 0});
-		flashHint(solveBiz, script);
 	}
 }
+
+
+/* -------- Controls -------- */
 
 class Control {
 	constructor(id, onClick) {
@@ -585,7 +430,6 @@ class Control {
 	}
 
 	enable() {
-		//console.log("Control.enable");
 		if (this.isFrozen) return;
 		if (!this.isEnabled) {
 			if (this.OnClick !== null) this.ref.addEventListener("click", this.onClick);
@@ -594,7 +438,6 @@ class Control {
 	}
 	
 	disable() {
-		//console.log("Control.disable");
 		if (this.isFrozen) return;
 		if (this.isEnabled) {
 			if (this.OnClick !== null) {
@@ -633,38 +476,13 @@ class Control {
 	}
 }
 
-function dispenseControlFlashed(solveBiz) {solveBiz.unfreeze()}
 
-async function flashDispenseControl(ref, flasherRef, solveBiz) {
-	ref.style.display = `none`;
-	await wait(300);
-	flasherRef.style.display = `block`;
-	await wait(300);
-	flasherRef.style.display = `none`;
-	await wait(300);
-	flasherRef.style.display = `block`;
-	await wait(300);
-	flasherRef.style.display = `none`;
-	ref.style.display = `block`;
-	dispenseControlFlashed(solveBiz)
-}
+/* -------- Solve -------- */
 
-class DispenseControl extends Control {
-	constructor(id, onClick) {
-		super(id, onClick);
-		this.flasherRef = document.querySelector(id + "Flasher");
-		this.flasherRef.style.display = `none`;
-	}
-	
-	flash(solveBiz) {
-		flashDispenseControl(this.ref, this.flasherRef, solveBiz);		
-	}
-}
-	
 class SolveIO {
 	constructor(controls, crossTick) {
 	//controls
-	//an array of Control objects indexed by these names: "DispenseN", "Information", "Hint", "Reset", "Solution", "Undispense"
+	//an array of Control objects indexed by these names: "Information", "Hint", "Reset", "Solution", ...
 	this.controls = controls;
 	this.crossTick = crossTick;
 	}
@@ -677,9 +495,6 @@ class SolveIO {
 	}
 
 	disableControls(controls) {
-		//console.log("disableControls");
-		//console.log(controls);
-		//for (let i in controls) {
 		for (let name of controls) {
 			this.controls[name].disable();
 			this.controls[name].fade();
@@ -694,9 +509,6 @@ class SolveIO {
 	}
 
 	enableControls(controls) {
-		//console.log("enableControls");
-		//console.log(controls);
-		//for (let i in controls) {
 		for (let name of controls) {
 			this.controls[name].enable();
 			this.controls[name].unfade();
@@ -704,7 +516,6 @@ class SolveIO {
 	}
 	
 	enableAllControlsExcept(exceptions) {
-		//CHECK THIS USE OF in
 		for (let name in this.controls) {
 			if (!exceptions.includes(name)) {
 				this.controls[name].enable();
@@ -728,10 +539,6 @@ class SolveIO {
 			this.controls[name].unfreeze();
 		}
 	}
-
-	flashDispenseControl(name, solveBiz) {
-		this.controls[name].flash(solveBiz);
-	}
 		
 	hideCrossTick() {
 		this.crossTick.hide();
@@ -740,6 +547,10 @@ class SolveIO {
 	showTick(solveBiz) {
 		this.crossTick.showTick(solveBiz);
 	}
+
+	showTickQuery(solveBiz) {
+		this.crossTick.showTickQuery(solveBiz);
+	}
 	
 	showCross(solveBiz) {
 		this.crossTick.showCross(solveBiz);
@@ -747,31 +558,55 @@ class SolveIO {
 }
 
 class SolveBiz {	
-	constructor(puzzle, dispensers, expression, io) {
+	constructor(puzzle, words, diamonds, cursor, io) {
 		this.puzzle = puzzle;
-		this.dispensers = dispensers;
-		this.expression = expression;
+		this.words = words;
+		this.diamonds = diamonds;
+		this.cursor = cursor;
 		this.io = io;
-		
-		for (let i = 1; i <= puzzle.numDispensers; i++) this.dispensers[i].refresh();
-		this.expression.refresh();
 
+		for (let p = 0; p < 5; p++) {
+			this.words[0].addLetter(this.puzzle.words[0][p]);
+			this.words[3].addLetter(this.puzzle.words[3][p]);
+		}
+		for (let w = 0; w < 4; w++) this.words[w].refresh();
+
+		this.cursor.setWordNum(1);
+		this.cursor.setPosition(0);
+		this.cursorSavedPosition = 0;
+		
+		this.diamondCounts = [undefined, undefined, undefined];
+
+		this.hintWord = this.words[this.puzzle.hintSpec[0]];
+		this.hintPosition = this.puzzle.hintSpec[1];
+		this.hintLetter = this.puzzle.hintSpec[2];
+		this.hintTimer = undefined;
 		this.hintNumShows = 3;
 		this.hintNumShowsRemaining = undefined;
-		this.hintIsShowing = undefined;
+		this.hintShowing = undefined;
 
-		//this.solutionNextIndex = undefined;
+		this.solutionLetters = [];
+		for (let i = 0; i < 5; i++) this.solutionLetters.push(puzzle.words[1][i]);
+		for (let i = 0; i < 5; i++) this.solutionLetters.push(puzzle.words[2][i]);
+		this.solutionPositions = [[1, 0], [1, 1], [1, 2], [1, 3], [1, 4], [2, 0], [2, 1], [2, 2], [2, 3], [2, 4]];
+		this.solutionDelays = [500, 500, 500, 500, 1000, 500, 500, 500, 500, 500];
+		this.solutionNextIndex = undefined;
+
 		this.callbackResolve = undefined;
 
 		this.sleep();
 	}
 	
 	sleep() {
+		this.cursor.hide();
+		this.cursor.refresh();
 		this.io.disableAllControls();
 	}
 	
 	wake() {
-		this.io.enableAllControlsExcept(["Reset", "Undispense"]);
+		this.cursor.show();
+		this.cursor.refresh();
+		this.io.enableAllControlsExcept(["Reset", "BackDelete", "BackDeleteAll"]);
 	}
 	
 	freeze() {
@@ -783,512 +618,639 @@ class SolveBiz {
 	}
 
 	reset() {
-		this.expression.reset();
-		this.expression.refresh();
-		for (let i = 1; i <= this.puzzle.numDispensers; i++) {
-			const dispenser = this.dispensers[i];
-			dispenser.reset();
-			dispenser.refresh();
-		}
-		this.dispenseSequence = [];
+		this.words[1].reset();
+		this.words[1].refresh();
+		this.words[2].reset();
+		this.words[2].refresh();
+		this.cursor.setWordNum(1);
+		this.cursor.setPosition(0);
+		this.cursor.refresh();
+		this.diamonds.hideAll();
 		this.io.hideCrossTick();
 	}
-	
-	updateDispenseControls() {
-		for (let i = 1; i <= this.puzzle.numDispensers; i++) {
-			if (this.dispensers[i].numItemsInContainer == 0) {
-				this.io.disableControls(["Dispense" + String(i)]);
+
+	assessWords() {
+		for (let i = 0; i < this.diamondCounts.length; i++) {
+			if (this.diamondCounts[i] != 2) {
+				console.log("show cross");
+				this.freeze();
+				this.io.showCross(this);
+				return;
 			}
-			else {
-				this.io.enableControls(["Dispense" + String(i)]);
-			}
+		}
+		let letters1 = [];
+		let letters2 = [];
+		for (let position = 0; position < 5; position++) {
+			letters1[position] = this.words[1].getLetter(position);
+			letters2[position] = this.words[2].getLetter(position);
+		}
+		if (letters1.join('') == this.puzzle.words[1] && letters2.join('') == this.puzzle.words[2]) {
+			console.log("show tick");
+			this.io.disableControls(["BackDelete", "BackDeleteAll"]);
+			this.cursor.hide();
+			this.cursor.refresh();
+			this.freeze();
+			this.io.showTick(this);
+		}
+		else {
+			console.log("show tick ?");
+			this.freeze();
+			this.io.showTickQuery(this);
 		}
 	}
 
-	review() {
-		this.updateDispenseControls();
-		let numEmptyDispensers = 0;
-		for (let i = 1; i <= this.puzzle.numDispensers; i++) {
-			if (this.dispensers[i].numItemsInContainer == 0) numEmptyDispensers++;
+	updateRungDiamonds(rung) {
+		let diamondCount = 0;
+		for (let position = 0; position < 5; position++) {
+			const letterAbove = this.words[rung].getLetter(position);
+			const letterBelow = this.words[rung + 1].getLetter(position);
+			if (letterAbove == undefined || letterBelow == undefined) continue;
+			if (letterAbove != letterBelow) diamondCount++;
 		}
-		if (this.expression.getLength() == 0) {
-			this.io.disableControls(["Reset", "Undispense"]);
-		}
-		else {
-			this.io.enableControls(["Reset", "Undispense"]);
-		}
-		if (numEmptyDispensers == this.puzzle.numDispensers) {
-			const thisSolution = this.expression.getExpression();
-			const correctSolution = this.puzzle.solutionExpression;
-			if (thisSolution === correctSolution) {
-				this.io.disableControls(["Undispense"]);
-				this.freeze();
-				this.io.showTick(this);
+		for (let position = 0; position < 5; position++) {
+			const letterAbove = this.words[rung].getLetter(position);
+			const letterBelow = this.words[rung + 1].getLetter(position);
+			if (letterAbove == undefined || letterBelow == undefined) {
+				this.diamonds.hide(rung, position);
+			}
+			else if (letterAbove == letterBelow) {
+				this.diamonds.hide(rung, position);
+			}
+			else if (diamondCount <= 2) {
+				this.diamonds.showGood(rung, position);
 			}
 			else {
-				this.freeze();
-				this.io.showCross(this);
+				this.diamonds.showBad(rung, position);
 			}
+		}
+		return diamondCount;
+	}
+	
+	updateAllDiamonds() {
+		this.diamondCounts[0] = this.updateRungDiamonds(0);
+		this.diamondCounts[1] = this.updateRungDiamonds(1);
+		this.diamondCounts[2] = this.updateRungDiamonds(2);
+	}
+
+	review(doAssessment) {
+		if (this.words[1].isEmpty() && this.words[2].isEmpty()) {
+			this.io.disableControls(["Reset"]);
+		}
+		else {
+			this.io.enableControls(["Reset"]);
+		}
+			
+		const cursorPosition = this.cursor.getPosition();
+		if (cursorPosition == 0) {
+			this.io.disableControls(["BackDelete", "BackDeleteAll"]);
+		}
+		else {
+			this.io.enableControls(["BackDelete", "BackDeleteAll"]);
+		}
+		if (cursorPosition == 5) {
+			keyboard.disable();
+		}
+		else {
+			keyboard.enable();
+		}
+		
+		this.updateAllDiamonds();
+		
+		if (this.words[1].isComplete() && this.words[2].isComplete()) {
+			if (doAssessment) this.assessWords();
 		}
 		else {
 			this.io.hideCrossTick();
 		}
 	}
-	
+
 	resetClicked() {
+		this.cursor.show();
 		this.reset();
-		this.io.enableAllControlsExcept(["Reset", "Undispense"]);
+		keyboard.enable();
+		this.io.enableAllControlsExcept(["Reset", "BackDelete", "BackDeleteAll"]);
 	}
 
-	undispenseClicked() {
-		const itemRemoved = this.expression.removeItem();
-		const dispenser = itemRemoved.dispenser;
-		dispenser.replaceItem();
-		this.expression.refresh();
-		dispenser.refresh();
-		this.review();
+	upperWordClicked() {
+		console.log("upperWordClicked");
+		const wordNum = this.cursor.getWordNum();
+		if (wordNum == 1) return;
+		this.cursor.setWordNum(1);
+		this.cursor.setPosition(this.words[1].getNextLetterPosition());
+		this.cursor.refresh();
+		this.review(false);
 	}
-/*	
-	dispenseClicked(dispenserNum) {
-		const dispenser = this.dispensers[dispenserNum];
-		const itemTaken = dispenser.takeItem();
-		const expressionSoFar = this.expression.getExpression();
-		console.log(expressionSoFar)
-		const lastSymbol = expressionSoFar.length == 0 ? "" : expressionSoFar.charAt(expressionSoFar.length - 1);
-		if (Symbol.isValidSequence(lastSymbol, itemTaken.symbol)) {
-			this.expression.addItem(itemTaken);
-			dispenser.refresh();
-			this.expression.refresh();
-			this.review();
-		}
-		else {
-			dispenser.replaceItem();
-			this.io.flashDispenseControl("Dispense" + String(dispenserNum), this);
-		}
+
+	lowerWordClicked() {
+		console.log("lowerWordClicked");
+		const wordNum = this.cursor.getWordNum();
+		if (wordNum == 2) return;
+		this.cursor.setWordNum(2);
+		this.cursor.setPosition(this.words[2].getNextLetterPosition());
+		this.cursor.refresh();
+		this.review(false);
 	}
-*/
-	dispenseClicked(dispenserNum) {
-		const dispenser = this.dispensers[dispenserNum];
-		const item = dispenser.peekAtItem();
-		if (this.expression.isAddItemValid(item)) {
-			const itemTaken = dispenser.takeItem();
-			this.expression.addItem(itemTaken);
-			dispenser.refresh();
-			this.expression.refresh();
-			this.review();
-		}
-		else {
-			this.io.flashDispenseControl("Dispense" + String(dispenserNum), this);
-		}
+	
+	keyClicked(letter) {
+		const wordNum = this.cursor.getWordNum();
+		const word = this.words[wordNum];
+		word.addLetter(letter);
+		word.refresh();
+		const position = this.cursor.getPosition();
+		this.cursor.setPosition(position + 1);
+		this.cursor.refresh();
+		this.review(true);
+	}
+	
+	backDeleteClicked() {
+		const wordNum = this.cursor.getWordNum();
+		const word = this.words[wordNum];
+		word.removeLetter();
+		word.refresh();
+		const position = this.cursor.getPosition();
+		this.cursor.setPosition(position - 1);
+		this.cursor.refresh();
+		this.review(true);
+	}
+	
+	backDeleteAllClicked() {
+		const wordNum = this.cursor.getWordNum();
+		const word = this.words[wordNum];
+		word.reset();
+		word.refresh();
+		this.cursor.setPosition(0);
+		this.cursor.refresh();
+		this.review(true);
 	}
 
 	hintTimerExpired() {
-		this.expression.flashHint(this);
-	}
-
-	hintClicked() {
-		this.callbackResolve = null;
-		this.io.disableAllControls();
-		this.io.hideCrossTick();
-		if (this.expression.getLength() == 0) {
-			this.expression.flashHint(this);
-		}
-		else {
-			this.reset();
-			setTimeout(punterHintTimerExpired, 1000);			
-		}
-	}
-	
-	completeHintClicked() {
-		this.io.enableAllControlsExcept(["Reset", "Undispense"]);
-		if (this.callbackResolve != null) this.callbackResolve();
-	}
-/*
-	hintWithCallbackTimerExpired() {
 		if (this.hintShowing) {
-			this.grid.undisplayLetter(this.puzzle.hintPlace);
+			this.hintWord.unsetLetter(this.hintPosition);
+			this.hintWord.refresh();
 			this.hintShowing = false;
 			this.hintNumShowsRemaining--;
 			if (this.hintNumShowsRemaining == 0) {
-				this.io.enableAllControlsExcept(["Reset"]);
+				keyboard.enable();
+				this.io.enableAllControlsExcept(["Reset", "BackDelete", "BackDeleteAll"]);
+				this.cursor.show();
+				this.cursor.refresh();
+				return;
+			}
+		}
+		else {
+			this.hintWord.setLetter(this.hintLetter, this.hintPosition);
+			this.hintWord.refresh();
+			this.hintShowing = true;
+		}
+		setTimeout(punterHintTimerExpired, 1000);
+	}
+
+	hintClicked() {
+		keyboard.disable();
+		this.io.disableAllControls();
+		this.cursor.hide();
+		this.cursor.refresh();
+		this.io.hideCrossTick();
+		if (this.words[1].isEmpty() && this.words[2].isEmpty()) {
+			this.hintWord.setLetter(this.hintLetter, this.hintPosition);
+			this.hintWord.refresh();
+			this.hintShowing = true;
+			this.hintNumShowsRemaining = this.hintNumShows;
+		}
+		else {
+			this.reset();
+			this.hintShowing = false;
+			this.hintNumShowsRemaining = this.hintNumShows;
+		}
+		setTimeout(punterHintTimerExpired, 1000);
+	}
+
+	hintWithCallbackTimerExpired() {
+		if (this.hintShowing) {
+			this.hintWord.unsetLetter(this.hintPosition);
+			this.hintWord.refresh();
+			this.hintShowing = false;
+			this.hintNumShowsRemaining--;
+			if (this.hintNumShowsRemaining == 0) {
+				keyboard.enable();
+				this.io.enableAllControlsExcept(["Reset", "BackDelete", "BackDeleteAll"]);
+				this.cursor.show();
+				this.cursor.refresh();
 				this.callbackResolve();
 				return;
 			}
 		}
 		else {
-			this.grid.displayLetter(this.puzzle.hintLetter, this.puzzle.hintPlace);
+			this.hintWord.setLetter(this.hintLetter, this.hintPosition);
+			this.hintWord.refresh();
 			this.hintShowing = true;			
 		}
 		setTimeout(demoHintTimerExpired, 1000);
-	} */
+	}
 
 	hintWithCallback() {
 		return new 	Promise((resolve, reject) => {
-								this.io.disableAllControls();
-								this.callbackResolve = resolve;
-								this.expression.flashHint(this);
-							}
+							this.callbackResolve = resolve;
+							keyboard.disable();
+							this.io.disableAllControls();
+							this.cursor.hide();
+							this.cursor.refresh();
+							this.hintWord.setLetter(this.hintLetter, this.hintPosition);
+							this.hintWord.refresh();
+							this.hintShowing = true;
+							this.hintNumShowsRemaining = this.hintNumShows;
+							setTimeout(demoHintTimerExpired, 1000);
+						}
 					);
 	}
 
-	solutionShowItem(dispenser) {
-		const itemTaken = dispenser.takeItem();
-		this.expression.addItem(itemTaken);
-		dispenser.refresh();
-		this.expression.refresh();
-	}
-
 	solutionTimerExpired() {
-		const dispenserNum = this.puzzle.solutionDispenseSequence[this.solutionNextIndex];
-		const dispenser = this.dispensers[dispenserNum];
-		this.solutionShowItem(dispenser);
 		this.solutionNextIndex++;
-		if (this.solutionNextIndex == this.puzzle.solutionDispenseSequence.length) {
-			//add "Information" here
-			//this.io.enableControls(["Reset"]);
+		if (this.solutionNextIndex == 10) {
 			this.io.enableControls(["Information", "Reset"]);
 			return;
 		}
-		setTimeout(punterSolutionTimerExpired, 1000);
+		const position = this.solutionPositions[this.solutionNextIndex];
+		const word = this.words[position[0]];
+		word.setLetter(this.solutionLetters[this.solutionNextIndex], position[1]);
+		word.refresh();
+		setTimeout(punterSolutionTimerExpired, this.solutionDelays[this.solutionNextIndex]);
 	}
 
 	solutionClicked() {
+		keyboard.disable();
 		this.io.disableAllControls();
+		this.cursor.hide();
+		this.cursor.refresh();
 		this.io.hideCrossTick();
-		if (this.expression.getLength() == 0) {
-			const dispenserNum = this.puzzle.solutionDispenseSequence[0];
-			const dispenser = this.dispensers[dispenserNum];
-			this.solutionShowItem(dispenser);
-			this.solutionNextIndex = 1;
+		this.solutionNextIndex = -1;
+		if (this.words[1].isEmpty() && this.words[2].isEmpty()) {
+			setTimeout(punterSolutionTimerExpired, 500);
 		}
 		else {
 			this.reset();
-			this.solutionNextIndex = 0;
+			setTimeout(punterSolutionTimerExpired, 750);
 		}
-		setTimeout(punterSolutionTimerExpired, 1000);
 	}
-		
+
 	solutionWithCallbackTimerExpired() {
-		const dispenserNum = this.puzzle.solutionDispenseSequence[this.solutionNextIndex];
-		const dispenser = this.dispensers[dispenserNum];
-		this.solutionShowItem(dispenser);
 		this.solutionNextIndex++;
-		if (this.solutionNextIndex == this.puzzle.solutionDispenseSequence.length) {
-			this.io.enableControls(["Reset"]);
+		if (this.solutionNextIndex == 10) {
+			this.io.enableControls(["Information", "Reset"]);
 			this.callbackResolve();
 			return;
 		}
-		setTimeout(demoSolutionTimerExpired, 1000);
+		const position = this.solutionPositions[this.solutionNextIndex];
+		const word = this.words[position[0]];
+		word.setLetter(this.solutionLetters[this.solutionNextIndex], position[1]);
+		word.refresh();
+		setTimeout(demoSolutionTimerExpired, this.solutionDelays[this.solutionNextIndex]);
 	}
 
 	solutionWithCallback() {
 		return new 	Promise((resolve, reject) => {
-								this.io.disableAllControls();
-								this.callbackResolve = resolve;
-								const dispenserNum = this.puzzle.solutionDispenseSequence[0];
-								const dispenser = this.dispensers[dispenserNum];
-								this.solutionShowItem(dispenser);
-								this.solutionNextIndex = 1;
-								setTimeout(demoSolutionTimerExpired, 1000);
+							this.callbackResolve = resolve;
+							keyboard.disable();
+							this.io.disableAllControls();
+							this.cursor.hide();
+							this.cursor.refresh();
+							this.solutionNextIndex = -1;
+							setTimeout(demoSolutionTimerExpired, 500);
 							}
 					);
 	}
 }
 
-/* ========================================================================================================================================================= */
-/* PUNTER PUNTER PUNTER PUNTER PUNTER PUNTER PUNTER PUNTER PUNTER PUNTER PUNTER PUNTER PUNTER PUNTER PUNTER PUNTER PUNTER PUNTER PUNTER PUNTER PUNTER PUNTER */
-/* ========================================================================================================================================================= */
 
-/*
-let punterPuzzleSpec = {
-	dispenserSpec: [undefined, "/9", "6-", "38", "0", "1"],
-	//hintSpec: ["green", 6],
-	solutionExpression: "90-186/3",
-	solutionDispenseSequence: [1, 4, 2, 5, 3, 2, 1, 3]
-}; */
-/*
-let punterPuzzleSpec = {
-	dispenserSpec: [undefined, "-1", "4*k", "71"],
-	targetSpec: "147",
-	hintSpec: {numDots: 2, symbol:"3", isHere: false},
-	solutionExpression: "11*14-7",
-	solutionDispenseSequence: [1, 2, 2, 3, 2, 1, 3]
-}; */
-/*
-let punterPuzzleSpec = {
-	dispenserSpec: [undefined, "1-2", "4+3", "5+6"],
-	//hintSpec: ["green", 6],
-	solutionExpression: "2-3+6+5",
-	solutionDispenseSequence: [1, 2, 2, 3, 2, 1, 3]
-};
-*/
-const punterPuzzle = new Puzzle(punterPuzzleSpec);
+/* -------- Main Wall -------- */
 
-const dispensersId = "#mwdpDispensers-" + String(punterPuzzle.maxDispenserHeight) + String(punterPuzzle.numDispensers);
-const dispensersRef = document.querySelector(dispensersId);
-dispensersRef.style.display = `grid`;
-//const dispensersHeight = containerCompartmentHeight * punterPuzzle.maxDispenserHeight;
-const dispensersHeight = containerCompartmentHeight * punterPuzzle.maxDispenserHeight + 2;
-dispensersRef.style.height = `${dispensersHeight}em`;
+const punterKeyboardOnClicks =
+	[function() {punter.solveBiz.keyClicked("A")},
+	 function() {punter.solveBiz.keyClicked("B")},
+	 function() {punter.solveBiz.keyClicked("C")},
+	 function() {punter.solveBiz.keyClicked("D")},
+	 function() {punter.solveBiz.keyClicked("E")},
+	 function() {punter.solveBiz.keyClicked("F")},
+	 function() {punter.solveBiz.keyClicked("G")},
+	 function() {punter.solveBiz.keyClicked("H")},
+	 function() {punter.solveBiz.keyClicked("I")},
+	 function() {punter.solveBiz.keyClicked("J")},
+	 function() {punter.solveBiz.keyClicked("K")},
+	 function() {punter.solveBiz.keyClicked("L")},
+	 function() {punter.solveBiz.keyClicked("M")},
+	 function() {punter.solveBiz.keyClicked("N")},
+	 function() {punter.solveBiz.keyClicked("O")},
+	 function() {punter.solveBiz.keyClicked("P")},
+	 function() {punter.solveBiz.keyClicked("Q")},
+	 function() {punter.solveBiz.keyClicked("R")},
+	 function() {punter.solveBiz.keyClicked("S")},
+	 function() {punter.solveBiz.keyClicked("T")},
+	 function() {punter.solveBiz.keyClicked("U")},
+	 function() {punter.solveBiz.keyClicked("V")},
+	 function() {punter.solveBiz.keyClicked("W")},
+	 function() {punter.solveBiz.keyClicked("X")},
+	 function() {punter.solveBiz.keyClicked("Y")},
+	 function() {punter.solveBiz.keyClicked("Z")}
+	];
 
-for (let d = 1; d <= punterPuzzle.numDispensers; d++) {
-	const numItems = punterPuzzle.dispenserHeightSpec[d];
-	const containerId = "#mwdpdContainer-" + String(punterPuzzle.maxDispenserHeight) + String(punterPuzzle.numDispensers) + "-" + String(d) + String(numItems);
-	const containerRef = document.querySelector(containerId);
-	containerRef.style.display = `block`;
-	const borderId = "#mwdpdBorder-" + String(punterPuzzle.maxDispenserHeight) + String(punterPuzzle.numDispensers) + "-" + String(d) + String(numItems);
-	const borderRef = document.querySelector(borderId);
-	borderRef.style.display = `block`;
-	for (let i = 1; i <= numItems; i++) {
-		const itemId = "#mwdpdItem-" + String(punterPuzzle.maxDispenserHeight) + String(punterPuzzle.numDispensers) + "-" + String(d) + String(i);
-		const itemRef = document.querySelector(itemId);
-		itemRef.style.display = `block`;
-	}
-}
-
-
-const dispenseIdRoot = "#mwdCtrlDispense-" + String(punterPuzzle.numDispensers);
-for (let d = 1; d <= punterPuzzle.numDispensers; d++) {
-	const dispenseId = dispenseIdRoot + String(d);
-	const dispenseRef = document.querySelector(dispenseId);
-	dispenseRef.style.display = `block`;
-}
-
-const punterPanelRef = document.querySelector("#mwdPanel");
-const punterPanelStyle = punterPanelRef.style.cssText;
-const newPunterPanelStyle = punterPanelStyle.replace(/999/, String(dispensersHeight));
-console.log(newPunterPanelStyle);
-punterPanelRef.style.cssText = newPunterPanelStyle;
-const punterPanelHeight = punterPanelHeightAboveDispensers + dispensersHeight + punterPanelHeightBelowDispensers;
-punterPanelRef.style.height = `${punterPanelHeight}em`;
-
-const punterDoorRef = document.querySelector("#mwDoor");
-const punterDoorStyle = punterDoorRef.style.cssText;
-const newPunterDoorStyle = punterDoorStyle.replace(/999/, String(punterPanelHeight));
-console.log(newPunterDoorStyle);
-punterDoorRef.style.cssText = newPunterDoorStyle;
-const punterDoorHeight = punterDoorHeightAbovePanel + punterPanelHeight + punterDoorHeightBelowPanel;
-punterDoorRef.style.height = `${punterDoorHeight}em`;
-
-const mainWallRef = document.querySelector("#mainWall");
-const mainWallStyle = mainWallRef.style.cssText;
-const newMainWallStyle = mainWallStyle.replace(/999/, String(punterDoorHeight));
-console.log(newMainWallStyle);
-mainWallRef.style.cssText = newMainWallStyle;
-const mainWallHeight = mainWallHeightAboveDoor + punterDoorHeight;
-mainWallRef.style.height = `${mainWallHeight}em`;
-
-updateFontSize(mainWallHeight, numGridColumns);
-
-function informationOnClick() {
-	console.log("informationOnClick called");
-	const infoWallRef = document.querySelector("#infoWall");
-	infoWallRef.style.display = `grid`;
-	infoWallRef.style.zIndex = `3`;
-	const bodyRef = document.querySelector("body");
-	bodyRef.style.overflow = `auto`;
-}
-
-function punterUndispenseOnClick() {punterSolveBiz.undispenseClicked();};
-function punterResetOnClick() {punterSolveBiz.resetClicked();};
-function punterHintOnClick() {punterSolveBiz.hintClicked();};
-function punterHintTimerExpired() {punterSolveBiz.hintTimerExpired();};
-function punterSolutionOnClick() {punterSolveBiz.solutionClicked();};
-function punterSolutionTimerExpired() {punterSolveBiz.solutionTimerExpired();};
-
-let punterDispenseOnClicks = [undefined,
-							  function() {punterSolveBiz.dispenseClicked(1)},
-							  function() {punterSolveBiz.dispenseClicked(2)},
-							  function() {punterSolveBiz.dispenseClicked(3)},
-							  function() {punterSolveBiz.dispenseClicked(4)},
-							  function() {punterSolveBiz.dispenseClicked(5)}
-							 ];
-
-let punterControls = [];
-punterControls["Information"] = new Control("#mwdCtrlInformation", informationOnClick);
-punterControls["Hint"] = new Control("#mwdCtrlHint", punterHintOnClick);
-punterControls["Solution"] = new Control("#mwdCtrlSolution", punterSolutionOnClick);
-punterControls["Reset"] = new Control("#mwdCtrlReset", punterResetOnClick);
-punterControls["Undispense"] = new Control("#mwdCtrlUndispense", punterUndispenseOnClick);
-
-const punterDispenseIdRoot = "#mwdCtrlDispense-" + String(punterPuzzle.numDispensers);
-for (let i = 1; i <= punterPuzzle.numDispensers; i++) {
-	const dispenseId = punterDispenseIdRoot + String(i);
-	punterControls["Dispense" + String(i)] = new DispenseControl(dispenseId, punterDispenseOnClicks[i]);
-}
-
-const punterCrossTick = new CrossTick("#mwCrossTick");
-
-const punterSolveIO = new SolveIO(punterControls, punterCrossTick);	
-
-let punterDispensers = [undefined];
-const punterItemIdRoot = "#mwdpdItem-" + String(punterPuzzle.maxDispenserHeight) + String(punterPuzzle.numDispensers) + "-";
-for (let i = 1; i <= punterPuzzle.numDispensers; i++) {
-	const itemIdRootPlus = punterItemIdRoot + String(i);
-	punterDispensers[i] = new Dispenser(punterPuzzle.dispenserFullSpec[i], itemIdRootPlus);
-}
-
-const punterExpression = new Expression("#mwdpExpression", punterPuzzle);
-
-const punterTarget = new Target("#mwdpTarget", punterPuzzle);
-
-const punterSolveBiz = new SolveBiz(punterPuzzle, punterDispensers, punterExpression, punterSolveIO);
-punterSolveBiz.wake();
-//disable all the controls while the preamble runs
-punterSolveBiz.freeze();
-
-/* ========================================================================================================================================================== */
-/* DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO DEMO */
-/* ========================================================================================================================================================== */
-
-let demoPuzzleSpec = {
-	dispenserSpec: [undefined, "61", "56", "-", "4*"],
-	targetSpec: "28",
-	hintSpec: {numDots: 2, symbol:"5", isHere: false},
-	solutionExpression: "6*14-56",
-	solutionDispenseSequence: [2, 4, 1, 4, 3, 2, 1]
-};
-
-const demoPuzzle = new Puzzle(demoPuzzleSpec);
-
-//function demoHintTimerExpired() {demoSolveBiz.hintWithCallbackTimerExpired();};
-function demoSolutionTimerExpired() {demoSolveBiz.solutionWithCallbackTimerExpired();};
-
-function backClicked() {
-	console.log("backClicked called");
-	const infoWallRef = document.querySelector("#infoWall");
-	infoWallRef.style.display = `none`;
-	infoWallRef.style.zIndex = `1`;
-	const bodyRef = document.querySelector("body");
-	bodyRef.style.overflow = `hidden`;
-	}
-const demoControlBack = new Control("#iwCtrlBack", backClicked);
-demoControlBack.enable();
-demoControlBack.unfade();
-
-function demonstrationClicked () {
-	console.log("demonstrationClicked called");
-	executeScript();
-	}
-const demoControlDemonstration = new Control("#iwdCtrlDemonstration", demonstrationClicked);
-demoControlDemonstration.enable();
-demoControlDemonstration.unfade();
-
-let demoControls = [];
-demoControls["Information"] = new Control("#iwdCtrlInformation", null);
-demoControls["Hint"] = new Control("#iwdCtrlHint", null);
-demoControls["Solution"] = new Control("#iwdCtrlSolution", null);
-demoControls["Reset"] = new Control("#iwdCtrlReset", null);
-demoControls["Undispense"] = new Control("#iwdCtrlUndispense", null);
-demoControls["Dispense1"] = new Control("#iwdCtrlDispense-1", null);
-demoControls["Dispense2"] = new Control("#iwdCtrlDispense-2", null);
-demoControls["Dispense3"] = new Control("#iwdCtrlDispense-3", null);
-demoControls["Dispense4"] = new Control("#iwdCtrlDispense-4", null);
-
-const demoCrossTick = new CrossTick("#iwdCrossTick");
-
-const demoSolveIO = new SolveIO(demoControls, demoCrossTick);	
-
-let demoDispensers = [undefined];
-const demoItemIdRoot = "#iwdpdItem-";
-for (let i = 1; i <= demoPuzzle.numDispensers; i++) {
-	const itemIdRootPlus = demoItemIdRoot + String(i);
-	demoDispensers[i] = new Dispenser(demoPuzzle.dispenserFullSpec[i], itemIdRootPlus);
-}
-
-const demoExpression = new Expression("#iwdpExpression", demoPuzzle);
-
-const demoTarget = new Target("#iwdpTarget", demoPuzzle);
-
-const demoSolveBiz = new SolveBiz(demoPuzzle, demoDispensers, demoExpression, demoSolveIO);
-
-
-function showSpot(spotRef, opacity) {
-		spotRef.style.display = `block`;
-		spotRef.style.opacity = `${opacity}`;
+class Main {
+	constructor() {
+		keyboard.assign(punterKeyboardOnClicks);
+		this.keyboardTopPosition = keyboardFit.mainTopPosition;
+		this.keyboardWasEnabled = undefined;
 	}
 	
-function hideSpot(spotRef) {
-		spotRef.style.display = `none`;
+	showKeyboard() {
+		keyboard.show(this.keyboardTopPosition);
+	}
+	
+	saveKeyboardState() {
+		this.keyboardWasEnabled = keyboard.isEnabled;
+	}
+	
+	restoreKeyboardState() {
+		keyboard.assign(punterKeyboardOnClicks);
+		keyboard.show(this.keyboardTopPosition);		
+		if (this.keyboardWasEnabled) {
+			keyboard.enable();
+		}
+		else {
+			keyboard.disable();
+		}
+	}	
+}
+
+
+/* -------- Punter -------- */
+
+function punterInformationOnClick() {
+	console.log("informationOnClick called");
+	main.saveKeyboardState();
+	info.show();
+}
+
+function punterUpperWordOnClick() {punter.solveBiz.upperWordClicked();};
+function punterLowerWordOnClick() {punter.solveBiz.lowerWordClicked();};
+function punterHintOnClick() {punter.solveBiz.hintClicked();};
+function punterHintTimerExpired() {punter.solveBiz.hintTimerExpired();};
+function punterSolutionOnClick() {punter.solveBiz.solutionClicked();};
+function punterSolutionTimerExpired() {punter.solveBiz.solutionTimerExpired();}
+function punterResetOnClick() {punter.solveBiz.resetClicked();};
+function punterBackDeleteOnClick() {punter.solveBiz.backDeleteClicked();};
+function punterBackDeleteAllOnClick() {punter.solveBiz.backDeleteAllClicked();};
+
+class Punter {
+	constructor(puzzleSpec) {
+		this.puzzle = new Puzzle(puzzleSpec);
+
+		const letterIdRoot = "#mwdpLetter-"
+		this.words = [];
+		for (let w = 0; w < 4; w++) {
+			this.words[w] = new Word(letterIdRoot + String(w + 1));
+		}
+		
+		const diamonds = new Diamonds("#mwdpDiamond");
+		
+		const cursor = new Cursor("#mwdpCursor-");
+		
+		let controls = [];
+		controls["UpperWord"] = new Control("#mwdpUpperWord", punterUpperWordOnClick);
+		controls["LowerWord"] = new Control("#mwdpLowerWord", punterLowerWordOnClick);
+		controls["Information"] = new Control("#mwdCtrlInformation", punterInformationOnClick);
+		controls["Hint"] = new Control("#mwdCtrlHint", punterHintOnClick);
+		controls["Solution"] = new Control("#mwdCtrlSolution", punterSolutionOnClick);
+		controls["Reset"] = new Control("#mwdCtrlReset", punterResetOnClick);
+		controls["BackDelete"] = new Control("#mwdCtrlBackDelete", punterBackDeleteOnClick);
+		controls["BackDeleteAll"] = new Control("#mwdCtrlBackDeleteAll", punterBackDeleteAllOnClick);
+		const crossTick = new CrossTick("#mwCrossTick");
+		const solveIO = new SolveIO(controls, crossTick);	
+
+		this.solveBiz = new SolveBiz(this.puzzle, this.words, diamonds, cursor, solveIO);
+	}
+}
+
+
+/* -------- Info Wall -------- */
+
+function backOnClick() {
+	console.log("backOnClick called");
+	info.hide();
+	main.restoreKeyboardState();
 	}
 
-const spotHintRef = document.querySelector("#iwdSpotHint");
-const spotSolutionRef = document.querySelector("#iwdSpotSolution");
-const spotDispense1Ref = document.querySelector("#iwdSpotDispense-1");
-const spotDispense2Ref = document.querySelector("#iwdSpotDispense-2");
-const spotDispense3Ref = document.querySelector("#iwdSpotDispense-3");
-const spotDispense4Ref = document.querySelector("#iwdSpotDispense-4");
-const spotResetRef = document.querySelector("#iwdSpotReset");
-const spotUndispenseRef = document.querySelector("#iwdSpotUndispense");
+function demonstrationOnClick () {
+	console.log("demonstrationOnClick called");
+	//info.controlBack.disable();
+	//info.controlBack.fade();
+	//info.controlDemo.disable();
+	//info.controlDemo.fade();
+	demo.enter();
+	}
 
-let spotRefLookUp = [];
-spotRefLookUp["Hint"] = spotHintRef;
-spotRefLookUp["Solution"] = spotSolutionRef;
-spotRefLookUp["Dispense1"] = spotDispense1Ref;
-spotRefLookUp["Dispense2"] = spotDispense2Ref;
-spotRefLookUp["Dispense3"] = spotDispense3Ref;
-spotRefLookUp["Dispense4"] = spotDispense4Ref;
-spotRefLookUp["Reset"] = spotResetRef;
-spotRefLookUp["Undispense"] = spotUndispenseRef;
+class Info {
+	constructor() {
+		this.wallRef = document.querySelector("#infoWall");
 
-const script = ["Dispense1",
-				"Pause",
-				"Dispense2",
-				"Pause",
-				"Dispense3",
-				"Pause",		
-				"Undispense",
-				"Pause",		
-				"Undispense",
-				"Pause",		
-				"Undispense",
-				"Pause",		
-				"Dispense2",
-				"Pause",		
-				"Dispense4",
-				"Pause",		
-				"Dispense1",
-				"Pause",		
-				"Dispense4",
-				"Pause",		
-				"Dispense3",
-				"Pause",		
-				"Dispense1",
-				"Pause",		
-				"Dispense2",
-				"Pause",		
-				"Pause",		
-				"Pause",		
-				"Pause",		
-				"Undispense",
-				"Pause",		
-				"Undispense",
-				"Pause",		
-				"Dispense2",
-				"Pause",		
-				"Dispense1",
-				"Pause",
-				"Pause",
-				"Pause",
-				"Pause",
-				"Reset",
-				"Pause",
-				"Hint",
-				"Pause",
-				"Solution"
-			   ];
-			   
-async function executeScript() {
+		const puzzleDataRef = document.querySelector("#iwPuzzleData");
+		puzzleDataRef.innerHTML = "<strong>Puzzle #" + String(punterPuzzleSpec.number) + "&emsp;&boxh;&emsp;Solve by " + punterPuzzleSpec.solveBy + "</strong>";
+
+		this.separator2Ref = document.querySelector("#iwSeparator-2");
+		this.separator2TopPosition = undefined;
+
+		this.controlBack = new Control("#iwCtrlBack", backOnClick);
+		this.controlBack.enable();
+		this.controlBack.unfade();		
+		this.controlDemo = new Control("#iwdCtrlDemonstration", demonstrationOnClick);
+		this.controlDemo.enable();
+		this.controlDemo.unfade();
+	}
+	
+	show() {
+		this.wallRef.style.display = `grid`;
+		this.wallRef.style.zIndex = `3`;
+		const bodyRef = document.querySelector("body");
+		bodyRef.style.overflow = `auto`;
+		const separator2Rect = this.separator2Ref.getBoundingClientRect();
+		console.log(separator2Rect);
+		this.separator2TopPosition = separator2Rect.top;
+		keyboard.hide();
+	}
+
+	hide() {
+		this.wallRef.style.display = `none`;
+		this.wallRef.style.zIndex = `1`;
+		const bodyRef = document.querySelector("body");
+		bodyRef.style.overflow = `hidden`;			
+	}
+}
+
+
+/* -------- Demo -------- */
+
+function demoHintTimerExpired() {demo.solveBiz.hintWithCallbackTimerExpired();};
+function demoSolutionTimerExpired() {demo.solveBiz.solutionWithCallbackTimerExpired();}
+
+class Demo {
+	constructor() {
+		const puzzleSpec = {
+			number: undefined,
+			solveBy: undefined,
+			words: ["GREEN", "GREBE", "BRIBE", "BAIZE"],
+			hintSpec: [2, 2, "I"]
+		};
+		this.puzzle = new Puzzle(puzzleSpec);
+
+		const letterIdRoot = "#iwdpLetter-"
+		this.words = [];
+		for (let w = 0; w < 4; w++) {
+			this.words[w] = new Word(letterIdRoot + String(w + 1));
+		}
+		
+		const diamonds = new Diamonds("#iwdpDiamond");
+		
+		const cursor = new Cursor("#iwdpCursor-");
+		
+		let controls = [];
+		controls["UpperWord"] = new Control("#iwdpUpperWord", null);
+		controls["LowerWord"] = new Control("#iwdpLowerWord", null);
+		controls["Information"] = new Control("#iwdCtrlInformation", null);
+		controls["Hint"] = new Control("#iwdCtrlHint", null);
+		controls["Solution"] = new Control("#iwdCtrlSolution", null);
+		controls["Reset"] = new Control("#iwdCtrlReset", null);
+		controls["BackDelete"] = new Control("#iwdCtrlBackDelete", null);
+		controls["BackDeleteAll"] = new Control("#iwdCtrlBackDeleteAll", null);
+		const crossTick = new CrossTick("#iwdCrossTick");
+		const solveIO = new SolveIO(controls, crossTick);	
+
+		this.solveBiz = new SolveBiz(this.puzzle, this.words, diamonds, cursor, solveIO);
+	}
+	
+	enter() {
+		info.controlBack.disable();
+		info.controlBack.fade();
+		info.controlDemo.disable();
+		info.controlDemo.fade();
+		
+		const bodyRef = document.querySelector("body");
+		bodyRef.style.overflow = `hidden`;
+		info.separator2Ref.scrollIntoView({behavior:"smooth"});
+		
+		keyboard.assign(null);
+		keyboard.show(info.separator2TopPosition);
+		keyboard.enable();
+		
+		demoExecuteScript();
+	}
+	
+	exit() {
+		info.controlBack.enable();
+		info.controlBack.unfade();
+		info.controlDemo.enable();
+		info.controlDemo.unfade();
+		
+		const bodyRef = document.querySelector("body");
+		bodyRef.style.overflow = `auto`;
+		window.scrollTo({top:0, left:0, behavior:"smooth"});
+	}
+}
+
+
+//const mainWallFit = new MainWallFit(mainWallSpec);
+//const infoWallFit = new InfoWallFit(mainWallFit.topPosition, mainWallFit.leftPosition, mainWallFit.fontSize);
+//const keyboardFit = new KeyboardFit(mainWallFit.leftPosition, mainWallFit.leftPosition + mainWallFit.width);
+
+//const keyboard = new Keyboard();
+
+//const main = new Main();
+//const punter = new Punter(punterPuzzleSpec);
+
+//const info = new Info();
+
+const demoScript =
+	["L",
+	 "Pause",
+	 "M",
+	 "Pause",
+	 "N",
+	 "Pause",
+	 "BackDelete",
+	 "Pause",
+	 "BackDelete",
+	 "Pause",
+	 "BackDelete",
+	 "Pause",
+	 "B",
+	 "Pause",
+	 "R",
+	 "Pause",
+	 "E",
+	 "Pause",
+	 "E",
+	 "Pause",
+	 "D",
+	 "Pause",
+	 "Pause",
+	 "LowerWord",
+	 "Pause",
+	 "B",
+	 "Pause",
+	 "R",
+	 "Pause",
+	 "I",
+	 "Pause",
+	 "B",
+	 "Pause",
+	 "E",
+	 "Pause",
+	 "Pause",
+	 "Pause",
+	 "Pause",
+	 "UpperWord",
+	 "Pause",
+	 "BackDeleteAll",
+	 "G",
+	 "Pause",
+	 "R",
+	 "Pause",
+	 "E",
+	 "Pause",
+	 "B",
+	 "Pause",
+	 "E",
+	 "Pause",
+	 "Pause",
+	 "Pause",
+	 "Pause",
+	 "Reset",
+	 "Pause",
+	 "Hint",
+	 "Pause",
+	 "Solution",
+	];
+
+function demoShowSpot(spotRef, opacity) {
+	spotRef.style.display = `block`;
+	spotRef.style.opacity = `${opacity}`;
+	}
+	
+function demoHideSpot(spotRef) {
+	spotRef.style.display = `none`;
+	}
+
+async function demoExecuteScript() {
+	let spotRefLookUp = [];
+	const iwdControls = ["Hint", "Solution", "Reset", "BackDelete", "BackDeleteAll"]
+	for (let control of iwdControls) spotRefLookUp[control] = document.querySelector("#iwdSpot" + control);
+	const iwdpControls = ["UpperWord", "LowerWord"];
+	for (let control of iwdpControls) spotRefLookUp[control] = document.querySelector("#iwdpSpot" + control);
+	const kbLetters = ["B", "D", "E", "G", "I", "L", "M", "N", "R"];
+	for (let letter of kbLetters) spotRefLookUp[letter] = document.querySelector("#kbSpot-" + letter);
+	
 	const spotFadeSequence = [1.0, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4];
 	
-	demoControlBack.disable();
-	demoControlBack.fade();
-	demoControlDemonstration.disable();
-	demoControlDemonstration.fade();
-	
-	demoSolveBiz.wake();
+	demo.solveBiz.wake();
 	await wait(1000);
-	for (let command of script) {
+	for (let command of demoScript) {
 		if (command === "Pause") {
 			await wait(500);
 			continue;
@@ -1296,94 +1258,90 @@ async function executeScript() {
 		const control = command;
 		const spotRef = spotRefLookUp[control];
 		for (let opacity of spotFadeSequence) {
-			showSpot(spotRef, opacity);
+			demoShowSpot(spotRef, opacity);
 			await wait(100);
 		}
 		
-		switch(command) {
+		switch(control) {
 		case "Hint":
-			await demoSolveBiz.hintWithCallback();
+			await demo.solveBiz.hintWithCallback();
 			break;
 		case "Solution":
-			await demoSolveBiz.solutionWithCallback();
+			await demo.solveBiz.solutionWithCallback();
 			break;
 		case "Reset":
-			demoSolveBiz.resetClicked();
+			demo.solveBiz.resetClicked();
 			break;
-		case "Dispense1":
-			demoSolveBiz.dispenseClicked(1);
+		case "BackDelete":
+			demo.solveBiz.backDeleteClicked();
 			break;
-		case "Dispense2":
-			demoSolveBiz.dispenseClicked(2);
+		case "BackDeleteAll":
+			demo.solveBiz.backDeleteAllClicked();
 			break;
-		case "Dispense3":
-			demoSolveBiz.dispenseClicked(3);
+		case "UpperWord":
+			demo.solveBiz.upperWordClicked();
 			break;
-		case "Dispense4":
-			demoSolveBiz.dispenseClicked(4);
+		case "LowerWord":
+			demo.solveBiz.lowerWordClicked();
 			break;
-		case "Undispense":
-			demoSolveBiz.undispenseClicked();
+		default:
+			demo.solveBiz.keyClicked(control);
 			break;
 		}
 		
-		hideSpot(spotRef);
+		demoHideSpot(spotRef);
 		await wait(1000);
 	}
+	
 	await wait(2000);
-	demoSolveBiz.reset();
-	demoSolveBiz.sleep();
-	demoControlBack.enable();
-	demoControlBack.unfade();
-	demoControlDemonstration.enable();
-	demoControlDemonstration.unfade();
+	demo.solveBiz.reset();
+	demo.solveBiz.sleep();	
+	keyboard.hide()
+	
+	await wait(2000);
+	demo.exit();
+
+	//const bodyRef = document.querySelector("body");
+	//bodyRef.style.overflow = `auto`;
+
+	//info.controlBack.enable();
+	//info.controlBack.unfade();
+	//info.controlDemo.enable();
+	//info.controlDemo.unfade();
+	
+	//window.scrollTo({top:0, left:0, behavior:"smooth"});
 }
 
-/* ======================================================================================================================================================== */
-/* PREAMBLE PREAMBLE PREAMBLE PREAMBLE PREAMBLE PREAMBLE PREAMBLE PREAMBLE PREAMBLE PREAMBLE PREAMBLE PREAMBLE PREAMBLE PREAMBLE PREAMBLE PREAMBLE PREAMBLE */
-/* ======================================================================================================================================================== */
+
+/* -------- Begin -------- */
+
+const mainWallFit = new MainWallFit(mainWallSpec);
+const infoWallFit = new InfoWallFit(mainWallFit.topPosition, mainWallFit.leftPosition, mainWallFit.fontSize);
+const keyboardFit = new KeyboardFit(mainWallFit.leftPosition, mainWallFit.leftPosition + mainWallFit.width);
+const keyboard = new Keyboard();
+const main = new Main();
+const punter = new Punter(punterPuzzleSpec);
+const info = new Info();
+const demo = new Demo();
+
+
+/* -------- Preamble -------- */
 
 async function performPreamble() {
-
-	const wallRef = document.querySelector("#infoWall");
-	
-	const surround1TopRef = document.querySelector("#iwSurroundInstructions-top");
-	const surround1BottomRef = document.querySelector("#iwSurroundInstructions-bottom");
-	const surround1LeftRef = document.querySelector("#iwSurroundInstructions-left");
-	const surround1RightRef = document.querySelector("#iwSurroundInstructions-right");
-
-	const surround2TopRef = document.querySelector("#iwdSurroundDemonstration-top");
-	const surround2BottomRef = document.querySelector("#iwdSurroundDemonstration-bottom");
-	const surround2LeftRef = document.querySelector("#iwdSurroundDemonstration-left");
-	const surround2RightRef = document.querySelector("#iwdSurroundDemonstration-right");
-
-	const surround3TopRef = document.querySelector("#mwdSurroundInformation-top");
-	const surround3BottomRef = document.querySelector("#mwdSurroundInformation-bottom");
-	const surround3LeftRef = document.querySelector("#mwdSurroundInformation-left");
-	const surround3RightRef = document.querySelector("#mwdSurroundInformation-right");
-
+	const wallRef = document.querySelector("#infoWall");	
+	const surroundInstructionsRef = document.querySelector("#iwSurroundInstructions");
+	const surroundDemonstrationRef = document.querySelector("#iwdSurroundDemonstration");
+	const surroundInformationRef = document.querySelector("#mwdSurroundInformation");
 	const separator2Ref = document.querySelector("#iwSeparator-2");
-
-	demoControlBack.freeze();
-	demoControlDemonstration.freeze();
 	
 	wallRef.style.display = `grid`;
 	wallRef.style.zIndex = `3`;
 
 	await wait(1000);
 
-	surround1TopRef.style.display = `block`;
-	surround1BottomRef.style.display = `block`;
-	surround1LeftRef.style.display = `block`;
-	surround1RightRef.style.display = `block`;
-
-	//await wait(1000);
+	surroundInstructionsRef.style.display = `block`;
 	await wait(750);
-
-	surround1TopRef.style.display = `none`;
-	surround1BottomRef.style.display = `none`;
-	surround1LeftRef.style.display = `none`;
-	surround1RightRef.style.display = `none`;
+	surroundInstructionsRef.style.display = `none`;
 
 	await wait(500);
 
@@ -1391,44 +1349,31 @@ async function performPreamble() {
 
 	await wait(1000);
 	
-	surround2TopRef.style.display = `block`;
-	surround2BottomRef.style.display = `block`;
-	surround2LeftRef.style.display = `block`;
-	surround2RightRef.style.display = `block`;
-
-	//await wait(1000);
+	surroundDemonstrationRef.style.display = `block`;
 	await wait(750);
+	surroundDemonstrationRef.style.display = `none`;
 
-	surround2TopRef.style.display = `none`;
-	surround2BottomRef.style.display = `none`;
-	surround2LeftRef.style.display = `none`;
-	surround2RightRef.style.display = `none`;
-
-	//await wait(1000);
 	await wait(750);
 
 	wallRef.style.display = `none`;
 	wallRef.style.zIndex = `1`;
+	main.showKeyboard();
 
 	await wait(500);
 
-	surround3TopRef.style.display = `block`;
-	surround3BottomRef.style.display = `block`;
-	surround3LeftRef.style.display = `block`;
-	surround3RightRef.style.display = `block`;
-
-	//await wait(1000);
+	surroundInformationRef.style.display = `block`;
 	await wait(750);
-
-	surround3TopRef.style.display = `none`;
-	surround3BottomRef.style.display = `none`;
-	surround3LeftRef.style.display = `none`;
-	surround3RightRef.style.display = `none`;
+	surroundInformationRef.style.display = `none`;
 	
-	demoControlBack.unfreeze();
-	demoControlDemonstration.unfreeze();
-
-	punterSolveBiz.unfreeze();
+	info.controlBack.unfreeze();
+	info.controlDemo.unfreeze();
+	punter.solveBiz.unfreeze();
+	keyboard.enable();
 }
+
+info.controlBack.freeze();
+info.controlDemo.freeze();
+punter.solveBiz.wake();
+punter.solveBiz.freeze();
 performPreamble();
 
