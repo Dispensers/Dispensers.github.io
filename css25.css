@@ -9,7 +9,7 @@ body {
 	display:none;
 	z-index:1;
 	position:absolute;
-	height:362em;
+	height:363em;
 	width:65em;
 	grid-template-rows:
 		[riw-s riwMargin-s riwUkraineFlag-s]
@@ -35,7 +35,7 @@ body {
 		[riwTCInstructions-1-s]
 		1fr
 		[riwTTInstructions-e]
-		12fr
+		10fr
 		[riwTCInstructions-1-e riwTCInstructions-2-s]
 		4fr
 		[riwTCInstructions-2-e riwTCInstructions-3-s]
@@ -83,7 +83,7 @@ body {
 		[riwTCLazyDog-1-s]
 		1fr
 		[riwTTLazyDog-e]
-		20fr
+		23fr
 		[riwTCLazyDog-1-e riwSeparator-4-s]
 		2fr
 		[riwSeparator-4-e riwTCLazyDog-2-s]
