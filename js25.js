@@ -874,6 +874,7 @@ class SolveBiz {
 		const word = this.words[position[0]];
 		word.setLetter(this.solutionLetters[this.solutionNextIndex], position[1]);
 		word.refresh();
+		this.updateAllDiamonds();
 		setTimeout(punterSolutionTimerExpired, this.solutionDelays[this.solutionNextIndex]);
 	}
 
@@ -904,6 +905,7 @@ class SolveBiz {
 		const word = this.words[position[0]];
 		word.setLetter(this.solutionLetters[this.solutionNextIndex], position[1]);
 		word.refresh();
+		this.updateAllDiamonds();
 		setTimeout(demoSolutionTimerExpired, this.solutionDelays[this.solutionNextIndex]);
 	}
 
@@ -1167,17 +1169,21 @@ class Demo {
 //const info = new Info();
 
 const demoScript =
-	["L",
+	["Pause",
+	 "Pause",
+	 "L",
 	 "Pause",
 	 "M",
 	 "Pause",
 	 "N",
 	 "Pause",
-	 "BackDelete",
 	 "Pause",
 	 "BackDelete",
 	 "Pause",
 	 "BackDelete",
+	 "Pause",
+	 "BackDelete",
+	 "Pause",
 	 "Pause",
 	 "B",
 	 "Pause",
@@ -1207,7 +1213,10 @@ const demoScript =
 	 "Pause",
 	 "UpperWord",
 	 "Pause",
+	 "Pause",
 	 "BackDeleteAll",
+	 "Pause",
+	 "Pause",
 	 "G",
 	 "Pause",
 	 "R",
@@ -1223,7 +1232,9 @@ const demoScript =
 	 "Pause",
 	 "Reset",
 	 "Pause",
+	 "Pause",
 	 "Hint",
+	 "Pause",
 	 "Pause",
 	 "Solution",
 	];
@@ -1293,12 +1304,12 @@ async function demoExecuteScript() {
 		await wait(1000);
 	}
 	
-	await wait(2000);
+	await wait(1500);
 	demo.solveBiz.reset();
 	demo.solveBiz.sleep();	
 	keyboard.hide()
 	
-	await wait(2000);
+	await wait(1000);
 	demo.exit();
 
 	//const bodyRef = document.querySelector("body");
@@ -1337,13 +1348,13 @@ async function performPreamble() {
 	wallRef.style.display = `grid`;
 	wallRef.style.zIndex = `3`;
 
-	await wait(1000);
+	await wait(1500);
 
 	surroundInstructionsRef.style.display = `block`;
 	await wait(750);
 	surroundInstructionsRef.style.display = `none`;
 
-	await wait(500);
+	await wait(750);
 
 	separator2Ref.scrollIntoView({behavior: "smooth"});
 
@@ -1353,16 +1364,16 @@ async function performPreamble() {
 	await wait(750);
 	surroundDemonstrationRef.style.display = `none`;
 
-	await wait(750);
+	await wait(1000);
 
 	wallRef.style.display = `none`;
 	wallRef.style.zIndex = `1`;
 	main.showKeyboard();
 
-	await wait(500);
+	await wait(1000);
 
 	surroundInformationRef.style.display = `block`;
-	await wait(750);
+	await wait(500);
 	surroundInformationRef.style.display = `none`;
 	
 	info.controlBack.unfreeze();

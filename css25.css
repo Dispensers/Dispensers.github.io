@@ -1088,7 +1088,7 @@ body {
 @keyframes cursorBlink {
 	from {border-color:white;}
 	60% {border-color:white;}
-	to {border-color:black;}
+	to {border-color:#808080;}
 }
 
 .Cursor {
@@ -1096,15 +1096,15 @@ body {
 	margin:0;
 	padding:0;
 	border-style:solid;	
-	border-color:silver;
+/*	border-color:silver; */
 	background-color:transparent;
 	animation-name:cursorBlink;
 	animation-duration:2s;
 	animation-iteration-count:infinite;
 }
 
-.Cursor1 {border-width:0 0.4em 0 0;}
-.Cursor23456 {border-width:0 0 0 0.4em;}
+.Cursor1 {border-width:0 0.3em 0 0;}
+.Cursor23456 {border-width:0 0 0 0.3em;}
 
 .Side {background-color:transparent;}
 .SideLeft {border-style:solid; border-color:black; border-top-width:0; border-bottom-width:0; border-left-width:0; border-right-width:0.8em;}
@@ -1119,8 +1119,15 @@ body {
 .Diamond {z-index:5; width:3em; height:4em;}
 
 .Keyboard {background-color:transparent;}
-/*needs to be same font as in ladder*/
-.KeyboardLetter {margin:0; padding:0; border:none; background-color:inherit; color:#F2E9C4;}
+.KeyboardLetter {
+	margin:0;
+	padding:0; border:none;
+	background-color:inherit;
+	color:#F2E9C4;
+	font-family:"Lucida Console", monospace;
+	font-size:0.33em;
+	}
+	
 .KeyboardLeft {text-align:left;}
 .KeyboardRight {text-align:right;}
 
