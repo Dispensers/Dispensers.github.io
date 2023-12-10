@@ -6,10 +6,15 @@ function wait(duration) {
 
 function disableScrolling() {
 	document.body.classList.add("DisableScrolling");
+	const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+	const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+
+	window.onscroll = function() {window.scrollTo(scrollLeft, scrollTop);};
 }
 
 function enableScrolling() {
 	document.body.classList.remove("DisableScrolling");
+	window.onscroll = function() {};
 }
 
 
@@ -1172,7 +1177,6 @@ class Demo {
 		
 		//const bodyRef = document.querySelector("body");
 		//bodyRef.style.overflow = `hidden`;
-		disableScrolling();
 		info.separator2Ref.scrollIntoView({behavior:"smooth"});
 		
 		keyboard.assign(null);
@@ -1190,7 +1194,6 @@ class Demo {
 		
 		//const bodyRef = document.querySelector("body");
 		//bodyRef.style.overflow = `auto`;
-		enableScrolling();
 		window.scrollTo({top:0, left:0, behavior:"smooth"});
 	}
 }
@@ -1297,6 +1300,10 @@ async function demoExecuteScript() {
 	for (let letter of kbLetters) spotRefLookUp[letter] = document.querySelector("#kbSpot-" + letter);
 	
 	const spotFadeSequence = [1.0, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4];
+
+	//waiting for smooth scroll to complete
+	await wait(1000);
+	disableScrolling();
 	
 	demo.solveBiz.wake();
 	await wait(1000);
@@ -1361,6 +1368,7 @@ async function demoExecuteScript() {
 	keyboard.hide()
 	
 	await wait(1000);
+	enableScrolling();
 	demo.exit();
 
 	//const bodyRef = document.querySelector("body");
