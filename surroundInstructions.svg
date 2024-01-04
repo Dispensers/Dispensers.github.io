@@ -1,7 +1,7 @@
 <svg version="1.1"
-     width="410" height="260"
+     width="600" height="310"
      xmlns="http://www.w3.org/2000/svg">
 
-	<rect x="10" y="10" width="390" height="240" stroke="#FFFF00" stroke-width="4" fill="transparent"/>
+	<rect x="15" y="15" width="570" height="280" stroke="#FFFF00" stroke-width="4" fill="transparent"/>
 
 </svg>
