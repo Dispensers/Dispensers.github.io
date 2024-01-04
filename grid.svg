@@ -1,0 +1,44 @@
+<svg version="1.1"
+     width="480" height="480"
+     xmlns="http://www.w3.org/2000/svg">
+
+	<polygon 	points=	"030 090, 090 090, 090 030, 150 030, 150 090, 330 090, 330 030, 390 030, 390 090, 450 090,
+						 450 150, 390 150, 390 210, 450 210, 450 270, 390 270, 390 330, 450 330, 450 390, 390 390, 390 450,
+						 330 450, 330 390, 150 390, 150 450, 090 450, 090 390, 030 390,
+						 030 330, 090 330, 090 270, 030 270, 030 210, 090 210, 090 150, 030 150"
+				stroke="black"
+				stroke-width="3"
+				stroke-linejoin="miter"
+				fill="none"
+	/>
+	<line x1="090" y1="150" x2="390" y2="150" stroke="black" stroke-width="1" stroke-linecap="butt"/>
+	<line x1="090" y1="210" x2="390" y2="210" stroke="black" stroke-width="1" stroke-linecap="butt"/>
+	<line x1="090" y1="270" x2="390" y2="270" stroke="black" stroke-width="1" stroke-linecap="butt"/>
+	<line x1="090" y1="330" x2="390" y2="330" stroke="black" stroke-width="1" stroke-linecap="butt"/>
+
+	<line x1="150" y1="90" x2="150" y2="390" stroke="black" stroke-width="1" stroke-linecap="butt"/>
+	<line x1="330" y1="90" x2="330" y2="390" stroke="black" stroke-width="1" stroke-linecap="butt"/>
+
+	<line x1="090" y1="90" x2="150" y2="90" stroke="black" stroke-width="1" stroke-linecap="butt"/>
+	<line x1="330" y1="90" x2="390" y2="90" stroke="black" stroke-width="1" stroke-linecap="butt"/>
+
+	<line x1="090" y1="390" x2="150" y2="390" stroke="black" stroke-width="1" stroke-linecap="butt"/>
+	<line x1="330" y1="390" x2="390" y2="390" stroke="black" stroke-width="1" stroke-linecap="butt"/>
+
+	<line x1="090" y1="090" x2="090" y2="150" stroke="black" stroke-width="1" stroke-linecap="butt"/>
+	<line x1="090" y1="210" x2="090" y2="270" stroke="black" stroke-width="1" stroke-linecap="butt"/>
+	<line x1="090" y1="330" x2="090" y2="390" stroke="black" stroke-width="1" stroke-linecap="butt"/>
+
+	<line x1="210" y1="090" x2="210" y2="150" stroke="black" stroke-width="1" stroke-linecap="butt"/>
+	<line x1="210" y1="210" x2="210" y2="270" stroke="black" stroke-width="1" stroke-linecap="butt"/>
+	<line x1="210" y1="330" x2="210" y2="390" stroke="black" stroke-width="1" stroke-linecap="butt"/>
+
+	<line x1="270" y1="090" x2="270" y2="150" stroke="black" stroke-width="1" stroke-linecap="butt"/>
+	<line x1="270" y1="210" x2="270" y2="270" stroke="black" stroke-width="1" stroke-linecap="butt"/>
+	<line x1="270" y1="330" x2="270" y2="390" stroke="black" stroke-width="1" stroke-linecap="butt"/>
+
+	<line x1="390" y1="090" x2="390" y2="150" stroke="black" stroke-width="1" stroke-linecap="butt"/>
+	<line x1="390" y1="210" x2="390" y2="270" stroke="black" stroke-width="1" stroke-linecap="butt"/>
+	<line x1="390" y1="330" x2="390" y2="390" stroke="black" stroke-width="1" stroke-linecap="butt"/>
+
+</svg>
