@@ -8,7 +8,7 @@ body {
 	display:none;
 	z-index:1;
 	position:absolute;
-	height:533em;
+	height:534em;
 	width:60em;
 	grid-template-rows:
 		[riw-s riwUkraineFlag-s]
@@ -86,9 +86,9 @@ body {
 		[riwTCLazyDog-1-s]
 		1fr
 		[riwTTLazyDog-e]
-		32fr
+		34fr
 		[riwTCLazyDog-1-e riwSeparator-4-s]
-		2fr
+		1fr
 		[riwSeparator-4-e riwTCLazyDog-2-s]
 		109fr
 		[riwTCLazyDog-2-e riwSeparator-5-s]
@@ -274,7 +274,7 @@ body {
 #iwTCLazyDog-1 {
 	text-align:justify;
 	border:none;
-	padding:0.8em 0.5em 0 0.5em;
+	padding:0 0.5em 0 0.5em;
 	font-size:2.5em;
 	grid-row:riwTCLazyDog-1-s/riwTCLazyDog-1-e;
 	grid-column:ciwTC-s/ciwTC-e;
