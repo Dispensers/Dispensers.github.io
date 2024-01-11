@@ -542,19 +542,26 @@ body {
 	width:59em;
  	grid-template-columns:
 		[cmw-s cmwDoor-s]
-		14fr		
-		[cmwName-s]
+		9fr
+		[cmwNameForeground-s]
+		5fr
+		[cmwNameBackground-s]
 		31fr
-		[cmwName-e]
-		6fr
+		[cmwNameBackground-e]
+		5fr
+		[cmwNameForeground-e]
+		1fr
 		[cmwCrossTick-s]
 		5fr
 		[cmwCrossTick-e]
 		3fr
 		[cmwDoor-e cmw-e];
 }
-
+/*
 #mwName {grid-row:rmwName-s/rmwName-e; grid-column:cmwName-s/cmwName-e;}
+*/
+#mwNameBackground {grid-row:rmwName-s/rmwName-e; grid-column:cmwNameBackground-s/cmwNameBackground-e;}
+#mwNameForeground {grid-row:rmwName-s/rmwName-e; grid-column:cmwNameForeground-s/cmwNameForeground-e;}
 
 #mwCrossTick {grid-row:rmwCrossTick-s/rmwCrossTick-e; grid-column:cmwCrossTick-s/cmwCrossTick-e;}
 			
@@ -1861,7 +1868,7 @@ body {
 .Surround {display:none; background-color:yellow;}
 
 .Wall {background-color:#9E9E9E;}
-
+/*
 .WallName {
 	font-size:3.5em;
 	border-style:none;
@@ -1872,7 +1879,7 @@ body {
 	text-align:center;
 	letter-spacing:0.1em;
 }
-
+*/
 .WallNameBackground {
 	border-style:none;
 	border-radius:0.3em;
