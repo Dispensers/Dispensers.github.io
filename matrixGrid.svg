@@ -2,6 +2,15 @@
      width="230" height="230"
      xmlns="http://www.w3.org/2000/svg">
 
+<!--	<polygon points="10 10, 220 10, 220 220, 10 220" stroke="black" stroke-width="3" stroke-linejoin="miter" fill="none"/> -->
+	<polygon points="9 9, 221 9, 221 221, 9 221" stroke="black" stroke-width="3" stroke-linejoin="miter" fill="none"/>
+
+	<line x1="10" y1="80" x2="220" y2="80" stroke="black" stroke-width="1" stroke-linecap="butt"/>
+	<line x1="10" y1="150" x2="220" y2="150" stroke="black" stroke-width="1" stroke-linecap="butt"/>
+	<line x1="80" y1="10" x2="80" y2="220" stroke="black" stroke-width="1" stroke-linecap="butt"/>
+	<line x1="150" y1="10" x2="150" y2="220" stroke="black" stroke-width="1" stroke-linecap="butt"/>
+
+<!--
   <polygon points="7 7 222 7 222 9 7 9" fill="black"/>
   <polygon points="7 222 222 222 222 220 7 220" fill="black"/>
   <polygon points="7 7 7 222 9 222 9 7" fill="black"/>
@@ -11,5 +20,5 @@
   <polygon points="7 149 222 149 222 150 7 150" fill="black"/>
   <polygon points="79 7 79 222 80 222 80 7" fill="black"/>
   <polygon points="149 7 149 222 150 222 150 7" fill="black"/>
-
+-->
 </svg>
