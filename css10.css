@@ -1833,7 +1833,8 @@ code {font-family:"Courier New", "Courier", monospace;}
 	border-radius:0.4em;
 	margin:0;
 	background-color:black;
-	color:transparent;
+/*	color:transparent; */
+	color:black;
 }
 
 .WallNameForeground {

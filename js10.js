@@ -1267,7 +1267,7 @@ const demo = new Demo();
 async function performPreamble() {
 	const surroundInstructionsRef = document.querySelector("#iwSurroundInstructions");
 	const surroundDemonstrationRef = document.querySelector("#iwdSurroundDemonstration");
-	const surroundInformationRef = document.querySelector("#mwdSurroundInformation");
+	//const surroundInformationRef = document.querySelector("#mwdSurroundInformation");
 	const separator2Ref = document.querySelector("#iwSeparator-2");
 	
 	infoWall.show();
@@ -1295,6 +1295,7 @@ async function performPreamble() {
 	
 	await wait(1000);
 
+	const surroundInformationRef = document.querySelector("#mwdSurroundInformation");
 	surroundInformationRef.style.display = `block`;
 	await wait(500);
 	surroundInformationRef.style.display = `none`;
