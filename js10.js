@@ -495,7 +495,8 @@ class Expression {
 		this.foregroundRef.style.display = `block`;
 		this.overstrikeRef = document.querySelector(expressionIdRoot + "Overstrike-" + String(puzzle.solutionExpression.length));
 		this.overstrikeRef.style.display = `block`;
-		this.overstrikeRef.innerHTML = "";
+		//this.overstrikeRef.innerHTML = "";
+		this.overstrikeRef.innerHTML = "&InvisibleTimes;";
 		this.items = [];
 		this.invalidFirstOnes = ["T+", "T*", "T/"];
 		this.invalidFirstTwos = 
@@ -577,6 +578,7 @@ class Expression {
 			}
 		}
 		//console.log(html);
+		if (html.length == 0) html = "&InvisibleTimes;";
 		this.foregroundRef.innerHTML = html;
 	}
 	
@@ -604,8 +606,10 @@ class Expression {
 			const symbolNotHereHTML = "<code>" + spaceHTML + '<strong><span style="color:#D00000;">\\</span></strong></code>';
 			script.push({ref: this.overstrikeRef, html: symbolNotHereHTML, pause: 1500});
 		}
-		script.push({ref: this.foregroundRef, html: "", pause: 0});
-		script.push({ref: this.overstrikeRef, html: "", pause: 0});
+		//script.push({ref: this.foregroundRef, html: "", pause: 0});
+		//script.push({ref: this.overstrikeRef, html: "", pause: 0});
+		script.push({ref: this.foregroundRef, html: "&InvisibleTimes;", pause: 0});
+		script.push({ref: this.overstrikeRef, html: "&InvisibleTimes;", pause: 0});
 		flashHint(solveBiz, script);
 	}
 }
@@ -1265,25 +1269,28 @@ const demo = new Demo();
 /* -------- Preamble -------- */
 
 async function performPreamble() {
-	const surroundInstructionsRef = document.querySelector("#iwSurroundInstructions");
-	const surroundDemonstrationRef = document.querySelector("#iwdSurroundDemonstration");
+	//const surroundInstructionsRef = document.querySelector("#iwSurroundInstructions");
+	//const surroundDemonstrationRef = document.querySelector("#iwdSurroundDemonstration");
 	//const surroundInformationRef = document.querySelector("#mwdSurroundInformation");
-	const separator2Ref = document.querySelector("#iwSeparator-2");
+	//const separator2Ref = document.querySelector("#iwSeparator-2");
 	
 	infoWall.show();
 
 	await wait(1500);
 
+	const surroundInstructionsRef = document.querySelector("#iwSurroundInstructions");
 	surroundInstructionsRef.style.display = `block`;
 	await wait(750);
 	surroundInstructionsRef.style.display = `none`;
 
 	await wait(750);
 
+	const separator2Ref = document.querySelector("#iwSeparator-2");
 	separator2Ref.scrollIntoView({behavior: "smooth"});
 
 	await wait(1000);
 	
+	const surroundDemonstrationRef = document.querySelector("#iwdSurroundDemonstration");
 	surroundDemonstrationRef.style.display = `block`;
 	await wait(750);
 	surroundDemonstrationRef.style.display = `none`;

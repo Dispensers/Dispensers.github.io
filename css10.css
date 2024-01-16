@@ -1711,7 +1711,13 @@ code {font-family:"Courier New", "Courier", monospace;}
 
 .CtrlDispense {width:7em; height:6em;}
 
-.CtrlSecondary {text-align:center; border:none; background-color:#484848; color:white; font-size:2.5em;}
+.CtrlSecondary {
+	text-align:center;
+	border:none;
+	background-color:#484848;
+	color:white;
+	font-size:2.5em;
+}
 
 .CtrlUndispense {width:35em; height:6em;}
 
@@ -1730,13 +1736,37 @@ code {font-family:"Courier New", "Courier", monospace;}
 	background-color:#F5F5F5;
 }
 
-.DispensersItem {z-index:5; margin:0; padding:0; border:none; text-align:center; font-size:7em; color:black; background-color:transparent;}
+.DispensersItem {
+	z-index:5;
+	margin:0;
+	padding:0;
+	border:none;
+	text-align:center;
+	font-size:7em;
+	color:black;
+	background-color:transparent;
+}
 
 .Door {background-color:#9E9E9E;}
 
-.ExpressionBackground {margin:0; padding:0; border-style:solid; border-color:black; border-width:0 0 0.8em 0; background-color:#FFE8E8;}
+.ExpressionBackground {
+	margin:0;
+	padding:0;
+	border-style:solid;
+	border-color:black;
+	border-width:0 0 0.8em 0;
+	background-color:#FFE8E8;
+}
 
-.ExpressionForeground {z-index:5; margin:0; padding:0; border:none; text-align:left; font-size:7em; color:black; background-color:transparent;}
+.ExpressionForeground {
+	z-index:5;
+	margin:0; padding:0;
+	border:none;
+	text-align:left;
+	font-size:7em;
+	color:black;
+	background-color:transparent;
+}
 
 .InfoOtherPuzzles1 {
 	border-style:dashed;
