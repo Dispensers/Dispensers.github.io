@@ -4,9 +4,9 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Dispensers Pi</title>
-		<link id="styling" type="text/css" rel="stylesheet" href="css9.css" media="screen">
+		<link id="styling" type="text/css" rel="stylesheet" href="css10.css" media="screen">
 		<script defer src="puzzleSpec.js"></script>
-		<script defer src="js9.js"></script>
+		<script defer src="js10.js"></script>
 		<script defer src="/_vercel/insights/script.js"></script>
 	</head>
 	<body>
@@ -24,12 +24,18 @@
 
 			<p id="iwTTInstructions" class="InfoTopicTitle"><strong>Instructions</strong></p>
 			<button id="iwTCInstructions-1" type="button" class="InfoTopicContent Instructions">
-				<strong>Build a square which has just ONE area of each colour.</strong>
+				<strong>Build an expression which evaluates to the <span id="targetNumber">target number</span>.</strong>
 			</button>			
 			<button id="iwTCInstructions-2" type="button" class="InfoTopicContent Instructions">
-				Multi-coloured tiles cannot be rotated.
+				Standard precedence rules apply:<br>1 &plus; 2&thinsp;&times;&thinsp;3 &minus; 8&thinsp;&divide;&thinsp;4 &equals; 5
 			</button>			
-			<button id="iwTCInstructions-3" type="button" class="InfoTopicContent Instructions Italic">
+			<button id="iwTCInstructions-3" type="button" class="InfoTopicContent Instructions">
+				Leading zeros are not permitted.
+			</button>			
+			<button id="iwTCInstructions-4" type="button" class="InfoTopicContent Instructions Italic">
+				Dispense a digit or a sign; add it to the line. Repeat until the dispensers are empty. Always build from left to right.
+			</button>
+			<button id="iwTCInstructions-5" type="button" class="InfoTopicContent Instructions Italic">
 				Best to watch the <strong>demonstration below</strong>.
 			</button>
 			
