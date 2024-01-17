@@ -7,7 +7,7 @@ body {
 #infoWall {
 /*	display:none; */
 	position:absolute;
-	height:501em;
+	height:500em;
 	width:59em;
 	grid-template-rows:
 		[riw-s riwUkraineFlag-s]
@@ -22,14 +22,12 @@ body {
 		9fr
 		[riwPuzzleData-e riwSeparator-1-s]
 		1fr
-		[riwSeparator-1-e]
-		1fr
-		[riwSurroundInstructions-s]
-		3fr
+		[riwSeparator-1-e riwSurroundInstructions-s]
+		2fr
 		[riwTTInstructions-s]
 		5fr		
 		[riwTCInstructions-1-s]
-		1fr
+		2fr
 		[riwTTInstructions-e]
 		9fr
 		[riwTCInstructions-1-e riwTCInstructions-2-s]
