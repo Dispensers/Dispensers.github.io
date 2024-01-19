@@ -1,17 +1,15 @@
 body {
-	font-family: Montserrat, Arial, 'sans-serif';
-	font-size: min(calc(90vw / 60), calc(90vh / 119));
-	margin: 0;
-	overflow: hidden;
-	background-color: black;
+	font-family:Helvetica, Arial, 'sans-serif';
+	margin:0;
+	background-color:black;
 }
 
 #infoWall {
-	display:none;
-	z-index:1;
+/*	display:none; */
+/*	z-index:1; */
 	position:absolute;
-	height:243em;
-	width:59em;
+	height:535em;
+	width:60em;
 	grid-template-rows:
 		[riw-s riwUkraineFlag-s]
 		3fr
@@ -24,41 +22,49 @@ body {
 		[riwName-e riwPuzzleData-s]
 		9fr
 		[riwPuzzleData-e riwSeparator-1-s]
-		1fr		
-		[riwSeparator-1-e riwSurroundInstructions-top-s]
 		1fr
-		[riwSurroundInstructions-top-e riwSurroundInstructions-lr-s riwTTInstructions-s]
+		[riwSeparator-1-e]
+		2fr
+		[riwTTFeaturedWord-s]
+		5fr
+		[riwTCFeaturedWord-s]
+		1fr
+		[riwTTFeaturedWord-e]
+		16fr
+		[riwTCFeaturedWord-e]
+		1fr
+		[riwSurroundInstructions-s]
+		2fr
+		[riwTTInstructions-s]
 		5fr
 		[riwTCInstructions-1-s]
-		1fr
+		2fr
 		[riwTTInstructions-e]
-		6fr
+		4fr
 		[riwTCInstructions-1-e riwTCInstructions-2-s]
 		8fr
-		[riwTCInstructions-2-e]
-		1fr
-		[riwSurroundInstructions-lr-e riwSurroundInstructions-bottom-s]
-		1fr
-		[riwSurroundInstructions-bottom-e]
-		1fr
-		[riwTTOtherPuzzles-s]
+		[riwTCInstructions-2-e riwTCInstructions-3-s]
+		6fr
+		[riwTCInstructions-3-e]
+		3fr
+		[riwSurroundInstructions-e riwTTOtherPuzzles-s]
 		5fr
-		[riwTCDispensersOmega-s]
+		[riwTCDispensersLambda-s]
 		2fr
 		[riwTTOtherPuzzles-e]
 		4fr
-		[riwTCDispensersOmega-e riwTCLooseFit-s]
+		[riwTCDispensersLambda-e riwTCDispensersOmega-s]
 		6fr
-		[riwTCLooseFit-e riwTCDispensersLambda-s]
+		[riwTCDispensersOmega-e riwTCDispensersPi-s]
 		6fr
-		[riwTCDispensersLambda-e riwTCLadderet-s]
+		[riwTCDispensersPi-e riwTCLadderet-s]
 		6fr
 		[riwTCLadderet-e]
 		3fr
 		[riwSeparator-2-s]
 		3fr
 		[riwSeparator-2-e riwDoor-s]
-		88fr
+		120fr
 		[riwDoor-e riwSeparator-3-s]
 		3fr
 		[riwSeparator-3-e]
@@ -79,38 +85,45 @@ body {
 		3fr
 		[riwTTLazyDog-s]
 		5fr
-		[riwTCLazyDog-s]
+		[riwTCLazyDog-1-s]
 		1fr
 		[riwTTLazyDog-e]
-		28fr
-		[riwTCLazyDog-e]
+		34fr
+		[riwTCLazyDog-1-e riwSeparator-4-s]
+		1fr
+		[riwSeparator-4-e riwTCLazyDog-2-s]
+		109fr
+		[riwTCLazyDog-2-e riwSeparator-5-s]
+		3fr
+		[riwSeparator-5-e riwTCLazyDog-3-s]
+		100fr
+		[riwTCLazyDog-3-e riwTCLazyDog-4-s]
+		10fr
+		[riwTCLazyDog-4-e]
 		3fr
 		[riwCopyright-s]
 		2fr
-		[riwCopyright-e riw-e];
-		
+		[riwCopyright-e riw-e];		
  	grid-template-columns:
-		[ciw-s ciwDoor-s ciwSeparator-s]
+		[ciw-s ciwDoor-s ciwSeparator-s ciwSurroundInstructions-s]
+		2fr
+		[ciwCtrlBack-s]
 		1fr
-		[ciwSurroundInstructions-tb-s ciwSurroundInstructions-left-s]
-		1fr
-		[ciwSurroundInstructions-left-e ciwCtrlBack-s]
-		1fr
-		[ciwPuzzleData-s ciwTT-s ciwTC-s ciwCopyright-s]
+		[ciwPuzzleData-s ciwTT-s ciwTC-s ciwSeparator-45-s ciwCopyright-s]
 		4fr
 		[ciwCtrlBack-e]
-		8fr
-		[ciwName-s]
+		3fr
+		[ciwNameForeground-s]
+		5fr
+		[ciwNameBackground-s]
 		30fr
-		[ciwName-e]
-		12fr
-		[ciwPuzzleData-e ciwTT-e ciwTC-e ciwCopyright-e ciwUkraineFlag-s]
-		1fr
-		[ciwSurroundInstructions-right-s]
-		1fr
-		[ciwSurroundInstructions-tb-e ciwSurroundInstructions-right-e]
-		1fr
-		[ciwDoor-e ciwSeparator-e ciwUkraineFlag-e ciw-e];
+		[ciwNameBackground-e]
+		5fr
+		[ciwNameForeground-e]
+		7fr
+		[ciwPuzzleData-e ciwTT-e ciwTC-e ciwSeparator-45-e ciwCopyright-e ciwUkraineFlag-s]
+		3fr
+		[ciwDoor-e ciwSurroundInstructions-e ciwSeparator-e ciwUkraineFlag-e ciw-e];
 }
 
 #iwCtrlBack {
@@ -119,11 +132,14 @@ body {
 	grid-row:riwCtrlBack-s/riwCtrlBack-e;
 	grid-column:ciwCtrlBack-s/ciwCtrlBack-e;
 }
-
+/*
 #iwName {grid-row:riwName-s/riwName-e; grid-column:ciwName-s/ciwName-e;}
+*/
+#iwNameBackground {grid-row:riwName-s/riwName-e; grid-column:ciwNameBackground-s/ciwNameBackground-e;}
+#iwNameForeground {grid-row:riwName-s/riwName-e; grid-column:ciwNameForeground-s/ciwNameForeground-e;}
 
 #iwUkraineFlag {
-	z-index:3;
+/*	z-index:3; */
 	width:3em;
 	height:3em;
 	grid-row:riwUkraineFlag-s/riwUkraineFlag-e;
@@ -151,8 +167,31 @@ body {
 	grid-column:ciwSeparator-s/ciwSeparator-e;
 }
 
-#iwTTInstructions {grid-row:riwTTInstructions-s/riwTTInstructions-e; grid-column:ciwTT-s/ciwTT-e;}
+#iwSeparator-4 {
+	border-width:0 0 0.5em 0;
+	grid-row:riwSeparator-4-s/riwSeparator-4-e;
+	grid-column:ciwSeparator-45-s/ciwSeparator-45-e;
+}
 
+#iwSeparator-5 {
+	border-width:0.5em 0 0.5em 0;
+	grid-row:riwSeparator-5-s/riwSeparator-5-e;
+	grid-column:ciwSeparator-45-s/ciwSeparator-45-e;
+}
+
+#iwTTFeaturedWord {grid-row:riwTTFeaturedWord-s/riwTTFeaturedWord-e; grid-column:ciwTT-s/ciwTT-e;}
+
+#iwTCFeaturedWord {
+	text-align:justify;
+	border:none;
+	padding:0 0.5em 0 0.5em;
+	font-size:2.5em;
+	grid-row:riwTCFeaturedWord-s/riwTCFeaturedWord-e;
+	grid-column:ciwTC-s/ciwTC-e;
+}
+
+#iwTTInstructions {grid-row:riwTTInstructions-s/riwTTInstructions-e; grid-column:ciwTT-s/ciwTT-e;}
+/*
 #iwTCInstructions-1 {
 	text-align:justify;
 	border:none;
@@ -171,10 +210,25 @@ body {
 	grid-column:ciwTC-s/ciwTC-e;
 }
 
-#iwSurroundInstructions-top {grid-row:riwSurroundInstructions-top-s/riwSurroundInstructions-top-e; grid-column:ciwSurroundInstructions-tb-s/ciwSurroundInstructions-tb-e;}
-#iwSurroundInstructions-bottom {grid-row:riwSurroundInstructions-bottom-s/riwSurroundInstructions-bottom-e; grid-column:ciwSurroundInstructions-tb-s/ciwSurroundInstructions-tb-e;}
-#iwSurroundInstructions-left {grid-row:riwSurroundInstructions-lr-s/riwSurroundInstructions-lr-e; grid-column:ciwSurroundInstructions-left-s/ciwSurroundInstructions-left-e;}
-#iwSurroundInstructions-right {grid-row:riwSurroundInstructions-lr-s/riwSurroundInstructions-lr-e; grid-column:ciwSurroundInstructions-right-s/ciwSurroundInstructions-right-e;}
+#iwTCInstructions-3 {
+	text-align:justify;
+	border:none;
+	padding:0 0.5em 0 0.5em;
+	font-size:2.5em;
+	grid-row:riwTCInstructions-3-s/riwTCInstructions-3-e;
+	grid-column:ciwTC-s/ciwTC-e;
+}
+*/
+#iwTCInstructions-1 {grid-row:riwTCInstructions-1-s/riwTCInstructions-1-e; grid-column:ciwTC-s/ciwTC-e;}
+#iwTCInstructions-2 {grid-row:riwTCInstructions-2-s/riwTCInstructions-2-e; grid-column:ciwTC-s/ciwTC-e;}
+#iwTCInstructions-3 {grid-row:riwTCInstructions-3-s/riwTCInstructions-3-e; grid-column:ciwTC-s/ciwTC-e;}
+
+#iwSurroundInstructions {
+	width:60em;
+	height:30em;
+	grid-row:riwSurroundInstructions-s/riwSurroundInstructions-e;
+	grid-column:ciwSurroundInstructions-s/ciwSurroundInstructions-e;
+}
 
 #iwTTOtherPuzzles {grid-row:riwTTOtherPuzzles-s/riwTTOtherPuzzles-e; grid-column:ciwTT-s/ciwTT-e;}
 
@@ -190,15 +244,15 @@ body {
 	grid-column:ciwTC-s/ciwTC-e;
 }
 
-#iwTCLadderet {
+#iwTCDispensersPi {
 	border-bottom-width:1px;
-	grid-row:riwTCLadderet-s/riwTCLadderet-e;
+	grid-row:riwTCDispensersPi-s/riwTCDispensersPi-e;
 	grid-column:ciwTC-s/ciwTC-e;
 }
 
-#iwTCLooseFit {
+#iwTCLadderet {
 	border-bottom-width:1px;
-	grid-row:riwTCLooseFit-s/riwTCLooseFit-e;
+	grid-row:riwTCLadderet-s/riwTCLadderet-e;
 	grid-column:ciwTC-s/ciwTC-e;
 }
 
@@ -230,12 +284,35 @@ body {
 
 #iwTTLazyDog {grid-row:riwTTLazyDog-s/riwTTLazyDog-e; grid-column:ciwTT-s/ciwTT-e;}
 
-#iwTCLazyDog {
+#iwTCLazyDog-1 {
 	text-align:justify;
 	border:none;
 	padding:0 0.5em 0 0.5em;
 	font-size:2.5em;
-	grid-row:riwTCLazyDog-s/riwTCLazyDog-e;
+	grid-row:riwTCLazyDog-1-s/riwTCLazyDog-1-e;
+	grid-column:ciwTC-s/ciwTC-e;
+}
+
+#iwTCLazyDog-2 {
+	height:109em;
+	width:54em;
+	grid-row:riwTCLazyDog-2-s/riwTCLazyDog-2-e;
+	grid-column:ciwTC-s/ciwTC-e;
+}
+
+#iwTCLazyDog-3 {
+	height:100em;
+	width:54em;
+	grid-row:riwTCLazyDog-3-s/riwTCLazyDog-3-e;
+	grid-column:ciwTC-s/ciwTC-e;
+}
+
+#iwTCLazyDog-4 {
+	text-align:center;
+	border:none;
+	padding:0 0.5em 0 0.5em;
+	font-size:2em;
+	grid-row:riwTCLazyDog-4-s/riwTCLazyDog-4-e;
 	grid-column:ciwTC-s/ciwTC-e;
 }
 
@@ -254,149 +331,94 @@ body {
 #iwDoor {
 	grid-row:riwDoor-s/riwDoor-e;
 	grid-column:ciwDoor-s/ciwDoor-e;
-	height:88em;
-	width:59em;
+	height:120em;
+	width:60em;
 	display:grid;
 	grid-template-rows:
-		[riwd-s]
-		1fr
-		[riwdSurroundDemonstration-top-s]
-		1fr
-		[riwdSurroundDemonstration-top-e riwdSurroundDemonstration-lr-s]
-		1fr
+		[riwd-s riwdSurroundDemonstration-s]
+		3fr
 		[riwdCtrlDemonstration-s riwdCrossTick-s]
 		7fr
 		[riwdCtrlDemonstration-e riwdCrossTick-e]
-		1fr
-		[riwdSurroundDemonstration-lr-e riwdSurroundDemonstration-bottom-s]
-		1fr
-		[riwdSurroundDemonstration-bottom-e]
-		1fr
-		[riwdCtrlTop-s]
-		1fr
-		[riwdSpotTop-s]
-		4fr
-		[riwdSpotTop-e]
-		1fr
-		[riwdCtrlTop-e]
+		3fr
+		[riwdSurroundDemonstration-e riwdCtrlTop-s riwdSpotTop-s]
+		6fr
+		[riwdCtrlTop-e riwdSpotTop-e]
 		3fr
 		[riwdPanel-s]
-		45fr
+		76fr
 		[riwdPanel-e]
 		3fr
-		[riwdCtrlDispense-s riwdSpotDispense-s]
-		4fr
-		[riwdSpotDispense-e]
-		2fr
-		[riwdCtrlDispense-e]
+		[riwdCtrlBackward-s riwdCtrlForward-s]
+		1fr
+		[riwdSpotBackward-s riwdSpotForward-s]
+		5fr
+		[riwdSpotBackward-e riwdSpotForward-e]
+		1fr
+		[riwdCtrlBackward-e riwdCtrlForward-e]
 		3fr
-		[riwdCtrlBottom-s]
-		1fr
-		[riwdSpotBottom-s]
-		4fr
-		[riwdSpotBottom-e]
-		1fr
-		[riwdCtrlBottom-e]
+		[riwdCtrlBottom-s riwdSpotBottom-s]
+		6fr
+		[riwdCtrlBottom-e riwdSpotBottom-e]
 		3fr
 		[riwd-e];
-		
 	grid-template-columns:
 		[ciwd-s]
 		3fr
 		[ciwdPanel-s ciwdCtrlInformation-s ciwdCtrlReset-s]
+		10fr
+		[ciwdSurroundDemonstration-s]
 		3fr
-		[ciwdSpotReset-s]
-		5fr
-		[ciwdSpotReset-e ciwdCtrlDispense-1-s]
-		1fr
-		[ciwdSpotDispense-1-s]
-		2fr
-		[ciwdCtrlReset-e ciwdSurroundDemonstration-tb-s ciwdSurroundDemonstration-left-s]
-		1fr
-		[ciwdSurroundDemonstration-left-e]
-		1fr
 		[ciwdCtrlDemonstration-s]
-		1fr
-		[ciwdSpotDispense-1-e]
-		1fr
-		[ciwdCtrlDispense-1-e]
+		2fr
+		[ciwdCtrlBackward-s]
 		1fr
 		[ciwdCtrlInformation-e]
-		2fr
-		[ciwdCtrlDispense-2-s ciwdCtrlUndispense-s]
 		1fr
-		[ciwdSpotDispense-2-s]
-		2fr
-		[ciwdCtrlHint-s]
+		[ciwdSpotBackward-s]
+		4fr
+		[ciwdSpotBackward-e ciwdCtrlBackward-e ciwdCtrlHint-s]
 		3fr
-		[ciwdSpotHint-s ciwdSpotDispense-2-e]
-		1fr
-		[ciwdCtrlDispense-2-e]
+		[ciwdSpotHint-s ciwdSpotReset-s]
+		6fr
+		[ciwdSpotHint-e ciwdSpotReset-e]
 		3fr
-		[ciwdCtrlDispense-3-s]
+		[ciwdCtrlHint-e ciwdCtrlForward-s ciwdSpotForward-s]
+		4fr
+		[ciwdSpotForward-e]
 		1fr
-		[ciwdSpotHint-e ciwdSpotDispense-3-s]
-		3fr
-		[ciwdCtrlHint-e]
-		1fr
-		[ciwdSpotUndispense-s]
-		1fr
-		[ciwdSpotDispense-3-e]
-		1fr
-		[ciwdCtrlDispense-3-e]
-		2fr
 		[ciwdCtrlSolution-s]
 		1fr
-		[ciwdSpotUndispense-e ciwdCtrlDispense-4-s]
-		1fr
-		[ciwdSpotDispense-4-s]
-		1fr
+		[ciwdCtrlForward-e]
+		2fr
 		[ciwdCtrlDemonstration-e]
-		1fr
-		[ciwdSurroundDemonstration-right-s]
-		1fr
-		[ciwdSurroundDemonstration-tb-e ciwdSurroundDemonstration-right-e]
-		1fr
+		2fr
 		[ciwdSpotSolution-s]
 		1fr
-		[ciwdSpotDispense-4-e]
-		1fr
-		[ciwdCtrlDispense-4-e]
-		2fr
-		[ciwdSpotSolution-e]
-		1fr
-		[ciwdCrossTick-s]
+		[ciwdSurroundDemonstration-e]
 		5fr
-		[ciwdPanel-e ciwdCtrlSolution-e ciwdCtrlUndispense-e ciwdCrossTick-e]
+		[ciwdSpotSolution-e ciwdCrossTick-s]
+		5fr
+		[ciwdPanel-e ciwdCtrlSolution-e ciwdCtrlReset-e ciwdCrossTick-e]
 		3fr
 		[ciwd-e];
 }
 
 #iwdCtrlDemonstration {
+	grid-row:riwdCtrlDemonstration-s/riwdCtrlDemonstration-e;
+	grid-column:ciwdCtrlDemonstration-s/ciwdCtrlDemonstration-e;
 	text-align:center;
 	border:none;
 	background-color:#484848;
 	color:white;
 	font-size:3em;
-	grid-row:riwdCtrlDemonstration-s/riwdCtrlDemonstration-e;
-	grid-column:ciwdCtrlDemonstration-s/ciwdCtrlDemonstration-e;
 }
 
-#iwdSurroundDemonstration-top {
-	grid-row:riwdSurroundDemonstration-top-s/riwdSurroundDemonstration-top-e;
-	grid-column:ciwdSurroundDemonstration-tb-s/ciwdSurroundDemonstration-tb-e;
-}
-#iwdSurroundDemonstration-bottom {
-	grid-row:riwdSurroundDemonstration-bottom-s/riwdSurroundDemonstration-bottom-e;
-	grid-column:ciwdSurroundDemonstration-tb-s/ciwdSurroundDemonstration-tb-e;
-}
-#iwdSurroundDemonstration-left {
-	grid-row:riwdSurroundDemonstration-lr-s/riwdSurroundDemonstration-lr-e;
-	grid-column:ciwdSurroundDemonstration-left-s/ciwdSurroundDemonstration-left-e;
-}
-#iwdSurroundDemonstration-right {
-	grid-row:riwdSurroundDemonstration-lr-s/riwdSurroundDemonstration-lr-e;
-	grid-column:ciwdSurroundDemonstration-right-s/ciwdSurroundDemonstration-right-e;
+#iwdSurroundDemonstration {
+	width:34em;
+	height:13em;
+	grid-row:riwdSurroundDemonstration-s/riwdSurroundDemonstration-e;
+	grid-column:ciwdSurroundDemonstration-s/ciwdSurroundDemonstration-e;
 }
 
 #iwdCrossTick {display:none; grid-row:riwdCrossTick-s/riwdCrossTick-e; grid-column:ciwdCrossTick-s/ciwdCrossTick-e;}
@@ -404,546 +426,449 @@ body {
 #iwdCtrlInformation {grid-row:riwdCtrlTop-s/riwdCtrlTop-e; grid-column:ciwdCtrlInformation-s/ciwdCtrlInformation-e;}
 
 #iwdCtrlHint {grid-row:riwdCtrlTop-s/riwdCtrlTop-e; grid-column:ciwdCtrlHint-s/ciwdCtrlHint-e;}
-
-#iwdSpotHint {display:none; grid-row:riwdSpotTop-s/riwdSpotTop-e; grid-column:ciwdSpotHint-s/ciwdSpotHint-e;}
+#iwdSpotHint {grid-row:riwdSpotTop-s/riwdSpotTop-e; grid-column:ciwdSpotHint-s/ciwdSpotHint-e;}
 
 #iwdCtrlSolution {grid-row:riwdCtrlTop-s/riwdCtrlTop-e; grid-column:ciwdCtrlSolution-s/ciwdCtrlSolution-e;}
-
-#iwdSpotSolution {display:none; grid-row:riwdSpotTop-s/riwdSpotTop-e; grid-column:ciwdSpotSolution-s/ciwdSpotSolution-e;}
-
-#iwdCtrlDispense-1 {grid-row:riwdCtrlDispense-s/riwdCtrlDispense-e; grid-column:ciwdCtrlDispense-1-s/ciwdCtrlDispense-1-e;}
-#iwdCtrlDispense-2 {grid-row:riwdCtrlDispense-s/riwdCtrlDispense-e; grid-column:ciwdCtrlDispense-2-s/ciwdCtrlDispense-2-e;}
-#iwdCtrlDispense-3 {grid-row:riwdCtrlDispense-s/riwdCtrlDispense-e; grid-column:ciwdCtrlDispense-3-s/ciwdCtrlDispense-3-e;}
-#iwdCtrlDispense-4 {grid-row:riwdCtrlDispense-s/riwdCtrlDispense-e; grid-column:ciwdCtrlDispense-4-s/ciwdCtrlDispense-4-e;}
-
-#iwdSpotDispense-1 {display:none; grid-row:riwdSpotDispense-s/riwdSpotDispense-e; grid-column:ciwdSpotDispense-1-s/ciwdSpotDispense-1-e;}
-#iwdSpotDispense-2 {display:none; grid-row:riwdSpotDispense-s/riwdSpotDispense-e; grid-column:ciwdSpotDispense-2-s/ciwdSpotDispense-2-e;}
-#iwdSpotDispense-3 {display:none; grid-row:riwdSpotDispense-s/riwdSpotDispense-e; grid-column:ciwdSpotDispense-3-s/ciwdSpotDispense-3-e;}
-#iwdSpotDispense-4 {display:none; grid-row:riwdSpotDispense-s/riwdSpotDispense-e; grid-column:ciwdSpotDispense-4-s/ciwdSpotDispense-4-e;}
+#iwdSpotSolution {grid-row:riwdSpotTop-s/riwdSpotTop-e; grid-column:ciwdSpotSolution-s/ciwdSpotSolution-e;}
 
 #iwdCtrlReset {grid-row:riwdCtrlBottom-s/riwdCtrlBottom-e; grid-column:ciwdCtrlReset-s/ciwdCtrlReset-e;}
-#iwdSpotReset {display:none; grid-row:riwdSpotBottom-s/riwdSpotBottom-e; grid-column:ciwdSpotReset-s/ciwdSpotReset-e;}
+#iwdSpotReset {grid-row:riwdSpotBottom-s/riwdSpotBottom-e; grid-column:ciwdSpotReset-s/ciwdSpotReset-e;}
 
-#iwdCtrlUndispense {grid-row:riwdCtrlBottom-s/riwdCtrlBottom-e; grid-column:ciwdCtrlUndispense-s/ciwdCtrlUndispense-e;}
-#iwdSpotUndispense {display:none; grid-row:riwdSpotBottom-s/riwdSpotBottom-e; grid-column:ciwdSpotUndispense-s/ciwdSpotUndispense-e;}
+#iwdCtrlBackward {grid-row:riwdCtrlBackward-s/riwdCtrlBackward-e; grid-column:ciwdCtrlBackward-s/ciwdCtrlBackward-e;}
+#iwdSpotBackward {grid-row:riwdSpotBackward-s/riwdSpotBackward-e; grid-column:ciwdSpotBackward-s/ciwdSpotBackward-e;}
+
+#iwdCtrlForward {grid-row:riwdCtrlForward-s/riwdCtrlForward-e; grid-column:ciwdCtrlForward-s/ciwdCtrlForward-e;}
+#iwdSpotForward {grid-row:riwdSpotForward-s/riwdSpotForward-e; grid-column:ciwdSpotForward-s/ciwdSpotForward-e;}
 
 #iwdPanel {
 	grid-row:riwdPanel-s/riwdPanel-e;
 	grid-column:ciwdPanel-s/ciwdPanel-e;
 	display:grid;
-	height:45em;
-	width:53em;
+	height:76em;
+	width:54em;
 	background-color:white;
 	grid-template-rows:
-		[riwdp-s]
-		2fr
-		[riwdpdItem-2-s]
-		1fr
-		[riwdpdContainer-2-s]
-		6fr
-		[riwdpdItem-1-s]
-		1fr
-		[riwdpdContainer-1-s]
-		1fr
-		[riwdpdItem-2-e]
-		6fr
-		[riwdpdContainer-e]
-		1fr
-		[riwdpdItem-1-e]
-		5fr
-		[riwdpExpressionForeground-s]
-		1fr
-		[riwdpExpressionBackground-s]
-		7fr
-		[riwdpExpressionBackground-e]
-		1fr
-		[riwdpExpressionForeground-e]
-		2fr
-		[riwdpTargetBackground-s]
-		8fr
-		[riwdpTargetBackground-e]
+		[riwdp-s riwdpGrid-s]
 		3fr
+		[riwdpCellRow-1-s]
+		6fr
+		[riwdpCellRow-1-e riwdpCellRow-2-s]
+		6fr
+		[riwdpCellRow-2-e riwdpCellRow-3-s]
+		6fr
+		[riwdpCellRow-3-e riwdpCellRow-4-s]
+		6fr
+		[riwdpCellRow-4-e riwdpCellRow-5-s]
+		6fr
+		[riwdpCellRow-5-e riwdpCellRow-6-s]
+		6fr
+		[riwdpCellRow-6-e riwdpCellRow-7-s]
+		6fr
+		[riwdpCellRow-7-e]
+		3fr
+		[riwdpGrid-e riwdpWordTop-s]
+		2fr
+		[riwdpSpotWordTop-s]
+		5fr
+		[riwdpSpotWordTop-e]
+		2fr
+		[riwdpWordTop-e riwdpWordCentre-s]
+		2fr
+		[riwdpSpotWordCentre-s]
+		5fr
+		[riwdpSpotWordCentre-e]
+		2fr
+		[riwdpWordCentre-e riwdpWordBottom-s]
+		2fr
+		[riwdpSpotWordBottom-s]
+		5fr
+		[riwdpSpotWordBottom-e]
+		2fr
+		[riwdpWordBottom-e]
+		1fr
 		[riwdp-e];
-		
 	grid-template-columns:
 		[ciwdp-s]
-		8fr
-		[ciwdpdContainer-1-s ciwdpdItem-1-s ciwdpExpression-s]
-		7fr
-		[ciwdpdContainer-1-e ciwdpdItem-1-e]
 		3fr
-		[ciwdpdContainer-2-s ciwdpdItem-2-s]
+		[ciwdpGrid-s ciwdpWordLeft-s]
+		3fr
+		[ciwdpCellColumn-1-s]
+		3fr
+		[ciwdpSpotWord4-s]
+		1fr
+		[ciwdpSpotWord1-s]
 		2fr
-		[ciwdpTargetBackground-2-s ciwdpTargetForeground-2-s]
-		5fr
-		[ciwdpdContainer-2-e ciwdpdItem-2-e]
+		[ciwdpCellColumn-1-e ciwdpCellColumn-2-s]
+		1fr
+		[ciwdpSpotWord4-e]
+		1fr
+		[ciwdpSpotWord1-e]
+		1fr
+		[ciwdpWordCentre-s]
 		3fr
-		[ciwdpdContainer-3-s ciwdpdItem-3-s]
-		5fr
-		[ciwdpTargetBackground-2-e ciwdpTargetForeground-2-e]
+		[ciwdpCellColumn-2-e ciwdpCellColumn-3-s]
+		6fr
+		[ciwdpCellColumn-3-e ciwdpCellColumn-4-s]
+		1fr
+		[ciwdpSpotWordCentre-s]
 		2fr
-		[ciwdpdContainer-3-e ciwdpdItem-3-e]
+		[ciwdpWordLeft-e ciwdpWordRight-s]
+		2fr
+		[ciwdpSpotWordCentre-e]
+		1fr
+		[ciwdpCellColumn-4-e ciwdpCellColumn-5-s]
+		6fr
+		[ciwdpCellColumn-5-e ciwdpCellColumn-6-s]
 		3fr
-		[ciwdpdContainer-4-s ciwdpdItem-4-s]
-		7fr
-		[ciwdpdContainer-4-e ciwdpdItem-4-e ciwdpExpression-e]
-		8fr
+		[ciwdpWordCentre-e ciwdpSpotWord5-s]
+		3fr
+		[ciwdpCellColumn-6-e ciwdpCellColumn-7-s ciwdpSpotWord2-s]
+		1fr
+		[ciwdpSpotWord5-e]
+		3fr
+		[ciwdpSpotWord2-e]
+		2fr
+		[ciwdpCellColumn-7-e]
+		3fr
+		[ciwdpGrid-e ciwdpWordRight-e]
+		3fr
 		[ciwdp-e];
 }
 
-#iwdpdContainer-1 {grid-row:riwdpdContainer-2-s/riwdpdContainer-e; grid-column:ciwdpdContainer-1-s/ciwdpdContainer-1-e;}
-#iwdpdContainer-2 {grid-row:riwdpdContainer-2-s/riwdpdContainer-e; grid-column:ciwdpdContainer-2-s/ciwdpdContainer-2-e;}
-#iwdpdContainer-3 {grid-row:riwdpdContainer-1-s/riwdpdContainer-e; grid-column:ciwdpdContainer-3-s/ciwdpdContainer-3-e;}
-#iwdpdContainer-4 {grid-row:riwdpdContainer-2-s/riwdpdContainer-e; grid-column:ciwdpdContainer-4-s/ciwdpdContainer-4-e;}
-
-#iwdpdItem-11 {grid-row:riwdpdItem-1-s/riwdpdItem-1-e; grid-column:ciwdpdItem-1-s/ciwdpdItem-1-e;}
-#iwdpdItem-12 {grid-row:riwdpdItem-2-s/riwdpdItem-2-e; grid-column:ciwdpdItem-1-s/ciwdpdItem-1-e;}
-#iwdpdItem-21 {grid-row:riwdpdItem-1-s/riwdpdItem-1-e; grid-column:ciwdpdItem-2-s/ciwdpdItem-2-e;}
-#iwdpdItem-22 {grid-row:riwdpdItem-2-s/riwdpdItem-2-e; grid-column:ciwdpdItem-2-s/ciwdpdItem-2-e;}
-#iwdpdItem-31 {grid-row:riwdpdItem-1-s/riwdpdItem-1-e; grid-column:ciwdpdItem-3-s/ciwdpdItem-3-e;}
-#iwdpdItem-41 {grid-row:riwdpdItem-1-s/riwdpdItem-1-e; grid-column:ciwdpdItem-4-s/ciwdpdItem-4-e;}
-#iwdpdItem-42 {grid-row:riwdpdItem-2-s/riwdpdItem-2-e; grid-column:ciwdpdItem-4-s/ciwdpdItem-4-e;}
-/*
-#iwdpExpression {
-	font-size:6em;
-	background-color:silver;
-	margin:0;
-	padding:0;
-	grid-row:riwdpExpression-s/riwdpExpression-e;
-	grid-column:ciwdpExpression-s/ciwdpExpression-e;
-}
-
-#iwdpExpressionUnderline {
+#iwdpGrid {
 	z-index:5;
-	background-color:black;
-	margin:0;
-	padding:0;
-	grid-row:riwdpExpressionUnderline-s/riwdpExpressionUnderline-e;
-	grid-column:ciwdpExpression-s/ciwdpExpression-e;
+	width:48em;
+	height:48em;
+	opacity:1;
+	grid-row:riwdpGrid-s/riwdpGrid-e;
+	grid-column:ciwdpGrid-s/ciwdpGrid-e;
 }
-*/
-#iwdpExpressionBackground-9 {grid-row:riwdpExpressionBackground-s/riwdpExpressionBackground-e; grid-column:ciwdpExpression-s/ciwdpExpression-e;}
-#iwdpExpressionForeground-9 {grid-row:riwdpExpressionForeground-s/riwdpExpressionForeground-e; grid-column:ciwdpExpression-s/ciwdpExpression-e;}
 
-/* #iwdpTarget {grid-row:riwdpTarget-s/riwdpTarget-e; grid-column:ciwdpTarget-s/ciwdpTarget-e;} */
-#iwdpTargetBackground-2 {display:none; grid-row:riwdpTargetBackground-s/riwdpTargetBackground-e; grid-column:ciwdpTargetBackground-2-s/ciwdpTargetBackground-2-e;}
-#iwdpTargetForeground-2 {display:none; grid-row:riwdpTargetForeground-s/riwdpTargetForeground-e; grid-column:ciwdpTargetForeground-2-s/ciwdpTargetForeground-2-e;}
+#iwdpHoleTop {grid-row:riwdpCellRow-3-s/riwdpCellRow-3-e; grid-column:ciwdpCellColumn-3-s/ciwdpCellColumn-5-e;}
+#iwdpHoleBottom {grid-row:riwdpCellRow-5-s/riwdpCellRow-5-e; grid-column:ciwdpCellColumn-3-s/ciwdpCellColumn-5-e;}
+
+#iwdpCell-12 {grid-row:riwdpCellRow-1-s/riwdpCellRow-1-e; grid-column:ciwdpCellColumn-2-s/ciwdpCellColumn-2-e;}
+#iwdpCell-16 {grid-row:riwdpCellRow-1-s/riwdpCellRow-1-e; grid-column:ciwdpCellColumn-6-s/ciwdpCellColumn-6-e;}
+
+#iwdpCell-21 {grid-row:riwdpCellRow-2-s/riwdpCellRow-2-e; grid-column:ciwdpCellColumn-1-s/ciwdpCellColumn-1-e;}
+#iwdpCell-22 {grid-row:riwdpCellRow-2-s/riwdpCellRow-2-e; grid-column:ciwdpCellColumn-2-s/ciwdpCellColumn-2-e;}
+#iwdpCell-23 {grid-row:riwdpCellRow-2-s/riwdpCellRow-2-e; grid-column:ciwdpCellColumn-3-s/ciwdpCellColumn-3-e;}
+#iwdpCell-24 {grid-row:riwdpCellRow-2-s/riwdpCellRow-2-e; grid-column:ciwdpCellColumn-4-s/ciwdpCellColumn-4-e;}
+#iwdpCell-25 {grid-row:riwdpCellRow-2-s/riwdpCellRow-2-e; grid-column:ciwdpCellColumn-5-s/ciwdpCellColumn-5-e;}
+#iwdpCell-26 {grid-row:riwdpCellRow-2-s/riwdpCellRow-2-e; grid-column:ciwdpCellColumn-6-s/ciwdpCellColumn-6-e;}
+#iwdpCell-27 {grid-row:riwdpCellRow-2-s/riwdpCellRow-2-e; grid-column:ciwdpCellColumn-7-s/ciwdpCellColumn-7-e;}
+
+#iwdpCell-32 {grid-row:riwdpCellRow-3-s/riwdpCellRow-3-e; grid-column:ciwdpCellColumn-2-s/ciwdpCellColumn-2-e;}
+#iwdpCell-36 {grid-row:riwdpCellRow-3-s/riwdpCellRow-3-e; grid-column:ciwdpCellColumn-6-s/ciwdpCellColumn-6-e;}
+
+#iwdpCell-41 {grid-row:riwdpCellRow-4-s/riwdpCellRow-4-e; grid-column:ciwdpCellColumn-1-s/ciwdpCellColumn-1-e;}
+#iwdpCell-42 {grid-row:riwdpCellRow-4-s/riwdpCellRow-4-e; grid-column:ciwdpCellColumn-2-s/ciwdpCellColumn-2-e;}
+#iwdpCell-43 {grid-row:riwdpCellRow-4-s/riwdpCellRow-4-e; grid-column:ciwdpCellColumn-3-s/ciwdpCellColumn-3-e;}
+#iwdpCell-44 {grid-row:riwdpCellRow-4-s/riwdpCellRow-4-e; grid-column:ciwdpCellColumn-4-s/ciwdpCellColumn-4-e;}
+#iwdpCell-45 {grid-row:riwdpCellRow-4-s/riwdpCellRow-4-e; grid-column:ciwdpCellColumn-5-s/ciwdpCellColumn-5-e;}
+#iwdpCell-46 {grid-row:riwdpCellRow-4-s/riwdpCellRow-4-e; grid-column:ciwdpCellColumn-6-s/ciwdpCellColumn-6-e;}
+#iwdpCell-47 {grid-row:riwdpCellRow-4-s/riwdpCellRow-4-e; grid-column:ciwdpCellColumn-7-s/ciwdpCellColumn-7-e;}
+
+#iwdpCell-52 {grid-row:riwdpCellRow-5-s/riwdpCellRow-5-e; grid-column:ciwdpCellColumn-2-s/ciwdpCellColumn-2-e;}
+#iwdpCell-56 {grid-row:riwdpCellRow-5-s/riwdpCellRow-5-e; grid-column:ciwdpCellColumn-6-s/ciwdpCellColumn-6-e;}
+
+#iwdpCell-61 {grid-row:riwdpCellRow-6-s/riwdpCellRow-6-e; grid-column:ciwdpCellColumn-1-s/ciwdpCellColumn-1-e;}
+#iwdpCell-62 {grid-row:riwdpCellRow-6-s/riwdpCellRow-6-e; grid-column:ciwdpCellColumn-2-s/ciwdpCellColumn-2-e;}
+#iwdpCell-63 {grid-row:riwdpCellRow-6-s/riwdpCellRow-6-e; grid-column:ciwdpCellColumn-3-s/ciwdpCellColumn-3-e;}
+#iwdpCell-64 {grid-row:riwdpCellRow-6-s/riwdpCellRow-6-e; grid-column:ciwdpCellColumn-4-s/ciwdpCellColumn-4-e;}
+#iwdpCell-65 {grid-row:riwdpCellRow-6-s/riwdpCellRow-6-e; grid-column:ciwdpCellColumn-5-s/ciwdpCellColumn-5-e;}
+#iwdpCell-66 {grid-row:riwdpCellRow-6-s/riwdpCellRow-6-e; grid-column:ciwdpCellColumn-6-s/ciwdpCellColumn-6-e;}
+#iwdpCell-67 {grid-row:riwdpCellRow-6-s/riwdpCellRow-6-e; grid-column:ciwdpCellColumn-7-s/ciwdpCellColumn-7-e;}
+
+#iwdpCell-72 {grid-row:riwdpCellRow-7-s/riwdpCellRow-7-e; grid-column:ciwdpCellColumn-2-s/ciwdpCellColumn-2-e;}
+#iwdpCell-76 {grid-row:riwdpCellRow-7-s/riwdpCellRow-7-e; grid-column:ciwdpCellColumn-6-s/ciwdpCellColumn-6-e;}
+
+#iwdpWord-1 {grid-row:riwdpWordTop-s/riwdpWordTop-e; grid-column:ciwdpWordLeft-s/ciwdpWordLeft-e;}
+#iwdpWord-2 {grid-row:riwdpWordTop-s/riwdpWordTop-e; grid-column:ciwdpWordRight-s/ciwdpWordRight-e;}
+#iwdpWord-3 {grid-row:riwdpWordCentre-s/riwdpWordCentre-e; grid-column:ciwdpWordCentre-s/ciwdpWordCentre-e;}
+#iwdpWord-4 {grid-row:riwdpWordBottom-s/riwdpWordBottom-e; grid-column:ciwdpWordLeft-s/ciwdpWordLeft-e;}
+#iwdpWord-5 {grid-row:riwdpWordBottom-s/riwdpWordBottom-e; grid-column:ciwdpWordRight-s/ciwdpWordRight-e;}
+
+#iwdpSpotWord-1 {grid-row:riwdpSpotWordTop-s/riwdpSpotWordTop-e; grid-column:ciwdpSpotWord1-s/ciwdpSpotWord1-e;}
+#iwdpSpotWord-2 {grid-row:riwdpSpotWordTop-s/riwdpSpotWordTop-e; grid-column:ciwdpSpotWord2-s/ciwdpSpotWord2-e;}
+#iwdpSpotWord-3 {grid-row:riwdpSpotWordCentre-s/riwdpSpotWordCentre-e; grid-column:ciwdpSpotWordCentre-s/ciwdpSpotWordCentre-e;}
+#iwdpSpotWord-4 {grid-row:riwdpSpotWordBottom-s/riwdpSpotWordBottom-e; grid-column:ciwdpSpotWord4-s/ciwdpSpotWord4-e;}
+#iwdpSpotWord-5 {grid-row:riwdpSpotWordBottom-s/riwdpSpotWordBottom-e; grid-column:ciwdpSpotWord5-s/ciwdpSpotWord5-e;}
+
+#iwdpWord-1-spelling {background-color:white; color:black;}
+#iwdpWord-2-spelling {background-color:white; color:black;}
+#iwdpWord-3-spelling {background-color:white; color:black;}
+#iwdpWord-4-spelling {background-color:white; color:black;}
+#iwdpWord-5-spelling {background-color:white; color:black;}
 
 
 
 #mainWall {
-	display:grid;
-	z-index:2;
+/*	display:grid; */
+/*	z-index:2; */
 	position:absolute;
-	height:888em;
-	width:59em;
+	height:120em;
+	width:60em;
+	grid-template-rows:
+		[rmw-s]
+		3fr
+		[rmwName-s rmwCrossTick-s]
+		7fr
+		[rmwName-e rmwCrossTick-e rmwDoor-s]
+		110fr
+		[rmwDoor-e rmw-e];
  	grid-template-columns:
 		[cmw-s cmwDoor-s]
-		14fr		
-		[cmwName-s]
-		31fr
-		[cmwName-e]
-		6fr
+		13fr
+		[cmwNameForeground-s]
+		5fr
+		[cmwNameBackground-s]
+		24fr
+		[cmwNameBackground-e]
+		5fr
+		[cmwNameForeground-e]
+		5fr
 		[cmwCrossTick-s]
 		5fr
 		[cmwCrossTick-e]
 		3fr
 		[cmwDoor-e cmw-e];
 }
-
+/*
 #mwName {grid-row:rmwName-s/rmwName-e; grid-column:cmwName-s/cmwName-e;}
+*/
+#mwNameBackground {grid-row:rmwName-s/rmwName-e; grid-column:cmwNameBackground-s/cmwNameBackground-e;}
+#mwNameForeground {grid-row:rmwName-s/rmwName-e; grid-column:cmwNameForeground-s/cmwNameForeground-e;}
 
-#mwCrossTick {display:none; grid-row:rmwCrossTick-s/rmwCrossTick-e; grid-column:cmwCrossTick-s/cmwCrossTick-e;}
+#mwCrossTick {grid-row:rmwCrossTick-s/rmwCrossTick-e; grid-column:cmwCrossTick-s/cmwCrossTick-e;}
 			
 #mwDoor {
 	grid-row:rmwDoor-s/rmwDoor-e;
 	grid-column:cmwDoor-s/cmwDoor-e;
 	display:grid;
-	height:888em;
-	width:59em;
+	height:110em;
+	width:60em;
+	grid-template-rows:
+		[rmwd-s rmwdSurroundInformation-s]
+		3fr
+		[rmwdCtrlTop-s]
+		6fr
+		[rmwdCtrlTop-e]
+		3fr
+		[rmwdSurroundInformation-e rmwdPanel-s]
+		76fr
+		[rmwdPanel-e]
+		3fr
+		[rmwdCtrlBackward-s rmwdCtrlForward-s]
+		7fr
+		[rmwdCtrlBackward-e rmwdCtrlForward-e]
+		3fr
+		[rmwdCtrlBottom-s]
+		6fr
+		[rmwdCtrlBottom-e]
+		3fr
+		[rmwd-e];
 	grid-template-columns:
-		[cmwd-s]
-		1fr
-		[cmwdSurroundInformation-tb-s cmwdSurroundInformation-left-s]
-		1fr
-		[cmwdSurroundInformation-left-e]
-		1fr
+		[cmwd-s cmwdSurroundInformation-s]
+		3fr
 		[cmwdPanel-s cmwdCtrlInformation-s cmwdCtrlReset-s]
-		3fr
-		[cmwdCtrlDispense-51-s]
-		7fr
-		[cmwdCtrlDispense-51-e cmwdCtrlDispense-31-s]
+		15fr
+		[cmwdCtrlBackward-s]
 		1fr
-		[cmwdCtrlReset-e]
-		2fr
-		[cmwdCtrlDispense-52-s]
-		3fr
 		[cmwdCtrlInformation-e]
-		1fr
-		[cmwdCtrlDispense-31-e cmwdSurroundInformation-right-s]
-		1fr
-		[cmwdSurroundInformation-tb-e cmwdSurroundInformation-right-e cmwdCtrlUndispense-s]
-		2fr
-		[cmwdCtrlDispense-52-e]
-		1fr
-		[cmwdCtrlHint-s]
-		2fr
-		[cmwdCtrlDispense-32-s cmwdCtrlDispense-53-s]
-		7fr
-		[cmwdCtrlDispense-32-e cmwdCtrlDispense-53-e]
-		2fr
-		[cmwdCtrlHint-e]
-		1fr
-		[cmwdCtrlDispense-54-s]
 		3fr
-		[cmwdCtrlDispense-33-s]
-		1fr
+		[cmwdSurroundInformation-e]
+		2fr
+		[cmwdCtrlBackward-e cmwdCtrlHint-s]
+		12fr
+		[cmwdCtrlHint-e cmwdCtrlForward-s]
+		5fr
 		[cmwdCtrlSolution-s]
-		3fr
-		[cmwdCtrlDispense-54-e]
-		3fr
-		[cmwdCtrlDispense-33-e cmwdCtrlDispense-55-s]
-		7fr
-		[cmwdCtrlDispense-55-e]
-		3fr
-		[cmwdCtrlSolution-e cmwdCtrlUndispense-e cmwdPanel-e]
+		1fr
+		[cmwdCtrlForward-e]
+		15fr
+		[cmwdCtrlSolution-e cmwdCtrlReset-e cmwdPanel-e]
 		3fr
 		[cmwd-e];
 }
 
 #mwdCtrlInformation {grid-row:rmwdCtrlTop-s/rmwdCtrlTop-e; grid-column:cmwdCtrlInformation-s/cmwdCtrlInformation-e;}
-
-#mwdSurroundInformation-top {grid-row:rmwdSurroundInformation-top-s/rmwdSurroundInformation-top-e; grid-column:cmwdSurroundInformation-tb-s/cmwdSurroundInformation-tb-e;}
-#mwdSurroundInformation-bottom {grid-row:rmwdSurroundInformation-bottom-s/rmwdSurroundInformation-bottom-e; grid-column:cmwdSurroundInformation-tb-s/cmwdSurroundInformation-tb-e;}
-#mwdSurroundInformation-left {grid-row:rmwdSurroundInformation-lr-s/rmwdSurroundInformation-lr-e; grid-column:cmwdSurroundInformation-left-s/cmwdSurroundInformation-left-e;}
-#mwdSurroundInformation-right {grid-row:rmwdSurroundInformation-lr-s/rmwdSurroundInformation-lr-e; grid-column:cmwdSurroundInformation-right-s/cmwdSurroundInformation-right-e;}
+#mwdSurroundInformation {
+	width:22em;
+	height:12em;
+	grid-row:rmwdSurroundInformation-s/rmwdSurroundInformation-e;
+	grid-column:cmwdSurroundInformation-s/cmwdSurroundInformation-e;
+}
 
 #mwdCtrlHint {grid-row:rmwdCtrlTop-s/rmwdCtrlTop-e; grid-column:cmwdCtrlHint-s/cmwdCtrlHint-e;}
 #mwdCtrlSolution {grid-row:rmwdCtrlTop-s/rmwdCtrlTop-e; grid-column:cmwdCtrlSolution-s/cmwdCtrlSolution-e;}
 
+#mwdCtrlBackward {grid-row:rmwdCtrlBackward-s/rmwdCtrlBackward-e; grid-column:cmwdCtrlBackward-s/cmwdCtrlBackward-e;}
+#mwdCtrlBackwardFlasher {grid-row:rmwdCtrlBackward-s/rmwdCtrlBackward-e; grid-column:cmwdCtrlBackward-s/cmwdCtrlBackward-e;}
+
+#mwdCtrlForward {grid-row:rmwdCtrlForward-s/rmwdCtrlForward-e; grid-column:cmwdCtrlForward-s/cmwdCtrlForward-e;}
+#mwdCtrlForwardFlasher {grid-row:rmwdCtrlForward-s/rmwdCtrlForward-e; grid-column:cmwdCtrlForward-s/cmwdCtrlForward-e;}
+
 #mwdCtrlReset {grid-row:rmwdCtrlBottom-s/rmwdCtrlBottom-e; grid-column:cmwdCtrlReset-s/cmwdCtrlReset-e;}
-#mwdCtrlUndispense {grid-row:rmwdCtrlBottom-s/rmwdCtrlBottom-e; grid-column:cmwdCtrlUndispense-s/cmwdCtrlUndispense-e;}
-
-#mwdCtrlDispense-31 {display:none; grid-row:rmwdCtrlDispense-s/rmwdCtrlDispense-e; grid-column:cmwdCtrlDispense-31-s/cmwdCtrlDispense-31-e;}
-#mwdCtrlDispense-32 {display:none; grid-row:rmwdCtrlDispense-s/rmwdCtrlDispense-e; grid-column:cmwdCtrlDispense-32-s/cmwdCtrlDispense-32-e;}
-#mwdCtrlDispense-33 {display:none; grid-row:rmwdCtrlDispense-s/rmwdCtrlDispense-e; grid-column:cmwdCtrlDispense-33-s/cmwdCtrlDispense-33-e;}
-
-#mwdCtrlDispense-31Flasher {display:none; grid-row:rmwdCtrlDispense-s/rmwdCtrlDispense-e; grid-column:cmwdCtrlDispense-31-s/cmwdCtrlDispense-31-e;}
-#mwdCtrlDispense-32Flasher {display:none; grid-row:rmwdCtrlDispense-s/rmwdCtrlDispense-e; grid-column:cmwdCtrlDispense-32-s/cmwdCtrlDispense-32-e;}
-#mwdCtrlDispense-33Flasher {display:none; grid-row:rmwdCtrlDispense-s/rmwdCtrlDispense-e; grid-column:cmwdCtrlDispense-33-s/cmwdCtrlDispense-33-e;}
-
-#mwdCtrlDispense-51 {display:none; grid-row:rmwdCtrlDispense-s/rmwdCtrlDispense-e; grid-column:cmwdCtrlDispense-51-s/cmwdCtrlDispense-51-e;}
-#mwdCtrlDispense-52 {display:none; grid-row:rmwdCtrlDispense-s/rmwdCtrlDispense-e; grid-column:cmwdCtrlDispense-52-s/cmwdCtrlDispense-52-e;}
-#mwdCtrlDispense-53 {display:none; grid-row:rmwdCtrlDispense-s/rmwdCtrlDispense-e; grid-column:cmwdCtrlDispense-53-s/cmwdCtrlDispense-53-e;}
-#mwdCtrlDispense-54 {display:none; grid-row:rmwdCtrlDispense-s/rmwdCtrlDispense-e; grid-column:cmwdCtrlDispense-54-s/cmwdCtrlDispense-54-e;}
-#mwdCtrlDispense-55 {display:none; grid-row:rmwdCtrlDispense-s/rmwdCtrlDispense-e; grid-column:cmwdCtrlDispense-55-s/cmwdCtrlDispense-55-e;}
 
 #mwdPanel {
 	grid-row:rmwdPanel-s/rmwdPanel-e;
 	grid-column:cmwdPanel-s/cmwdPanel-e;
 	display:grid;
-	height:888em;
-	width:53em;
+	height:76em;
+	width:54em;
 	background-color:white;
+	grid-template-rows:
+		[rmwdp-s rmwdpGrid-s]
+		3fr
+		[rmwdpCellRow-1-s]
+		6fr
+		[rmwdpCellRow-1-e rmwdpCellRow-2-s]
+		6fr
+		[rmwdpCellRow-2-e rmwdpCellRow-3-s]
+		6fr
+		[rmwdpCellRow-3-e rmwdpCellRow-4-s]
+		6fr
+		[rmwdpCellRow-4-e rmwdpCellRow-5-s]
+		6fr
+		[rmwdpCellRow-5-e rmwdpCellRow-6-s]
+		6fr
+		[rmwdpCellRow-6-e rmwdpCellRow-7-s]
+		6fr
+		[rmwdpCellRow-7-e]
+		3fr
+		[rmwdpGrid-e rmwdpWordTop-s]
+		9fr
+		[rmwdpWordTop-e rmwdpWordCentre-s]
+		9fr
+		[rmwdpWordCentre-e rmwdpWordBottom-s]
+		9fr
+		[rmwdpWordBottom-e]
+		1fr
+		[rmwdp-e];
 	grid-template-columns:
 		[cmwdp-s]
-		4fr
-		[cmwdpExpression-9-s]
-		2fr
-		[cmwdpExpression-8-s]
-		2fr
-		[cmwdpExpression-7-s]
-		9fr
-		[cmwdpTargetBackground-4-s cmwdpTargetForeground-4-s]
-		2fr
-		[cmwdpTargetBackground-3-s cmwdpTargetForeground-3-s]
-		1fr
-		[cmwdpTargetBackground-2-s cmwdpTargetForeground-2-s]
-		1fr
-		[cmwdpTargetBackground-1-s cmwdpTargetForeground-1-s]
-		11fr
-		[cmwdpTargetBackground-1-e cmwdpTargetForeground-1-e]
-		1fr
-		[cmwdpTargetBackground-2-e cmwdpTargetForeground-2-e]
-		1fr
-		[cmwdpTargetBackground-3-e cmwdpTargetForeground-3-e]
-		2fr
-		[cmwdpTargetBackground-4-e cmwdpTargetForeground-4-e]
-		9fr
-		[cmwdpExpression-7-e]
-		2fr
-		[cmwdpExpression-8-e]
-		2fr
-		[cmwdpExpression-9-e]
-		4fr
+		3fr
+		[cmwdpGrid-s cmwdpWordLeft-s]
+		3fr
+		[cmwdpCellColumn-1-s]
+		6fr
+		[cmwdpCellColumn-1-e cmwdpCellColumn-2-s]
+		3fr
+		[cmwdpWordCentre-s]
+		3fr
+		[cmwdpCellColumn-2-e cmwdpCellColumn-3-s]
+		6fr
+		[cmwdpCellColumn-3-e cmwdpCellColumn-4-s]
+		3fr
+		[cmwdpWordLeft-e cmwdpWordRight-s]
+		3fr
+		[cmwdpCellColumn-4-e cmwdpCellColumn-5-s]
+		6fr
+		[cmwdpCellColumn-5-e cmwdpCellColumn-6-s]
+		3fr
+		[cmwdpWordCentre-e]
+		3fr
+		[cmwdpCellColumn-6-e cmwdpCellColumn-7-s]
+		6fr
+		[cmwdpCellColumn-7-e]
+		3fr
+		[cmwdpGrid-e cmwdpWordRight-e]
+		3fr
 		[cmwdp-e];
 }
-/*
-#mwdpExpression {
-	font-size:6em;
-	background-color: silver;
-	margin:0;
-	padding:0;
-	grid-row:rmwdpExpression-s/rmwdpExpression-e;
-	grid-column:cmwdpExpression-s/cmwdpExpression-e;
-}
-*/
-#mwdpExpressionBackground-7 {display:none; grid-row:rmwdpExpressionBackground-s/rmwdpExpressionBackground-e; grid-column:cmwdpExpression-7-s/cmwdpExpression-7-e;}
-#mwdpExpressionForeground-7 {display:none; grid-row:rmwdpExpressionForeground-s/rmwdpExpressionForeground-e; grid-column:cmwdpExpression-7-s/cmwdpExpression-7-e;}
 
-#mwdpExpressionBackground-8 {display:none; grid-row:rmwdpExpressionBackground-s/rmwdpExpressionBackground-e; grid-column:cmwdpExpression-8-s/cmwdpExpression-8-e;}
-#mwdpExpressionForeground-8 {display:none; grid-row:rmwdpExpressionForeground-s/rmwdpExpressionForeground-e; grid-column:cmwdpExpression-8-s/cmwdpExpression-8-e;}
-
-#mwdpExpressionBackground-9 {display:none; grid-row:rmwdpExpressionBackground-s/rmwdpExpressionBackground-e; grid-column:cmwdpExpression-9-s/cmwdpExpression-9-e;}
-#mwdpExpressionForeground-9 {display:none; grid-row:rmwdpExpressionForeground-s/rmwdpExpressionForeground-e; grid-column:cmwdpExpression-9-s/cmwdpExpression-9-e;}
-
-/*
-#mwdpExpressionUnderline {
+#mwdpGrid {
 	z-index:5;
-	background-color: black;
-	margin:0;
-	padding:0;
-	grid-row:rmwdpExpressionUnderline-s/rmwdpExpressionUnderline-e;
-	grid-column:cmwdpExpression-s/cmwdpExpression-e;
+	width:48em;
+	height:48em;
+	opacity:1;
+	grid-row:rmwdpGrid-s/rmwdpGrid-e;
+	grid-column:cmwdpGrid-s/cmwdpGrid-e;
 }
-*/
-/*#mwdpTarget-1 {grid-row:rmwdpTarget-1-s/rmwdpTarget-1-e; grid-column:cmwdpTarget-1-s/cmwdpTarget-1-e;} */
-#mwdpTargetBackground-1 {display:none; grid-row:rmwdpTargetBackground-s/rmwdpTargetBackground-e; grid-column:cmwdpTargetBackground-1-s/cmwdpTargetBackground-1-e;}
-#mwdpTargetForeground-1 {display:none; grid-row:rmwdpTargetForeground-s/rmwdpTargetForeground-e; grid-column:cmwdpTargetForeground-1-s/cmwdpTargetForeground-1-e;}
 
-#mwdpTargetBackground-2 {display:none; grid-row:rmwdpTargetBackground-s/rmwdpTargetBackground-e; grid-column:cmwdpTargetBackground-2-s/cmwdpTargetBackground-2-e;}
-#mwdpTargetForeground-2 {display:none; grid-row:rmwdpTargetForeground-s/rmwdpTargetForeground-e; grid-column:cmwdpTargetForeground-2-s/cmwdpTargetForeground-2-e;}
+#mwdpHoleTop {grid-row:rmwdpCellRow-3-s/rmwdpCellRow-3-e; grid-column:cmwdpCellColumn-3-s/cmwdpCellColumn-5-e;}
+#mwdpHoleBottom {grid-row:rmwdpCellRow-5-s/rmwdpCellRow-5-e; grid-column:cmwdpCellColumn-3-s/cmwdpCellColumn-5-e;}
 
-#mwdpTargetBackground-3 {display:none; grid-row:rmwdpTargetBackground-s/rmwdpTargetBackground-e; grid-column:cmwdpTargetBackground-3-s/cmwdpTargetBackground-3-e;}
-#mwdpTargetForeground-3 {display:none; grid-row:rmwdpTargetForeground-s/rmwdpTargetForeground-e; grid-column:cmwdpTargetForeground-3-s/cmwdpTargetForeground-3-e;}
+#mwdpCell-12 {grid-row:rmwdpCellRow-1-s/rmwdpCellRow-1-e; grid-column:cmwdpCellColumn-2-s/cmwdpCellColumn-2-e;}
+#mwdpCell-16 {grid-row:rmwdpCellRow-1-s/rmwdpCellRow-1-e; grid-column:cmwdpCellColumn-6-s/cmwdpCellColumn-6-e;}
 
-#mwdpTargetBackground-4 {display:none; grid-row:rmwdpTargetBackground-s/rmwdpTargetBackground-e; grid-column:cmwdpTargetBackground-4-s/cmwdpTargetBackground-4-e;}
-#mwdpTargetForeground-4 {display:none; grid-row:rmwdpTargetForeground-s/rmwdpTargetForeground-e; grid-column:cmwdpTargetForeground-4-s/cmwdpTargetForeground-4-e;}
+#mwdpCell-21 {grid-row:rmwdpCellRow-2-s/rmwdpCellRow-2-e; grid-column:cmwdpCellColumn-1-s/cmwdpCellColumn-1-e;}
+#mwdpCell-22 {grid-row:rmwdpCellRow-2-s/rmwdpCellRow-2-e; grid-column:cmwdpCellColumn-2-s/cmwdpCellColumn-2-e;}
+#mwdpCell-23 {grid-row:rmwdpCellRow-2-s/rmwdpCellRow-2-e; grid-column:cmwdpCellColumn-3-s/cmwdpCellColumn-3-e;}
+#mwdpCell-24 {grid-row:rmwdpCellRow-2-s/rmwdpCellRow-2-e; grid-column:cmwdpCellColumn-4-s/cmwdpCellColumn-4-e;}
+#mwdpCell-25 {grid-row:rmwdpCellRow-2-s/rmwdpCellRow-2-e; grid-column:cmwdpCellColumn-5-s/cmwdpCellColumn-5-e;}
+#mwdpCell-26 {grid-row:rmwdpCellRow-2-s/rmwdpCellRow-2-e; grid-column:cmwdpCellColumn-6-s/cmwdpCellColumn-6-e;}
+#mwdpCell-27 {grid-row:rmwdpCellRow-2-s/rmwdpCellRow-2-e; grid-column:cmwdpCellColumn-7-s/cmwdpCellColumn-7-e;}
 
-#mwdpDispensers-25 {
+#mwdpCell-32 {grid-row:rmwdpCellRow-3-s/rmwdpCellRow-3-e; grid-column:cmwdpCellColumn-2-s/cmwdpCellColumn-2-e;}
+#mwdpCell-36 {grid-row:rmwdpCellRow-3-s/rmwdpCellRow-3-e; grid-column:cmwdpCellColumn-6-s/cmwdpCellColumn-6-e;}
+
+#mwdpCell-41 {grid-row:rmwdpCellRow-4-s/rmwdpCellRow-4-e; grid-column:cmwdpCellColumn-1-s/cmwdpCellColumn-1-e;}
+#mwdpCell-42 {grid-row:rmwdpCellRow-4-s/rmwdpCellRow-4-e; grid-column:cmwdpCellColumn-2-s/cmwdpCellColumn-2-e;}
+#mwdpCell-43 {grid-row:rmwdpCellRow-4-s/rmwdpCellRow-4-e; grid-column:cmwdpCellColumn-3-s/cmwdpCellColumn-3-e;}
+#mwdpCell-44 {grid-row:rmwdpCellRow-4-s/rmwdpCellRow-4-e; grid-column:cmwdpCellColumn-4-s/cmwdpCellColumn-4-e;}
+#mwdpCell-45 {grid-row:rmwdpCellRow-4-s/rmwdpCellRow-4-e; grid-column:cmwdpCellColumn-5-s/cmwdpCellColumn-5-e;}
+#mwdpCell-46 {grid-row:rmwdpCellRow-4-s/rmwdpCellRow-4-e; grid-column:cmwdpCellColumn-6-s/cmwdpCellColumn-6-e;}
+#mwdpCell-47 {grid-row:rmwdpCellRow-4-s/rmwdpCellRow-4-e; grid-column:cmwdpCellColumn-7-s/cmwdpCellColumn-7-e;}
+
+#mwdpCell-52 {grid-row:rmwdpCellRow-5-s/rmwdpCellRow-5-e; grid-column:cmwdpCellColumn-2-s/cmwdpCellColumn-2-e;}
+#mwdpCell-56 {grid-row:rmwdpCellRow-5-s/rmwdpCellRow-5-e; grid-column:cmwdpCellColumn-6-s/cmwdpCellColumn-6-e;}
+
+#mwdpCell-61 {grid-row:rmwdpCellRow-6-s/rmwdpCellRow-6-e; grid-column:cmwdpCellColumn-1-s/cmwdpCellColumn-1-e;}
+#mwdpCell-62 {grid-row:rmwdpCellRow-6-s/rmwdpCellRow-6-e; grid-column:cmwdpCellColumn-2-s/cmwdpCellColumn-2-e;}
+#mwdpCell-63 {grid-row:rmwdpCellRow-6-s/rmwdpCellRow-6-e; grid-column:cmwdpCellColumn-3-s/cmwdpCellColumn-3-e;}
+#mwdpCell-64 {grid-row:rmwdpCellRow-6-s/rmwdpCellRow-6-e; grid-column:cmwdpCellColumn-4-s/cmwdpCellColumn-4-e;}
+#mwdpCell-65 {grid-row:rmwdpCellRow-6-s/rmwdpCellRow-6-e; grid-column:cmwdpCellColumn-5-s/cmwdpCellColumn-5-e;}
+#mwdpCell-66 {grid-row:rmwdpCellRow-6-s/rmwdpCellRow-6-e; grid-column:cmwdpCellColumn-6-s/cmwdpCellColumn-6-e;}
+#mwdpCell-67 {grid-row:rmwdpCellRow-6-s/rmwdpCellRow-6-e; grid-column:cmwdpCellColumn-7-s/cmwdpCellColumn-7-e;}
+
+#mwdpCell-72 {grid-row:rmwdpCellRow-7-s/rmwdpCellRow-7-e; grid-column:cmwdpCellColumn-2-s/cmwdpCellColumn-2-e;}
+#mwdpCell-76 {grid-row:rmwdpCellRow-7-s/rmwdpCellRow-7-e; grid-column:cmwdpCellColumn-6-s/cmwdpCellColumn-6-e;}
+
+#mwdpWord-1 {grid-row:rmwdpWordTop-s/rmwdpWordTop-e; grid-column:cmwdpWordLeft-s/cmwdpWordLeft-e;}
+#mwdpWord-2 {grid-row:rmwdpWordTop-s/rmwdpWordTop-e; grid-column:cmwdpWordRight-s/cmwdpWordRight-e;}
+#mwdpWord-3 {grid-row:rmwdpWordCentre-s/rmwdpWordCentre-e; grid-column:cmwdpWordCentre-s/cmwdpWordCentre-e;}
+#mwdpWord-4 {grid-row:rmwdpWordBottom-s/rmwdpWordBottom-e; grid-column:cmwdpWordLeft-s/cmwdpWordLeft-e;}
+#mwdpWord-5 {grid-row:rmwdpWordBottom-s/rmwdpWordBottom-e; grid-column:cmwdpWordRight-s/cmwdpWordRight-e;}
+
+#mwdpWord-1-spelling {background-color:white; color:black;}
+#mwdpWord-2-spelling {background-color:white; color:black;}
+#mwdpWord-3-spelling {background-color:white; color:black;}
+#mwdpWord-4-spelling {background-color:white; color:black;}
+#mwdpWord-5-spelling {background-color:white; color:black;}
+
+
+
+.Cell {font-size:4em; border:none; margin:0; text-align:center; padding:0;}
+
+.CrossTick {
 	display:none;
-	z-index:4;
-	grid-row:rmwdpDispensers-hn-s/rmwdpDispensers-hn-e;
-	grid-column:cmwdp-s/cmwdp-e;
-	height:888em;
-	width:53em;
-	background-color:transparent;
-	grid-template-rows:
-		[rmwdpd-25-s rmwdpdItem-25-2-s]
-		1fr
-		[rmwdpdContainer-25-2-s]
-		6fr
-		[rmwdpdItem-25-1-s]
-		1fr
-		[rmwdpdContainer-25-1-s]
-		1fr
-		[rmwdpdItem-25-2-e]
-		6fr
-		[rmwdpdContainer-25-e]
-		1fr
-		[rmwdpdItem-25-1-e rmwdpd-25-e];
-
-	grid-template-columns:
-		[cmwdpd-25-s]
-		3fr
-		[cmwdpdContainer-25-1-s]
-		1fr
-		[cmwdpdItem-25-1-s]
-		5fr
-		[cmwdpdItem-25-1-e]
-		1fr
-		[cmwdpdContainer-25-1-e]
-		3fr
-		[cmwdpdContainer-25-2-s]
-		1fr
-		[cmwdpdItem-25-2-s]
-		5fr
-		[cmwdpdItem-25-2-e]
-		1fr
-		[cmwdpdContainer-25-2-e]
-		3fr
-		[cmwdpdContainer-25-3-s]
-		1fr
-		[cmwdpdItem-25-3-s]
-		5fr
-		[cmwdpdItem-25-3-e]
-		1fr
-		[cmwdpdContainer-25-3-e]
-		3fr
-		[cmwdpdContainer-25-4-s]
-		1fr
-		[cmwdpdItem-25-4-s]
-		5fr
-		[cmwdpdItem-25-4-e]
-		1fr
-		[cmwdpdContainer-25-4-e]
-		3fr
-		[cmwdpdContainer-25-5-s]
-		1fr
-		[cmwdpdItem-25-5-s]
-		5fr
-		[cmwdpdItem-25-5-e]
-		1fr
-		[cmwdpdContainer-25-5-e]
-		3fr
-		[cmwdpd-25-e];
-}
-
-#mwdpdContainer-25-11 {display:none; grid-row:rmwdpdContainer-25-1-s/rmwdpdContainer-25-e; grid-column:cmwdpdContainer-25-1-s/cmwdpdContainer-25-1-e;}
-#mwdpdContainer-25-12 {display:none; grid-row:rmwdpdContainer-25-2-s/rmwdpdContainer-25-e; grid-column:cmwdpdContainer-25-1-s/cmwdpdContainer-25-1-e;}
-#mwdpdContainer-25-21 {display:none; grid-row:rmwdpdContainer-25-1-s/rmwdpdContainer-25-e; grid-column:cmwdpdContainer-25-2-s/cmwdpdContainer-25-2-e;}
-#mwdpdContainer-25-22 {display:none; grid-row:rmwdpdContainer-25-2-s/rmwdpdContainer-25-e; grid-column:cmwdpdContainer-25-2-s/cmwdpdContainer-25-2-e;}
-#mwdpdContainer-25-31 {display:none; grid-row:rmwdpdContainer-25-1-s/rmwdpdContainer-25-e; grid-column:cmwdpdContainer-25-3-s/cmwdpdContainer-25-3-e;}
-#mwdpdContainer-25-32 {display:none; grid-row:rmwdpdContainer-25-2-s/rmwdpdContainer-25-e; grid-column:cmwdpdContainer-25-3-s/cmwdpdContainer-25-3-e;}
-#mwdpdContainer-25-41 {display:none; grid-row:rmwdpdContainer-25-1-s/rmwdpdContainer-25-e; grid-column:cmwdpdContainer-25-4-s/cmwdpdContainer-25-4-e;}
-#mwdpdContainer-25-42 {display:none; grid-row:rmwdpdContainer-25-2-s/rmwdpdContainer-25-e; grid-column:cmwdpdContainer-25-4-s/cmwdpdContainer-25-4-e;}
-#mwdpdContainer-25-51 {display:none; grid-row:rmwdpdContainer-25-1-s/rmwdpdContainer-25-e; grid-column:cmwdpdContainer-25-5-s/cmwdpdContainer-25-5-e;}
-#mwdpdContainer-25-52 {display:none; grid-row:rmwdpdContainer-25-2-s/rmwdpdContainer-25-e; grid-column:cmwdpdContainer-25-5-s/cmwdpdContainer-25-5-e;}
-
-#mwdpdItem-25-11 {display:none; z-index:5; grid-row:rmwdpdItem-25-1-s/rmwdpdItem-25-1-e; grid-column:cmwdpdItem-25-1-s/cmwdpdItem-25-1-e;}
-#mwdpdItem-25-12 {display:none; z-index:5; grid-row:rmwdpdItem-25-2-s/rmwdpdItem-25-2-e; grid-column:cmwdpdItem-25-1-s/cmwdpdItem-25-1-e;}
-#mwdpdItem-25-21 {display:none; z-index:5; grid-row:rmwdpdItem-25-1-s/rmwdpdItem-25-1-e; grid-column:cmwdpdItem-25-2-s/cmwdpdItem-25-2-e;}
-#mwdpdItem-25-22 {display:none; z-index:5; grid-row:rmwdpdItem-25-2-s/rmwdpdItem-25-2-e; grid-column:cmwdpdItem-25-2-s/cmwdpdItem-25-2-e;}
-#mwdpdItem-25-31 {display:none; z-index:5; grid-row:rmwdpdItem-25-1-s/rmwdpdItem-25-1-e; grid-column:cmwdpdItem-25-3-s/cmwdpdItem-25-3-e;}
-#mwdpdItem-25-32 {display:none; z-index:5; grid-row:rmwdpdItem-25-2-s/rmwdpdItem-25-2-e; grid-column:cmwdpdItem-25-3-s/cmwdpdItem-25-3-e;}
-#mwdpdItem-25-41 {display:none; z-index:5; grid-row:rmwdpdItem-25-1-s/rmwdpdItem-25-1-e; grid-column:cmwdpdItem-25-4-s/cmwdpdItem-25-4-e;}
-#mwdpdItem-25-42 {display:none; z-index:5; grid-row:rmwdpdItem-25-2-s/rmwdpdItem-25-2-e; grid-column:cmwdpdItem-25-4-s/cmwdpdItem-25-4-e;}
-#mwdpdItem-25-51 {display:none; z-index:5; grid-row:rmwdpdItem-25-1-s/rmwdpdItem-25-1-e; grid-column:cmwdpdItem-25-5-s/cmwdpdItem-25-5-e;}
-#mwdpdItem-25-52 {display:none; z-index:5; grid-row:rmwdpdItem-25-2-s/rmwdpdItem-25-2-e; grid-column:cmwdpdItem-25-5-s/cmwdpdItem-25-5-e;}
-
-#mwdpDispensers-33 {
-	display:none;
-	z-index:4;
-	grid-row:rmwdpDispensers-hn-s/rmwdpDispensers-hn-e;
-	grid-column:cmwdp-s/cmwdp-e;
-	height:888em;
-	width:53em;
-	background-color:transparent;
-/*	grid-template-rows:
-		[rmwdpd-33-s rmwdpdContainer-33-3-s rmwdpdItem-33-3-s]
-		7fr
-		[rmwdpdItem-33-3-e rmwdpdContainer-33-2-s rmwdpdItem-33-2-s]
-		7fr
-		[rmwdpdItem-33-2-e rmwdpdContainer-33-1-s rmwdpdItem-33-1-s]
-		7fr
-		[rmwdpdItem-33-1-e rmwdpdContainer-33-e rmwdpd-33-e]; */
-	grid-template-rows:
-		[rmwdpd-33-s rmwdpdContainer-33-3-s rmwdpdItem-33-3-s rmwdpdBorder-33-3-s]
-		7fr
-		[rmwdpdContainer-33-2-s rmwdpdItem-33-2-s rmwdpdBorder-33-2-s]
-		2fr
-		[rmwdpdItem-33-3-e]
-		5fr
-		[rmwdpdContainer-33-1-s rmwdpdItem-33-1-s rmwdpdBorder-33-1-s]
-		2fr
-		[rmwdpdItem-33-2-e]
-		6fr
-		[rmwdpdContainer-33-e rmwdpdBorder-33-e]
-		1fr
-		[rmwdpdItem-33-1-e rmwdpd-33-e];
-
-	grid-template-columns:
-		[cmwdpd-33-s]
-		9fr
-		[cmwdpdBorder-33-1-s]
-		1fr
-		[cmwdpdContainer-33-1-s cmwdpdItem-33-1-s]
-		7fr
-		[cmwdpdContainer-33-1-e cmwdpdItem-33-1-e]
-		1fr
-		[cmwdpdBorder-33-1-e]
-		4fr
-		[cmwdpdBorder-33-2-s]
-		1fr
-		[cmwdpdContainer-33-2-s cmwdpdItem-33-2-s]
-		7fr
-		[cmwdpdContainer-33-2-e cmwdpdItem-33-2-e]
-		1fr
-		[cmwdpdBorder-33-2-e]
-		4fr
-		[cmwdpdBorder-33-3-s]
-		1fr
-		[cmwdpdContainer-33-3-s cmwdpdItem-33-3-s]
-		7fr
-		[cmwdpdContainer-33-3-e cmwdpdItem-33-3-e]
-		1fr
-		[cmwdpdBorder-33-3-e]
-		9fr
-		[cmwdpd-33-e];
-}
-
-#mwdpdContainer-33-11 {display:none; grid-row:rmwdpdContainer-33-1-s/rmwdpdContainer-33-e; grid-column:cmwdpdContainer-33-1-s/cmwdpdContainer-33-1-e;}
-#mwdpdContainer-33-12 {display:none; grid-row:rmwdpdContainer-33-2-s/rmwdpdContainer-33-e; grid-column:cmwdpdContainer-33-1-s/cmwdpdContainer-33-1-e;}
-#mwdpdContainer-33-13 {display:none; grid-row:rmwdpdContainer-33-3-s/rmwdpdContainer-33-e; grid-column:cmwdpdContainer-33-1-s/cmwdpdContainer-33-1-e;}
-#mwdpdContainer-33-21 {display:none; grid-row:rmwdpdContainer-33-1-s/rmwdpdContainer-33-e; grid-column:cmwdpdContainer-33-2-s/cmwdpdContainer-33-2-e;}
-#mwdpdContainer-33-22 {display:none; grid-row:rmwdpdContainer-33-2-s/rmwdpdContainer-33-e; grid-column:cmwdpdContainer-33-2-s/cmwdpdContainer-33-2-e;}
-#mwdpdContainer-33-23 {display:none; grid-row:rmwdpdContainer-33-3-s/rmwdpdContainer-33-e; grid-column:cmwdpdContainer-33-2-s/cmwdpdContainer-33-2-e;}
-#mwdpdContainer-33-31 {display:none; grid-row:rmwdpdContainer-33-1-s/rmwdpdContainer-33-e; grid-column:cmwdpdContainer-33-3-s/cmwdpdContainer-33-3-e;}
-#mwdpdContainer-33-32 {display:none; grid-row:rmwdpdContainer-33-2-s/rmwdpdContainer-33-e; grid-column:cmwdpdContainer-33-3-s/cmwdpdContainer-33-3-e;}
-#mwdpdContainer-33-33 {display:none; grid-row:rmwdpdContainer-33-3-s/rmwdpdContainer-33-e; grid-column:cmwdpdContainer-33-3-s/cmwdpdContainer-33-3-e;}
-
-#mwdpdItem-33-11 {display:none; grid-row:rmwdpdItem-33-1-s/rmwdpdItem-33-1-e; grid-column:cmwdpdItem-33-1-s/cmwdpdItem-33-1-e;}
-#mwdpdItem-33-12 {display:none; grid-row:rmwdpdItem-33-2-s/rmwdpdItem-33-2-e; grid-column:cmwdpdItem-33-1-s/cmwdpdItem-33-1-e;}
-#mwdpdItem-33-13 {display:none; grid-row:rmwdpdItem-33-3-s/rmwdpdItem-33-3-e; grid-column:cmwdpdItem-33-1-s/cmwdpdItem-33-1-e;}
-#mwdpdItem-33-21 {display:none; grid-row:rmwdpdItem-33-1-s/rmwdpdItem-33-1-e; grid-column:cmwdpdItem-33-2-s/cmwdpdItem-33-2-e;}
-#mwdpdItem-33-22 {display:none; grid-row:rmwdpdItem-33-2-s/rmwdpdItem-33-2-e; grid-column:cmwdpdItem-33-2-s/cmwdpdItem-33-2-e;}
-#mwdpdItem-33-23 {display:none; grid-row:rmwdpdItem-33-3-s/rmwdpdItem-33-3-e; grid-column:cmwdpdItem-33-2-s/cmwdpdItem-33-2-e;}
-#mwdpdItem-33-31 {display:none; grid-row:rmwdpdItem-33-1-s/rmwdpdItem-33-1-e; grid-column:cmwdpdItem-33-3-s/cmwdpdItem-33-3-e;}
-#mwdpdItem-33-32 {display:none; grid-row:rmwdpdItem-33-2-s/rmwdpdItem-33-2-e; grid-column:cmwdpdItem-33-3-s/cmwdpdItem-33-3-e;}
-#mwdpdItem-33-33 {display:none; grid-row:rmwdpdItem-33-3-s/rmwdpdItem-33-3-e; grid-column:cmwdpdItem-33-3-s/cmwdpdItem-33-3-e;}
-
-#mwdpdBorder-33-11 {display:none; grid-row:rmwdpdBorder-33-1-s/rmwdpdBorder-33-e; grid-column:cmwdpdBorder-33-1-s/cmwdpdBorder-33-1-e;}
-#mwdpdBorder-33-12 {display:none; grid-row:rmwdpdBorder-33-2-s/rmwdpdBorder-33-e; grid-column:cmwdpdBorder-33-1-s/cmwdpdBorder-33-1-e;}
-#mwdpdBorder-33-13 {display:none; grid-row:rmwdpdBorder-33-3-s/rmwdpdBorder-33-e; grid-column:cmwdpdBorder-33-1-s/cmwdpdBorder-33-1-e;}
-#mwdpdBorder-33-21 {display:none; grid-row:rmwdpdBorder-33-1-s/rmwdpdBorder-33-e; grid-column:cmwdpdBorder-33-2-s/cmwdpdBorder-33-2-e;}
-#mwdpdBorder-33-22 {display:none; grid-row:rmwdpdBorder-33-2-s/rmwdpdBorder-33-e; grid-column:cmwdpdBorder-33-2-s/cmwdpdBorder-33-2-e;}
-#mwdpdBorder-33-23 {display:none; grid-row:rmwdpdBorder-33-3-s/rmwdpdBorder-33-e; grid-column:cmwdpdBorder-33-2-s/cmwdpdBorder-33-2-e;}
-#mwdpdBorder-33-31 {display:none; grid-row:rmwdpdBorder-33-1-s/rmwdpdBorder-33-e; grid-column:cmwdpdBorder-33-3-s/cmwdpdBorder-33-3-e;}
-#mwdpdBorder-33-32 {display:none; grid-row:rmwdpdBorder-33-2-s/rmwdpdBorder-33-e; grid-column:cmwdpdBorder-33-3-s/cmwdpdBorder-33-3-e;}
-#mwdpdBorder-33-33 {display:none; grid-row:rmwdpdBorder-33-3-s/rmwdpdBorder-33-e; grid-column:cmwdpdBorder-33-3-s/cmwdpdBorder-33-3-e;}
-
-
-.SpotEvenOdd {z-index:10; width:4em; height:5em;}
-.SpotOddEven {z-index:10; width:5em; height:4em;}
-.SpotEvenEven {z-index:10; width:4em; height:4em;}
-.SpotOddOdd {z-index:10; width:5em; height:5em;}
-
-.Wall {background-color:#9E9E9E;}
-
-.Door {background-color:#9E9E9E;}
-
-.WallName {
 	padding:0;
 	font-size:3.6em;
 	border-style:none;
 	border-radius:0.3em;
 	margin:0;
-	background-color:black;
-	color:white;
+	background-color:#FFFF80;
+	color:black;
 	text-align:center;
-	letter-spacing:0.1em;
 }
 
 .CtrlCommon {margin:0; padding:0;}
 .CtrlSecondary {text-align:center; border:none; background-color:#484848; color:white; font-size:2.5em;}
-.CtrlUndispense {text-align:center; border:none; background-color:#484848; color:white; font-size:3em;}
+
+.CtrlXward {width:6em; height:7em;}
 
 .DemoSeparator {background-color:black;}
-
-.Surround {display:none; background-color:yellow;}
-
-.InfoTopicTitle {
-/*	overflow:hidden; */
-	border:none;
-	margin:0;
-	padding:0.3em 0 0 0;
-	text-align:center;
-	font-size:2.5em;
-	font-variant:small-caps;
-	letter-spacing:0.08em;
+.ScreenshotSeparator {
+	background-color:white;
+	border-style:solid;
+	border-color:black;
 }
 
-.InfoTopicContent {margin:0; background-color:white; color:black;}
+.Door {background-color:#807873;}
+
+.Hole {background-color:black; border:none;}
 
 .InfoOtherPuzzles1 {
 	border-style:dashed;
@@ -961,6 +886,19 @@ body {
 	font-size:2.5em;
 }
 
+.InfoTopicContent {margin:0; background-color:white; color:black;}
+
+.InfoTopicTitle {
+	overflow:hidden;
+	border:none;
+	margin:0;
+	padding:0.3em 0 0 0;
+	text-align:center;
+	font-size:2.5em;
+	font-variant:small-caps;
+	letter-spacing:0.08em;
+}
+
 .InfoWhereIPost {
 	border-style:dashed;
 	border-color:#606060;
@@ -971,87 +909,65 @@ body {
 	font-size:2.5em;
 }
 
+.Instructions {
+	text-align:justify;
+	border:none;
+	padding:0 0.5em 0 0.5em;
+	font-size:2.5em;
+}
+
 .Italic {font-style:italic;}
 
-.CrossTick {
+.Limb {background-color:#96E6DA;}
+
+.NoShow {display:none;}
+
+.SpotW8H8D6 {display:none; z-index:10; width:6em; height:6em;}
+.SpotW8H10D6 {display:none; z-index:10; width:4em; height:5em;}
+/*
+.SpotW8H8D6 {z-index:10; width:6em; height:6em;}
+.SpotW8H10D6 {z-index:10; width:4em; height:5em;}
+*/
+.Surround {display:none; background-color:yellow;}
+
+.Torso {background-color:#FAFAFA;}
+
+.Wall {background-color:#807873;}
+/*
+.WallName {
 	padding:0;
 	font-size:3.6em;
 	border-style:none;
 	border-radius:0.3em;
 	margin:0;
-	background-color:#FFFF80;
-	color:black;
+	background-color:black;
+	color:white;
 	text-align:center;
+	letter-spacing:0.1em;
 }
-/*
-.Container {
-	z-index:4;
+*/
+.WallNameBackground {
+	border-style:none;
+	border-radius:0.4em;
 	margin:0;
-	padding:0;
-	background-color:#F5F5F5;
-	border-style:solid;
-	border-color:black;
-	border-top-width:2.5px;
-	border-bottom-width:0;
-	border-left-width:2.5px;
-	border-right-width:2.5px;
-}
-*/	
-.Container {
-	z-index:4;
-	margin:0;
-	padding:0;
-	border:none;
-	background-color:#F5F5F5;
-}
-
-/* .Item {z-index:5; margin:0; padding:0; border:none; font-size:6.5em; background-color:transparent;} */
-.Item {z-index:5; margin:0; padding:0; border:none; text-align:center; font-size:7em; color:black; background-color:transparent;}
-
-.ExpressionBackground {margin:0; padding:0; border-style:solid; border-color:black; border-width:0 0 0.8em 0; background-color:#FFE8E8;}
-.ExpressionForeground {z-index:5; margin:0; padding:0; border:none; text-align:left; font-size:7em; color:black; background-color:transparent;}
-
-.Target {
-	padding:0;
-	font-size:6em;
-	border-style:solid;
-	border-color:black;
-	border-width:2.5px;
-	border-radius:0.3em;
-	margin:0;
-	background-color:#FFE8E8;
-	color:#A7074B;
-	text-align:center;
-}
-
-.TargetBackground {
-	padding:0;
-	border-style:solid;
-	border-color:black;
-	border-width:2.5px;
-	border-radius:0.3em;
-	margin:0;
-	background-color:#FFE8E8;
+	background-color:black;
 	color:transparent;
-	/* font-size governs how rounded the block is */
-	font-size:4em;
 }
 
-.TargetForeground {
-	z-index:5; 
-	padding:0;
-	margin:0;
+.WallNameForeground {
+	font-size:3.6em;
 	border:none;
-	font-size:7em;
+	margin:0;
 	background-color:transparent;
-	color:#A7074B;
+	color:white;
 	text-align:center;
+	letter-spacing:0.1em;
 }
 
-.CtrlDispense {width:7em; height:6em;}
+.Word {font-size:4em; border-style:none; background-color:white; padding:0; color:black;}
+.WordLeft {text-align:left;}
+.WordRight {text-align:right;}
+.WordCentre {text-align:center;}
 
-.Border1 {z-index:5; width:9em; height:8em;}
-.Border2 {z-index:5; width:9em; height:15em;}
-.Border3 {z-index:5; width:9em; height:22em;}
 
-/* code {color:black;} */
+
