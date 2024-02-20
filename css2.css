@@ -534,9 +534,7 @@ body {
 		3fr
 		[riwdptRow-6-e riwdpt-e];
 	grid-template-columns:
-		[ciwdpt-s]
-		2fr
-		[ciwdptColumn-1-s]
+		[ciwdpt-s ciwdptColumn-1-s]
 		3fr
 		[ciwdptColumn-1-e ciwdptColumn-2-s]
 		3fr
@@ -568,42 +566,48 @@ body {
 		3fr
 		[ciwdptColumn-15-e ciwdptColumn-16-s]
 		3fr
-		[ciwdptColumn-16-e]
+		[ciwdptColumn-16-e ciwdptColumn-17-s]
 		3fr
-		[ciwdpt-e];
+		[ciwdptColumn-17-e ciwdptColumn-18-s]
+		2fr
+		[ciwdptColumn-18-e ciwdpt-e];
 }
 
-#iwdptPoint-11 {grid-row:riwdptRow-1-s/riwdptRow-2-e; grid-column:ciwdptColumn-1-s/ciwdptColumn-2-e;}
-#iwdptPoint-12 {grid-row:riwdptRow-1-s/riwdptRow-2-e; grid-column:ciwdptColumn-3-s/ciwdptColumn-4-e;}
-#iwdptPoint-13 {grid-row:riwdptRow-1-s/riwdptRow-2-e; grid-column:ciwdptColumn-5-s/ciwdptColumn-6-e;}
-#iwdptPoint-14 {grid-row:riwdptRow-1-s/riwdptRow-2-e; grid-column:ciwdptColumn-7-s/ciwdptColumn-8-e;}
-#iwdptPoint-15 {grid-row:riwdptRow-1-s/riwdptRow-2-e; grid-column:ciwdptColumn-9-s/ciwdptColumn-10-e;}
-#iwdptPoint-16 {grid-row:riwdptRow-1-s/riwdptRow-2-e; grid-column:ciwdptColumn-11-s/ciwdptColumn-12-e;}
-#iwdptPoint-17 {grid-row:riwdptRow-1-s/riwdptRow-2-e; grid-column:ciwdptColumn-13-s/ciwdptColumn-14-e;}
-#iwdptPoint-18 {grid-row:riwdptRow-1-s/riwdptRow-2-e; grid-column:ciwdptColumn-15-s/ciwdptColumn-16-e;}
-#iwdptPoint-21 {grid-row:riwdptRow-3-s/riwdptRow-4-e; grid-column:ciwdptColumn-1-s/ciwdptColumn-2-e;}
-#iwdptPoint-22 {grid-row:riwdptRow-3-s/riwdptRow-4-e; grid-column:ciwdptColumn-3-s/ciwdptColumn-4-e;}
-#iwdptPoint-23 {grid-row:riwdptRow-3-s/riwdptRow-4-e; grid-column:ciwdptColumn-5-s/ciwdptColumn-6-e;}
-#iwdptPoint-24 {grid-row:riwdptRow-3-s/riwdptRow-4-e; grid-column:ciwdptColumn-7-s/ciwdptColumn-8-e;}
-#iwdptPoint-25 {grid-row:riwdptRow-3-s/riwdptRow-4-e; grid-column:ciwdptColumn-9-s/ciwdptColumn-10-e;}
-#iwdptPoint-26 {grid-row:riwdptRow-3-s/riwdptRow-4-e; grid-column:ciwdptColumn-11-s/ciwdptColumn-12-e;}
-#iwdptPoint-27 {grid-row:riwdptRow-3-s/riwdptRow-4-e; grid-column:ciwdptColumn-13-s/ciwdptColumn-14-e;}
-#iwdptPoint-28 {grid-row:riwdptRow-3-s/riwdptRow-4-e; grid-column:ciwdptColumn-15-s/ciwdptColumn-16-e;}
-#iwdptPoint-31 {grid-row:riwdptRow-5-s/riwdptRow-6-e; grid-column:ciwdptColumn-1-s/ciwdptColumn-2-e;}
-#iwdptPoint-32 {grid-row:riwdptRow-5-s/riwdptRow-6-e; grid-column:ciwdptColumn-3-s/ciwdptColumn-4-e;}
-#iwdptPoint-33 {grid-row:riwdptRow-5-s/riwdptRow-6-e; grid-column:ciwdptColumn-5-s/ciwdptColumn-6-e;}
-#iwdptPoint-34 {grid-row:riwdptRow-5-s/riwdptRow-6-e; grid-column:ciwdptColumn-7-s/ciwdptColumn-8-e;}
-#iwdptPoint-35 {grid-row:riwdptRow-5-s/riwdptRow-6-e; grid-column:ciwdptColumn-9-s/ciwdptColumn-10-e;}
-#iwdptPoint-36 {grid-row:riwdptRow-5-s/riwdptRow-6-e; grid-column:ciwdptColumn-11-s/ciwdptColumn-12-e;}
-#iwdptPoint-37 {grid-row:riwdptRow-5-s/riwdptRow-6-e; grid-column:ciwdptColumn-13-s/ciwdptColumn-14-e;}
-#iwdptPoint-38 {grid-row:riwdptRow-5-s/riwdptRow-6-e; grid-column:ciwdptColumn-15-s/ciwdptColumn-16-e;}
+#iwdptBoundary {grid-row:riwdpt-s/riwdpt-e; grid-column:ciwdpt-s/ciwdpt-e;}
+
+#iwdptDot-11 {grid-row:riwdptRow-1-s/riwdptRow-2-e; grid-column:ciwdptColumn-1-s/ciwdptColumn-2-e;}
+#iwdptDot-12 {grid-row:riwdptRow-1-s/riwdptRow-2-e; grid-column:ciwdptColumn-3-s/ciwdptColumn-4-e;}
+#iwdptDot-13 {grid-row:riwdptRow-1-s/riwdptRow-2-e; grid-column:ciwdptColumn-5-s/ciwdptColumn-6-e;}
+#iwdptDot-14 {grid-row:riwdptRow-1-s/riwdptRow-2-e; grid-column:ciwdptColumn-7-s/ciwdptColumn-8-e;}
+#iwdptDot-15 {grid-row:riwdptRow-1-s/riwdptRow-2-e; grid-column:ciwdptColumn-9-s/ciwdptColumn-10-e;}
+#iwdptDot-16 {grid-row:riwdptRow-1-s/riwdptRow-2-e; grid-column:ciwdptColumn-11-s/ciwdptColumn-12-e;}
+#iwdptDot-17 {grid-row:riwdptRow-1-s/riwdptRow-2-e; grid-column:ciwdptColumn-13-s/ciwdptColumn-14-e;}
+#iwdptDot-18 {grid-row:riwdptRow-1-s/riwdptRow-2-e; grid-column:ciwdptColumn-15-s/ciwdptColumn-16-e;}
+#iwdptDot-19 {grid-row:riwdptRow-1-s/riwdptRow-2-e; grid-column:ciwdptColumn-17-s/ciwdptColumn-18-e;}
+#iwdptDot-21 {grid-row:riwdptRow-3-s/riwdptRow-4-e; grid-column:ciwdptColumn-1-s/ciwdptColumn-2-e;}
+#iwdptBlocker-22 {grid-row:riwdptRow-3-s/riwdptRow-4-e; grid-column:ciwdptColumn-3-s/ciwdptColumn-4-e;}
+#iwdptDot-23 {grid-row:riwdptRow-3-s/riwdptRow-4-e; grid-column:ciwdptColumn-5-s/ciwdptColumn-6-e;}
+#iwdptDot-24 {grid-row:riwdptRow-3-s/riwdptRow-4-e; grid-column:ciwdptColumn-7-s/ciwdptColumn-8-e;}
+#iwdptDot-25 {grid-row:riwdptRow-3-s/riwdptRow-4-e; grid-column:ciwdptColumn-9-s/ciwdptColumn-10-e;}
+#iwdptDot-26 {grid-row:riwdptRow-3-s/riwdptRow-4-e; grid-column:ciwdptColumn-11-s/ciwdptColumn-12-e;}
+#iwdptDot-27 {grid-row:riwdptRow-3-s/riwdptRow-4-e; grid-column:ciwdptColumn-13-s/ciwdptColumn-14-e;}
+#iwdptDot-28 {grid-row:riwdptRow-3-s/riwdptRow-4-e; grid-column:ciwdptColumn-15-s/ciwdptColumn-16-e;}
+#iwdptDot-29 {grid-row:riwdptRow-3-s/riwdptRow-4-e; grid-column:ciwdptColumn-17-s/ciwdptColumn-18-e;}
+#iwdptDot-31 {grid-row:riwdptRow-5-s/riwdptRow-6-e; grid-column:ciwdptColumn-1-s/ciwdptColumn-2-e;}
+#iwdptDot-32 {grid-row:riwdptRow-5-s/riwdptRow-6-e; grid-column:ciwdptColumn-3-s/ciwdptColumn-4-e;}
+#iwdptDot-33 {grid-row:riwdptRow-5-s/riwdptRow-6-e; grid-column:ciwdptColumn-5-s/ciwdptColumn-6-e;}
+#iwdptDot-34 {grid-row:riwdptRow-5-s/riwdptRow-6-e; grid-column:ciwdptColumn-7-s/ciwdptColumn-8-e;}
+#iwdptDot-35 {grid-row:riwdptRow-5-s/riwdptRow-6-e; grid-column:ciwdptColumn-9-s/ciwdptColumn-10-e;}
+#iwdptDot-36 {grid-row:riwdptRow-5-s/riwdptRow-6-e; grid-column:ciwdptColumn-11-s/ciwdptColumn-12-e;}
+#iwdptDot-37 {grid-row:riwdptRow-5-s/riwdptRow-6-e; grid-column:ciwdptColumn-13-s/ciwdptColumn-14-e;}
+#iwdptDot-38 {grid-row:riwdptRow-5-s/riwdptRow-6-e; grid-column:ciwdptColumn-15-s/ciwdptColumn-16-e;}
+#iwdptDot-39 {grid-row:riwdptRow-5-s/riwdptRow-6-e; grid-column:ciwdptColumn-17-s/ciwdptColumn-18-e;}
 
 #iwdptArrow-11-E {grid-row:riwdptRow-1-s/riwdptRow-2-e; grid-column:ciwdptColumn-2-s/ciwdptColumn-3-e;}
 
 
 
 #mainWall {
-/*	display:none; */
 	position:absolute;
 	width:59em;
  	grid-template-columns:
@@ -1894,7 +1898,11 @@ code {font-family:"Courier New", "Courier", monospace;}
 
 .TerritoryArrowE {width:6em; height:6em;}
 
-.TerritoryPoint {width:6em; height:6em;}
+.TerritoryBlocker {width:6em; height:6em;}
+
+.TerritoryBoundary {width:53em; height:18em;}
+
+.TerritoryDot {width:6em; height:6em;}
 
 .Wall {background-color:#9E9E9E;}
 

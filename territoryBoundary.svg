@@ -1,0 +1,7 @@
+<svg version="1.1"
+     width="5300" height="1800"
+     xmlns="http://www.w3.org/2000/svg">
+
+	<rect x="100" y="150" width="5100" height="1500" stroke-width="10" stroke-linejoin="miter" stroke="black" fill="none"/>
+	
+</svg>
