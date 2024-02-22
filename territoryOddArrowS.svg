@@ -1,0 +1,12 @@
+<svg version="1.1"
+     width="100" height="600"
+     xmlns="http://www.w3.org/2000/svg">
+<!--
+	<g stroke="green" fill="green" transform="rotate(45 100 100)">
+		<polygon points="090 100, 100 070, 110 100" stroke-width="3" stroke-linejoin="miter"/>
+		<line x1="100" y1="150" x2="100" y2="050" stroke-width="3" stroke-linecap="butt"/>
+	</g>
+-->
+	<line x1="50" y1="75" x2="50" y2="525" stroke-width="10" stroke-linecap="butt" stroke="green"/>
+	<polygon points="30 450, 50 525, 70 450" stroke-width="1" stroke-linejoin="miter" stroke="green" fill="green"/>
+</svg>
