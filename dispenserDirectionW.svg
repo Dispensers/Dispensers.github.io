@@ -2,6 +2,6 @@
      width="150" height="150"
      xmlns="http://www.w3.org/2000/svg">
 
-	<polygon points="3 60, 100 60, 100 25, 150 75, 100 125, 100 90, 3 90" stroke-width="1" stroke-linejoin="miter" stroke="black" fill="black" transform="rotate(180 75 75)"/>
+	<polygon points="3 60, 100 60, 100 25, 150 75, 100 125, 100 90, 3 90" stroke-linejoin="miter" stroke="black" fill="black" transform="rotate(180 75 75)"/>
 	
 </svg>
