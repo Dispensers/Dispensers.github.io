@@ -9,6 +9,6 @@
 		<circle cx="250" cy="250" r="25" stroke="white" fill="white"/>
 	</g> -->
 
-	<polygon points="3 60, 100 60, 100 25, 150 75, 100 125, 100 90, 3 90" stroke-width="1" stroke-linejoin="miter" stroke="black" fill="black" transform="rotate(45 75 75)"/>
+	<polygon points="3 60, 100 60, 100 25, 150 75, 100 125, 100 90, 3 90" stroke-width="1" stroke-linejoin="miter" stroke="black" fill="black"/>
 	
 </svg>

@@ -1,7 +1,7 @@
 <svg version="1.1"
-     width="180" height="300"
+     width="180" height="260"
      xmlns="http://www.w3.org/2000/svg">
 
-  <polygon points="20 300 20 6 160 6 160 300 166 300 166 0 14 0 14 300" fill="black"/>
+  <polygon points="20 260, 20 6, 160 6, 160 260, 166 260, 166 0, 14 0, 14 260" fill="black"/>
 
 </svg>
