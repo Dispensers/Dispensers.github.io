@@ -545,7 +545,7 @@ body {
 
 /* #iwdptBoundary {grid-row:riwdpt-s/riwdpt-e; grid-column:ciwdpt-s/ciwdpt-e;} */
 
-#iwdptOddPoint-00 {grid-row:2/5; grid-column:5/8;}
+#iwdptOddPoint-00 {grid-row:2/span 3; grid-column:5/8;}
 #iwdptOddPoint-01 {grid-row:2/5; grid-column:10/13;}
 #iwdptOddPoint-02 {grid-row:2/5; grid-column:15/18;}
 #iwdptOddPoint-03 {grid-row:2/5; grid-column:20/23;}

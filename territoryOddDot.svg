@@ -2,6 +2,6 @@
      width="300" height="300"
      xmlns="http://www.w3.org/2000/svg">
 
-	<circle cx="150" cy="150" r="25" stroke="grey" fill="grey"/>
+	<circle cx="150" cy="150" r="40" stroke="grey" fill="grey"/>
 
 </svg>
