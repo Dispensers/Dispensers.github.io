@@ -7,7 +7,8 @@ body {
 #infoWall {
 /*	display:none; */
 	position:absolute;
-	height:480em;
+/*	height:500em; */
+	height:516em;
 	width:59em;
 	grid-template-rows:
 		[riw-s riwUkraineFlag-s]
@@ -22,21 +23,24 @@ body {
 		9fr
 		[riwPuzzleData-e riwSeparator-1-s]
 		1fr
-		[riwSeparator-1-e]
-		1fr
-		[riwSurroundInstructions-s]
-		3fr
+		[riwSeparator-1-e riwSurroundInstructions-s]
+		2fr
 		[riwTTInstructions-s]
-		5fr
+		5fr		
 		[riwTCInstructions-1-s]
 		2fr
 		[riwTTInstructions-e]
-		7fr
+		9fr
 		[riwTCInstructions-1-e riwTCInstructions-2-s]
-		5fr
+/*		8fr */
+		12fr
 		[riwTCInstructions-2-e riwTCInstructions-3-s]
+		5fr
+		[riwTCInstructions-3-e riwTCInstructions-4-s]
+		12fr
+		[riwTCInstructions-4-e riwTCInstructions-5-s]
 		6fr
-		[riwTCInstructions-3-e]
+		[riwTCInstructions-5-e]		
 		3fr
 		[riwSurroundInstructions-e riwTTOtherPuzzles-s]
 		5fr
@@ -55,7 +59,7 @@ body {
 		[riwSeparator-2-s]
 		3fr
 		[riwSeparator-2-e riwDoor-s]
-		88fr
+		100fr
 		[riwDoor-e riwSeparator-3-s]
 		3fr
 		[riwSeparator-3-e]
@@ -170,36 +174,15 @@ body {
 
 #iwTTInstructions {grid-row:riwTTInstructions-s/riwTTInstructions-e; grid-column:ciwTT-s/ciwTT-e;}
 
-#iwTCInstructions-1 {
-	text-align:justify;
-	border:none;
-	padding:0 0.5em 0 0.5em;
-	font-size:2.5em;
-	grid-row:riwTCInstructions-1-s/riwTCInstructions-1-e;
-	grid-column:ciwTC-s/ciwTC-e;
-}
-
-#iwTCInstructions-2 {
-	text-align:justify;
-	border:none;
-	padding:0 0.5em 0 0.5em;
-	font-size:2.5em;
-	grid-row:riwTCInstructions-2-s/riwTCInstructions-2-e;
-	grid-column:ciwTC-s/ciwTC-e;
-}
-
-#iwTCInstructions-3 {
-	text-align:justify;
-	border:none;
-	padding:0 0.5em 0 0.5em;
-	font-size:2.5em;
-	grid-row:riwTCInstructions-3-s/riwTCInstructions-3-e;
-	grid-column:ciwTC-s/ciwTC-e;
-}
+#iwTCInstructions-1 {grid-row:riwTCInstructions-1-s/riwTCInstructions-1-e; grid-column:ciwTC-s/ciwTC-e;}
+#iwTCInstructions-2 {grid-row:riwTCInstructions-2-s/riwTCInstructions-2-e; grid-column:ciwTC-s/ciwTC-e;}
+#iwTCInstructions-3 {grid-row:riwTCInstructions-3-s/riwTCInstructions-3-e; grid-column:ciwTC-s/ciwTC-e;}
+#iwTCInstructions-4 {grid-row:riwTCInstructions-4-s/riwTCInstructions-4-e; grid-column:ciwTC-s/ciwTC-e;}
+#iwTCInstructions-5 {grid-row:riwTCInstructions-5-s/riwTCInstructions-5-e; grid-column:ciwTC-s/ciwTC-e;}
 
 #iwSurroundInstructions {
 	width:59em;
-	height:31em;
+	height:56em;
 	grid-row:riwSurroundInstructions-s/riwSurroundInstructions-e;
 	grid-column:ciwSurroundInstructions-s/ciwSurroundInstructions-e;
 }
@@ -305,7 +288,7 @@ body {
 #iwDoor {
 	grid-row:riwDoor-s/riwDoor-e;
 	grid-column:ciwDoor-s/ciwDoor-e;
-	height:88em;
+	height:100em;
 	width:59em;
 	display:grid;
 	grid-template-rows:
@@ -320,7 +303,7 @@ body {
 		[riwdCtrlTop-e riwdSpotTop-e]
 		3fr
 		[riwdPanel-s]
-		45fr
+		57fr
 		[riwdPanel-e]
 		3fr
 		[riwdCtrlDispense-s riwdSpotDispense-s]
@@ -449,115 +432,150 @@ body {
 	grid-row:riwdPanel-s/riwdPanel-e;
 	grid-column:ciwdPanel-s/ciwdPanel-e;
 	display:grid;
-	height:45em;
+	height:57em;
 	width:53em;
 	background-color:white;
 	grid-template-rows:
 		[riwdp-s]
 		3fr
-		[riwdpdContainer-2-s riwdpdBorder-2-s riwdpdItem-2-s]
-		7fr
-		[riwdpdContainer-1-s riwdpdBorder-1-s riwdpdItem-1-s]
-		2fr
-		[riwdpdItem-2-e]
-		6fr
+		[riwdpdContainer-4-s riwdpdBorder-4-s]
+		1fr
+		[riwdpdDirection-4-s]
+		5fr
+		[riwdpdContainer-3-s riwdpdBorder-3-s riwdpdDirection-4-e]
+		1fr
+		[riwdpdDirection-3-s]
+		5fr
+		[riwdpdContainer-2-s riwdpdBorder-2-s riwdpdDirection-3-e]
+		1fr
+		[riwdpdDirection-2-s]
+		5fr
+		[riwdpdContainer-1-s riwdpdBorder-1-s riwdpdDirection-2-e]
+		1fr
+		[riwdpdDirection-1-s]
+		5fr
+		[riwdpdDirection-1-e]
+		1fr
 		[riwdpdContainer-e riwdpdBorder-e]
-		1fr
-		[riwdpdItem-1-e]
-		4fr
-		[riwdpExpressionForeground-s]
-		1fr
-		[riwdpExpressionBackground-s]
-		7fr
-		[riwdpExpressionBackground-e]
-		1fr
-		[riwdpExpressionForeground-e]
-		1fr
-		[riwdpTargetForeground-s]
-		1fr
-		[riwdpTargetBackground-s]
-		8fr
-		[riwdpTargetBackground-e]
-		1fr
-		[riwdpTargetForeground-e]
-		2fr
+		5fr
+		[riwdpTerritory-s]
+		15fr
+		[riwdpTerritory-e]
+		9fr
 		[riwdp-e];
 		
 	grid-template-columns:
 		[ciwdp-s]
-		4fr
+		1fr
+		[ciwdpTerritory-s]
+		3fr
 		[ciwdpdBorder-1-s]
 		1fr
-		[ciwdpdContainer-1-s ciwdpdItem-1-s]
-		3fr
-		[ciwdpExpression-s]
-		4fr
-		[ciwdpdContainer-1-e ciwdpdItem-1-e]
+		[ciwdpdContainer-1-s]
+		1fr
+		[ciwdpdDirection-1-s]
+		5fr
+		[ciwdpdDirection-1-e]
+		1fr
+		[ciwdpdContainer-1-e]
 		1fr
 		[ciwdpdBorder-1-e]
 		3fr
 		[ciwdpdBorder-2-s]
 		1fr
-		[ciwdpdContainer-2-s ciwdpdItem-2-s]
-		3fr
-		[ciwdpTargetBackground-s ciwdpTargetForeground-s]
-		4fr
-		[ciwdpdContainer-2-e ciwdpdItem-2-e]
+		[ciwdpdContainer-2-s]
+		1fr
+		[ciwdpdDirection-2-s]
+		5fr
+		[ciwdpdDirection-2-e]
+		1fr
+		[ciwdpdContainer-2-e]
 		1fr
 		[ciwdpdBorder-2-e]
 		3fr
 		[ciwdpdBorder-3-s]
 		1fr
-		[ciwdpdContainer-3-s ciwdpdItem-3-s]
-		4fr
-		[ciwdpTargetBackground-e ciwdpTargetForeground-e]
-		3fr
-		[ciwdpdContainer-3-e ciwdpdItem-3-e]
+		[ciwdpdContainer-3-s]
+		1fr
+		[ciwdpdDirection-3-s]
+		5fr
+		[ciwdpdDirection-3-e]
+		1fr
+		[ciwdpdContainer-3-e]
 		1fr
 		[ciwdpdBorder-3-e]
 		3fr
 		[ciwdpdBorder-4-s]
 		1fr
-		[ciwdpdContainer-4-s ciwdpdItem-4-s]
-		4fr
-		[ciwdpExpression-e]
-		3fr
-		[ciwdpdContainer-4-e ciwdpdItem-4-e]
+		[ciwdpdContainer-4-s]
+		1fr
+		[ciwdpdDirection-4-s]
+		5fr
+		[ciwdpdDirection-4-e]
+		1fr
+		[ciwdpdContainer-4-e]
 		1fr
 		[ciwdpdBorder-4-e]
-		4fr
+		3fr
+		[ciwpdTerritory-e]
+		1fr
 		[ciwdp-e];
 }
 
-#iwdpdContainer-1 {grid-row:riwdpdContainer-2-s/riwdpdContainer-e; grid-column:ciwdpdContainer-1-s/ciwdpdContainer-1-e;}
+#iwdpdContainer-1 {grid-row:riwdpdContainer-4-s/riwdpdContainer-e; grid-column:ciwdpdContainer-1-s/ciwdpdContainer-1-e;}
 #iwdpdContainer-2 {grid-row:riwdpdContainer-2-s/riwdpdContainer-e; grid-column:ciwdpdContainer-2-s/ciwdpdContainer-2-e;}
 #iwdpdContainer-3 {grid-row:riwdpdContainer-1-s/riwdpdContainer-e; grid-column:ciwdpdContainer-3-s/ciwdpdContainer-3-e;}
 #iwdpdContainer-4 {grid-row:riwdpdContainer-2-s/riwdpdContainer-e; grid-column:ciwdpdContainer-4-s/ciwdpdContainer-4-e;}
 
-#iwdpdBorder-1 {grid-row:riwdpdBorder-2-s/riwdpdBorder-e; grid-column:ciwdpdBorder-1-s/ciwdpdBorder-1-e;}
+#iwdpdBorder-1 {grid-row:riwdpdBorder-4-s/riwdpdBorder-e; grid-column:ciwdpdBorder-1-s/ciwdpdBorder-1-e;}
 #iwdpdBorder-2 {grid-row:riwdpdBorder-2-s/riwdpdBorder-e; grid-column:ciwdpdBorder-2-s/ciwdpdBorder-2-e;}
 #iwdpdBorder-3 {grid-row:riwdpdBorder-1-s/riwdpdBorder-e; grid-column:ciwdpdBorder-3-s/ciwdpdBorder-3-e;}
 #iwdpdBorder-4 {grid-row:riwdpdBorder-2-s/riwdpdBorder-e; grid-column:ciwdpdBorder-4-s/ciwdpdBorder-4-e;}
 
-#iwdpdItem-11 {grid-row:riwdpdItem-1-s/riwdpdItem-1-e; grid-column:ciwdpdItem-1-s/ciwdpdItem-1-e;}
-#iwdpdItem-12 {grid-row:riwdpdItem-2-s/riwdpdItem-2-e; grid-column:ciwdpdItem-1-s/ciwdpdItem-1-e;}
-#iwdpdItem-21 {grid-row:riwdpdItem-1-s/riwdpdItem-1-e; grid-column:ciwdpdItem-2-s/ciwdpdItem-2-e;}
-#iwdpdItem-22 {grid-row:riwdpdItem-2-s/riwdpdItem-2-e; grid-column:ciwdpdItem-2-s/ciwdpdItem-2-e;}
-#iwdpdItem-31 {grid-row:riwdpdItem-1-s/riwdpdItem-1-e; grid-column:ciwdpdItem-3-s/ciwdpdItem-3-e;}
-#iwdpdItem-41 {grid-row:riwdpdItem-1-s/riwdpdItem-1-e; grid-column:ciwdpdItem-4-s/ciwdpdItem-4-e;}
-#iwdpdItem-42 {grid-row:riwdpdItem-2-s/riwdpdItem-2-e; grid-column:ciwdpdItem-4-s/ciwdpdItem-4-e;}
+#iwdpdDirection-11 {grid-row:riwdpdDirection-1-s/riwdpdDirection-1-e; grid-column:ciwdpdDirection-1-s/ciwdpdDirection-1-e;}
+#iwdpdDirection-12 {grid-row:riwdpdDirection-2-s/riwdpdDirection-2-e; grid-column:ciwdpdDirection-1-s/ciwdpdDirection-1-e;}
+#iwdpdDirection-13 {grid-row:riwdpdDirection-3-s/riwdpdDirection-3-e; grid-column:ciwdpdDirection-1-s/ciwdpdDirection-1-e;}
+#iwdpdDirection-14 {grid-row:riwdpdDirection-4-s/riwdpdDirection-4-e; grid-column:ciwdpdDirection-1-s/ciwdpdDirection-1-e;}
+#iwdpdDirection-21 {grid-row:riwdpdDirection-1-s/riwdpdDirection-1-e; grid-column:ciwdpdDirection-2-s/ciwdpdDirection-2-e;}
+#iwdpdDirection-22 {grid-row:riwdpdDirection-2-s/riwdpdDirection-2-e; grid-column:ciwdpdDirection-2-s/ciwdpdDirection-2-e;}
+#iwdpdDirection-31 {grid-row:riwdpdDirection-1-s/riwdpdDirection-1-e; grid-column:ciwdpdDirection-3-s/ciwdpdDirection-3-e;}
+#iwdpdDirection-41 {grid-row:riwdpdDirection-1-s/riwdpdDirection-1-e; grid-column:ciwdpdDirection-4-s/ciwdpdDirection-4-e;}
+#iwdpdDirection-42 {grid-row:riwdpdDirection-2-s/riwdpdDirection-2-e; grid-column:ciwdpdDirection-4-s/ciwdpdDirection-4-e;}
 
-#iwdpExpressionBackground-7 {grid-row:riwdpExpressionBackground-s/riwdpExpressionBackground-e; grid-column:ciwdpExpression-s/ciwdpExpression-e;}
-#iwdpExpressionForeground-7 {grid-row:riwdpExpressionForeground-s/riwdpExpressionForeground-e; grid-column:ciwdpExpression-s/ciwdpExpression-e;}
-#iwdpExpressionOverstrike-7 {grid-row:riwdpExpressionForeground-s/riwdpExpressionForeground-e; grid-column:ciwdpExpression-s/ciwdpExpression-e;}
+#iwdpTerritory {
+	grid-row:riwdpTerritory-s/riwdpTerritory-e;
+	grid-column:ciwdpTerritory-s/ciwdpTerritory-e;
+	display:grid;
+	height:15em;
+	width:51em;
+	background-color:white;
+	grid-template-rows:repeat(15, 1fr);
+	grid-template-columns:repeat(51, 1fr);
+}
 
-#iwdpTargetBackground-2 {grid-row:riwdpTargetBackground-s/riwdpTargetBackground-e; grid-column:ciwdpTargetBackground-s/ciwdpTargetBackground-e;}
-#iwdpTargetForeground-2 {grid-row:riwdpTargetForeground-s/riwdpTargetForeground-e; grid-column:ciwdpTargetForeground-s/ciwdpTargetForeground-e;}
+#iwdptBoundary {grid-row:1/-1; grid-column:1/-1;}
+
+#iwdptOddPoint-00 {grid-row:2/span 3; grid-column:5/span 3;}
+#iwdptOddPoint-01 {grid-row:2/span 3; grid-column:10/span 3;}
+#iwdptOddPoint-02 {grid-row:2/span 3; grid-column:15/span 3;}
+#iwdptOddPoint-03 {grid-row:2/span 3; grid-column:20/span 3;}
+#iwdptOddPoint-04 {grid-row:2/span 3; grid-column:25/span 3;}
+#iwdptOddPoint-05 {grid-row:2/span 3; grid-column:30/span 3;}
+#iwdptOddPoint-06 {grid-row:2/span 3; grid-column:35/span 3;}
+#iwdptOddPoint-07 {grid-row:2/span 3; grid-column:40/span 3;}
+#iwdptOddPoint-08 {grid-row:2/span 3; grid-column:45/span 3;}
+
+#iwdptOddPoint-10 {grid-row:7/span 3; grid-column:5/span 3;}
+#iwdptOddPoint-11 {grid-row:7/span 3; grid-column:10/span 3;}
+
+#iwdptOddLine-00-E {grid-row:3/4; grid-column:6/12;}
+#iwdptOddLine-00-SE {grid-row:3/9; grid-column:6/12;}
+#iwdptOddLine-00-S {grid-row:3/9; grid-column:6/7;}
+
 
 
 
 #mainWall {
-/*	display:none; */
 	position:absolute;
 	width:59em;
  	grid-template-columns:
@@ -701,61 +719,14 @@ body {
 	background-color:white;
 	grid-template-columns:
 		[cmwdp-s]
-		4fr
-		[cmwdpExpression-9-s]
-		2fr
-		[cmwdpExpression-8-s]
-		2fr
-		[cmwdpExpression-7-s]
-		9fr
-		[cmwdpTargetBackground-4-s cmwdpTargetForeground-4-s]
-		2fr
-		[cmwdpTargetBackground-3-s cmwdpTargetForeground-3-s]
 		1fr
-		[cmwdpTargetBackground-2-s cmwdpTargetForeground-2-s]
+		[cmwdpTerritory-s]
+		51fr
+		[cmwdpTerritory-e]
 		1fr
-		[cmwdpTargetBackground-1-s cmwdpTargetForeground-1-s]
-		11fr
-		[cmwdpTargetBackground-1-e cmwdpTargetForeground-1-e]
-		1fr
-		[cmwdpTargetBackground-2-e cmwdpTargetForeground-2-e]
-		1fr
-		[cmwdpTargetBackground-3-e cmwdpTargetForeground-3-e]
-		2fr
-		[cmwdpTargetBackground-4-e cmwdpTargetForeground-4-e]
-		9fr
-		[cmwdpExpression-7-e]
-		2fr
-		[cmwdpExpression-8-e]
-		2fr
-		[cmwdpExpression-9-e]
-		4fr
 		[cmwdp-e];
 }
 
-#mwdpExpressionBackground-7 {grid-row:rmwdpExpressionBackground-s/rmwdpExpressionBackground-e; grid-column:cmwdpExpression-7-s/cmwdpExpression-7-e;}
-#mwdpExpressionForeground-7 {grid-row:rmwdpExpressionForeground-s/rmwdpExpressionForeground-e; grid-column:cmwdpExpression-7-s/cmwdpExpression-7-e;}
-#mwdpExpressionOverstrike-7 {grid-row:rmwdpExpressionForeground-s/rmwdpExpressionForeground-e; grid-column:cmwdpExpression-7-s/cmwdpExpression-7-e;}
-
-#mwdpExpressionBackground-8 {grid-row:rmwdpExpressionBackground-s/rmwdpExpressionBackground-e; grid-column:cmwdpExpression-8-s/cmwdpExpression-8-e;}
-#mwdpExpressionForeground-8 {grid-row:rmwdpExpressionForeground-s/rmwdpExpressionForeground-e; grid-column:cmwdpExpression-8-s/cmwdpExpression-8-e;}
-#mwdpExpressionOverstrike-8 {grid-row:rmwdpExpressionForeground-s/rmwdpExpressionForeground-e; grid-column:cmwdpExpression-8-s/cmwdpExpression-8-e;}
-
-#mwdpExpressionBackground-9 {grid-row:rmwdpExpressionBackground-s/rmwdpExpressionBackground-e; grid-column:cmwdpExpression-9-s/cmwdpExpression-9-e;}
-#mwdpExpressionForeground-9 {grid-row:rmwdpExpressionForeground-s/rmwdpExpressionForeground-e; grid-column:cmwdpExpression-9-s/cmwdpExpression-9-e;}
-#mwdpExpressionOverstrike-9 {grid-row:rmwdpExpressionForeground-s/rmwdpExpressionForeground-e; grid-column:cmwdpExpression-9-s/cmwdpExpression-9-e;}
-
-#mwdpTargetBackground-1 {grid-row:rmwdpTargetBackground-s/rmwdpTargetBackground-e; grid-column:cmwdpTargetBackground-1-s/cmwdpTargetBackground-1-e;}
-#mwdpTargetForeground-1 {grid-row:rmwdpTargetForeground-s/rmwdpTargetForeground-e; grid-column:cmwdpTargetForeground-1-s/cmwdpTargetForeground-1-e;}
-
-#mwdpTargetBackground-2 {grid-row:rmwdpTargetBackground-s/rmwdpTargetBackground-e; grid-column:cmwdpTargetBackground-2-s/cmwdpTargetBackground-2-e;}
-#mwdpTargetForeground-2 {grid-row:rmwdpTargetForeground-s/rmwdpTargetForeground-e; grid-column:cmwdpTargetForeground-2-s/cmwdpTargetForeground-2-e;}
-
-#mwdpTargetBackground-3 {grid-row:rmwdpTargetBackground-s/rmwdpTargetBackground-e; grid-column:cmwdpTargetBackground-3-s/cmwdpTargetBackground-3-e;}
-#mwdpTargetForeground-3 {grid-row:rmwdpTargetForeground-s/rmwdpTargetForeground-e; grid-column:cmwdpTargetForeground-3-s/cmwdpTargetForeground-3-e;}
-
-#mwdpTargetBackground-4 {grid-row:rmwdpTargetBackground-s/rmwdpTargetBackground-e; grid-column:cmwdpTargetBackground-4-s/cmwdpTargetBackground-4-e;}
-#mwdpTargetForeground-4 {grid-row:rmwdpTargetForeground-s/rmwdpTargetForeground-e; grid-column:cmwdpTargetForeground-4-s/cmwdpTargetForeground-4-e;}
 
 #mwdpDispensers-24 {
 	z-index:4;
@@ -1060,19 +1031,21 @@ body {
 	width:53em;
 	background-color:transparent;
 	grid-template-rows:
-		[rmwdpd-34-s rmwdpdContainer-34-3-s rmwdpdBorder-34-3-s rmwdpdItem-34-3-s]
-		7fr
-		[rmwdpdContainer-34-2-s rmwdpdBorder-34-2-s rmwdpdItem-34-2-s]
-		2fr
-		[rmwdpdItem-34-3-e]
-		5fr
-		[rmwdpdContainer-34-1-s rmwdpdBorder-34-1-s rmwdpdItem-34-1-s]
-		2fr
-		[rmwdpdItem-34-2-e]
-		6fr
-		[rmwdpdContainer-34-e rmwdpdBorder-34-e]
+		[rmwdpd-34-s rmwdpdContainer-34-3-s rmwdpdBorder-34-3-s]
 		1fr
-		[rmwdpdItem-34-1-e rmwdpd-33-e];
+		[rmwdpdItem-34-3-s]
+		5fr
+		[rmwdpdItem-34-3-e rmwdpdContainer-34-2-s rmwdpdBorder-34-2-s]
+		1fr
+		[rmwdpdItem-34-2-s]
+		5fr
+		[rmwdpdItem-34-2-e rmwdpdContainer-34-1-s rmwdpdBorder-34-1-s]
+		1fr
+		[rmwdpdItem-34-1-s]
+		5fr
+		[rmwdpdItem-34-1-e]
+		1fr
+		[rmwdpdContainer-34-e rmwdpdBorder-34-e rmwdpd-34-e];
 	grid-template-columns:
 		[cmwdpd-34-s]
 		4fr
@@ -1680,9 +1653,78 @@ body {
 #mwdpdItem-45-54 {grid-row:rmwdpdItem-45-4-s/rmwdpdItem-45-4-e; grid-column:cmwdpdItem-45-5-s/cmwdpdItem-45-5-e;}
 
 
+#mwdpTerritory {
+	grid-row:rmwdpTerritory-s/rmwdpTerritory-e;
+	grid-column:cmwdpTerritory-s/cmwdpTerritory-e;
+	display:grid;
+/*	height:15em; */
+	width:51em;
+	background-color:white;
+	grid-template-rows:repeat(15, 1fr);
+	grid-template-columns:repeat(51, 1fr);
+}
+
+#mwdptBoundary-83 {grid-row:1/-1; grid-column:1/-1;}
+
+#mwdptEvenPoint-00 {grid-row:2/span 3; grid-column:3/span 2;}
+#mwdptEvenPoint-01 {grid-row:2/span 3; grid-column:8/span 2;}
+#mwdptEvenPoint-02 {grid-row:2/span 3; grid-column:13/span 2;}
+#mwdptEvenPoint-03 {grid-row:2/span 3; grid-column:18/span 2;}
+#mwdptEvenPoint-04 {grid-row:2/span 3; grid-column:23/span 2;}
+#mwdptEvenPoint-05 {grid-row:2/span 3; grid-column:28/span 2;}
+#mwdptEvenPoint-06 {grid-row:2/span 3; grid-column:33/span 2;}
+#mwdptEvenPoint-07 {grid-row:2/span 3; grid-column:38/span 2;}
+#mwdptEvenPoint-08 {grid-row:2/span 3; grid-column:43/span 2;}
+#mwdptEvenPoint-09 {grid-row:2/span 3; grid-column:48/span 2;}
+
+#mwdptEvenPoint-10 {grid-row:7/span 3; grid-column:3/span 2;}
+#mwdptEvenPoint-11 {grid-row:7/span 3; grid-column:8/span 2;}
+#mwdptEvenPoint-12 {grid-row:7/span 3; grid-column:13/span 2;}
+#mwdptEvenPoint-13 {grid-row:7/span 3; grid-column:18/span 2;}
+#mwdptEvenPoint-14 {grid-row:7/span 3; grid-column:23/span 2;}
+#mwdptEvenPoint-15 {grid-row:7/span 3; grid-column:28/span 2;}
+#mwdptEvenPoint-16 {grid-row:7/span 3; grid-column:33/span 2;}
+#mwdptEvenPoint-17 {grid-row:7/span 3; grid-column:38/span 2;}
+#mwdptEvenPoint-18 {grid-row:7/span 3; grid-column:43/span 2;}
+#mwdptEvenPoint-19 {grid-row:7/span 3; grid-column:48/span 2;}
+
+#mwdptEvenPoint-20 {grid-row:12/span 3; grid-column:3/span 2;}
+#mwdptEvenPoint-21 {grid-row:12/span 3; grid-column:8/span 2;}
+#mwdptEvenPoint-22 {grid-row:12/span 3; grid-column:13/span 2;}
+#mwdptEvenPoint-23 {grid-row:12/span 3; grid-column:18/span 2;}
+#mwdptEvenPoint-24 {grid-row:12/span 3; grid-column:23/span 2;}
+#mwdptEvenPoint-25 {grid-row:12/span 3; grid-column:28/span 2;}
+#mwdptEvenPoint-26 {grid-row:12/span 3; grid-column:33/span 2;}
+#mwdptEvenPoint-27 {grid-row:12/span 3; grid-column:38/span 2;}
+#mwdptEvenPoint-28 {grid-row:12/span 3; grid-column:43/span 2;}
+#mwdptEvenPoint-29 {grid-row:12/span 3; grid-column:48/span 2;}
+
+#mwdptEvenLine-00-E {grid-row:3/span 1; grid-column:4/span 5;}
+#mwdptEvenLine-00-SE {grid-row:3/span 6; grid-column:4/span 5;}
+#mwdptEvenLine-00-S {grid-row:3/span 6; grid-column:3/span 2;}
+
+#mwdptEvenLine-01-E {grid-row:3/span 1; grid-column:9/span 5;}
+#mwdptEvenLine-01-SE {grid-row:3/span 6; grid-column:9/span 5;}
+#mwdptEvenLine-01-S {grid-row:3/span 6; grid-column:8/span 2;}
+#mwdptEvenLine-01-SW {grid-row:3/span 6; grid-column:4/span 5;}
+#mwdptEvenLine-01-W {grid-row:3/span 1; grid-column:4/span 5;}
+
+#mwdptEvenLine-10-N {grid-row:3/span 6; grid-column:3/span 2;}
+#mwdptEvenLine-10-NE {grid-row:3/span 6; grid-column:4/span 5;}
+#mwdptEvenLine-10-E {grid-row:8/span 1; grid-column:4/span 5;}
+#mwdptEvenLine-10-SE {grid-row:8/span 6; grid-column:4/span 5;}
+#mwdptEvenLine-10-S {grid-row:8/span 6; grid-column:3/span 2;}
+
+#mwdptEvenLine-11-N {grid-row:3/span 6; grid-column:8/span 2;}
+#mwdptEvenLine-11-NE {grid-row:3/span 6; grid-column:9/span 5;}
+#mwdptEvenLine-11-E {grid-row:8/span 1; grid-column:9/span 5;}
+#mwdptEvenLine-11-SE {grid-row:8/span 6; grid-column:9/span 5;}
+#mwdptEvenLine-11-S {grid-row:8/span 6; grid-column:8/span 2;}
+#mwdptEvenLine-11-SW {grid-row:8/span 6; grid-column:4/span 5;}
+#mwdptEvenLine-11-W {grid-row:8/span 1; grid-column:4/span 5;}
+#mwdptEvenLine-11-NW {grid-row:3/span 6; grid-column:4/span 5;}
 
 
-code {font-family:"Courier New", "Courier", monospace;}
 
 .CrossTick {
 	display:none;
@@ -1700,16 +1742,22 @@ code {font-family:"Courier New", "Courier", monospace;}
 
 .CtrlDispense {width:7em; height:6em;}
 
-.CtrlSecondary {text-align:center; border:none; background-color:#484848; color:white; font-size:2.5em;}
+.CtrlSecondary {
+	text-align:center;
+	border:none;
+	background-color:#484848;
+	color:white;
+	font-size:2.5em;
+}
 
 .CtrlUndispense {width:35em; height:6em;}
 
 .DemoSeparator {background-color:black;}
 
-.DispensersBorder1 {z-index:5; width:9em; height:8em;}
-.DispensersBorder2 {z-index:5; width:9em; height:15em;}
-.DispensersBorder3 {z-index:5; width:9em; height:22em;}
-.DispensersBorder4 {z-index:5; width:9em; height:29em;}
+.DispensersBorder1 {z-index:5; width:9em; height:7em;}
+.DispensersBorder2 {z-index:5; width:9em; height:13em;}
+.DispensersBorder3 {z-index:5; width:9em; height:19em;}
+.DispensersBorder4 {z-index:5; width:9em; height:25em;}
 
 .DispensersContainer {
 	z-index:4;
@@ -1719,13 +1767,20 @@ code {font-family:"Courier New", "Courier", monospace;}
 	background-color:#F5F5F5;
 }
 
-.DispensersItem {z-index:5; margin:0; padding:0; border:none; text-align:center; font-size:7em; color:black; background-color:transparent;}
+.DispensersItem {
+	z-index:5;
+	margin:0;
+	padding:0;
+	border:none;
+	text-align:center;
+	font-size:7em;
+	color:black;
+	background-color:transparent;
+}
+
+.DispensersDirection {z-index:5; width:5em; height:5em;}
 
 .Door {background-color:#9E9E9E;}
-
-.ExpressionBackground {margin:0; padding:0; border-style:solid; border-color:black; border-width:0 0 0.8em 0; background-color:#FFE8E8;}
-
-.ExpressionForeground {z-index:5; margin:0; padding:0; border:none; text-align:left; font-size:7em; color:black; background-color:transparent;}
 
 .InfoOtherPuzzles1 {
 	border-style:dashed;
@@ -1766,6 +1821,13 @@ code {font-family:"Courier New", "Courier", monospace;}
 	font-size:2.5em;
 }
 
+.Instructions {
+	text-align:justify;
+	border:none;
+	padding:0 0.5em 0 0.5em;
+	font-size:2.5em;
+}
+
 .Italic {font-style:italic;}
 
 .MainWallName {padding:0 0 0.2em 0;}
@@ -1784,29 +1846,21 @@ code {font-family:"Courier New", "Courier", monospace;}
 
 .Surround {display:none; background-color:yellow;}
 
-.TargetBackground {
-	padding:0;
-	border-style:solid;
-	border-color:black;
-	border-width:2.5px;
-	border-radius:0.3em;
-	margin:0;
-	background-color:#FFE8E8;
-	color:transparent;
-	/* font-size governs how rounded the block is */
-	font-size:4em;
-}
+.TerritoryBlocker {width:6em; height:6em;}
 
-.TargetForeground {
-	z-index:5; 
-	padding:0;
-	margin:0;
-	border:none;
-	font-size:7em;
-	background-color:transparent;
-	color:#A7074B;
-	text-align:center;
-}
+.TerritoryBoundary {width:51em; height:15em;}
+
+.TerritoryEvenLineWE {width:5em; height:1em;}
+.TerritoryEvenLineNWSE {width:5em; height:6em;}
+.TerritoryEvenLineNS {width:2em; height:6em;}
+.TerritoryEvenLineNESW {width:5em; height:6em;}
+
+.TerritoryOddLineWE {width:6em; height:1em;}
+.TerritoryOddLineNS {width:1em; height:6em;}
+.TerritoryOddLineNWSE {width:6em; height:6em;}
+
+.TerritoryEvenPoint {z-index:5; width:2em; height:3em;}
+.TerritoryOddPoint {z-index:5; width:3em; height:3em;}
 
 .Wall {background-color:#9E9E9E;}
 
@@ -1815,7 +1869,7 @@ code {font-family:"Courier New", "Courier", monospace;}
 	border-radius:0.4em;
 	margin:0;
 	background-color:black;
-	color:transparent;
+	color:black;
 }
 
 .WallNameForeground {

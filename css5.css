@@ -8,7 +8,7 @@ body {
 /*	display:none; */
 	position:absolute;
 /*	height:500em; */
-	height:504em;
+	height:516em;
 	width:59em;
 	grid-template-rows:
 		[riw-s riwUkraineFlag-s]
@@ -59,7 +59,7 @@ body {
 		[riwSeparator-2-s]
 		3fr
 		[riwSeparator-2-e riwDoor-s]
-		88fr
+		100fr
 		[riwDoor-e riwSeparator-3-s]
 		3fr
 		[riwSeparator-3-e]
@@ -288,7 +288,7 @@ body {
 #iwDoor {
 	grid-row:riwDoor-s/riwDoor-e;
 	grid-column:ciwDoor-s/ciwDoor-e;
-	height:88em;
+	height:100em;
 	width:59em;
 	display:grid;
 	grid-template-rows:
@@ -303,7 +303,7 @@ body {
 		[riwdCtrlTop-e riwdSpotTop-e]
 		3fr
 		[riwdPanel-s]
-		45fr
+		57fr
 		[riwdPanel-e]
 		3fr
 		[riwdCtrlDispense-s riwdSpotDispense-s]
@@ -432,13 +432,21 @@ body {
 	grid-row:riwdPanel-s/riwdPanel-e;
 	grid-column:ciwdPanel-s/ciwdPanel-e;
 	display:grid;
-	height:45em;
+	height:57em;
 	width:53em;
 	background-color:white;
 	grid-template-rows:
 		[riwdp-s]
 		3fr
-		[riwdpdContainer-2-s riwdpdBorder-2-s]
+		[riwdpdContainer-4-s riwdpdBorder-4-s]
+		1fr
+		[riwdpdDirection-4-s]
+		5fr
+		[riwdpdContainer-3-s riwdpdBorder-3-s riwdpdDirection-4-e]
+		1fr
+		[riwdpdDirection-3-s]
+		5fr
+		[riwdpdContainer-2-s riwdpdBorder-2-s riwdpdDirection-3-e]
 		1fr
 		[riwdpdDirection-2-s]
 		5fr
@@ -514,18 +522,20 @@ body {
 		[ciwdp-e];
 }
 
-#iwdpdContainer-1 {grid-row:riwdpdContainer-2-s/riwdpdContainer-e; grid-column:ciwdpdContainer-1-s/ciwdpdContainer-1-e;}
+#iwdpdContainer-1 {grid-row:riwdpdContainer-4-s/riwdpdContainer-e; grid-column:ciwdpdContainer-1-s/ciwdpdContainer-1-e;}
 #iwdpdContainer-2 {grid-row:riwdpdContainer-2-s/riwdpdContainer-e; grid-column:ciwdpdContainer-2-s/ciwdpdContainer-2-e;}
 #iwdpdContainer-3 {grid-row:riwdpdContainer-1-s/riwdpdContainer-e; grid-column:ciwdpdContainer-3-s/ciwdpdContainer-3-e;}
 #iwdpdContainer-4 {grid-row:riwdpdContainer-2-s/riwdpdContainer-e; grid-column:ciwdpdContainer-4-s/ciwdpdContainer-4-e;}
 
-#iwdpdBorder-1 {grid-row:riwdpdBorder-2-s/riwdpdBorder-e; grid-column:ciwdpdBorder-1-s/ciwdpdBorder-1-e;}
+#iwdpdBorder-1 {grid-row:riwdpdBorder-4-s/riwdpdBorder-e; grid-column:ciwdpdBorder-1-s/ciwdpdBorder-1-e;}
 #iwdpdBorder-2 {grid-row:riwdpdBorder-2-s/riwdpdBorder-e; grid-column:ciwdpdBorder-2-s/ciwdpdBorder-2-e;}
 #iwdpdBorder-3 {grid-row:riwdpdBorder-1-s/riwdpdBorder-e; grid-column:ciwdpdBorder-3-s/ciwdpdBorder-3-e;}
 #iwdpdBorder-4 {grid-row:riwdpdBorder-2-s/riwdpdBorder-e; grid-column:ciwdpdBorder-4-s/ciwdpdBorder-4-e;}
 
 #iwdpdDirection-11 {grid-row:riwdpdDirection-1-s/riwdpdDirection-1-e; grid-column:ciwdpdDirection-1-s/ciwdpdDirection-1-e;}
 #iwdpdDirection-12 {grid-row:riwdpdDirection-2-s/riwdpdDirection-2-e; grid-column:ciwdpdDirection-1-s/ciwdpdDirection-1-e;}
+#iwdpdDirection-13 {grid-row:riwdpdDirection-3-s/riwdpdDirection-3-e; grid-column:ciwdpdDirection-1-s/ciwdpdDirection-1-e;}
+#iwdpdDirection-14 {grid-row:riwdpdDirection-4-s/riwdpdDirection-4-e; grid-column:ciwdpdDirection-1-s/ciwdpdDirection-1-e;}
 #iwdpdDirection-21 {grid-row:riwdpdDirection-1-s/riwdpdDirection-1-e; grid-column:ciwdpdDirection-2-s/ciwdpdDirection-2-e;}
 #iwdpdDirection-22 {grid-row:riwdpdDirection-2-s/riwdpdDirection-2-e; grid-column:ciwdpdDirection-2-s/ciwdpdDirection-2-e;}
 #iwdpdDirection-31 {grid-row:riwdpdDirection-1-s/riwdpdDirection-1-e; grid-column:ciwdpdDirection-3-s/ciwdpdDirection-3-e;}
@@ -1723,8 +1733,8 @@ code {font-family:"Courier New", "Courier", monospace;}
 
 .DispensersBorder1 {z-index:5; width:9em; height:7em;}
 .DispensersBorder2 {z-index:5; width:9em; height:13em;}
-.DispensersBorder3 {z-index:5; width:9em; height:22em;}
-.DispensersBorder4 {z-index:5; width:9em; height:29em;}
+.DispensersBorder3 {z-index:5; width:9em; height:19em;}
+.DispensersBorder4 {z-index:5; width:9em; height:25em;}
 
 .DispensersContainer {
 	z-index:4;

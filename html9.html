@@ -10,12 +10,12 @@
 		<script defer src="/_vercel/insights/script.js"></script>
 	</head>
 	<body>
-		<div id="infoWall" class="Wall NoShow">
+<!--		<div id="infoWall" class="Wall NoShow">
 			<img id="iwCtrlBack" src="backArrow.svg" alt="Back"/>
 
 			<img id="iwUkraineFlag" src="UkraineFlag.svg" alt="Flag"/>
 
-			<button id="iwNameBackground" type="button" class="WallNameBackground">&emsp;</button>
+			<button id="iwNameBackground" type="button" class="WallNameBackground">&InvisibleTimes;</button>
 			<button id="iwNameForeground" type="button" class="WallNameForeground"><strong>Information</strong></button>
 		
 			<button id="iwPuzzleData" type="button"><strong>Puzzle #99&emsp;&boxh;&emsp;Solve by dd Mmm</strong></button>
@@ -24,12 +24,22 @@
 
 			<p id="iwTTInstructions" class="InfoTopicTitle"><strong>Instructions</strong></p>
 			<button id="iwTCInstructions-1" type="button" class="InfoTopicContent Instructions">
-				<strong>Build a square which has just ONE area of each colour.</strong>
+				<strong>Join dots to construct a path ... <span id="targetNumber">target number</span>.</strong>
 			</button>			
 			<button id="iwTCInstructions-2" type="button" class="InfoTopicContent Instructions">
-				Multi-coloured tiles cannot be rotated.
+				Standard precedence rules apply:
+				<br>
+				1 &plus; 2&thinsp;&times;&thinsp;3 &minus; 8&thinsp;&divide;&thinsp;4 &equals; 5
+				<br>
+				12&thinsp;&divide;&thinsp;3&thinsp;&times;&thinsp;4 &equals; 16
 			</button>			
-			<button id="iwTCInstructions-3" type="button" class="InfoTopicContent Instructions Italic">
+			<button id="iwTCInstructions-3" type="button" class="InfoTopicContent Instructions">
+				Leading zeros are not permitted.
+			</button>			
+			<button id="iwTCInstructions-4" type="button" class="InfoTopicContent Instructions Italic">
+				Dispense a direction; extend the path to the next dot in that direction. Repeat until the dispensers are empty.
+			</button>
+			<button id="iwTCInstructions-5" type="button" class="InfoTopicContent Instructions Italic">
 				Best to watch the <strong>demonstration below</strong>.
 			</button>
 			
@@ -117,29 +127,283 @@
 					<div id="iwdpdContainer-3" class="DispensersContainer"></div>
 					<div id="iwdpdContainer-4" class="DispensersContainer"></div>
 					
-					<img id="iwdpdBorder-1" class="DispensersBorder2" src="dispenserBorder2.svg" alt="Border"/>
+					<img id="iwdpdBorder-1" class="DispensersBorder4" src="dispenserBorder4.svg" alt="Border"/>
 					<img id="iwdpdBorder-2" class="DispensersBorder2" src="dispenserBorder2.svg" alt="Border"/>
 					<img id="iwdpdBorder-3" class="DispensersBorder1" src="dispenserBorder1.svg" alt="Border"/>
 					<img id="iwdpdBorder-4" class="DispensersBorder2" src="dispenserBorder2.svg" alt="Border"/>
 
-					<button id="iwdpdItem-11" type="button" class="DispensersItem"><code><strong>1</strong></code></button>
+<!					<button id="iwdpdItem-11" type="button" class="DispensersItem"><code><strong>1</strong></code></button>
 					<button id="iwdpdItem-12" type="button" class="DispensersItem"><code><strong>6</strong></code></button>
 					<button id="iwdpdItem-21" type="button" class="DispensersItem"><code><strong>6</strong></code></button>
 					<button id="iwdpdItem-22" type="button" class="DispensersItem"><code><strong>5</strong></code></button>
 					<button id="iwdpdItem-31" type="button" class="DispensersItem"><code><strong>&minus;</strong></code></button>
 					<button id="iwdpdItem-41" type="button" class="DispensersItem"><code><strong>&times;</strong></code></button>
-					<button id="iwdpdItem-42" type="button" class="DispensersItem"><code><strong>4</strong></code></button>
-					
-					<div id="iwdpExpressionBackground-7" class="ExpressionBackground"></div>
-					<button id="iwdpExpressionForeground-7" type="button" class="ExpressionForeground">99</button>
-					<button id="iwdpExpressionOverstrike-7" type="button" class="ExpressionForeground">99</button>
+					<button id="iwdpdItem-42" type="button" class="DispensersItem"><code><strong>4</strong></code></button> !>
+
+					<img id="iwdpdDirection-11" class="DispensersDirection" src="dispenserDirectionSE.svg" alt="Direction"/>
+					<img id="iwdpdDirection-12" class="DispensersDirection" src="dispenserDirectionNW.svg" alt="Direction"/>
+					<img id="iwdpdDirection-13" class="DispensersDirection" src="dispenserDirectionSW.svg" alt="Direction"/>
+					<img id="iwdpdDirection-14" class="DispensersDirection" src="dispenserDirectionSW.svg" alt="Direction"/>
+					<img id="iwdpdDirection-21" class="DispensersDirection" src="dispenserDirectionN.svg" alt="Direction"/>
+					<img id="iwdpdDirection-22" class="DispensersDirection" src="dispenserDirectionS.svg" alt="Direction"/>
+					<img id="iwdpdDirection-31" class="DispensersDirection" src="dispenserDirectionSE.svg" alt="Direction"/>
+					<img id="iwdpdDirection-41" class="DispensersDirection" src="dispenserDirectionE.svg" alt="Direction"/>
+					<img id="iwdpdDirection-42" class="DispensersDirection" src="dispenserDirectionW.svg" alt="Direction"/>
+
+					<div id="iwdpTerritory">
+						<img id="iwdptBoundary" class="TerritoryBoundary" src="territoryBoundary.svg" alt="Boundary"/>
+
+						<img id="iwdptOddPoint-00" class="TerritoryOddPoint" src="territoryOddDot.svg" alt="Point"/>
+						<img id="iwdptOddPoint-01" class="TerritoryOddPoint" src="territoryOddDot.svg" alt="Point"/>
+						<img id="iwdptOddPoint-02" class="TerritoryOddPoint" src="territoryOddBlocker.svg" alt="Point"/>
+						<img id="iwdptOddPoint-03" class="TerritoryOddPoint" src="territoryOddDot.svg" alt="Point"/>
+						<img id="iwdptOddPoint-04" class="TerritoryOddPoint" src="territoryOddDot.svg" alt="Point"/>
+						<img id="iwdptOddPoint-05" class="TerritoryOddPoint" src="territoryOddDot.svg" alt="Point"/>
+						<img id="iwdptOddPoint-06" class="TerritoryOddPoint" src="territoryOddDot.svg" alt="Point"/>
+						<img id="iwdptOddPoint-07" class="TerritoryOddPoint" src="territoryOddDot.svg" alt="Point"/>
+						<img id="iwdptOddPoint-08" class="TerritoryOddPoint" src="territoryOddFinish.svg" alt="Point"/>
+						<img id="iwdptOddPoint-10" class="TerritoryOddPoint" src="territoryOddStart.svg" alt="Point"/>
+						<img id="iwdptOddPoint-11" class="TerritoryOddPoint" src="territoryOddDot.svg" alt="Point"/>
+
+<!						<img id="iwdptOddPoint-00" class="TerritoryOddPoint NoShow" src="territoryOddDot.svg" alt="Point"/>
+						<img id="iwdptOddPoint-01" class="TerritoryOddPoint NoShow" src="territoryOddDot.svg" alt="Point"/>
+						<img id="iwdptOddPoint-02" class="TerritoryOddPoint NoShow" src="territoryOddDot.svg" alt="Point"/>
+						<img id="iwdptOddPoint-03" class="TerritoryOddPoint NoShow" src="territoryOddDot.svg" alt="Point"/>
+						<img id="iwdptOddPoint-04" class="TerritoryOddPoint NoShow" src="territoryOddDot.svg" alt="Point"/>
+						<img id="iwdptOddPoint-05" class="TerritoryOddPoint NoShow" src="territoryOddDot.svg" alt="Point"/>
+						<img id="iwdptOddPoint-06" class="TerritoryOddPoint NoShow" src="territoryOddDot.svg" alt="Point"/>
+						<img id="iwdptOddPoint-07" class="TerritoryOddPoint NoShow" src="territoryOddDot.svg" alt="Point"/>
+						<img id="iwdptOddPoint-08" class="TerritoryOddPoint NoShow" src="territoryOddDot.svg" alt="Point"/> !>
 						
-					<button id="iwdpTargetBackground-2" type="button" class="TargetBackground">99</button>
-					<button id="iwdpTargetForeground-2" type="button" class="TargetForeground">99</button>
+<!						<img id="iwdptOddPoint-10" class="TerritoryOddPoint NoShow" src="territoryOddDot.svg" alt="Point"/>
+						<img id="iwdptOddPoint-11" class="TerritoryOddPoint NoShow" src="territoryOddDot.svg" alt="Point"/> !>
+						<img id="iwdptOddPoint-12" class="TerritoryOddPoint NoShow" src="territoryOddDot.svg" alt="Point"/>
+						<img id="iwdptOddPoint-13" class="TerritoryOddPoint NoShow" src="territoryOddDot.svg" alt="Point"/>
+						<img id="iwdptOddPoint-14" class="TerritoryOddPoint NoShow" src="territoryOddDot.svg" alt="Point"/>
+						<img id="iwdptOddPoint-15" class="TerritoryOddPoint NoShow" src="territoryOddDot.svg" alt="Point"/>
+						<img id="iwdptOddPoint-16" class="TerritoryOddPoint NoShow" src="territoryOddDot.svg" alt="Point"/>
+						<img id="iwdptOddPoint-17" class="TerritoryOddPoint NoShow" src="territoryOddDot.svg" alt="Point"/>
+						<img id="iwdptOddPoint-18" class="TerritoryOddPoint NoShow" src="territoryOddDot.svg" alt="Point"/>
+						
+						<img id="iwdptOddPoint-20" class="TerritoryOddPoint NoShow" src="territoryOddDot.svg" alt="Point"/>
+						<img id="iwdptOddPoint-21" class="TerritoryOddPoint NoShow" src="territoryOddDot.svg" alt="Point"/>
+						<img id="iwdptOddPoint-22" class="TerritoryOddPoint NoShow" src="territoryOddDot.svg" alt="Point"/>
+						<img id="iwdptOddPoint-23" class="TerritoryOddPoint NoShow" src="territoryOddDot.svg" alt="Point"/>
+						<img id="iwdptOddPoint-24" class="TerritoryOddPoint NoShow" src="territoryOddDot.svg" alt="Point"/>
+						<img id="iwdptOddPoint-25" class="TerritoryOddPoint NoShow" src="territoryOddDot.svg" alt="Point"/>
+						<img id="iwdptOddPoint-26" class="TerritoryOddPoint NoShow" src="territoryOddDot.svg" alt="Point"/>
+						<img id="iwdptOddPoint-27" class="TerritoryOddPoint NoShow" src="territoryOddDot.svg" alt="Point"/>
+						<img id="iwdptOddPoint-28" class="TerritoryOddPoint NoShow" src="territoryOddDot.svg" alt="Point"/>
+
+						
+						<img id="iwdptOddLine-00-E" class="TerritoryOddLineWE" src="territoryOddLineWE.svg" alt="Line"/>
+						<img id="iwdptOddLine-00-SE" class="TerritoryOddLineNWSE" src="territoryOddLineNWSE.svg" alt="Line"/>
+						<img id="iwdptOddLine-00-S" class="TerritoryOddLineNS" src="territoryOddLineNS.svg" alt="Line"/>
+
+<!						<img id="iwdptOddLine-00-E" class="TerritoryOddLine NoShow" src="territoryOddLineE.svg" alt="Line"/>
+						<img id="iwdptOddLine-00-SE" class="TerritoryOddLine NoShow" src="territoryOddLineSE.svg" alt="Line"/>
+						<img id="iwdptOddLine-00-S" class="TerritoryOddLine NoShow" src="territoryOddLineS.svg" alt="Line"/> !>
+						
+						<img id="iwdptOddLine-01-E" class="TerritoryOddLine NoShow" src="territoryOddLineE.svg" alt="Line"/>
+						<img id="iwdptOddLine-01-SE" class="TerritoryOddLine NoShow" src="territoryOddLineSE.svg" alt="Line"/>
+						<img id="iwdptOddLine-01-S" class="TerritoryOddLine NoShow" src="territoryOddLineS.svg" alt="Line"/>
+						<img id="iwdptOddLine-01-SW" class="TerritoryOddLine NoShow" src="territoryOddLineSW.svg" alt="Line"/>
+						<img id="iwdptOddLine-01-W" class="TerritoryOddLine NoShow" src="territoryOddLineW.svg" alt="Line"/>
+
+						<img id="iwdptOddLine-02-E" class="TerritoryOddLine NoShow" src="territoryOddLineE.svg" alt="Line"/>
+						<img id="iwdptOddLine-02-SE" class="TerritoryOddLine NoShow" src="territoryOddLineSE.svg" alt="Line"/>
+						<img id="iwdptOddLine-02-S" class="TerritoryOddLine NoShow" src="territoryOddLineS.svg" alt="Line"/>
+						<img id="iwdptOddLine-02-SW" class="TerritoryOddLine NoShow" src="territoryOddLineSW.svg" alt="Line"/>
+						<img id="iwdptOddLine-02-W" class="TerritoryOddLine NoShow" src="territoryOddLineW.svg" alt="Line"/>
+
+						<img id="iwdptOddLine-03-E" class="TerritoryOddLine NoShow" src="territoryOddLineE.svg" alt="Line"/>
+						<img id="iwdptOddLine-03-SE" class="TerritoryOddLine NoShow" src="territoryOddLineSE.svg" alt="Line"/>
+						<img id="iwdptOddLine-03-S" class="TerritoryOddLine NoShow" src="territoryOddLineS.svg" alt="Line"/>
+						<img id="iwdptOddLine-03-SW" class="TerritoryOddLine NoShow" src="territoryOddLineSW.svg" alt="Line"/>
+						<img id="iwdptOddLine-03-W" class="TerritoryOddLine NoShow" src="territoryOddLineW.svg" alt="Line"/>
+
+						<img id="iwdptOddLine-04-E" class="TerritoryOddLine NoShow" src="territoryOddLineE.svg" alt="Line"/>
+						<img id="iwdptOddLine-04-SE" class="TerritoryOddLine NoShow" src="territoryOddLineSE.svg" alt="Line"/>
+						<img id="iwdptOddLine-04-S" class="TerritoryOddLine NoShow" src="territoryOddLineS.svg" alt="Line"/>
+						<img id="iwdptOddLine-04-SW" class="TerritoryOddLine NoShow" src="territoryOddLineSW.svg" alt="Line"/>
+						<img id="iwdptOddLine-04-W" class="TerritoryOddLine NoShow" src="territoryOddLineW.svg" alt="Line"/>
+
+						<img id="iwdptOddLine-05-E" class="TerritoryOddLine NoShow" src="territoryOddLineE.svg" alt="Line"/>
+						<img id="iwdptOddLine-05-SE" class="TerritoryOddLine NoShow" src="territoryOddLineSE.svg" alt="Line"/>
+						<img id="iwdptOddLine-05-S" class="TerritoryOddLine NoShow" src="territoryOddLineS.svg" alt="Line"/>
+						<img id="iwdptOddLine-05-SW" class="TerritoryOddLine NoShow" src="territoryOddLineSW.svg" alt="Line"/>
+						<img id="iwdptOddLine-05-W" class="TerritoryOddLine NoShow" src="territoryOddLineW.svg" alt="Line"/>
+
+						<img id="iwdptOddLine-06-E" class="TerritoryOddLine NoShow" src="territoryOddLineE.svg" alt="Line"/>
+						<img id="iwdptOddLine-06-SE" class="TerritoryOddLine NoShow" src="territoryOddLineSE.svg" alt="Line"/>
+						<img id="iwdptOddLine-06-S" class="TerritoryOddLine NoShow" src="territoryOddLineS.svg" alt="Line"/>
+						<img id="iwdptOddLine-06-SW" class="TerritoryOddLine NoShow" src="territoryOddLineSW.svg" alt="Line"/>
+						<img id="iwdptOddLine-06-W" class="TerritoryOddLine NoShow" src="territoryOddLineW.svg" alt="Line"/>
+
+						<img id="iwdptOddLine-07-E" class="TerritoryOddLine NoShow" src="territoryOddLineE.svg" alt="Line"/>
+						<img id="iwdptOddLine-07-SE" class="TerritoryOddLine NoShow" src="territoryOddLineSE.svg" alt="Line"/>
+						<img id="iwdptOddLine-07-S" class="TerritoryOddLine NoShow" src="territoryOddLineS.svg" alt="Line"/>
+						<img id="iwdptOddLine-07-SW" class="TerritoryOddLine NoShow" src="territoryOddLineSW.svg" alt="Line"/>
+						<img id="iwdptOddLine-07-W" class="TerritoryOddLine NoShow" src="territoryOddLineW.svg" alt="Line"/>
+
+						<img id="iwdptOddLine-08-S" class="TerritoryOddLine NoShow" src="territoryOddLineS.svg" alt="Line"/>
+						<img id="iwdptOddLine-08-SW" class="TerritoryOddLine NoShow" src="territoryOddLineSW.svg" alt="Line"/>
+						<img id="iwdptOddLine-08-W" class="TerritoryOddLine NoShow" src="territoryOddLineW.svg" alt="Line"/>
+
+						<img id="iwdptOddLine-10-N" class="TerritoryOddLine NoShow" src="territoryOddLineN.svg" alt="Line"/>
+						<img id="iwdptOddLine-10-NE" class="TerritoryOddLine NoShow" src="territoryOddLineNE.svg" alt="Line"/>
+						<img id="iwdptOddLine-10-E" class="TerritoryOddLine NoShow" src="territoryOddLineE.svg" alt="Line"/>
+						<img id="iwdptOddLine-10-SE" class="TerritoryOddLine NoShow" src="territoryOddLineSE.svg" alt="Line"/>
+						<img id="iwdptOddLine-10-S" class="TerritoryOddLine NoShow" src="territoryOddLineS.svg" alt="Line"/>
+
+						<img id="iwdptOddLine-11-N" class="TerritoryOddLine NoShow" src="territoryOddLineN.svg" alt="Line"/>
+						<img id="iwdptOddLine-11-NE" class="TerritoryOddLine NoShow" src="territoryOddLineNE.svg" alt="Line"/>
+						<img id="iwdptOddLine-11-E" class="TerritoryOddLine NoShow" src="territoryOddLineE.svg" alt="Line"/>
+						<img id="iwdptOddLine-11-SE" class="TerritoryOddLine NoShow" src="territoryOddLineSE.svg" alt="Line"/>
+						<img id="iwdptOddLine-11-S" class="TerritoryOddLine NoShow" src="territoryOddLineS.svg" alt="Line"/>
+						<img id="iwdptOddLine-11-SW" class="TerritoryOddLine NoShow" src="territoryOddLineSW.svg" alt="Line"/>
+						<img id="iwdptOddLine-11-W" class="TerritoryOddLine NoShow" src="territoryOddLineW.svg" alt="Line"/>
+						<img id="iwdptOddLine-11-NW" class="TerritoryOddLine NoShow" src="territoryOddLineNW.svg" alt="Line"/>
+
+						<img id="iwdptOddLine-12-N" class="TerritoryOddLine NoShow" src="territoryOddLineN.svg" alt="Line"/>
+						<img id="iwdptOddLine-12-NE" class="TerritoryOddLine NoShow" src="territoryOddLineNE.svg" alt="Line"/>
+						<img id="iwdptOddLine-12-E" class="TerritoryOddLine NoShow" src="territoryOddLineE.svg" alt="Line"/>
+						<img id="iwdptOddLine-12-SE" class="TerritoryOddLine NoShow" src="territoryOddLineSE.svg" alt="Line"/>
+						<img id="iwdptOddLine-12-S" class="TerritoryOddLine NoShow" src="territoryOddLineS.svg" alt="Line"/>
+						<img id="iwdptOddLine-12-SW" class="TerritoryOddLine NoShow" src="territoryOddLineSW.svg" alt="Line"/>
+						<img id="iwdptOddLine-12-W" class="TerritoryOddLine NoShow" src="territoryOddLineW.svg" alt="Line"/>
+						<img id="iwdptOddLine-12-NW" class="TerritoryOddLine NoShow" src="territoryOddLineNW.svg" alt="Line"/>
+
+						<img id="iwdptOddLine-13-N" class="TerritoryOddLine NoShow" src="territoryOddLineN.svg" alt="Line"/>
+						<img id="iwdptOddLine-13-NE" class="TerritoryOddLine NoShow" src="territoryOddLineNE.svg" alt="Line"/>
+						<img id="iwdptOddLine-13-E" class="TerritoryOddLine NoShow" src="territoryOddLineE.svg" alt="Line"/>
+						<img id="iwdptOddLine-13-SE" class="TerritoryOddLine NoShow" src="territoryOddLineSE.svg" alt="Line"/>
+						<img id="iwdptOddLine-13-S" class="TerritoryOddLine NoShow" src="territoryOddLineS.svg" alt="Line"/>
+						<img id="iwdptOddLine-13-SW" class="TerritoryOddLine NoShow" src="territoryOddLineSW.svg" alt="Line"/>
+						<img id="iwdptOddLine-13-W" class="TerritoryOddLine NoShow" src="territoryOddLineW.svg" alt="Line"/>
+						<img id="iwdptOddLine-13-NW" class="TerritoryOddLine NoShow" src="territoryOddLineNW.svg" alt="Line"/>
+
+						<img id="iwdptOddLine-14-N" class="TerritoryOddLine NoShow" src="territoryOddLineN.svg" alt="Line"/>
+						<img id="iwdptOddLine-14-NE" class="TerritoryOddLine NoShow" src="territoryOddLineNE.svg" alt="Line"/>
+						<img id="iwdptOddLine-14-E" class="TerritoryOddLine NoShow" src="territoryOddLineE.svg" alt="Line"/>
+						<img id="iwdptOddLine-14-SE" class="TerritoryOddLine NoShow" src="territoryOddLineSE.svg" alt="Line"/>
+						<img id="iwdptOddLine-14-S" class="TerritoryOddLine NoShow" src="territoryOddLineS.svg" alt="Line"/>
+						<img id="iwdptOddLine-14-SW" class="TerritoryOddLine NoShow" src="territoryOddLineSW.svg" alt="Line"/>
+						<img id="iwdptOddLine-14-W" class="TerritoryOddLine NoShow" src="territoryOddLineW.svg" alt="Line"/>
+						<img id="iwdptOddLine-14-NW" class="TerritoryOddLine NoShow" src="territoryOddLineNW.svg" alt="Line"/>
+
+						<img id="iwdptOddLine-15-N" class="TerritoryOddLine NoShow" src="territoryOddLineN.svg" alt="Line"/>
+						<img id="iwdptOddLine-15-NE" class="TerritoryOddLine NoShow" src="territoryOddLineNE.svg" alt="Line"/>
+						<img id="iwdptOddLine-15-E" class="TerritoryOddLine NoShow" src="territoryOddLineE.svg" alt="Line"/>
+						<img id="iwdptOddLine-15-SE" class="TerritoryOddLine NoShow" src="territoryOddLineSE.svg" alt="Line"/>
+						<img id="iwdptOddLine-15-S" class="TerritoryOddLine NoShow" src="territoryOddLineS.svg" alt="Line"/>
+						<img id="iwdptOddLine-15-SW" class="TerritoryOddLine NoShow" src="territoryOddLineSW.svg" alt="Line"/>
+						<img id="iwdptOddLine-15-W" class="TerritoryOddLine NoShow" src="territoryOddLineW.svg" alt="Line"/>
+						<img id="iwdptOddLine-15-NW" class="TerritoryOddLine NoShow" src="territoryOddLineNW.svg" alt="Line"/>
+
+						<img id="iwdptOddLine-16-N" class="TerritoryOddLine NoShow" src="territoryOddLineN.svg" alt="Line"/>
+						<img id="iwdptOddLine-16-NE" class="TerritoryOddLine NoShow" src="territoryOddLineNE.svg" alt="Line"/>
+						<img id="iwdptOddLine-16-E" class="TerritoryOddLine NoShow" src="territoryOddLineE.svg" alt="Line"/>
+						<img id="iwdptOddLine-16-SE" class="TerritoryOddLine NoShow" src="territoryOddLineSE.svg" alt="Line"/>
+						<img id="iwdptOddLine-16-S" class="TerritoryOddLine NoShow" src="territoryOddLineS.svg" alt="Line"/>
+						<img id="iwdptOddLine-16-SW" class="TerritoryOddLine NoShow" src="territoryOddLineSW.svg" alt="Line"/>
+						<img id="iwdptOddLine-16-W" class="TerritoryOddLine NoShow" src="territoryOddLineW.svg" alt="Line"/>
+						<img id="iwdptOddLine-16-NW" class="TerritoryOddLine NoShow" src="territoryOddLineNW.svg" alt="Line"/>
+
+						<img id="iwdptOddLine-17-N" class="TerritoryOddLine NoShow" src="territoryOddLineN.svg" alt="Line"/>
+						<img id="iwdptOddLine-17-NE" class="TerritoryOddLine NoShow" src="territoryOddLineNE.svg" alt="Line"/>
+						<img id="iwdptOddLine-17-E" class="TerritoryOddLine NoShow" src="territoryOddLineE.svg" alt="Line"/>
+						<img id="iwdptOddLine-17-SE" class="TerritoryOddLine NoShow" src="territoryOddLineSE.svg" alt="Line"/>
+						<img id="iwdptOddLine-17-S" class="TerritoryOddLine NoShow" src="territoryOddLineS.svg" alt="Line"/>
+						<img id="iwdptOddLine-17-SW" class="TerritoryOddLine NoShow" src="territoryOddLineSW.svg" alt="Line"/>
+						<img id="iwdptOddLine-17-W" class="TerritoryOddLine NoShow" src="territoryOddLineW.svg" alt="Line"/>
+						<img id="iwdptOddLine-17-NW" class="TerritoryOddLine NoShow" src="territoryOddLineNW.svg" alt="Line"/>
+
+						<img id="iwdptOddLine-18-N" class="TerritoryOddLine NoShow" src="territoryOddLineN.svg" alt="Line"/>
+						<img id="iwdptOddLine-18-S" class="TerritoryOddLine NoShow" src="territoryOddLineS.svg" alt="Line"/>
+						<img id="iwdptOddLine-18-SW" class="TerritoryOddLine NoShow" src="territoryOddLineSW.svg" alt="Line"/>
+						<img id="iwdptOddLine-18-W" class="TerritoryOddLine NoShow" src="territoryOddLineW.svg" alt="Line"/>
+						<img id="iwdptOddLine-18-NW" class="TerritoryOddLine NoShow" src="territoryOddLineNW.svg" alt="Line"/>
+
+						<img id="iwdptOddLine-20-N" class="TerritoryOddLine NoShow" src="territoryOddLineN.svg" alt="Line"/>
+						<img id="iwdptOddLine-20-NE" class="TerritoryOddLine NoShow" src="territoryOddLineNE.svg" alt="Line"/>
+						<img id="iwdptOddLine-20-E" class="TerritoryOddLine NoShow" src="territoryOddLineE.svg" alt="Line"/>
+						<img id="iwdptOddLine-20-SE" class="TerritoryOddLine NoShow" src="territoryOddLineSE.svg" alt="Line"/>
+						<img id="iwdptOddLine-20-S" class="TerritoryOddLine NoShow" src="territoryOddLineS.svg" alt="Line"/>
+
+						<img id="iwdptOddLine-21-N" class="TerritoryOddLine NoShow" src="territoryOddLineN.svg" alt="Line"/>
+						<img id="iwdptOddLine-21-NE" class="TerritoryOddLine NoShow" src="territoryOddLineNE.svg" alt="Line"/>
+						<img id="iwdptOddLine-21-E" class="TerritoryOddLine NoShow" src="territoryOddLineE.svg" alt="Line"/>
+						<img id="iwdptOddLine-21-SE" class="TerritoryOddLine NoShow" src="territoryOddLineSE.svg" alt="Line"/>
+						<img id="iwdptOddLine-21-S" class="TerritoryOddLine NoShow" src="territoryOddLineS.svg" alt="Line"/>
+						<img id="iwdptOddLine-21-SW" class="TerritoryOddLine NoShow" src="territoryOddLineSW.svg" alt="Line"/>
+						<img id="iwdptOddLine-21-W" class="TerritoryOddLine NoShow" src="territoryOddLineW.svg" alt="Line"/>
+						<img id="iwdptOddLine-21-NW" class="TerritoryOddLine NoShow" src="territoryOddLineNW.svg" alt="Line"/>
+
+						<img id="iwdptOddLine-22-N" class="TerritoryOddLine NoShow" src="territoryOddLineN.svg" alt="Line"/>
+						<img id="iwdptOddLine-22-NE" class="TerritoryOddLine NoShow" src="territoryOddLineNE.svg" alt="Line"/>
+						<img id="iwdptOddLine-22-E" class="TerritoryOddLine NoShow" src="territoryOddLineE.svg" alt="Line"/>
+						<img id="iwdptOddLine-22-SE" class="TerritoryOddLine NoShow" src="territoryOddLineSE.svg" alt="Line"/>
+						<img id="iwdptOddLine-22-S" class="TerritoryOddLine NoShow" src="territoryOddLineS.svg" alt="Line"/>
+						<img id="iwdptOddLine-22-SW" class="TerritoryOddLine NoShow" src="territoryOddLineSW.svg" alt="Line"/>
+						<img id="iwdptOddLine-22-W" class="TerritoryOddLine NoShow" src="territoryOddLineW.svg" alt="Line"/>
+						<img id="iwdptOddLine-22-NW" class="TerritoryOddLine NoShow" src="territoryOddLineNW.svg" alt="Line"/>
+
+						<img id="iwdptOddLine-23-N" class="TerritoryOddLine NoShow" src="territoryOddLineN.svg" alt="Line"/>
+						<img id="iwdptOddLine-23-NE" class="TerritoryOddLine NoShow" src="territoryOddLineNE.svg" alt="Line"/>
+						<img id="iwdptOddLine-23-E" class="TerritoryOddLine NoShow" src="territoryOddLineE.svg" alt="Line"/>
+						<img id="iwdptOddLine-23-SE" class="TerritoryOddLine NoShow" src="territoryOddLineSE.svg" alt="Line"/>
+						<img id="iwdptOddLine-23-S" class="TerritoryOddLine NoShow" src="territoryOddLineS.svg" alt="Line"/>
+						<img id="iwdptOddLine-23-SW" class="TerritoryOddLine NoShow" src="territoryOddLineSW.svg" alt="Line"/>
+						<img id="iwdptOddLine-23-W" class="TerritoryOddLine NoShow" src="territoryOddLineW.svg" alt="Line"/>
+						<img id="iwdptOddLine-23-NW" class="TerritoryOddLine NoShow" src="territoryOddLineNW.svg" alt="Line"/>
+
+						<img id="iwdptOddLine-24-N" class="TerritoryOddLine NoShow" src="territoryOddLineN.svg" alt="Line"/>
+						<img id="iwdptOddLine-24-NE" class="TerritoryOddLine NoShow" src="territoryOddLineNE.svg" alt="Line"/>
+						<img id="iwdptOddLine-24-E" class="TerritoryOddLine NoShow" src="territoryOddLineE.svg" alt="Line"/>
+						<img id="iwdptOddLine-24-SE" class="TerritoryOddLine NoShow" src="territoryOddLineSE.svg" alt="Line"/>
+						<img id="iwdptOddLine-24-S" class="TerritoryOddLine NoShow" src="territoryOddLineS.svg" alt="Line"/>
+						<img id="iwdptOddLine-24-SW" class="TerritoryOddLine NoShow" src="territoryOddLineSW.svg" alt="Line"/>
+						<img id="iwdptOddLine-24-W" class="TerritoryOddLine NoShow" src="territoryOddLineW.svg" alt="Line"/>
+						<img id="iwdptOddLine-24-NW" class="TerritoryOddLine NoShow" src="territoryOddLineNW.svg" alt="Line"/>
+
+						<img id="iwdptOddLine-25-N" class="TerritoryOddLine NoShow" src="territoryOddLineN.svg" alt="Line"/>
+						<img id="iwdptOddLine-25-NE" class="TerritoryOddLine NoShow" src="territoryOddLineNE.svg" alt="Line"/>
+						<img id="iwdptOddLine-25-E" class="TerritoryOddLine NoShow" src="territoryOddLineE.svg" alt="Line"/>
+						<img id="iwdptOddLine-25-SE" class="TerritoryOddLine NoShow" src="territoryOddLineSE.svg" alt="Line"/>
+						<img id="iwdptOddLine-25-S" class="TerritoryOddLine NoShow" src="territoryOddLineS.svg" alt="Line"/>
+						<img id="iwdptOddLine-25-SW" class="TerritoryOddLine NoShow" src="territoryOddLineSW.svg" alt="Line"/>
+						<img id="iwdptOddLine-25-W" class="TerritoryOddLine NoShow" src="territoryOddLineW.svg" alt="Line"/>
+						<img id="iwdptOddLine-25-NW" class="TerritoryOddLine NoShow" src="territoryOddLineNW.svg" alt="Line"/>
+
+						<img id="iwdptOddLine-26-N" class="TerritoryOddLine NoShow" src="territoryOddLineN.svg" alt="Line"/>
+						<img id="iwdptOddLine-26-NE" class="TerritoryOddLine NoShow" src="territoryOddLineNE.svg" alt="Line"/>
+						<img id="iwdptOddLine-26-E" class="TerritoryOddLine NoShow" src="territoryOddLineE.svg" alt="Line"/>
+						<img id="iwdptOddLine-26-SE" class="TerritoryOddLine NoShow" src="territoryOddLineSE.svg" alt="Line"/>
+						<img id="iwdptOddLine-26-S" class="TerritoryOddLine NoShow" src="territoryOddLineS.svg" alt="Line"/>
+						<img id="iwdptOddLine-26-SW" class="TerritoryOddLine NoShow" src="territoryOddLineSW.svg" alt="Line"/>
+						<img id="iwdptOddLine-26-W" class="TerritoryOddLine NoShow" src="territoryOddLineW.svg" alt="Line"/>
+						<img id="iwdptOddLine-26-NW" class="TerritoryOddLine NoShow" src="territoryOddLineNW.svg" alt="Line"/>
+
+						<img id="iwdptOddLine-27-N" class="TerritoryOddLine NoShow" src="territoryOddLineN.svg" alt="Line"/>
+						<img id="iwdptOddLine-27-NE" class="TerritoryOddLine NoShow" src="territoryOddLineNE.svg" alt="Line"/>
+						<img id="iwdptOddLine-27-E" class="TerritoryOddLine NoShow" src="territoryOddLineE.svg" alt="Line"/>
+						<img id="iwdptOddLine-27-SE" class="TerritoryOddLine NoShow" src="territoryOddLineSE.svg" alt="Line"/>
+						<img id="iwdptOddLine-27-S" class="TerritoryOddLine NoShow" src="territoryOddLineS.svg" alt="Line"/>
+						<img id="iwdptOddLine-27-SW" class="TerritoryOddLine NoShow" src="territoryOddLineSW.svg" alt="Line"/>
+						<img id="iwdptOddLine-27-W" class="TerritoryOddLine NoShow" src="territoryOddLineW.svg" alt="Line"/>
+						<img id="iwdptOddLine-27-NW" class="TerritoryOddLine NoShow" src="territoryOddLineNW.svg" alt="Line"/>
+
+						<img id="iwdptOddLine-28-N" class="TerritoryOddLine NoShow" src="territoryOddLineN.svg" alt="Line"/>
+						<img id="iwdptOddLine-28-S" class="TerritoryOddLine NoShow" src="territoryOddLineS.svg" alt="Line"/>
+						<img id="iwdptOddLine-28-SW" class="TerritoryOddLine NoShow" src="territoryOddLineSW.svg" alt="Line"/>
+						<img id="iwdptOddLine-28-W" class="TerritoryOddLine NoShow" src="territoryOddLineW.svg" alt="Line"/>
+						<img id="iwdptOddLine-28-NW" class="TerritoryOddLine NoShow" src="territoryOddLineNW.svg" alt="Line"/>
+					</div>
 				</div>
 			</div>	
 		</div>
-		
+-->		
 		<div
 			id="mainWall"
 			class="Wall NoShow"
@@ -152,7 +416,7 @@
 				999fr
 				[rmwDoor-e rmw-e];"
 		>
-			<button id="mwNameBackground" type="button" class="WallNameBackground">&emsp;</button>
+			<button id="mwNameBackground" type="button" class="WallNameBackground">&InvisibleTimes;</button>
 			<button id="mwNameForeground" type="button" class="WallNameForeground MainWallName"><strong>Dispensers<sup>&pi;</sup></strong></button>
 
 			<button id="mwCrossTick" type="button" class="CrossTick"><strong>&check;</strong></button>
@@ -230,49 +494,12 @@
 						999fr
 						[rmwdpDispensers-hn-e]
 						4fr
-						[rmwdpExpressionForeground-s]
-						1fr
-						[rmwdpExpressionBackground-s]
-						7fr
-						[rmwdpExpressionBackground-e]
-						1fr
-						[rmwdpExpressionForeground-e]
-						1fr
-						[rmwdpTargetForeground-s]
-						1fr
-						[rmwdpTargetBackground-s]
-						8fr
-						[rmwdpTargetBackground-e]
-						1fr
-						[rmwdpTargetForeground-e]
-						2fr
+						[rmwdpTerritory-s]
+						888fr
+						[rmwdpTerritory-e]
+						3fr
 						[rmwdp-e];"
-				>
-
-					<div id="mwdpExpressionBackground-7" class="ExpressionBackground NoShow"></div>
-					<button id="mwdpExpressionForeground-7" type="button" class="ExpressionForeground NoShow">999</button>
-					<button id="mwdpExpressionOverstrike-7" type="button" class="ExpressionForeground NoShow">999</button>
-
-					<div id="mwdpExpressionBackground-8" class="ExpressionBackground NoShow"></div>
-					<button id="mwdpExpressionForeground-8" type="button" class="ExpressionForeground NoShow">999</button>
-					<button id="mwdpExpressionOverstrike-8" type="button" class="ExpressionForeground NoShow">999</button>
-
-					<div id="mwdpExpressionBackground-9" class="ExpressionBackground NoShow"></div>
-					<button id="mwdpExpressionForeground-9" type="button" class="ExpressionForeground NoShow">999</button>
-					<button id="mwdpExpressionOverstrike-9" type="button" class="ExpressionForeground NoShow">999</button>
-
-					<button id="mwdpTargetBackground-1" type="button" class="TargetBackground NoShow">9</button>
-					<button id="mwdpTargetForeground-1" type="button" class="TargetForeground NoShow">9</button>
-						
-					<button id="mwdpTargetBackground-2" type="button" class="TargetBackground NoShow">99</button>
-					<button id="mwdpTargetForeground-2" type="button" class="TargetForeground NoShow">99</button>
-
-					<button id="mwdpTargetBackground-3" type="button" class="TargetBackground NoShow">999</button>
-					<button id="mwdpTargetForeground-3" type="button" class="TargetForeground NoShow">999</button>
-
-					<button id="mwdpTargetBackground-4" type="button" class="TargetBackground NoShow">9999</button>
-					<button id="mwdpTargetForeground-4" type="button" class="TargetForeground NoShow">9999</button>
-					
+				>					
 					
 					<div id="mwdpDispensers-24" class="NoShow">
 						<div id="mwdpdContainer-24-11" class="DispensersContainer NoShow"></div>
@@ -397,17 +624,24 @@
 						<img id="mwdpdBorder-34-42" class="DispensersBorder2 NoShow" src="dispenserBorder2.svg" alt="Border"/>
 						<img id="mwdpdBorder-34-43" class="DispensersBorder3 NoShow" src="dispenserBorder3.svg" alt="Border"/>
 
-						<button id="mwdpdItem-34-11" type="button" class="DispensersItem NoShow">9</button>
+						<img id="mwdpdItem-34-11" class="DispensersDirection NoShow" src="dispenserDirectionSE.svg" alt="Direction"/>
+						<img id="mwdpdItem-34-12" class="DispensersDirection NoShow" src="dispenserDirectionSE.svg" alt="Direction"/>
+						<img id="mwdpdItem-34-13" class="DispensersDirection NoShow" src="dispenserDirectionSE.svg" alt="Direction"/>
+						<img id="mwdpdItem-34-21" class="DispensersDirection NoShow" src="dispenserDirectionSE.svg" alt="Direction"/>
+						<img id="mwdpdItem-34-31" class="DispensersDirection NoShow" src="dispenserDirectionSE.svg" alt="Direction"/>
+						<img id="mwdpdItem-34-41" class="DispensersDirection NoShow" src="dispenserDirectionSE.svg" alt="Direction"/>
+						<img id="mwdpdItem-34-42" class="DispensersDirection NoShow" src="dispenserDirectionSE.svg" alt="Direction"/>
+<!--						<button id="mwdpdItem-34-11" type="button" class="DispensersItem NoShow">9</button>
 						<button id="mwdpdItem-34-12" type="button" class="DispensersItem NoShow">9</button>
 						<button id="mwdpdItem-34-13" type="button" class="DispensersItem NoShow">9</button>
-						<button id="mwdpdItem-34-21" type="button" class="DispensersItem NoShow">9</button>
+						<button id="mwdpdItem-34-21" type="button" class="DispensersItem NoShow">9</button> -->
 						<button id="mwdpdItem-34-22" type="button" class="DispensersItem NoShow">9</button>
 						<button id="mwdpdItem-34-23" type="button" class="DispensersItem NoShow">9</button>
-						<button id="mwdpdItem-34-31" type="button" class="DispensersItem NoShow">9</button>
+<!--						<button id="mwdpdItem-34-31" type="button" class="DispensersItem NoShow">9</button> -->
 						<button id="mwdpdItem-34-32" type="button" class="DispensersItem NoShow">9</button>
 						<button id="mwdpdItem-34-33" type="button" class="DispensersItem NoShow">9</button>
-						<button id="mwdpdItem-34-41" type="button" class="DispensersItem NoShow">9</button>
-						<button id="mwdpdItem-34-42" type="button" class="DispensersItem NoShow">9</button>
+<!--					<button id="mwdpdItem-34-41" type="button" class="DispensersItem NoShow">9</button>
+						<button id="mwdpdItem-34-42" type="button" class="DispensersItem NoShow">9</button> -->
 						<button id="mwdpdItem-34-43" type="button" class="DispensersItem NoShow">9</button>
 					</div>
 
@@ -618,6 +852,68 @@
 						<button id="mwdpdItem-45-52" type="button" class="DispensersItem NoShow">9</button>
 						<button id="mwdpdItem-45-53" type="button" class="DispensersItem NoShow">9</button>
 						<button id="mwdpdItem-45-54" type="button" class="DispensersItem NoShow">9</button>
+					</div>
+
+					<div id="mwdpTerritory">
+						<img id="mwdptBoundary-83" class="TerritoryBoundary NoShow" src="territoryBoundary83.svg" alt="Boundary"/>
+
+						<img id="mwdptEvenPoint-00" class="TerritoryEvenPoint NoShow" src="territoryEvenDot.svg" alt="Point"/>
+						<img id="mwdptEvenPoint-01" class="TerritoryEvenPoint NoShow" src="territoryEvenDot.svg" alt="Point"/>
+						<img id="mwdptEvenPoint-02" class="TerritoryEvenPoint NoShow" src="territoryEvenDot.svg" alt="Point"/>
+						<img id="mwdptEvenPoint-03" class="TerritoryEvenPoint NoShow" src="territoryEvenDot.svg" alt="Point"/>
+						<img id="mwdptEvenPoint-04" class="TerritoryEvenPoint NoShow" src="territoryEvenDot.svg" alt="Point"/>
+						<img id="mwdptEvenPoint-05" class="TerritoryEvenPoint NoShow" src="territoryEvenDot.svg" alt="Point"/>
+						<img id="mwdptEvenPoint-06" class="TerritoryEvenPoint NoShow" src="territoryEvenDot.svg" alt="Point"/>
+						<img id="mwdptEvenPoint-07" class="TerritoryEvenPoint NoShow" src="territoryEvenDot.svg" alt="Point"/>
+						<img id="mwdptEvenPoint-08" class="TerritoryEvenPoint NoShow" src="territoryEvenDot.svg" alt="Point"/>
+						<img id="mwdptEvenPoint-09" class="TerritoryEvenPoint NoShow" src="territoryEvenDot.svg" alt="Point"/>
+
+						<img id="mwdptEvenPoint-10" class="TerritoryEvenPoint NoShow" src="territoryEvenDot.svg" alt="Point"/>
+						<img id="mwdptEvenPoint-11" class="TerritoryEvenPoint NoShow" src="territoryEvenDot.svg" alt="Point"/>
+						<img id="mwdptEvenPoint-12" class="TerritoryEvenPoint NoShow" src="territoryEvenDot.svg" alt="Point"/>
+						<img id="mwdptEvenPoint-13" class="TerritoryEvenPoint NoShow" src="territoryEvenDot.svg" alt="Point"/>
+						<img id="mwdptEvenPoint-14" class="TerritoryEvenPoint NoShow" src="territoryEvenDot.svg" alt="Point"/>
+						<img id="mwdptEvenPoint-15" class="TerritoryEvenPoint NoShow" src="territoryEvenDot.svg" alt="Point"/>
+						<img id="mwdptEvenPoint-16" class="TerritoryEvenPoint NoShow" src="territoryEvenDot.svg" alt="Point"/>
+						<img id="mwdptEvenPoint-17" class="TerritoryEvenPoint NoShow" src="territoryEvenDot.svg" alt="Point"/>
+						<img id="mwdptEvenPoint-18" class="TerritoryEvenPoint NoShow" src="territoryEvenDot.svg" alt="Point"/>
+						<img id="mwdptEvenPoint-19" class="TerritoryEvenPoint NoShow" src="territoryEvenDot.svg" alt="Point"/>
+
+						<img id="mwdptEvenPoint-20" class="TerritoryEvenPoint NoShow" src="territoryEvenDot.svg" alt="Point"/>
+						<img id="mwdptEvenPoint-21" class="TerritoryEvenPoint NoShow" src="territoryEvenDot.svg" alt="Point"/>
+						<img id="mwdptEvenPoint-22" class="TerritoryEvenPoint NoShow" src="territoryEvenDot.svg" alt="Point"/>
+						<img id="mwdptEvenPoint-23" class="TerritoryEvenPoint NoShow" src="territoryEvenDot.svg" alt="Point"/>
+						<img id="mwdptEvenPoint-24" class="TerritoryEvenPoint NoShow" src="territoryEvenDot.svg" alt="Point"/>
+						<img id="mwdptEvenPoint-25" class="TerritoryEvenPoint NoShow" src="territoryEvenDot.svg" alt="Point"/>
+						<img id="mwdptEvenPoint-26" class="TerritoryEvenPoint NoShow" src="territoryEvenDot.svg" alt="Point"/>
+						<img id="mwdptEvenPoint-27" class="TerritoryEvenPoint NoShow" src="territoryEvenDot.svg" alt="Point"/>
+						<img id="mwdptEvenPoint-28" class="TerritoryEvenPoint NoShow" src="territoryEvenDot.svg" alt="Point"/>
+						<img id="mwdptEvenPoint-29" class="TerritoryEvenPoint NoShow" src="territoryEvenDot.svg" alt="Point"/>
+
+						<img id="mwdptEvenLine-00-E" class="TerritoryEvenLineWE NoShow" src="territoryEvenLineWE.svg" alt="Line"/>
+						<img id="mwdptEvenLine-00-SE" class="TerritoryEvenLineNWSE NoShow" src="territoryEvenLineNWSE.svg" alt="Line"/>
+						<img id="mwdptEvenLine-00-S" class="TerritoryEvenLineNS NoShow" src="territoryEvenLineNS.svg" alt="Line"/>
+
+						<img id="mwdptEvenLine-01-E" class="TerritoryEvenLineWE NoShow" src="territoryEvenLineWE.svg" alt="Line"/>
+						<img id="mwdptEvenLine-01-SE" class="TerritoryEvenLineNWSE NoShow" src="territoryEvenLineNWSE.svg" alt="Line"/>
+						<img id="mwdptEvenLine-01-S" class="TerritoryEvenLineNS NoShow" src="territoryEvenLineNS.svg" alt="Line"/>
+						<img id="mwdptEvenLine-01-SW" class="TerritoryEvenLineNESW NoShow" src="territoryEvenLineNESW.svg" alt="Line"/>
+						<img id="mwdptEvenLine-01-W" class="TerritoryEvenLineWE NoShow" src="territoryEvenLineWE.svg" alt="Line"/>
+
+						<img id="mwdptEvenLine-10-N" class="TerritoryEvenLineNS NoShow" src="territoryEvenLineNS.svg" alt="Line"/>
+						<img id="mwdptEvenLine-10-NE" class="TerritoryEvenLineNESW NoShow" src="territoryEvenLineNESW.svg" alt="Line"/>
+						<img id="mwdptEvenLine-10-E" class="TerritoryEvenLineWE NoShow" src="territoryEvenLineWE.svg" alt="Line"/>
+						<img id="mwdptEvenLine-10-SE" class="TerritoryEvenLineNWSE NoShow" src="territoryEvenLineNWSE.svg" alt="Line"/>
+						<img id="mwdptEvenLine-10-S" class="TerritoryEvenLineNS NoShow" src="territoryEvenLineNS.svg" alt="Line"/>
+
+						<img id="mwdptEvenLine-11-N" class="TerritoryEvenLineNS NoShow" src="territoryEvenLineNS.svg" alt="Line"/>
+						<img id="mwdptEvenLine-11-NE" class="TerritoryEvenLineNESW NoShow" src="territoryEvenLineNESW.svg" alt="Line"/>
+						<img id="mwdptEvenLine-11-E" class="TerritoryEvenLineWE NoShow" src="territoryEvenLineWE.svg" alt="Line"/>
+						<img id="mwdptEvenLine-11-SE" class="TerritoryEvenLineNWSE NoShow" src="territoryEvenLineNWSE.svg" alt="Line"/>
+						<img id="mwdptEvenLine-11-S" class="TerritoryEvenLineNS NoShow" src="territoryEvenLineNS.svg" alt="Line"/>
+						<img id="mwdptEvenLine-11-SW" class="TerritoryEvenLineNESW NoShow" src="territoryEvenLineNESW.svg" alt="Line"/>
+						<img id="mwdptEvenLine-11-W" class="TerritoryEvenLineWE NoShow" src="territoryEvenLineWE.svg" alt="Line"/>
+						<img id="mwdptEvenLine-11-NW" class="TerritoryEvenLineNWSE NoShow" src="territoryEvenLineNWSE.svg" alt="Line"/>
 					</div>
 				</div>
 			</div>

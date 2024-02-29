@@ -1,3 +1,10 @@
+/* -------- Window -------- */
+
+console.log(`${window.innerHeight}px`);
+console.log(`${window.innerWidth}px`);
+console.log(`${window.devicePixelRatio}`);
+
+
 /* -------- Utility Functions -------- */
 
 function wait(duration) {
@@ -23,6 +30,11 @@ function enableScrolling() {
 class Puzzle {
 	constructor(puzzleSpec) {
 		this.dispenserFullSpec = puzzleSpec.dispenserSpec;
+		this.territoryFullSpec = puzzleSpec.territorySpec;
+		this.targetSpec = puzzleSpec.targetSpec;
+		this.hintSpec = puzzleSpec.hintSpec;
+		this.solutionExpression = puzzleSpec.solutionExpression;
+		this.solutionDispenseSequence = puzzleSpec.solutionDispenseSequence;
 		this.numDispensers = this.dispenserFullSpec.length - 1;
 		this.dispenserHeightSpec = [undefined];
 		for (let i = 1; i <= this.numDispensers; i++) this.dispenserHeightSpec[i] = this.dispenserFullSpec[i].length;
@@ -30,20 +42,9 @@ class Puzzle {
 		for (let d = 1; d <= this.numDispensers; d++) {
 			if (this.dispenserHeightSpec[d] > this.maxDispenserHeight) this.maxDispenserHeight = this.dispenserHeightSpec[d];
 		};
-		
-		this.ringSpec = puzzleSpec.ringSpec;
-		
-		this.tileColours = [];
-		const tileCodes = ["p", "q", "r", "s", "t"];
-		for (let i = 0; i < tileCodes.length; i++) this.tileColours[tileCodes[i]] = puzzleSpec.colourSpec[i];
-		
-		this.hintColour = puzzleSpec.hintSpec[0];
-		this.hintIndex = puzzleSpec.hintSpec[1];
-		
-		this.solutionDispenseSequence = puzzleSpec.solutionDispenseSequence;
-		this.solutionColourSequence = [];
-		//why copy?
-		for (let i = 0; i < puzzleSpec.solutionColourSequence.length; i++) this.solutionColourSequence[i] = puzzleSpec.solutionColourSequence[i];
+		this.territoryWidth = puzzleSpec.territorySpec[0].length - 2;
+		this.territoryHeight = puzzleSpec.territorySpec.length - 2;
+		//console.log(this.territoryWidth, this.territoryHeight);
 	}
 };
 
@@ -52,7 +53,6 @@ const punterPuzzle = new Puzzle(punterPuzzleSpec);
 
 /* -------- Main Wall -------- */
 
-
 const mainWallSpec = {
 	mwNumGridColumns: 59,
 	mwHeightAboveDoor: 10,
@@ -60,9 +60,12 @@ const mainWallSpec = {
 	mwdHeightAbovePanel: 12,
 	mwdHeightBelowPanel: 21,
 
-	mwdpHeightAboveDispensers: 3,
-	mwdpHeightBelowDispensers: 27,
-	mwdpContainerCompartmentHeight: 6
+	//mwdpHeightAboveDispensers: 3,
+	//mwdpHeightBelowDispensers: 26,
+	mwdpHeightFixed: 10,
+	mwdpContainerCompartmentHeight: 6,
+	
+	mwdptPointDimension: 5
 };
 
 class MainWall {
@@ -72,52 +75,67 @@ class MainWall {
 		const dispensersId = "#mwdpDispensers-" + String(punterPuzzle.maxDispenserHeight) + String(punterPuzzle.numDispensers);
 		const dispensersRef = document.querySelector(dispensersId);
 		dispensersRef.style.display = `grid`;
-		//+2 for cosmetic
-		const dispensersHeight = (mainWallSpec.mwdpContainerCompartmentHeight * punterPuzzle.maxDispenserHeight) + 2;
+		//+1 for item positioning
+		const dispensersHeight = (mainWallSpec.mwdpContainerCompartmentHeight * punterPuzzle.maxDispenserHeight) + 1;
 		dispensersRef.style.height = `${dispensersHeight}em`;
 		
 		for (let d = 1; d <= punterPuzzle.numDispensers; d++) {
-			const numTiles = punterPuzzle.dispenserHeightSpec[d];
-			const containerId = "#mwdpdContainer-" + String(punterPuzzle.maxDispenserHeight) + String(punterPuzzle.numDispensers) + "-" + String(d) + String(numTiles);
+			const numItems = punterPuzzle.dispenserHeightSpec[d];
+			const containerId = "#mwdpdContainer-" + String(punterPuzzle.maxDispenserHeight) + String(punterPuzzle.numDispensers) + "-" + String(d) + String(numItems);
 			const containerRef = document.querySelector(containerId);
 			containerRef.style.display = `block`;
-			const cosmeticId = "#mwdpdCosmetic-" + String(punterPuzzle.maxDispenserHeight) + String(punterPuzzle.numDispensers);
-			const cosmeticRef = document.querySelector(cosmeticId);
-			cosmeticRef.style.display = `block`;
-			for (let i = 1; i <= numTiles; i++) {
-				const tileId = "#mwdpdTile-" + String(punterPuzzle.maxDispenserHeight) + String(punterPuzzle.numDispensers) + "-" + String(d) + String(i);
-				const tileRef = document.querySelector(tileId);
-				tileRef.style.display = `block`;
+			//const cosmeticId = "#mwdpdCosmetic-" + String(punterPuzzle.maxDispenserHeight) + String(punterPuzzle.numDispensers);
+			//const cosmeticRef = document.querySelector(cosmeticId);
+			//cosmeticRef.style.display = `block`;
+			const borderId = "#mwdpdBorder-" + String(punterPuzzle.maxDispenserHeight) + String(punterPuzzle.numDispensers) + "-" + String(d) + String(numItems);
+			const borderRef = document.querySelector(borderId);
+			borderRef.style.display = `block`;
+			for (let i = 1; i <= numItems; i++) {
+				const itemId = "#mwdpdItem-" + String(punterPuzzle.maxDispenserHeight) + String(punterPuzzle.numDispensers) + "-" + String(d) + String(i);
+				const itemRef = document.querySelector(itemId);
+				itemRef.style.display = `block`;
 			}
 		}
 
+		const territoryRef = document.querySelector("#mwdpTerritory");
+		//const territoryHeight = 15;
+		const territoryHeight = punterPuzzle.territoryHeight * mainWallSpec.mwdptPointDimension;
+		dispensersRef.style.height = `${territoryHeight}em`;
+		
+		const boundaryId = "#mwdptBoundary-" + String(punterPuzzle.territoryWidth) + String(punterPuzzle.territoryHeight);
+		const boundaryRef = document.querySelector(boundaryId);
+		boundaryRef.style.display = `block`;
+
 		const panelRef = document.querySelector("#mwdPanel");
 		const panelStyle = panelRef.style.cssText;
-		const newPanelStyle = panelStyle.replace(/999/, String(dispensersHeight));
-		console.log(newPanelStyle);
+		//const newPanelStyle = panelStyle.replace(/999/, String(dispensersHeight));
+		let newPanelStyle = panelStyle.replace(/999/, String(dispensersHeight));
+		newPanelStyle = newPanelStyle.replace(/888/, String(territoryHeight));
+		//console.log(newPanelStyle);
 		panelRef.style.cssText = newPanelStyle;
-		const panelHeight = mainWallSpec.mwdpHeightAboveDispensers + dispensersHeight + mainWallSpec.mwdpHeightBelowDispensers;
+		//const panelHeight = mainWallSpec.mwdpHeightAboveDispensers + dispensersHeight + mainWallSpec.mwdpHeightBelowDispensers;
+		const panelHeight = mainWallSpec.mwdpHeightFixed + dispensersHeight + territoryHeight;
 		panelRef.style.height = `${panelHeight}em`;
 
 		const doorRef = document.querySelector("#mwDoor");
 		const doorStyle = doorRef.style.cssText;
 		const newDoorStyle = doorStyle.replace(/999/, String(panelHeight));
-		console.log(newDoorStyle);
+		//console.log(newDoorStyle);
 		doorRef.style.cssText = newDoorStyle;
 		const doorHeight = mainWallSpec.mwdHeightAbovePanel + panelHeight + mainWallSpec.mwdHeightBelowPanel;
 		doorRef.style.height = `${doorHeight}em`;
 
 		const wallStyle = this.wallRef.style.cssText;
 		const newWallStyle = wallStyle.replace(/999/, String(doorHeight));
-		console.log(newWallStyle);
+		//console.log(newWallStyle);
 		this.wallRef.style.cssText = newWallStyle;
 		const wallHeight = mainWallSpec.mwHeightAboveDoor + doorHeight;
 		this.wallRef.style.height = `${wallHeight}em`;
 
 
-		console.log(`${window.innerHeight}px`);
-		console.log(`${window.innerWidth}px`);
-		console.log(`${window.devicePixelRatio}`);
+		//console.log(`${window.innerHeight}px`);
+		//console.log(`${window.innerWidth}px`);
+		//console.log(`${window.devicePixelRatio}`);
 
 		let innerDimension = 0
 		let gridDimension = 0
@@ -177,6 +195,10 @@ class MainWall {
 	show() {
 		this.wallRef.style.display = `grid`;
 	}
+
+	hide() {
+		this.wallRef.style.display = `none`;
+	}
 }
 
 
@@ -186,6 +208,7 @@ function backOnClick() {
 	//console.log("backOnClick called");
 	infoWall.hide();
 	disableScrolling();
+	mainWall.show();
 	}
 
 function demonstrationOnClick () {
@@ -217,27 +240,16 @@ class InfoWall {
 	
 	show() {
 		this.wallRef.style.display = `grid`;
-		this.wallRef.style.zIndex = `3`;
 		const separator2Rect = this.separator2Ref.getBoundingClientRect();
-		console.log(separator2Rect);
+		//console.log(separator2Rect);
 		this.separator2TopPosition = separator2Rect.top;
 	}
 
 	hide() {
 		this.wallRef.style.display = `none`;
-		this.wallRef.style.zIndex = `1`;
 	}
 }
-/*
-class InfoWallFit {
-	constructor(topPosition, leftPosition, fontSize) {
-		const infoRef = document.querySelector("#infoWall");
-		infoRef.style.top = `${topPosition}px`;
-		infoRef.style.left = `${leftPosition}px`;
-		infoRef.style.fontSize = `${fontSize}px`;
-	}
-}
-*/
+
 
 /* -------- Cross/Tick -------- */
 
@@ -278,191 +290,96 @@ class CrossTick {
 }
 
 
-/* -------- Dispensers -------- */
+/* -------- Items -------- */
 
-class Tile {
-	constructor(dispenser, colour) {
+class Item {
+	constructor(dispenser, symbol) {
 		this.dispenser = dispenser;
-		this.colour = colour;
+		this.symbol = symbol;
 	}
 }
 
+
+/* -------- Dispensers -------- */
+
 class Dispenser {
-	constructor(puzzle, tileSequence, tileIdRoot) {
-		this.tileImageLookUp = [];
-		this.tileImageLookUp["black"] = "tileBlack.svg";
-		this.tileImageLookUp["blue"] = "tileBlue.svg";
-		this.tileImageLookUp["green"] = "tileGreen.svg";
-		this.tileImageLookUp["orange"] = "tileOrange.svg";
-		this.tileImageLookUp["pink"] = "tilePink.svg";
-		
-		this.tileQueue = [];
-		for (let t = 0; t < tileSequence.length; t++) {
-			const tile = new Tile(this, puzzle.tileColours[tileSequence[t]]);
-			this.tileQueue.unshift(tile);
+	constructor(symbolSequence, itemIdRoot) {		
+		this.itemQueue = [];
+		for (let i = 0; i < symbolSequence.length; i++) {
+			const item = new Item(this, symbolSequence[i]);
+			this.itemQueue.unshift(item);
 		}
 
-		this.tileRefs = [];
-		for (let t = 1; t <= tileSequence.length; t++) {
-			const tileId = tileIdRoot + String(t);
-			const tileRef = document.querySelector(tileId);
-			this.tileRefs.push(tileRef);
+		this.itemRefs = [];
+		for (let i = 1; i <= symbolSequence.length; i++) {
+			const itemId = itemIdRoot + String(i);
+			const itemRef = document.querySelector(itemId);
+			this.itemRefs.push(itemRef);
 		}
 		
 		this.container = [];
-		for (let t = 0; t < this.tileQueue.length; t++) this.container[t] = this.tileQueue[t];
+		for (let t = 0; t < this.itemQueue.length; t++) this.container[t] = this.itemQueue[t];
 				
-		this.numTilesInContainer = this.tileQueue.length;
+		this.numItemsInContainer = this.itemQueue.length;
 	}
 
 	refresh() {
 		for (let t = 0; t < this.container.length; t++) {
 			if (this.container[t] == null) {
-				this.tileRefs[t].style.display = `none`;
+				this.itemRefs[t].style.display = `none`;
 			}
 			else {
-				this.tileRefs[t].style.display = `block`;
-				this.tileRefs[t].src = this.tileImageLookUp[this.container[t].colour];
+				this.itemRefs[t].style.display = `block`;
+				this.itemRefs[t].innerHTML = "<code><strong>" + Symbol.getHTMLSymbolCode(this.container[t].symbol) + "</strong></code>";
 			}
 		}
 	}
 	
 	reset() {	
 		this.container = [];
-		for (let t = 0; t < this.tileQueue.length; t++) this.container[t] = this.tileQueue[t];
-		this.numTilesInContainer = this.tileQueue.length;
+		for (let i = 0; i < this.itemQueue.length; i++) this.container[i] = this.itemQueue[i];
+		this.numItemsInContainer = this.itemQueue.length;
 	}
 	
-	takeTile() {
-		const tile = this.container.shift();
+	peekAtItem() {
+		return this.container[0];
+	}
+	
+	takeItem() {
+		const item = this.container.shift();
 		this.container.push(null);
-		this.numTilesInContainer--;
-		return tile;
+		this.numItemsInContainer--;
+		return item;
 	}
 	
-	replaceTile() {
+	replaceItem() {
 		this.container.pop();
-		const tile = this.tileQueue[this.tileQueue.length - this.numTilesInContainer - 1];
-		this.container.unshift(tile);
-		this.numTilesInContainer++;		
+		const item = this.itemQueue[this.itemQueue.length - this.numItemsInContainer - 1];
+		this.container.unshift(item);
+		this.numItemsInContainer++;		
 	}
 }
 
 
-/* -------- Ring -------- */
+/* -------- Territory -------- */
 
-class Ring {
-	constructor(puzzle, segmentIdRoot, digitIdRoot) {
-		this.puzzle = puzzle;
-		
-		this.colourCodeLookUp = [];
-		this.colourCodeLookUp["black"] = `black`;
-		this.colourCodeLookUp["blue"] = `#0072B2`;
-		this.colourCodeLookUp["green"] = `#009E73`;
-		this.colourCodeLookUp["orange"] = `#E69F00`;
-		this.colourCodeLookUp["pink"] = `#CC79A7`;
-		
-		//this.segmentPositions = this.puzzle.ringSpec;
-		this.segmentPositions = [];
-		for (let i = 0; i < puzzle.ringSpec.length; i++) {
-			const segmentSpec = this.puzzle.ringSpec[i];
-			const segmentPosition = (segmentSpec < 0) ? -segmentSpec : segmentSpec;
-			this.segmentPositions.push(segmentPosition);
-		}
-			
-		this.segmentRefs = [undefined];
-		this.segmentTiles = [undefined];
-		for (let s = 1; s <= 9; s++) {
-			const segmentId = segmentIdRoot + String(s);
-			const segmentRef = document.querySelector(segmentId);
-			this.segmentRefs.push(segmentRef);
-			this.segmentTiles.push(null);
-		}
-/*
-		this.digitRefs = [undefined];
-		for (let i = 0; i < this.segmentPositions.length; i++) {
-			const digitId = digitIdRoot + String(this.segmentPositions[i]);
-			const digitRef = document.querySelector(digitId);
-			this.digitRefs.push(digitRef);
-		}
-*/
-		this.digitRefs = [undefined];
-		for (let i = 0; i < puzzle.ringSpec.length; i++) {
-			const segmentSpec = puzzle.ringSpec[i];
-			const digitText = (segmentSpec < 0) ? String(-segmentSpec) : String(segmentSpec);
-			const digitColour = (segmentSpec < 0) ? "black" : "gray";
-			const digitId = digitIdRoot + digitText;
-			const digitRef = document.querySelector(digitId);
-			digitRef.textContent = digitText;
-			digitRef.style.fill = digitColour;
-			this.digitRefs.push(digitRef);
-		}
-
-		this.numTilesInPlace = 0;
-		this.temporaryIndex = undefined;
-	}
-	
-	getColourSequence() {
-		let colourSequence = [];
-		for (let s = 1; s <= 9; s++) {
-			if (this.segmentTiles[s] == null) colourSequence.push("none"); else colourSequence.push(this.segmentTiles[s].colour);
-		}
-		return colourSequence;
-	}
-	
-	reset() {
-		for (let s = 1; s <= 9; s++) this.segmentTiles[s] = null;
-		this.numTilesInPlace = 0;	
-	}
-
-	addTile(tile) {
-		const nextPosition = this.segmentPositions[this.numTilesInPlace];
-		this.segmentTiles[nextPosition] = tile;
-		this.numTilesInPlace++;
-	}
-	
-	removeTile() {
-		const tileNum = this.segmentPositions[this.numTilesInPlace - 1];
-		const tile = this.segmentTiles[tileNum];
-		this.segmentTiles[tileNum] = null;
-		this.numTilesInPlace--;
-		return tile;
-	}
-	
-	addTemporaryTile(tile, index) {
-		this.segmentTiles[index] = tile;
-		this.temporaryIndex = index;
-	}
-	
-	removeTemporaryTile() {
-		this.segmentTiles[this.temporaryIndex] = null;
-	}
-	
-	refresh() {
-		for (let s = 1; s <= 9; s++) {
-			if (this.segmentTiles[s] == null) {
-				this.segmentRefs[s].style.display = `none`;
-				this.digitRefs[s].style.visibility = `visible`;
-			}
-			else {
-				this.segmentRefs[s].style.display = `block`;
-				this.segmentRefs[s].style.fill = this.colourCodeLookUp[this.segmentTiles[s].colour];
-				this.digitRefs[s].style.visibility = `hidden`;
+class Territory {
+	constructor(territoryRootId, puzzle) {
+		const svgEvenLookUp = [];
+		svgEvenLookUp[0] = "territoryEvenDot.svg"
+		const evenPointIdRoot = territoryRootId + "EvenPoint-";
+		for (let r = 0; r < puzzle.territoryHeight; r++) {
+			const row = puzzle.territoryFullSpec[r + 1];
+			for (let c = 0; c < puzzle.territoryWidth; c++) {
+				const cAdjustment = (10 - puzzle.territoryWidth) / 2;
+				const pointRef = document.querySelector(evenPointIdRoot + String(r) + String(c + cAdjustment));
+				const pointValue = row[c + 1];
+				if (pointValue == 0) {
+					pointRef.src = svgEvenLookUp[0]
+					pointRef.style.display = `block`;
+				}
 			}
 		}
-	}
-	
-	hideLastTileAdded() {
-		console.log(this.numTilesInPlace)
-		const segmentNum = this.segmentPositions[this.numTilesInPlace - 1];
-		this.segmentRefs[segmentNum].style.display = `none`;
-		this.digitRefs[segmentNum].style.visibility = `visible`;
-	}
-	
-	showLastTileAdded() {
-		const segmentNum = this.segmentPositions[this.numTilesInPlace - 1];
-		this.segmentRefs[segmentNum].style.display = `block`;
-		this.digitRefs[segmentNum].style.visibility = `hidden`;
 	}
 }
 
@@ -523,6 +440,34 @@ class Control {
 			if (this.OnClick !== null) this.ref.addEventListener("click", this.onClick);
 		}
 		this.isFrozen = false;
+	}
+}
+
+function dispenseControlFlashed(solveBiz) {solveBiz.unfreeze()}
+
+async function flashDispenseControl(ref, flasherRef, solveBiz) {
+	ref.style.display = `none`;
+	await wait(300);
+	flasherRef.style.display = `block`;
+	await wait(300);
+	flasherRef.style.display = `none`;
+	await wait(300);
+	flasherRef.style.display = `block`;
+	await wait(300);
+	flasherRef.style.display = `none`;
+	ref.style.display = `block`;
+	dispenseControlFlashed(solveBiz)
+}
+
+class DispenseControl extends Control {
+	constructor(id, onClick) {
+		super(id, onClick);
+		this.flasherRef = document.querySelector(id + "Flasher");
+		this.flasherRef.style.display = `none`;
+	}
+	
+	flash(solveBiz) {
+		flashDispenseControl(this.ref, this.flasherRef, solveBiz);		
 	}
 }
 
@@ -590,6 +535,10 @@ class SolveIO {
 			this.controls[name].unfreeze();
 		}
 	}
+
+	flashDispenseControl(name, solveBiz) {
+		this.controls[name].flash(solveBiz);
+	}
 		
 	hideCrossTick() {
 		this.crossTick.hide();
@@ -605,24 +554,24 @@ class SolveIO {
 }
 
 class SolveBiz {	
-	constructor(puzzle, dispensers, ring, io) {
+	constructor(puzzle, dispensers, expression, io) {
 		this.puzzle = puzzle;
 		this.dispensers = dispensers;
-		this.ring = ring;
+		//this.expression = expression;
 		this.io = io;
 				
-		this.solutionNextIndex = undefined;
+		//for (let i = 1; i <= puzzle.numDispensers; i++) this.dispensers[i].refresh();
 
-		for (let i = 1; i <= puzzle.numDispensers; i++) this.dispensers[i].refresh();
+		//this.expression.refresh();
 		
-		this.hintTemporaryTile = new Tile(null, puzzle.hintColour);
 		this.hintNumShows = 3;
 		this.hintNumShowsRemaining = undefined;
 		this.hintShowing = undefined;
+
+		this.solutionNextIndex = undefined;
 		
 		this.callbackResolve = undefined;
 
-		//this.io.enableAllControlsExcept(["Reset", "Undispense"]);
 		this.sleep();
 	}
 	
@@ -643,44 +592,42 @@ class SolveBiz {
 	}
 		
 	reset() {
-		this.ring.reset();
-		this.ring.refresh();
+		this.expression.reset();
+		this.expression.refresh();
 		for (let i = 1; i <= this.puzzle.numDispensers; i++) {
 			const dispenser = this.dispensers[i];
 			dispenser.reset();
 			dispenser.refresh();
 		}
-		//this.dispenseSequence = [];
 		this.io.hideCrossTick();
 	}
 
 	updateDispenseControls() {
-		if (this.ring.numTilesInPlace == 9) {
-			for (let i = 1; i <= this.puzzle.numDispensers; i++) this.io.disableControls(["Dispense" + String(i)]);
-		}
-		else {
-			for (let i = 1; i <= this.puzzle.numDispensers; i++) {
-				if (this.dispensers[i].numTilesInContainer == 0) {
-					this.io.disableControls(["Dispense" + String(i)]);
-				}
-				else {
-					this.io.enableControls(["Dispense" + String(i)]);
-				}
+		for (let i = 1; i <= this.puzzle.numDispensers; i++) {
+			if (this.dispensers[i].numItemsInContainer == 0) {
+				this.io.disableControls(["Dispense" + String(i)]);
+			}
+			else {
+				this.io.enableControls(["Dispense" + String(i)]);
 			}
 		}
 	}
 
 	review() {
 		this.updateDispenseControls();
-		if (this.ring.numTilesInPlace == 0) {
+		if (this.expression.getLength() == 0) {
 			this.io.disableControls(["Reset", "Undispense"]);
 		}
 		else {
 			this.io.enableControls(["Reset", "Undispense"]);
 		}
-		if (this.ring.numTilesInPlace == 9) {
-			const thisSolution = this.ring.getColourSequence().join("");
-			const correctSolution = this.puzzle.solutionColourSequence.join("");
+		let numEmptyDispensers = 0;
+		for (let i = 1; i <= this.puzzle.numDispensers; i++) {
+			if (this.dispensers[i].numItemsInContainer == 0) numEmptyDispensers++;
+		}
+		if (numEmptyDispensers == this.puzzle.numDispensers) {
+			const thisSolution = this.expression.getExpression();
+			const correctSolution = this.puzzle.solutionExpression;
 			if (thisSolution === correctSolution) {
 				this.io.disableControls(["Undispense"]);
 				this.freeze();
@@ -696,7 +643,6 @@ class SolveBiz {
 		}
 	}
 
-
 	resetClicked() {
 		this.reset();
 		this.io.enableAllControlsExcept(["Reset", "Undispense"]);
@@ -704,103 +650,70 @@ class SolveBiz {
 	
 	dispenseClicked(dispenserNum) {
 		const dispenser = this.dispensers[dispenserNum];
-		const tileTaken = dispenser.takeTile();
-		this.ring.addTile(tileTaken);
-		dispenser.refresh();
-		this.ring.refresh();
-		this.review();
+		const item = dispenser.peekAtItem();
+		if (this.expression.isAddItemValid(item)) {
+			const itemTaken = dispenser.takeItem();
+			this.expression.addItem(itemTaken);
+			dispenser.refresh();
+			this.expression.refresh();
+			this.review();
+		}
+		else {
+			this.io.flashDispenseControl("Dispense" + String(dispenserNum), this);
+		}
 	}
 
 	undispenseClicked() {
-		const tileRemoved = this.ring.removeTile();
-		const dispenser = tileRemoved.dispenser;
-		dispenser.replaceTile();
-		this.ring.refresh();
+		const itemRemoved = this.expression.removeItem();
+		const dispenser = itemRemoved.dispenser;
+		dispenser.replaceItem();
+		this.expression.refresh();
 		dispenser.refresh();
 		this.review();
 	}
 
 	hintTimerExpired() {
-		if (this.hintShowing) {
-			this.ring.removeTemporaryTile();
-			this.ring.refresh();
-			this.hintShowing = false;
-			this.hintNumShowsRemaining--;
-			if (this.hintNumShowsRemaining == 0) {
-				this.io.enableAllControlsExcept(["Reset", "Undispense"]);
-				return;
-			}
-		}
-		else {
-			this.ring.addTemporaryTile(this.hintTemporaryTile, this.puzzle.hintIndex);
-			this.ring.refresh();
-			this.hintShowing = true;
-		}
-		setTimeout(punterHintTimerExpired, 1000);
+		this.expression.flashHint(this);
 	}
-	
+
 	hintClicked() {
+		this.callbackResolve = null;
 		this.io.disableAllControls();
 		this.io.hideCrossTick();
-		if (this.ring.numTilesInPlace == 0) {
-			this.ring.addTemporaryTile(this.hintTemporaryTile, this.puzzle.hintIndex);
-			this.ring.refresh();
-			this.hintShowing = true;
-			this.hintNumShowsRemaining = this.hintNumShows;
+		if (this.expression.getLength() == 0) {
+			this.expression.flashHint(this);
 		}
 		else {
 			this.reset();
-			this.hintShowing = false;
-			this.hintNumShowsRemaining = this.hintNumShows;
+			setTimeout(punterHintTimerExpired, 250);			
 		}
-		setTimeout(punterHintTimerExpired, 1000);
 	}
 
-
-	hintWithCallbackTimerExpired() {
-		if (this.hintShowing) {
-			this.ring.removeTemporaryTile();
-			this.ring.refresh();
-			this.hintShowing = false;
-			this.hintNumShowsRemaining--;
-			if (this.hintNumShowsRemaining == 0) {
-				this.io.enableAllControlsExcept(["Reset", "Undispense"]);
-				this.callbackResolve();
-				return;
-			}
-		}
-		else {
-			this.ring.addTemporaryTile(this.hintTemporaryTile, this.puzzle.hintIndex);
-			this.ring.refresh();
-			this.hintShowing = true;			
-		}
-		setTimeout(demoHintTimerExpired, 1000);
+	completeHintClicked() {
+		this.io.enableAllControlsExcept(["Reset", "Undispense"]);
+		if (this.callbackResolve != null) this.callbackResolve();
 	}
 
 	hintWithCallback() {
 		return new 	Promise((resolve, reject) => {
 								this.io.disableAllControls();
 								this.callbackResolve = resolve;
-								this.ring.addTemporaryTile(this.hintTemporaryTile, this.puzzle.hintIndex);
-								this.ring.refresh();
-								this.hintShowing = true;
-								this.hintNumShowsRemaining = this.hintNumShows;
-								setTimeout(demoHintTimerExpired, 1000);
+								this.expression.flashHint(this);
 							}
 					);
 	}
 	
-	solutionShowTile(dispenser) {
-		const tileTaken = dispenser.takeTile();
-		this.ring.addTile(tileTaken);
+	solutionShowItem(dispenser) {
+		const itemTaken = dispenser.takeItem();
+		this.expression.addItem(itemTaken);
 		dispenser.refresh();
-		this.ring.refresh();
+		this.expression.refresh();
 	}
 
 	solutionTimerExpired() {
 		const dispenserNum = this.puzzle.solutionDispenseSequence[this.solutionNextIndex];
 		const dispenser = this.dispensers[dispenserNum];
-		this.solutionShowTile(dispenser);
+		this.solutionShowItem(dispenser);
 		this.solutionNextIndex++;
 		if (this.solutionNextIndex == this.puzzle.solutionDispenseSequence.length) {
 			this.io.enableControls(["Information", "Reset"]);
@@ -813,7 +726,7 @@ class SolveBiz {
 		this.io.disableAllControls();
 		this.io.hideCrossTick();
 		this.solutionNextIndex = 0;
-		if (this.ring.numTilesInPlace == 0) {
+		if (this.expression.getLength() == 0) {
 			setTimeout(punterSolutionTimerExpired, 500);
 		}
 		else {
@@ -824,9 +737,9 @@ class SolveBiz {
 
 	solutionWithCallbackTimerExpired() {
 		const dispenser = this.dispensers[this.puzzle.solutionDispenseSequence[this.solutionNextIndex]];
-		this.solutionShowTile(dispenser);
+		this.solutionShowItem(dispenser);
 		this.solutionNextIndex++;
-		if (this.solutionNextIndex == 9) {
+		if (this.solutionNextIndex == this.puzzle.solutionDispenseSequence.length) {
 			this.io.enableControls(["Reset"]);
 			this.callbackResolve();
 			return;
@@ -838,19 +751,20 @@ class SolveBiz {
 		return new 	Promise((resolve, reject) => {
 								this.io.disableAllControls();
 								this.callbackResolve = resolve;
-								this.solutionShowTile(this.dispensers[this.puzzle.solutionDispenseSequence[0]]);
+								this.solutionShowItem(this.dispensers[this.puzzle.solutionDispenseSequence[0]]);
 								this.solutionNextIndex = 1;
 								setTimeout(demoSolutionTimerExpired, 1000);
 							}
 					);
-	}	
+	}
+	
 }
-
 
 /* -------- Punter -------- */
 
 function punterInformationOnClick() {
 	//console.log("informationOnClick called");
+	mainWall.hide();
 	infoWall.show();
 	enableScrolling();
 }
@@ -867,21 +781,22 @@ let punterDispenseOnClicks = [undefined,
 							  function() {punter.solveBiz.dispenseClicked(2)},
 							  function() {punter.solveBiz.dispenseClicked(3)},
 							  function() {punter.solveBiz.dispenseClicked(4)},
+							  function() {punter.solveBiz.dispenseClicked(5)},
 							 ];
 
 class Punter {
 	constructor(puzzle) {
 		this.puzzle = puzzle;
-		
+/*		
 		let dispensers = [undefined];
-		const tileIdRoot = "#mwdpdTile-" + String(puzzle.maxDispenserHeight) + String(puzzle.numDispensers) + "-";
+		const itemIdRoot = "#mwdpdItem-" + String(puzzle.maxDispenserHeight) + String(puzzle.numDispensers) + "-";
 		for (let i = 1; i <= puzzle.numDispensers; i++) {
-			const tileIdRootPlus = tileIdRoot + String(i);
-			dispensers[i] = new Dispenser(puzzle, puzzle.dispenserFullSpec[i], tileIdRootPlus);
+			const itemIdRootPlus = itemIdRoot + String(i);
+			dispensers[i] = new Dispenser(puzzle.dispenserFullSpec[i], itemIdRootPlus);
 		}
-
-		const ring = new Ring(puzzle, "#mwdprSegment-", "#mwdprDigit-");
-
+*/
+		const territory = new Territory("#mwdpt", puzzle);
+/*
 		let controls = [];
 		controls["Information"] = new Control("#mwdCtrlInformation", punterInformationOnClick, null);
 		controls["Hint"] = new Control("#mwdCtrlHint", punterHintOnClick, null);
@@ -892,13 +807,13 @@ class Punter {
 		const dispenseIdRoot = "#mwdCtrlDispense-" + String(puzzle.numDispensers);
 		for (let i = 1; i <= puzzle.numDispensers; i++) {
 			const dispenseId = dispenseIdRoot + String(i);
-			controls["Dispense" + String(i)] = new Control(dispenseId, punterDispenseOnClicks[i]);
+			controls["Dispense" + String(i)] = new DispenseControl(dispenseId, punterDispenseOnClicks[i]);
 		}
 
 		const crossTick = new CrossTick("#mwCrossTick");
 		const solveIO = new SolveIO(controls, crossTick);	
 
-		this.solveBiz = new SolveBiz(puzzle, dispensers, ring, solveIO);
+		this.solveBiz = new SolveBiz(puzzle, dispensers, expression, solveIO); */
 	}
 }
 
@@ -911,24 +826,24 @@ function demoSolutionTimerExpired() {demo.solveBiz.solutionWithCallbackTimerExpi
 class Demo {
 	constructor() {
 		const puzzleSpec = {
-			dispenserSpec: [undefined, "qqpr", "qpppr", "p"],
-			//ringSpec: [1, 4, 7, 2, 5, 8, 3, 6, 9],
-			ringSpec: [-1, -4, 7, -2, 5, 8, -3, 6, 9],
-			colourSpec: ["blue", "black", "orange", "green", "pink"],
-			hintSpec: ["blue", 6],
-			solutionDispenseSequence: [1, 1, 2, 2, 1, 2, 1, 2, 2],
-			solutionColourSequence: ["orange", "blue", "black", "blue", "black", "blue", "orange", "blue", "black"]
+			dispenserSpec: [undefined, "61", "56", "-", "4*"],
+			targetSpec: "28",
+			hintSpec: {numDots: 2, symbol:"5", isHere: false},
+			solutionExpression: "6*14-56",
+			solutionDispenseSequence: [2, 4, 1, 4, 3, 2, 1]
 		};
 		this.puzzle = new Puzzle(puzzleSpec);
 
 		let dispensers = [undefined];
-		const tileIdRoot = "#iwdpdTile-";
+		const itemIdRoot = "#iwdpdItem-";
 		for (let i = 1; i <= this.puzzle.numDispensers; i++) {
-			const tileIdRootPlus = tileIdRoot + String(i);
-			dispensers[i] = new Dispenser(this.puzzle, this.puzzle.dispenserFullSpec[i], tileIdRootPlus);
+			const itemIdRootPlus = itemIdRoot + String(i);
+			dispensers[i] = new Dispenser(this.puzzle.dispenserFullSpec[i], itemIdRootPlus);
 		}
 
-		const ring = new Ring(this.puzzle, "#iwdprSegment-", "#iwdprDigit-");
+		//const expression = new Expression("#iwdpExpression", this.puzzle);
+
+		//const target = new Target("#iwdpTarget", this.puzzle);
 		
 		let controls = [];
 		controls["Information"] = new Control("#iwdCtrlInformation", null);
@@ -939,11 +854,12 @@ class Demo {
 		controls["Dispense1"] = new Control("#iwdCtrlDispense-1", null);
 		controls["Dispense2"] = new Control("#iwdCtrlDispense-2", null);
 		controls["Dispense3"] = new Control("#iwdCtrlDispense-3", null);
+		controls["Dispense4"] = new Control("#iwdCtrlDispense-4", null);
 
 		const crossTick = new CrossTick("#iwdCrossTick");
 		const solveIO = new SolveIO(controls, crossTick);	
 
-		this.solveBiz = new SolveBiz(this.puzzle, dispensers, ring, solveIO);
+		this.solveBiz = new SolveBiz(this.puzzle, dispensers, undefined, solveIO);
 	}
 	
 	enter() {
@@ -971,29 +887,51 @@ const demoScript = [
 	"Dispense1",
 	"Pause",
 	"Dispense2",
+	"Pause",
 	"Dispense3",
+	"Pause",		
+	"Pause",		
+	"Undispense",
+	"Pause",		
+	"Undispense",
+	"Pause",		
+	"Undispense",
+	"Pause",		
+	"Pause",		
+	"Dispense2",
+	"Pause",		
+	"Dispense4",
+	"Pause",		
+	"Dispense1",
+	"Pause",		
+	"Dispense4",
+	"Pause",		
+	"Dispense3",
+	"Pause",		
+	"Dispense1",
+	"Pause",		
+	"Dispense2",
+	"Pause",		
+	"Pause",		
+	"Pause",		
+	"Pause",		
+	"Undispense",
+	"Pause",		
+	"Undispense",
+	"Pause",		
+	"Dispense2",
+	"Pause",		
+	"Dispense1",
+	"Pause",
+	"Pause",
+	"Pause",
 	"Pause",
 	"Reset",
 	"Pause",
-	"Dispense2",
-	"Dispense2",
-	"Dispense1",
-	"Dispense1",
-	"Dispense1",
-	"Dispense2",
-	"Dispense1",
-	"Dispense3",
-	"Dispense2",
-	"Pause",
-	"Undispense",
-	"Undispense",
-	"Dispense2",
-	"Dispense2",
-	"Pause",
-	"Reset",
-	"Pause",
+	"Pause",		
 	"Hint",
 	"Pause",
+	"Pause",		
 	"Solution"
 ];
 
@@ -1008,9 +946,9 @@ function demoHideSpot(spotRef) {
 
 async function demoExecuteScript() {
 	let spotRefLookUp = [];
-	const iwdControls = ["Hint", "Solution", "Reset", "Undispense", "Dispense1", "Dispense2", "Dispense3"]
+	const iwdControls = ["Hint", "Solution", "Reset", "Undispense", "Dispense1", "Dispense2", "Dispense3", "Dispense4"]
 	for (let control of iwdControls) spotRefLookUp[control] = document.querySelector("#iwdSpot" + control);
-	for (let c = 1; c <= 3; c++) spotRefLookUp["Dispense" + String(c)] = document.querySelector("#iwdSpotDispense-" + String(c));
+	for (let c = 1; c <= 4; c++) spotRefLookUp["Dispense" + String(c)] = document.querySelector("#iwdSpotDispense-" + String(c));
 	
 	const spotFadeSequence = [1.0, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4];
 
@@ -1055,6 +993,9 @@ async function demoExecuteScript() {
 		case "Dispense3":
 			demo.solveBiz.dispenseClicked(3);
 			break;
+		case "Dispense4":
+			demo.solveBiz.dispenseClicked(4);
+			break;
 		}
 		
 		demoHideSpot(spotRef);
@@ -1072,59 +1013,52 @@ async function demoExecuteScript() {
 
 
 /* -------- Begin -------- */
-/*
-const mainWall = new MainWall(mainWallSpec);
-const infoWall = new InfoWall(mainWall.topPosition, mainWall.leftPosition, mainWall.fontSize);
-const punter = new Punter(punterPuzzle);
-const info = new Info();
-const demo = new Demo();
-*/
-const mainWall = new MainWall(mainWallSpec);
-const punter = new Punter(punterPuzzle);
-const infoWall = new InfoWall(mainWall.topPosition, mainWall.leftPosition, mainWall.fontSize);
-//const info = new Info();
-const demo = new Demo();
 
-//punter.solveBiz.wake();
+const mainWall = new MainWall(mainWallSpec);
+const punter = new Punter(punterPuzzle);
+//const infoWall = new InfoWall(mainWall.topPosition, mainWall.leftPosition, mainWall.fontSize);
+//const demo = new Demo();
+
+mainWall.show();
 
 
 /* -------- Preamble -------- */
 
 async function performPreamble() {
-	const wallRef = document.querySelector("#infoWall");	
-	const surroundInstructionsRef = document.querySelector("#iwSurroundInstructions");
-	const surroundDemonstrationRef = document.querySelector("#iwdSurroundDemonstration");
-	const surroundInformationRef = document.querySelector("#mwdSurroundInformation");
-	const separator2Ref = document.querySelector("#iwSeparator-2");
+	//const surroundInstructionsRef = document.querySelector("#iwSurroundInstructions");
+	//const surroundDemonstrationRef = document.querySelector("#iwdSurroundDemonstration");
+	//const surroundInformationRef = document.querySelector("#mwdSurroundInformation");
+	//const separator2Ref = document.querySelector("#iwSeparator-2");
 	
-	wallRef.style.display = `grid`;
-	wallRef.style.zIndex = `3`;
+	infoWall.show();
 
 	await wait(1500);
 
+	const surroundInstructionsRef = document.querySelector("#iwSurroundInstructions");
 	surroundInstructionsRef.style.display = `block`;
 	await wait(750);
 	surroundInstructionsRef.style.display = `none`;
 
 	await wait(750);
 
+	const separator2Ref = document.querySelector("#iwSeparator-2");
 	separator2Ref.scrollIntoView({behavior: "smooth"});
 
 	await wait(1000);
 	
+	const surroundDemonstrationRef = document.querySelector("#iwdSurroundDemonstration");
 	surroundDemonstrationRef.style.display = `block`;
 	await wait(750);
 	surroundDemonstrationRef.style.display = `none`;
 
 	await wait(1000);
 
-	wallRef.style.display = `none`;
-	wallRef.style.zIndex = `1`;
-
+	infoWall.hide();
 	mainWall.show();
 	
 	await wait(1000);
 
+	const surroundInformationRef = document.querySelector("#mwdSurroundInformation");
 	surroundInformationRef.style.display = `block`;
 	await wait(500);
 	surroundInformationRef.style.display = `none`;
@@ -1134,11 +1068,11 @@ async function performPreamble() {
 	punter.solveBiz.unfreeze();
 	disableScrolling();
 }
-
+/*
 infoWall.controlBack.freeze();
 infoWall.controlDemo.freeze();
 punter.solveBiz.wake();
 punter.solveBiz.freeze();
 performPreamble();
-
+*/
 

@@ -30,6 +30,7 @@ function enableScrolling() {
 class Puzzle {
 	constructor(puzzleSpec) {
 		this.dispenserFullSpec = puzzleSpec.dispenserSpec;
+		this.territoryFullSpec = puzzleSpec.territorySpec;
 		this.targetSpec = puzzleSpec.targetSpec;
 		this.hintSpec = puzzleSpec.hintSpec;
 		this.solutionExpression = puzzleSpec.solutionExpression;
@@ -41,6 +42,9 @@ class Puzzle {
 		for (let d = 1; d <= this.numDispensers; d++) {
 			if (this.dispenserHeightSpec[d] > this.maxDispenserHeight) this.maxDispenserHeight = this.dispenserHeightSpec[d];
 		};
+		this.territoryWidth = puzzleSpec.territorySpec[0].length - 2;
+		this.territoryHeight = puzzleSpec.territorySpec.length - 2;
+		//console.log(this.territoryWidth, this.territoryHeight);
 	}
 };
 
@@ -56,9 +60,12 @@ const mainWallSpec = {
 	mwdHeightAbovePanel: 12,
 	mwdHeightBelowPanel: 21,
 
-	mwdpHeightAboveDispensers: 3,
-	mwdpHeightBelowDispensers: 26,
-	mwdpContainerCompartmentHeight: 7
+	//mwdpHeightAboveDispensers: 3,
+	//mwdpHeightBelowDispensers: 26,
+	mwdpHeightFixed: 10,
+	mwdpContainerCompartmentHeight: 6,
+	
+	mwdptPointDimension: 5
 };
 
 class MainWall {
@@ -68,8 +75,8 @@ class MainWall {
 		const dispensersId = "#mwdpDispensers-" + String(punterPuzzle.maxDispenserHeight) + String(punterPuzzle.numDispensers);
 		const dispensersRef = document.querySelector(dispensersId);
 		dispensersRef.style.display = `grid`;
-		//+2 for item positioning
-		const dispensersHeight = (mainWallSpec.mwdpContainerCompartmentHeight * punterPuzzle.maxDispenserHeight) + 2;
+		//+1 for item positioning
+		const dispensersHeight = (mainWallSpec.mwdpContainerCompartmentHeight * punterPuzzle.maxDispenserHeight) + 1;
 		dispensersRef.style.height = `${dispensersHeight}em`;
 		
 		for (let d = 1; d <= punterPuzzle.numDispensers; d++) {
@@ -90,25 +97,37 @@ class MainWall {
 			}
 		}
 
+		const territoryRef = document.querySelector("#mwdpTerritory");
+		//const territoryHeight = 15;
+		const territoryHeight = punterPuzzle.territoryHeight * mainWallSpec.mwdptPointDimension;
+		dispensersRef.style.height = `${territoryHeight}em`;
+		
+		const boundaryId = "#mwdptBoundary-" + String(punterPuzzle.territoryWidth) + String(punterPuzzle.territoryHeight);
+		const boundaryRef = document.querySelector(boundaryId);
+		boundaryRef.style.display = `block`;
+
 		const panelRef = document.querySelector("#mwdPanel");
 		const panelStyle = panelRef.style.cssText;
-		const newPanelStyle = panelStyle.replace(/999/, String(dispensersHeight));
-		console.log(newPanelStyle);
+		//const newPanelStyle = panelStyle.replace(/999/, String(dispensersHeight));
+		let newPanelStyle = panelStyle.replace(/999/, String(dispensersHeight));
+		newPanelStyle = newPanelStyle.replace(/888/, String(territoryHeight));
+		//console.log(newPanelStyle);
 		panelRef.style.cssText = newPanelStyle;
-		const panelHeight = mainWallSpec.mwdpHeightAboveDispensers + dispensersHeight + mainWallSpec.mwdpHeightBelowDispensers;
+		//const panelHeight = mainWallSpec.mwdpHeightAboveDispensers + dispensersHeight + mainWallSpec.mwdpHeightBelowDispensers;
+		const panelHeight = mainWallSpec.mwdpHeightFixed + dispensersHeight + territoryHeight;
 		panelRef.style.height = `${panelHeight}em`;
 
 		const doorRef = document.querySelector("#mwDoor");
 		const doorStyle = doorRef.style.cssText;
 		const newDoorStyle = doorStyle.replace(/999/, String(panelHeight));
-		console.log(newDoorStyle);
+		//console.log(newDoorStyle);
 		doorRef.style.cssText = newDoorStyle;
 		const doorHeight = mainWallSpec.mwdHeightAbovePanel + panelHeight + mainWallSpec.mwdHeightBelowPanel;
 		doorRef.style.height = `${doorHeight}em`;
 
 		const wallStyle = this.wallRef.style.cssText;
 		const newWallStyle = wallStyle.replace(/999/, String(doorHeight));
-		console.log(newWallStyle);
+		//console.log(newWallStyle);
 		this.wallRef.style.cssText = newWallStyle;
 		const wallHeight = mainWallSpec.mwHeightAboveDoor + doorHeight;
 		this.wallRef.style.height = `${wallHeight}em`;
@@ -222,7 +241,7 @@ class InfoWall {
 	show() {
 		this.wallRef.style.display = `grid`;
 		const separator2Rect = this.separator2Ref.getBoundingClientRect();
-		console.log(separator2Rect);
+		//console.log(separator2Rect);
 		this.separator2TopPosition = separator2Rect.top;
 	}
 
@@ -267,133 +286,6 @@ class CrossTick {
 	
 	hide() {
 		this.ref.style.display = `none`;
-	}
-}
-
-
-/* -------- Symbols -------- */
-
-class Symbol {
-	static getSymbolType(symbol) {
-		const symbolTypeLookUp = {
-			"0":"T0",
-			"1":"T1",
-			"2":"T1",
-			"3":"T1",
-			"4":"T1",
-			"5":"T1",
-			"6":"T1",
-			"7":"T1",
-			"8":"T1",
-			"9":"T1",
-			"+":"T+",
-			"-":"T-",
-			"*":"T*",
-			"/":"T/",
-			"a":"Tf",
-			"b":"Tf",
-			"c":"Tf",
-			"d":"Tf",
-			"e":"Tf",
-			"f":"Tf",
-			"g":"Tf",
-			"h":"Tf",
-			"i":"Tf",
-			"j":"Tf",
-			"k":"Tf",
-			"l":"Tf",
-			"m":"Tf",
-			"n":"Tf",
-			"o":"Tf"
-		};
-		return symbolTypeLookUp[symbol];
-	}
-	
-	static getHTMLSymbolCode(symbol) {
-		const symbolCodeLookUp = {
-			"0":"0",
-			"1":"1",
-			"2":"2",
-			"3":"3",
-			"4":"4",
-			"5":"5",
-			"6":"6",
-			"7":"7",
-			"8":"8",
-			"9":"9",
-			"+":"&plus;",
-			"-":"&minus;",
-			"*":"&times;",
-			"/":"&divide;",
-			"a":"&frac12;",
-			"b":"&frac13;",
-			"c":"&frac14;",
-			"d":"&frac15;",
-			"e":"&frac16;",
-			"f":"&frac18;",
-			"g":"&frac23;",
-			"h":"&frac25;",
-			"i":"&frac34;",
-			"j":"&frac35;",
-			//"k":'<span class="Fraction">&frac38;</span>',
-			"k":"&frac38;",
-			"l":"&frac45;",
-			"m":"&frac56;",
-			"n":"&frac58;",
-			"o":"&frac78;"
-		};
-		return symbolCodeLookUp[symbol]
-	}
-
-	static getHTMLSpaceCode(symbol1, symbol2, symbol3) {
-		const coarseTypeLookUp = {
-			"":"",
-			"0":"Td",
-			"1":"Td",
-			"2":"Td",
-			"3":"Td",
-			"4":"Td",
-			"5":"Td",
-			"6":"Td",
-			"7":"Td",
-			"8":"Td",
-			"9":"Td",
-			"+":"T+",
-			"-":"T-",
-			"*":"T*/",
-			"/":"T*/",
-			"a":"Td",
-			"b":"Td",
-			"c":"Td",
-			"d":"Td",
-			"e":"Td",
-			"f":"Td",
-			"g":"Td",
-			"h":"Td",
-			"i":"Td",
-			"j":"Td",
-			"k":"Td",
-			"l":"Td",
-			"m":"Td",
-			"n":"Td",
-			"o":"Td"
-		};
-		
-		//const thinSpaceSequences = ["TdT+", "TdT-", "T+Td", "T-Td", "TdTdT+", "TdTdT-", "T+TdT+", "T+TdT-", "T-TdT+", "T-TdT-", "T*/TdT+", "T*/TdT-", "TdT+Td", "TdT-Td"];
-		const thinSpaceSequences = ["TdT+", "TdT-", "TdTdT+", "TdTdT-", "T+TdT+", "T+TdT-", "T-TdT+", "T-TdT-", "T*/TdT+", "T*/TdT-", "TdT+Td", "TdT-Td"];
-		const veryThinSpaceSequences = ["TdT*/", "TdTdT*/", "T+TdT*/", "T-TdT*/", "T*/TdT*/", "TdT*/Td", "TdT*/T-"];
-
-		const type1 = coarseTypeLookUp[symbol1];
-		const type2 = coarseTypeLookUp[symbol2];
-		const type3 = coarseTypeLookUp[symbol3];
-		const type123 = type1 + type2 + type3;
-		
-		if (thinSpaceSequences.includes(type123))
-			return "&thinsp;";
-		else if (veryThinSpaceSequences.includes(type123))
-			return "&VeryThinSpace;";
-		else
-			return "";
 	}
 }
 
@@ -469,157 +361,26 @@ class Dispenser {
 }
 
 
-/* -------- Expression -------- */
+/* -------- Territory -------- */
 
-function hintFlashed(solveBiz) {solveBiz.completeHintClicked()}
-
-async function flashHint(solveBiz, script) {
-	await wait(500);
-	const waitTimes = [1500, 500];
-	for (let i = 0; i <= 1; i++) {
-		for (let command of script) {
-			if (command.ref != null) command.ref.innerHTML = command.html;
-			if (command.pause != 0) await wait(command.pause);		
-		}
-		await wait(waitTimes[i]);
-	}
-	hintFlashed(solveBiz)
-}
-
-class Expression {
-	constructor(expressionIdRoot, puzzle) {
-		this.puzzle = puzzle;
-		const backgroundRef = document.querySelector(expressionIdRoot + "Background-" + String(puzzle.solutionExpression.length));
-		backgroundRef.style.display = `block`;
-		this.foregroundRef = document.querySelector(expressionIdRoot + "Foreground-" + String(puzzle.solutionExpression.length));
-		this.foregroundRef.style.display = `block`;
-		this.overstrikeRef = document.querySelector(expressionIdRoot + "Overstrike-" + String(puzzle.solutionExpression.length));
-		this.overstrikeRef.style.display = `block`;
-		this.overstrikeRef.innerHTML = "";
-		this.items = [];
-		this.invalidFirstOnes = ["T+", "T*", "T/"];
-		this.invalidFirstTwos = 
-			["T0T0", "T0T1", "T0Tf", "TfT0", "TfT1", "TfTf", "T-T+", "T-T-", "T-T*", "T-T/"];
-		this.invalidTwos = ["TfT0", "TfT1", "TfTf", "T+T+", "T+T-", "T+T*", "T+T/", "T-T+", "T-T-", "T-T*", "T-T/", "T*T+", "T/T+", "T*T*", "T*T/", "T/T*", "T/T/","T/T0"];
-		this.invalidThrees = ["T+T0T0", "T+T0T1", "T+T0Tf", "T-T0T0", "T-T0T1", "T-T0Tf", "T*T0T0", "T*T0T1", "T*T0Tf"];
-		this.invalidLastOnes = ["T+", "T-", "T*", "T/"];
-	}
-	
-	reset() {
-		this.items = [];
-	}
-
-	getLength() {
-		return this.items.length;
-	}
-	
-	getExpression() {
-		let expression = "";
-		for (let item of this.items) {
-			expression = expression + item.symbol;
-		}
-		return expression;
-	}
-
-	isAddItemValid(item) {
-		const itemType = Symbol.getSymbolType(item.symbol);
-		let expression = "";
-		for (let i of this.items) {
-			expression = expression + i.symbol;
-		}
-		if (expression.length == 0)
-			return !this.invalidFirstOnes.includes(itemType);
-		else if (expression.length == 1) {
-			const type1 = Symbol.getSymbolType(expression.charAt(0));
-			return !this.invalidFirstTwos.includes(type1 + itemType);
-		}
-		else if (expression.length >= 2) {
-			const type2 = Symbol.getSymbolType(expression.charAt(expression.length - 1));
-			if (this.invalidTwos.includes(type2 + itemType))
-				return false;
-			else {
-				const type1 = Symbol.getSymbolType(expression.charAt(expression.length - 2));
-				if (this.invalidThrees.includes(type1 + type2 + itemType))
-					return false;
-				else if (expression.length == this.puzzle.solutionExpression.length - 1)
-					return !this.invalidLastOnes.includes(itemType);
-				else return true;
+class Territory {
+	constructor(territoryRootId, puzzle) {
+		const svgEvenLookUp = [];
+		svgEvenLookUp[0] = "territoryEvenDot.svg"
+		svgEvenLookUp[1] = "territoryEvenBlocker.svg"
+		svgEvenLookUp[2] = "territoryEvenStart.svg"
+		svgEvenLookUp[9] = "territoryEvenFinish.svg"
+		const evenPointIdRoot = territoryRootId + "EvenPoint-";
+		for (let r = 0; r < puzzle.territoryHeight; r++) {
+			const row = puzzle.territoryFullSpec[r + 1];
+			for (let c = 0; c < puzzle.territoryWidth; c++) {
+				const cAdjustment = (10 - puzzle.territoryWidth) / 2;
+				const pointRef = document.querySelector(evenPointIdRoot + String(r) + String(c + cAdjustment));
+				const pointValue = row[c + 1];
+				pointRef.src = svgEvenLookUp[pointValue]
+				pointRef.style.display = `block`;
 			}
 		}
-	}
-	
-	addItem(item) {
-		this.items.push(item);
-	}
-	
-	removeItem() {
-		return this.items.pop();
-	}
-
-	refresh() {
-		const numItems = this.items.length;
-		let spaceCode = undefined;
-		let symbolCode = undefined;
-		let html = "";
-		if (numItems > 0) {
-			html = "&thinsp;<code><strong>" + Symbol.getHTMLSymbolCode(this.items[0].symbol) + "</strong></code>";
-			if (numItems > 1) {
-				spaceCode = Symbol.getHTMLSpaceCode("", this.items[0].symbol, this.items[1].symbol);
-				symbolCode = Symbol.getHTMLSymbolCode(this.items[1].symbol);
-				html = html + spaceCode + "<code><strong>" + symbolCode + "</strong></code>";
-				if (numItems > 2) {
-					for (let i = 2; i < numItems; i++) {
-						const spaceCode = Symbol.getHTMLSpaceCode(this.items[i - 2].symbol, this.items[i - 1].symbol, this.items[i].symbol);
-						const symbolCode = Symbol.getHTMLSymbolCode(this.items[i].symbol);
-						html = html + spaceCode + "<code><strong>" + symbolCode + "</strong></code>";					
-					}
-				}
-			}
-		}
-		//console.log(html);
-		this.foregroundRef.innerHTML = html;
-	}
-	
-	flashHint(solveBiz) {
-		let script = [];
-		let dotHTML = "";
-		if (this.puzzle.hintSpec.numDots != 0) {
-			for (let i = 0; i < this.puzzle.hintSpec.numDots; i++) {
-				dotHTML = dotHTML + "&bull;";
-				const command = {ref: this.foregroundRef, html: "<code>" + dotHTML + "</code>", pause: 1000};
-				script.push(command);
-			}
-			dotHTML = "<code>" + dotHTML + "</code>";
-		}
-		const symbolHTML = dotHTML + "<code><strong>" + this.puzzle.hintSpec.symbol + "</strong></code>";
-		if (this.puzzle.hintSpec.isHere) {
-			script.push({ref: this.foregroundRef, html: symbolHTML, pause: 1500});
-		}
-		else {
-			script.push({ref: this.foregroundRef, html: symbolHTML, pause: 0});
-			let spaceHTML = "";
-			for (let i = 0; i < this.puzzle.hintSpec.numDots; i++) {
-				spaceHTML = spaceHTML + "&nbsp;";
-			}
-			const symbolNotHereHTML = "<code>" + spaceHTML + '<strong><span style="color:#D00000;">\\</span></strong></code>';
-			script.push({ref: this.overstrikeRef, html: symbolNotHereHTML, pause: 1500});
-		}
-		script.push({ref: this.foregroundRef, html: "", pause: 0});
-		script.push({ref: this.overstrikeRef, html: "", pause: 0});
-		flashHint(solveBiz, script);
-	}
-}
-
-
-/* -------- Target -------- */
-
-class Target {
-	constructor(targetIdRoot, puzzle) {
-		const backgroundRef = document.querySelector(targetIdRoot + "Background-" + String(puzzle.targetSpec.length));
-		backgroundRef.style.display = `block`;
-		const foregroundRef = document.querySelector(targetIdRoot + "Foreground-" + String(puzzle.targetSpec.length));
-		foregroundRef.style.display = `block`;
-		foregroundRef.innerHTML = "<code><strong>" + puzzle.targetSpec + "</strong></code>";
 	}
 }
 
@@ -797,12 +558,12 @@ class SolveBiz {
 	constructor(puzzle, dispensers, expression, io) {
 		this.puzzle = puzzle;
 		this.dispensers = dispensers;
-		this.expression = expression;
+		//this.expression = expression;
 		this.io = io;
 				
-		for (let i = 1; i <= puzzle.numDispensers; i++) this.dispensers[i].refresh();
+		//for (let i = 1; i <= puzzle.numDispensers; i++) this.dispensers[i].refresh();
 
-		this.expression.refresh();
+		//this.expression.refresh();
 		
 		this.hintNumShows = 3;
 		this.hintNumShowsRemaining = undefined;
@@ -1027,18 +788,16 @@ let punterDispenseOnClicks = [undefined,
 class Punter {
 	constructor(puzzle) {
 		this.puzzle = puzzle;
-		
+/*		
 		let dispensers = [undefined];
 		const itemIdRoot = "#mwdpdItem-" + String(puzzle.maxDispenserHeight) + String(puzzle.numDispensers) + "-";
 		for (let i = 1; i <= puzzle.numDispensers; i++) {
 			const itemIdRootPlus = itemIdRoot + String(i);
 			dispensers[i] = new Dispenser(puzzle.dispenserFullSpec[i], itemIdRootPlus);
 		}
-
-		const expression = new Expression("#mwdpExpression", puzzle);
-
-		const target = new Target("#mwdpTarget", puzzle);
-
+*/
+		const territory = new Territory("#mwdpt", puzzle);
+/*
 		let controls = [];
 		controls["Information"] = new Control("#mwdCtrlInformation", punterInformationOnClick, null);
 		controls["Hint"] = new Control("#mwdCtrlHint", punterHintOnClick, null);
@@ -1055,7 +814,7 @@ class Punter {
 		const crossTick = new CrossTick("#mwCrossTick");
 		const solveIO = new SolveIO(controls, crossTick);	
 
-		this.solveBiz = new SolveBiz(puzzle, dispensers, expression, solveIO);
+		this.solveBiz = new SolveBiz(puzzle, dispensers, expression, solveIO); */
 	}
 }
 
@@ -1083,9 +842,9 @@ class Demo {
 			dispensers[i] = new Dispenser(this.puzzle.dispenserFullSpec[i], itemIdRootPlus);
 		}
 
-		const expression = new Expression("#iwdpExpression", this.puzzle);
+		//const expression = new Expression("#iwdpExpression", this.puzzle);
 
-		const target = new Target("#iwdpTarget", this.puzzle);
+		//const target = new Target("#iwdpTarget", this.puzzle);
 		
 		let controls = [];
 		controls["Information"] = new Control("#iwdCtrlInformation", null);
@@ -1101,7 +860,7 @@ class Demo {
 		const crossTick = new CrossTick("#iwdCrossTick");
 		const solveIO = new SolveIO(controls, crossTick);	
 
-		this.solveBiz = new SolveBiz(this.puzzle, dispensers, expression, solveIO);
+		this.solveBiz = new SolveBiz(this.puzzle, dispensers, undefined, solveIO);
 	}
 	
 	enter() {
@@ -1258,32 +1017,37 @@ async function demoExecuteScript() {
 
 const mainWall = new MainWall(mainWallSpec);
 const punter = new Punter(punterPuzzle);
-const infoWall = new InfoWall(mainWall.topPosition, mainWall.leftPosition, mainWall.fontSize);
-const demo = new Demo();
+//const infoWall = new InfoWall(mainWall.topPosition, mainWall.leftPosition, mainWall.fontSize);
+//const demo = new Demo();
+
+mainWall.show();
 
 
 /* -------- Preamble -------- */
 
 async function performPreamble() {
-	const surroundInstructionsRef = document.querySelector("#iwSurroundInstructions");
-	const surroundDemonstrationRef = document.querySelector("#iwdSurroundDemonstration");
-	const surroundInformationRef = document.querySelector("#mwdSurroundInformation");
-	const separator2Ref = document.querySelector("#iwSeparator-2");
+	//const surroundInstructionsRef = document.querySelector("#iwSurroundInstructions");
+	//const surroundDemonstrationRef = document.querySelector("#iwdSurroundDemonstration");
+	//const surroundInformationRef = document.querySelector("#mwdSurroundInformation");
+	//const separator2Ref = document.querySelector("#iwSeparator-2");
 	
 	infoWall.show();
 
 	await wait(1500);
 
+	const surroundInstructionsRef = document.querySelector("#iwSurroundInstructions");
 	surroundInstructionsRef.style.display = `block`;
 	await wait(750);
 	surroundInstructionsRef.style.display = `none`;
 
 	await wait(750);
 
+	const separator2Ref = document.querySelector("#iwSeparator-2");
 	separator2Ref.scrollIntoView({behavior: "smooth"});
 
 	await wait(1000);
 	
+	const surroundDemonstrationRef = document.querySelector("#iwdSurroundDemonstration");
 	surroundDemonstrationRef.style.display = `block`;
 	await wait(750);
 	surroundDemonstrationRef.style.display = `none`;
@@ -1295,6 +1059,7 @@ async function performPreamble() {
 	
 	await wait(1000);
 
+	const surroundInformationRef = document.querySelector("#mwdSurroundInformation");
 	surroundInformationRef.style.display = `block`;
 	await wait(500);
 	surroundInformationRef.style.display = `none`;
@@ -1304,11 +1069,11 @@ async function performPreamble() {
 	punter.solveBiz.unfreeze();
 	disableScrolling();
 }
-
+/*
 infoWall.controlBack.freeze();
 infoWall.controlDemo.freeze();
 punter.solveBiz.wake();
 punter.solveBiz.freeze();
 performPreamble();
-
+*/
 
