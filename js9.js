@@ -100,7 +100,8 @@ class MainWall {
 		const territoryRef = document.querySelector("#mwdpTerritory");
 		//const territoryHeight = 15;
 		const territoryHeight = punterPuzzle.territoryHeight * mainWallSpec.mwdptPointDimension;
-		dispensersRef.style.height = `${territoryHeight}em`;
+		territoryRef.style.height = `${territoryHeight}em`;
+		territoryRef.style.gridTemplateRows = `repeat(${territoryHeight}, 1fr)`;
 		
 		const boundaryId = "#mwdptBoundary-" + String(punterPuzzle.territoryWidth) + String(punterPuzzle.territoryHeight);
 		const boundaryRef = document.querySelector(boundaryId);

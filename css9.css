@@ -1660,7 +1660,7 @@ body {
 /*	height:15em; */
 	width:51em;
 	background-color:white;
-	grid-template-rows:repeat(15, 1fr);
+/*	grid-template-rows:repeat(15, 1fr); */
 	grid-template-columns:repeat(51, 1fr);
 }
 
