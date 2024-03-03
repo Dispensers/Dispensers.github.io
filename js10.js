@@ -30,6 +30,11 @@ function enableScrolling() {
 class Puzzle {
 	constructor(puzzleSpec) {
 		this.dispenserFullSpec = puzzleSpec.dispenserSpec;
+		this.mapSpec = puzzleSpec.mapSpec;
+		this.targetSpec = puzzleSpec.targetSpec;
+		this.hintSpec = puzzleSpec.hintSpec;
+		this.solutionExpression = puzzleSpec.solutionExpression;
+		this.solutionDispenseSequence = puzzleSpec.solutionDispenseSequence;
 		this.numDispensers = this.dispenserFullSpec.length - 1;
 		this.dispenserHeightSpec = [undefined];
 		for (let i = 1; i <= this.numDispensers; i++) this.dispenserHeightSpec[i] = this.dispenserFullSpec[i].length;
@@ -37,21 +42,9 @@ class Puzzle {
 		for (let d = 1; d <= this.numDispensers; d++) {
 			if (this.dispenserHeightSpec[d] > this.maxDispenserHeight) this.maxDispenserHeight = this.dispenserHeightSpec[d];
 		};
-		
-		this.matrixSpec = puzzleSpec.matrixSpec;
-		
-		this.tileColours = [];
-		const tileCodes = ["p", "q", "r", "s", "t"];
-		for (let i = 0; i < tileCodes.length; i++) this.tileColours[tileCodes[i]] = puzzleSpec.colourSpec[i];
-		
-		this.hintColour = puzzleSpec.hintSpec[0];
-		this.hintIndex = puzzleSpec.hintSpec[1];
-		
-		this.solutionDispenseSequence = puzzleSpec.solutionDispenseSequence;
-		this.solutionColourSequence = puzzleSpec.solutionColourSequence;
-		//this.solutionColourSequence = [];
-		//why copy?
-		//for (let i = 0; i < puzzleSpec.solutionColourSequence.length; i++) this.solutionColourSequence[i] = puzzleSpec.solutionColourSequence[i];
+		this.mapWidth = puzzleSpec.mapSpec[0].length;
+		this.mapHeight = puzzleSpec.mapSpec.length;
+		//console.log(this.territoryWidth, this.territoryHeight);
 	}
 };
 
@@ -60,7 +53,6 @@ const punterPuzzle = new Puzzle(punterPuzzleSpec);
 
 /* -------- Main Wall -------- */
 
-
 const mainWallSpec = {
 	mwNumGridColumns: 59,
 	mwHeightAboveDoor: 10,
@@ -68,9 +60,12 @@ const mainWallSpec = {
 	mwdHeightAbovePanel: 12,
 	mwdHeightBelowPanel: 21,
 
-	mwdpHeightAboveDispensers: 3,
-	mwdpHeightBelowDispensers: 29,
-	mwdpContainerCompartmentHeight: 8
+	//mwdpHeightAboveDispensers: 3,
+	//mwdpHeightBelowDispensers: 26,
+	mwdpHeightFixed: 10,
+	mwdpContainerCompartmentHeight: 6,
+	
+	mwdptPointDimension: 5
 };
 
 class MainWall {
@@ -80,31 +75,51 @@ class MainWall {
 		const dispensersId = "#mwdpDispensers-" + String(punterPuzzle.maxDispenserHeight) + String(punterPuzzle.numDispensers);
 		const dispensersRef = document.querySelector(dispensersId);
 		dispensersRef.style.display = `grid`;
-		//+2 for cosmetic
-		const dispensersHeight = (mainWallSpec.mwdpContainerCompartmentHeight * punterPuzzle.maxDispenserHeight) + 2;
+		//+1 for item positioning
+		const dispensersHeight = (mainWallSpec.mwdpContainerCompartmentHeight * punterPuzzle.maxDispenserHeight) + 1;
 		dispensersRef.style.height = `${dispensersHeight}em`;
 		
 		for (let d = 1; d <= punterPuzzle.numDispensers; d++) {
-			const numTiles = punterPuzzle.dispenserHeightSpec[d];
-			const containerId = "#mwdpdContainer-" + String(punterPuzzle.maxDispenserHeight) + String(punterPuzzle.numDispensers) + "-" + String(d) + String(numTiles);
+			const numItems = punterPuzzle.dispenserHeightSpec[d];
+			const containerId = "#mwdpdContainer-" + String(punterPuzzle.maxDispenserHeight) + String(punterPuzzle.numDispensers) + "-" + String(d) + String(numItems);
 			const containerRef = document.querySelector(containerId);
 			containerRef.style.display = `block`;
-			const cosmeticId = "#mwdpdCosmetic-" + String(punterPuzzle.maxDispenserHeight) + String(punterPuzzle.numDispensers);
-			const cosmeticRef = document.querySelector(cosmeticId);
-			cosmeticRef.style.display = `block`;
-			for (let i = 1; i <= numTiles; i++) {
-				const tileId = "#mwdpdTile-" + String(punterPuzzle.maxDispenserHeight) + String(punterPuzzle.numDispensers) + "-" + String(d) + String(i);
-				const tileRef = document.querySelector(tileId);
-				tileRef.style.display = `block`;
+			//const cosmeticId = "#mwdpdCosmetic-" + String(punterPuzzle.maxDispenserHeight) + String(punterPuzzle.numDispensers);
+			//const cosmeticRef = document.querySelector(cosmeticId);
+			//cosmeticRef.style.display = `block`;
+			const borderId = "#mwdpdBorder-" + String(punterPuzzle.maxDispenserHeight) + String(punterPuzzle.numDispensers) + "-" + String(d) + String(numItems);
+			const borderRef = document.querySelector(borderId);
+			borderRef.style.display = `block`;
+			for (let i = 1; i <= numItems; i++) {
+				const itemId = "#mwdpdItem-" + String(punterPuzzle.maxDispenserHeight) + String(punterPuzzle.numDispensers) + "-" + String(d) + String(i);
+				const itemRef = document.querySelector(itemId);
+				itemRef.style.display = `block`;
 			}
 		}
 
+		//const territoryRef = document.querySelector("#mwdpTerritory");
+		//const territoryHeight = 15;
+		//const territoryHeight = punterPuzzle.territoryHeight * mainWallSpec.mwdptPointDimension;
+		//territoryRef.style.height = `${territoryHeight}em`;
+		//territoryRef.style.gridTemplateRows = `repeat(${territoryHeight}, 1fr)`;
+		const territoryRef = document.querySelector("#mwdpTerritory");
+		const territoryEmHeight = (punterPuzzle.mapHeight - 2) * mainWallSpec.mwdptPointDimension;
+		territoryRef.style.height = `${territoryEmHeight}em`;
+		territoryRef.style.gridTemplateRows = `repeat(${territoryEmHeight}, 1fr)`;
+		
+		//const boundaryId = "#mwdptBoundary-" + String(punterPuzzle.mapWidth - 2) + String(punterPuzzle.mapHeight - 2);
+		//const boundaryRef = document.querySelector(boundaryId);
+		//boundaryRef.style.display = `block`;
+
 		const panelRef = document.querySelector("#mwdPanel");
 		const panelStyle = panelRef.style.cssText;
-		const newPanelStyle = panelStyle.replace(/999/, String(dispensersHeight));
+		//const newPanelStyle = panelStyle.replace(/999/, String(dispensersHeight));
+		let newPanelStyle = panelStyle.replace(/999/, String(dispensersHeight));
+		newPanelStyle = newPanelStyle.replace(/888/, String(territoryEmHeight));
 		//console.log(newPanelStyle);
 		panelRef.style.cssText = newPanelStyle;
-		const panelHeight = mainWallSpec.mwdpHeightAboveDispensers + dispensersHeight + mainWallSpec.mwdpHeightBelowDispensers;
+		//const panelHeight = mainWallSpec.mwdpHeightAboveDispensers + dispensersHeight + mainWallSpec.mwdpHeightBelowDispensers;
+		const panelHeight = mainWallSpec.mwdpHeightFixed + dispensersHeight + territoryEmHeight;
 		panelRef.style.height = `${panelHeight}em`;
 
 		const doorRef = document.querySelector("#mwDoor");
@@ -280,16 +295,12 @@ class CrossTick {
 }
 
 
-/* -------- Tiles -------- */
+/* -------- Items -------- */
 
-class Tile {
-	constructor(dispenser, colour) {
+class Item {
+	constructor(dispenser, symbol) {
 		this.dispenser = dispenser;
-		this.colour = colour;
-	}
-	
-	getImageFilename(colour) {
-		return "tile" + this.colour + ".svg";
+		this.symbol = symbol;
 	}
 }
 
@@ -297,149 +308,262 @@ class Tile {
 /* -------- Dispensers -------- */
 
 class Dispenser {
-	constructor(puzzle, tileSequence, tileIdRoot) {
-		this.tileQueue = [];
-		for (let t = 0; t < tileSequence.length; t++) {
-			const tile = new Tile(this, puzzle.tileColours[tileSequence[t]]);
-			this.tileQueue.unshift(tile);
+	constructor(symbolSequence, itemIdRoot) {		
+		this.itemQueue = [];
+		for (let i = 0; i < symbolSequence.length; i++) {
+			const item = new Item(this, symbolSequence[i]);
+			this.itemQueue.unshift(item);
 		}
 
-		this.tileRefs = [];
-		for (let t = 1; t <= tileSequence.length; t++) {
-			const tileId = tileIdRoot + String(t);
-			const tileRef = document.querySelector(tileId);
-			this.tileRefs.push(tileRef);
+		this.itemRefs = [];
+		for (let i = 1; i <= symbolSequence.length; i++) {
+			const itemId = itemIdRoot + String(i);
+			const itemRef = document.querySelector(itemId);
+			this.itemRefs.push(itemRef);
 		}
 		
 		this.container = [];
-		for (let t = 0; t < this.tileQueue.length; t++) this.container[t] = this.tileQueue[t];
+		for (let t = 0; t < this.itemQueue.length; t++) this.container[t] = this.itemQueue[t];
 				
-		this.numTilesInContainer = this.tileQueue.length;
+		this.numItemsInContainer = this.itemQueue.length;
 	}
 
 	refresh() {
 		for (let t = 0; t < this.container.length; t++) {
 			if (this.container[t] == null) {
-				this.tileRefs[t].style.display = `none`;
+				this.itemRefs[t].style.display = `none`;
 			}
 			else {
-				this.tileRefs[t].style.display = `block`;
-				this.tileRefs[t].src = this.container[t].getImageFilename();
+				this.itemRefs[t].style.display = `block`;
+				this.itemRefs[t].innerHTML = "<code><strong>" + Symbol.getHTMLSymbolCode(this.container[t].symbol) + "</strong></code>";
 			}
 		}
 	}
 	
 	reset() {	
 		this.container = [];
-		for (let t = 0; t < this.tileQueue.length; t++) this.container[t] = this.tileQueue[t];
-		this.numTilesInContainer = this.tileQueue.length;
+		for (let i = 0; i < this.itemQueue.length; i++) this.container[i] = this.itemQueue[i];
+		this.numItemsInContainer = this.itemQueue.length;
 	}
 	
-	takeTile() {
-		const tile = this.container.shift();
+	peekAtItem() {
+		return this.container[0];
+	}
+	
+	takeItem() {
+		const item = this.container.shift();
 		this.container.push(null);
-		this.numTilesInContainer--;
-		return tile;
+		this.numItemsInContainer--;
+		return item;
 	}
 	
-	replaceTile() {
+	replaceItem() {
 		this.container.pop();
-		const tile = this.tileQueue[this.tileQueue.length - this.numTilesInContainer - 1];
-		this.container.unshift(tile);
-		this.numTilesInContainer++;		
+		const item = this.itemQueue[this.itemQueue.length - this.numItemsInContainer - 1];
+		this.container.unshift(item);
+		this.numItemsInContainer++;		
 	}
 }
 
 
-/* -------- Matrix -------- */
+/* -------- TerritoryCoord -------- */
 
-class Matrix {
-	constructor(puzzle, digitIdRoot, cardinalIdRoot) {
-		const grey = `#B2B2B2`;
+class TerritoryCoord {
+	constructor(row, column) {
 
-		this.puzzle = puzzle;
+	}
+}
 
-		this.ordinalSequence = [undefined];
-		for (let i = 1; i <= puzzle.matrixSpec.length; i++) {
-			const ordinalSpec = this.puzzle.matrixSpec[i - 1];
-			const ordinal = (ordinalSpec < 0) ? -ordinalSpec : ordinalSpec;
-			this.ordinalSequence[ordinal] = i;
+
+/* -------- Territory -------- */
+
+class Territory {
+	constructor(territoryRootId, abstractMap) {
+		this.rootId = territoryRootId;
+		const maxUnboundedWidthEven = 10;
+		const maxUnboundedWidthOdd = 9;
+		const unboundedWidth = abstractMap[0].length - 2;
+		const unboundedHeight = abstractMap.length - 2;
+		const boundaryId = territoryRootId + "Boundary-" + String(unboundedWidth) + String(unboundedHeight);
+		const boundaryRef = document.querySelector(boundaryId);
+		boundaryRef.style.display = `block`;
+
+		this.rowAdjustment = -1;
+		this.columnAdjustment = -((((unboundedWidth % 2) == 0 ? maxUnboundedWidthEven - unboundedWidth : maxUnboundedWidthOdd - unboundedWidth) / 2) - 1);
+/*
+		const mapHeight = 7;
+		const mapWidth = 12;
+		this.map = new Array(mapHeight);
+		for (let row = 0; row < mapHeight; row++) {
+			this.map[row] = new Array(mapWidth);
+		}
+		for (let row = 0; row < mapHeight; row++) {
+			for (let column = 0; column < mapWidth; column++) {
+				this.map[row][column] = -1;
+			}
+		}
+		const leftBoundaryColumn = (mapWidth - puzzle.mapWidth) / 2;
+		const rightBoundaryColumn = leftBoundaryColumn + puzzle.territoryWidth + 1;
+		const topBoundaryRow = 0;
+		const bottomBoundaryRow = topBoundaryRow + puzzle.territoryHeight + 1;
+		for (let column = leftBoundaryColumn; column <= rightBoundaryColumn; column++) {
+			this.map[topBoundaryRow][column] = 1;
+			this.map[bottomBoundaryRow][column] = 1;
+		}
+		for (let row = topBoundaryRow; column <= bottomBoundaryRow; row++) {
+			this.map[row][leftBoundaryColumn] = 1;
+			this.map[row][rightBoundaryColumn] = 1;
 		}
 
-		this.cardinalRefs = [undefined];
-		this.cardinalTiles = [undefined];
-		for (let i = 1; i <= 9; i++) {
-			const cardinalId = cardinalIdRoot + String(i);
-			const cardinalRef = document.querySelector(cardinalId);
-			this.cardinalRefs[i] = cardinalRef;
-			this.cardinalTiles[i] = null;
+		const puzzleStartColumn = 1;
+		const puzzleEndColumn = puzzleStartColumn + puzzle.territoryWidth - 1;
+		const puzzleStartRow = 1;
+		const puzzleEndRow = puzzleStartRow + puzzle.territoryHeight - 1;
+		const rowAdjustment = 1;
+		const columnAdjustment = leftBoundaryColumn;
+		for (let puzzleRow = puzzleStartRow; puzzleRow <= puzzleEndRow; puzzleRow++) {
+			for (let puzzleColumn = puzzleStartColumn; puzzleColumn <= puzzleEndColumn; puzzleColumn++) {
+				this.map[puzzleRow + rowAdjustment][puzzleColumn + columnAdjustment] = puzzle.territoryFullSpec[puzzleRow][puzzleColumn];
+			}
 		}
-
-		this.digitRefs = [undefined];
-		for (let i = 1; i <= puzzle.matrixSpec.length; i++) {
-			const digitSpec = puzzle.matrixSpec[i - 1];
-			const digitText = (digitSpec < 0) ? String(-digitSpec) : String(digitSpec);
-			const digitColour = (digitSpec < 0) ? "black" : grey;
-			const digitId = digitIdRoot + String(i);
-			const digitRef = document.querySelector(digitId);
-			digitRef.textContent = digitText;
-			digitRef.style.color = digitColour;
-			this.digitRefs.push(digitRef);
+*/		
+		const svgEvenLookUp = [];
+		svgEvenLookUp[0] = "territoryEvenDot.svg"
+		svgEvenLookUp[1] = "territoryEvenBlocker.svg"
+		svgEvenLookUp[2] = "territoryEvenStart.svg"
+		svgEvenLookUp[9] = "territoryEvenFinish.svg"
+		const evenPointIdRoot = territoryRootId + "EvenPoint-";
+/*
+		for (let r = 0; r < puzzle.territoryHeight; r++) {
+			const row = puzzle.territoryFullSpec[r + 1];
+			for (let c = 0; c < puzzle.territoryWidth; c++) {
+				const cAdjustment = (10 - puzzle.territoryWidth) / 2;
+				const pointRef = document.querySelector(evenPointIdRoot + String(r) + String(c + cAdjustment));
+				const pointValue = row[c + 1];
+				pointRef.src = svgEvenLookUp[pointValue]
+				pointRef.style.display = `block`;
+			}
 		}
-
-		this.numTilesInPlace = 0;
-		this.temporaryIndex = undefined;
+*/
+		for (let r = 1; r <= unboundedHeight; r++) {
+			const row = this.convertRow(r);
+			for (let c = 1; c <= unboundedWidth; c++) {
+				const column = this.convertColumn(c);
+				const pointRef = document.querySelector(evenPointIdRoot + String(row) + String(column));
+				const pointValue = abstractMap[r][c];
+				pointRef.src = svgEvenLookUp[pointValue]
+				pointRef.style.display = `block`;
+			}
+		}
+	}
+	
+	convertRow(abstractRow) {
+		return abstractRow + this.rowAdjustment;
 	}
 
-	getColourSequence() {
-		let colourSequence = [];
-		for (let i = 1; i <= 9; i++) {
-			if (this.cardinalTiles[i] == null) colourSequence.push("none"); else colourSequence.push(this.cardinalTiles[i].colour);
-		}
-		return colourSequence;
+	convertColumn(abstractColumn) {
+		return abstractColumn + this.columnAdjustment;
+	}
+	
+	displayLine(coord, direction) {
+		const directionLookUp = [];
+		directionLookUp["N"] = "N";
+		directionLookUp["u"] = "NE";
+		directionLookUp["e"] = "E";
+		directionLookUp["d"] = "SE";
+		directionLookUp["S"] = "S";
+		directionLookUp["D"] = "SW";
+		directionLookUp["W"] = "W";
+		directionLookUp["U"] = "NW";
+
+		const row = this.convertRow(coord.row);
+		const column = this.convertColumn(coord.column);
+		const lineId = this.rootId + "EvenLine-" + String(row) + String(column) + "-" + directionLookUp[direction];
+		console.log(lineId);
+		this.lineRef = document.querySelector(lineId);
+		this.lineRef.style.display = `block`;
 	}
 
+}
+
+
+/* -------- AbstractCoord -------- */
+
+class AbstractCoord {
+	constructor(row, column) {
+		this.row = row;
+		this.column = column;
+	}
+}
+
+
+/* -------- AbstractLine -------- */
+
+class AbstractLine {
+	constructor(territory, coord, direction){		
+		const finishAdjustmentsLookUp = [];
+		finishAdjustmentsLookUp["N"] = [-1, 0];
+		finishAdjustmentsLookUp["u"] = [-1, +1];
+		finishAdjustmentsLookUp["e"] = [0, +1];
+		finishAdjustmentsLookUp["d"] = [+1, +1];
+		finishAdjustmentsLookUp["S"] = [+1, 0];
+		finishAdjustmentsLookUp["D"] = [+1, -1];
+		finishAdjustmentsLookUp["W"] = [0, -1];
+		finishAdjustmentsLookUp["U"] = [-1, -1];
+		this.startCoord = coord;
+		this.direction = direction;
+		const finishAdjustments = finishAdjustmentsLookUp[direction];
+		this.finishCoord = new AbstractCoord(this.startCoord.row + finishAdjustments[0], this.startCoord.column + finishAdjustments[1]);
+		console.log("finishCoord", this.finishCoord);
+		territory.displayLine(coord, direction);
+	}
+	
+	getFinishCoord() {
+		return this.finishCoord;
+	}
+}
+
+
+/* -------- AbstractMap -------- */
+
+class AbstractMap {
+	constructor(puzzle, territoryRootId) {
+		this.map = puzzle.mapSpec;
+		this.territory = new Territory(territoryRootId, this.map);
+		
+		for (let r = 0; r < puzzle.mapHeight; r++) {
+			for (let c = 0; c < puzzle.mapWidth; c++) {
+				const pointValue = this.map[r][c];
+				if (pointValue == 2) {
+					this.pathStartCoord = new AbstractCoord(r, c);
+				}
+				else if (pointValue == 9) {
+					this.pathFinishCoord = new AbstractCoord(r, c);
+				}
+			}
+		}
+
+		this.pathCoords = [this.pathStartCoord];
+		this.pathLines = [];
+	}
+/*
 	reset() {
-		for (let i = 1; i <= 9; i++) this.cardinalTiles[i] = null;
-		this.numTilesInPlace = 0;	
+		this.pathCoords = [];
+		this.pathDirections = [];
 	}
-
-	addTile(tile) {
-		const nextCardinal = this.ordinalSequence[this.numTilesInPlace + 1];
-		this.cardinalTiles[nextCardinal] = tile;
-		this.numTilesInPlace++;
+*/
+	addLine(direction) {
+		const startCoord = this.pathCoords[this.pathCoords.length - 1];
+		const line = new AbstractLine(this.territory, startCoord, direction);
+		const finishCoord = line.getFinishCoord();
+		this.pathLines.push(line);
+		this.pathCoords.push(finishCoord);
 	}
-
-	removeTile() {
-		const cardinal = this.ordinalSequence[this.numTilesInPlace];
-		const tile = this.cardinalTiles[cardinal];
-		this.cardinalTiles[cardinal] = null;
-		this.numTilesInPlace--;
-		return tile;
+/*	
+	removeLine() {
+		?return this.pathDirections.pop();
 	}
-
-	addTemporaryTile(tile, index) {
-		this.cardinalTiles[index] = tile;
-		this.temporaryIndex = index;
-	}
-
-	removeTemporaryTile() {
-		this.cardinalTiles[this.temporaryIndex] = null;
-	}
-
-	refresh() {
-		for (let i = 1; i <= 9; i++) {
-			if (this.cardinalTiles[i] == null) {
-				this.cardinalRefs[i].style.display = `none`;
-				this.digitRefs[i].style.visibility = `visible`;
-			}
-			else {
-				this.cardinalRefs[i].style.display = `block`;
-				this.cardinalRefs[i].src = this.cardinalTiles[i].getImageFilename();
-				this.digitRefs[i].style.visibility = `hidden`;
-			}
-		}
-	}
+*/
 }
 
 
@@ -499,6 +623,34 @@ class Control {
 			if (this.OnClick !== null) this.ref.addEventListener("click", this.onClick);
 		}
 		this.isFrozen = false;
+	}
+}
+
+function dispenseControlFlashed(solveBiz) {solveBiz.unfreeze()}
+
+async function flashDispenseControl(ref, flasherRef, solveBiz) {
+	ref.style.display = `none`;
+	await wait(300);
+	flasherRef.style.display = `block`;
+	await wait(300);
+	flasherRef.style.display = `none`;
+	await wait(300);
+	flasherRef.style.display = `block`;
+	await wait(300);
+	flasherRef.style.display = `none`;
+	ref.style.display = `block`;
+	dispenseControlFlashed(solveBiz)
+}
+
+class DispenseControl extends Control {
+	constructor(id, onClick) {
+		super(id, onClick);
+		this.flasherRef = document.querySelector(id + "Flasher");
+		this.flasherRef.style.display = `none`;
+	}
+	
+	flash(solveBiz) {
+		flashDispenseControl(this.ref, this.flasherRef, solveBiz);		
 	}
 }
 
@@ -566,6 +718,10 @@ class SolveIO {
 			this.controls[name].unfreeze();
 		}
 	}
+
+	flashDispenseControl(name, solveBiz) {
+		this.controls[name].flash(solveBiz);
+	}
 		
 	hideCrossTick() {
 		this.crossTick.hide();
@@ -581,20 +737,21 @@ class SolveIO {
 }
 
 class SolveBiz {	
-	constructor(puzzle, dispensers, matrix, io) {
+	constructor(puzzle, dispensers, expression, io) {
 		this.puzzle = puzzle;
 		this.dispensers = dispensers;
-		this.matrix = matrix;
+		//this.expression = expression;
 		this.io = io;
 				
-		this.solutionNextIndex = undefined;
+		//for (let i = 1; i <= puzzle.numDispensers; i++) this.dispensers[i].refresh();
 
-		for (let i = 1; i <= puzzle.numDispensers; i++) this.dispensers[i].refresh();
+		//this.expression.refresh();
 		
-		this.hintTemporaryTile = new Tile(null, puzzle.hintColour);
 		this.hintNumShows = 3;
 		this.hintNumShowsRemaining = undefined;
 		this.hintShowing = undefined;
+
+		this.solutionNextIndex = undefined;
 		
 		this.callbackResolve = undefined;
 
@@ -618,8 +775,8 @@ class SolveBiz {
 	}
 		
 	reset() {
-		this.matrix.reset();
-		this.matrix.refresh();
+		this.expression.reset();
+		this.expression.refresh();
 		for (let i = 1; i <= this.puzzle.numDispensers; i++) {
 			const dispenser = this.dispensers[i];
 			dispenser.reset();
@@ -629,32 +786,31 @@ class SolveBiz {
 	}
 
 	updateDispenseControls() {
-		if (this.matrix.numTilesInPlace == 9) {
-			for (let i = 1; i <= this.puzzle.numDispensers; i++) this.io.disableControls(["Dispense" + String(i)]);
-		}
-		else {
-			for (let i = 1; i <= this.puzzle.numDispensers; i++) {
-				if (this.dispensers[i].numTilesInContainer == 0) {
-					this.io.disableControls(["Dispense" + String(i)]);
-				}
-				else {
-					this.io.enableControls(["Dispense" + String(i)]);
-				}
+		for (let i = 1; i <= this.puzzle.numDispensers; i++) {
+			if (this.dispensers[i].numItemsInContainer == 0) {
+				this.io.disableControls(["Dispense" + String(i)]);
+			}
+			else {
+				this.io.enableControls(["Dispense" + String(i)]);
 			}
 		}
 	}
 
 	review() {
 		this.updateDispenseControls();
-		if (this.matrix.numTilesInPlace == 0) {
+		if (this.expression.getLength() == 0) {
 			this.io.disableControls(["Reset", "Undispense"]);
 		}
 		else {
 			this.io.enableControls(["Reset", "Undispense"]);
 		}
-		if (this.matrix.numTilesInPlace == 9) {
-			const thisSolution = this.matrix.getColourSequence().join("");
-			const correctSolution = this.puzzle.solutionColourSequence.join("");
+		let numEmptyDispensers = 0;
+		for (let i = 1; i <= this.puzzle.numDispensers; i++) {
+			if (this.dispensers[i].numItemsInContainer == 0) numEmptyDispensers++;
+		}
+		if (numEmptyDispensers == this.puzzle.numDispensers) {
+			const thisSolution = this.expression.getExpression();
+			const correctSolution = this.puzzle.solutionExpression;
 			if (thisSolution === correctSolution) {
 				this.io.disableControls(["Undispense"]);
 				this.freeze();
@@ -677,102 +833,70 @@ class SolveBiz {
 	
 	dispenseClicked(dispenserNum) {
 		const dispenser = this.dispensers[dispenserNum];
-		const tileTaken = dispenser.takeTile();
-		this.matrix.addTile(tileTaken);
-		dispenser.refresh();
-		this.matrix.refresh();
-		this.review();
+		const item = dispenser.peekAtItem();
+		if (this.expression.isAddItemValid(item)) {
+			const itemTaken = dispenser.takeItem();
+			this.expression.addItem(itemTaken);
+			dispenser.refresh();
+			this.expression.refresh();
+			this.review();
+		}
+		else {
+			this.io.flashDispenseControl("Dispense" + String(dispenserNum), this);
+		}
 	}
 
 	undispenseClicked() {
-		const tileRemoved = this.matrix.removeTile();
-		const dispenser = tileRemoved.dispenser;
-		dispenser.replaceTile();
-		this.matrix.refresh();
+		const itemRemoved = this.expression.removeItem();
+		const dispenser = itemRemoved.dispenser;
+		dispenser.replaceItem();
+		this.expression.refresh();
 		dispenser.refresh();
 		this.review();
 	}
 
 	hintTimerExpired() {
-		if (this.hintShowing) {
-			this.matrix.removeTemporaryTile();
-			this.matrix.refresh();
-			this.hintShowing = false;
-			this.hintNumShowsRemaining--;
-			if (this.hintNumShowsRemaining == 0) {
-				this.io.enableAllControlsExcept(["Reset", "Undispense"]);
-				return;
-			}
-		}
-		else {
-			this.matrix.addTemporaryTile(this.hintTemporaryTile, this.puzzle.hintIndex);
-			this.matrix.refresh();
-			this.hintShowing = true;
-		}
-		setTimeout(punterHintTimerExpired, 1000);
+		this.expression.flashHint(this);
 	}
-	
+
 	hintClicked() {
+		this.callbackResolve = null;
 		this.io.disableAllControls();
 		this.io.hideCrossTick();
-		if (this.matrix.numTilesInPlace == 0) {
-			this.matrix.addTemporaryTile(this.hintTemporaryTile, this.puzzle.hintIndex);
-			this.matrix.refresh();
-			this.hintShowing = true;
-			this.hintNumShowsRemaining = this.hintNumShows;
+		if (this.expression.getLength() == 0) {
+			this.expression.flashHint(this);
 		}
 		else {
 			this.reset();
-			this.hintShowing = false;
-			this.hintNumShowsRemaining = this.hintNumShows;
+			setTimeout(punterHintTimerExpired, 250);			
 		}
-		setTimeout(punterHintTimerExpired, 1000);
 	}
 
-	hintWithCallbackTimerExpired() {
-		if (this.hintShowing) {
-			this.matrix.removeTemporaryTile();
-			this.matrix.refresh();
-			this.hintShowing = false;
-			this.hintNumShowsRemaining--;
-			if (this.hintNumShowsRemaining == 0) {
-				this.io.enableAllControlsExcept(["Reset", "Undispense"]);
-				this.callbackResolve();
-				return;
-			}
-		}
-		else {
-			this.matrix.addTemporaryTile(this.hintTemporaryTile, this.puzzle.hintIndex);
-			this.matrix.refresh();
-			this.hintShowing = true;			
-		}
-		setTimeout(demoHintTimerExpired, 1000);
+	completeHintClicked() {
+		this.io.enableAllControlsExcept(["Reset", "Undispense"]);
+		if (this.callbackResolve != null) this.callbackResolve();
 	}
 
 	hintWithCallback() {
 		return new 	Promise((resolve, reject) => {
 								this.io.disableAllControls();
 								this.callbackResolve = resolve;
-								this.matrix.addTemporaryTile(this.hintTemporaryTile, this.puzzle.hintIndex);
-								this.matrix.refresh();
-								this.hintShowing = true;
-								this.hintNumShowsRemaining = this.hintNumShows;
-								setTimeout(demoHintTimerExpired, 1000);
+								this.expression.flashHint(this);
 							}
 					);
 	}
 	
-	solutionShowTile(dispenser) {
-		const tileTaken = dispenser.takeTile();
-		this.matrix.addTile(tileTaken);
+	solutionShowItem(dispenser) {
+		const itemTaken = dispenser.takeItem();
+		this.expression.addItem(itemTaken);
 		dispenser.refresh();
-		this.matrix.refresh();
+		this.expression.refresh();
 	}
 
 	solutionTimerExpired() {
 		const dispenserNum = this.puzzle.solutionDispenseSequence[this.solutionNextIndex];
 		const dispenser = this.dispensers[dispenserNum];
-		this.solutionShowTile(dispenser);
+		this.solutionShowItem(dispenser);
 		this.solutionNextIndex++;
 		if (this.solutionNextIndex == this.puzzle.solutionDispenseSequence.length) {
 			this.io.enableControls(["Information", "Reset"]);
@@ -785,7 +909,7 @@ class SolveBiz {
 		this.io.disableAllControls();
 		this.io.hideCrossTick();
 		this.solutionNextIndex = 0;
-		if (this.matrix.numTilesInPlace == 0) {
+		if (this.expression.getLength() == 0) {
 			setTimeout(punterSolutionTimerExpired, 500);
 		}
 		else {
@@ -796,9 +920,9 @@ class SolveBiz {
 
 	solutionWithCallbackTimerExpired() {
 		const dispenser = this.dispensers[this.puzzle.solutionDispenseSequence[this.solutionNextIndex]];
-		this.solutionShowTile(dispenser);
+		this.solutionShowItem(dispenser);
 		this.solutionNextIndex++;
-		if (this.solutionNextIndex == 9) {
+		if (this.solutionNextIndex == this.puzzle.solutionDispenseSequence.length) {
 			this.io.enableControls(["Reset"]);
 			this.callbackResolve();
 			return;
@@ -810,14 +934,14 @@ class SolveBiz {
 		return new 	Promise((resolve, reject) => {
 								this.io.disableAllControls();
 								this.callbackResolve = resolve;
-								this.solutionShowTile(this.dispensers[this.puzzle.solutionDispenseSequence[0]]);
+								this.solutionShowItem(this.dispensers[this.puzzle.solutionDispenseSequence[0]]);
 								this.solutionNextIndex = 1;
 								setTimeout(demoSolutionTimerExpired, 1000);
 							}
 					);
-	}	
+	}
+	
 }
-
 
 /* -------- Punter -------- */
 
@@ -840,21 +964,24 @@ let punterDispenseOnClicks = [undefined,
 							  function() {punter.solveBiz.dispenseClicked(2)},
 							  function() {punter.solveBiz.dispenseClicked(3)},
 							  function() {punter.solveBiz.dispenseClicked(4)},
+							  function() {punter.solveBiz.dispenseClicked(5)},
 							 ];
 
 class Punter {
 	constructor(puzzle) {
 		this.puzzle = puzzle;
-		
+/*		
 		let dispensers = [undefined];
-		const tileIdRoot = "#mwdpdTile-" + String(puzzle.maxDispenserHeight) + String(puzzle.numDispensers) + "-";
+		const itemIdRoot = "#mwdpdItem-" + String(puzzle.maxDispenserHeight) + String(puzzle.numDispensers) + "-";
 		for (let i = 1; i <= puzzle.numDispensers; i++) {
-			const tileIdRootPlus = tileIdRoot + String(i);
-			dispensers[i] = new Dispenser(puzzle, puzzle.dispenserFullSpec[i], tileIdRootPlus);
+			const itemIdRootPlus = itemIdRoot + String(i);
+			dispensers[i] = new Dispenser(puzzle.dispenserFullSpec[i], itemIdRootPlus);
 		}
-
-		const matrix = new Matrix(puzzle, "#mwdpmDigit-", "#mwdpmTile-");
-
+*/
+		const abstractMap = new AbstractMap(puzzle, "#mwdpt");
+		abstractMap.addLine("e");
+		//abstractMap.addLine("e");
+/*
 		let controls = [];
 		controls["Information"] = new Control("#mwdCtrlInformation", punterInformationOnClick, null);
 		controls["Hint"] = new Control("#mwdCtrlHint", punterHintOnClick, null);
@@ -865,13 +992,13 @@ class Punter {
 		const dispenseIdRoot = "#mwdCtrlDispense-" + String(puzzle.numDispensers);
 		for (let i = 1; i <= puzzle.numDispensers; i++) {
 			const dispenseId = dispenseIdRoot + String(i);
-			controls["Dispense" + String(i)] = new Control(dispenseId, punterDispenseOnClicks[i]);
+			controls["Dispense" + String(i)] = new DispenseControl(dispenseId, punterDispenseOnClicks[i]);
 		}
 
 		const crossTick = new CrossTick("#mwCrossTick");
 		const solveIO = new SolveIO(controls, crossTick);	
 
-		this.solveBiz = new SolveBiz(puzzle, dispensers, matrix, solveIO);
+		this.solveBiz = new SolveBiz(puzzle, dispensers, expression, solveIO); */
 	}
 }
 
@@ -884,23 +1011,24 @@ function demoSolutionTimerExpired() {demo.solveBiz.solutionWithCallbackTimerExpi
 class Demo {
 	constructor() {
 		const puzzleSpec = {
-			dispenserSpec: [undefined, "p", "rppsq", "qr", "q"],
-			matrixSpec: [-1, -3, 6, -2, 5, 8, -4, 7, 9],
-			colourSpec: ["Green", "Orange", "Black", "GGBBGGBB"],
-			hintSpec: ["Green", 8],
-			solutionDispenseSequence: [2, 2, 4, 2, 3, 3, 2, 2, 1],
-			solutionColourSequence: ["Orange", "Orange", "Orange", "GGBBGGBB", "Black", "Black", "Green", "Green", "Green"]
+			dispenserSpec: [undefined, "61", "56", "-", "4*"],
+			targetSpec: "28",
+			hintSpec: {numDots: 2, symbol:"5", isHere: false},
+			solutionExpression: "6*14-56",
+			solutionDispenseSequence: [2, 4, 1, 4, 3, 2, 1]
 		};
 		this.puzzle = new Puzzle(puzzleSpec);
 
 		let dispensers = [undefined];
-		const tileIdRoot = "#iwdpdTile-";
+		const itemIdRoot = "#iwdpdItem-";
 		for (let i = 1; i <= this.puzzle.numDispensers; i++) {
-			const tileIdRootPlus = tileIdRoot + String(i);
-			dispensers[i] = new Dispenser(this.puzzle, this.puzzle.dispenserFullSpec[i], tileIdRootPlus);
+			const itemIdRootPlus = itemIdRoot + String(i);
+			dispensers[i] = new Dispenser(this.puzzle.dispenserFullSpec[i], itemIdRootPlus);
 		}
 
-		const matrix = new Matrix(this.puzzle, "#iwdpmDigit-", "#iwdpmTile-");
+		//const expression = new Expression("#iwdpExpression", this.puzzle);
+
+		//const target = new Target("#iwdpTarget", this.puzzle);
 		
 		let controls = [];
 		controls["Information"] = new Control("#iwdCtrlInformation", null);
@@ -916,7 +1044,7 @@ class Demo {
 		const crossTick = new CrossTick("#iwdCrossTick");
 		const solveIO = new SolveIO(controls, crossTick);	
 
-		this.solveBiz = new SolveBiz(this.puzzle, dispensers, matrix, solveIO);
+		this.solveBiz = new SolveBiz(this.puzzle, dispensers, undefined, solveIO);
 	}
 	
 	enter() {
@@ -957,17 +1085,13 @@ const demoScript = [
 	"Pause",		
 	"Dispense2",
 	"Pause",		
-	"Dispense2",
+	"Dispense4",
+	"Pause",		
+	"Dispense1",
 	"Pause",		
 	"Dispense4",
 	"Pause",		
-	"Dispense2",
-	"Pause",		
 	"Dispense3",
-	"Pause",		
-	"Dispense3",
-	"Pause",		
-	"Dispense2",
 	"Pause",		
 	"Dispense1",
 	"Pause",		
@@ -991,8 +1115,8 @@ const demoScript = [
 	"Pause",
 	"Pause",		
 	"Hint",
-	"Pause",		
 	"Pause",
+	"Pause",		
 	"Solution"
 ];
 
@@ -1074,10 +1198,13 @@ async function demoExecuteScript() {
 
 
 /* -------- Begin -------- */
+
 const mainWall = new MainWall(mainWallSpec);
 const punter = new Punter(punterPuzzle);
-const infoWall = new InfoWall(mainWall.topPosition, mainWall.leftPosition, mainWall.fontSize);
-const demo = new Demo();
+//const infoWall = new InfoWall(mainWall.topPosition, mainWall.leftPosition, mainWall.fontSize);
+//const demo = new Demo();
+
+mainWall.show();
 
 
 /* -------- Preamble -------- */
@@ -1126,11 +1253,11 @@ async function performPreamble() {
 	punter.solveBiz.unfreeze();
 	disableScrolling();
 }
-
+/*
 infoWall.controlBack.freeze();
 infoWall.controlDemo.freeze();
 punter.solveBiz.wake();
 punter.solveBiz.freeze();
 performPreamble();
-
+*/
 

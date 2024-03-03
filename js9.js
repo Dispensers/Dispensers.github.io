@@ -366,6 +366,40 @@ class Dispenser {
 
 class Territory {
 	constructor(territoryRootId, puzzle) {
+		this.layout = new Array(7);
+		for (let row = 0; row < this.layout.length; row++) {
+			this.layout[row] = new Array(12);
+		}
+		for (let row = 0; row < this.layout.length; row++) {
+			for (let column = 0; column < this.layout[row].length; column++) {
+				this.layout[row][column] = -1;
+			}
+		}
+		const leftBoundaryColumn = ((this.layout[0].length - puzzle.territoryWidth) / 2) - 1;
+		const rightBoundaryColumn = leftBoundaryColumn + puzzle.territoryWidth + 1;
+		const topBoundaryRow = 0;
+		const bottomBoundaryRow = topBoundaryRow + puzzle.territoryHeight + 1;
+		for (let column = leftBoundaryColumn; column <= rightBoundaryColumn; column++) {
+			this.layout[topBoundaryRow][column] = 1;
+			this.layout[bottomBoundaryRow][column] = 1;
+		}
+		for (let row = topBoundaryRow; column <= bottomBoundaryRow; row++) {
+			this.layout[row][leftBoundaryColumn] = 1;
+			this.layout[row][rightBoundaryColumn] = 1;
+		}
+
+		const puzzleStartColumn = 1;
+		const puzzleEndColumn = puzzleStartColumn + puzzle.territoryWidth - 1;
+		const puzzleStartRow = 1;
+		const puzzleEndRow = puzzleStartRow + puzzle.territoryHeight - 1;
+		const rowAdjustment = 1;
+		const columnAdjustment = leftBoundaryColumn;
+		for (let puzzleRow = puzzleStartRow; puzzleRow <= puzzleEndRow; puzzleRow++) {
+			for (let puzzleColumn = puzzleStartColumn; puzzleColumn <= puzzleEndColumn; puzzleColumn++) {
+				this.layout[puzzleRow + rowAdjustment][puzzleColumn + columnAdjustment] = puzzle.territoryFullSpec[puzzleRow][puzzleColumn];
+			}
+		}
+		
 		const svgEvenLookUp = [];
 		svgEvenLookUp[0] = "territoryEvenDot.svg"
 		svgEvenLookUp[1] = "territoryEvenBlocker.svg"
@@ -382,6 +416,23 @@ class Territory {
 				pointRef.style.display = `block`;
 			}
 		}
+
+		this.pathStartCoord = [[?, ?]];
+		this.pathCoords = [];
+		this.pathDirections = [];
+	}
+
+	reset() {
+		this.pathCoords = [];
+		this.pathDirections = [];
+	}
+
+	addDirection(direction) {
+		this.pathDirections.push(direction);
+	}
+	
+	removeDirection() {
+		return this.pathDirections.pop();
 	}
 }
 
