@@ -24,19 +24,15 @@ let punterPuzzleSpec = {
 let punterPuzzleSpec = {
 	number: 13,
 	solveBy: "20 Feb",
-	//dispenserSpec: [undefined, "333", "+", "-", "21"],
 	dispenserSpec: [undefined, "Nde", "ud", "du", "eS"],
-	//territorySpec: [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 	mapSpec: [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
               [1, 0, 0, 1, 0, 0, 1, 1, 0, 1],
               [1, 2, 0, 1, 0, 0, 0, 1, 0, 1],				
 	          [1, 0, 0, 0, 0, 0, 1, 0, 9, 1],
 		      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 		     ],
-	targetSpec: "-5",
-	hintSpec: {numDots: 1, symbol:"3", isHere: false},
-	solutionExpression: "3-31+23",
-	solutionDispenseSequence: [1, 3, 1, 4, 2, 4, 1]
+	hintSpec: {coord: [3, 3], direction:"u"},
+	solutionSpec: [1, 1, 3, 1, 2, 4, 2, 3, 4]
 };
 
 /*
