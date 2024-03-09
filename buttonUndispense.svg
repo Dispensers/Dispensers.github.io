@@ -1,4 +1,13 @@
 <svg version="1.1"
+     width="132" height="24"
+     xmlns="http://www.w3.org/2000/svg">
+
+	<rect x="0" y="0" width="132" height="24" fill="#484848"/>
+	<polygon points="66 5, 74 19, 58 19" fill="white"/>
+
+</svg>
+<!--
+<svg version="1.1"
      width="140" height="24"
      xmlns="http://www.w3.org/2000/svg">
 
@@ -6,3 +15,4 @@
 	<polygon points="70 5, 78 19, 62 19" fill="white"/>
 
 </svg>
+-->
