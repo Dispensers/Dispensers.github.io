@@ -47,8 +47,8 @@ let punterPuzzleSpec = {
 			  [1,0,0,1,0,1,0,0,1],
 			  [1,1,1,1,1,1,1,1,1]
 			 ], 
-	hintSpec: {coord: [3, 3], direction:"u"},
-	solutionSpec: [1, 1, 3, 1, 2, 4, 2, 3, 4]
+	hintSpec: {coord: [2, 3], direction:"u"},
+	solutionSpec: [2, 3, 1, 3, 1, 1, 1, 2, 2]
 };
 
 /*

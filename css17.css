@@ -615,14 +615,18 @@ body {
 		2fr
 		[cmwdCtrlDispense-41-s]
 		5fr
-		[cmwdCtrlDispense-51-e cmwdCtrlDispense-31-s]
-		2fr
+		[cmwdCtrlDispense-51-e]
+		1fr
+		[cmwdCtrlDispense-31-s]
+		1fr
 		[cmwdCtrlReset-e cmwdCtrlDispense-41-e]
 		1fr
 		[cmwdCtrlDispense-52-s]
 		4fr
-		[cmwdCtrlInformation-e cmwdCtrlDispense-31-e cmwdCtrlDispense-42-s]
-		2fr
+		[cmwdCtrlInformation-e cmwdCtrlDispense-42-s]
+		1fr
+		[cmwdCtrlDispense-31-e]
+		1fr
 		[cmwdCtrlUndispense-s cmwdSurroundInformation-e]
 		1fr
 		[cmwdCtrlDispense-52-e]
@@ -638,16 +642,20 @@ body {
 		[cmwdCtrlDispense-32-e cmwdCtrlDispense-53-e]
 		3fr
 		[cmwdCtrlHint-e cmwdCtrlDispense-54-s]
-		3fr
-		[cmwdCtrlDispense-43-e cmwdCtrlDispense-33-s]
+		2fr
+		[cmwdCtrlDispense-33-s]
+		1fr
+		[cmwdCtrlDispense-43-e]
 		2fr
 		[cmwdCtrlSolution-s]
 		2fr
 		[cmwdCtrlDispense-54-e]
 		1fr
 		[cmwdCtrlDispense-44-s]
-		2fr
-		[cmwdCtrlDispense-33-e cmwdCtrlDispense-55-s]
+		1fr
+		[cmwdCtrlDispense-33-e]
+		1fr
+		[cmwdCtrlDispense-55-s]
 		5fr
 		[cmwdCtrlDispense-44-e]
 		2fr
@@ -1343,7 +1351,7 @@ body {
 */
 	grid-template-columns:
 		[cmwdpd-43-s]
-		10fr
+		9fr
 		[cmwdpdBorder-43-1-s]
 		1fr
 		[cmwdpdContainer-43-1-s]
@@ -1355,7 +1363,7 @@ body {
 		[cmwdpdContainer-43-1-e]
 		1fr
 		[cmwdpdBorder-43-1-e]
-		2fr
+		3fr
 		[cmwdpdBorder-43-2-s]
 		1fr
 		[cmwdpdContainer-43-2-s]
@@ -1367,7 +1375,7 @@ body {
 		[cmwdpdContainer-43-2-e]
 		1fr
 		[cmwdpdBorder-43-2-e]
-		2fr
+		3fr
 		[cmwdpdBorder-43-3-s]
 		1fr
 		[cmwdpdContainer-43-3-s]
@@ -1379,7 +1387,7 @@ body {
 		[cmwdpdContainer-43-3-e]
 		1fr
 		[cmwdpdBorder-43-3-e]
-		10fr
+		9fr
 		[cmwdpd-43-e];
 }
 
