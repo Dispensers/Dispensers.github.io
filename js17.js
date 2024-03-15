@@ -865,7 +865,8 @@ class SolveBiz {
 	}
 	
 	wake() {
-		this.io.enableAllControlsExcept(["Reset", "Undispense"]);
+		//this.io.enableAllControlsExcept(["Reset", "Undispense"]);
+		this.io.enableAllControlsExcept(["Reset", "Undispense", "Information"]);
 	}
 	
 	freeze() {
