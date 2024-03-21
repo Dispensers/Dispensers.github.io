@@ -20,11 +20,12 @@ let punterPuzzleSpec = {
 	solutionDispenseSequence: [1, 2, 2, 3, 2, 1, 3]
 };
 */
-/* TEST PUZZLE 1
+/* TEST PUZZLE 1 */
 let punterPuzzleSpec = {
 	number: 13,
 	solveBy: "20 Feb",
 	dispenserSpec: [undefined, "Nde", "ud", "du", "eS"],
+	//dispenserSpec: [undefined, "Nuded", "SSud"],
 	mapSpec: [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
               [1, 0, 0, 1, 0, 0, 1, 1, 0, 1],
               [1, 2, 0, 1, 0, 0, 0, 1, 0, 1],				
@@ -34,8 +35,8 @@ let punterPuzzleSpec = {
 	hintSpec: {coord: [3, 3], direction:"u"},
 	solutionSpec: [1, 1, 3, 1, 2, 4, 2, 3, 4]
 };
-*/
-/* TEST PUZZLE 2 */
+
+/* TEST PUZZLE 2
 let punterPuzzleSpec = {
 	number: 13,
 	solveBy: "20 Feb",
