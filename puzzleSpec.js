@@ -20,7 +20,7 @@ let punterPuzzleSpec = {
 	solutionDispenseSequence: [1, 2, 2, 3, 2, 1, 3]
 };
 */
-/* TEST PUZZLE 1 */
+/* TEST PUZZLE 1 - used on github 
 let punterPuzzleSpec = {
 	number: 13,
 	solveBy: "20 Feb",
@@ -35,13 +35,12 @@ let punterPuzzleSpec = {
 	hintSpec: {coord: [3, 3], direction:"u"},
 	solutionSpec: [1, 1, 3, 1, 2, 4, 2, 3, 4]
 };
-
-/* TEST PUZZLE 2
+*/
+/* TEST PUZZLE 2 
 let punterPuzzleSpec = {
 	number: 13,
 	solveBy: "20 Feb",
-	//dispenserSpec: [undefined, "due", "du", "eu", "N", "D"],
-	dispenserSpec: [undefined, "duuD", "euN", "ed"],
+	dispenserSpec: [undefined, "due", "du", "eu", "N", "D"],
 	mapSpec: [[1,1,1,1,1,1,1,1,1],
 			  [1,0,0,1,0,0,0,9,1],
 			  [1,2,0,0,0,0,1,0,1],
@@ -49,9 +48,47 @@ let punterPuzzleSpec = {
 			  [1,1,1,1,1,1,1,1,1]
 			 ], 
 	hintSpec: {coord: [2, 3], direction:"u"},
+	solutionSpec: [2, 2, 3, 3, 5, 1, 1, 1, 4]
+};
+*/
+/* TEST PUZZLE 3 - full map
+let punterPuzzleSpec = {
+	number: 13,
+	solveBy: "20 Feb",
+	dispenserSpec: [undefined, "duu", "Ud", "ed", "NSW"],
+
+	mapSpec: [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+              [1, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1],
+              [1, 2, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1],				
+	          [1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 9, 1],
+	          [1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1],
+	          [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1],
+		      [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+		     ],
+
+	hintSpec: {coord: [2, 3], direction:"u"},
 	solutionSpec: [2, 3, 1, 3, 1, 1, 1, 2, 2]
 };
-
+*/
+/* TEST PUZZLE 4 third kin*/
+let punterPuzzleSpec = {
+	number: 13,
+	solveBy: "20 Feb",
+	//dispenserSpec: [undefined, "d", "Wue", "U", "ueSD"], 3 min
+	//dispenserSpec: [undefined, "uUWD", "ueS", "e", "d"], 2.5 min
+	dispenserSpec: [undefined, "d", "ueU", "S", "uWeD"], /*5 min*/
+	//dispenserSpec: [undefined, "uUee", "duW", "D", "S"], /*20 min*/
+	//dispenserSpec: [undefined, "UuWS", "uee", "d", "D"], 1 min
+	mapSpec: [[1,1,1,1,1,1,1,1,1,1],
+			  [1,0,0,0,1,1,0,0,0,1],
+			  [1,0,0,0,2,1,9,0,0,1],
+			  [1,0,0,0,1,0,1,0,0,1],
+			  [1,0,0,0,0,0,0,0,0,1],
+			  [1,1,1,1,1,1,1,1,1,1]
+			 ], 
+	hintSpec: {coord: [4, 3], direction:"e"},
+	solutionSpec: [2, 4, 4, 3, 4, 1, 2, 4, 2]
+};
 /*
 let punterPuzzleSpec = {
 	number: 23,
