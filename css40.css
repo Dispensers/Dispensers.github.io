@@ -912,7 +912,7 @@ body {
 
 .Torso {background-color:#FAFAFA;}
 
-.Turns {border:none; background-color:transparent; text-align:left; font-size:4em;}
+.Turns {border:none; margin:0; background-color:transparent; color:black; text-align:left; font-size:4em;}
 
 /* .Wall {background-color:#807873;} */
  .Wall {background-color:#ebd5ab;}
