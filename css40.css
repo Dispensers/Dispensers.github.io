@@ -1,0 +1,946 @@
+body {
+	font-family:Helvetica, Arial, 'sans-serif';
+	margin:0;
+	background-color:black;
+}
+
+#infoWall {
+	position:absolute;
+	height:567em;
+	width:60em;
+	grid-template-rows:
+		[riw-s riwUkraineFlag-s]
+		3fr
+		[riwUkraineFlag-e riwName-s]
+		1fr
+		[riwCtrlBack-s]
+		5fr
+		[riwCtrlBack-e]
+		1fr
+		[riwName-e riwPuzzleData-s]
+		9fr
+		[riwPuzzleData-e riwSeparator-1-s]
+		1fr
+		[riwSeparator-1-e]
+		2fr
+		[riwTTFeaturedWord-s]
+		5fr
+		[riwTCFeaturedWord-s]
+		1fr
+		[riwTTFeaturedWord-e]
+		22fr
+		[riwTCFeaturedWord-e]
+		1fr
+		[riwSurroundInstructions-s]
+		2fr
+		[riwTTInstructions-s]
+		5fr
+		[riwTCInstructions-1-s]
+		2fr
+		[riwTTInstructions-e]
+		4fr
+		[riwTCInstructions-1-e riwTCInstructions-2-s]
+		8fr
+		[riwTCInstructions-2-e riwTCInstructions-3-s]
+		6fr
+		[riwTCInstructions-3-e]
+		3fr
+		[riwSurroundInstructions-e riwTTPublishedPuzzles-s]
+		5fr
+		[riwTCPublishedPuzzles-2-s]
+		2fr
+		[riwTTPublishedPuzzles-e]
+		10fr
+		[riwTCPublishedPuzzles-2-e]
+/*		12fr
+		[riwTCPublishedPuzzles-2-e] */
+		3fr
+		[riwTTOtherPuzzles-s]
+		5fr
+		[riwTCDispensersEta-s]
+		2fr
+		[riwTTOtherPuzzles-e]
+		4fr
+		[riwTCDispensersEta-e riwTCDispensersLambda-s]
+		6fr
+		[riwTCDispensersLambda-e riwTCDispensersOmega-s]
+		6fr
+		[riwTCDispensersOmega-e riwTCDispensersPi-s]
+		6fr
+		[riwTCDispensersPi-e riwTCLadderet-s]
+		6fr
+		[riwTCLadderet-e]
+		3fr
+		[riwSeparator-2-s]
+		3fr
+		[riwSeparator-2-e riwDoor-s]
+		120fr
+		[riwDoor-e riwSeparator-3-s]
+		3fr
+		[riwSeparator-3-e]
+		2fr
+		[riwTTWhereIPost-s]
+		5fr
+		[riwTCFacebook-s]
+		2fr
+		[riwTTWhereIPost-e]
+		4fr
+		[riwTCFacebook-e riwTCMastodon-s]
+		6fr
+		[riwTCMastodon-e riwTCReddit-s]
+		6fr
+		[riwTCReddit-e riwTCTwitter-s]
+		6fr
+		[riwTCTwitter-e]
+		3fr
+		[riwTTLazyDog-s]
+		5fr
+		[riwTCLazyDog-1-s]
+		1fr
+		[riwTTLazyDog-e]
+		34fr
+		[riwTCLazyDog-1-e riwSeparator-4-s]
+		1fr
+		[riwSeparator-4-e riwTCLazyDog-2-s]
+		109fr
+		[riwTCLazyDog-2-e riwSeparator-5-s]
+		3fr
+		[riwSeparator-5-e riwTCLazyDog-3-s]
+		100fr
+		[riwTCLazyDog-3-e riwTCLazyDog-4-s]
+		10fr
+		[riwTCLazyDog-4-e]
+		3fr
+		[riwCopyright-s]
+		2fr
+		[riwCopyright-e riw-e];		
+ 	grid-template-columns:
+		[ciw-s ciwDoor-s ciwSeparator-s ciwSurroundInstructions-s]
+		2fr
+		[ciwCtrlBack-s]
+		1fr
+		[ciwPuzzleData-s ciwTT-s ciwTC-s ciwSeparator-45-s ciwCopyright-s]
+		4fr
+		[ciwCtrlBack-e]
+		3fr
+		[ciwNameForeground-s]
+		5fr
+		[ciwNameBackground-s]
+		30fr
+		[ciwNameBackground-e]
+		5fr
+		[ciwNameForeground-e]
+		7fr
+		[ciwPuzzleData-e ciwTT-e ciwTC-e ciwSeparator-45-e ciwCopyright-e ciwUkraineFlag-s]
+		3fr
+		[ciwDoor-e ciwSurroundInstructions-e ciwSeparator-e ciwUkraineFlag-e ciw-e];
+}
+
+#iwCtrlBack {
+	width:5em;
+	height:5em;
+	grid-row:riwCtrlBack-s/riwCtrlBack-e;
+	grid-column:ciwCtrlBack-s/ciwCtrlBack-e;
+}
+
+#iwNameBackground {grid-row:riwName-s/riwName-e; grid-column:ciwNameBackground-s/ciwNameBackground-e;}
+#iwNameForeground {grid-row:riwName-s/riwName-e; grid-column:ciwNameForeground-s/ciwNameForeground-e;}
+
+#iwUkraineFlag {
+	width:3em;
+	height:3em;
+	grid-row:riwUkraineFlag-s/riwUkraineFlag-e;
+	grid-column:ciwUkraineFlag-s/ciwUkraineFlag-e;
+}
+
+#iwPuzzleData {
+	border:none;
+	margin:0;
+	padding:0;
+	font-size:2.5em;
+	text-align:center;
+	background-color:transparent;
+	color:black;
+	grid-row:riwPuzzleData-s/riwPuzzleData-e;
+	grid-column:ciwPuzzleData-s/ciwPuzzleData-e;
+}
+
+#iwSeparator-1 {
+	background-color:transparent;
+	border-style:solid;
+	border-color:black;
+	border-width:0.1em 0 0 0;
+	grid-row:riwSeparator-1-s/riwSeparator-1-e;
+	grid-column:ciwSeparator-s/ciwSeparator-e;
+}
+
+#iwSeparator-4 {
+	border-width:0 0 0.5em 0;
+	grid-row:riwSeparator-4-s/riwSeparator-4-e;
+	grid-column:ciwSeparator-45-s/ciwSeparator-45-e;
+}
+
+#iwSeparator-5 {
+	border-width:0.5em 0 0.5em 0;
+	grid-row:riwSeparator-5-s/riwSeparator-5-e;
+	grid-column:ciwSeparator-45-s/ciwSeparator-45-e;
+}
+
+#iwTTFeaturedWord {grid-row:riwTTFeaturedWord-s/riwTTFeaturedWord-e; grid-column:ciwTT-s/ciwTT-e;}
+
+#iwTCFeaturedWord {
+	text-align:justify;
+	border:none;
+	padding:0 0.5em 0 0.5em;
+	font-size:2.5em;
+	grid-row:riwTCFeaturedWord-s/riwTCFeaturedWord-e;
+	grid-column:ciwTC-s/ciwTC-e;
+}
+
+#iwTTInstructions {grid-row:riwTTInstructions-s/riwTTInstructions-e; grid-column:ciwTT-s/ciwTT-e;}
+#iwTCInstructions-1 {grid-row:riwTCInstructions-1-s/riwTCInstructions-1-e; grid-column:ciwTC-s/ciwTC-e;}
+#iwTCInstructions-2 {grid-row:riwTCInstructions-2-s/riwTCInstructions-2-e; grid-column:ciwTC-s/ciwTC-e;}
+#iwTCInstructions-3 {grid-row:riwTCInstructions-3-s/riwTCInstructions-3-e; grid-column:ciwTC-s/ciwTC-e;}
+
+#iwSurroundInstructions {
+	width:60em;
+	height:30em;
+	grid-row:riwSurroundInstructions-s/riwSurroundInstructions-e;
+	grid-column:ciwSurroundInstructions-s/ciwSurroundInstructions-e;
+}
+
+#iwTTPublishedPuzzles {grid-row:riwTTPublishedPuzzles-s/riwTTPublishedPuzzles-e; grid-column:ciwTT-s/ciwTT-e;}
+#iwTCPublishedPuzzles-1 {grid-row:riwTCPublishedPuzzles-1-s/riwTCPublishedPuzzles-1-e; grid-column:ciwTC-s/ciwTC-e;}
+#iwTCPublishedPuzzles-2 {overflow:scroll; grid-row:riwTCPublishedPuzzles-2-s/riwTCPublishedPuzzles-2-e; grid-column:ciwTC-s/ciwTC-e;}
+
+#iwTTOtherPuzzles {grid-row:riwTTOtherPuzzles-s/riwTTOtherPuzzles-e; grid-column:ciwTT-s/ciwTT-e;}
+
+#iwTCDispensersEta {
+	border-bottom-width:1px;
+	grid-row:riwTCDispensersEta-s/riwTCDispensersEta-e;
+	grid-column:ciwTC-s/ciwTC-e;
+}
+
+#iwTCDispensersLambda {
+	border-bottom-width:1px;
+	grid-row:riwTCDispensersLambda-s/riwTCDispensersLambda-e;
+	grid-column:ciwTC-s/ciwTC-e;
+}
+
+#iwTCDispensersOmega {
+	border-bottom-width:1px;
+	grid-row:riwTCDispensersOmega-s/riwTCDispensersOmega-e;
+	grid-column:ciwTC-s/ciwTC-e;
+}
+
+#iwTCDispensersPi {
+	border-bottom-width:1px;
+	grid-row:riwTCDispensersPi-s/riwTCDispensersPi-e;
+	grid-column:ciwTC-s/ciwTC-e;
+}
+
+#iwTCLadderet {
+	border-bottom-width:1px;
+	grid-row:riwTCLadderet-s/riwTCLadderet-e;
+	grid-column:ciwTC-s/ciwTC-e;
+}
+
+#iwTTWhereIPost {grid-row:riwTTWhereIPost-s/riwTTWhereIPost-e; grid-column:ciwTT-s/ciwTT-e;}
+
+#iwTCFacebook {
+	border-bottom-width:1px;
+	grid-row:riwTCFacebook-s/riwTCFacebook-e;
+	grid-column:ciwTC-s/ciwTC-e;
+}
+
+#iwTCMastodon {
+	border-bottom-width:1px;
+	grid-row:riwTCMastodon-s/riwTCMastodon-e;
+	grid-column:ciwTC-s/ciwTC-e;
+}
+
+#iwTCReddit {
+	border-bottom-width:1px;
+	grid-row:riwTCReddit-s/riwTCReddit-e;
+	grid-column:ciwTC-s/ciwTC-e;
+}
+
+#iwTCTwitter {
+	border-bottom-width:0;
+	grid-row:riwTCTwitter-s/riwTCTwitter-e;
+	grid-column:ciwTC-s/ciwTC-e;
+}
+
+#iwTTLazyDog {grid-row:riwTTLazyDog-s/riwTTLazyDog-e; grid-column:ciwTT-s/ciwTT-e;}
+
+#iwTCLazyDog-1 {
+	text-align:justify;
+	border:none;
+	padding:0 0.5em 0 0.5em;
+	font-size:2.5em;
+	grid-row:riwTCLazyDog-1-s/riwTCLazyDog-1-e;
+	grid-column:ciwTC-s/ciwTC-e;
+}
+
+#iwTCLazyDog-2 {
+	height:109em;
+	width:54em;
+	grid-row:riwTCLazyDog-2-s/riwTCLazyDog-2-e;
+	grid-column:ciwTC-s/ciwTC-e;
+}
+
+#iwTCLazyDog-3 {
+	height:100em;
+	width:54em;
+	grid-row:riwTCLazyDog-3-s/riwTCLazyDog-3-e;
+	grid-column:ciwTC-s/ciwTC-e;
+}
+
+#iwTCLazyDog-4 {
+	text-align:center;
+	border:none;
+	padding:0 0.5em 0 0.5em;
+	font-size:2em;
+	grid-row:riwTCLazyDog-4-s/riwTCLazyDog-4-e;
+	grid-column:ciwTC-s/ciwTC-e;
+}
+
+#iwCopyright {
+	background-color:transparent;
+	color:black;
+	text-align:center;
+	grid-row:riwCopyright-s/riwCopyright-e;
+	grid-column:ciwCopyright-s/ciwCopyright-e;
+}
+
+#iwSeparator-2 {grid-row:riwSeparator-2-s/riwSeparator-2-e; grid-column:ciwSeparator-s/ciwSeparator-e;}
+#iwSeparator-3 {grid-row:riwSeparator-3-s/riwSeparator-3-e; grid-column:ciwSeparator-s/ciwSeparator-e;}
+
+
+#iwDoor {
+	grid-row:riwDoor-s/riwDoor-e;
+	grid-column:ciwDoor-s/ciwDoor-e;
+	height:120em;
+	width:60em;
+	display:grid;
+	grid-template-rows:
+		[riwd-s riwdSurroundDemonstration-s]
+		3fr
+		[riwdCtrlDemonstration-s riwdCrossTick-s]
+		7fr
+		[riwdCtrlDemonstration-e riwdCrossTick-e]
+		3fr
+		[riwdSurroundDemonstration-e riwdCtrlTop-s riwdSpotTop-s]
+		6fr
+		[riwdCtrlTop-e riwdSpotTop-e]
+		3fr
+		[riwdPanel-s]
+		76fr
+		[riwdPanel-e]
+		3fr
+		[riwdCtrlBackward-s riwdCtrlForward-s]
+		1fr
+		[riwdSpotBackward-s riwdSpotForward-s]
+		5fr
+		[riwdSpotBackward-e riwdSpotForward-e]
+		1fr
+		[riwdCtrlBackward-e riwdCtrlForward-e]
+		3fr
+		[riwdCtrlBottom-s riwdSpotBottom-s]
+		6fr
+		[riwdCtrlBottom-e riwdSpotBottom-e]
+		3fr
+		[riwd-e];
+	grid-template-columns:
+		[ciwd-s]
+		3fr
+		[ciwdPanel-s ciwdCtrlInformation-s ciwdCtrlReset-s]
+		10fr
+		[ciwdSurroundDemonstration-s]
+		3fr
+		[ciwdCtrlDemonstration-s]
+		2fr
+		[ciwdCtrlBackward-s]
+		1fr
+		[ciwdCtrlInformation-e]
+		1fr
+		[ciwdSpotBackward-s]
+		4fr
+		[ciwdSpotBackward-e ciwdCtrlBackward-e ciwdCtrlHint-s]
+		3fr
+		[ciwdSpotHint-s ciwdSpotReset-s]
+		6fr
+		[ciwdSpotHint-e ciwdSpotReset-e]
+		3fr
+		[ciwdCtrlHint-e ciwdCtrlForward-s ciwdSpotForward-s]
+		4fr
+		[ciwdSpotForward-e]
+		1fr
+		[ciwdCtrlSolution-s]
+		1fr
+		[ciwdCtrlForward-e]
+		2fr
+		[ciwdCtrlDemonstration-e]
+		2fr
+		[ciwdSpotSolution-s]
+		1fr
+		[ciwdSurroundDemonstration-e]
+		5fr
+		[ciwdSpotSolution-e ciwdCrossTick-s]
+		5fr
+		[ciwdPanel-e ciwdCtrlSolution-e ciwdCtrlReset-e ciwdCrossTick-e]
+		3fr
+		[ciwd-e];
+}
+
+#iwdCtrlDemonstration {
+	grid-row:riwdCtrlDemonstration-s/riwdCtrlDemonstration-e;
+	grid-column:ciwdCtrlDemonstration-s/ciwdCtrlDemonstration-e;
+	text-align:center;
+	border:none;
+	background-color:#484848;
+	color:white;
+	font-size:3em;
+}
+
+#iwdSurroundDemonstration {
+	width:34em;
+	height:13em;
+	grid-row:riwdSurroundDemonstration-s/riwdSurroundDemonstration-e;
+	grid-column:ciwdSurroundDemonstration-s/ciwdSurroundDemonstration-e;
+}
+
+#iwdCrossTick {display:none; grid-row:riwdCrossTick-s/riwdCrossTick-e; grid-column:ciwdCrossTick-s/ciwdCrossTick-e;}
+
+#iwdCtrlInformation {grid-row:riwdCtrlTop-s/riwdCtrlTop-e; grid-column:ciwdCtrlInformation-s/ciwdCtrlInformation-e;}
+
+#iwdCtrlHint {grid-row:riwdCtrlTop-s/riwdCtrlTop-e; grid-column:ciwdCtrlHint-s/ciwdCtrlHint-e;}
+#iwdSpotHint {grid-row:riwdSpotTop-s/riwdSpotTop-e; grid-column:ciwdSpotHint-s/ciwdSpotHint-e;}
+
+#iwdCtrlSolution {grid-row:riwdCtrlTop-s/riwdCtrlTop-e; grid-column:ciwdCtrlSolution-s/ciwdCtrlSolution-e;}
+#iwdSpotSolution {grid-row:riwdSpotTop-s/riwdSpotTop-e; grid-column:ciwdSpotSolution-s/ciwdSpotSolution-e;}
+
+#iwdCtrlReset {grid-row:riwdCtrlBottom-s/riwdCtrlBottom-e; grid-column:ciwdCtrlReset-s/ciwdCtrlReset-e;}
+#iwdSpotReset {grid-row:riwdSpotBottom-s/riwdSpotBottom-e; grid-column:ciwdSpotReset-s/ciwdSpotReset-e;}
+
+#iwdCtrlBackward {grid-row:riwdCtrlBackward-s/riwdCtrlBackward-e; grid-column:ciwdCtrlBackward-s/ciwdCtrlBackward-e;}
+#iwdCtrlBackwardFlasher {grid-row:riwdCtrlBackward-s/riwdCtrlBackward-e; grid-column:ciwdCtrlBackward-s/ciwdCtrlBackward-e;}
+#iwdSpotBackward {grid-row:riwdSpotBackward-s/riwdSpotBackward-e; grid-column:ciwdSpotBackward-s/ciwdSpotBackward-e;}
+
+#iwdCtrlForward {grid-row:riwdCtrlForward-s/riwdCtrlForward-e; grid-column:ciwdCtrlForward-s/ciwdCtrlForward-e;}
+#iwdCtrlForwardFlasher {grid-row:riwdCtrlForward-s/riwdCtrlForward-e; grid-column:ciwdCtrlForward-s/ciwdCtrlForward-e;}
+#iwdSpotForward {grid-row:riwdSpotForward-s/riwdSpotForward-e; grid-column:ciwdSpotForward-s/ciwdSpotForward-e;}
+
+#iwdPanel {
+	grid-row:riwdPanel-s/riwdPanel-e;
+	grid-column:ciwdPanel-s/ciwdPanel-e;
+	display:grid;
+	height:76em;
+	width:54em;
+	background-color:white;
+	grid-template-rows:
+		[riwdp-s riwdpGrid-s]
+		3fr
+		[riwdpCellRow-1-s]
+		6fr
+		[riwdpCellRow-1-e riwdpCellRow-2-s]
+		6fr
+		[riwdpCellRow-2-e riwdpCellRow-3-s]
+		6fr
+		[riwdpCellRow-3-e riwdpCellRow-4-s]
+		6fr
+		[riwdpCellRow-4-e riwdpCellRow-5-s]
+		6fr
+		[riwdpCellRow-5-e riwdpCellRow-6-s]
+		6fr
+		[riwdpCellRow-6-e riwdpCellRow-7-s]
+		6fr
+		[riwdpCellRow-7-e]
+		3fr
+		[riwdpGrid-e riwdpWordTop-s]
+		2fr
+		[riwdpSpotWordTop-s]
+		5fr
+		[riwdpSpotWordTop-e]
+		2fr
+		[riwdpWordTop-e riwdpWordCentre-s]
+		2fr
+		[riwdpSpotWordCentre-s]
+		5fr
+		[riwdpSpotWordCentre-e]
+		2fr
+		[riwdpWordCentre-e riwdpWordBottom-s]
+		2fr
+		[riwdpSpotWordBottom-s]
+		5fr
+		[riwdpSpotWordBottom-e]
+		2fr
+		[riwdpWordBottom-e]
+		1fr
+		[riwdp-e];
+	grid-template-columns:
+		[ciwdp-s]
+		3fr
+		[ciwdpGrid-s ciwdpWordLeft-s]
+		3fr
+		[ciwdpCellColumn-1-s]
+		3fr
+		[ciwdpSpotWord4-s]
+		1fr
+		[ciwdpSpotWord1-s]
+		2fr
+		[ciwdpCellColumn-1-e ciwdpCellColumn-2-s]
+		1fr
+		[ciwdpSpotWord4-e]
+		1fr
+		[ciwdpSpotWord1-e]
+		1fr
+		[ciwdpWordCentre-s]
+		3fr
+		[ciwdpCellColumn-2-e ciwdpCellColumn-3-s]
+		6fr
+		[ciwdpCellColumn-3-e ciwdpCellColumn-4-s]
+		1fr
+		[ciwdpSpotWordCentre-s]
+		2fr
+		[ciwdpWordLeft-e ciwdpWordRight-s]
+		2fr
+		[ciwdpSpotWordCentre-e]
+		1fr
+		[ciwdpCellColumn-4-e ciwdpCellColumn-5-s]
+		6fr
+		[ciwdpCellColumn-5-e ciwdpCellColumn-6-s]
+		3fr
+		[ciwdpWordCentre-e ciwdpSpotWord5-s]
+		3fr
+		[ciwdpCellColumn-6-e ciwdpCellColumn-7-s ciwdpSpotWord2-s]
+		1fr
+		[ciwdpSpotWord5-e]
+		3fr
+		[ciwdpSpotWord2-e]
+		2fr
+		[ciwdpCellColumn-7-e]
+		3fr
+		[ciwdpGrid-e ciwdpWordRight-e]
+		3fr
+		[ciwdp-e];
+}
+
+#iwdpGrid {
+	z-index:5;
+	width:48em;
+	height:48em;
+	opacity:1;
+	grid-row:riwdpGrid-s/riwdpGrid-e;
+	grid-column:ciwdpGrid-s/ciwdpGrid-e;
+}
+
+#iwdpHoleTop {grid-row:riwdpCellRow-3-s/riwdpCellRow-3-e; grid-column:ciwdpCellColumn-3-s/ciwdpCellColumn-5-e;}
+#iwdpHoleBottom {grid-row:riwdpCellRow-5-s/riwdpCellRow-5-e; grid-column:ciwdpCellColumn-3-s/ciwdpCellColumn-5-e;}
+
+#iwdpCell-12 {grid-row:riwdpCellRow-1-s/riwdpCellRow-1-e; grid-column:ciwdpCellColumn-2-s/ciwdpCellColumn-2-e;}
+#iwdpCell-16 {grid-row:riwdpCellRow-1-s/riwdpCellRow-1-e; grid-column:ciwdpCellColumn-6-s/ciwdpCellColumn-6-e;}
+
+#iwdpCell-21 {grid-row:riwdpCellRow-2-s/riwdpCellRow-2-e; grid-column:ciwdpCellColumn-1-s/ciwdpCellColumn-1-e;}
+#iwdpCell-22 {grid-row:riwdpCellRow-2-s/riwdpCellRow-2-e; grid-column:ciwdpCellColumn-2-s/ciwdpCellColumn-2-e;}
+#iwdpCell-23 {grid-row:riwdpCellRow-2-s/riwdpCellRow-2-e; grid-column:ciwdpCellColumn-3-s/ciwdpCellColumn-3-e;}
+#iwdpCell-24 {grid-row:riwdpCellRow-2-s/riwdpCellRow-2-e; grid-column:ciwdpCellColumn-4-s/ciwdpCellColumn-4-e;}
+#iwdpCell-25 {grid-row:riwdpCellRow-2-s/riwdpCellRow-2-e; grid-column:ciwdpCellColumn-5-s/ciwdpCellColumn-5-e;}
+#iwdpCell-26 {grid-row:riwdpCellRow-2-s/riwdpCellRow-2-e; grid-column:ciwdpCellColumn-6-s/ciwdpCellColumn-6-e;}
+#iwdpCell-27 {grid-row:riwdpCellRow-2-s/riwdpCellRow-2-e; grid-column:ciwdpCellColumn-7-s/ciwdpCellColumn-7-e;}
+
+#iwdpCell-32 {grid-row:riwdpCellRow-3-s/riwdpCellRow-3-e; grid-column:ciwdpCellColumn-2-s/ciwdpCellColumn-2-e;}
+#iwdpCell-36 {grid-row:riwdpCellRow-3-s/riwdpCellRow-3-e; grid-column:ciwdpCellColumn-6-s/ciwdpCellColumn-6-e;}
+
+#iwdpCell-41 {grid-row:riwdpCellRow-4-s/riwdpCellRow-4-e; grid-column:ciwdpCellColumn-1-s/ciwdpCellColumn-1-e;}
+#iwdpCell-42 {grid-row:riwdpCellRow-4-s/riwdpCellRow-4-e; grid-column:ciwdpCellColumn-2-s/ciwdpCellColumn-2-e;}
+#iwdpCell-43 {grid-row:riwdpCellRow-4-s/riwdpCellRow-4-e; grid-column:ciwdpCellColumn-3-s/ciwdpCellColumn-3-e;}
+#iwdpCell-44 {grid-row:riwdpCellRow-4-s/riwdpCellRow-4-e; grid-column:ciwdpCellColumn-4-s/ciwdpCellColumn-4-e;}
+#iwdpCell-45 {grid-row:riwdpCellRow-4-s/riwdpCellRow-4-e; grid-column:ciwdpCellColumn-5-s/ciwdpCellColumn-5-e;}
+#iwdpCell-46 {grid-row:riwdpCellRow-4-s/riwdpCellRow-4-e; grid-column:ciwdpCellColumn-6-s/ciwdpCellColumn-6-e;}
+#iwdpCell-47 {grid-row:riwdpCellRow-4-s/riwdpCellRow-4-e; grid-column:ciwdpCellColumn-7-s/ciwdpCellColumn-7-e;}
+
+#iwdpCell-52 {grid-row:riwdpCellRow-5-s/riwdpCellRow-5-e; grid-column:ciwdpCellColumn-2-s/ciwdpCellColumn-2-e;}
+#iwdpCell-56 {grid-row:riwdpCellRow-5-s/riwdpCellRow-5-e; grid-column:ciwdpCellColumn-6-s/ciwdpCellColumn-6-e;}
+
+#iwdpCell-61 {grid-row:riwdpCellRow-6-s/riwdpCellRow-6-e; grid-column:ciwdpCellColumn-1-s/ciwdpCellColumn-1-e;}
+#iwdpCell-62 {grid-row:riwdpCellRow-6-s/riwdpCellRow-6-e; grid-column:ciwdpCellColumn-2-s/ciwdpCellColumn-2-e;}
+#iwdpCell-63 {grid-row:riwdpCellRow-6-s/riwdpCellRow-6-e; grid-column:ciwdpCellColumn-3-s/ciwdpCellColumn-3-e;}
+#iwdpCell-64 {grid-row:riwdpCellRow-6-s/riwdpCellRow-6-e; grid-column:ciwdpCellColumn-4-s/ciwdpCellColumn-4-e;}
+#iwdpCell-65 {grid-row:riwdpCellRow-6-s/riwdpCellRow-6-e; grid-column:ciwdpCellColumn-5-s/ciwdpCellColumn-5-e;}
+#iwdpCell-66 {grid-row:riwdpCellRow-6-s/riwdpCellRow-6-e; grid-column:ciwdpCellColumn-6-s/ciwdpCellColumn-6-e;}
+#iwdpCell-67 {grid-row:riwdpCellRow-6-s/riwdpCellRow-6-e; grid-column:ciwdpCellColumn-7-s/ciwdpCellColumn-7-e;}
+
+#iwdpCell-72 {grid-row:riwdpCellRow-7-s/riwdpCellRow-7-e; grid-column:ciwdpCellColumn-2-s/ciwdpCellColumn-2-e;}
+#iwdpCell-76 {grid-row:riwdpCellRow-7-s/riwdpCellRow-7-e; grid-column:ciwdpCellColumn-6-s/ciwdpCellColumn-6-e;}
+
+#iwdpWord-1 {grid-row:riwdpWordTop-s/riwdpWordTop-e; grid-column:ciwdpWordLeft-s/ciwdpWordLeft-e;}
+#iwdpWord-2 {grid-row:riwdpWordTop-s/riwdpWordTop-e; grid-column:ciwdpWordRight-s/ciwdpWordRight-e;}
+#iwdpWord-3 {grid-row:riwdpWordCentre-s/riwdpWordCentre-e; grid-column:ciwdpWordCentre-s/ciwdpWordCentre-e;}
+#iwdpWord-4 {grid-row:riwdpWordBottom-s/riwdpWordBottom-e; grid-column:ciwdpWordLeft-s/ciwdpWordLeft-e;}
+#iwdpWord-5 {grid-row:riwdpWordBottom-s/riwdpWordBottom-e; grid-column:ciwdpWordRight-s/ciwdpWordRight-e;}
+
+#iwdpSpotWord-1 {grid-row:riwdpSpotWordTop-s/riwdpSpotWordTop-e; grid-column:ciwdpSpotWord1-s/ciwdpSpotWord1-e;}
+#iwdpSpotWord-2 {grid-row:riwdpSpotWordTop-s/riwdpSpotWordTop-e; grid-column:ciwdpSpotWord2-s/ciwdpSpotWord2-e;}
+#iwdpSpotWord-3 {grid-row:riwdpSpotWordCentre-s/riwdpSpotWordCentre-e; grid-column:ciwdpSpotWordCentre-s/ciwdpSpotWordCentre-e;}
+#iwdpSpotWord-4 {grid-row:riwdpSpotWordBottom-s/riwdpSpotWordBottom-e; grid-column:ciwdpSpotWord4-s/ciwdpSpotWord4-e;}
+#iwdpSpotWord-5 {grid-row:riwdpSpotWordBottom-s/riwdpSpotWordBottom-e; grid-column:ciwdpSpotWord5-s/ciwdpSpotWord5-e;}
+
+#iwdpWord-1-spelling {background-color:white; color:black;}
+#iwdpWord-2-spelling {background-color:white; color:black;}
+#iwdpWord-3-spelling {background-color:white; color:black;}
+#iwdpWord-4-spelling {background-color:white; color:black;}
+#iwdpWord-5-spelling {background-color:white; color:black;}
+
+
+
+#mainWall {
+	position:absolute;
+	height:112em;
+	width:60em;
+	grid-template-rows:
+		[rmw-s]
+		3fr
+		[rmwName-s rmwCrossTick-s]
+		7fr
+		[rmwName-e rmwCrossTick-e rmwDoor-s]
+		102fr
+		[rmwDoor-e rmw-e];
+ 	grid-template-columns:
+		[cmw-s cmwDoor-s]
+		13fr
+		[cmwNameForeground-s]
+		5fr
+		[cmwNameBackground-s]
+		24fr
+		[cmwNameBackground-e]
+		5fr
+		[cmwNameForeground-e]
+		5fr
+		[cmwCrossTick-s]
+		5fr
+		[cmwCrossTick-e]
+		3fr
+		[cmwDoor-e cmw-e];
+}
+
+#mwNameBackground {grid-row:rmwName-s/rmwName-e; grid-column:cmwNameBackground-s/cmwNameBackground-e;}
+#mwNameForeground {grid-row:rmwName-s/rmwName-e; grid-column:cmwNameForeground-s/cmwNameForeground-e;}
+
+#mwCrossTick {grid-row:rmwCrossTick-s/rmwCrossTick-e; grid-column:cmwCrossTick-s/cmwCrossTick-e;}
+			
+#mwDoor {
+	grid-row:rmwDoor-s/rmwDoor-e;
+	grid-column:cmwDoor-s/cmwDoor-e;
+	display:grid;
+	height:102em;
+	width:60em;
+	grid-template-rows:
+		[rmwd-s rmwdSurroundInformation-s]
+		3fr
+		[rmwdCtrlTop-s]
+		6fr
+		[rmwdCtrlTop-e]
+		3fr
+		[rmwdSurroundInformation-e rmwdPanel-s]
+		68fr
+		[rmwdPanel-e]
+		3fr
+		[rmwdCtrlNESW-s]
+		7fr
+		[rmwdCtrlNESW-e]
+		2fr
+		[rmwdCtrlBackFlag-s]
+		1fr
+		[rmwdCtrlBottom-s]
+		1fr
+		[rmwdCtrlBackFlag-e]
+		5fr
+		[rmwdCtrlBottom-e]
+		3fr
+		[rmwd-e];
+	grid-template-columns:
+		[cmwd-s cmwdSurroundInformation-s]
+		3fr
+		[cmwdPanel-s cmwdCtrlInformation-s cmwdCtrlReset-s]
+		4fr
+		[cmwdCtrlWest-s]
+		7fr
+		[cmwdCtrlWest-e]
+		1fr
+		[cmwdCtrlReset-e]
+		4fr
+		[cmwdCtrlInformation-e]
+		1fr
+		[cmwdCtrlToggle-s cmwdCtrlNorth-s]
+		2fr
+		[cmwdSurroundInformation-e]
+		2fr
+		[cmwdCtrlHint-s]
+		3fr
+		[cmwdCtrlNorth-e]
+		6fr
+		[cmwdCtrlSouth-s]
+		3fr
+		[cmwdCtrlHint-e cmwdCtrlToggle-e]
+		4fr
+		[cmwdCtrlSouth-e]
+		1fr
+		[cmwdCtrlBack-s cmwdCtrlSolution-s]
+		1fr
+		[cmwdCtrlForward-e]
+		4fr
+		[cmwdCtrlEast-s]
+		7fr
+		[cmwdCtrlEast-e]
+		3fr
+		[cmwdCtrlBackFlag-s]
+		1fr
+		[cmwdCtrlSolution-e cmwdCtrlBack-e cmwdPanel-e]
+		1fr
+		[cmwdCtrlBackFlag-e]
+		2fr
+		[cmwd-e];
+}
+
+#mwdCtrlInformation {grid-row:rmwdCtrlTop-s/rmwdCtrlTop-e; grid-column:cmwdCtrlInformation-s/cmwdCtrlInformation-e;}
+#mwdSurroundInformation {
+	z-index:5;
+	width:22em;
+	height:12em;
+	grid-row:rmwdSurroundInformation-s/rmwdSurroundInformation-e;
+	grid-column:cmwdSurroundInformation-s/cmwdSurroundInformation-e;
+}
+
+#mwdCtrlHint {grid-row:rmwdCtrlTop-s/rmwdCtrlTop-e; grid-column:cmwdCtrlHint-s/cmwdCtrlHint-e;}
+#mwdCtrlSolution {grid-row:rmwdCtrlTop-s/rmwdCtrlTop-e; grid-column:cmwdCtrlSolution-s/cmwdCtrlSolution-e;}
+
+#mwdCtrlNorth {grid-row:rmwdCtrlNESW-s/rmwdCtrlNESW-e; grid-column:cmwdCtrlNorth-s/cmwdCtrlNorth-e;}
+#mwdCtrlNorthFlasher {grid-row:rmwdCtrlNESW-s/rmwdCtrlNESW-e; grid-column:cmwdCtrlNorth-s/cmwdCtrlNorth-e;}
+
+#mwdCtrlEast {grid-row:rmwdCtrlNESW-s/rmwdCtrlNESW-e; grid-column:cmwdCtrlEast-s/cmwdCtrlEast-e;}
+#mwdCtrlEastFlasher {grid-row:rmwdCtrlNESW-s/rmwdCtrlNESW-e; grid-column:cmwdCtrlEast-s/cmwdCtrlEast-e;}
+
+#mwdCtrlSouth {grid-row:rmwdCtrlNESW-s/rmwdCtrlNESW-e; grid-column:cmwdCtrlSouth-s/cmwdCtrlSouth-e;}
+#mwdCtrlSouthFlasher {grid-row:rmwdCtrlNESW-s/rmwdCtrlNESW-e; grid-column:cmwdCtrlSouth-s/cmwdCtrlSouth-e;}
+
+#mwdCtrlWest {grid-row:rmwdCtrlNESW-s/rmwdCtrlNESW-e; grid-column:cmwdCtrlWest-s/cmwdCtrlWest-e;}
+#mwdCtrlWestFlasher {grid-row:rmwdCtrlNESW-s/rmwdCtrlNESW-e; grid-column:cmwdCtrlWest-s/cmwdCtrlWest-e;}
+
+
+#mwdCtrlReset {grid-row:rmwdCtrlBottom-s/rmwdCtrlBottom-e; grid-column:cmwdCtrlReset-s/cmwdCtrlReset-e;}
+#mwdCtrlToggle {grid-row:rmwdCtrlBottom-s/rmwdCtrlBottom-e; grid-column:cmwdCtrlToggle-s/cmwdCtrlToggle-e;}
+
+#mwdCtrlBack {grid-row:rmwdCtrlBottom-s/rmwdCtrlBottom-e; grid-column:cmwdCtrlBack-s/cmwdCtrlBack-e;}
+
+#mwdCtrlBackFlag {
+	width:2em;
+	height:2em;
+	grid-row:rmwdCtrlBackFlag-s/rmwdCtrlBackFlag-e;
+	grid-column:cmwdCtrlBackFlag-s/cmwdCtrlBackFlag-e;
+}
+
+#mwdPanel {
+	grid-row:rmwdPanel-s/rmwdPanel-e;
+	grid-column:cmwdPanel-s/cmwdPanel-e;
+	display:grid;
+	height:68em;
+	width:54em;
+	background-color:white;
+	grid-template-rows:
+		[rmwdp-s rmwdpGrid-s]
+		54fr
+		[rmwdpGrid-e rmwdpTurnsA-s]
+/*		2fr
+		[rmwdpTurnsA-s] */
+		1fr
+		[rmwdpLineTurnsA-s]
+/*		1fr
+		[rmwdpLineTurnsA-e]
+		1fr */
+		2fr
+		[rmwdpLineTurnsA-e rmwdpCtrlTurns-s]
+		1fr
+		[rmwdpTurnsB-s]
+		6fr
+		[rmwdpTurnsA-e]
+		1fr
+		[rmwdpCtrlTurns-e rmwdpLineTurnsB-s]
+		2fr
+/*		1fr
+		[rmwdpLineTurnsB-s]
+		1fr */
+		[rmwdpLineTurnsB-e]
+		1fr
+		[rmwdpTurnsB-e rmwdp-e];
+	grid-template-columns:
+		[cmwdp-s cmwdpGrid-s cmwdpCtrlTurnsA-s]
+		6fr
+		[cmwdpCtrlTurnsA-e cmwdpLineTurns-s cmwdpTurns-s]
+		42fr
+		[cmwdpLineTurns-e cmwdpTurns-e cmwdpCtrlTurnsB-s]
+		6fr
+		[cmwdpCtrlTurnsB-e cmwdpGrid-e cmwdp-e];
+}
+
+#mwdpGrid {
+	z-index:5;
+	width:54em;
+	height:54em;
+	opacity:1;
+	grid-row:rmwdpGrid-s/rmwdpGrid-e;
+	grid-column:cmwdpGrid-s/cmwdpGrid-e;
+}
+
+#mwdpCtrlTurnsA {grid-row:rmwdpCtrlTurns-s/rmwdpCtrlTurns-e; grid-column:cmwdpCtrlTurnsA-s/cmwdpCtrlTurnsA-e;}
+#mwdpCtrlTurnsB {grid-row:rmwdpCtrlTurns-s/rmwdpCtrlTurns-e; grid-column:cmwdpCtrlTurnsB-s/cmwdpCtrlTurnsB-e;}
+
+#mwdpLineTurnsA {grid-row:rmwdpLineTurnsA-s/rmwdpLineTurnsA-e; grid-column:cmwdpLineTurns-s/cmwdpLineTurns-e;}
+#mwdpLineTurnsB {grid-row:rmwdpLineTurnsB-s/rmwdpLineTurnsB-e; grid-column:cmwdpLineTurns-s/cmwdpLineTurns-e;}
+
+#mwdpTurnsA {grid-row:rmwdpTurnsA-s/rmwdpTurnsA-e; grid-column:cmwdpTurns-s/cmwdpTurns-e;}
+#mwdpTurnsB {grid-row:rmwdpTurnsB-s/rmwdpTurnsB-e; grid-column:cmwdpTurns-s/cmwdpTurns-e;}
+
+
+/* code {font-family:"Courier New", "Courier", monospace;} */
+
+.Cell {font-size:4em; border:none; margin:0; text-align:center; padding:0;}
+
+.CrossTick {
+	display:none;
+	padding:0;
+	font-size:3.6em;
+	border-style:none;
+	border-radius:0.3em;
+	margin:0;
+/*	background-color:#FFFF80; */
+	background-color:brown;
+/*	color:black; */
+	color:white;
+	text-align:center;
+}
+
+.CtrlCommon {margin:0; padding:0;}
+
+.CtrlSecondary {text-align:center; border:none; background-color:#585858; color:white; font-size:2.5em;}
+
+/* .CtrlTurns {width:10em; height:10em;} */
+.CtrlTurns {width:6em; height:8em;}
+
+.CtrlNESW {width:7em; height:7em;}
+
+.DemoSeparator {background-color:black;}
+
+.Door {background-color:#ebd5ab;}
+/* .Door {background-color:wheat;} */
+
+.Hole {background-color:black; border:none;}
+
+.InfoOtherPuzzles1 {
+	border-style:dashed;
+	border-color:#606060;
+	border-top-width:0;
+	border-left-width:0;
+	border-right-width:0;
+	padding:0;
+	font-size:2.5em;
+}
+
+.InfoOtherPuzzles2 {
+	border:0;
+	padding:0;
+	font-size:2.5em;
+}
+
+.InfoTopicContent {margin:0; background-color:white; color:black;}
+
+.InfoTopicTitle {
+	overflow:hidden;
+	border:none;
+	margin:0;
+	padding:0.3em 0 0 0;
+	text-align:center;
+	font-size:2.5em;
+	font-variant:small-caps;
+	letter-spacing:0.08em;
+}
+
+.InfoWhereIPost {
+	border-style:dashed;
+	border-color:#606060;
+	border-top-width:0;
+	border-left-width:0;
+	border-right-width:0;
+	padding:0;
+	font-size:2.5em;
+}
+
+.Instructions {
+	text-align:justify;
+	border:none;
+	padding:0 0.5em 0 0.5em;
+	font-size:2.5em;
+}
+
+.Italic {font-style:italic;}
+
+.Limb {background-color:#96E6DA;}
+
+.LineTurns {width:42em; height:2em;}
+
+.MainWallName {padding:0;}
+
+.NoShow {display:none;}
+
+.PublishedPuzzles1 {
+	padding:none;
+	font-size:2em;
+	border-width:0 0 0.2em 0;
+	border-color:black;
+}
+
+.ScreenshotSeparator {
+	background-color:white;
+	border-style:solid;
+	border-color:black;
+}
+
+.SpotW8H8D6 {display:none; z-index:10; width:6em; height:6em;}
+.SpotW8H10D6 {display:none; z-index:10; width:4em; height:5em;}
+
+.Surround {display:none; background-color:yellow;}
+
+.Torso {background-color:#FAFAFA;}
+
+.Turns {border:none; background-color:transparent; text-align:left; font-size:4em;}
+
+/* .Wall {background-color:#807873;} */
+ .Wall {background-color:#ebd5ab;}
+/* .Wall {background-color:#e6d0a8;} */
+
+.WallNameBackground {
+	border-style:none;
+	border-radius:0.4em;
+	margin:0;
+	background-color:#303030;
+	color:transparent;
+}
+
+.WallNameForeground {
+	font-size:3.6em;
+	border:none;
+	margin:0;
+	background-color:transparent;
+	color:white;
+	text-align:center;
+	letter-spacing:0.1em;
+}
+
+.Word {font-size:4em; border-style:none; background-color:white; padding:0; color:black;}
+
+.WordLeft {text-align:left;}
+.WordRight {text-align:right;}
+.WordCentre {text-align:center;}
+
+
+
