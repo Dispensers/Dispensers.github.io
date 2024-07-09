@@ -1,0 +1,879 @@
+body {
+	font-family:Helvetica, Arial, 'sans-serif';
+	margin:0;
+	background-color:black;
+}
+
+#infoWall {
+	position:absolute;
+	height:570em;
+	width:60em;
+	grid-template-rows:
+		[riw-s riwUkraineFlag-s]
+		3fr
+		[riwUkraineFlag-e riwName-s]
+		1fr
+		[riwCtrlBack-s]
+		5fr
+		[riwCtrlBack-e]
+		1fr
+		[riwName-e riwPuzzleData-s]
+		9fr
+		[riwPuzzleData-e riwSeparator-1-s]
+		1fr
+		[riwSeparator-1-e riwSurroundInstructions-s]
+		2fr
+		[riwTTInstructions-s]
+		5fr
+		[riwTCInstructions-1-s]
+		2fr
+		[riwTTInstructions-e]
+		6fr
+		[riwTCInstructions-1-e riwTCInstructions-2-s]
+		48fr
+/*		[riwTCInstructions-2-e riwTCInstructions-3-s]
+		6fr
+		[riwTCInstructions-3-e riwTCInstructions-4-s]
+		5fr
+		[riwTCInstructions-4-e riwTCInstructions-5-s]
+		20fr
+		[riwTCInstructions-5-e riwTCInstructions-6-s]
+		10fr
+		[riwTCInstructions-6-e riwTCInstructions-7-s]
+		6fr */
+		[riwTCInstructions-2-e]
+		3fr
+		[riwSurroundInstructions-e riwTTPublishedPuzzles-s]
+		5fr
+		[riwTCPublishedPuzzles-2-s]
+		2fr
+		[riwTTPublishedPuzzles-e]
+		10fr
+		[riwTCPublishedPuzzles-2-e]
+		3fr
+		[riwTTOtherPuzzles-s]
+		5fr
+		[riwTCDispensersEta-s]
+		2fr
+		[riwTTOtherPuzzles-e]
+		4fr
+		[riwTCDispensersEta-e riwTCDispensersLambda-s]
+		6fr
+		[riwTCDispensersLambda-e riwTCDispensersOmega-s]
+		6fr
+		[riwTCDispensersOmega-e riwTCDispensersPi-s]
+		6fr
+		[riwTCDispensersPi-e riwTCLadderet-s]
+		6fr
+		[riwTCLadderet-e riwTCLooseFit-s]
+		6fr
+		[riwTCLooseFit-e]
+		3fr
+		[riwSeparator-2-s]
+		3fr
+		[riwSeparator-2-e riwDoor-s]
+		112fr
+		[riwDoor-e riwSeparator-3-s]
+		3fr
+		[riwSeparator-3-e]
+		2fr
+		[riwTTWhereIPost-s]
+		5fr
+		[riwTCFacebook-s]
+		2fr
+		[riwTTWhereIPost-e]
+		4fr
+		[riwTCFacebook-e riwTCMastodon-s]
+		6fr
+		[riwTCMastodon-e riwTCReddit-s]
+		6fr
+		[riwTCReddit-e riwTCTwitter-s]
+		6fr
+		[riwTCTwitter-e]
+		3fr
+		[riwTTLazyDog-s]
+		5fr
+		[riwTCLazyDog-1-s]
+		1fr
+		[riwTTLazyDog-e]
+		34fr
+		[riwTCLazyDog-1-e riwSeparator-4-s]
+		1fr
+		[riwSeparator-4-e riwTCLazyDog-2-s]
+		109fr
+		[riwTCLazyDog-2-e riwSeparator-5-s]
+		3fr
+		[riwSeparator-5-e riwTCLazyDog-3-s]
+		100fr
+		[riwTCLazyDog-3-e riwTCLazyDog-4-s]
+		10fr
+		[riwTCLazyDog-4-e]
+		3fr
+		[riwCopyright-s]
+		2fr
+		[riwCopyright-e riw-e];		
+ 	grid-template-columns:
+		[ciw-s ciwDoor-s ciwSeparator-s ciwSurroundInstructions-s]
+		2fr
+		[ciwCtrlBack-s]
+		1fr
+		[ciwPuzzleData-s ciwTT-s ciwTC-s ciwSeparator-45-s ciwCopyright-s]
+		4fr
+		[ciwCtrlBack-e]
+		3fr
+		[ciwNameForeground-s]
+		4fr
+		[ciwNameBackground-s]
+		32fr
+		[ciwNameBackground-e]
+		4fr
+		[ciwNameForeground-e]
+		7fr
+		[ciwPuzzleData-e ciwTT-e ciwTC-e ciwSeparator-45-e ciwCopyright-e ciwUkraineFlag-s]
+		3fr
+		[ciwDoor-e ciwSurroundInstructions-e ciwSeparator-e ciwUkraineFlag-e ciw-e];
+}
+
+#iwCtrlBack {
+	width:5em;
+	height:5em;
+	grid-row:riwCtrlBack-s/riwCtrlBack-e;
+	grid-column:ciwCtrlBack-s/ciwCtrlBack-e;
+}
+
+#iwNameBackground {grid-row:riwName-s/riwName-e; grid-column:ciwNameBackground-s/ciwNameBackground-e;}
+#iwNameForeground {grid-row:riwName-s/riwName-e; grid-column:ciwNameForeground-s/ciwNameForeground-e;}
+
+#iwUkraineFlag {
+	width:3em;
+	height:3em;
+	grid-row:riwUkraineFlag-s/riwUkraineFlag-e;
+	grid-column:ciwUkraineFlag-s/ciwUkraineFlag-e;
+}
+
+#iwPuzzleData {
+	border:none;
+	margin:0;
+	padding:0;
+	font-size:2.5em;
+	text-align:center;
+	background-color:transparent;
+	color:black;
+	grid-row:riwPuzzleData-s/riwPuzzleData-e;
+	grid-column:ciwPuzzleData-s/ciwPuzzleData-e;
+}
+
+#iwSeparator-1 {
+	background-color:transparent;
+	border-style:solid;
+	border-color:black;
+	border-width:0.1em 0 0 0;
+	grid-row:riwSeparator-1-s/riwSeparator-1-e;
+	grid-column:ciwSeparator-s/ciwSeparator-e;
+}
+
+#iwSeparator-4 {
+	border-width:0 0 0.5em 0;
+	grid-row:riwSeparator-4-s/riwSeparator-4-e;
+	grid-column:ciwSeparator-45-s/ciwSeparator-45-e;
+}
+
+#iwSeparator-5 {
+	border-width:0.5em 0 0.5em 0;
+	grid-row:riwSeparator-5-s/riwSeparator-5-e;
+	grid-column:ciwSeparator-45-s/ciwSeparator-45-e;
+}
+
+#iwTTInstructions {grid-row:riwTTInstructions-s/riwTTInstructions-e; grid-column:ciwTT-s/ciwTT-e;}
+#iwTCInstructions-1 {grid-row:riwTCInstructions-1-s/riwTCInstructions-1-e; grid-column:ciwTC-s/ciwTC-e;}
+#iwTCInstructions-2 {grid-row:riwTCInstructions-2-s/riwTCInstructions-2-e; grid-column:ciwTC-s/ciwTC-e;}
+#iwTCInstructions-3 {grid-row:riwTCInstructions-3-s/riwTCInstructions-3-e; grid-column:ciwTC-s/ciwTC-e;}
+#iwTCInstructions-4 {grid-row:riwTCInstructions-4-s/riwTCInstructions-4-e; grid-column:ciwTC-s/ciwTC-e;}
+#iwTCInstructions-5 {grid-row:riwTCInstructions-5-s/riwTCInstructions-5-e; grid-column:ciwTC-s/ciwTC-e;}
+#iwTCInstructions-6 {grid-row:riwTCInstructions-6-s/riwTCInstructions-6-e; grid-column:ciwTC-s/ciwTC-e;}
+#iwTCInstructions-7 {grid-row:riwTCInstructions-7-s/riwTCInstructions-7-e; grid-column:ciwTC-s/ciwTC-e;}
+
+#iwSurroundInstructions {
+	width:60em;
+	height:66em;
+	grid-row:riwSurroundInstructions-s/riwSurroundInstructions-e;
+	grid-column:ciwSurroundInstructions-s/ciwSurroundInstructions-e;
+}
+
+#iwTTPublishedPuzzles {grid-row:riwTTPublishedPuzzles-s/riwTTPublishedPuzzles-e; grid-column:ciwTT-s/ciwTT-e;}
+#iwTCPublishedPuzzles-1 {grid-row:riwTCPublishedPuzzles-1-s/riwTCPublishedPuzzles-1-e; grid-column:ciwTC-s/ciwTC-e;}
+#iwTCPublishedPuzzles-2 {overflow:scroll; grid-row:riwTCPublishedPuzzles-2-s/riwTCPublishedPuzzles-2-e; grid-column:ciwTC-s/ciwTC-e;}
+
+#iwTTOtherPuzzles {grid-row:riwTTOtherPuzzles-s/riwTTOtherPuzzles-e; grid-column:ciwTT-s/ciwTT-e;}
+
+#iwTCDispensersEta {
+	border-bottom-width:1px;
+	grid-row:riwTCDispensersEta-s/riwTCDispensersEta-e;
+	grid-column:ciwTC-s/ciwTC-e;
+}
+
+#iwTCDispensersLambda {
+	border-bottom-width:1px;
+	grid-row:riwTCDispensersLambda-s/riwTCDispensersLambda-e;
+	grid-column:ciwTC-s/ciwTC-e;
+}
+
+#iwTCDispensersOmega {
+	border-bottom-width:1px;
+	grid-row:riwTCDispensersOmega-s/riwTCDispensersOmega-e;
+	grid-column:ciwTC-s/ciwTC-e;
+}
+
+#iwTCDispensersPi {
+	border-bottom-width:1px;
+	grid-row:riwTCDispensersPi-s/riwTCDispensersPi-e;
+	grid-column:ciwTC-s/ciwTC-e;
+}
+
+#iwTCLadderet {
+	border-bottom-width:1px;
+	grid-row:riwTCLadderet-s/riwTCLadderet-e;
+	grid-column:ciwTC-s/ciwTC-e;
+}
+
+#iwTCLooseFit {
+	border-bottom-width:1px;
+	grid-row:riwTCLooseFit-s/riwTCLooseFit-e;
+	grid-column:ciwTC-s/ciwTC-e;
+}
+
+#iwTTWhereIPost {grid-row:riwTTWhereIPost-s/riwTTWhereIPost-e; grid-column:ciwTT-s/ciwTT-e;}
+
+#iwTCFacebook {
+	border-bottom-width:1px;
+	grid-row:riwTCFacebook-s/riwTCFacebook-e;
+	grid-column:ciwTC-s/ciwTC-e;
+}
+
+#iwTCMastodon {
+	border-bottom-width:1px;
+	grid-row:riwTCMastodon-s/riwTCMastodon-e;
+	grid-column:ciwTC-s/ciwTC-e;
+}
+
+#iwTCReddit {
+	border-bottom-width:1px;
+	grid-row:riwTCReddit-s/riwTCReddit-e;
+	grid-column:ciwTC-s/ciwTC-e;
+}
+
+#iwTCTwitter {
+	border-bottom-width:0;
+	grid-row:riwTCTwitter-s/riwTCTwitter-e;
+	grid-column:ciwTC-s/ciwTC-e;
+}
+
+#iwTTLazyDog {grid-row:riwTTLazyDog-s/riwTTLazyDog-e; grid-column:ciwTT-s/ciwTT-e;}
+
+#iwTCLazyDog-1 {
+	text-align:justify;
+	border:none;
+	padding:0 0.5em 0 0.5em;
+	font-size:2.5em;
+	grid-row:riwTCLazyDog-1-s/riwTCLazyDog-1-e;
+	grid-column:ciwTC-s/ciwTC-e;
+}
+
+#iwTCLazyDog-2 {
+	height:109em;
+	width:54em;
+	grid-row:riwTCLazyDog-2-s/riwTCLazyDog-2-e;
+	grid-column:ciwTC-s/ciwTC-e;
+}
+
+#iwTCLazyDog-3 {
+	height:100em;
+	width:54em;
+	grid-row:riwTCLazyDog-3-s/riwTCLazyDog-3-e;
+	grid-column:ciwTC-s/ciwTC-e;
+}
+
+#iwTCLazyDog-4 {
+	text-align:center;
+	border:none;
+	padding:0 0.5em 0 0.5em;
+	font-size:2em;
+	grid-row:riwTCLazyDog-4-s/riwTCLazyDog-4-e;
+	grid-column:ciwTC-s/ciwTC-e;
+}
+
+#iwCopyright {
+	background-color:transparent;
+	color:black;
+	text-align:center;
+	grid-row:riwCopyright-s/riwCopyright-e;
+	grid-column:ciwCopyright-s/ciwCopyright-e;
+}
+
+#iwSeparator-2 {grid-row:riwSeparator-2-s/riwSeparator-2-e; grid-column:ciwSeparator-s/ciwSeparator-e;}
+#iwSeparator-3 {grid-row:riwSeparator-3-s/riwSeparator-3-e; grid-column:ciwSeparator-s/ciwSeparator-e;}
+
+
+#iwDoor {
+	grid-row:riwDoor-s/riwDoor-e;
+	grid-column:ciwDoor-s/ciwDoor-e;
+	height:112em;
+	width:60em;
+	display:grid;
+	grid-template-rows:
+		[riwd-s riwdSurroundDemonstration-s]
+		3fr
+		[riwdCtrlDemonstration-s riwdCrossTick-s]
+		7fr
+		[riwdCtrlDemonstration-e riwdCrossTick-e]
+		3fr
+		[riwdSurroundDemonstration-e riwdCtrlTop-s riwdSpotTop-s]
+		6fr
+		[riwdCtrlTop-e riwdSpotTop-e]
+		3fr
+		[riwdPanel-s]
+		68fr
+		[riwdPanel-e]
+		3fr
+		[riwdCtrlNESW-s]
+		7fr
+		[riwdCtrlNESW-e]
+		2fr
+		[riwdCtrlBackFlag-s]
+		1fr
+		[riwdCtrlBottom-s riwdSpotBottom-s]
+		1fr
+		[riwdCtrlBackFlag-e]
+		5fr
+		[riwdCtrlBottom-e riwdSpotBottom-e]
+		3fr
+		[riwd-e];
+	grid-template-columns:
+		[ciwd-s]
+		3fr
+		[ciwdPanel-s ciwdCtrlInformation-s ciwdCtrlReset-s]
+		3fr
+		[ciwdSpotReset-s]
+		1fr
+		[ciwdCtrlWest-s]
+		5fr
+		[ciwdSpotReset-e]
+		1fr
+		[ciwdSurroundDemonstration-s]
+		1fr
+		[ciwdCtrlWest-e]
+		1fr
+		[ciwdCtrlReset-e]
+		1fr
+		[ciwdCtrlDemonstration-s]
+		3fr
+		[ciwdCtrlInformation-e]
+		1fr
+		[ciwdCtrlToggle-s ciwdCtrlNorth-s]
+		4fr
+		[ciwdCtrlHint-s]
+		1fr
+		[ciwdSpotToggle-s]
+		2fr
+		[ciwdCtrlNorth-e ciwdSpotHint-s]
+		4fr
+		[ciwdSpotToggle-e]
+		2fr
+		[ciwdSpotHint-e ciwdCtrlSouth-s]
+		3fr
+		[ciwdCtrlToggle-e ciwdCtrlHint-e]
+		4fr
+		[ciwdCtrlSouth-e]
+		1fr
+		[ciwdCtrlSolution-s ciwdCtrlBack-s]
+		3fr
+		[ciwdCtrlDemonstration-e]
+		2fr
+		[ciwdSpotSolution-s ciwdSpotBack-s ciwdCtrlEast-s]
+		1fr
+		[ciwdSurroundDemonstration-e]
+		5fr
+		[ciwdSpotSolution-e ciwdSpotBack-e ciwdCrossTick-s]
+		1fr
+		[ciwdCtrlEast-e]
+		3fr
+		[ciwdCtrlBackFlag-s]
+		1fr
+		[ciwdPanel-e ciwdCtrlSolution-e ciwdCtrlBack-e ciwdCrossTick-e]
+		1fr
+		[ciwdCtrlBackFlag-e]
+		2fr
+		[ciwd-e];
+}
+
+#iwdCtrlDemonstration {
+	grid-row:riwdCtrlDemonstration-s/riwdCtrlDemonstration-e;
+	grid-column:ciwdCtrlDemonstration-s/ciwdCtrlDemonstration-e;
+	text-align:center;
+	border:none;
+	background-color:#484848;
+	color:white;
+	font-size:3em;
+}
+
+#iwdSurroundDemonstration {
+	width:34em;
+	height:13em;
+	grid-row:riwdSurroundDemonstration-s/riwdSurroundDemonstration-e;
+	grid-column:ciwdSurroundDemonstration-s/ciwdSurroundDemonstration-e;
+}
+
+#iwdCrossTick {display:none; grid-row:riwdCrossTick-s/riwdCrossTick-e; grid-column:ciwdCrossTick-s/ciwdCrossTick-e;}
+
+#iwdCtrlInformation {grid-row:riwdCtrlTop-s/riwdCtrlTop-e; grid-column:ciwdCtrlInformation-s/ciwdCtrlInformation-e;}
+
+#iwdCtrlHint {grid-row:riwdCtrlTop-s/riwdCtrlTop-e; grid-column:ciwdCtrlHint-s/ciwdCtrlHint-e;}
+#iwdSpotHint {grid-row:riwdSpotTop-s/riwdSpotTop-e; grid-column:ciwdSpotHint-s/ciwdSpotHint-e;}
+
+#iwdCtrlSolution {grid-row:riwdCtrlTop-s/riwdCtrlTop-e; grid-column:ciwdCtrlSolution-s/ciwdCtrlSolution-e;}
+#iwdSpotSolution {grid-row:riwdSpotTop-s/riwdSpotTop-e; grid-column:ciwdSpotSolution-s/ciwdSpotSolution-e;}
+
+#iwdCtrlNorth {grid-row:riwdCtrlNESW-s/riwdCtrlNESW-e; grid-column:ciwdCtrlNorth-s/ciwdCtrlNorth-e;}
+#iwdCtrlNorthFlasher {grid-row:riwdCtrlNESW-s/riwdCtrlNESW-e; grid-column:ciwdCtrlNorth-s/ciwdCtrlNorth-e;}
+#iwdSpotNorth {grid-row:riwdCtrlNESW-s/riwdCtrlNESW-e; grid-column:ciwdCtrlNorth-s/ciwdCtrlNorth-e;}
+
+#iwdCtrlEast {grid-row:riwdCtrlNESW-s/riwdCtrlNESW-e; grid-column:ciwdCtrlEast-s/ciwdCtrlEast-e;}
+#iwdCtrlEastFlasher {grid-row:riwdCtrlNESW-s/riwdCtrlNESW-e; grid-column:ciwdCtrlEast-s/ciwdCtrlEast-e;}
+#iwdSpotEast {grid-row:riwdCtrlNESW-s/riwdCtrlNESW-e; grid-column:ciwdCtrlEast-s/ciwdCtrlEast-e;}
+
+#iwdCtrlSouth {grid-row:riwdCtrlNESW-s/riwdCtrlNESW-e; grid-column:ciwdCtrlSouth-s/ciwdCtrlSouth-e;}
+#iwdCtrlSouthFlasher {grid-row:riwdCtrlNESW-s/riwdCtrlNESW-e; grid-column:ciwdCtrlSouth-s/ciwdCtrlSouth-e;}
+#iwdSpotSouth {grid-row:riwdCtrlNESW-s/riwdCtrlNESW-e; grid-column:ciwdCtrlSouth-s/ciwdCtrlSouth-e;}
+
+#iwdCtrlWest {grid-row:riwdCtrlNESW-s/riwdCtrlNESW-e; grid-column:ciwdCtrlWest-s/ciwdCtrlWest-e;}
+#iwdCtrlWestFlasher {grid-row:riwdCtrlNESW-s/riwdCtrlNESW-e; grid-column:ciwdCtrlWest-s/ciwdCtrlWest-e;}
+#iwdSpotWest {grid-row:riwdCtrlNESW-s/riwdCtrlNESW-e; grid-column:ciwdCtrlWest-s/ciwdCtrlWest-e;}
+
+#iwdCtrlReset {grid-row:riwdCtrlBottom-s/riwdCtrlBottom-e; grid-column:ciwdCtrlReset-s/ciwdCtrlReset-e;}
+#iwdSpotReset {grid-row:riwdSpotBottom-s/riwdSpotBottom-e; grid-column:ciwdSpotReset-s/ciwdSpotReset-e;}
+
+#iwdCtrlToggle {grid-row:riwdCtrlBottom-s/riwdCtrlBottom-e; grid-column:ciwdCtrlToggle-s/ciwdCtrlToggle-e;}
+#iwdSpotToggle {grid-row:riwdSpotBottom-s/riwdSpotBottom-e; grid-column:ciwdSpotToggle-s/ciwdSpotToggle-e;}
+
+#iwdCtrlBack {grid-row:riwdCtrlBottom-s/riwdCtrlBottom-e; grid-column:ciwdCtrlBack-s/ciwdCtrlBack-e;}
+#iwdSpotBack {grid-row:riwdSpotBottom-s/riwdSpotBottom-e; grid-column:ciwdSpotBack-s/ciwdSpotBack-e;}
+
+#iwdCtrlBackFlag {
+	width:2em;
+	height:2em;
+	grid-row:riwdCtrlBackFlag-s/riwdCtrlBackFlag-e;
+	grid-column:ciwdCtrlBackFlag-s/ciwdCtrlBackFlag-e;
+}
+
+#iwdPanel {
+	grid-row:riwdPanel-s/riwdPanel-e;
+	grid-column:ciwdPanel-s/ciwdPanel-e;
+	display:grid;
+	height:68em;
+	width:54em;
+	background-color:white;
+	grid-template-rows:
+		[riwdp-s riwdpGrid-s]
+		54fr
+		[riwdpGrid-e riwdpTurnsA-s]
+		1fr
+		[riwdpLineTurnsA-s]
+		2fr
+		[riwdpLineTurnsA-e riwdpCtrlTurns-s]
+		1fr
+		[riwdpTurnsB-s]
+		6fr
+		[riwdpTurnsA-e]
+		1fr
+		[riwdpCtrlTurns-e riwdpLineTurnsB-s]
+		2fr
+		[riwdpLineTurnsB-e]
+		1fr
+		[riwdpTurnsB-e riwdp-e];
+	grid-template-columns:
+		[ciwdp-s ciwdpGrid-s ciwdpCtrlTurnsA-s]
+		6fr
+		[ciwdpCtrlTurnsA-e ciwdpLineTurns-s ciwdpTurns-s]
+		42fr
+		[ciwdpLineTurns-e ciwdpTurns-e ciwdpCtrlTurnsB-s]
+		6fr
+		[ciwdpCtrlTurnsB-e ciwdpGrid-e ciwdp-e];
+}
+
+#iwdpGrid {
+	z-index:5;
+	width:54em;
+	height:54em;
+	opacity:1;
+	grid-row:riwdpGrid-s/riwdpGrid-e;
+	grid-column:ciwdpGrid-s/ciwdpGrid-e;
+}
+
+#iwdpCtrlTurnsA {grid-row:riwdpCtrlTurns-s/riwdpCtrlTurns-e; grid-column:ciwdpCtrlTurnsA-s/ciwdpCtrlTurnsA-e;}
+#iwdSpotTurnsA {grid-row:riwdpCtrlTurns-s/riwdpCtrlTurns-e; grid-column:ciwdpCtrlTurnsA-s/ciwdpCtrlTurnsA-e;}
+
+#iwdpCtrlTurnsB {grid-row:riwdpCtrlTurns-s/riwdpCtrlTurns-e; grid-column:ciwdpCtrlTurnsB-s/ciwdpCtrlTurnsB-e;}
+#iwdSpotTurnsB {grid-row:riwdpCtrlTurns-s/riwdpCtrlTurns-e; grid-column:ciwdpCtrlTurnsB-s/ciwdpCtrlTurnsB-e;}
+
+#iwdpLineTurnsA {grid-row:riwdpLineTurnsA-s/riwdpLineTurnsA-e; grid-column:ciwdpLineTurns-s/ciwdpLineTurns-e;}
+#iwdpLineTurnsB {grid-row:riwdpLineTurnsB-s/riwdpLineTurnsB-e; grid-column:ciwdpLineTurns-s/ciwdpLineTurns-e;}
+
+#iwdpTurnsA {grid-row:riwdpTurnsA-s/riwdpTurnsA-e; grid-column:ciwdpTurns-s/ciwdpTurns-e;}
+#iwdpTurnsB {grid-row:riwdpTurnsB-s/riwdpTurnsB-e; grid-column:ciwdpTurns-s/ciwdpTurns-e;}
+
+
+
+#mainWall {
+	position:absolute;
+	height:112em;
+	width:60em;
+	grid-template-rows:
+		[rmw-s]
+		3fr
+		[rmwName-s rmwCrossTick-s]
+		7fr
+		[rmwName-e rmwCrossTick-e rmwDoor-s]
+		102fr
+		[rmwDoor-e rmw-e];
+ 	grid-template-columns:
+		[cmw-s cmwDoor-s]
+		13fr
+		[cmwNameForeground-s]
+		4fr
+		[cmwNameBackground-s]
+		26fr
+		[cmwNameBackground-e]
+		4fr
+		[cmwNameForeground-e]
+		5fr
+		[cmwCrossTick-s]
+		5fr
+		[cmwCrossTick-e]
+		3fr
+		[cmwDoor-e cmw-e];
+}
+
+#mwNameBackground {grid-row:rmwName-s/rmwName-e; grid-column:cmwNameBackground-s/cmwNameBackground-e;}
+#mwNameForeground {grid-row:rmwName-s/rmwName-e; grid-column:cmwNameForeground-s/cmwNameForeground-e;}
+
+#mwCrossTick {grid-row:rmwCrossTick-s/rmwCrossTick-e; grid-column:cmwCrossTick-s/cmwCrossTick-e;}
+			
+#mwDoor {
+	grid-row:rmwDoor-s/rmwDoor-e;
+	grid-column:cmwDoor-s/cmwDoor-e;
+	display:grid;
+	height:102em;
+	width:60em;
+	grid-template-rows:
+		[rmwd-s rmwdSurroundInformation-s]
+		3fr
+		[rmwdCtrlTop-s]
+		6fr
+		[rmwdCtrlTop-e]
+		3fr
+		[rmwdSurroundInformation-e rmwdPanel-s]
+		68fr
+		[rmwdPanel-e]
+		3fr
+		[rmwdCtrlNESW-s]
+		7fr
+		[rmwdCtrlNESW-e]
+		2fr
+		[rmwdCtrlBackFlag-s]
+		1fr
+		[rmwdCtrlBottom-s]
+		1fr
+		[rmwdCtrlBackFlag-e]
+		5fr
+		[rmwdCtrlBottom-e]
+		3fr
+		[rmwd-e];
+	grid-template-columns:
+		[cmwd-s cmwdSurroundInformation-s]
+		3fr
+		[cmwdPanel-s cmwdCtrlInformation-s cmwdCtrlReset-s]
+		4fr
+		[cmwdCtrlWest-s]
+		7fr
+		[cmwdCtrlWest-e]
+		1fr
+		[cmwdCtrlReset-e]
+		4fr
+		[cmwdCtrlInformation-e]
+		1fr
+		[cmwdCtrlToggle-s cmwdCtrlNorth-s]
+		2fr
+		[cmwdSurroundInformation-e]
+		2fr
+		[cmwdCtrlHint-s]
+		3fr
+		[cmwdCtrlNorth-e]
+		6fr
+		[cmwdCtrlSouth-s]
+		3fr
+		[cmwdCtrlHint-e cmwdCtrlToggle-e]
+		4fr
+		[cmwdCtrlSouth-e]
+		1fr
+		[cmwdCtrlBack-s cmwdCtrlSolution-s]
+		1fr
+		[cmwdCtrlForward-e]
+		4fr
+		[cmwdCtrlEast-s]
+		7fr
+		[cmwdCtrlEast-e]
+		3fr
+		[cmwdCtrlBackFlag-s]
+		1fr
+		[cmwdCtrlSolution-e cmwdCtrlBack-e cmwdPanel-e]
+		1fr
+		[cmwdCtrlBackFlag-e]
+		2fr
+		[cmwd-e];
+}
+
+#mwdCtrlInformation {grid-row:rmwdCtrlTop-s/rmwdCtrlTop-e; grid-column:cmwdCtrlInformation-s/cmwdCtrlInformation-e;}
+#mwdSurroundInformation {
+	z-index:5;
+	width:22em;
+	height:12em;
+	grid-row:rmwdSurroundInformation-s/rmwdSurroundInformation-e;
+	grid-column:cmwdSurroundInformation-s/cmwdSurroundInformation-e;
+}
+
+#mwdCtrlHint {grid-row:rmwdCtrlTop-s/rmwdCtrlTop-e; grid-column:cmwdCtrlHint-s/cmwdCtrlHint-e;}
+#mwdCtrlSolution {grid-row:rmwdCtrlTop-s/rmwdCtrlTop-e; grid-column:cmwdCtrlSolution-s/cmwdCtrlSolution-e;}
+
+#mwdCtrlNorth {grid-row:rmwdCtrlNESW-s/rmwdCtrlNESW-e; grid-column:cmwdCtrlNorth-s/cmwdCtrlNorth-e;}
+#mwdCtrlNorthFlasher {grid-row:rmwdCtrlNESW-s/rmwdCtrlNESW-e; grid-column:cmwdCtrlNorth-s/cmwdCtrlNorth-e;}
+
+#mwdCtrlEast {grid-row:rmwdCtrlNESW-s/rmwdCtrlNESW-e; grid-column:cmwdCtrlEast-s/cmwdCtrlEast-e;}
+#mwdCtrlEastFlasher {grid-row:rmwdCtrlNESW-s/rmwdCtrlNESW-e; grid-column:cmwdCtrlEast-s/cmwdCtrlEast-e;}
+
+#mwdCtrlSouth {grid-row:rmwdCtrlNESW-s/rmwdCtrlNESW-e; grid-column:cmwdCtrlSouth-s/cmwdCtrlSouth-e;}
+#mwdCtrlSouthFlasher {grid-row:rmwdCtrlNESW-s/rmwdCtrlNESW-e; grid-column:cmwdCtrlSouth-s/cmwdCtrlSouth-e;}
+
+#mwdCtrlWest {grid-row:rmwdCtrlNESW-s/rmwdCtrlNESW-e; grid-column:cmwdCtrlWest-s/cmwdCtrlWest-e;}
+#mwdCtrlWestFlasher {grid-row:rmwdCtrlNESW-s/rmwdCtrlNESW-e; grid-column:cmwdCtrlWest-s/cmwdCtrlWest-e;}
+
+
+#mwdCtrlReset {grid-row:rmwdCtrlBottom-s/rmwdCtrlBottom-e; grid-column:cmwdCtrlReset-s/cmwdCtrlReset-e;}
+#mwdCtrlToggle {grid-row:rmwdCtrlBottom-s/rmwdCtrlBottom-e; grid-column:cmwdCtrlToggle-s/cmwdCtrlToggle-e;}
+
+#mwdCtrlBack {grid-row:rmwdCtrlBottom-s/rmwdCtrlBottom-e; grid-column:cmwdCtrlBack-s/cmwdCtrlBack-e;}
+
+#mwdCtrlBackFlag {
+	width:2em;
+	height:2em;
+	grid-row:rmwdCtrlBackFlag-s/rmwdCtrlBackFlag-e;
+	grid-column:cmwdCtrlBackFlag-s/cmwdCtrlBackFlag-e;
+}
+
+#mwdPanel {
+	grid-row:rmwdPanel-s/rmwdPanel-e;
+	grid-column:cmwdPanel-s/cmwdPanel-e;
+	display:grid;
+	height:68em;
+	width:54em;
+	background-color:white;
+	grid-template-rows:
+		[rmwdp-s rmwdpGrid-s]
+		54fr
+		[rmwdpGrid-e rmwdpTurnsA-s]
+/*		2fr
+		[rmwdpTurnsA-s] */
+		1fr
+		[rmwdpLineTurnsA-s]
+/*		1fr
+		[rmwdpLineTurnsA-e]
+		1fr */
+		2fr
+		[rmwdpLineTurnsA-e rmwdpCtrlTurns-s]
+		1fr
+		[rmwdpTurnsB-s]
+		6fr
+		[rmwdpTurnsA-e]
+		1fr
+		[rmwdpCtrlTurns-e rmwdpLineTurnsB-s]
+		2fr
+/*		1fr
+		[rmwdpLineTurnsB-s]
+		1fr */
+		[rmwdpLineTurnsB-e]
+		1fr
+		[rmwdpTurnsB-e rmwdp-e];
+	grid-template-columns:
+		[cmwdp-s cmwdpGrid-s cmwdpCtrlTurnsA-s]
+		6fr
+		[cmwdpCtrlTurnsA-e cmwdpLineTurns-s cmwdpTurns-s]
+		42fr
+		[cmwdpLineTurns-e cmwdpTurns-e cmwdpCtrlTurnsB-s]
+		6fr
+		[cmwdpCtrlTurnsB-e cmwdpGrid-e cmwdp-e];
+}
+
+#mwdpGrid {
+	z-index:5;
+	width:54em;
+	height:54em;
+	opacity:1;
+	grid-row:rmwdpGrid-s/rmwdpGrid-e;
+	grid-column:cmwdpGrid-s/cmwdpGrid-e;
+}
+
+#mwdpCtrlTurnsA {grid-row:rmwdpCtrlTurns-s/rmwdpCtrlTurns-e; grid-column:cmwdpCtrlTurnsA-s/cmwdpCtrlTurnsA-e;}
+#mwdpCtrlTurnsB {grid-row:rmwdpCtrlTurns-s/rmwdpCtrlTurns-e; grid-column:cmwdpCtrlTurnsB-s/cmwdpCtrlTurnsB-e;}
+
+#mwdpLineTurnsA {grid-row:rmwdpLineTurnsA-s/rmwdpLineTurnsA-e; grid-column:cmwdpLineTurns-s/cmwdpLineTurns-e;}
+#mwdpLineTurnsB {grid-row:rmwdpLineTurnsB-s/rmwdpLineTurnsB-e; grid-column:cmwdpLineTurns-s/cmwdpLineTurns-e;}
+
+#mwdpTurnsA {grid-row:rmwdpTurnsA-s/rmwdpTurnsA-e; grid-column:cmwdpTurns-s/cmwdpTurns-e;}
+#mwdpTurnsB {grid-row:rmwdpTurnsB-s/rmwdpTurnsB-e; grid-column:cmwdpTurns-s/cmwdpTurns-e;}
+
+
+/* code {font-family:"Courier New", "Courier", monospace;} */
+
+.Cell {font-size:4em; border:none; margin:0; text-align:center; padding:0;}
+
+.CrossTick {
+	display:none;
+	padding:0;
+	font-size:3.6em;
+	border-style:none;
+	border-radius:0.3em;
+	margin:0;
+/*	background-color:#FFFF80; */
+/*	background-color:brown; */
+	background-color:turquoise;
+/*	color:black; */
+	color:black;
+	text-align:center;
+}
+
+.CtrlCommon {margin:0; padding:0;}
+
+.CtrlSecondary {text-align:center; border:none; background-color:#585858; color:white; font-size:2.5em;}
+
+/* .CtrlTurns {width:10em; height:10em;} */
+.CtrlTurns {width:6em; height:8em;}
+
+.CtrlNESW {width:7em; height:7em;}
+
+.DemoSeparator {background-color:black;}
+
+.Door {background-color:#ebd5ab;}
+/* .Door {background-color:wheat;} */
+
+.Hole {background-color:black; border:none;}
+
+.InfoOtherPuzzles1 {
+	border-style:dashed;
+	border-color:#606060;
+	border-top-width:0;
+	border-left-width:0;
+	border-right-width:0;
+	padding:0;
+	font-size:2.5em;
+}
+
+.InfoOtherPuzzles2 {
+	border:0;
+	padding:0;
+	font-size:2.5em;
+}
+
+.InfoTopicContent {margin:0; background-color:white; color:black;}
+
+.InfoTopicTitle {
+	overflow:hidden;
+	border:none;
+	margin:0;
+	padding:0.3em 0 0 0;
+	text-align:center;
+	font-size:2.5em;
+	font-variant:small-caps;
+	letter-spacing:0.08em;
+}
+
+.InfoWhereIPost {
+	border-style:dashed;
+	border-color:#606060;
+	border-top-width:0;
+	border-left-width:0;
+	border-right-width:0;
+	padding:0;
+	font-size:2.5em;
+}
+
+.Instructions {
+	text-align:justify;
+	border:none;
+	padding:0 0.5em 0 0.5em;
+	font-size:2.5em;
+}
+
+.Italic {font-style:italic;}
+
+.Limb {background-color:#96E6DA;}
+
+.LineTurns {width:42em; height:2em;}
+
+.MainWallName {padding:0;}
+
+.NoShow {display:none;}
+
+.PublishedPuzzles1 {
+	padding:none;
+	font-size:2em;
+	border-width:0 0 0.2em 0;
+	border-color:black;
+}
+
+.ScreenshotSeparator {
+	background-color:white;
+	border-style:solid;
+	border-color:black;
+}
+
+.SpotW8H8D6 {display:none; z-index:10; width:6em; height:6em;}
+/* .SpotW8H8D6 {z-index:10; width:6em; height:6em;} */
+.SpotNESW {display:none; z-index:10; width:7em; height:7em;}
+.SpotTurns {display:none; z-index:10; width:6em; height:8em;}
+
+.Surround {display:none; background-color:yellow;}
+
+.Torso {background-color:#FAFAFA;}
+
+.Turns {margin:0; border:none; padding:0; background-color:transparent; color:black; text-align:left; font-size:4em;}
+
+/* .Wall {background-color:#807873;} */
+ .Wall {background-color:#ebd5ab;}
+/* .Wall {background-color:#e6d0a8;} */
+
+.WallNameBackground {
+	border-style:none;
+	border-radius:0.4em;
+	margin:0;
+	background-color:#303030;
+	color:transparent;
+}
+
+.WallNameForeground {
+	font-size:3.6em;
+	border:none;
+	margin:0;
+	background-color:transparent;
+	color:white;
+	text-align:center;
+/*	letter-spacing:0.1em; */
+	letter-spacing:0.15em;
+}
+
+.Word {font-size:4em; border-style:none; background-color:white; padding:0; color:black;}
+
+.WordLeft {text-align:left;}
+.WordRight {text-align:right;}
+.WordCentre {text-align:center;}
+
+.ZeroLetterSpacing {letter-spacing:0;}
+
